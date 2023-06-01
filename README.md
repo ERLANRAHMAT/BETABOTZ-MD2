@@ -21,7 +21,7 @@
 
 ## LANGUAGE 
 
-[`ID /`](https://github.com/ERLANRAHMAT/BETABOTZ-MD2/blob/pro/README.md)[`EN`](https://github.com/ERLANRAHMAT/BETABOTZ-MD2/blob/pro/ENGLISH.md)
+[`ID /`](https://github.com/ERLANRAHMAT/BETABOTZ-MD2/blob/v1/README.md)[`EN`](https://github.com/ERLANRAHMAT/BETABOTZ-MD2/blob/v1/ENGLISH.md)
 - Change the language using the direct link above.
 
 
