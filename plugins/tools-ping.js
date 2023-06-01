@@ -2,6 +2,7 @@
 let { totalmem, freemem } = require('os')
 let os = require("os");
 let util = require("util");
+let fetch = require("node-fetch")
 let osu = require("node-os-utils");
 let { performance } = require("perf_hooks");
 let { sizeFormatter } = require("human-readable");
