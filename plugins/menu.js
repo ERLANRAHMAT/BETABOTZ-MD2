@@ -184,7 +184,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
                           }
                         }
                       }
-     const floc = {quoted: { key: { participant : '0@s.whatsapp.net'}, message: { "liveLocationMessage": { "caption": `Menu`,"h": `${name}`, 'jpegThumbnail': fs.readFileSync('./thumbnail.jpg')}} }}
+     const floc = {quoted: { key: { participant : '0@s.whatsapp.net'}, message: { "liveLocationMessage": { "caption": `Menu`,"h": `${name}`, 'jpegThumbnail': fs.readFileSync('./media/thumbnail.jpg')}} }}
   conn.reply(m.chat, 'Sedang Memuat Menu', floc)
    await conn.relayMessage(m.chat, { reactionMessage: { key: m.key, text: '🚀️'  }}, { messageId: m.key.id })
 conn.sendMessage(m.chat, {
