@@ -1,18 +1,23 @@
-FROM node:lts-buster
+FROM ubuntu:kinetic
 
 RUN apt-get update && \
   apt-get install -y \
   ffmpeg \
   imagemagick \
+  curl \
+  neofetch \
   webp && \
-  apt-get upgrade -y && \
-  rm -rf /var/lib/apt/lists/*
+  apt-get upgrade -y 
 
-COPY package.json .
+WORKDIR /app
+COPY package.json /app
+
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - &&\
+apt-get install -y nodejs
 
 RUN npm install && npm install qrcode-terminal
 
-COPY . .
+COPY . /app
 
 EXPOSE 5000
 
