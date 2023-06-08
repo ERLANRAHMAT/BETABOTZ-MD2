@@ -49,7 +49,7 @@ Script By [`Botcahx`](https://github.com/BOTCAHX/RTXZY-MD)
 
 ## Join Group Diskusi
 
-[![ALL BOT WHATSAPP](https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=red)](https://chat.whatsapp.com/Ln2vHjRrRayAbzalRMB56r)
+[![ALL BOT WHATSAPP](https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=red)](https://chat.whatsapp.com/IiCN8nUzN1OGnfuOShBEkx)
 
 
 
