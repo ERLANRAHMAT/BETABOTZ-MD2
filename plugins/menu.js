@@ -167,39 +167,8 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    const ftroli = {
-	key : {
-                          participant : '0@s.whatsapp.net'
-                        },
-       message: {
-                    orderMessage: {
-                            itemCount : 9999999999999,
-                            status: 1,
-                            surface : 1,
-                            message: wm,
-                            orderTitle: 'MENU',
-                            thumbnail: await (await fetch('https://telegra.ph/file/f4063ab3071f5c4af765a.png')).buffer(),
-                            sellerJid: '0@s.whatsapp.net'
-          
-                          }
-                        }
-                      }
-     const floc = {quoted: { key: { participant : '0@s.whatsapp.net'}, message: { "liveLocationMessage": { "caption": `Menu`,"h": `${name}`, 'jpegThumbnail': fs.readFileSync('./media/thumbnail.jpg')}} }}
-  conn.reply(m.chat, 'Sedang Memuat Menu', floc)
-   await conn.relayMessage(m.chat, { reactionMessage: { key: m.key, text: '🚀️'  }}, { messageId: m.key.id })
-conn.sendMessage(m.chat, {
-text: text,
-contextInfo: {
-externalAdReply: { showAdAttribution: true, 
-title: ucapan() + ' ' + name,
-body: 'bodynya',
-thumbnailUrl: "https://telegra.ph/file/dc5a67d724b016574129b.jpg",
-sourceUrl: "https://chat.whatsapp.com/Ln2vHjRrRayAbzalRMB56r",
-mediaType: 1,
-renderLargerThumbnail: true
-}}}, { quoted: ftroli})
-      /**
-await conn.sendFile(m.chat, 'https://telegra.ph/file/dc5a67d724b016574129b.jpg', 'menu.jpg', text, ftroli)**/
+    conn.sendFile(m.chat, `https://telegra.ph/file/ec75e8bd53238f11603d9.jpg`, null, text, m) 
+
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
