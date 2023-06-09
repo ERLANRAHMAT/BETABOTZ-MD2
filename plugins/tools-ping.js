@@ -157,7 +157,8 @@ ${cpus
   .join("\n\n")}`
     : ""
 }
-`.trim())
+`
+conn.sendFile(m.chat, `https://telegra.ph/file/ec8cf04e3a2890d3dce9c.jpg`, null, txt, m)            
 }
 handler.help = ['ping', 'speed'];
 handler.tags = ['info'];
