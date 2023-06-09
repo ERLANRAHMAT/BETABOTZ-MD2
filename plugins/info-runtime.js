@@ -8,18 +8,7 @@ var reply = `
 
 Runtime : ${tio}
     `
-
-conn.sendMessage(m.chat, {
-text: reply,
-contextInfo: {
-externalAdReply: {
-title: "",
-body: time,
-thumbnailUrl: "https://telegra.ph/file/dc5a67d724b016574129b.jpg",
-sourceUrl: "",
-mediaType: 1,
-renderLargerThumbnail: true
-}}})
+conn.sendFile(m.chat, `https://telegra.ph/file/ec75e8bd53238f11603d9.jpg`, null, reply, m)
 
 }
 handler.help = ['runtime']
