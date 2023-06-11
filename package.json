@@ -23,7 +23,7 @@
         "Games-wabot",
         "wabot-aq",
         "multi-device",
-        "BOTCAHX",
+        "Betabotz",
         "baileys"
     ],
     "homepage": "https://github.com/ERLANRAHMAT/BETABOTZ-MD2",
@@ -43,6 +43,7 @@
         "@adiwajshing/keyed-db": "^0.2.4",
         "@bochilteam/scraper": "^3.0.0",
         "@vitalets/google-translate-api": "^9.0.0",
+        "@xct007/frieren-scraper": "^0.0.2",
         "acrcloud": "^1.4.0",
         "api-dylux": "^1.2.2",
         "javascript-obfuscator": "^4.0.2",
