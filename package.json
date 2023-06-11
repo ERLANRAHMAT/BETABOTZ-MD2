@@ -23,12 +23,12 @@
         "Games-wabot",
         "wabot-aq",
         "multi-device",
-        "Betabotz",
+        "betabotz",
         "baileys"
     ],
     "homepage": "https://github.com/ERLANRAHMAT/BETABOTZ-MD2",
     "author": {
-        "name": "BOTCAHX"
+        "name": "betabotz"
     },
     "repository": {
         "type": "git",
