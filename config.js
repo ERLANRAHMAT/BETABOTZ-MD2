@@ -38,8 +38,8 @@ global.salah = 'Salah ❌\n'
 global.stiker_wait = '*⫹⫺ Stiker sedang dibuat...*'
 global.packname = 'Made with'
 global.author = 'Bot WhatsApp'
-global.read = true//Untuk autoread kalau pengen autoread nyala true kalau pengen mati false 
-//==> Apikey
+
+//===> Apikey
 global.lann = 'Your_Key_Here' //isi apikey mu https://api.betabotz.org
 global.btc = 'Your_Key_Here'//Isi apikey di https://api.botcahx.live
 global.APIs = {   
