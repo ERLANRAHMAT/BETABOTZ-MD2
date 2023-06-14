@@ -29,9 +29,7 @@
 
 <a href="https://sociabuzz.com/tioclkp02" target="_blank"><img src="https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" height="32px" alt="Sociabuzz"></a>
 
-### `Replit`
 
-[![Run on Repl.it](https://repl.it/badge/github/ERLANRAHMAT/BETABOTZ-MD2)](https://repl.it/github/ERLANRAHMAT/BETABOTZ-MD2) 
 
   
 
