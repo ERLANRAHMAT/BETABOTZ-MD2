@@ -167,8 +167,8 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    conn.sendFile(m.chat, `https://telegra.ph/file/ec75e8bd53238f11603d9.jpg`, null, text, m) 
-
+//    conn.sendFile(m.chat, `https://telegra.ph/file/ec75e8bd53238f11603d9.jpg`, null, text, m) 
+conn.sendMessage(m.chat,{ image :{ url : "https://telegra.ph/file/ec75e8bd53238f11603d9.jpg" } , caption : text.trim() }, { quoted: m })
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
