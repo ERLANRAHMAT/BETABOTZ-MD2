@@ -706,8 +706,6 @@ module.exports = {
                     let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
                     for (let user of participants) {
                         let pp = 'https://telegra.ph/file/24fa902ead26340f3df2c.png'
-                    let ppgc = 'https://telegra.ph/file/24fa902ead26340f3df2c.png'
-                    let bg = 'https://telegra.ph/file/22fafb8e3f968264b303e.jpg'
                     try {
                         pp = await this.profilePictureUrl(user, 'image')
                         ppgc = await this.profilePictureUrl(id, 'image') 
@@ -715,24 +713,8 @@ module.exports = {
                         } finally {
                             text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc ? String.fromCharCode(8206).repeat(4001) + groupMetadata.desc : '') :
                                 (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
-                               let wel = API('lann', '/api/maker/welcome', {
-                                nama: await this.getName(user),
-                                namaGb: await this.getName(id),
-                                pepeGb: ppgc,
-                                totalMem: groupMetadata.participants.length, 
-                                pepeUser: pp, 
-                                bege: bg,
-                                apikey: lann
-                            })
-                            let lea = API('lann', '/api/maker/goodbye', {
-                                nama: await this.getName(user),
-                                namaGb: await this.getName(id),
-                                pepeGb: ppgc,
-                                totalMem: groupMetadata.participants.length, 
-                                pepeUser: pp, 
-                                bege: bg,
-                                apikey: lann
-                            })
+                               let wel = pp
+                            let lea = pp
                              this.sendFile(id, action === 'add' ? wel : lea, 'pp.jpg', text, null, false, { mentions: [user] })
                         }
                     }
