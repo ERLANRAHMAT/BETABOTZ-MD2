@@ -715,7 +715,7 @@ module.exports = {
                                 (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
                                let wel = pp
                             let lea = pp
-                             this.sendFile(id, action === 'add' ? wel : lea, 'pp.jpg', text, null, false, { mentions: [user] })
+                             this.sendFile(id, pp, 'pp.jpg', text, null, false, { mentions: [user] })
                         }
                     }
                 }
