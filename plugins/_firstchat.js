@@ -15,7 +15,7 @@ handler.before = async function (m) {
     await this.reply(m.chat, `
 Hai ${ucapan()} *${username.replace(/@.+/, '')} 👋* 
 
-${banned ? `Kamu *Terbanned* Kak 😨\nHubungi: wa.me/${owner[0]}` : 'Saya ${wm} Bot Yang Dibuat Oleh Lann Untuk membantu pekerjaan anda sehari-hari 🚀'}
+${banned ? `Kamu *Terbanned* Kak 😨\nHubungi: wa.me/${owner[0]}` : `Saya ${wm} Bot Yang Dibuat Oleh Lann Untuk membantu pekerjaan anda sehari-hari 🚀`}
 `.trim(), m)
     user.pc = new Date * 1
 }
