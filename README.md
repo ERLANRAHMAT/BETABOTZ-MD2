@@ -165,19 +165,11 @@ conn.logger.level = 'debug'
 
 
 
-### All Contributors
-
-[`Visit`](https://github.com/BOTCAHX/RTXZY-MD/graphs/contributors)
-
-
- 
 ##### All Contributors
-<a href="https://github.com/BOTCAHX"><img src="https://github.com/BOTCAHX.png?size=100" width="100" height="100"></a> | [![Erlan](https://github.com/ERLANRAHMAT.png?size=100)](https://github.com/ERLANRAHMAT)| [![Nayla](https://github.com/Naylahnf.png?size=100)](https://github.com/Naylahnf)  
+<a href="https://github.com/BOTCAHX"><img src="https://github.com/BOTCAHX.png?size=100" width="100" height="100"></a> | [![Erlan](https://github.com/ERLANRAHMAT.png?size=100)](https://github.com/ERLANRAHMAT) | [![Erlan](https://github.com/Naylahnf.png?size=100)](https://github.com/Naylahnf)   
 ---|---
-
-[Tio](https://github.com/BOTCAHX)  | [Erlan](https://github/ERLANRAHMAT)
-Recode | Contributor |  [Nayla](https://github/Naylahnf)
-Contibator | Contributor |
+[Tio](https://github.com/BOTCAHX)  | [Erlan](https://github/ERLANRAHMAT) | [Nayla](https://github/Naylahnf)   
+Recode | Contributor | Contributor |
 
 
 ##### Special Thanks To
