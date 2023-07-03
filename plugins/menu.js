@@ -174,7 +174,7 @@ contextInfo: {
 externalAdReply: { showAdAttribution: true, 
 title: 'Date: ' + week + date,
 body: '',
-thumbnailUrl: "https://telegra.ph/file/ec75e8bd53238f11603d9.jpg",
+thumbnailUrl: thumb,
 sourceUrl: gc,
 mediaType: 1,
 renderLargerThumbnail: true
@@ -184,7 +184,7 @@ await conn.sendFile(m.chat, audio, 'anuu.mp3', null, m, true, {
  ptt: true, 
 seconds: 9999,
 fileLength: 99999,
- ptt: true, contextInfo: { forwardingScore: 999, isForwarded: true, externalAdReply: {title: `Aktif Selama: ${uptime}`, body: wm, sourceUrl: instagram, thumbnail: await (await fetch('https://telegra.ph/file/f7a5c9629f27bd8fd920f.jpg')).buffer(),}}  
+ ptt: true, contextInfo: { forwardingScore: 999, isForwarded: true, externalAdReply: {title: `Aktif Selama: ${uptime}`, body: wm, sourceUrl: instagram, thumbnail: await (await fetch(thumb)).buffer(),}}  
       }) 
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
