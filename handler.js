@@ -715,7 +715,17 @@ module.exports = {
                                 (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
                                let wel = pp
                             let lea = pp
-                             this.sendFile(id, pp, 'pp.jpg', text, null, false, { mentions: [user] })
+                             this.sendMessage(id, {
+text: text,
+contextInfo: {
+externalAdReply: {  
+title: action === 'add' ? 'Selamat Datang' : 'Selamat tinggal',
+body: 'By Nayla Hanifah',
+thumbnailUrl: pp,
+sourceUrl: instagram,
+mediaType: 1,
+renderLargerThumbnail: true 
+}}}, { quoted: null})
                         }
                     }
                 }
