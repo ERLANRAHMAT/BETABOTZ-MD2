@@ -176,8 +176,8 @@ conn.logger.level = 'debug'
 ---|---
 
 [Tio](https://github.com/BOTCAHX)  | [Erlan](https://github/ERLANRAHMAT)
-Recode | Contributor | [Nayla](https://github/Naylahnf)
-Recode | Contributor |
+Recode | Contributor |  [Nayla](https://github/Naylahnf)
+Contibator | Contributor |
 
 
 ##### Special Thanks To
