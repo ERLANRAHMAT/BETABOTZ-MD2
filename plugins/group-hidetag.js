@@ -13,7 +13,7 @@ const fkontak = {
 	},
 	"participant": "0@s.whatsapp.net"
 }
-     conn.sendMessage(m.chat, { text: text, mentions: participants.map(a => a.id) }, {quoted:m})
+     conn.sendMessage(m.chat, { text: text, mentions: participants.map(a => a.id) }, {quoted:fkontak})
 }
 handler.help = ['hidetag <pesan>']
 handler.tags = ['group']
