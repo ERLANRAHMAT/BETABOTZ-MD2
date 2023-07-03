@@ -12,6 +12,7 @@
 - Fix logs 
 - Fix menunggu pesan
 - Fix delay Messages
+- Fix contextinfo
 - Bisa di deploy di render
 - -  Selebihnya tambah sendiri fitur nya karena ini cuma base.
 
