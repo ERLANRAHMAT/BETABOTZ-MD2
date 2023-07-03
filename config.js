@@ -39,6 +39,9 @@ global.stiker_wait = '*⫹⫺ Stiker sedang dibuat...*'
 global.packname = 'Made with'
 global.author = 'Bot WhatsApp'
 
+//---- image thumbnail 
+global.thumb = 'https://telegra.ph/file/ec75e8bd53238f11603d9.jpg'
+
 //===> Apikey
 global.lann = 'Your_Key_Here' //isi apikey mu https://api.betabotz.org
 global.btc = 'Your_Key_Here'//Isi apikey di https://api.botcahx.live
