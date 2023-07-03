@@ -167,18 +167,25 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-//    conn.sendFile(m.chat, `https://telegra.ph/file/ec75e8bd53238f11603d9.jpg`, null, text, m) 
-conn.sendMessage(m.chat, {
+    let audio = `https://raw.githubusercontent.com/aisyah-rest/mangkane/main/Mangkanenya/mangkane29.mp3`
+await conn.sendMessage(m.chat, {
 text: text,
 contextInfo: {
 externalAdReply: { showAdAttribution: true, 
-title: 'date: ' + date,
+title: 'Date: ' + week + date,
 body: '',
 thumbnailUrl: "https://telegra.ph/file/ec75e8bd53238f11603d9.jpg",
 sourceUrl: gc,
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})
+await conn.sendFile(m.chat, audio, 'anuu.mp3', null, m, true, { 
+ type: 'audioMessage',  
+ ptt: true, 
+seconds: 9999,
+fileLength: 99999,
+ ptt: true, contextInfo: { forwardingScore: 999, isForwarded: true, externalAdReply: {title: `Aktif Selama: ${uptime}`, body: wm, sourceUrl: instagram, thumbnail: await (await fetch('https://telegra.ph/file/f7a5c9629f27bd8fd920f.jpg')).buffer(),}}  
+      }) 
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
@@ -219,4 +226,5 @@ function ucapan() {
           ucapanWaktu = 'Selamat Malam'
         }	
         return ucapanWaktu
-}
+    }
+    
