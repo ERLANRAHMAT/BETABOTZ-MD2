@@ -167,7 +167,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    let audio = `https://raw.githubusercontent.com/aisyah-rest/mangkane/main/Mangkanenya/mangkane29.mp3`
+    let audio = `https://raw.githubusercontent.com/aisyah-rest/mangkane/main/Mangkanenya/mangkane30.mp3`
 await conn.sendMessage(m.chat, {
 text: text,
 contextInfo: {
