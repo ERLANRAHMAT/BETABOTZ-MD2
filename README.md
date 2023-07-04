@@ -169,8 +169,8 @@ conn.logger.level = 'debug'
 ##### All Contributors
 <a href="https://github.com/BOTCAHX"><img src="https://github.com/BOTCAHX.png?size=100" width="50" height="100"></a> | [![Erlan](https://github.com/ERLANRAHMAT.png?size=100)](https://github.com/ERLANRAHMAT) | [![Erlan](https://github.com/Naylahnf.png?size=100)](https://github.com/Naylahnf)   
 ---|---|--|
-[Tio](https://github.com/BOTCAHX)  | [Erlan](https://github.com/ERLANRAHMAT) | [Nayla](https://github.com/Naylahnf)   
-Recode | Contributor | Contributor |
+[Tio](https://github.com/BOTCAHX)  | [Erlan](https://github.com/ERLANRAHMAT) | [Nayla](https://github.com/Naylahnf)  | [Kasan](https://github.com/Kasanstore7)
+Recode | Contributor | Contributor | Contributor
 
 
 ##### Special Thanks To
