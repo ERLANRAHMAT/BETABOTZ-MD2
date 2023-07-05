@@ -1,4 +1,4 @@
-//Ngetes doang @tq to mark
+//Ngetes doang ,tq to mark
 
 let fs = require('fs') 
 let moment = require('moment-timezone') 
