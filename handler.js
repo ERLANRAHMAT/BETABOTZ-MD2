@@ -718,11 +718,11 @@ module.exports = {
                              this.sendMessage(id, {
 text: text,
 contextInfo: {
-externalAdReply: {  
+externalAdReply: { showAdAttribution: true, 
 title: action === 'add' ? 'Selamat Datang' : 'Selamat tinggal',
-body: 'By Nayla Hanifah',
+body: global.wm,
 thumbnailUrl: pp,
-sourceUrl: instagram,
+sourceUrl: global.gc,
 mediaType: 1,
 renderLargerThumbnail: true 
 }}}, { quoted: null})
