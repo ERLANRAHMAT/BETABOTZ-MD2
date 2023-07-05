@@ -184,7 +184,12 @@ await conn.sendFile(m.chat, audio, 'anuu.mp3', null, m, true, {
  ptt: true, 
 seconds: 9999,
 fileLength: 99999,
- ptt: true, contextInfo: { forwardingScore: 999, isForwarded: true, externalAdReply: {title: 'Now Playing...', body: wm, sourceUrl: instagram, thumbnail: await (await fetch(thumb)).buffer(),}}  
+ ptt: true, contextInfo: {
+externalAdReply: { showAdAttribution: true, 
+title: 'Now Playing...',
+body: wm, 
+sourceUrl: instagram, 
+thumbnail: await (await fetch(thumb)).buffer(),}}  
       }) 
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
