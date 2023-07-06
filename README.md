@@ -215,7 +215,7 @@ conn.logger.level = 'debug'
 
 ##### All Contributors
 <a href="https://github.com/BOTCAHX"><img src="https://github.com/BOTCAHX.png?size=100" width="50" height="100"></a> | [![Erlan](https://github.com/ERLANRAHMAT.png?size=100)](https://github.com/ERLANRAHMAT) | [![Nayla](https://github.com/Naylahnf.png?size=100)](https://github.com/Naylahnf) | [![Nayla](https://github.com/Kasanstore7.png?size=100)](https://github.com/Kasanstore7)   
----|---|--|
+---|---|--|--|
 [Tio](https://github.com/BOTCAHX)  | [Erlan](https://github.com/ERLANRAHMAT) | [Nayla](https://github.com/Naylahnf)  | [kasan](https://github.com/Kasanstore7)   
 Penyedia Base | Creator SC | Contributor | Contributor |
 
