@@ -167,12 +167,12 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    let audio = `https://raw.githubusercontent.com/aisyah-rest/mangkane/main/Mangkanenya/mangkane30.mp3`
+    let audio = `https://raw.githubusercontent.com/aisyah-rest/mangkane/main/Mangkanenya/mangkane29.mp3`
 await conn.sendMessage(m.chat, {
 text: text,
 contextInfo: {
 externalAdReply: { showAdAttribution: true, 
-title: 'Date: ' + week + ' ' + date,
+title: ucapan() + ' ' + name,
 body: '',
 thumbnailUrl: thumb,
 sourceUrl: gc,
@@ -184,12 +184,7 @@ await conn.sendFile(m.chat, audio, 'anuu.mp3', null, m, true, {
  ptt: true, 
 seconds: 9999,
 fileLength: 99999,
- ptt: true, contextInfo: {
-externalAdReply: { showAdAttribution: true, 
-title: 'Now Playing...',
-body: wm, 
-sourceUrl: instagram, 
-thumbnail: await (await fetch(thumb)).buffer(),}}  
+ ptt: true, contextInfo: { forwardingScore: 999, isForwarded: true, externalAdReply: {title: 'Playing Now...', body: wm, sourceUrl: instagram, thumbnail: await (await fetch(thumb)).buffer(),}}  
       }) 
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
@@ -215,21 +210,22 @@ function clockString(ms) {
 }
 
 function ucapan() {
-        const hour_now = moment.tz('Asia/Jakarta').format('HH')
-        var ucapanWaktu = 'Pagi'
-        if (hour_now >= '03' && hour_now <= '10') {
-          ucapanWaktu = 'Pagi'
-        } else if (hour_now >= '10' && hour_now <= '15') {
-          ucapanWaktu = 'Siang'
-        } else if (hour_now >= '15' && hour_now <= '17') {
-          ucapanWaktu = 'Sore'
-        } else if (hour_now >= '17' && hour_now <= '18') {
-          ucapanWaktu = 'Selamat Petang'
-        } else if (hour_now >= '18' && hour_now <= '23') {
-          ucapanWaktu = 'Malam'
-        } else {
-          ucapanWaktu = 'Selamat Malam'
-        }	
-        return ucapanWaktu
-    }
-    
+	const time = moment.tz('Asia/Jakarta').format('HH')
+	let res = "Selamat malam 🌌"
+	if(time >= 1) {
+		res = "Selamat Dini hari 🌌"
+	}
+	if(time >= 4) {
+		res = "Selamat pagi ⛅"
+	}
+	if(time > 10) {
+		res = "Selamat siang 🌅"
+	}
+	if(time >= 15) {
+		res = "Selamat sore 🌇"
+	}
+	if(time >= 18) {
+		res = "Selamat malam 🌃"
+	}
+	return res
+  }
