@@ -1,52 +1,6 @@
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
 
-## Visitor 🔍
-<p align="center"><img src="https://profile-counter.glitch.me/{ERLANRAHMAT}/count.svg" alt="neoxr :: Visitor's Count" /></p>
-
-
-
-### Pembaruan / Update
-- Telah menggunakan multi auth sessions 
-- Fix QR code di terminal
-- Fix logs 
-- Fix menunggu pesan
-- Fix delay Messages
-- Fix contextinfo
-- Bisa di deploy di render
-- -  Selebihnya tambah sendiri fitur nya karena ini cuma base.
-
-- Free apikey saya ( betabotz ) hanya 5 limit per day jika ingin memiliki limit lebih silahkan registrasi terlebih dahulu, lalu chat saya untuk meningkatkan limit [lann](http://wa.me/6287764694844?text=.register )
-- Free apikey botcahx hanya 10 limit per day jika ingin memiliki limit lebih silahkan registrasi terlebih dahulu, lalu chat bot saya [botcahx](http://wa.me/62813958616959?text=.register )
-
-+ Register Key [`botcahx`](https://api.botcahx.live)
-+ And Register Here [`lann`](https://api.betabotz.org)
-
-- Setelah mendapat key paste di config.js di baris global.btc dan global.lann
-
-## LANGUAGE 
-
-[`ID /`](https://github.com/ERLANRAHMAT/BETABOTZ-MD2/blob/v1/README.md)[`EN`](https://github.com/ERLANRAHMAT/BETABOTZ-MD2/blob/v1/ENGLISH.md)
-- Change the language using the direct link above.
-
-
-## Support
-
-<a href="https://sociabuzz.com/tioclkp02" target="_blank"><img src="https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" height="32px" alt="Sociabuzz"></a>
-
-
-
-  
-
-### `Render`
-
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://dashboard.render.com/blueprint/new?repo=https%3A%2F%2Fgithub.com%2FBOTCAHX%2FRTXZY-MD)
-
-
-
-## Base Ori
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
-
 
 ## Visitor 🔍
 <p align="center"><img src="https://profile-counter.glitch.me/{ERLANRAHMAT}/count.svg" alt="neoxr :: Visitor's Count" /></p>
