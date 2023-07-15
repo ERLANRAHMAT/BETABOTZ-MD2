@@ -10,7 +10,17 @@ await m.reply(wait)
   var js = await fetch(API('lann', '/api/search/openai-chat', { text: `${text}`, apikey: lann }))
 var json = await js.json()
 try {
-  await m.reply(json.message)
+  await conn.sendMessage(m.chat, {
+text: js.result,
+contextInfo: {
+externalAdReply: { showAdAttribution: true, 
+title: 'Chat GPT',
+body: '',
+thumbnailUrl: "https://telegra.ph/file/7a385897829927b981dfa.jpg",
+sourceUrl: "https://api.betabotz.org",
+mediaType: 1,
+renderLargerThumbnail: true
+}}}, { quoted: m})
 } catch (err) {
 m.reply(util.format(js))
 }}
