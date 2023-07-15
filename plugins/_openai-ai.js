@@ -13,7 +13,7 @@ try {
   await conn.sendMessage(m.chat, {
 text: js.result,
 contextInfo: {
-externalAdReply: { showAdAttribution: true, 
+externalAdReply: { 
 title: 'Chat GPT',
 body: '',
 thumbnailUrl: "https://telegra.ph/file/7a385897829927b981dfa.jpg",
