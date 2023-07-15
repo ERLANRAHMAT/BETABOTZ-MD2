@@ -26,5 +26,5 @@ m.reply(util.format(js))
 }}
 handler.command = handler.help = ['ai','openai','chatgpt'];
 handler.tags = ['info'];
-handler.premium = false
+handler.limit = true
 module.exports = handler;
