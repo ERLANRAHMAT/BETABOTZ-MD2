@@ -1,12 +1,1 @@
-let handler = async (m, { conn }) => {
-let ye = `@${m.sender.split`@`[0]}`
-let esce = `
-Hai ${ye} Bot Ini Menggunakan Script :\n\n• https://github.com/BOTCAHX/RTXZY-MD ( Original Script )\n\n• https://github.com/ERLANRAHMAT/Betabotz-Md2 ( Recode Full My Api )
-`
-m.reply(esce)
-}
-handler.help = ['sc', 'sourcecode']
-handler.tags = ['info']
-handler.command = /^(sc|sourcecode)$/i
-
-module.exports = handler
+const _0x485080=_0x1ff5;function _0x1af5(){const _0x380c5f=['882455QRGkYw','27CwhphV','2728936cEvKkT','4yeoIHs','3828328blvauL','sourcecode','2115114IEIaKM','exports','help','info','\x20Bot\x20Ini\x20Menggunakan\x20Script\x20:\x0a\x0a•\x20https://github.com/BOTCAHX/RTXZY-MD\x20(\x20Original\x20Script\x20)\x0a\x0a•\x20https://github.com/ERLANRAHMAT/Betabotz-Md2\x20(\x20Recode\x20Full\x20My\x20Api\x20)\x0a','11KcxDza','reply','tags','167506aGBcdI','24ffkguU','5213110PGiwpy','command','sender','1448372epmIzr','split'];_0x1af5=function(){return _0x380c5f;};return _0x1af5();}(function(_0x4987f1,_0x1487b2){const _0x322068=_0x1ff5,_0x581b48=_0x4987f1();while(!![]){try{const _0x3d7d9f=parseInt(_0x322068(0x123))/0x1+parseInt(_0x322068(0x128))/0x2+parseInt(_0x322068(0x11b))/0x3*(-parseInt(_0x322068(0x12d))/0x4)+parseInt(_0x322068(0x12a))/0x5*(-parseInt(_0x322068(0x124))/0x6)+parseInt(_0x322068(0x12e))/0x7+parseInt(_0x322068(0x12c))/0x8*(parseInt(_0x322068(0x12b))/0x9)+parseInt(_0x322068(0x125))/0xa*(-parseInt(_0x322068(0x120))/0xb);if(_0x3d7d9f===_0x1487b2)break;else _0x581b48['push'](_0x581b48['shift']());}catch(_0x54eaa9){_0x581b48['push'](_0x581b48['shift']());}}}(_0x1af5,0x814e2));function _0x1ff5(_0x26abdd,_0x56fb2c){const _0x1af5f7=_0x1af5();return _0x1ff5=function(_0x1ff5fa,_0x160807){_0x1ff5fa=_0x1ff5fa-0x11b;let _0x4f62b1=_0x1af5f7[_0x1ff5fa];return _0x4f62b1;},_0x1ff5(_0x26abdd,_0x56fb2c);}let handler=async(_0x50a4f8,{conn:_0x321e1c})=>{const _0x46231c=_0x1ff5;let _0x1970fb='@'+_0x50a4f8[_0x46231c(0x127)][_0x46231c(0x129)]`@`[0x0],_0x515355='\x0aHai\x20'+_0x1970fb+_0x46231c(0x11f);_0x50a4f8[_0x46231c(0x121)](_0x515355);};handler[_0x485080(0x11d)]=['sc',_0x485080(0x12f)],handler[_0x485080(0x122)]=[_0x485080(0x11e)],handler[_0x485080(0x126)]=/^(sc|sourcecode)$/i,module[_0x485080(0x11c)]=handler;
