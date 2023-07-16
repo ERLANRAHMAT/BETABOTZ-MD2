@@ -11,7 +11,7 @@ await m.reply(wait)
 var json = await js.json()
 try {
   await conn.sendMessage(m.chat, {
-text: js.message,
+text: json.message,
 contextInfo: {
 externalAdReply: { 
 title: 'Chat GPT',
