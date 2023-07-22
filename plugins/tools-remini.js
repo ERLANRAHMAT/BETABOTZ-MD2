@@ -1,4 +1,7 @@
-//Thanks to botcahx ✔️
+/*
+Thanks To Tio
+*/
+
 const fetch = require('node-fetch');
 const uploadImage = require('../lib/uploadImage.js');
 
@@ -9,15 +12,16 @@ async function handler(m, { conn, usedPrefix, command }) {
     if (/^image/.test(mime) && !/webp/.test(mime)) {
       const img = await q.download();
       const out = await uploadImage(img);
-      const api = await fetch(API('lann', '/api/tools/remini', {url: `${out}`, apikey: lann}));
-       const image = await api.buffer();
-       conn.sendFile(m.chat, image, 'remini.jpg', wm, m);
+      const api = await fetch(API('lann', '/api/tools/remini', { url: `${out}`, apikey: lann }));
+       const image = await api.json();
+       const { url } = image 
+       conn.sendFile(m.chat, url, null, wm, m);
     } else {
       m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim.`);
     }
   } catch (e) {
     console.error(e);
-    m.reply(`Identifikasi gagal. Silakan coba lagi atau apikey yang anda gunakan adalah apikey free! silahkan upgrade untuk menggunakan nya `);
+    m.reply(`Identifikasi gagal. Silakan coba lagi.`);
   }
 }
 
