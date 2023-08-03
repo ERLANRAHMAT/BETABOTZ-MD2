@@ -172,8 +172,8 @@ await conn.sendMessage(m.chat, {
 text: text,
 contextInfo: {
 externalAdReply: { showAdAttribution: true, 
-title: ucapan() + ' ' + name,
-body: '',
+title: ucapan(),
+body: name,
 thumbnailUrl: thumb,
 sourceUrl: gc,
 mediaType: 1,
