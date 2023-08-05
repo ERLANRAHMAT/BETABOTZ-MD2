@@ -8,8 +8,8 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
      let re = await fetch(API('lann', '/api/download/igdowloader', { url: url, apikey: lann }))
      let message = await re.json()  
     try {             
-        for (let i of message.message.url ) {
-            conn.sendFile(m.chat, i, null, `*Instagram Downloader*`, m)
+        for (let i of message.result ) {
+            conn.sendFile(m.chat, i._url, null, `*Instagram Downloader*`, m)
         }
     } catch(err) {
         m.reply(util.format(message))
