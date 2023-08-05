@@ -11,15 +11,14 @@ var jsons = await apis.json()
 if (!jsons.status) throw jsons
 var { 
 video, 
-video2, 
-username,
-description,
+title,
+title_audio,
 audio
 } = jsons.result
 await conn.sendFile(m.chat, video, 'tiktok.mp4', `
-*Deskripsi*: ${description}
-\n*Username*: ${username}`, m)
-conn.sendFile(m.chat, audio, 'tikmp3.opus', null, m)
+*Deskripsi*: ${title_audio}
+\n*Title*: ${title}`, m)
+conn.sendFile(m.chat, `${audio[1]}`, 'tikmp3.opus', null, m)
 };
 handler.help = ['tiktok']
 handler.command = /^(tiktok|tt|tiktokdl|tiktoknowm|dltt)$/i
