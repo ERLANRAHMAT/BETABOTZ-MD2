@@ -168,17 +168,9 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
     let audio = `https://raw.githubusercontent.com/aisyah-rest/mangkane/main/Mangkanenya/mangkane29.mp3`
-await conn.sendMessage(m.chat, {
-text: text,
-contextInfo: {
-externalAdReply: { showAdAttribution: true, 
-title: ucapan(),
-body: name,
-thumbnailUrl: thumb,
-sourceUrl: gc,
-mediaType: 1,
-renderLargerThumbnail: true
-}}}, { quoted: m})
+let fkon = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: '0@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
+
+var _0x3b5cab=_0x3614;function _0x3614(_0x676146,_0x978c06){var _0x579c80=_0x579c();return _0x3614=function(_0x361407,_0x5f08df){_0x361407=_0x361407-0x78;var _0x1ab8aa=_0x579c80[_0x361407];return _0x1ab8aa;},_0x3614(_0x676146,_0x978c06);}(function(_0x357830,_0x120db9){var _0x26324f=_0x3614,_0x3469fc=_0x357830();while(!![]){try{var _0x2c7502=parseInt(_0x26324f(0x7c))/0x1+parseInt(_0x26324f(0x79))/0x2+-parseInt(_0x26324f(0x7d))/0x3+parseInt(_0x26324f(0x83))/0x4*(parseInt(_0x26324f(0x84))/0x5)+-parseInt(_0x26324f(0x81))/0x6*(parseInt(_0x26324f(0x80))/0x7)+parseInt(_0x26324f(0x7a))/0x8*(-parseInt(_0x26324f(0x7e))/0x9)+parseInt(_0x26324f(0x82))/0xa;if(_0x2c7502===_0x120db9)break;else _0x3469fc['push'](_0x3469fc['shift']());}catch(_0x5b61ed){_0x3469fc['push'](_0x3469fc['shift']());}}}(_0x579c,0x722c3),conn[_0x3b5cab(0x7b)](m[_0x3b5cab(0x7f)],{'video':{'url':'https://telegra.ph/file/c82d5c358495e8ef15916.mp4'},'gifPlayback':!![],'gifAttribution':~~(Math[_0x3b5cab(0x78)]()*0x2),'caption':text,'contextInfo':{'forwardingScore':0x270f,'isForwarded':!![]}},{'quoted':fkon}));function _0x579c(){var _0x187bdb=['sendMessage','714937hMmEzF','1410315cXMfmA','56169vCzhNt','chat','158774heyCSX','30QkJwck','1972640zUcmWF','36tHfTQA','122415ePUdUZ','random','36948OWQNBw','128NjphlK'];_0x579c=function(){return _0x187bdb;};return _0x579c();}	  
 await conn.sendFile(m.chat, audio, 'anuu.mp3', null, m, true, { 
  type: 'audioMessage',  
  ptt: true, 
