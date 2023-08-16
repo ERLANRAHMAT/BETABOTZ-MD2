@@ -40,7 +40,7 @@ handler.all = async function (m) {
 					body: wm,
 					previewType: "PHOTO",
 					thumbnail: await (await fetch(pp)).buffer(),
-					sourceUrl: 'https://wa.me',
+					sourceUrl: 'https://api.betabotz.org',
 				}
 			}
 		}
