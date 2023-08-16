@@ -3,8 +3,7 @@ Thanks To Botcahx
 */
 
 const fetch = require("node-fetch");
-const FormData = require('form-data');
-const { fromBuffer } = require('file-type');
+const uploadImage  = require('../lib/uploadImage.js')
 let handler = async (m, { 
 conn, 
 usedPrefix, 
@@ -16,7 +15,7 @@ command
 		try {
 	       await conn.reply(m.chat, wait, m)
 			const img = await q.download?.()
-			let out = await uploader(img)
+			let out = await uploadImage(img)
 			let old = new Date()
 			let res = await fetch(API('lann', '/api/maker/jadianime', { url: `${out}`, apikey: lann }))
 			let convert = await res.json()
@@ -37,16 +36,3 @@ handler.tags = ['maker'];
 handler.premium = false;
 handler.limit = 5;
 module.exports = handler;
-
-async function uploader(buffer) {
-  const { ext } = await fromBuffer(buffer);
-  let form = new FormData();
-  form.append('file', buffer, 'tmp.' + ext);
-  let res = await fetch('https://cdn.btch.bz/upload', {
-    method: 'POST',
-    body: form
-  });
-  let img = await res.json();
-  if (img.error) throw img.error;
-  return 'https://cdn.btch.bz' + img[0].src;
-    }
