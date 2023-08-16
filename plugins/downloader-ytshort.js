@@ -1,8 +1,8 @@
 var handler = async (m, {conn, text, usedPrefix}) => {
   if (!text) throw 'Berikan URL dari YouTube Shorts!'
   try {
-    var vid = `https://yt.btch.bz/download?URL=${text}&videoName=video`
-    var aud = `https://yt.btch.bz/downloadAudio?URL=${text}&videoName=video` 
+    var vid = `https://yt.tioo.eu.org/?url=${text}&filter=audioandvideo&quality=highestvideo&contenttype=video/mp4`
+    var aud = `https://yt.tioo.eu.org/?url=${text}&filter=audioonly&quality=highestaudio&contenttype=audio/mpeg` 
     await conn.sendMessage(m.chat, { audio: { url: aud }, mimetype: 'audio/mpeg' }, { quoted: m }) 
     await conn.sendMessage(m.chat, { video: { url: vid }, mimetype: 'video/mp4' }, { quoted: m })
   } catch (e) {
@@ -11,7 +11,7 @@ var handler = async (m, {conn, text, usedPrefix}) => {
 }
 handler.command = handler.help =['ytshorts','youtubeshorts','shorts','short'];
 handler.tags = ['downloader'];
-handler.exp = 5;
+handler.exp = 0;
 handler.limit = true;
 handler.premium = false;
 module.exports = handler;
