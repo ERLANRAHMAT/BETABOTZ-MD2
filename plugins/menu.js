@@ -164,11 +164,11 @@ externalAdReply: {
 title: ucapan(),
 body: '',
 thumbnailUrl: thumb,
-sourceUrl: gc
+sourceUrl: gc,
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})
-    }  	  
+     	  
 conn.sendFile(m.chat, audio, 'anuu.mp3', null, m, true, { 
  type: 'audioMessage',  
  ptt: true, 
@@ -218,4 +218,4 @@ function ucapan() {
 		res = "Selamat malam 🌃"
 	}
 	return res
-  }
+	  }
