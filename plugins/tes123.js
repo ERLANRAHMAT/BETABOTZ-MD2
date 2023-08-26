@@ -2,7 +2,7 @@ let handler = async (m, { conn }) => {
     let wm = global.wm
     let _uptime = process.uptime() * 1000
     let uptimex = clockString(_uptime)
-    let txt = `*_Aktif Kak ada yang saya bisa bantu_*`.trim()
+    let txt = `*_Aktif Kak ada yang saya bisa bantu\nketik .menu untuk mengakses bot_*`.trim()
 let sgc = global.gc
 conn.sendMessage(m.chat, {
 text: txt,
