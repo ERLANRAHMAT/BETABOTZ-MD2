@@ -1,6 +1,6 @@
 let handler = async (m, { conn }) => {
     let wm = global.wm
-    let txt = `*_Aktif Kak ada yang saya bisa bantu\nketik .menu untuk mengakses bot_*`.trim()
+    let txt = `*_Aktif Kak ada yang saya bisa bantu*_\n_*ketik .menu untuk mengakses bot_*`.trim()
 let sgc = global.gc
 conn.sendMessage(m.chat, {
 text: txt,
