@@ -23,7 +23,10 @@ handler.all = async function (m) {
          [owner[0], await this.getName(owner[0] + '@s.whatsapp.net'), 'ᴅᴇᴠᴇʟᴏᴩᴇʀ ʙᴏᴛ', 'Nothing', true],
          [owner[1], await this.getName(owner[1] + '@s.whatsapp.net'), 'ᴅᴇᴠᴇʟᴏᴩᴇʀ ʙᴏᴛ', 'Nothing', true], // Kalo mau di tambah tinggal copy 1baris ini di tempel di bawahnya trs di edit dikit!
         ]
-        
+     
+                 //ini bagian image waifu
+                let waifu = JSON.parse(fs.readFileSync('./media/waifu.json'))
+                global.img = pickRandom(waifu)*
 		// ucapan ini mah
 		global.ucapan = ucapan()
 		global.wib = moment.tz('Asia/Jakarta').format("HH:mm:ss")
