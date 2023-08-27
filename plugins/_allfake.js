@@ -10,7 +10,7 @@ handler.all = async function (m) {
 	} catch (e) {
 	} finally {
 		
-        global.bg = await (await fetch(thumb)).buffer()
+        global.bg = await (await fetch(img)).buffer()
 		global.doc = pickRandom(["application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/msword", "application/pdf"])
 		
 		// Module 
@@ -42,7 +42,7 @@ handler.all = async function (m) {
 					title: 'Time: ' + global.wib,
 					body: wm,
 					previewType: "PHOTO",
-					thumbnail: await (await fetch(thumb)).buffer(),
+					thumbnail: await (await fetch(img)).buffer(),
 					sourceUrl: 'https://api.betabotz.org',
 				}
 			}
