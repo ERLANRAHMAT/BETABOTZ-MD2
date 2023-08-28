@@ -168,7 +168,7 @@ conn.logger.level = 'debug'
 
 
 ##### All Contributors
-<a href="https://github.com/BOTCAHX"><img src="https://github.com/BOTCAHX.png?size=100" width="50" height="100"></a> | [![Erlan](https://github.com/ERLANRAHMAT.png?size=100)](https://github.com/ERLANRAHMAT) | [![Nayla](https://github.com/Nayla-Hanifah.png?size=100)](https://github.com/Nayla-Hanifah) | [![Nayla](https://github.com/Kasanstore7.png?size=100)](https://github.com/Kasanstore7)   
+<a href="https://github.com/BOTCAHX"><img src="https://github.com/BOTCAHX.png?size=100" width="50" height="100"></a> | [![Erlan](https://github.com/ERLANRAHMAT.png?size=100)](https://github.com/ERLANRAHMAT) | [![Nayla](https://github.com/Nayla-Hanifah.png?size=100)](https://github.com/Nayla-Hanifah)
 ---|---|--|--|
 [Tio](https://github.com/BOTCAHX)  | [Erlan](https://github.com/ERLANRAHMAT) | [Nayla](https://github.com/Naylahnf)  
 Penyedia Base | Creator SC | Contributor | Contributor |
