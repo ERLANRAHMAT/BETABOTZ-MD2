@@ -18,7 +18,7 @@
 - -  Selebihnya tambah sendiri fitur nya karena ini cuma base.
 
 - Free apikey saya ( betabotz ) hanya 5 limit per day jika ingin memiliki limit lebih silahkan registrasi terlebih dahulu, lalu chat saya untuk meningkatkan limit [lann](http://wa.me/6287764694844?text=.register )
-- Free apikey botcahx hanya 10 limit per day jika ingin memiliki limit lebih silahkan registrasi terlebih dahulu, lalu chat bot saya [botcahx](http://wa.me/62813958616959?text=.register )
+- Free apikey botcahx hanya 10 limit per day jika ingin memiliki limit lebih silahkan registrasi terlebih dahulu, lalu chat bot saya [botcahx](https://api.botcahx.live)
 
 + Register Key [`botcahx`](https://api.botcahx.live)
 + And Register Here [`lann`](https://api.betabotz.org)
