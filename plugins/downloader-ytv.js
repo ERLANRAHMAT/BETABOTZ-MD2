@@ -14,10 +14,10 @@ let handler = async (m, {
         } else {
             var videoUrl
             try {
-                videoUrl = `https://yt.tioo.eu.org/?url=${convert.url}&filter=audioandvideo&quality=highestvideo&contenttype=video/mp4`
+                videoUrl = `https://yt.tioo.eu.org/youtube?url=${convert.url}&filter=audioandvideo&quality=highestvideo&contenttype=video/mp4`
             } catch (e) {
                 conn.reply(m.chat, wait, m)
-                videoUrl = `https://yt.tioo.eu.org/?url=${convert.url}&filter=audioandvideo&quality=highestvideo&contenttype=video/mp4`
+                videoUrl = `https://yt.tioo.eu.org/youtube?url=${convert.url}&filter=audioandvideo&quality=highestvideo&contenttype=video/mp4`
             }             
             var caption = `∘ Title : ${convert.title}\n∘ Ext : Search\n∘ ID : ${convert.videoId}\n∘ Duration : ${convert.timestamp}\n∘ Viewers : ${convert.views}\n∘ Upload At : ${convert.ago}\n∘ Author : ${convert.author.name}\n∘ Channel : ${convert.author.url}\n∘ Url : ${convert.url}\n∘ Description : ${convert.description}\n∘ Thumbnail : ${convert.image}`;
             var pesan = conn.relayMessage(m.chat, {
