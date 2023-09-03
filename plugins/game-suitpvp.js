@@ -1,7 +1,9 @@
-/* 
-    Made by https://github.com/syahrularranger 
-    Jangan di hapus credit nya :)
+/*
+  * tqto Dann
+  * Kalau Eror Chat Gweh : http://wa.me/4915147222100
+  * @Ksn
 */
+
 let timeout = 60000
 let poin = 500
 let poin_lose = -100
@@ -20,7 +22,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]}
 `.trim()
   let footer = `Ketik "terima/ok/gas" untuk memulai suit\nKetik "tolak/gabisa/nanti" untuk menolak`
   conn.suit[id] = {
-    chat: await conn.send2But(m.chat, caption, footer, 'Terima', 'ok', 'Tolak', 'tolak', m, { contextInfo: { mentionedJid: conn.parseMention(caption) } }),
+    chat: await conn.reply(m.chat, `${caption}\n\n${footer}`, m, { mentions: conn.parseMention(caption) }),
     id: id,
     p: m.sender,
     p2: m.mentionedJid[0],
@@ -32,9 +34,10 @@ Silahkan @${m.mentionedJid[0].split`@`[0]}
   }
 }
 handler.tags = ['game']
-handler.help = ['suitpvp', 'suit2'].map(v => v + ' @tag')
-handler.command = /^suit(pvp|2)$/i
-handler.limit = false
+handler.help = ['suitpvp'].map(v => v + ' @tag')
+handler.command = /^suitpvp$/i
+
 handler.group = true
+handler.limit = true
 
 module.exports = handler
