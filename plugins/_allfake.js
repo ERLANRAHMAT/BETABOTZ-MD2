@@ -26,7 +26,7 @@ handler.all = async function (m) {
      
                  //ini bagian image waifu
                 let waifu = JSON.parse(fs.readFileSync('./media/waifu.json'))
-                global.img = pickRandom(waifu)*
+                global.img = pickRandom(waifu)
 		// ucapan ini mah
 		global.ucapan = ucapan()
 		global.wib = moment.tz('Asia/Jakarta').format("HH:mm:ss")
@@ -77,4 +77,4 @@ function ucapan() {
 
 function pickRandom(list) {
   return list[Math.floor(list.length * Math.random())]
-}
+														     }
