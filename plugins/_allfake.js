@@ -39,7 +39,14 @@ handler.all = async function (m) {
 		global.adReply = {
 			contextInfo: {
 				forwardingScore: 9999,
-				isForwarded: true
+				isForwarded: true,
+				externalAdReply: { 
+					title: global.ucapan,
+					body: wm,
+					previewType: "PHOTO",
+					thumbnail: await (await fetch(img)).buffer(),
+					sourceUrl: instagram,
+				}
 			}
 		}
 		
