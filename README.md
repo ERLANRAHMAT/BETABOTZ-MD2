@@ -13,9 +13,8 @@
 - Fix logs 
 - Fix menunggu pesan
 - Fix delay Messages
-- Fix contextinfo
 - Bisa di deploy di render
-- -  Selebihnya tambah sendiri fitur nya karena ini cuma base.
+-  Selebihnya tambah sendiri fitur nya karena ini cuma base.
 
 - Free apikey saya ( betabotz ) hanya 5 limit per day jika ingin memiliki limit lebih silahkan registrasi terlebih dahulu, lalu chat saya untuk meningkatkan limit [lann](http://wa.me/6287764694844?text=.register )
 - Free apikey botcahx hanya 10 limit per day jika ingin memiliki limit lebih silahkan registrasi terlebih dahulu, lalu chat bot saya [botcahx](https://api.botcahx.live)
