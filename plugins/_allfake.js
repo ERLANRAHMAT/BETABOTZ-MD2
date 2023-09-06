@@ -45,7 +45,7 @@ handler.all = async function (m) {
 					body: wm,
 					previewType: "PHOTO",
 					thumbnail: await (await fetch(img)).buffer(),
-					sourceUrl: instagram,
+					sourceUrl: 'https://api.betabotz.org',
 				}
 			}
 		}
