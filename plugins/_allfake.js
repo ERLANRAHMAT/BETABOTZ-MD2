@@ -38,14 +38,13 @@ handler.all = async function (m) {
 		// externalAdReply atau text with thumbnail. gatau bahasa Inggris? coba translate!
 		global.adReply = {
 			contextInfo: {
-				forwardingScore: 9999,
-				isForwarded: true,
 				externalAdReply: { 
+					showAdAttribution: true,
 					title: global.ucapan,
 					body: wm,
 					previewType: "PHOTO",
-					thumbnail: await (await fetch(img)).buffer(),
-					sourceUrl: instagram,
+					thumbnail: await (await fetch(thumb)).buffer(),
+					sourceUrl: 'https://api.betabotz.org',
 				}
 			}
 		}
