@@ -39,14 +39,7 @@ handler.all = async function (m) {
 		global.adReply = {
 			contextInfo: {
 				forwardingScore: 9999,
-				isForwarded: true, // ini biar ada tulisannya diteruskan berkali-kali, jika ingin di hilangkan ganti true menjadi false
-				externalAdReply: { // Bagian ini sesuka kalian berkreasi :'v
-					title: global.ucapan,
-					body: wm,
-					previewType: "PHOTO",
-					thumbnail: await (await fetch(img)).buffer(),
-					sourceUrl: 'https://api.betabotz.org',
-				}
+				isForwarded: true
 			}
 		}
 		
