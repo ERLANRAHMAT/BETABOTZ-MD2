@@ -17,7 +17,7 @@ var handler = async (m, {
         } else {
             var audioUrl
             try {
-                audioUrl = `https://yt.tioo.eu.org/youtube?url=${convert.url}&filter=audioonly&quality=highestaudio&contenttype=audio/mpeg`
+                audioUrl = `https://aemt.me/downloadAudio?URL=${convert.url}&videoName=ytdl`
             } catch (e) {
                 conn.reply(m.chat, wait, m)
                 audioUrl = `https://yt.tioo.eu.org/youtube?url=${convert.url}&filter=audioonly&quality=highestaudio&contenttype=audio/mpeg`
