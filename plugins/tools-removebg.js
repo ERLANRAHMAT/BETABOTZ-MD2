@@ -1,0 +1,31 @@
+const fetch = require('node-fetch');
+const { uploader } = require('../lib/uplot.js');
+
+async function handler(m, { conn, usedPrefix, command }) {
+  try {
+    const q = m.quoted ? m.quoted : m;
+    const mime = (q.msg || q).mimetype || q.mediaType || '';
+    if (/^image/.test(mime) && !/webp/.test(mime)) {
+     m.reply(wait)
+      const img = await q.download();
+      const out = await uploader(img);
+      const api = await fetch(API('lann', '/api/tools/removebg', { url: `${out}`, apikey: lann }));
+       const image = await api.json();
+       const url = image.url.result
+       conn.sendFile(m.chat, url, null, `🍟 Removebg Success`, m);
+    } else {
+      m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim.`);
+    }
+  } catch (e) {
+    console.error(e);
+    m.reply(`Identifikasi gagal. Silakan coba lagi.`);
+  }
+}
+
+handler.help = ['removebg', 'nobg'];
+handler.tags = ['tools'];
+handler.command = ['removebg'];
+handler.premium = false;
+handler.limit = false;
+
+module.exports = handler;
