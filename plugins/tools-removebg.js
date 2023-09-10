@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { uploader } = require('../lib/uplot.js');
+const uploadImage = require('../lib/uploadImage.js');
 
 async function handler(m, { conn, usedPrefix, command }) {
   try {
@@ -8,7 +8,7 @@ async function handler(m, { conn, usedPrefix, command }) {
     if (/^image/.test(mime) && !/webp/.test(mime)) {
      m.reply(wait)
       const img = await q.download();
-      const out = await uploader(img);
+      const out = await uploadImage(img);
       const api = await fetch(API('lann', '/api/tools/removebg', { url: `${out}`, apikey: lann }));
        const image = await api.json();
        const url = image.url.result
