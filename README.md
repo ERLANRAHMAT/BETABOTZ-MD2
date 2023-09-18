@@ -8,7 +8,8 @@
 
 
 ### Pembaruan / Update
-- Telah menggunakan multi auth sessions 
+- Telah menggunakan multi auth sessions
+- New Pairing Code Login Via Code
 - Fix QR code di terminal
 - Fix logs 
 - Fix menunggu pesan
@@ -88,6 +89,8 @@ npm start
 * https://github.com/clhuang/heroku-buildpack-webp-binaries.git
 ```
 
+## `--pairing`
+* Used when you want to create a bot using code pairing
 
 ### `--prefix <prefix>`
 
