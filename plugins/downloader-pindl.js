@@ -1,15 +1,19 @@
 const fetch = require('node-fetch');
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
- if (!args[0]) {
-      throw `Masukkan URL!\n\ncontoh:\n${usedPrefix}${command} https://pin.it/4CVodSq`;
-    }  
-   try {    
+  if (!args[0]) {
+    throw `Masukkan URL!\n\ncontoh:\n${usedPrefix}${command} https://pin.it/4CVodSq`;
+  }
+  try {
     m.reply('*Mohon tunggu...*');
     const api = await fetch(API('lann', '/api/download/pinterest', { url: `${args[0]}`, apikey: lann }));
-    const res = await api.json();  
-    var { pin_url, media_type, image } = res.result.data;  
-    conn.sendFile(m.chat, image, null, `*Url:* ${pin_url}\n*Mediatype:* ${media_type}\n*Url Download*: ${image}\n`, m);
+    const res = await api.json();
+    var { media_type, image, title } = res.result.data;
+    if (media_type === 'video/mp4') {
+      await conn.sendMessage(m.chat, { video: { url: image } });
+    } else {
+      conn.sendFile(m.chat, image, null, `*Title:* ${title}\n*Mediatype:* ${media_type}\n*Source Url*: ${image}\n`, m);
+    }
   } catch (e) {
     console.log(e);
     throw `Terjadi kesalahan!`;
