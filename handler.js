@@ -397,7 +397,7 @@ module.exports = {
                     semangka: 0,
                     jeruk: 0,
                     semangka: 0,
-                    name: this.getName(m.sender),
+                    name: m.name,
                     age: -1,
                     regTime: -1,
                     premium: false, 
