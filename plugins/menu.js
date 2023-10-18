@@ -35,7 +35,7 @@ let tags = {
 }
 const defaultMenu = {
   before: `
-Hi %name
+Hi %tag
 I am an automated system (WhatsApp Bot) that can help to do something, search and get data / information only through WhatsApp.
 
  ◦  *Library:* Baileys
@@ -100,6 +100,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     }
     let muptime = clockString(_muptime)
     let uptime = clockString(_uptime)
+    let tag = `@${m.sender.split('@')[0]}`
     let totalreg = Object.keys(global.db.data.users).length
     let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
     let help = Object.values(global.plugins).filter(plugin => !plugin.disabled).map(plugin => {
@@ -142,7 +143,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     text = typeof conn.menu == 'string' ? conn.menu : typeof conn.menu == 'object' ? _text : ''
     let replace = {
       '%': '%',
-      p: _p, uptime, muptime,
+      p: _p, uptime, tag, muptime,
       me: conn.getName(conn.user.jid),
       ucapan: ucapan(),
       npmname: package.name,
@@ -162,6 +163,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
 await conn.sendMessage(m.chat, {
 text: text,
 contextInfo: {
+mentionedJid: [m.sender],
 externalAdReply: { 
 title: ucapan(),
 body: '',
@@ -170,14 +172,6 @@ sourceUrl: gc,
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})
-     	  
-conn.sendFile(m.chat, audio, 'anuu.mp3', null, m, true, { 
- type: 'audioMessage',  
- ptt: true, 
-seconds: 9999,
-fileLength: 99999,
- ptt: true, contextInfo: { forwardingScore: 999, isForwarded: true, externalAdReply: {title: 'Playing Now...', body: wm, sourceUrl: instagram, thumbnail: await (await fetch(thumb)).buffer(),}}  
-      }) 
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
@@ -207,7 +201,7 @@ function ucapan() {
 	if(time >= 1) {
 		res = "Selamat Dini hari 🌌"
 	}
-	if(time >= 4) {
+        	if(time >= 4) {
 		res = "Selamat pagi ⛅"
 	}
 	if(time > 10) {
@@ -220,4 +214,4 @@ function ucapan() {
 		res = "Selamat malam 🌃"
 	}
 	return res
-	  }
+	}
