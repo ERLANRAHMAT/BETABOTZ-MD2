@@ -38,6 +38,7 @@ handler.all = async function (m) {
 		// externalAdReply atau text with thumbnail. gatau bahasa Inggris? coba translate!
 		global.adReply = {
 			contextInfo: {
+		             mentionedJid: [m.sender],
 				externalAdReply: { 
 					showAdAttribution: true,
 					title: global.ucapan,
