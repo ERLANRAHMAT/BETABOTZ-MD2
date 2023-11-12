@@ -1,48 +1,45 @@
-const uploadImage = require('../lib/uploadImage')
-const fetch = require('node-fetch')
-const youtube = require("yt-search");
+const uploadImage = require('../lib/uploadImage');
+const fetch = require('node-fetch');
 
-var handler = async (m, {
-    conn,
-    text,
-    usedPrefix
-}) => {
-    if (!text) throw 'Enter Title / Link From YouTube!';
+var handler = async (m, { conn, text, usedPrefix }) => {
+    if (!text) throw 'Masukkan Judul / Tautan dari YouTube!';
     try {
-        var search = await youtube(text);
-        var convert = search.videos[0];
+        var js = await fetch(API('lann', '/api/search/yts', { query: text, apikey: lann }));
+        var search = await js.json();
+        var convert = search.result[0];
         if (!convert) throw 'Video/Audio Tidak Ditemukan';
-        if (convert.seconds >= 3600) {
-            return conn.reply(m.chat, 'Video is longer than 1 hour!', m);
+        if (convert.duration >= 3600) {
+            return conn.reply(m.chat, 'Video lebih dari 1 jam!', m);
         } else {
-            var audioUrl
+            var audioUrl;
             try {
-                audioUrl = `https://aemt.me/downloadAudio?URL=${convert.url}&videoName=ytdl`
+                audioUrl = await (await fetch(API('lann', '/api/download/ytmp3', { url: convert.url, apikey: lann }))).json();
             } catch (e) {
-                conn.reply(m.chat, wait, m)
-                audioUrl = `https://yt.tioo.eu.org/youtube?url=${convert.url}&filter=audioonly&quality=highestaudio&contenttype=audio/mpeg`
+                conn.reply(m.chat, wait, m);
+                audioUrl = await (await fetch(API('lann', '/api/download/ytmp3', { url: convert.url, apikey: lann }))).json();
             } 
-            var build = await fetch(convert.image);
+            var build = await fetch(convert.thumbnail);
             var buffer = await build.buffer();
             var image = await uploadImage(buffer);
-            var caption = `∘ Title : ${convert.title}\n∘ Ext : Search\n∘ ID : ${convert.videoId}\n∘ Duration : ${convert.timestamp}\n∘ Viewers : ${convert.views}\n∘ Upload At : ${convert.ago}\n∘ Author : ${convert.author.name}\n∘ Channel : ${convert.author.url}\n∘ Url : ${convert.url}\n∘ Description : ${convert.description}\n∘ Thumbnail : ${image}`;
+            var caption = `∘ Judul : ${convert.title}\n∘ Ekstensi : Pencarian\n∘ ID : ${convert.videoId}\n∘ Durasi : ${convert.duration}\n∘ Penonton : ${convert.views}\n∘ Diunggah Pada : ${convert.published_at}\n∘ Penulis : ${convert.author.name}\n∘ Saluran : ${convert.author.url}\n∘ Tautan : ${convert.url}\n∘ Deskripsi : ${convert.description}\n∘ Thumbnail : ${image}`;
             var pesan = conn.relayMessage(m.chat, {
                 extendedTextMessage:{
-                text: caption, 
-                contextInfo: {
-                     externalAdReply: {
-                        title: "Powered by",
-                        mediaType: 1,
-                        previewType: 0,
-                        renderLargerThumbnail: true,
-                        thumbnailUrl: image,
-                        sourceUrl: audioUrl
-                    }
-                }, mentions: [m.sender]
-                }}, {})
+                    text: caption, 
+                    contextInfo: {
+                        externalAdReply: {
+                            title: "Diberdayakan oleh",
+                            mediaType: 1,
+                            previewType: 0,
+                            renderLargerThumbnail: true,
+                            thumbnailUrl: image,
+                            sourceUrl: audioUrl.result.mp3
+                        }
+                    }, mentions: [m.sender]
+                }
+            }, {});
             conn.sendMessage(m.chat, {
                 audio: {
-                    url: audioUrl
+                    url: audioUrl.result.mp3
                 },
                 mimetype: 'audio/mpeg',
                 contextInfo: {
@@ -50,7 +47,7 @@ var handler = async (m, {
                         title: convert.title,
                         body: "",
                         thumbnailUrl: image,
-                        sourceUrl: audioUrl,
+                        sourceUrl: audioUrl.result.mp3,
                         mediaType: 1,
                         showAdAttribution: true,
                         renderLargerThumbnail: true
@@ -65,9 +62,9 @@ var handler = async (m, {
     }
 };
 
-handler.command = handler.help = ['play', 'song', 'ds', 'ytmp3', 'yta'];
+handler.command = handler.help = ['play', 'song', 'ds'];
 handler.tags = ['downloader'];
 handler.exp = 0;
 handler.limit = true;
 handler.premium = false;
-module.exports = handler
+module.exports = handler;
