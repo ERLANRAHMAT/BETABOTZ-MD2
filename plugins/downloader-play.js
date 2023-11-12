@@ -2,7 +2,7 @@ const uploadImage = require('../lib/uploadImage');
 const fetch = require('node-fetch');
 
 var handler = async (m, { conn, text, usedPrefix }) => {
-    if (!text) throw 'Masukkan Judul / Tautan dari YouTube!';
+    if (!text) throw 'Masukkan Judul';
     try {
         var js = await fetch(API('lann', '/api/search/yts', { query: text, apikey: lann }));
         var search = await js.json();
