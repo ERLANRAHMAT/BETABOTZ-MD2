@@ -1,9 +1,14 @@
-const os = require('os');
+const cluster = require('cluster');
+const { spawn } = require('child_process');
+const path = require('path');
+const fs = require('fs');
+const os = require('node:os');
 const express = require('express');
 const app = express();
+
 const port = process.env.PORT || 8080;
 
-console.log('\x1b[33m%s\x1b[0m', `🚀 Port ${port} is open`);
+console.log('\x1b[33m%s\x1b[0m', `🌐 Port ${port} is open`);
 app.get('/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   const data = {
@@ -34,11 +39,6 @@ function listenOnPort(port) {
 
 listenOnPort(port);
 
-const cluster = require("cluster");
-const { spawn } = require("child_process");
-const path = require("path");
-const fs = require("fs");
-
 let isRunning = false;
 
 function start(file) {
@@ -67,6 +67,7 @@ function start(file) {
   p.on("exit", (code) => {
     isRunning = false;
     console.error('\x1b[31m%s\x1b[0m', `Exited with code: ${code}`);
+    start('main.js');
 
     if (code === 0) return;
 
@@ -106,12 +107,18 @@ function start(file) {
   console.log(`💾 \x1b[33mTotal RAM: ${ramInGB.toFixed(2)} GB\x1b[0m`);
   const freeRamInGB = os.freemem() / (1024 * 1024 * 1024);
   console.log(`💽 \x1b[33mFree RAM: ${freeRamInGB.toFixed(2)} GB\x1b[0m`);
-  console.log('\x1b[33m%s\x1b[0m', `📃 Script Ori by BOTCAHX and Recode By Lann`);
+  console.log('\x1b[33m%s\x1b[0m', `📃 Script by BOTCAHX`);
 
   setInterval(() => {}, 1000);
 }
 
 start("main.js");
+
+const tmpDir = './tmp';
+  if (!fs.existsSync(tmpDir)) {
+    fs.mkdirSync(tmpDir);
+    console.log('\x1b[33m%s\x1b[0m', `📁 Created directory ${tmpDir}`);
+}
 
 process.on('unhandledRejection', (reason) => {
   console.error('\x1b[31m%s\x1b[0m', `Unhandled promise rejection: ${reason}`);
@@ -124,3 +131,4 @@ process.on('exit', (code) => {
   console.error('Script will restart...');
   start('main.js');
 });
+		
