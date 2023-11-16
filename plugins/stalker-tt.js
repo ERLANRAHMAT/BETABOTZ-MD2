@@ -28,7 +28,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
             }
         }, {})
     } catch (e) {     
-        throw `Error: ${error}`
+       m.reply(eror)
     }
 }
 handler.help = ['ttstalk <username>']
