@@ -168,7 +168,7 @@ externalAdReply: {
 title: ucapan(),
 body: '',
 thumbnailUrl: thumb,
-sourceUrl: gc,
+sourceUrl: 'https://whatsapp.com/channel/0029VaApYsQ5Ui2c2rKbpP0S',
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})
