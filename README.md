@@ -17,11 +17,11 @@
 - Bisa di deploy di render
 -  Selebihnya tambah sendiri fitur nya karena ini cuma base.
 
-- Free apikey saya ( betabotz ) hanya 5 limit per day jika ingin memiliki limit lebih silahkan registrasi terlebih dahulu, lalu chat saya untuk meningkatkan limit [lann](http://wa.me/6287764694844?text=.register )
-- Free apikey botcahx hanya 10 limit per day jika ingin memiliki limit lebih silahkan registrasi terlebih dahulu, lalu chat bot saya [botcahx](https://api.botcahx.live)
+- Free apikey saya ( betabotz ) hanya 100 limit per day jika ingin memiliki limit lebih silahkan registrasi terlebih dahulu, lalu chat saya untuk meningkatkan limit [lann](https://api.betabotz.eu.org)
+- Free apikey botcahx hanya 100 limit per day jika ingin memiliki limit lebih silahkan registrasi terlebih dahulu, lalu chat bot saya [botcahx](https://api.botcahx.eu.org)
 
-+ Register Key [`botcahx`](https://api.botcahx.live)
-+ And Register Here [`lann`](https://api.betabotz.org)
++ Register Key [`botcahx`](https://api.botcahx.eu.org)
++ And Register Here [`lann`](https://api.betabotz.eu.org)
 
 - Setelah mendapat key paste di config.js di baris global.btc dan global.lann
 
