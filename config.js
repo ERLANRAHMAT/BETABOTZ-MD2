@@ -11,7 +11,7 @@
 
 // List Key 
 // Betabotz = digunakan hampir di semua fitur kecuali linkshort
-// Botcahx  = digunakan untuk linkshort saja
+// Botcahx  = digunakan untuk linkshort saja ( optional )
 
 global.owner = ['6285842647866']  
 global.mods = ['6285842647866'] 
@@ -43,8 +43,8 @@ global.author = 'Bot WhatsApp'
 global.thumb = 'https://telegra.ph/file/ec75e8bd53238f11603d9.jpg'
 
 //===> Apikey
-global.lann = 'Your_Key_Here' //isi apikey mu https://api.betabotz.org
-global.btc = 'Your_Key_Here'//Isi apikey di https://api.botcahx.live
+global.lann = 'Your_Key_Here' //isi apikey mu https://api.betabotz.eu.org
+global.btc = 'Your_Key_Here'//Isi apikey di https://api.botcahx.eu.org
 global.APIs = {   
   lann: 'https://api.betabotz.eu.org',
   btc: 'https://api.botcahx.eu.org'
