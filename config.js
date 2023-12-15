@@ -1,8 +1,8 @@
 
 // - Ubah nomor owner dan wm di sini.
 // + Daftar apikey terlebih dahulu sebelum menggunakan svript ini link
-//https://api.betabotz.org
-//https://api.botcahx.live
+//https://api.betabotz.eu.org
+//https://api.botcahx.eu.org
 // - Jika sudah mendaftar salin key yang ada di profie dan paste di global.lann && global.btc
 // - Contoh global.btc = 'ngaksk?'//register di https://api.botcahx.live
 // - Contoh global.lann = 'Ntahla' //register key di https://api.betabotz.org
@@ -46,8 +46,8 @@ global.thumb = 'https://telegra.ph/file/ec75e8bd53238f11603d9.jpg'
 global.lann = 'Your_Key_Here' //isi apikey mu https://api.betabotz.org
 global.btc = 'Your_Key_Here'//Isi apikey di https://api.botcahx.live
 global.APIs = {   
-  lann: 'https://api.betabotz.org',
-  btc: 'https://api.botcahx.live'
+  lann: 'https://api.betabotz.eu.org',
+  btc: 'https://api.botcahx.eu.org'
 }
 global.APIKeys = { 
   'https://api.betabotz.org': 'Your_Key' //isi apikey mu https://api.betabotz.org
