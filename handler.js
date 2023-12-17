@@ -474,7 +474,7 @@ module.exports = {
             let isROwner = [global.conn.user.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
             let isOwner = isROwner || m.fromMe
             let isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
-            let isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+            let isPrems = isROwner || global.db.data.users[m.sender].premium
             let groupMetadata = (m.isGroup ? (conn.chats[m.chat] || {}).metadata : {}) || {}
             let participants = (m.isGroup ? groupMetadata.participants : []) || []
             let user = (m.isGroup ? participants.find(u => conn.decodeJid(u.id) === m.sender) : {}) || {} // User Data
@@ -788,3 +788,4 @@ fs.watchFile(file, () => {
     delete require.cache[file]
     if (global.reloadHandler) console.log(global.reloadHandler())
 })
+        
