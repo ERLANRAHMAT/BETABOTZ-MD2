@@ -1,5 +1,5 @@
 var fetch = require('node-fetch');
-var util = require('util');
+
 var handler = async (m, {
  text, 
  usedPrefix, 
@@ -14,7 +14,7 @@ var json = await js.json()
 try {
   await m.reply(json.message)
 } catch (err ) {
-m.reply(util.format(json))
+m.reply(`${eror}`)
 }}
 handler.command = handler.help = ['ai2','openai2','chatgpt2'];
 handler.tags = ['info'];
