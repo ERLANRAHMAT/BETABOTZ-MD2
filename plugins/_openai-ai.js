@@ -1,5 +1,5 @@
 var fetch = require('node-fetch');
-var util = require('util');
+
 var handler = async (m, {
  text, 
  usedPrefix, 
@@ -22,7 +22,7 @@ mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})
 } catch (err) {
-m.reply(util.format(js))
+m.reply(`${eror}`)
 }}
 handler.command = handler.help = ['ai','openai','chatgpt'];
 handler.tags = ['info'];
