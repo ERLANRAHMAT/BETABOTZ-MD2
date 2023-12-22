@@ -1,30 +1,94 @@
-const fetch = require('node-fetch');
+const fs = require("fs");
+const ytdl = require("ytdl-core");
 
-let handler = async (m, { conn, command, text, usedPrefix }) => {
-  if (!text) throw 'Berikan URL dari YouTube!';
-  await m.reply(wait)
-  try {
-    if (command == 'ytmp3' || command == 'yta' || command == 'ytaudio') {
-      var aud = await (await fetch(API('lann', '/api/download/ytmp3', { url: text, apikey: lann }))).json();
-      await conn.sendMessage(m.chat, { audio: { url: aud.result.mp3 }, mimetype: 'audio/mpeg' }, { quoted: m });
-    } else if (command == 'ytv' || command == 'ytvideo' || command == 'ytmp4') {
-      var vid = await (await fetch(API('lann', '/api/download/ytmp4', { url: text, apikey: lann }))).json();
-      await conn.sendFile(m.chat, vid.result.mp4, null, `*Youtube Mp4 Downloader*`, m)
-    } else if (command == 'ytshorts' || command == 'shortsyt' || command == 'shorts') {
-      var aud = await (await fetch(API('lann', '/api/download/ytmp3', { url: text, apikey: lann }))).json();
-      await conn.sendMessage(m.chat, { audio: { url: aud.result.mp3 }, mimetype: 'audio/mpeg' }, { quoted: m });
-      var vid = await (await fetch(API('lann', '/api/download/ytmp4', { url: text, apikey: lann }))).json();
-      await conn.sendMessage(m.chat, { video: { url: vid.result.mp4 }}, { quoted: m });
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+    conn["youtubedl"] = conn["youtubedl"] || {};
+
+    if (!args[0]) {
+        if (command === 'ytmp4' || command === 'ytv') {
+            return m.reply(`Example: *${usedPrefix + command}* https://www.youtube.com/watch?v=Z28dtg_QmFw`);
+        } else if (command === 'ytmp3' || command === 'yta') {
+            return m.reply(`Example: *${usedPrefix + command}* https://www.youtube.com/watch?v=Z28dtg_QmFw`);
+        } else if (command === 'ytshorts' || command === 'shorts') {
+            return m.reply(`Example: *${usedPrefix + command}* https://youtube.com/shorts/aUDYWYqtAR4?si=qnyP58tCoDV7ghjM`);
+        }
     }
-  } catch (e) {
-    throw 'Video/Audio Tidak Ditemukan';
-  }
+
+    if (command === 'ytmp4' || command === 'ytv' || command === 'ytmp3' || command === 'yta' || command === 'ytshorts' || command === 'shorts') {
+        conn["youtubedl"][m.sender] = true;
+
+        const isValid = await ytdl.validateURL(args[0]);
+
+        if (!isValid) {
+            return m.reply("*your link not supported.*");
+        }
+
+        const _filename = `./tmp/${Math.random().toString(36).substring(2, 7)}`;
+        const writer = fs.createWriteStream(`${_filename}.mp4`);
+
+        try {
+            const { formats, videoDetails } = await ytdl.getInfo(args[0]);
+            const { title, publishDate, author } = videoDetails;
+            const { user } = author;
+
+            return new Promise(async (resolve, reject) => {
+                ytdl(args[0], {
+                    quality: "lowest",
+                }).pipe(writer);
+
+                writer.on("error", () => {
+                    m.reply("Failed sending video");
+                    delete conn["youtubedl"][m.sender];
+                    resolve();
+                });
+
+                writer.on("close", async () => {
+                    try {
+                        let mediaObject;
+
+                        if (command === 'ytmp4' || command === 'ytv') {
+                            mediaObject = {
+                                video: {
+                                    stream: fs.createReadStream(`${_filename}.mp4`),
+                                },
+                                caption: `┌  • *Y o u t u b e - M P 4*\n│  ◦ *Title:* ${title}\n│  ◦ *Published:* ${publishDate}\n└  ◦ *Author:* ${user}`,
+                            };
+                        } else if (command === 'ytmp3' || command === 'yta') {
+                            mediaObject = {
+                                audio: {
+                                    stream: fs.createReadStream(`${_filename}.mp4`),
+                                },
+                                caption: `┌  • *Y o u t u b e - M P 3*\n│  ◦ *Title:* ${title}\n│  ◦ *Published:* ${publishDate}\n└  ◦ *Author:* ${user}`,
+                            };
+                        } else if (command === 'ytshorts' || command === 'shorts') {
+                            mediaObject = {
+                                video: {
+                                    stream: fs.createReadStream(`${_filename}.mp4`),
+                                },
+                                caption: `┌  • *Y o u t u b e - S h o r t s*\n│  ◦ *Title:* ${title}\n│  ◦ *Published:* ${publishDate}\n└  ◦ *Author:* ${user}`,
+                            };
+                        }
+
+                        await conn.sendMessage(m.chat, mediaObject, { quoted: m });
+                    } catch {
+                        m.reply("Failed to send the media");
+                    }
+
+                    fs.unlinkSync(`${_filename}.mp4`);
+                    delete conn["youtubedl"][m.sender];
+                    resolve();
+                });
+            });
+        } catch {
+            m.reply("*Failed to get a video!*");
+        }
+    }
 };
 
-handler.command = handler.help = ['ytaudio', 'yta', 'ytmp3', 'ytvideo', 'ytmp4', 'ytv', 'ytshorts', 'shortsyt', 'shorts'];
-handler.tags = ['downloader'];
-handler.exp = 0;
-handler.limit = true;
-handler.premium = false;
+handler.help = ["ytmp4", "ytmp3", "ytshorts"].map((v) => v + ' url');
+handler.tags = ["downloader"];
+handler.command = /^(ytmp4|ytv|ytmp3|yta|ytshorts|shorts)$/i;
+handler.register = false;
+
 module.exports = handler;
-      
+              
