@@ -18,7 +18,7 @@ var handler = async (m, { conn, command }) => {
       const res = API('lann', '/api/sticker/spongebob', { apikey: lann });
       var stiker = await sticker5(res, { packname })
       await conn.sendFile(m.chat, stiker, 'emror.webp', '', m)
-    } else if ((command == 'doge' || command == 'sdoge') {
+    } else if (command == 'doge' || command == 'sdoge') {
       const res = API('lann', '/api/sticker/doge', { apikey: lann });
       var stiker = await sticker5(res, { packname })
       await conn.sendFile(m.chat, stiker, 'emror.webp', '', m)
