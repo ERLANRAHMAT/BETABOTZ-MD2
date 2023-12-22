@@ -23,7 +23,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         if (!isValid) {
             return m.reply("*your link not supported.*");
         }
-
+await m.reply(wait);
         const _filename = `./tmp/${Math.random().toString(36).substring(2, 7)}`;
         const writer = fs.createWriteStream(`${_filename}.mp4`);
 
