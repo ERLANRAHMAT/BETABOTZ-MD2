@@ -29,8 +29,10 @@ handler.all = async function (m) {
 		global.wib = moment.tz('Asia/Jakarta').format("HH:mm:ss")
 
 //Image
+        let flaaa = JSON.parse(fs.readFileSync('./media/fla.json'))
         let waifu = JSON.parse(fs.readFileSync('./media/waifu.json'))
         global.img = pickRandom(waifu)
+        global.fla = pickRandom(flaaa)
         
 		// pesan sementara
 		global.ephemeral = '86400' // 86400 = 24jam, kalo ingin di hilangkan ganti '86400' jadi 'null' atau ''
