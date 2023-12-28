@@ -1,41 +1,26 @@
-const quotes = require('../lib/jagokata')
-let handler = async (m, { command, args, usedPrefix }) => {
-    let er = `contoh:\n\n${usedPrefix + command} cinta
+const fetch = require('node-fetch');
 
-Opsi Tersedia:
-• cinta
-• rindu
-• mimpi
-• sendiri
-• sabar
-• kesedihan
-• pernikahan
-• kemerdekaan`
-    if (!args[0]) throw er
-    switch (args[0].toLowerCase()) {
-        case 'cinta':
-        case 'rindu':
-        case 'mimpi':
-        case 'sendiri':
-        case 'sabar':
-        case 'kesedihan':
-        case 'pernikahan':
-        case 'kemerdekaan':
-            quotes(args[0].toLowerCase()).then(res => {
-                let data = JSON.stringify(res)
-                let json = JSON.parse(data)
-                let random = Math.floor(Math.random() * json.data.length)
-                let hasil = json.data[random]
-                let { author, bio, quote } = hasil
-                m.reply(`“${quote}”\n\n${author} - ${bio}`)
-            })
-            break
-        default:
-            throw er
-    }
+let handler = async (m, { conn }) => {
+const res = await(await fetch(API('lann', '/api/random/bijak', { apikey: lann }))).json();
+let anu =`─────〔 *Kata Bijak* 〕─────
+
+${res.result}
+`
+m.reply(anu) 
 }
-handler.help = ['katabijak'].map(v => v + ' <opsi>')
-handler.tags = ['internet']
-handler.command = /^(katabijak|jagokata)$/i
+handler.help = ['katabijak']
+handler.tags = ['quotes']
+handler.command = /^(katabijak)$/i
+handler.owner = false
+handler.mods = false
+handler.premium = false
+handler.group = false
+handler.private = false
+handler.register = false
+
+handler.admin = false
+handler.botAdmin = false
+
+handler.fail = null
 
 module.exports = handler
