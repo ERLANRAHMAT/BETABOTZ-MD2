@@ -1,11 +1,9 @@
-let fetch = require('node-fetch')
-let handler = async (m, { conn, text }) => {
-let tio = await fetch(API('lann', '/api/wallpaper/meme', { apikey: lann }))
-let json = await tio.buffer();
-await conn.sendFile(m.chat, json, 'file.jpg', wm, m)
+function handler(m, { text }) {
+    let teks = text ? text : m.quoted && m.quoted.text ? m.quoted.text : m.text
+    m.reply(teks.replace(/[aiueo]/gi, '$&ve'))
 }
-handler.command = /^(meme)$/i
+handler.help = ['purba <teks>']
 handler.tags = ['fun']
-handler.help = ['meme']
-handler.limit = true
+handler.command =  /^(purba)$/i
+
 module.exports = handler
