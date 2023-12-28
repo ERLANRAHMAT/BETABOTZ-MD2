@@ -1,9 +1,11 @@
-function handler(m, { text }) {
-    let teks = text ? text : m.quoted && m.quoted.text ? m.quoted.text : m.text
-    m.reply(teks.replace(/[aiueo]/gi, '$&ve'))
+let fetch = require('node-fetch')
+let handler = async (m, { conn, text }) => {
+let tio = await fetch(API('lann', '/api/wallpaper/meme', { apikey: lann }))
+let json = await tio.buffer();
+await conn.sendFile(m.chat, json, 'file.jpg', wm, m)
 }
-handler.help = ['purba <teks>']
+handler.command = /^(meme)$/i
 handler.tags = ['fun']
-handler.command =  /^(purba)$/i
-
+handler.help = ['meme']
+handler.limit = true
 module.exports = handler
