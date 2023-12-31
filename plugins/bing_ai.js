@@ -28,7 +28,7 @@ let handler = async (m, {
     title: 'Bing-Ai',
     body: '',
     thumbnailUrl: "https://telegra.ph/file/b6a2e82f30570afa1d082.jpg",
-    sourceUrl: "https://api.betabotz.org",
+    sourceUrl: "https://api.betabotz.eu.org",
     mediaType: 1,
     renderLargerThumbnail: true
     }}}, { quoted: m})
