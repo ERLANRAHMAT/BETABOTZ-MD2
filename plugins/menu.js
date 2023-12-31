@@ -40,7 +40,7 @@ I am an automated system (WhatsApp Bot) that can help to do something, search an
 
  ◦  *Library:* Baileys
  ◦  *Function:* Role
- ◦  *Rest Api*: https://api.betabotz.org
+ ◦  *Rest Api*: https://api.betabotz.eu.org
  
 ┌  ◦ Uptime : %uptime
 │  ◦ Hari : %week %weton
