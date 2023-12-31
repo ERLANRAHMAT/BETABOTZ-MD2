@@ -17,7 +17,7 @@ externalAdReply: {
 title: 'Bard-Ai',
 body: '',
 thumbnailUrl: "https://telegra.ph/file/35cad7ee8a8250020ecc7.jpg",
-sourceUrl: "https://api.betabotz.org",
+sourceUrl: "https://api.betabotz.eu.org",
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})
