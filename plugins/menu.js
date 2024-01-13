@@ -163,6 +163,7 @@ text: text,
 contextInfo: {
 mentionedJid: [m.sender],
 externalAdReply: { 
+showAdAttribution: true,
 title: ucapan(),
 body: '',
 thumbnailUrl: thumb,
