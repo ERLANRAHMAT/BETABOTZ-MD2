@@ -1,5 +1,3 @@
-//klok eror chat saya aja 62857754963046
-
 const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType } = require('@adiwajshing/baileys')
 process.env.TZ = 'Asia/Jakarta'
 let fs = require('fs')
