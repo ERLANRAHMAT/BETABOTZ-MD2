@@ -57,6 +57,7 @@
         "chalk": "^4.1.2",        
         "cheerio": "^1.0.0-rc.12",
         "colors": "1.4.0",
+        "didyoumean": "^1.2.2",
         "express": "^4.17.1",
         "file-type": "^16.5.3",
         "form-data": "^4.0.0",
