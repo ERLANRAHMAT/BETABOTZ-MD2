@@ -48,7 +48,7 @@ handler.all = async function (m) {
 					previewType: "PHOTO",
 					thumbnail: await (await fetch(thumb)).buffer(),
 					thumbnailUrl: img,
-					sourceUrl: 'https://api.betabotz.org',
+					sourceUrl: 'https://api.betabotz.eu.org',
 				}
 			}
 		}
