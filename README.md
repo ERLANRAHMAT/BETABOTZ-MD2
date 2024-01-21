@@ -40,7 +40,7 @@
 
 ### `Render`
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://dashboard.render.com/blueprint/new?repo=https%3A%2F%2Fgithub.com%2FERLANRAHMAT%2FBETABOTZ-MD2
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://dashboard.render.com/blueprint/new?repo=https%3A%2F%2Fgithub.com%2FERLANRAHMAT%2FBETABOTZ-MD2)
 ## Base Ori
 Original base [`Link`](https://github.com/HelgaIlham/ZukaBet)
 
