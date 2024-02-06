@@ -6,38 +6,53 @@ const os = require('os');
 const express = require('express');
 const app = express();
 
-const port = process.env.PORT || 3000;
+// Express.js 
+const ports = [4000, 3000, 5000, 8000];
+let availablePortIndex = 0;
 
-console.log('\x1b[33m%s\x1b[0m', `🌐 Port ${port} is open`);
-app.get('/', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  const data = {
-    status: 'true',
-    message: 'Bot Successfully Activated!',
-    author: 'BETABOTZ'
-  };
-  const result = {
-    response: data
-  };
-  res.send(JSON.stringify(result, null, 2));
-});
-
-function listenOnPort(port) {
-  app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-  });
-
-  app.on('error', (err) => {
-    if (err.code === 'EADDRINUSE') {
-      console.log(`Port ${port} is already in use. Trying another port...`);
-      listenOnPort(port + 1);
-    } else {
-      console.error(err);
-    }
+function checkPort(port) {
+  return new Promise((resolve, reject) => {
+    const server = app.listen(port, () => {
+      server.close();
+      resolve(true);
+    });
+    server.on('error', reject);
   });
 }
 
-listenOnPort(port);
+async function startServer() {
+  const port = ports[availablePortIndex];
+  const isPortAvailable = await checkPort(port);
+
+  if (isPortAvailable) {
+    console.log('\x1b[33m%s\x1b[0m', `🌐 Port ${port} is open`);
+    app.get('/', (req, res) => {
+      res.setHeader('Content-Type', 'application/json');
+      const data = {
+        status: 'true',
+        message: 'Bot Successfully Activated!',
+        author: 'BETABOTZ'
+      };
+      const result = {
+        response: data
+      };
+      res.send(JSON.stringify(result, null, 2));
+    });
+  } else {
+    console.log(`Port ${port} is already in use. Trying another port...`);
+    availablePortIndex++;
+
+    if (availablePortIndex >= ports.length) {
+      console.log('No more available ports. Exiting...');
+      process.exit(1);
+    } else {
+      ports[availablePortIndex] = parseInt(port) + 1;
+      startServer();
+    }
+  }
+}
+
+startServer();
 
 let isRunning = false;
 
@@ -107,7 +122,7 @@ function start(file) {
   console.log(`💾 \x1b[33mTotal RAM: ${ramInGB.toFixed(2)} GB\x1b[0m`);
   const freeRamInGB = os.freemem() / (1024 * 1024 * 1024);
   console.log(`💽 \x1b[33mFree RAM: ${freeRamInGB.toFixed(2)} GB\x1b[0m`);
-  console.log('\x1b[33m%s\x1b[0m', `📃 Script by BOTCAHX`);
+  console.log('\x1b[33m%s\x1b[0m', `📃 Script by BETABOTZ`);
 
   setInterval(() => {}, 1000);
 }
