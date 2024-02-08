@@ -2,7 +2,7 @@ const { tiktokdl } = require('tiktokdl');
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) {
-    throw `Masukkan URL!\n\nContoh:\n${usedPrefix}${command} https://vm.tiktok.com/ZGJAmhSrp/`;
+    throw `Masukkan URL!\n\nContoh:\n${usedPrefix}${command} https://vt.tiktok.com/ZSFNnpxvP/`;
   }
   try {
     if (!args[0].match(/tiktok/gi)) {
