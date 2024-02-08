@@ -2,7 +2,7 @@ const https = require('https');
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!args[0]) {
-      throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://vm.tiktok.com/ZGJAmhSrp/`
+      throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://vt.tiktok.com/ZSFNnpxvP/`
     }
 try {
     if (!args[0].match(/tiktok/gi)) {
