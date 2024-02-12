@@ -8,7 +8,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     }
     m.reply('*Mohon tunggu...*');
     try {
-    const api = await fetch(`https://api.betabotz.eu.org/api/download/douyinslide?url=${args[0]}&apikey=${lann}`);
+    const api = await fetch(`https://api.betabotz.eu.org/api/download/douyin-slide?url=${args[0]}&apikey=${lann}`);
     const res = await api.json();
     var {
       id, 
