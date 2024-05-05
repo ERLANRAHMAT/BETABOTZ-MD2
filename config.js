@@ -15,14 +15,14 @@ global.author = 'Bot WhatsApp'
 global.maxwarn = '2' // Peringatan maksimum
 
 //INI WAJIB DI ISI!//
-global.lann = 'YOUR_APIKEY_HERE' 
+global.lann = 'ZTl2ScYJ' 
 //Daftar terlebih dahulu https://api.betabotz.eu.org
 
 //INI OPTIONAL BOLEH DI ISI BOLEH JUGA ENGGA//
-global.btc = 'YOUR_APIKEY_HERE'
+global.btc = 'ZTl2ScYJ'
 //Daftar https://api.botcahx.eu.org 
 
-global.APIs = {   
+global.APIs =ZTl2ScYJ {   
   lann: 'https://api.betabotz.eu.org',
   btc: 'https://api.botcahx.eu.org'
 }
