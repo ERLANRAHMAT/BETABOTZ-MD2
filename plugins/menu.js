@@ -200,9 +200,9 @@ return await conn.relayMessage(msg.key.remoteJid, msg.message, {
     throw e
   }
 }
-handler.help = ['menu2']
+handler.help = ['menu']
 handler.tags = ['main']
-handler.command = /^(allmenu2|menu2|help2|bot2)$/i
+handler.command = /^(allmenu|menu|help|bot)$/i
 
 handler.exp = 3
 
