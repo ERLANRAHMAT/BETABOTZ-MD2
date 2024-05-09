@@ -156,7 +156,7 @@ text = typeof conn.menu == 'string' ? conn.menu : typeof conn.menu == 'object' ?
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
     let media = await prepareWAMessageMedia({ image: { url: 'https://telegra.ph/file/3a34bfa58714bdef500d9.jpg' } }, { upload: conn.waUploadToServer });
-  let msg = generateWAMessageFromContent(m.chat, {
+    let msg = generateWAMessageFromContent(m.chat, {
   viewOnceMessage: {
     message: {
       "messageContextInfo": {
@@ -182,7 +182,7 @@ text = typeof conn.menu == 'string' ? conn.menu : typeof conn.menu == 'object' ?
               "name": "cta_url",
               "buttonParamsJson": JSON.stringify({
                 display_text: "Api",
-                url: 'https://api.betabbotz.eu.org',
+                url: 'https://api.betabotz.eu.org',
                 merchant_url: 'https://api.betabotz.eu.org'
               })
             },
@@ -192,14 +192,17 @@ text = typeof conn.menu == 'string' ? conn.menu : typeof conn.menu == 'object' ?
     }
   }
 }, {})
+return await conn.relayMessage(msg.key.remoteJid, msg.message, {
+  messageId: msg.key.id
+});
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
   }
 }
-handler.help = ['menu']
+handler.help = ['menu2']
 handler.tags = ['main']
-handler.command = /^(allmenu|menu|help|bot)$/i
+handler.command = /^(allmenu2|menu2|help2|bot2)$/i
 
 handler.exp = 3
 
