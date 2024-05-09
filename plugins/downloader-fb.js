@@ -4,7 +4,7 @@ if (!args[0]) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://ww
   try {
     m.reply('*Please wait..*');
 const url = args[0];
-const get = await fetch(`https://api.betabotz.eu.org/api/download/fbdown?url=${url}&apikdy=${lann}`);
+const get = await fetch(`https://api.betabotz.eu.org/api/download/fbdown?url=${url}&apikey=${lann}`);
 var js = await get.json()   
 conn.sendFile(m.chat, js.result.HD, 'fb.mp4', '', m);
   } catch (e) {
