@@ -11,11 +11,10 @@ let handler = async (m, { text, usedPrefix, command }) => {
             capt += `◦ *Username* : ${username}\n`;
             capt += `◦ *Full Name* : ${fullName}\n`;
             capt += `◦ *Bio* : ${bio}\n`;
-            capt += `◦ *Followers* : ${followers}\n`;
-            capt += `◦ *Followers* : ${followers}\n`;
+            capt += `◦ *Followers* : ${followers}\n`;           
             capt += `◦ *Following* : ${following}\n`;            
             capt += `◦ *Total Post* : ${postsCount}\n`;
-            capt += `\n`;        
+           capt += `\n`;        
             return conn.sendFile(m.chat, photoUrl, 'pp.png', capt, m)
         } else {
             throw 'Sistem Sedang Bermasalah!'
