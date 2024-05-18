@@ -5,9 +5,18 @@ let handler = async (m, { text, usedPrefix, command }) => {
         let api = await fetch(`https://api.betabotz.eu.org/api/stalk/ig?username=${text}&apikey=${lann}`)
         let response = await api.json()
         if (response.status) {
-            let userInfo = response.result.user_info
-            let caption = `▢ *Username*: ${userInfo.username}\n▢ *Full Name*: ${userInfo.full_name}\n▢ *Biography*: ${userInfo.biography}\n▢ *Posts*: ${userInfo.posts}\n▢ *Followers*: ${userInfo.followers}\n▢ *Following*: ${userInfo.following}`
-            return conn.sendFile(m.chat, userInfo.profile_pic_url, 'pp.png', caption, m)
+            let { photoUrl, postsCount, followers, following, bio, fullName, username } = response.result;
+            let capt;
+            capt = `乂 *I G S T A L K E R*\n\n`;
+            capt += `◦ *Username* : ${username}\n`;
+            capt += `◦ *Full Name* : ${fullName}\n`;
+            capt += `◦ *Bio* : ${bio}\n`;
+            capt += `◦ *Followers* : ${followers}\n`;
+            capt += `◦ *Followers* : ${followers}\n`;
+            capt += `◦ *Following* : ${following}\n`;            
+            capt += `◦ *Total Post* : ${postsCount}\n`;
+            capt += `\n`;        
+            return conn.sendFile(m.chat, photoUrl, 'pp.png', capt, m)
         } else {
             throw 'Sistem Sedang Bermasalah!'
         }
