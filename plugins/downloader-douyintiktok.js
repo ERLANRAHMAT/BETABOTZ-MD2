@@ -6,7 +6,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     let capt;
     if (command === 'tiktok' || command === 'tt' || command === 'tiktokdl' || command === 'tiktoknowm') {
         capt = `乂 *T I K T O K*`;
-        message = `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://vm.tiktok.com/ZGJAmhSrp/`;    
+        message = `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://vt.tiktok.com/ZSY8XguF2/`;    
         urlApi = `https://api.betabotz.eu.org/api/download/tiktok?url=${text}&apikey=${lann}`;
     } else if (command === 'douyin') {
         capt = `乂 *D O U Y I N*`;
