@@ -19,9 +19,9 @@
 **Apikey :**
 - [✓] Free ApiKey 100 Request (/day)
 - [✓] PREMIUM ApiKey 5000 Request (for 1 month)
-- [✓] VIP ApiKey 8000 Request (for 1 month)
-- [✓] VVIP ApiKey 12000 Request (for 1 month)
-- [✓] SUPREME ApiKey 15000 Request (for 1 month)
+- [✓] VIP ApiKey 10000 Request (for 2 month)
+- [✓] VVIP ApiKey 15000 Request (for 2 month)
+- [✓] SUPREME ApiKey 30000 Request (for 3 month)
 - Jika ingin membeli ApiKey Premium,Vip,Vvip,Supreme silahkan register lalu pilih paket yang di inginkan [`Pilih`](https://api.betabotz.eu.org/price)
 
 **Website Api :**
