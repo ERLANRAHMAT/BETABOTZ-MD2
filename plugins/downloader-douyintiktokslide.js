@@ -14,8 +14,8 @@ let handler = async (m, {
       for (let i of res.result.images) {
         await sleep(3000);
         conn.sendMessage(m.chat,{ image :{ url : i } , caption : `*Title*: ${res.result.title}` }, { quoted: m });
-        await sleep(5000);
-        conn.sendMessage(m.chat, { audio: { url: res.result.audio[0] }, mimetype: 'audio/mpeg' }, { quoted: m });         
+        //await sleep(5000);
+      //  conn.sendMessage(m.chat, { audio: { url: res.result.audio[0] }, mimetype: 'audio/mpeg' }, { quoted: m });         
       }
     } catch (e) {
       console.log(e);
@@ -30,8 +30,8 @@ let handler = async (m, {
       for (let i of res.result.images) {
         await sleep(3000);
         conn.sendMessage(m.chat,{ image :{ url : i } , caption : `*Title*: ${res.result.title}` }, { quoted: m });
-        await sleep(5000);
-        conn.sendMessage(m.chat, { audio: { url: res.result.audio[0] }, mimetype: 'audio/mpeg' }, { quoted: m });         
+       // await sleep(5000);
+       // conn.sendMessage(m.chat, { audio: { url: res.result.audio[0] }, mimetype: 'audio/mpeg' }, { quoted: m });         
       }
     } catch (e) {
       console.log(e);
