@@ -32,7 +32,7 @@
 
 **Website Api :**
 - BOTCAHX (Optional)[`Register`](https://api.botcahx.eu.org)
-- Lann [`Register`](https://api.betabotz.eu.org)
+- Lann (Wajib) [`Register`](https://api.betabotz.eu.org)
 - Setelah mendapatkan apikey silahkan paste di config.js pada bagian ```global.btc``` dan ```global.lann```
 
 
