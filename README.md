@@ -16,18 +16,22 @@
 - Menggunakan 60% fitur dari [`RestApi`](https://api.betabotz.eu.org) sebagai media downloader
 
 
-**Apikey :**
-- [✓] Free ApiKey 100 Request (/day)
-- [✓] Cheap1 ApiKey 3000 Request (for 1 month)
-- [✓] Cheap2 ApiKey 4000 Request (for 1 month)
-- [✓] PREMIUM ApiKey 5000 Request (for 1 month)
-- [✓] VIP ApiKey 10000 Request (for 2 month)
-- [✓] VVIP ApiKey 15000 Request (for 2 month)
-- [✓] SUPREME ApiKey 30000 Request (for 3 month)
-- Jika ingin membeli ApiKey Cheap1,Cheap2,Premium,Vip,Vvip,Supreme silahkan register lalu pilih paket yang di inginkan dan tekan button order via qris [`Pilih`](https://api.betabotz.eu.org/price)
+## ApiKey Harga
+
+| No | Plan/Role    | Limit          | Expired         | Harga |
+|----|--------------|----------------|-----------------|-------|
+| 1  | Free         | 100 Request/day| -               | Gratis|
+| 2  | Cheap1       | 3000 Request   | 1 bulan         | 5000     |
+| 3  | Cheap2       | 4000 Request   | 1 bulan         | 6000     |
+| 4  | PREMIUM      | 5000 Request   | 1 bulan         | 7000     |
+| 5  | VIP          | 10000 Request  | 2 bulan         | 12000     |
+| 6  | VVIP         | 15000 Request  | 2 bulan         | 17000     |
+| 7  | SUPREME      | 30000 Request  | 3 bulan         | 32000     |
+
+- Jika ingin membeli ApiKey Cheap1, Cheap2, Premium, Vip, Vvip, Supreme silahkan register lalu pilih paket yang diinginkan dan tekan button order via qris [`Pilih`](https://api.betabotz.eu.org/price)
 
 **Website Api :**
-- BOTCAHX ( Optional )[`Register`](https://api.botcahx.eu.org)
+- BOTCAHX (Optional)[`Register`](https://api.botcahx.eu.org)
 - Lann [`Register`](https://api.betabotz.eu.org)
 - Setelah mendapatkan apikey silahkan paste di config.js pada bagian ```global.btc``` dan ```global.lann```
 
