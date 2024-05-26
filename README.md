@@ -18,14 +18,16 @@
 
 **Apikey :**
 - [✓] Free ApiKey 100 Request (/day)
+- [✓] Cheap1 ApiKey 3000 Request (for 1 month)
+- [✓] Cheap2 ApiKey 4000 Request (for 1 month)
 - [✓] PREMIUM ApiKey 5000 Request (for 1 month)
 - [✓] VIP ApiKey 10000 Request (for 2 month)
 - [✓] VVIP ApiKey 15000 Request (for 2 month)
 - [✓] SUPREME ApiKey 30000 Request (for 3 month)
-- Jika ingin membeli ApiKey Premium,Vip,Vvip,Supreme silahkan register lalu pilih paket yang di inginkan [`Pilih`](https://api.betabotz.eu.org/price)
+- Jika ingin membeli ApiKey Cheap1,Cheap2,Premium,Vip,Vvip,Supreme silahkan register lalu pilih paket yang di inginkan dan tekan button order via qris [`Pilih`](https://api.betabotz.eu.org/price)
 
 **Website Api :**
-- BOTCAHX [`Register`](https://api.botcahx.eu.org)
+- BOTCAHX ( Optional )[`Register`](https://api.botcahx.eu.org)
 - Lann [`Register`](https://api.betabotz.eu.org)
 - Setelah mendapatkan apikey silahkan paste di config.js pada bagian ```global.btc``` dan ```global.lann```
 
@@ -35,7 +37,7 @@
 - Group Api [`Join`](https://chat.whatsapp.com/Lni6UJKG81WFQcNk1F7MOI)
 ## Support
 
-<a href="https://sociabuzz.com/tioclkp02" target="_blank"><img src="https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" height="32px" alt="Sociabuzz"></a>
+<a href="https://api.betabotz.eu.org/donasi" target="_blank"><img src="https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" height="32px" alt="Sociabuzz"></a>
 
 
 ### `Render`
