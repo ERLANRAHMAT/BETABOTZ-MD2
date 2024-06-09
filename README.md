@@ -20,7 +20,7 @@
 
 | No | Plan/Role    | Limit          | Expired         | Harga |
 |----|--------------|----------------|-----------------|-------|
-| 1  | Free         | 15 Request/day| -               | Gratis|
+| 1  | Free         | 30 Request/day| -               | Gratis|
 | 2  | Cheap1       | 3000 Request   | 1 bulan         | 5000     |
 | 3  | Cheap2       | 4000 Request   | 1 bulan         | 6000     |
 | 4  | PREMIUM      | 5000 Request   | 1 bulan         | 7000     |
