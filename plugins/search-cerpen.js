@@ -108,11 +108,11 @@ let handler = async (m, {conn, command}) => {
 
 
 
-handler.help = ['remaja', 'anak', 'budaya', 'misteri', 'romantis', 'cinta', 'gokil', 'galau', 'Kehidupan', 'inspiratif', 'sastra', 'jepang', 'korea', 'keluarga', 'persahabatan', 'kristen', 'ramadhan', 'liburan', 'lingkungan', 'mengharukan'] ;
+handler.help = handler.command = ['remaja', 'anak', 'budaya', 'misteri', 'romantis', 'cinta', 'gokil', 'galau', 'Kehidupan', 'inspiratif', 'sastra', 'jepang', 'korea', 'keluarga', 'persahabatan', 'kristen', 'ramadhan', 'liburan', 'lingkungan', 'mengharukan'] ;
 handler.tags = ['cerpen']
-handler.command = /^(remaja|anak|budaya|misteri|romantis|cinta|gokil|galau|Kehidupan|inspiratif|sastra|jepang|korea|keluarga|persahabatan|kristen|ramadhan|liburan|lingkungan|mengharukan|)/i;
 handler.group = false;
 
 module.exports = handler
 
 //dana_putra13
+
