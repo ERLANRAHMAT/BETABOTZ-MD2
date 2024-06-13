@@ -34,6 +34,7 @@ let tags = {
   'owner': 'MENU OWNER',
   'Pengubah Suara': 'PENGUBAH SUARA',
   'quotes' : 'MENU QUOTES',
+  'cerpen': 'MENU CERPEN',
   'stalk': 'MENU STALK',
   'shortlink': 'SHORT LINK',
   'tools': 'MENU TOOLS',
