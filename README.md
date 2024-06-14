@@ -38,7 +38,7 @@
 
 ## Group Bot
 - Group Bot [`Join`](https://chat.whatsapp.com/G4f1fTpz9zL4EH3FyIcaPR)
-- Group Api [`Join`](https://chat.whatsapp.com/Lni6UJKG81WFQcNk1F7MOI)
+- Group Api [`Join`](https://chat.whatsapp.com/DJLpJEZ5QFO5nzAoGcJO71)
 ## Support
 
 <a href="https://api.betabotz.eu.org/donasi" target="_blank"><img src="https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" height="32px" alt="Sociabuzz"></a>
