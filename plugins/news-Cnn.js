@@ -35,7 +35,3 @@ throw `Internal server eror!`
       return list[Math.floor(list.length * Math.random())]
     }
     
-
-
-
-    // let anu = `―CNNC―\n\nBerita: ${json.result[0].berita}\n\nBeritaUrl: ${json.result[0].berita_url}`  
