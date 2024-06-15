@@ -8,12 +8,11 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 		let anu = await res.json()
 		anu = anu.result
 		let ini_txt = `*${anu.title}*\n\n`
-		ini_txt += `⭔ Duration : ${anu.duration}\n`
-		ini_txt += `⭔ Quality : *${anu.quality}*`
+		
 		await conn.sendFile(m.chat, anu.thumbnail, 'scloud.jpg', ini_txt, m)
 		conn.sendMessage(m.chat, {
                 audio: {
-                    url: anu.download
+                    url: anu.url
                 },
                 mimetype: 'audio/mpeg',
                 contextInfo: {
@@ -21,7 +20,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
                         title: anu.title,
                         body: "",
                         thumbnailUrl: anu.thumbnail,
-                        sourceUrl: anu.download,
+                        sourceUrl: anu.url,
                         mediaType: 1,
                         showAdAttribution: true,
                         renderLargerThumbnail: true
