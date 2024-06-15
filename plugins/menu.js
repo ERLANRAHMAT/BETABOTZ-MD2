@@ -37,6 +37,7 @@ let tags = {
   'cerpen': 'MENU CERPEN',
   'stalk': 'MENU STALK',
   'shortlink': 'SHORT LINK',
+  'news' : 'NEWS',
   'tools': 'MENU TOOLS',
   'anonymous': 'ANONYMOUS CHAT',
   '': 'NO CATEGORY',
