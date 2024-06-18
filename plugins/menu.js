@@ -28,7 +28,7 @@ let tags = {
   'nsfw': 'MENU NSFW',
   'info': 'MENU INFO',
   'internet': 'INTERNET',
-  'islam' : 'MENU ISLAMI',
+  'islamic' : 'MENU ISLAMI',
   'kerang': 'MENU KERANG',
   'maker': 'MENU MAKER',
   'owner': 'MENU OWNER',
