@@ -7,7 +7,7 @@
 - Fitur 90% implementasi dari website api
 - Penambah output url expres.js agar bisa di jalankan di render dsb.
 - Informasi api [WhatsApp](https://whatsapp.com/channel/0029VaApYsQ5Ui2c2rKbpP0S)
-- Informasi Bot [Whatsapp] (https://whatsapp.com/channel/0029VaiIG3UJpe8n3Y2MZ51z)
+- Informasi Bot [Whatsapp](https://whatsapp.com/channel/0029VaiIG3UJpe8n3Y2MZ51z)
   ## Note!
   **Important :**
   
