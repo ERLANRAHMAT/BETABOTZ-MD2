@@ -1,5 +1,3 @@
-`Cek Khodam Rek 🗿😹`
-
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (command === 'cekkodam' || command === 'cekodam' || command === 'cekhodam' || command === 'cekkhodam') {
