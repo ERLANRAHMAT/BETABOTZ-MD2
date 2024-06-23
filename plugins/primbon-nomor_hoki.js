@@ -9,7 +9,7 @@ try {
   let anu = [
        `―-NOMOR HOKI-―\n\nNomor hp: ${json.result.message.nomer_hp}\n\nAngka shuzi: ${json.result.message.angka_shuzi}\n\n
 --Energi positif: \nKekayaan: ${json.result.message.energi_positif.kekayaan}\nkesehatan: ${json.result.message.energi_positif.kesehatan}\ncinta: ${json.result.message.energi_positif.cinta}\nkestabilan: ${json.result.message.energi_positif.kestabilan}\npersentase: ${json.result.message.energi_positif.persentase}\n\n
---Energi negatif: \nperselisihan: ${json.result.message.energi_positif.perselisihan}\nkehilangan: ${json.result.message.energi_positif.kehilangan}\nmalapetaka: ${json.result.message.energi_positif.malapetaka}\nkehancuran: ${json.result.message.energi_positif.kehancuran}\npersentase: ${json.result.message.energi_positif.persentase}\n\n
+--Energi negatif: \nperselisihan: ${json.result.message.energi_negatif.perselisihan}\nkehilangan: ${json.result.message.energi_negatif.kehilangan}\nmalapetaka: ${json.result.message.energi_negatif.malapetaka}\nkehancuran: ${json.result.message.energi_negatif.kehancuran}\npersentase: ${json.result.message.energi_negatif.persentase}\n\n
 --Catatan: ${json.result.message.catatan}`, 
     ]
 conn.reply(m.chat,`${(anu)}`);;
