@@ -22,9 +22,6 @@ Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}tebe untuk bantuan
 Bonus: ${poin} Kredit sosial\n
 REPLAY SOAL UNTUK MENJAWAB
-*E06 di awal (spasi) lalu jawaban*\n\n
-
-nb: jika gambar tidak muncul mohon di coba kembali
     `.trim()
   conn.tebakbendera[id] = [
     await conn.sendFile(m.chat, json.img, 'bendera.jpg', caption, m)
