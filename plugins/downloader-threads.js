@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) {
-    throw `Masukkan URL!\n\ncontoh:\n${usedPrefix + command} https://www.threads.net/@cicididnteat/post/CytDET4R8S2/?igshid=NTc4MTIwNjQ2YQ==`;
+    throw `Masukkan URL!\n\ncontoh:\n${usedPrefix + command} https://www.threads.net/@diiemofc/post/Cujx6ryoYx6?igshid=NTc4MTIwNjQ2YQ%3D%3D`;
   }
   if (!args[0].match(/threads/gi)) {
     throw `URL Tidak Ditemukan!`;
