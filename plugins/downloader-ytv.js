@@ -1,75 +1,79 @@
-const fs = require("fs");
-const ytdl = require("ytdl-core");
+// import axios from 'axios'
+// import cheerio from 'cheerio'
+// // import ytdl from 'ytdl-core'
 
-let handler = async (m, { conn, args, usedPrefix, command }) => {
-    conn["youtubedl"] = conn["youtubedl"] || {};
-    if (m.sender in conn["youtubedl"]) {
-        return;
-    }
-    if (!args[0]) {
-        return m.reply(`Example: *${usedPrefix + command}* https://www.youtube.com/watch?v=Z28dtg_QmFw`);
-    }
-    const isValid = await ytdl.validateURL(args[0]);
-    if (!isValid) {
-        return m.reply("*your link not suported.*");
-    }
+let ytdl = require('ytdl-core')
 
-    const _filename = `./tmp/${Math.random().toString(36).substring(2, 7)}.mp4`;
-    const writer = fs.createWriteStream(_filename);
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+let v = text
+if (!text) throw 'Linknya Mana.??'
+m.reply(wait)
 
-    conn["youtubedl"][m.sender] = true;
+ytmp4(v).then((result) => {
+const video = result.url
+const title = result.title
+const duration = result.duration
+const cenel = result.channel
+const publish = result.published
+const view = result.views
+				
+conn.sendFile(m.chat, video, title + '.mp4', `
+*Downloader YouTube Mp4*
+    
+*Title* : ${title}
+*Channel* : ${cenel}
+*publish* : ${publish}
+*views* : ${view}
+*Resolusi* : 360p
+*Url* : ${text}`, m)
+})
+}
+handler.help = ['ytmp4 <link yt>']
+handler.tags = ['downloader'] 
+handler.command = /^(ytmp4|youtubemp4|ytv)$/i
+handler.limit = 2
+handler
+
+module.exports = handler
+
+async function ytmp4(url) {
+  return new Promise((resolve, reject) => {
     try {
-        const { formats, videoDetails } = await ytdl.getInfo(args[0]);
-        const { title, description, publishDate, author, isFamilySafe } = videoDetails;
-        const { user } = author;
-        return new Promise(async (resolve, reject) => {
-            ytdl(args[0], {
-                quality: "lowest",
-            }).pipe(writer);
-            writer.on("error", () => {
-                m.reply("Failed sending video");
-                delete conn["youtubedl"][m.sender];
-                resolve();
-            });
-            writer.on("close", async () => {
-                try {
-                    await conn.sendMessage(
-                        m.chat,
-                        {
-                            video: {
-                                stream: fs.createReadStream(_filename),
-                            },
-                            caption: `┌  • *Y o u t u b e - M P 4*\n│  ◦ *Title:* ${title}\n│  ◦ *Published:* ${publishDate}\n└  ◦ *Author:* ${user}`,
-                        },
-                        { quoted: m }
-                    );
-                } catch {
-                    await conn.sendMessage(
-                        m.chat,
-                        {
-                            document: {
-                                stream: fs.createReadStream(_filename),
-                            },
-                            fileName: `${title}.mp4`,
-                            mimetype: "video/mp4",
-                            caption: `┌  • *Y o u t u b e - M P 4*\n│  ◦ *Title:* ${title}\n│  ◦ *Published:* ${publishDate}\n└  ◦ *Author:* ${user}`,
-                        },
-                        { quoted: m }
-                    );
-                }
-                fs.unlinkSync(_filename);
-                delete conn["youtubedl"][m.sender];
-                resolve();
-            });
-        });
-    } catch {
-        m.reply("*Failed get a video!*");
-    }
-};
+      const id = ytdl.getVideoID(url)
+      const yutub = ytdl.getInfo(`https://www.youtube.com/watch?v=${id}`)
+      .then((data) => {
+        let pormat = data.formats
+        let video = []
+        for (let i = 0; i < pormat.length; i++) {
+          if (pormat[i].container == 'mp4' && pormat[i].hasVideo == true && pormat[i].hasAudio == true) {
+            let vid = pormat[i]
+            video.push(vid.url)
+          }
+        }
+        const title = data.player_response.microformat.playerMicroformatRenderer.title.simpleText
+        const thumb = data.player_response.microformat.playerMicroformatRenderer.thumbnail.thumbnails[0].url
+        const channel = data.player_response.microformat.playerMicroformatRenderer.ownerChannelName
+        const views = data.player_response.microformat.playerMicroformatRenderer.viewCount
+        const published = data.player_response.microformat.playerMicroformatRenderer.publishDate
+        const duration = data.player_response.lengthSeconds
+        
+        const result = {
+          title: title,
+          duration: duration,
+          thumb: thumb,
+          channel: channel,
+          published: published,
+          views: views,
+          url: video[0]
+        }
+        return(result)
+      })
+      resolve(yutub)
+    } catch (error) {
+        reject(error);
+      }
+      console.log(error)
+  })
+}
 
-handler.help = ["ytmp4"].map((v) => v + ' url');
-handler.tags = ["downloader"];
-handler.command = /^yt(v|mp4)?$/i;
-handler.register = false;
 
-module.exports = handler;
