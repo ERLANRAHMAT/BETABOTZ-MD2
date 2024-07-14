@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 let handler = async (m, { conn, command, usedPrefix, text }) => {
     if (!text) throw `Kirim prompt dengan cara ${usedPrefix + command} <prompt>`;
 
-    let apiUrl = `https://widipe.com/dalle?text=${encodeURIComponent(text)}`;
+    let apiUrl = `https://api.betabotz.eu.org/api/search/openai-image?text=${text}&apikey=${lann}`;
     let res = await fetch(apiUrl);
     if (!res.ok) throw 'Gagal mengambil gambar dari API';
     let buffer = await res.buffer();
