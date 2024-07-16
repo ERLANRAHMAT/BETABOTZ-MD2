@@ -1,5 +1,3 @@
-
-
 /* TITENI NEK DIHAPUS
 * BY NAAAZZZ
 * NANDA
@@ -12,11 +10,11 @@ const getRandom = function (array) {
 			}
 
     let data = [{
-    	map: "https://cdn.btch.bz/file/4ff733775f9267e3eca08.jpg", 
-	    nazz: { 2:23, 6:45, 20:59, 52:72, 57:96, 71:92, 98:40, 84:58, 87:49, 73:15, 56:8, 43:4, 50:5 }, 
+    	map: "https://telegra.ph/file/46a0c38104f79cdbfe83f.jpg", 
+	    nazz: { 2:38, 7:14, 8:31, 15:26, 21:42, 28:84, 36:44, 51:67, 78:98, 71:91, 87:94, 16:6, 46:25, 49:11, 62:19, 64:60, 74:53, 89:68, 92:88, 95:75, 99:80 }, 
 		name: "Classic", 
-		stabil_x: 15,
-		stabil_y: 22
+		stabil_x: 20,
+		stabil_y: 20
 	},
 {
 		map: "https://telegra.ph/file/46a0c38104f79cdbfe83f.jpg", 
