@@ -1,26 +1,26 @@
 var fetch = require('node-fetch');
 
 let handler = async (m, { conn, text }) => {
-    conn.autoai = conn.autoai ? conn.autoai : {};
+    conn.simi2 = conn.simi2 ? conn.simi2 : {};
 
-    if (!text) throw `*• Example:* .autoai *[on/off]*`;
+    if (!text) throw `*• Example:* .simi2 *[on/off]*`;
 
     if (text === "on") {
-        conn.autoai[m.sender] = {
+        conn.simi2[m.sender] = {
             pesan: []
         };
         m.reply("[ ✓ ] Success create session chat");
     } else if (text === "off") {
-        delete conn.autoai[m.sender];
+        delete conn.simi2[m.sender];
         m.reply("[ ✓ ] Success delete session chat");
     }
 };
 
 handler.before = async (m, { conn }) => {
-  conn.autoai = conn.autoai ? conn.autoai : {};
+  conn.simi2 = conn.simi2 ? conn.simi2 : {};
   if (m.isBaileys && m.fromMe) return;
   if (!m.text) return;
-  if (!conn.autoai[m.sender]) return;
+  if (!conn.simi2[m.sender]) return;
 
   if (
     m.text.startsWith(".") ||
@@ -30,7 +30,7 @@ handler.before = async (m, { conn }) => {
     m.text.startsWith("\\/")
   ) return;
 
-  if (conn.autoai[m.sender] && m.text) {
+  if (conn.simi2[m.sender] && m.text) {
     let name = conn.getName(m.sender);
     try {
     let res = await fetch(`https://api.betabotz.eu.org/api/search/simisimi?query=${m.text}&apikey=${lann}`)
@@ -58,8 +58,8 @@ handler.before = async (m, { conn }) => {
   }
 };
 
-handler.command = ['autosimi'];
+handler.command = ['simi2'];
 handler.tags = ["ai"];
-handler.help = ['autosimi'].map(a => a + " *[on/off]*");
+handler.help = ['simi2'].map(a => a + " *[on/off]*");
 
 module.exports = handler
