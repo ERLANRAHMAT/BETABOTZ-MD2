@@ -2,31 +2,31 @@ const { G4F } = require("g4f");
 let Airi = new G4F();
 
 let handler = async (m, { conn, text }) => {
-    conn.autoai = conn.autoai ? conn.autoai : {};
+    conn.plana = conn.plana ? conn.plana : {};
 
     
     if (!text) throw `*• Example:* .plana *[on/off]*`;
 
     if (text === "on") {
-        conn.autoai[m.sender] = {
+        conn.plana[m.sender] = {
             pesan: []
         };
         // kalian bisa ganti ini untuk tanda apakah sesi sudah aktif atau belum
         m.reply("Halo sensei! plana siap membantu sensei");
     } else if (text === "off") {
-        delete conn.autoai[m.sender];
+        delete conn.plana[m.sender];
         // ini kalau sudah selesai sesi nya di tutup
         m.reply("Senang sudah membantu sensei");
     }
 };
 
 handler.before = async (m, { conn }) => {
-    conn.autoai = conn.autoai ? conn.autoai : {};
+    conn.plana = conn.plana ? conn.plana : {};
     if (m.isBaileys && m.fromMe) return;
     if (!m.text) return;
-    if (!conn.autoai[m.sender]) return;
+    if (!conn.plana[m.sender]) return;
 
-    // prefix untuk muai dan selesai sesi
+    // prefix untuk mulai dan selesai sesi
     if (
         m.text.startsWith(".") ||
         m.text.startsWith("#") ||
@@ -35,10 +35,10 @@ handler.before = async (m, { conn }) => {
         m.text.startsWith("\\/")
     ) return;
 
-    if (conn.autoai[m.sender] && m.text) {
+    if (conn.plana[m.sender] && m.text) {
         let name = conn.getName(m.sender);
         const messages = [
-            ...conn.autoai[m.sender].pesan,
+            ...conn.plana[m.sender].pesan,
             `p`,
             m.text
         ];
@@ -71,7 +71,7 @@ handler.before = async (m, { conn }) => {
       }
     }
   }, { quoted: m });
-                conn.autoai[m.sender].pesan = messages;
+                conn.plana[m.sender].pesan = messages;
         } catch (e) {
             console.error("Kesalahan Dalam mengambil Data");
             throw "error";
