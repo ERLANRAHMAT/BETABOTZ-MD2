@@ -6,7 +6,7 @@ if (!args[0]) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://ww
 const url = args[0];
 const get = await fetch(`https://api.betabotz.eu.org/api/download/fbdown?url=${url}&apikey=${lann}`);
 var js = await get.json()   
-conn.sendFile(m.chat, js.result.HD, 'fb.mp4', '', m);
+conn.sendFile(m.chat, js.result[1]._url, 'fb.mp4', '', m);
   } catch (e) {
     console.log(e);
     if (m.sender) {
@@ -18,7 +18,7 @@ handler.help = ['facebook'];
 handler.command = /^(fb|facebook|facebookdl|fbdl|fbdown|dlfb)$/i;
 handler.tags = ['downloader'];
 handler.limit = true;
-handler.group = false;
+handler.group = true;
 handler.premium = false;
 handler.owner = false;
 handler.admin = false;
