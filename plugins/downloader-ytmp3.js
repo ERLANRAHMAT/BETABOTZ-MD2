@@ -1,46 +1,32 @@
-const ytdl = require('ytdl-core');
-const fs = require('fs');
-const ffmpeg = require('fluent-ffmpeg');
+const axios = require('axios');
 
-const handler = async (m, { conn, text, command, usedPrefix }) => {
-  conn.ytmp3 = conn.ytmp3 || {};
-  if (m.sender in conn.ytmp3) {
-    return;
-  }
-  if (!text) throw `*Example:* ${usedPrefix + command} https://www.youtube.com/watch?v=Z28dtg_QmFw`
-  conn.reply(m.chat, wait, m);
-  conn.ytmp3[m.sender] = true;
-  try {
-    let audio = ytdl(text, { quality: 'highestaudio' });
-    let inputFilePath = './tmp/music.webm';
-    let outputFilePath = './tmp/music.mp3';
-    audio.pipe(fs.createWriteStream(inputFilePath)).on('finish', async () => {
-      ffmpeg(inputFilePath)
-        .toFormat('mp3')
-        .on('end', async () => {
-          let buffer = fs.readFileSync(outputFilePath);
-          conn.sendMessage(m.chat, { audio: buffer, mimetype: 'audio/mpeg' }, { quoted: m });
-          delete conn.ytmp3[m.sender];
-          fs.unlinkSync(inputFilePath);
-          fs.unlinkSync(outputFilePath);
-        })
-        .on('error', (err) => {
-          console.log(err);
-          m.reply(`*Convert Error:* ${err.message}`);
-          fs.unlinkSync(inputFilePath);
-          fs.unlinkSync(outputFilePath);
-        })
-        .save(outputFilePath);
-    });
-  } catch (e) {
-    console.log(e);
-    m.reply(`*Error:* ${e.message}`);
-  }
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+    if (!text) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://youtu.be/4rDOsvzTicY?si=3Ps-SJyRGzMa83QT`;    
+   
+        if (!text) throw 'masukan link youtube';   
+        m.reply(wait);      
+        const response = await axios.get(`https://api.betabotz.eu.org/api/download/ytmp3?url=${text}&apikey=${lann}`);        
+        const res = response.data.result;      
+        var { mp3, id, title, source, duration } = res;
+        // let capt = `YT M P 3*\n\n`;
+        // capt += `◦ *id* : ${id}\n`;
+        // capt += `◦ *tittle* : ${title}\n`;
+        // capt += `◦ *source* : ${source}\n`;
+        // capt += `◦ *duration* : ${duration}\n`;
+        // capt += `\n`;        
+        await conn.sendFile(m.chat, mp3, null, m);
+        // conn.sendMessage(m.chat, { audio: { url: mp3[0] }, mimetype: 'audio/mpeg' }, { quoted: m });    
 };
-
-handler.command = handler.help = ['ytmp3','yta'];
+handler.help = ['ytmp3'];
+handler.command = /^(ytmp3)$/i
 handler.tags = ['downloader'];
+handler.limit = true;
+handler.group = false;
 handler.premium = false;
-handler.limit = false;
+handler.owner = false;
+handler.admin = false;
+handler.botAdmin = false;
+handler.fail = null;
+handler.private = false;
 
 module.exports = handler;
