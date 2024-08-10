@@ -8,14 +8,14 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         const response = await axios.get(`https://api.betabotz.eu.org/api/download/ytmp3?url=${text}&apikey=${lann}`);        
         const res = response.data.result;      
         var { mp3, id, title, source, duration } = res;
-        // let capt = `YT M P 3*\n\n`;
-        // capt += `◦ *id* : ${id}\n`;
-        // capt += `◦ *tittle* : ${title}\n`;
-        // capt += `◦ *source* : ${source}\n`;
-        // capt += `◦ *duration* : ${duration}\n`;
-        // capt += `\n`;        
-        await conn.sendFile(m.chat, mp3, null, m);
-        // conn.sendMessage(m.chat, { audio: { url: mp3[0] }, mimetype: 'audio/mpeg' }, { quoted: m });    
+        let caption = `*Title:* ${title}\n*Duration:* ${duration}`
+        // await conn.sendFile(m.chat, mp3, null, m);
+        await conn.sendMessage(m.chat, { 
+            document: { url: mp3 }, 
+            mimetype: 'audio/mpeg',
+            fileName: `${title}.mp3`,
+            caption: caption
+        }, { quoted: m });
 };
 handler.help = ['ytmp3'];
 handler.command = /^(ytmp3)$/i
@@ -30,3 +30,4 @@ handler.fail = null;
 handler.private = false;
 
 module.exports = handler;
+

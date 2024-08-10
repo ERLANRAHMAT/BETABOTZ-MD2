@@ -14,8 +14,13 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         capt += `◦ *source* : ${source}\n`;
         capt += `◦ *duration* : ${duration}\n`;
         capt += `\n`;        
-        await conn.sendFile(m.chat, mp4, null, capt, m);
-        // conn.sendMessage(m.chat, { quoted: m });  
+        // await conn.sendFile(m.chat, mp4, null, capt, m);
+        await conn.sendMessage(m.chat, { 
+            document: { url: mp4 }, 
+            mimetype: 'MP4',
+            fileName: `${title}##.mp4`,
+            caption: capt
+        }, { quoted: m });
    
 };
 handler.help = ['ytmp4'];
