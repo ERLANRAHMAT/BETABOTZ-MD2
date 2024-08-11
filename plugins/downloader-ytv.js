@@ -22,7 +22,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             caption: capt
         }, { quoted: m });
    
-};$
+};
 handler.help = ['ytmp4'];
 handler.command = /^(ytmp4)$/i
 handler.tags = ['downloader'];
