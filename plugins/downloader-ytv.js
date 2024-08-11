@@ -17,12 +17,12 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         // await conn.sendFile(m.chat, mp4, null, capt, m);
         await conn.sendMessage(m.chat, { 
             document: { url: mp4 }, 
-            mimetype: 'MP4',
+            mimetype: 'video/mp4',
             fileName: `${title}##.mp4`,
-            caption: capt
+            caption: captq
         }, { quoted: m });
    
-};
+};$
 handler.help = ['ytmp4'];
 handler.command = /^(ytmp4)$/i
 handler.tags = ['downloader'];
