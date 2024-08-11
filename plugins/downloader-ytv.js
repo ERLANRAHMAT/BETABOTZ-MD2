@@ -19,7 +19,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             document: { url: mp4 }, 
             mimetype: 'video/mp4',
             fileName: `${title}##.mp4`,
-            caption: captq
+            caption: capt
         }, { quoted: m });
    
 };$
