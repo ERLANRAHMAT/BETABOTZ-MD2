@@ -1,4 +1,4 @@
-const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('../lib/exif')
+const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('./exif')
 const {
     default: makeWASocket,
     makeWALegacySocket,
