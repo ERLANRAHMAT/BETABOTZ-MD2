@@ -1,14 +1,34 @@
-const { jadwalsholat } = require('@bochilteam/scraper')
-let handler = async (m, { text, usedPrefix, command }) => {
-    if (!text) throw `Use example ${usedPrefix}${command} semarang`
-    const res = await jadwalsholat(text)
-    m.reply(`
-Jadwal Sholat *${text}*
-${Object.entries(res.today).map(([name, data]) => `*Sholat ${name}:* ${data}`).join('\n').trim()}
-`.trim())
-}
-handler.help = ['salat <daerah>']
-handler.tags = ['islam']
-handler.command = /^(jadwal)?s(a|o|ha|ho)lat$/i
+let fetch = require('node-fetch');
 
-module.exports = handler
+let handler = async (m, { text, usedPrefix, command }) => {
+    if (!text) throw `Gunakan contoh: ${usedPrefix}${command} semarang`;
+    
+    try {
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/tools/jadwalshalat?kota=${text}&apikey=${lann}`)).json();
+        
+        if (!res.status || res.result.code !== 200) {
+            throw eror
+        }
+        
+        let timings = res.result.data[0].timings;
+        let jadwalSholat = Object.entries(timings)
+            .map(([name, time]) => `*${name}:* ${time}`)
+            .join('\n');
+        
+        let message = `
+Jadwal Sholat untuk *${text}*
+${jadwalSholat}
+`.trim();
+        
+        m.reply(message);
+    } catch (error) {
+        throw eror
+    }
+};
+
+handler.help = ['salat <daerah>'];
+handler.tags = ['islam'];
+handler.command = /^(jadwal)?s(a|o|ha|ho)lat$/i;
+handler.limit = true;
+
+module.exports = handler;
