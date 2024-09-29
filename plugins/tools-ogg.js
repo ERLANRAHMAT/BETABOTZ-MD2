@@ -16,9 +16,8 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     }
  } else throw `Reply video with command ${usedPrefix + command}`
 }
-handler.help = ['video2audio']
+handler.help = handler.command = ['video2audio', 'tomp3', 'toaudio']
 handler.tags = ['tools']
-handler.command = /^(video2audio)$/i
 handler.limit = true;
 
 module.exports = handler
