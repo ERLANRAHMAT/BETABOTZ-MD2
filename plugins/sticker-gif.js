@@ -6,28 +6,27 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 	let mime = (q.msg || q).mimetype || q.mediaType || ''
 	if (/webp/.test(mime)) {
 		let buffer = await q.download()
-		await m.reply('Please wait...')
+		await m.reply(wait)
 		try {
 			let media = await uploader(buffer)
 			let json;
-			if (['togif', 'tovid', 'tovideo'].includes(command)) {		
+			if (command === 'togif') {		
 				json = await (await fetch(`https://api.betabotz.eu.org/api/tools/webp2mp4?url=${media}&apikey=${lann}`)).json();
 			} else if (command === 'toimg') {
 				json = await (await fetch(`https://api.betabotz.eu.org/api/tools/webp2png?url=${media}&apikey=${lann}`)).json();
 			}
 			await conn.sendFile(m.chat, json.result, null, "*DONE*", m)
 		} catch (err) {
-			console.error(err);
-			throw 'Error occurred while processing your request.';
+			throw err
 		}
 	} else {
-		throw `Reply to a sticker with the command ${usedPrefix + command}`;
+		throw `Reply sticker with command ${usedPrefix + command}`
 	}
 }
 
-handler.command = ['tovideo', 'togif', 'tovid', 'toimg'];
-handler.help = ['tovideo', 'togif', 'tovid', 'toimg (reply)'];
-handler.tags = ['sticker'];
-handler.group = false;
+handler.help = ['toimg', 'togif']
+handler.tags = ['tools']
+handler.command = /^(toimg|togif)$/i
+handler.limit = true;
 
 module.exports = handler;
