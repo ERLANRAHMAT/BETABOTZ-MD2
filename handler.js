@@ -424,7 +424,6 @@ module.exports = {
                     if (!('sDemote' in chat)) chat.sDemote = ''
                     if (!('delete' in chat)) chat.delete = true
                     if (!('antiLink' in chat)) chat.antiLink = true
-                    if (!('viewonce' in chat)) chat.viewonce = false
                     if (!('antiToxic' in chat)) chat.antiToxic = false
                     if (!('antiSticker' in chat)) chat.antiSticker = false
                     if (!('viewonce' in chat)) chat.viewonce = false
