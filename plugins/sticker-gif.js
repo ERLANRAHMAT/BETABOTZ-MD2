@@ -6,21 +6,22 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 	let mime = (q.msg || q).mimetype || q.mediaType || ''
 	if (/webp/.test(mime)) {
 		let buffer = await q.download()
-		await m.reply(wait)
+		await m.reply('Please wait...')
 		try {
 			let media = await uploader(buffer)
 			let json;
-			if (command === 'togif') {		
+			if (['togif', 'tovid', 'tovideo'].includes(command)) {		
 				json = await (await fetch(`https://api.betabotz.eu.org/api/tools/webp2mp4?url=${media}&apikey=${lann}`)).json();
 			} else if (command === 'toimg') {
 				json = await (await fetch(`https://api.betabotz.eu.org/api/tools/webp2png?url=${media}&apikey=${lann}`)).json();
 			}
 			await conn.sendFile(m.chat, json.result, null, "*DONE*", m)
 		} catch (err) {
-			throw err
+			console.error(err);
+			throw 'Error occurred while processing your request.';
 		}
 	} else {
-		throw `Reply sticker with command ${usedPrefix + command}`
+		throw `Reply to a sticker with the command ${usedPrefix + command}`;
 	}
 }
 
