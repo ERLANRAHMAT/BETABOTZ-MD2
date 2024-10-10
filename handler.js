@@ -381,87 +381,7 @@ module.exports = {
                     if (!isNumber(user.bibitapel)) user.bibitapel = 0
                     if (!isNumber(user.bibitmangga)) user.bibitmangga = 0
                     if (!isNumber(user.bibitjeruk)) user.bibitjeruk = 0
-                    
-                    //hadiah Pesan Edit
-                    if (!isNumber(user.bonus1)) user.bonus1 = 0
-                    if (!isNumber(user.lastclaimb1)) user.lastclaimb1 = 0
-                    if (!isNumber(user.bonus2)) user.bonus2 = 0
-                    if (!isNumber(user.lastclaimb2)) user.lastclaimb2 = 0
-                    if (!isNumber(user.bonus3)) user.bonus3 = 0
-                    if (!isNumber(user.lastclaimb3)) user.lastclaimb3 = 0
-                    if (!isNumber(user.bonus4)) user.bonus4 = 0
-                    if (!isNumber(user.lastclaimb4)) user.lastclaimb4 = 0
-                    if (!isNumber(user.bonus5)) user.bonus5 = 0
-                    if (!isNumber(user.lastclaimb5)) user.lastclaimb5 = 0
-                    if (!isNumber(user.bonus6)) user.bonus6 = 0
-                    if (!isNumber(user.lastclaimb6)) user.lastclaimb6 = 0
-                    if (!isNumber(user.bonus7)) user.bonus7 = 0
-                    if (!isNumber(user.lastclaimb7)) user.lastclaimb7 = 0
-                    if (!isNumber(user.bonus8)) user.bonus8 = 0
-                    if (!isNumber(user.lastclaimb8)) user.lastclaimb8 = 0
-                    if (!isNumber(user.bonus9)) user.bonus9 = 0
-                    if (!isNumber(user.lastclaimb9)) user.lastclaimb9 = 0
-                    if (!isNumber(user.bonus10)) user.bonus10 = 0
-                    if (!isNumber(user.lastclaimb10)) user.lastclaimb10 = 0
-                    if (!isNumber(user.bonus11)) user.bonus11 = 0
-                    if (!isNumber(user.lastclaimb11)) user.lastclaimb11 = 0
-                    if (!isNumber(user.bonus12)) user.bonus12 = 0
-                    if (!isNumber(user.lastclaimb12)) user.lastclaimb12 = 0
-                    if (!isNumber(user.bonus13)) user.bonus13 = 0
-                    if (!isNumber(user.lastclaimb13)) user.lastclaimb13 = 0
-                    if (!isNumber(user.bonus14)) user.bonus14 = 0
-                    if (!isNumber(user.lastclaimb14)) user.lastclaimb14 = 0
-                    if (!isNumber(user.bonus15)) user.bonus15 = 0
-                    if (!isNumber(user.lastclaimb15)) user.lastclaimb15 = 0
-                    if (!isNumber(user.bonus16)) user.bonus16 = 0
-                    if (!isNumber(user.lastclaimb16)) user.lastclaim16 = 0
-                    if (!isNumber(user.bonus17)) user.bonus17 = 0
-                    if (!isNumber(user.lastclaimb17)) user.lastclaimb17 = 0
-                    if (!isNumber(user.bonus18)) user.bonus18 = 0
-                    if (!isNumber(user.lastclaimb18)) user.lastclaimb18 = 0
-                    if (!isNumber(user.bonus19)) user.bonus19 = 0
-                    if (!isNumber(user.lastclaimb19)) user.lastclaimb19 = 0
-                    if (!isNumber(user.bonus20)) user.bonus20 = 0
-                    if (!isNumber(user.lastclaimb20)) user.lastclaimb20 = 0
-                    
-                    //akademi
-                    if (!isNumber(user.academiCard)) user.academiCard = 0
-                    if (!user.academi) user.academi = 'Belum Bergabung'
-                    if (!user.roleSihir) user.roleSihir = ''
-                    if (!user.elemen) user.elemen = ''
-                    if (!user.acadeName) user.acadeName = ''
-                    if (!isNumber(user.levelAcademi)) user.levelAcademi = 0
-                    if (!isNumber(user.expAcademi)) user.expAcademi = 0
-                    if (!user.makhlukPanggilan) user.makhlukPanggilan = ''
-                    if (!isNumber(user.darahAcademi)) user.darahAcademi = 100
-                    if (!isNumber(user.misiAcademi)) user.misiAcademi = 0
-                    if (!isNumber(user.poinAcademi)) user.poinAcademi = 0
-                    if (!isNumber(user.elemenCek)) user.elemenCek = 0
-                    if (!isNumber(user.monsterCek)) user.monsterCek = 0
-                    if (!isNumber(user.lastmisiAcademi)) user.lastmisiAcademi = 0
-                    if (!isNumber(user.panggilMonster)) user.panggilMonster = 0
-                    if (!user.tittleAcademi) user.tittleAcademi = ''
-                    if (!isNumber(user.powerAcademi)) user.powerAcademi = 0
-                    if (!isNumber(user.darahMonster)) user.darahMonster = 0
-                    if (!isNumber(user.attackMonster)) user.attackMonster = 0
-                    if (!isNumber(user.winMonster)) user.winMonster = 0
-                    if (!isNumber(user.loseMonster)) user.loseMonster = 0
-                    if (!isNumber(user.kekuatanSq)) user.kekuatanSq = 0
-                    
-                    //squad
-                    if (!isNumber(user.memberSquad)) user.memberSquad = 0
-                    if (!isNumber(user.joinSq)) user.joinSq = 0
-                    if (!isNumber(user.winSq)) user.winSq = 0
-                    if (!isNumber(user.loseSq)) user.loseSq = 0
-                    if (!user.namaSq) user.namaSq = ''
-                    if (!isNumber(user.squadCard)) user.squadCard = 0
-                    if (!user.createSq) user.createSq = false
-                    if (!user.captainSq) user.captainSq = false
-                    
-                    //title
-                    if (!user.titlemoney) user.titlemoney = 'belum memperoleh'
-                    if (!user.titlediamond) user.titlediamond = 'belum memperoleh'
-                    
+                   
                     //sambung kata
                     if (!isNumber(user.skata)) user.skata = 0
         
@@ -486,60 +406,7 @@ module.exports = {
                     if (!user.role) user.role = 'Newbie ㋡'
                     if (!('autolevelup' in user)) user.autolevelup = true
                     if (!('lastIstigfar' in user)) user.lastIstigfar = true
-                    
-                    //kartu sewa & premium
-                    if (!isNumber(user.bronzeRentcard)) user.bronzeRentcard = 0
-                    if (!isNumber(user.bronzePremcard)) user.bronzePremcard = 0
-                    if (!isNumber(user.silverRentcard)) user.silverRentcard = 0
-                    if (!isNumber(user.silverPremcard)) user.silverPremcard = 0
-                    if (!isNumber(user.goldRentcard)) user.goldRentcard = 0
-                    if (!isNumber(user.goldPremcard)) user.goldPremcard = 0
-                    if (!isNumber(user.platinumRentcard)) user.platinumRentcard = 0
-                    if (!isNumber(user.platinumPremcard)) user.platinumPremcard = 0
-                    if (!isNumber(user.diamondRentcard)) user.diamondRentcard = 0
-                    if (!isNumber(user.diamondPremcard)) user.diamondPremcard = 0
-                    //starlight
-                    if (!isNumber(user.sle)) user.sle = 0
-                    if (!isNumber(user.sld)) user.sld = 0
-                    if (!isNumber(user.slc)) user.slc = 0
-                    if (!isNumber(user.slb)) user.slb = 0
-                    if (!isNumber(user.sla)) user.sla = 0
-                    if (!isNumber(user.sls)) user.sls = 0
-                    if (!isNumber(user.slce)) user.slce = 0
-                    if (!isNumber(user.slcd)) user.slcd = 0
-                    if (!isNumber(user.slcc)) user.slcc = 0
-                    if (!isNumber(user.slcb)) user.slcb = 0
-                    if (!isNumber(user.slca)) user.slca = 0
-                    if (!isNumber(user.slcs)) user.slcs = 0
-                    if (!isNumber(user.hasilnya)) user.hasilnya = 0
-                    if (!isNumber(user.totalpoin)) user.totalpoin = 0
-                    if (!isNumber(user.maxpoin)) user.maxpoin = 0
-                    if (!user.starlightMem) user.starlightMem = false
-                    if (!user.starlightTime) user.starlightTime= 0
-                    if (!isNumber(user.starlightcd)) user.starlightcd = 0
-                    if (!user.slcoldown) user.slcoldown = 0
-                    if (!isNumber(user.lvlstarlight)) user.lvlstarlight = 0
-                    if (!user.rankSL) user.rankSL = 'belum ada'
-                    if (!user.cmdSL) user.cmdSL = 'belum ada'                    
-                    //event the Zoldyck family
-                    if (!isNumber(user.silvacard)) user.silvacard = 0
-                    if (!isNumber(user.zenocard)) user.zenocard = 0
-                    if (!isNumber(user.illumicard)) user.illumicard = 0
-                    if (!isNumber(user.killuacard)) user.killuacard = 0
-                    if (!isNumber(user.allukacard)) user.allukacard = 0
-                    if (!isNumber(user.silvacardzoldyck)) user.silvacardzoldyck = 0
-                    if (!isNumber(user.zenocardzoldyck)) user.zenocardzoldyck = 0
-                    if (!isNumber(user.illumicardzoldyck)) user.illumicardzoldyck = 0
-                    if (!isNumber(user.killuacardzoldyck)) user.killuacardzoldyck = 0
-                    if (!isNumber(user.allukacardzoldyck)) user.allukacardzoldyck = 0
-                    if (!isNumber(user.silvazoldyck)) user.silvazoldyck = 0
-                    if (!isNumber(user.zenozoldyck)) user.zenozoldyck = 0
-                    if (!isNumber(user.illumizoldyck)) user.illumizoldyck = 0
-                    if (!isNumber(user.killuazoldyck)) user.killuazoldyck = 0
-                    if (!isNumber(user.allukazoldyck)) user.allukazoldyck = 0
-                    if (!isNumber(user.totalcardzoldyck)) user.totalcardzoldyck = 0
-                    if (!isNumber(user.allzoldyck)) user.allzoldyck = 0
-                    if (!isNumber(user.gachazoldyck)) user.gachazoldyck = 0                    
+                  
                     //demon slayer dan rpg baru
                     if (!("skill" in user)) user.skill = ""
                     if (!("korps" in user)) user.korps = ""
@@ -567,27 +434,7 @@ module.exports = {
                     if (!isNumber(user.lastdate)) user.lastdate = 0
                     if (!isNumber(user.lasttambang)) user.lasttambang = 0
                     if (!isNumber(user.lastngepet)) user.lastngepet = 0
-                    
-                    // hunter x chimera
-                    if (!("hunter" in user)) user.hunter = ""
-                    if (!("chimera" in user)) user.chimera = ""
-                    if (!isNumber(user.chimanusia)) user.chimanusia = 0
-                    if (!isNumber(user.allhunterkill)) user.allhunterkill = 0
-                    if (!isNumber(user.hunterkill)) user.hunterkill = 0
-                    if (!isNumber(user.lasthxh)) user.lasthxh = 0
-                    
-                    if (!('vvip' in user)) user.vvip = false
-                    if (!isNumber(user.vvipexp)) user.vvipexp = 0
-                    if (!('pcbot' in user)) user.pcbot = true
-                    if (!('prem' in user)) user.prem = false
-                    if (!('owner' in user)) user.owner = false
-                    if (!isNumber(user.chat)) user.chat = 0
-                    if (!('online' in user)) user.online = false
-                    if (!isNumber(user.online)) user.online = 0
-                    if (!isNumber(user.totalchat)) user.totalchat = 0
-                    if (!isNumber(user.totalpesan)) user.totalpesan = 0
-                    if (!isNumber(user.trxdone)) user.trxdone = 0
-                    if (!isNumber(user.trxcancel)) user.trxcancel = 0
+                   
                 } else global.db.data.users[m.sender] = {
                     saldo: 0,
                     pengeluaran: 0,
@@ -677,80 +524,6 @@ module.exports = {
                     montir: 0,
                     kuli: 0,
                     korbanngocok: 0,
-                    bonus1: 0,
-                    bonus2: 0,
-                    bonus3: 0,
-                    bonus4: 0,
-                    bonus5: 0,
-                    bonus6: 0,
-                    bonus7: 0,
-                    bonus8: 0,
-                    bonus9: 0,
-                    bonus10: 0,
-                    bonus11: 0,
-                    bonus12: 0,
-                    bonus13: 0,
-                    bonus14: 0,
-                    bonus15: 0,
-                    bonus16: 0,
-                    bonus17: 0,
-                    bonus18: 0,
-                    bonus19: 0,
-                    bonus20: 0,
-                    lastclaimb1: 0,
-                    lastclaimb2: 0,
-                    lastclaimb3: 0,
-                    lastclaimb4: 0,
-                    lastclaimb5: 0,
-                    lastclaimb6: 0,
-                    lastclaimb7: 0,
-                    lastclaimb8: 0,
-                    lastclaimb9: 0,
-                    lastclaimb10: 0,
-                    lastclaimb11: 0,
-                    lastclaimb12: 0,
-                    lastclaimb13: 0,
-                    lastclaimb14: 0,
-                    lastclaimb15: 0,
-                    lastclaimb16: 0,
-                    lastclaimb17: 0,
-                    lastclaimb18: 0,
-                    lastclaimb19: 0,
-                    lastclaimb20: 0,
-                    academiCard: 0,
-                    academi: 'Belum Bergabung', 
-                    elemen: '', 
-                    acadeName: '', 
-                    titlemoney: 'belum memperoleh', 
-                    titlediamond: 'belum memperoleh', 
-                    levelAcademi: 0,
-                    expAcademi: 0,
-                    roleSihir: '', 
-                    makhlukPanggilan: '', 
-                    lastbossbattle: 0,
-                    poinAcademi: 0,
-                    darahAcademi: 100,
-                    misiAcademi: 0,
-                    elemenCek: 0,
-                    monsterCek: 0,
-                    lastmisiAcademi: 0,
-                    panggilMonster: 0,
-                    tittleAcademi: '', 
-                    powerAcademi: 0,
-                    darahMonster: 0,
-                    attackMonster: 0,
-                    winMonster: 0,
-                    loseMonster: 0,
-                    kekuatanSq: 0,
-                    //squad
-                    memberSquad: 0,
-                    joinSq: 0,
-                    winSq: 0,
-                    loseSq: 0,
-                    namaSq: '', 
-                    squadCard: 0,
-                    createSq: false, 
-                    captainSq: false, 
                     //+ stamina
                     coal: 0,
                     korekapi: 0,
@@ -986,56 +759,6 @@ module.exports = {
                     autolevelup: true,
                     lastIstigfar: 0,
                     
-                    bronzeRentcard: 0,
-                    bronzePremcard: 0,
-                    silverRentcard: 0,
-                    silverPremcard: 0,
-                    goldRentcard: 0,
-                    goldPremcard: 0,
-                    platinumRentcard: 0,
-                    platinumPremcard: 0,
-                    diamondRentcard: 0,
-                    diamondPremcard: 0,
-                    sle: 0,
-                    sld: 0,
-                    slc: 0,
-                    slb: 0,
-                    sla: 0,
-                    sls: 0,
-                    slce: 0,
-                    slcd: 0,
-                    slcc: 0,
-                    slcb: 0,
-                    slca: 0,
-                    slcs: 0,
-                    hasilnya: 0,
-                    totalpoin: 0,
-                    maxpoin: 0,
-                    starlightMem: false, 
-                    starlightTime: 0,
-                    starlightcd: 0,
-                    slcoldown: 0,
-                    lvlstarlight: 0,
-                    rankSL: 'belum ada', 
-                    cmdSL: 'belum ada', 
-                    silvacard: 0,
-                    zenocard: 0,
-                    illumicard: 0,
-                    killuacard: 0,
-                    allukacard: 0,
-                    silvacardzoldyck: 0,
-                    zenocardzoldyck: 0,
-                    illumicardzoldyck: 0,
-                    killuacardzoldyck: 0,
-                    allukacardzoldyck: 0,
-                    totalcardzoldyck: 0,
-                    allzoldyck: 0,
-                    silvazoldyck: 0,
-                    zenozoldyck: 0,
-                    illumizoldyck: 0,
-                    killuazoldyck: 0,
-                    allukazoldyck: 0,
-                    gachazoldyck: 0,
                     skill: "",
                     korps: "",
                     korpsgrade: "",
@@ -1062,23 +785,6 @@ module.exports = {
                     lastdate: 0,
                     lasttambang: 0,
                     lastngepet: 0,
-                    hunter: "", 
-                    chimera: "", 
-                    chimanusia: 0,
-                    lasthxh: 0,
-                    hunterkill: 0,
-                    allhunterkill: 0,
-                    vvip: false, 
-                    vvipexp: 0,
-                    pcbot: true, 
-                    prem: false, 
-                    owner: false, 
-                    chat: 0,
-                    online: 0,
-                    totalchat: 0,
-                    totalpesan: 0,
-                    trxdone: 0,
-                    trxcancel: 0,
                 }
              let chat = global.db.data.chats[m.chat]
             if (typeof chat !== 'object') global.db.data.chats[m.chat] = {}
@@ -1119,17 +825,6 @@ module.exports = {
                 if (!('antilinktt' in chat)) chat.antilinktt = false
                 if (!('antilinkttnokick' in chat)) chat.antilinkttnokick = false
                 if (!('antibot' in chat)) chat.antibot = false
-                if (!('premgroup' in chat)) chat.premgroup = false
-                if (!isNumber(chat.premgexp)) chat.premgexp = 0
-                if (!('isOnlyadmin' in chat)) chat.isOnlyadmin = false
-                if (!('owneronly' in chat)) chat.owneronly = false
-                if (!('premonly' in chat)) chat.premonly = false
-                if (!isNumber(chat.chat)) chat.chat = 0
-                if (!("member" in chat)) chat.member = []
-                if (!isNumber(chat.notif)) chat.notif = 0
-                if (!('rpg' in chat)) chat.rpg = false
-                if (!('game' in chat)) chat.game = true
-                if (!('nsfw' in chat)) chat.nsfw = false
             } else global.db.data.chats[m.chat] = {
                 isBanned: false,
                 welcome: false,
@@ -1166,16 +861,7 @@ module.exports = {
                 antilinktt: false, 
                 antilinkttnokick: false, 
                 antibot: false, 
-                premgroup: false, 
-                isOnlyadmin: false, 
-                owneronly: false, 
-                premonly: false, 
-                chat: 0,
-                member: [], 
-                notif: 0,
                 rpg: false, 
-                game: true, 
-                nsfw: false, 
             }
         } catch (e) {
             console.error(e)
@@ -1283,12 +969,46 @@ module.exports = {
                         let user = global.db.data.users[m.sender]
                         if (name != 'group-modebot.js' && name != 'owner-unbanchat.js' && name != 'owner-exec.js' && name != 'owner-exec2.js' && name != 'tool-delete.js' && (chat?.isBanned || chat?.mute))
                         return
-                        if (name != 'group-adminonly' && chat && chat.isOnlyadmin && !isOwner && !isAdmin) return
-                        if (name != 'owner-owneronly' && user && user.owner && !isOwner && !isROwner) return
-                        if (name != 'owner-premonly' && chat && chat.premonly && !isPrems) return
                         if (name != 'unbanchat.js' && chat && chat.isBanned) return // Except this
                         if (name != 'unbanuser.js' && user && user.banned) return
-                        if (name != 'pconlyvvip' && user && user.pcbot && !m.isGroup) return
+                    }
+                    if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { // Both Owner
+                        fail('owner', m, this)
+                        continue
+                    }
+                    if (plugin.rowner && !isROwner) { // Real Owner
+                        fail('rowner', m, this)
+                        continue
+                    }
+                    if (plugin.owner && !isOwner) { // Number Owner
+                        fail('owner', m, this)
+                        continue
+                    }
+                    if (plugin.mods && !isMods) { // Moderator
+                        fail('mods', m, this)
+                        continue
+                    }
+                    if (plugin.premium && !isPrems) { // Premium
+                        fail('premium', m, this)
+                        continue
+                    }
+                    if (plugin.group && !m.isGroup) { // Group Only
+                        fail('group', m, this)
+                        continue
+                    } else if (plugin.botAdmin && !isBotAdmin) { // You Admin
+                        fail('botAdmin', m, this)
+                        continue
+                    } else if (plugin.admin && !isAdmin) { // User Admin
+                        fail('admin', m, this)
+                        continue
+                    }
+                    if (plugin.private && m.isGroup) { // Private Chat Only
+                        fail('private', m, this)
+                        continue
+                    }
+                    if (plugin.register == true && _user.registered == false) { // Butuh daftar?
+                        fail('unreg', m, this)
+                        continue
                     }
                     m.isCommand = true
                     let xp = 'exp' in plugin ? parseInt(plugin.exp) : 17 // XP Earning per command
@@ -1474,11 +1194,7 @@ global.dfail = (type, m, conn) => {
         owner: 'Perintah ini hanya dapat digunakan oleh _*Owner Bot*_!',
         mods: 'Perintah ini hanya dapat digunakan oleh _*Moderator*_ !',
         premium: 'Perintah ini hanya untuk member _*Premium*_ !',
-        premgroup: 'Perintah ini hanya untuk group _*Premium*_ !', 
-        vvip: 'Perintah ini hanya untuk member _*Vip*_ !', 
         rpg: 'Fitur RPG Dimatikan Oleh Admin\n\n> ketik *.enable rpg* agar dapat akses fitur rpg',
-        nsfw: 'Fitur NFSW Dimatikan Oleh Admin', 
-        game: 'Fitur Game Dimatikan Oleh Admin\n\n> Ketik *.enable game* agar dapat akses fitur game', 
         group: 'Perintah ini hanya dapat digunakan di grup!',
         private: 'Perintah ini hanya dapat digunakan di Chat Pribadi!',
         admin: 'Perintah ini hanya untuk *Admin* grup!',
