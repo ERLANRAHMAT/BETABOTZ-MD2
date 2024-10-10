@@ -9,7 +9,6 @@ module.exports = {
         if (global.db.data == null) await loadDatabase()
         this.msgqueque = this.msgqueque || []
         // console.log(chatUpdate)
-        //s
         if (!chatUpdate) return
         // if (chatUpdate.messages.length > 2 || !chatUpdate.messages.length) return
         if (chatUpdate.messages.length > 1) console.log(chatUpdate.messages)
@@ -1290,44 +1289,6 @@ module.exports = {
                         if (name != 'unbanchat.js' && chat && chat.isBanned) return // Except this
                         if (name != 'unbanuser.js' && user && user.banned) return
                         if (name != 'pconlyvvip' && user && user.pcbot && !m.isGroup) return
-                    }
-                    if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { // Both Owner
-                        fail('owner', m, this)
-                        continue
-                    }
-                    if (plugin.rowner && !isROwner) { // Real Owner
-                        fail('rowner', m, this)
-                        continue
-                    }
-                    if (plugin.owner && !isOwner) { // Number Owner
-                        fail('owner', m, this)
-                        continue
-                    }
-                    if (plugin.mods && !isMods) { // Moderator
-                        fail('mods', m, this)
-                        continue
-                    }
-                    if (plugin.premium && !isPrems) { // Premium
-                        fail('premium', m, this)
-                        continue
-                    }
-                    if (plugin.group && !m.isGroup) { // Group Only
-                        fail('group', m, this)
-                        continue
-                    } else if (plugin.botAdmin && !isBotAdmin) { // You Admin
-                        fail('botAdmin', m, this)
-                        continue
-                    } else if (plugin.admin && !isAdmin) { // User Admin
-                        fail('admin', m, this)
-                        continue
-                    }
-                    if (plugin.private && m.isGroup) { // Private Chat Only
-                        fail('private', m, this)
-                        continue
-                    }
-                    if (plugin.register == true && _user.registered == false) { // Butuh daftar?
-                        fail('unreg', m, this)
-                        continue
                     }
                     m.isCommand = true
                     let xp = 'exp' in plugin ? parseInt(plugin.exp) : 17 // XP Earning per command
