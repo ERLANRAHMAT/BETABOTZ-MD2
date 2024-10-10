@@ -9,6 +9,7 @@ module.exports = {
         if (global.db.data == null) await loadDatabase()
         this.msgqueque = this.msgqueque || []
         // console.log(chatUpdate)
+        //s
         if (!chatUpdate) return
         // if (chatUpdate.messages.length > 2 || !chatUpdate.messages.length) return
         if (chatUpdate.messages.length > 1) console.log(chatUpdate.messages)
