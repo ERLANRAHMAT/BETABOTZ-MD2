@@ -5,10 +5,20 @@ module.exports = {
     async all(m, chatUpdate) {
         if (m.isBaileys) return
         if (!m.message) return 
-        if (!(m.message.buttonsResponseMessage || m.message.templateButtonReplyMessage || m.message.listResponseMessage)) return
-        let id = m.message.buttonsResponseMessage?.selectedButtonId || m.message.templateButtonReplyMessage?.selectedId || m.message.listResponseMessage?.singleSelectReply.selectedRowId
-        let text = m.message.buttonsResponseMessage?.selectedDisplayText || m.message.templateButtonReplyMessage?.selectedDisplayText || m.message.listResponseMessage?.description
-        let isIdMessage = false, usedPrefix
+        if (!(m.mtype == "interactiveResponseMessage" || m.message.nativeFlowResponseMessage || m.message.buttonsResponseMessage || m.message.templateButtonReplyMessage || m.message.listResponseMessage))
+        return
+    let id;
+  if (m.message.buttonsResponseMessage) {
+    id = m.message.buttonsResponseMessage.selectedButtonId;
+  } else if (m.message.templateButtonReplyMessage) {
+    id = m.message.templateButtonReplyMessage.selectedId;
+  } else if (m.message.listResponseMessage) {
+    id = m.message.listResponseMessage.singleSelectReply?.selectedRowId;
+  } else if (m.message.interactiveResponseMessage) {
+    id = JSON.parse(m.message.interactiveResponseMessage.nativeFlowResponseMessage.paramsJson).id;
+  }
+  let text = m.message.buttonsResponseMessage?.selectedDisplayText || m.message.templateButtonReplyMessage?.selectedDisplayText || m.message.listResponseMessage?.title
+    let isIdMessage = false, usedPrefix
         for (let name in global.plugins) {
             let plugin = global.plugins[name]
             if (!plugin) continue

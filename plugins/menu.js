@@ -20,6 +20,7 @@ let tags = {
   'sticker': 'MENU CONVERT',
   'advanced': 'ADVANCED',
   'xp': 'MENU EXP',
+  'rpg': 'rpg',
   'fun': 'MENU FUN',
   'game': 'MENU GAME',
   'github': 'MENU GITHUB',
