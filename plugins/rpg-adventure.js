@@ -117,7 +117,7 @@ setTimeout(() => {
         contextInfo: {
             externalAdReply: {
                 mediaType: 1,
-                title: 'Killua Fourteen',
+                title: 'BETABOTZ RPG',
                 thumbnailUrl: 'https://telegra.ph/file/221ec27b2997f203569eb.jpg',
                 renderLargerThumbnail: true,
                 sourceUrl: ''

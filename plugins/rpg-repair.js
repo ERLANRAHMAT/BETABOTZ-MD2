@@ -140,7 +140,7 @@ _Example_ :
                         contextInfo: {
                             externalAdReply: {
                                 mediaType: 1,
-                                title: 'Killua Fourteen',
+                                title: 'BETABOTZ RPG',
                                 thumbnailUrl: 'https://telegra.ph/file/f329ce46c24b0d7e0837e.jpg',
                                 renderLargerThumbnail: true,
                                 sourceUrl: ''

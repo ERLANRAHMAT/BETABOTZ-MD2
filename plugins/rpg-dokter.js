@@ -29,12 +29,12 @@ const handler = async (m, { conn, usedPrefix, command, args }) => {
 isForwarded: true,
 forwardedNewsletterMessageInfo: {
 newsletterJid: '120363248530706545@newsletter', 
-newsletterName: '>> Killua Fourteen • by adrian <<', 
+newsletterName: '>>BETABOTZ RPG<<', 
 serverMessageId: -1
 },
           externalAdReply: {
             mediaType: 1,
-            title: 'Killua Fourteen',
+            title: 'BETABOTZ RPG',
             thumbnailUrl: 'https://telegra.ph/file/505b8d95fd7ee7b9481e3.jpg',
             renderLargerThumbnail: true,
             sourceUrl: ''

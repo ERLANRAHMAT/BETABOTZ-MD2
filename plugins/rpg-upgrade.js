@@ -221,7 +221,7 @@ const handler = async (m, {
                     contextInfo: {
                         externalAdReply: {
                             mediaType: 1,
-                            title: 'Killua Fourteen',
+                            title: 'BETABOTZ RPG',
                             thumbnailUrl: 'https://telegra.ph/file/97dba25a7bd8084913166.jpg',
                             renderLargerThumbnail: true,
                             sourceUrl: ''

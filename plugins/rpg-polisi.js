@@ -30,7 +30,7 @@ const handler = async (m, { conn, usedPrefix, command, args }) => {
         contextInfo: {
           externalAdReply: {
             mediaType: 1,
-            title: 'Killua Fourteen',
+            title: 'BETABOTZ RPG',
             thumbnailUrl: 'https://telegra.ph/file/505b8d95fd7ee7b9481e3.jpg',
             renderLargerThumbnail: true,
             sourceUrl: ''

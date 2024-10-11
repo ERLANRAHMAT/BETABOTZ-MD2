@@ -108,7 +108,7 @@ let handler = async (m, { conn, usedPrefix, owner }) => {
                         contextInfo: {
                             externalAdReply: {
                                 mediaType: 1,
-                                title: 'Killua Fourteen',
+                                title: 'BETABOTZ RPG',
                                 thumbnailUrl: 'https://telegra.ph/file/e615e0a6000ff647b4314.jpg',
                                 renderLargerThumbnail: true,
                                 sourceUrl: ''
