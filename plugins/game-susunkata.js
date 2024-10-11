@@ -1,7 +1,7 @@
 let fetch = require('node-fetch')
 
 let timeout = 100000
-let poin = 500
+let poin = 10000
 let handler = async (m, { conn, usedPrefix }) => {
     conn.susun = conn.susun ? conn.susun : {}
     let id = m.chat
@@ -20,7 +20,7 @@ ${json.soal}
 ▢ Tipe: ${json.tipe}
 ▢ Timeout *${(timeout / 1000).toFixed(2)} detik*
 ▢ Ketik ${usedPrefix}susn untuk bantuan
-▢ Bonus: ${poin} Kredit sosial
+▢ Bonus: ${poin} money
 ▢ *Balas/ replay soal ini untuk menjawab*
 └──────────────
 `.trim()

@@ -1,7 +1,10 @@
+let poin = 10000
+
 const threshold = 0.72
 let handler = m => m
 handler.before = async function (m) {
   let id = m.chat
+  let users = global.db.data.users[m.sender]
   if (!m.quoted || !m.quoted.fromMe || !m.quoted.isBaileys || !/Ketik.*jkcu/i.test(m.quoted.text)) return !0
   this.tebakjkt = this.tebakjkt ? this.tebakjkt : {}
   if (!(id in this.tebakjkt)) return m.reply('Soal itu telah berakhir')
@@ -11,7 +14,8 @@ handler.before = async function (m) {
     if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
       global.db.data.users[m.sender].exp += this.tebakjkt[id][2]
       global.db.data.users[m.sender].tiketcoin += 1
-      m.reply(`*Benar!*\n+${this.tebakjkt[id][2]} kredit sosial!`)
+      users.money += poin
+      m.reply(`*Benar!*\n+${this.tebakjkt[id][2]} money`)
       clearTimeout(this.tebakjkt[id][3])
       delete this.tebakjkt[id]
     } else if ((m.text.toLowerCase(), json.jawaban.toLowerCase().trim()) >= threshold) m.reply(`*Dikit Lagi!*`)

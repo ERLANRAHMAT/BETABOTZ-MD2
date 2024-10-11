@@ -6,6 +6,7 @@ Instagram: https://instagram.com/tulisan.ku.id
 
 const similarity = require('similarity')
 const threshold = 0.72
+let poin = 10000
 let handler = m => m
 handler.before = async function (m) {
   let id = m.chat
@@ -17,7 +18,8 @@ handler.before = async function (m) {
     if (['.tebe', 'Bantuan', ''].includes(m.text)) return !0
     if (m.text.toLowerCase() == json.name.toLowerCase()) {
       global.db.data.users[m.sender].exp += this.tebakbendera[id][2]
-      await this.reply(m.chat, `*Benar!* +${this.tebakbendera[id][2]} Kredit sosial`, m)
+      users.money += poin
+      await this.reply(m.chat, `*Benar!* +${this.tebakbendera[id][2]} money`, m)
       clearTimeout(this.tebakbendera[id][3])
       delete this.tebakbendera[id]
     } else if (similarity(m.text.toLowerCase(), json.name.toLowerCase().trim()) >= threshold) m.reply(`*Dikit Lagi!*`)

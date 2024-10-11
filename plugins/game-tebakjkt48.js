@@ -1,5 +1,5 @@
 let timeout = 100000
-let poin = 500
+let poin = 10000
 let src
 let handler = async (m, { conn, usedPrefix }) => {
   conn.tebakjkt = conn.tebakjkt ? conn.tebakjkt : {}
@@ -16,7 +16,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 
 ┌─⊷ *SOAL*
 ▢ Timeout *${(timeout / 1000).toFixed(2)} detik*
-▢ Bonus: ${poin} kredit sosial!
+▢ Bonus: ${poin} money
 ▢ Ketik ${usedPrefix}jkcu untuk clue jawaban
 ▢ *REPLAY* pesan ini untuk\nmenjawab
 └──────────────

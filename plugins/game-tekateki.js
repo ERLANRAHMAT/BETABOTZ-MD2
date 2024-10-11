@@ -2,7 +2,7 @@ let fs = require('fs')
 let fetch = require('node-fetch')
 
 let timeout = 100000
-let poin = 500
+let poin = 10000
 let handler = async (m, { conn, usedPrefix }) => {
     conn.tekateki = conn.tekateki ? conn.tekateki : {}
     let id = m.chat
@@ -21,7 +21,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 ${json.data.pertanyaan}
 ┌─⊷ *SOAL*
 ▢ Waktu jawab *${(timeout / 1000).toFixed(2)} detik*
-▢ Bonus: ${poin} kredit sosial!
+▢ Bonus: ${poin} money
 ▢ Bantuan ${usedPrefix}tete
 ▢ *Balas/ replay soal ini untuk menjawab*
 └──────────────

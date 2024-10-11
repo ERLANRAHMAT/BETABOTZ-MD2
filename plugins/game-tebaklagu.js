@@ -1,6 +1,6 @@
 let fetch = require('node-fetch')
 let timeout = 100000
-let poin = 500
+let poin = 10000
 let handler = async (m, { conn, command, usedPrefix }) => {
 
     conn.tebaklagu = conn.tebaklagu ? conn.tebaklagu : {}
@@ -17,7 +17,7 @@ Penyanyi: ${json.artis}
 ┌─⊷ *SOAL*
 ▢Timeout *${(timeout / 1000).toFixed(2)} detik*
 ▢Ketik *${usedPrefix}lag* untuk bantuan
-▢Bonus: ${poin} kredit sosial!
+▢Bonus: ${poin} money
 ▢*Balas/ replay soal ini untuk menjawab*
 └──────────────
 `.trim()
@@ -38,4 +38,3 @@ handler.command = /^tebaklagu/i
 handler.limit = true
 
 module.exports = handler;
-
