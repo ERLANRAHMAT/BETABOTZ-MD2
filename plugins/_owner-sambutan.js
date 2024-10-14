@@ -1,7 +1,7 @@
-const owner1 = '6281289694906@s.whatsapp.net';
-const owner2 = '@s.whatsapp.net';
+// const owner1 = '6281289694906@s.whatsapp.net';
+// const owner2 = '@s.whatsapp.net';
 const owner3 = '62895628117900@s.whatsapp.net';
-const owner4 = '@s.whatsapp.net';
+// const owner4 = '@s.whatsapp.net';
 
 // variabel di atas di isi nomor yang ingin di buat sambutan, ganti sama nomor kalian!
 
@@ -17,15 +17,15 @@ handler.before = async function(m, { conn, participants, isPrems, isAdmin }) {
   const currentTime = Math.floor(Date.now() / 1000);
 
   if (!m.isGroup || conn.danil_join.time > currentTime) {
-    console.log("cooldown"); //cek di console server kalau muncul ini berarti masih cooldown
+    // console.log("cooldown"); //cek di console server kalau muncul ini berarti masih cooldown
     return;
   }
   let messageText = "";
   let mentionedUsers = participants.map((u) => u.id).filter((v) => v !== conn.user.jid);
   switch (m.sender) {
-    case `${owner1}`:
-      messageText = "📣 *Perhatian semua* 📣, Owner telah datang";
-      break;
+    // case `${owner1}`:
+    //   messageText = "📣 *Perhatian semua* 📣, Owner telah datang";
+    //   break;
     // case `${owner2}`:
     //   messageText = "📣 *Perhatian semua* 📣, Owner hytam datang";
     //   break;
@@ -52,9 +52,7 @@ handler.before = async function(m, { conn, participants, isPrems, isAdmin }) {
       join: true,
       time: currentTime + 1000, //
     };
-  } else {
-    console.log("error hubungi developer!");
-  }
+  } 
 }
 
 module.exports = handler
