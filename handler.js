@@ -808,6 +808,7 @@ module.exports = {
                 if (!('viewonce' in chat)) chat.viewonce = false
                 if (!('antiToxic' in chat)) chat.antiToxic = false
                 if (!isNumber(chat.expired)) chat.expired = 0
+                if (!("memgc" in chat)) chat.memgc = {}
                 if (!('antilinkig' in chat)) chat.antilinkig = false
                 if (!('antilinkignokick' in chat)) chat.antilinkignokick = false
                 if (!('antilinkfb' in chat)) chat.antilinkfb = false
@@ -862,6 +863,27 @@ module.exports = {
                 antilinkttnokick: false, 
                 antibot: false, 
                 rpg: false, 
+            }
+            let memgc = global.db.data.chats[m.chat].memgc[m.sender]
+            if (typeof memgc !== 'object') global.db.data.chats[m.chat].memgc[m.sender] = {}
+            if (memgc) {
+                if (!('blacklist' in memgc)) memgc.blacklist = false
+                if (!('banned' in memgc)) memgc.banned = false
+                if (!isNumber(memgc.bannedTime)) memgc.bannedTime = 0
+                if (!isNumber(memgc.chat)) memgc.chat = 0
+                if (!isNumber(memgc.chatTotal)) memgc.chatTotal = 0
+                if (!isNumber(memgc.command)) memgc.command = 0
+                if (!isNumber(memgc.commandTotal)) memgc.commandTotal = 0
+                if (!isNumber(memgc.lastseen)) memgc.lastseen = 0
+            } else global.db.data.chats[m.chat].memgc[m.sender] = {
+                blacklist: false,
+                banned: false,
+                bannedTime: 0,
+                chat: 0,
+                chatTotal: 0,
+                command: 0,
+                commandTotal: 0,
+                lastseen: 0
             }
         } catch (e) {
             console.error(e)
@@ -971,7 +993,16 @@ module.exports = {
                         return
                         if (name != 'unbanchat.js' && chat && chat.isBanned) return // Except this
                         if (name != 'unbanuser.js' && user && user.banned) return
+                        if (m.isGroup) {
+                            chat.memgc[m.sender].command++
+                            chat.memgc[m.sender].commandTotal++
+                            chat.memgc[m.sender].lastCmd = Date.now()
+                        }
+                        user.command++
+                        user.commandTotal++
+                        user.lastCmd = Date.now()
                     }
+                    
                     if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { // Both Owner
                         fail('owner', m, this)
                         continue
@@ -1117,6 +1148,17 @@ module.exports = {
                  console.log(m, m.quoted, e)
              }
             if (opts['autoread']) await this.readMessages([m.key])
+                let chat = global.db.data.chats[m.chat]
+
+        user.chat++
+        user.chatTotal++
+        user.lastseen = Date.now()
+
+        if (m.isGroup) {
+            chat.memgc[m.sender].chat++
+            chat.memgc[m.sender].chatTotal++
+            chat.memgc[m.sender].lastseen = Date.now()
+        }
         }
     },
    async participantsUpdate({ id, participants, action }) {
