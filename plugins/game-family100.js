@@ -1,14 +1,15 @@
 let fs = require('fs')
+let fetch = require('node-fetch')
 let winScore = 500
 async function handler(m) {
-    this.game = this.game ? this.game : {}
-    let id = 'family100_' + m.chat
-    if (id in this.game) {
-        if (this.game[id].id !== undefined) return this.reply(m.chat, 'Masih ada kuis yang belum terjawab di chat ini' + '\nKetik *Nyerah* untuk mengakhiri / *tunggu 5 detik*', this.game[id].msg)
-        delete this.game[id]
+    conn.family = conn.family ? conn.family : {}
+    let id = m.chat
+    if (id in conn.family) {
+        if (conn.family[id].id !== undefined) return conn.reply(m.chat, 'Masih ada kuis yang belum terjawab di chat ini' + '\nKetik *Nyerah* untuk mengakhiri / *tunggu 5 detik*', conn.family[id].msg)
+        delete conn.family[id]
         throw false
     }
-    this.game[id] = {}
+    conn.family[id] = {}
     let src = await (await fetch(`https://api.betabotz.eu.org/api/game/family100-2?apikey=${lann}`)).json()
     let json = src[Math.floor(Math.random() * src.length)]
 
@@ -25,7 +26,7 @@ async function handler(m) {
 
 +${winScore} kredit sosial! tiap jawaban benar
     `.trim()
-    this.game[id] = {
+    conn.family[id] = {
         id,
         msg: await m.reply(caption),
         ...json,
