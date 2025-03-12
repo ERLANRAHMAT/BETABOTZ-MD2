@@ -14,7 +14,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (command === 'tiktok' || command === 'tt' || command === 'ttdl' || command === 'ttnowm' || command === 'tiktokdl' || command === 'tiktoknowm') {
         capt = `乂 *T I K T O K*`;
         urlApi = `https://api.betabotz.eu.org/api/download/tiktok?url=${text}&apikey=${lann}`;
-    } else if (command === 'douyin' || command = 'douyindl') {
+    } else if (command === 'douyin' || command === 'douyindl') {
         capt = `乂 *D O U Y I N*`;
         urlApi = `https://api.betabotz.eu.org/api/download/douyin?url=${text}&apikey=${lann}`;
     }
