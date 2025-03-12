@@ -43,7 +43,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 };
 
-handler.command = /^(tiktok|tt|tiktokdl|tiktoknowm|douyin)$/i;
+handler.help = handler.command = /^(tiktok|tt|tiktokdl|tiktoknowm|douyin)$/i;
 handler.tags = ['downloader'];
 handler.limit = true;
 handler.group = false;
