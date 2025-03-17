@@ -39,7 +39,7 @@
 - Ambil ip dan pergi ke [`Profile Api`](https://api.betabotz.eu.org) untuk melakukan whitelist
 - Cari opsi settings -> management ip dan paste ip kalian disana supaya bot bisa menggunakan api
 
-## Panel
+## Script ini wajib dijalankan di nodejs 20+, jika mencari hosting panel nodejs 20 bisa beli di saya
 - Admin Lann [`Buy`](https://wa.me/p/23983051454715720/62895628117900)
   
 ## BetaBotz Md || Information & Discussion
