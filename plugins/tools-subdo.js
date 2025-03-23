@@ -2,11 +2,11 @@ const fetch = require('node-fetch');
 
 let handler = async (m, { text, usedPrefix, command }) => {
   if (command === 'checksub') {
-    if (!text) throw `*Contoh:* ${usedPrefix}checksub mydomain,ns10.us.kg`;
+    if (!text) throw `*Contoh:* ${usedPrefix}checksub mydomain,idnet.my.id`;
     
     const [subdomain, domain] = text.split(',');
     if (!subdomain || !domain) {
-      throw `*Contoh:* ${usedPrefix}checksub mydomain,ns10.us.kg`;
+      throw `*Contoh:* ${usedPrefix}checksub mydomain,idnet.my.id`;
     }
     
     try {
@@ -33,11 +33,11 @@ let handler = async (m, { text, usedPrefix, command }) => {
   }
 
   if (command === 'createsub' || command === 'createdomain' || command === 'createsubdomain') {
-    if (!text) throw `*Contoh:* ${usedPrefix}createsub mydomain,ns10.us.kg,CNAME,linkcname,true\n\n\n*Domain Available*\n\n- ns10.us.kg\n- cz1.us.kg`;
+    if (!text) throw `*Contoh:* ${usedPrefix}createsub mydomain,idnet.my.id,CNAME,linkcname,true\n\n\n*Domain Available*\n\n- idnet.my.id`;
     
     const [subdomain, domain, type, content, proxied] = text.split(',');
     if (!subdomain || !domain || !type || !content || proxied === undefined) {
-      throw `*Contoh:* ${usedPrefix}createsub mydomain,ns10.us.kg,CNAME,linkcname,true\n\n\n*Domain Available*\n\n- ns10.us.kg\n- cz1.us.kg`;
+      throw `*Contoh:* ${usedPrefix}createsub mydomain,idnet.my.id,CNAME,linkcname,true\n\n\n*Domain Available*\n\n- idnet.my.id`;
     }
     
     const isProxied = proxied.toLowerCase() === 'true';
