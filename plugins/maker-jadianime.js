@@ -1,34 +1,50 @@
 const uploadImage = require('../lib/uploadImage');
 const fetch = require('node-fetch');
-let handler = async (m, { 
-conn, 
-usedPrefix, 
-command
- }) => {
-	var q = m.quoted ? m.quoted : m
-	var mime = (q.msg || q).mimetype || q.mediaType || ''
-	if (/image/g.test(mime) && !/webp/g.test(mime)) {
-		await conn.reply(m.chat, wait, m)
-		try {
-			const img = await q.download?.()
-			let out = await uploadImage(img)
-			let old = new Date()
-			let res = await fetch(`https://api.betabotz.eu.org/api/maker/jadianime?url=${out}&apikey=${lann}`)
-			let convert = await res.json()
-			let buff = await fetch(convert.result.img_crop_single)
-  .then(res => res.buffer())
-			await conn.sendMessage(m.chat, { image: buff, caption: `🍟 *Fetching* : ${((new Date - old) * 1)} ms` }, { quoted: m })
-		} catch (e) {
-			console.log(e)
-			m.reply(`[ ! ] Identifikasi Gagal.`)
-		}
-	} else {
-		m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim`)
-	}
+
+let handler = async (m, { conn, usedPrefix, command }) => {
+    var q = m.quoted ? m.quoted : m;
+    var mime = (q.msg || q).mimetype || q.mediaType || '';
+    
+    if (/image/g.test(mime) && !/webp/g.test(mime)) {
+        await conn.reply(m.chat, wait, m);
+        try {
+            const img = await q.download?.();
+            let out = await uploadImage(img);
+            let old = new Date();
+            
+            let res = await fetch(`https://api.betabotz.eu.org/api/maker/jadianime?url=${out}&apikey=${lann}`);
+            let convert = await res.json();
+
+            if (!convert.result || !convert.result.img_1 || !convert.result.img_2) {
+                return m.reply("[ ! ] Gagal mendapatkan hasil.");
+            }
+
+            let img1 = await fetch(convert.result.img_1).then(res => res.buffer());
+            let img2 = await fetch(convert.result.img_2).then(res => res.buffer());
+
+            await conn.sendMessage(m.chat, { 
+                image: img1, 
+                caption: `🍟 *Fetching:* ${((new Date() - old) * 1)} ms\n*Style:* Anime 2D` 
+            }, { quoted: m });
+
+            await conn.sendMessage(m.chat, { 
+                image: img2, 
+                caption: `🍟 *Fetching:* ${((new Date() - old) * 1)} ms\n*Style:* Anime 3D` 
+            }, { quoted: m });
+
+        } catch (e) {
+            console.error(e);
+            m.reply("[ ! ] Terjadi kesalahan saat memproses gambar.");
+        }
+    } else {
+        m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim.`);
+    }
 };
+
 handler.help = ['jadianime'];
 handler.command = ['toanime', 'jadianime'];
 handler.tags = ['maker'];
 handler.premium = false;
-handler.limit = 5;
+handler.limit = true;
+
 module.exports = handler;
