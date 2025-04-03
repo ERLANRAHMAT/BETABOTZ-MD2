@@ -1,39 +1,35 @@
-/*
-wa.me/6282285357346
-github: https://github.com/sadxzyq
-Instagram: https://instagram.com/tulisan.ku.id
-*/
-
 let fetch = require('node-fetch')
-let timeout = 120000
-let hadiah = 1000
-let handler = async (m, { conn, command, usedPrefix }) => {
-let imgr = "https://emoji.aranja.com/static/emoji-data/img-apple-160/"
 
+let timeout = 100000
+let poin = 1000
+let handler = async (m, { conn, usedPrefix }) => {
     conn.tebakemoji = conn.tebakemoji ? conn.tebakemoji : {}
     let id = m.chat
     if (id in conn.tebakemoji) {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebakemoji[id][0])
         throw false
     }
-    let src = await (await fetch('https://emoji-api.com/emojis?access_key=3382611aba5d901f9a450497d5c85fc616acdfee')).json()
-  let json = src[Math.floor(Math.random() * src.length)]
-  let caption = `*${command.toUpperCase()}*
-*Emoji apakah ini:* ${json.character}
+    // di sini dia ngambil data dari api
+    let src = await (await fetch(`https://api.betabotz.eu.org/api/game/tebakemoji?apikey=${lann}`)).json()
+    let json = src[Math.floor(Math.random() * src.length)]
+    // buat caption buat di tampilin di wa
+    let caption = `
+    *TEBAK EMOJI*
+Emoji nya: ${json.emoticon} 
 
-Timeout *${(timeout / 1000).toFixed(2)} detik*
-Ketik ${usedPrefix}hemo untuk bantuan
-Bonus: ${hadiah} Kredit sosial\n
-REPLAY SOAL UNTUK MENJAWAB
-*E06-E08 di awal (spasi) lalu jawaban*\n
-
-    `.trim()
+┌─⊷ *SOAL*
+▢ ${json.soal}
+▢ Timeout *${(timeout / 1000).toFixed(2)} detik*
+▢ Ketik ${usedPrefix}hemo untuk bantuan
+▢ Bonus: ${poin} money
+▢ *Balas/ replay soal ini untuk menjawab*
+└──────────────
+`.trim()
     conn.tebakemoji[id] = [
-        await conn.sendFile(m.chat, imgr + json.codePoint.toLowerCase() + ".png", '', caption, m),
-        
-        json, hadiah,
+        await conn.reply(m.chat, caption, m),
+        json, poin,
         setTimeout(() => {
-            if (conn.tebakemoji[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${(json.unicodeName)}*`, conn.tebakemoji[id][0])
+            if (conn.tebakemoji[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*\n\nDeskripsi: ${json.deskripsi}`, conn.tebakemoji[id][0])
             delete conn.tebakemoji[id]
         }, timeout)
     ]
@@ -41,9 +37,10 @@ REPLAY SOAL UNTUK MENJAWAB
 handler.help = ['tebakemoji']
 handler.tags = ['game']
 handler.command = /^tebakemoji/i
+handler.register = false
 handler.group = true
-
 
 module.exports = handler
 
-//danaputra133
+// tested di bileys versi 6.5.0 dan sharp versi 0.30.5
+// danaputra133
