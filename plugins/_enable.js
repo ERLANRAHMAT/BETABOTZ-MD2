@@ -6,6 +6,15 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
   let isAll = false
   let isUser = false
   switch (type) {
+   case 'antitagsw':
+      if (m.isGroup) {
+          if (!(isAdmin || isOwner)) {
+              global.dfail('admin', m, conn)
+              return false
+          }
+          chat.antitagsw = isEnable
+      } else return global.dfail('group', m, conn)
+      break
     case 'notifgempa':
       if (m.isGroup) {
           if (!(isAdmin || isOwner)) {
