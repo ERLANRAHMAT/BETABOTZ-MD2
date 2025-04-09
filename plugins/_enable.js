@@ -329,6 +329,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       if (!/[01]/.test(command)) return m.reply(`
 List option:
 | autodl
+| antitagsw
 | autobackup
 | rpg
 | autobio
