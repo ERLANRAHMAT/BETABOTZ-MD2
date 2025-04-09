@@ -1,13 +1,9 @@
 let handler = m => m
 
 handler.before = async (m, { conn, isBotAdmin, isAdmin }) => {
-    global.db.data.chats = global.db.data.chats || {}
-    if (!global.db.data.chats[m.chat]) {
-        global.db.data.chats[m.chat] = {}
-    }
-    
+    if(!m.isGroup) return
+    let chat = global.db.data.chats[m.chat]
     if (chat.antitagsw) {
-    
     const isTaggingInStatus = (
         m.mtype === 'groupStatusMentionMessage' || 
         (m.quoted && m.quoted.mtype === 'groupStatusMentionMessage') ||
