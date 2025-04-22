@@ -9,29 +9,32 @@ let handler = async (m, {
 }) => {
   if (command == 'ffstalk') {
     if (!text) throw `Example : ${usedPrefix + command} 919044185`;
+    m.reply(wait);
     try {
-      let ff = await fetch(`https://api.betabotz.eu.org/api/stalk/ff?id=${text}&apikey=${lann}`).then(res => res.json());
+      let ff = await fetch(`https://api.betabotz.eu.org/api/stalk/ff?id=${text}&apikey=${btc}`).then(res => res.json());
       await conn.reply(m.chat, ff.result.userNameGame, m);
     } catch (e) {
       console.log(e);
-      throw `*Error:* ${eror}`;
+      throw eror
     }
   }
-    if (command == 'mlstalk') {
+  if (command == 'mlstalk') {
     if (text.length < 2) throw `Contoh: ${usedPrefix + command} 2480197|2001`;
+    m.reply(wait);
     let [id, server] = text.split('|');
     try {
-      let ml = await fetch(`https://api.betabotz.eu.org/api/stalk/ml?id=${id}&server=${server}&apikey=${lann}`).then(res => res.json());
-      await conn.reply(m.chat, ml.result.userName, m);
+    let ml = await fetch(`https://api.betabotz.eu.org/api/stalk/ml?id=${id}&server=${server}&apikey=${btc}`).then(res => res.json());
+    await conn.reply(m.chat,`*ID:* ${ml.result.user_id}\n*Server:* ${ml.result.server_id}\n*Username:* ${ml.result.userName}\n*Region:* ${ml.result.country}`, m);
     } catch (e) {
       console.log(e);
-      throw `*Error:* ${eror}`;
+      throw eror
     }
   }
   if (command == 'supersusstalk') {
     if (!text) throw `Example : ${usedPrefix + command} 20431364`;
+    m.reply(wait);
     try {
-      let sus = await fetch(`https://api.betabotz.eu.org/api/stalk/supersus?id=${text}&apikey=${lann}`).then(res => res.json());
+      let sus = await fetch(`https://api.betabotz.eu.org/api/stalk/supersus?id=${text}&apikey=${btc}`).then(res => res.json());
       let results = sus.result;
       let caption = `*S U P E R S U S*\n\n`;
       caption += `*ID:* ${results.id}\n`;
@@ -48,13 +51,14 @@ let handler = async (m, {
       await conn.reply(m.chat, caption, m);
     } catch (e) {
       console.log(e);
-      throw `*Error:* ${eror}`;
+      throw eror
     }
   }
   if (command == 'npmstalk') {
-    if (!text) throw `Example : ${usedPrefix + command} betabotz-tools`;
+    if (!text) throw `Example : ${usedPrefix + command} tiktokdl`;
+    m.reply(wait);
     try {
-        let npm = await fetch(`https://api.betabotz.eu.org/api/stalk/npm?name=${text}&apikey=${lann}`).then(res => res.json());      
+        let npm = await fetch(`https://api.betabotz.eu.org/api/stalk/npm?name=${text}&apikey=${btc}`).then(res => res.json());      
         let caption = `*N P M S T A L K*\n\n`
         caption += `*ID:* ${npm.result._id}\n`
         caption += `*Name:* ${npm.result.name}\n`
@@ -79,13 +83,14 @@ let handler = async (m, {
         }
         await conn.reply(m.chat, caption, m);
       } catch (e) {
-      throw `*Error:* ${eror}`
+      throw eror
     }
  }
  if (command == 'repostalk') {
-    if (!text) throw `Example : ${usedPrefix + command} BETABOTZ-MD2`;
+    if (!text) throw `Example : ${usedPrefix + command} RTXZY-MD`;
+    m.reply(wait);
     try {
-      let repo = await fetch(`https://api.betabotz.eu.org/api/stalk/repo?repo=${text}&apikey=${lann}`).then(res => res.json());
+      let repo = await fetch(`https://api.betabotz.eu.org/api/stalk/repo?repo=${text}&apikey=${btc}`).then(res => res.json());
       let caption = `*R E P O S T A L K*\n\n`;
       caption += `*ID:* ${repo.result.items[0].id}\n`;
       caption += `*Node ID:* ${repo.result.items[0].nodeId}\n`;
@@ -116,13 +121,50 @@ let handler = async (m, {
       caption += `*Is Site Admin:* ${repo.result.items[0].author.isSiteAdmin}\n`;
       await conn.reply(m.chat, caption, m);
     } catch (error) {
-      throw `Error: ${eror}`
+      throw eror
     }
   }
+  if (command == 'genshinstalk' || command == 'stalkgenshin' || 'gistalk') {
+    if (!text) throw `Example : ${usedPrefix + command} 843829161`;
+    m.reply(wait);
+    try {
+      let genshin = await fetch(`https://api.betabotz.eu.org/api/stalk/genshin?id=${text}&apikey=${btc}`).then(res => res.json());
+      
+      if (!genshin.status) throw 'Failed to fetch Genshin Impact data';
+      
+      let result = genshin.result[0];
+      let caption = `*G E N S H I N  I M P A C T*\n\n`;
+      caption += `*Nickname:* ${result.nickname}\n`;
+      caption += `*UID:* ${result.uid}\n`;
+      caption += `*Level:* ${result.level}\n`;
+      caption += `*World Level:* ${result.worldLevel}\n`;
+      caption += `*Achievement:* ${result.achievement}\n`;
+      caption += `*Card ID:* ${result.cardId}\n`;
+      caption += `*Spiral Abyss:* ${result.spiralAbyss}\n`;
+      caption += `*Detail:* ${result.detail}\n`;
+      
+      await conn.sendMessage(m.chat, { image: { url: result.image }, caption: caption}, { quoted: m });
+      // await conn.reply(m.chat, caption, m);
+    } catch (e) {
+      console.log(e);
+      throw eror
+    }
+  }
+  if (command == 'hokstalk') {
+  if (!text) throw `Example: ${usedPrefix + command} 6467015277108375938`;
+  m.reply(wait);
+  try {
+    let { result } = await fetch(`https://api.betabotz.eu.org/api/stalk/hok?id=${text}&apikey=${btc}`).then(res => res.json());
+    if (!result.ok) throw 'Player not found!';
+    conn.reply(m.chat, result.name, m);
+  } catch (e) {
+    throw eror
+  }
+ }
 }
 
-handler.command = handler.help = ['ffstalk', 'mlstalk','supersusstalk','npmstalk','repostalk']
+handler.command = handler.help = ['ffstalk', 'mlstalk', 'supersusstalk', 'npmstalk', 'repostalk', 'genshinstalk', 'stalkgenshin', 'gistalk', 'hokstalk']
 handler.tags = ['stalk']
 handler.limit = true
 
-module.exports = handler              
+module.exports = handler
