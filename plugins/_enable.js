@@ -6,6 +6,15 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
   let isAll = false
   let isUser = false
   switch (type) {
+   case 'autoacc':
+      if (m.isGroup) {
+          if (!(isAdmin || isOwner)) {
+              global.dfail('admin', m, conn)
+              return false
+          }
+          chat.autoAcc = isEnable
+      } else return global.dfail('group', m, conn)
+      break
    case 'antitagsw':
       if (m.isGroup) {
           if (!(isAdmin || isOwner)) {
@@ -332,6 +341,8 @@ List option:
 | antitagsw
 | autobackup
 | rpg
+| antidelete
+| autoacc
 | autobio
 | notifgempa
 | notifcuaca
