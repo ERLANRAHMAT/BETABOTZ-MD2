@@ -1,14 +1,14 @@
 let handler = async (m, { conn }) => {
-    conn.tebakkata = conn.tebakkata ? conn.tebakkata : {}
+    conn.tbkata = conn.tbkata ? conn.tbkata : {}
     let id = m.chat
-    if (!(id in conn.tebakkata)) throw false
-    let json = conn.tebakkata[id][1]
+    if (!(id in conn.tbkata)) throw false
+    let json = conn.tbkata[id][1]
     let ans = json.jawaban
     // kalau ini error clue nya ak mau ada tanda (_) nya ganti string dalam function di bawah ini jadi huruf kecil
     let clue = ans.replace(/[BCDFGHJKLMNPQRSTFWXYZ]/g, '_')
     m.reply('```' + clue + '```')
 }
-handler.command = /^kata/i
+handler.command = /^tkaa/i
 handler.limit = true
 module.exports = handler
 
