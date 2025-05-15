@@ -45,6 +45,17 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       chat.welcome = isEnable
       break
+      case 'autoacc':
+      if (!m.isGroup) {
+        if (!isOwner) {
+          global.dfail('group', m, conn)
+          throw false
+        }
+      } else if (!isAdmin) {
+        global.dfail('admin', m, conn)
+        throw false
+      }
+      chat.autoacc = isEnable
     case 'detect':
       if (!m.isGroup) {
         if (!isOwner) {
@@ -73,7 +84,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
           throw false
         }
       }
-      chat.delete = !isEnable
+      chat.amtidelete = !isEnable
       break
     case 'autodelvn':
       if (m.isGroup) {
