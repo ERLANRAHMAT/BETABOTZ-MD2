@@ -903,6 +903,8 @@ module.exports = {
                 antibot: false, 
                 rpg: false,
                 antitagsw: false,
+	        antidelete: false,
+		autoacc: false
             }
             let memgc = global.db.data.chats[m.chat].memgc[m.sender]
             if (typeof memgc !== 'object') global.db.data.chats[m.chat].memgc[m.sender] = {}
