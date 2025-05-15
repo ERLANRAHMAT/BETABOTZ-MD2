@@ -3,6 +3,8 @@ module.exports = {
 before: async function before(m) {
     let fkon = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: 'status@broadcast' } : {}) }, message: { contactMessage: { displayName: name, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:RhmttDev\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
     if (!m.messageStubType || !m.isGroup || m.fromMe) return;
+    let chat = global.db.data.chats[m.chat];
+    if (chat.detect) {
     let edtr = `@${m.sender.split`@`[0]}`;
     if (m.messageStubType === 21) {
         await this.sendMessage(m.chat, { text: `${edtr} mengubah Subject Grup menjadi :\n*${m.messageStubParameters[0]}*`, mentions: [m.sender] }, { quoted: fkon });
@@ -30,6 +32,7 @@ before: async function before(m) {
             messageStubParameters: m.messageStubParameters,
             type: WAMessageStubType[m.messageStubType],
         });
+      }
     }
   }
 }
