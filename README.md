@@ -1,9 +1,9 @@
-## New Update
+## Harap Dipahami Sebelum Instal 👍
 
 **Pembaruan :**
-- Fix upload file ke server cdn 
-- Menggunakan QR dan pairing code 
-- Penggunaan pairing ```node . --pairing```
+- Menggunakan baileys versi terbaru (original bukan mod)
+- Support pairing code only sesuai ketentuan 
+- Wajib menggunakan panel dengan nodejs 20+ sesuai ketentuan baileys terbaru
 - Fitur 90% implementasi dari website api
 - Penambah output url expres.js agar bisa di jalankan di render dsb.
 - Informasi api [WhatsApp](https://whatsapp.com/channel/0029VaApYsQ5Ui2c2rKbpP0S)
@@ -25,9 +25,9 @@
 | 2  | Cheap1       | 3000 Request   | 1 bulan         | 3000     |
 | 3  | Cheap2       | 4000 Request   | 1 bulan         | 4000     |
 | 4  | PREMIUM      | 5000 Request   | 1 bulan         | 5000     |
-| 5  | VIP          | 10000 Request  | 2 bulan         | 10000     |
-| 6  | VVIP         | 15000 Request  | 2 bulan         | 15000     |
-| 7  | SUPREME      | 30000 Request  | 3 bulan         | 30000     |
+| 5  | VIP          | 8000 Request  | 2 bulan         | 8000     |
+| 6  | VVIP         | 12000 Request  | 3 bulan         | 12000     |
+| 7  | SUPREME      | 20000 Request  | 4 bulan         | 20000     |
 
 - Jika ingin membeli ApiKey Cheap1, Cheap2, Premium, Vip, Vvip, Supreme silahkan register lalu pilih paket yang diinginkan dan tekan button Buy now [`Pilih`](https://api.betabotz.eu.org/price)
 
