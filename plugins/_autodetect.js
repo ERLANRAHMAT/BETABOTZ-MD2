@@ -1,4 +1,4 @@
-/* Error nunggu di fix offmon
+/* 
 
 const { WAMessageStubType } = require('@adiwajshing/baileys');
 module.exports = {
