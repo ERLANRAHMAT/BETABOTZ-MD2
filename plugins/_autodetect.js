@@ -1,3 +1,4 @@
+/*
 const { WAMessageStubType } = require('@adiwajshing/baileys');
 module.exports = {
 before: async function before(m) {
@@ -36,3 +37,4 @@ before: async function before(m) {
     }
   }
 }
+*/
