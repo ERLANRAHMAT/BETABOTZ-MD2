@@ -40,7 +40,7 @@
 - Cari opsi settings -> management ip dan paste ip kalian disana supaya bot bisa menggunakan api
 
 ## Script ini wajib dijalankan di nodejs 20+, jika mencari hosting panel nodejs 20 bisa beli di saya
-- Admin Lann [`Buy`](https://wa.me/p/23983051454715720/62895628117900)
+- Admin Lann [`Buy`](https://wa.me/62895423183527)
   
 ## BetaBotz Md || Information & Discussion
 - Group Bot [`Join`](https://chat.whatsapp.com/H8XPKS8vmHm2spliGlKY41)
