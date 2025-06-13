@@ -30,4 +30,4 @@ module.exports = handler;
 // no copas code dari luar, logic pakai kepala
 // bebas ubah karena open source
 // danaputra133
-// tutorial pakai ada di: https://youtu.be/sFj3Mh-z1Jk
+// tutorial pakai ada di: https://youtu.be/P7K5ycatYJA

@@ -5,8 +5,97 @@ const axios = require('axios');
 
 let handler = m => m
 
-const sleep = (ms) => {
-	return new Promise(resolve => setTimeout(resolve, ms));
+let old = new Date();
+const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+async function _tiktok(link, m) {
+    try {
+        if (global.db.data.users[m.sender].limit > 0) {
+            const response = await fetch(`https://api.botcahx.eu.org/api/download/tiktok?url=${link}&apikey=${btc}`);
+            const data = await response.json();
+            if (!data.result.video) return;
+            if (data.result.video.length > 1) {
+                global.db.data.users[m.sender].limit -= 1;
+                for (let v of data.result.video) {
+                    await conn.sendFile(m.chat, v, null, `🍟 *Fetching* : ${(new Date() - old) * 1} ms`, m);
+                    await _sleep(3000);
+                }
+            } else {
+                await conn.sendMessage(
+                    m.chat,
+                    {
+                        video: {
+                            url: data.result.video[0],
+                        },
+                        caption: `🍟 *Fetching* : ${(new Date() - old) * 1} ms`,
+                    },
+                    {
+                        mention: m,
+                    }
+                );
+            }
+        } else {
+            conn.reply(m.chat, "limit kamu habis!", m);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// DOWNLOADER REDNOTE
+async function _xiaohongshu(url, m) {
+    try {
+        if (global.db.data.users[m.sender].limit > 0) {
+            let res = await axios.get(`https://api.botcahx.eu.org/api/download/rednote?url=${url}&apikey=${btc}`);
+            let result = res.data.result;
+
+            if (!result || !result.media) throw `Gagal mengambil data!`;
+
+            global.db.data.users[m.sender].limit -= 1;
+
+            const media = result.media;
+            const meta = result.metadata;
+            const title = meta?.title || "No title";
+
+            if (media.videoUrl) {
+                const videoUrl = media.videoUrl.startsWith('//') ? `https:${media.videoUrl}` : media.videoUrl;
+                await conn.sendMessage(
+                    m.chat,
+                    {
+                        video: {
+                            url: videoUrl,
+                        },
+                        caption: `🍟 *Fetching* : ${(new Date() - old) * 1} ms`,
+                    },
+                    {
+                        mention: m,
+                    }
+                );
+            } else if (media.images && media.images.length > 0) {
+                for (let img of media.images) {
+                    const imageUrl = img.startsWith('//') ? `https:${img}` : img;
+                    try {
+                        await _sleep(3000);
+                        await conn.sendMessage(
+                            m.chat,
+                            {
+                                image: { url: imageUrl },
+                                caption: `🍟 *Fetching* : ${(new Date() - old) * 1} ms`,
+                            },
+                            { quoted: m }
+                        );
+                    } catch (e) {
+                        console.error(`Failed to send image: ${imageUrl}`, e);
+                        conn.reply(m.chat, `Gagal mengirim gambar: ${imageUrl}`, m);
+                    }
+                }
+            }
+        } else {
+            conn.reply(m.chat, "Limit kamu habis!", m);
+        }
+    } catch (e) {
+        console.error(`Error in _xiaohongshu: ${e.message}`, e);
+        conn.reply(m.chat, `Gagal mengambil data: ${e.message}`, m);
+    }
 }
 
 // DOWNLOADER TIKTOD
@@ -451,6 +540,7 @@ handler.before = async function (m, { conn, isPrems }) {
 	const threadsRegex = /^(https?:\/\/)?(www\.)?threads\.net(\/[^\s]*)?(\?[^\s]*)?$/;
 	const capcutRegex = /^https:\/\/www\.capcut\.com\/(t\/[A-Za-z0-9_-]+\/?|template-detail\/\d+\?(?:[^=]+=[^&]+&?)+)$/;
 	const snackvideoRegex = /^(https?:\/\/)?s\.snackvideo\.com\/p\/[a-zA-Z0-9]+$/i;
+	const xiaohongshuRegex = /^(https?:\/\/)?(www\.)?(xiaohongshu\.com\/discovery\/item\/[a-zA-Z0-9]+|xhslink\.com\/[a-zA-Z0-9/]+)(\?.*)?$/i;
 	// const teraboxRegex = /^(?:https?:\/\/)?(?:www\.)?terabox\.com\/s\/([\w\-]+)(?:\?[\S]*)?$/i;
 
 	if (text.match(tiktokRegex)) {
@@ -572,6 +662,15 @@ handler.before = async function (m, { conn, isPrems }) {
 			.match(
 				capcutRegex
 			)[0], m);
+	} 
+	else if (text.match(xiaohongshuRegex)) {
+			conn.sendMessage(m.chat, {
+				react: {
+					text: "✅",
+					key: m.key,
+				},
+			});
+			await _xiaohongshu(text.match(xiaohongshuRegex)[0], m);
 	}
 	else if (text.match(
 		snackvideoRegex)) {

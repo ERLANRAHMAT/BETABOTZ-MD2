@@ -1,34 +1,44 @@
 const axios = require('axios');
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) throw `Masukan URL!\n\nContoh:\n${usedPrefix + command} https://xhslink.com/a/hlM81D1Yoa63`;
+    if (!text) throw `Masukkan URL!\n\nContoh:\n${usedPrefix + command} http://xhslink.com/a/1N9OyfeL9EFab`;
+    if (!text.match(/xhslink|xiaohongshu/gi)) throw `URL Tidak Valid!`;
+
+    m.reply(wait);
     try {
-        if (!text.match(/xhslink|xiaohongshu/gi)) throw `URL Tidak Ditemukan!`;
-        m.reply(wait);
-        let res = await axios.get(`https://api.betabotz.eu.org/api/download/rednote?url=${text}&apikey=${lann}`);
-        let result = res.data.result;
-        if (!result || result.err !== 0) throw `Gagal mengambil data!`;
-        if (result.video) {
+        const res = await axios.get(`https://api.betabotz.eu.org/api/download/rednote?url=${text}&apikey=${btc}`);
+        const result = res.data?.result;
+        if (!result || !result.media) throw `Gagal mengambil data!`;
+
+        const media = result.media;
+        const meta = result.metadata;
+        const title = meta?.title || "No title";
+
+        if (media.videoUrl) {
             await conn.sendMessage(
+                m.chat,
+                {
+                    video: { url: media.videoUrl },
+                    caption: `*Title:* ${title}`,
+                },
+                { quoted: m }
+            );
+        } else if (media.images && media.images.length > 0) {
+            for (let img of media.images) {
+                await sleep(2000);
+                await conn.sendMessage(
                     m.chat,
                     {
-                        video: {
-                            url: result.video,
-                        },
-                        caption: `*Title:* ${result.title || "No title"}`,
+                        image: { url: img },
+                        caption: `*Title:* ${title}`,
                     },
-                    {
-                        mention: m,
-                    }
-                )
-        } else if (result.images && result.images.length > 0) {
-            for (let img of result.images) {
-                await sleep(3000);
-                await conn.sendMessage(m.chat, { image: img, caption: `*Title:* ${result.title || "No title"}` }, { quoted: m })
+                    { quoted: m }
+                );
             }
         } else {
             throw `Konten tidak ditemukan!`;
         }
+
     } catch (e) {
         console.error(e);
         throw `Terjadi kesalahan saat memproses permintaan!`;
@@ -42,7 +52,6 @@ handler.limit = true;
 handler.premium = false;
 
 module.exports = handler;
-
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));

@@ -1,30 +1,19 @@
-let handler = async (m, {
-    conn,
-    text,
-    groupMetadata
-}) => {
-await conn.sendPresenceUpdate('composing', m.chat)
-    var lama = 86400000 * 7
-    const now = new Date().toLocaleString("en-US", {
-        timeZone: "Asia/Jakarta"
-    });
-    const milliseconds = new Date(now).getTime();
+let handler = async (m, { conn, text, args, groupMetadata }) => {
+    await conn.sendPresenceUpdate('composing', m.chat)
+
+    const lama = 86400000 * 7
+    const now = new Date().toLocaleString("en-US", { timeZone: "Asia/Jakarta" })
+    const milliseconds = new Date(now).getTime()
 
     let member = groupMetadata.participants.map(v => v.id)
-    if (!text) {
-        var pesan = "Harap aktif di grup karena akan ada pembersihan member setiap saat"
-    } else {
-        var pesan = text
-    }
-    var sum
-    sum = member.length
-    var total = 0
-    var sider = []
-    for (let i = 0; i < sum; i++) {
-        let users = m.isGroup ? groupMetadata.participants.find(u => u.id == member[i]) : {}
-        if ((typeof global.db.data.users[member[i]] == 'undefined' || milliseconds * 1 - global.db.data.users[member[i]].lastseen > lama) && !users.isAdmin && !users.isSuperAdmin) {
+    let total = 0
+    const sider = []
+
+    for (let i = 0; i < member.length; i++) {
+        let users = groupMetadata.participants.find(u => u.id === member[i])
+        if ((typeof global.db.data.users[member[i]] === 'undefined' || milliseconds - global.db.data.users[member[i]].lastseen > lama) && !users.isAdmin && !users.isSuperAdmin) {
             if (typeof global.db.data.users[member[i]] !== 'undefined') {
-                if (global.db.data.users[member[i]].banned == true) {
+                if (global.db.data.users[member[i]].banned === true) {
                     total++
                     sider.push(member[i])
                 }
@@ -34,34 +23,46 @@ await conn.sendPresenceUpdate('composing', m.chat)
             }
         }
     }
-    if (total == 0) return conn.reply(m.chat, `*Digrup ini tidak terdapat sider.*`, m)
-    conn.reply(m.chat, `*${total}/${sum}* anggota grup *${await conn.getName(m.chat)}* adalah sider dengan alasan :\n1. Tidak aktif selama lebih dari 7 hari\n2. Baru join tetapi tidak pernah nimbrung\n\n_“${pesan}”_\n\n*LIST SIDER :*\n${sider.map(v => '  ○ @' + v.replace(/@.+/, '' + typeof global.db.data.users[v] == "undefined" ? ' Sider ' : ' Off ' + msToDate(milliseconds * 1 - global.db.data.users[v].lastseen))).join('\n')}`, m, {
-        contextInfo: {
-            mentionedJid: sider
+
+    if (!args[0]) {
+        return conn.reply(m.chat, `ðŸš© Use the command with options:\n1. \`gcsider --list\` to list inactive members\n2. \`gcsider --kick\` to kick inactive members`, m)
+    }
+
+    if (args[0] === 'list') {
+        if (total === 0) return conn.reply(m.chat, `ðŸš© *There are no siders in this group.*`, m)
+        
+        const groupName = await conn.getName(m.chat)
+        const message = `*${total}/${member.length}* anggota grup *${groupName}* adalah sider:\n${sider.map(v => '  â—‹ @' + v.replace(/@.+/, '')).join('\n')}`
+
+        return conn.reply(m.chat, message, m, {
+            contextInfo: {
+                mentionedJid: sider
+            }
+        })
+    }
+
+    if (args[0] === 'kick') {
+        if (total === 0) return conn.reply(m.chat, `ðŸš© *There are no siders to kick in this group.*`, m)
+
+        for (const user of sider) {
+            try {
+                await conn.groupParticipantsUpdate(m.chat, [user], 'remove')
+            } catch (e) {
+                throw e 
+            }
         }
-    })
+
+        return conn.reply(m.chat, `ðŸš© Successfully removed *${total}* inactive members from the group.`, m)
+    }
+
+    return conn.reply(m.chat, `ðŸš© Invalid option. Use \`--list\` to view inactive members or \`--kick\` to remove them.`, m)
 }
-handler.help = ['gcsider']
+
+handler.help = ['sider']
 handler.tags = ['group']
-handler.command = /^(gcsider)$/i
+handler.command = /^(sider|gcsider)$/i
 handler.group = true
+handler.admin = true
 handler.botAdmin = true
 
 module.exports = handler
-
-const more = String.fromCharCode(8206)
-const readMore = more.repeat(4001)
-
-
-function msToDate(ms) {
-  let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
-  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
-  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
-  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
-  if (d == 0 && h == 0 && m == 0) {
-        return "Baru Saja"
-    } else {
-        return [d, 'H ', h, 'J '].map(v => v.toString().padStart(2, 0)).join('')
-    }
-  
-}

@@ -40,7 +40,7 @@
     },
     "license": "MIT",
     "dependencies": {
-        "@adiwajshing/baileys": "npm:@whiskeysockets/baileys@6.7.16",
+        "@adiwajshing/baileys": "npm:baileys",
         "@adiwajshing/keyed-db": "^0.2.4",
         "@vitalets/google-translate-api": "^9.0.0",
         "javascript-obfuscator": "^4.0.2",
@@ -64,6 +64,7 @@
         "link-preview-js": "^3.0.4",
         "moment-timezone": "^0.5.37",
         "mongoose": "^6.0.14",
+        "node-cache": "^5.1.2",
         "node-fetch": "^2.6.9",
         "node-gtts": "2.0.2",
         "node-os-utils": "^1.3.7",

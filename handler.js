@@ -855,6 +855,7 @@ module.exports = {
                 if (!('notifcuaca' in chat)) chat.notifcuaca = false
                 if (!('notifsholat' in chat)) chat.notifsholat = false
                 if (!('autotranslate' in chat)) chat.autotranslate = false
+                if (!('antitagsw' in chat)) chat.antitagsw = false
             } else global.db.data.chats[m.chat] = {
                 autotranslate: false,
                 notifsholat: false,
@@ -900,7 +901,10 @@ module.exports = {
                 antilinktt: false, 
                 antilinkttnokick: false, 
                 antibot: false, 
-                rpg: false, 
+                rpg: false,
+                antitagsw: false,
+	        antidelete: false,
+		autoacc: false
             }
             let memgc = global.db.data.chats[m.chat].memgc[m.sender]
             if (typeof memgc !== 'object') global.db.data.chats[m.chat].memgc[m.sender] = {}
