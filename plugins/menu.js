@@ -131,6 +131,18 @@ function sendMenu(m, conn, text, replace) {
             mentions: [m.sender]
         }
     }, {});
+
+    // Music di Menu
+    let musicPath = path.join(__dirname, 'music.mp3');
+    if (fs.existsSync(musicPath)) {
+        conn.sendMessage(m.chat, { 
+            audio: { url: musicPath }, 
+            mimetype: 'audio/mpeg',
+            ptt: false 
+        }, { quoted: m });
+    } else {
+        console.warn('Music file not found:', musicPath);
+    }
 }
 
 function clockString(ms) {
