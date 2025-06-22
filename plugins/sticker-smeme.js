@@ -7,7 +7,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!mime) throw `balas gambar dengan perintah\n\n${usedPrefix + command} <${atas ? atas : 'teks atas'}>|<${bawah ? bawah : 'teks bawah'}>`
     if (!/image\/(jpe?g|png)/.test(mime)) throw `_*Mime ${mime} tidak didukung!*_`
     let img = await q.download()
-    let url = await uploadImage(img)
+    let url = await uploadImage(img, "true")
     let meme = `https://api.memegen.link/images/custom/${encodeURIComponent(atas ? atas : '')}/${encodeURIComponent(bawah ? bawah : '')}.png?background=${url}`
     conn.sendImageAsSticker(m.chat, meme, m, { packname: packname, author: author })
 
