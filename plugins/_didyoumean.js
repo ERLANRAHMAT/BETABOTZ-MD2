@@ -28,7 +28,7 @@ handler.before = function (m, { match, usedPrefix, text, args }) {
       contextInfo: {
       mentionedJid: [m.sender],
       externalAdReply: {
-      showAdAttribution: true
+      showAdAttribution: false
       }}}}}}, {})
 	}
   }

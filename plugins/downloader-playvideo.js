@@ -61,7 +61,7 @@ let handler = async (m, { conn, text, usedPrefix }) => {
                         thumbnailUrl: convert.image,
                         sourceUrl: videoUrl.mp4,
                         mediaType: 1,
-                        showAdAttribution: true,
+                        showAdAttribution: false,
                         renderLargerThumbnail: true
                     }
                 }
@@ -150,7 +150,7 @@ let handler = async (m, { conn, text }) => {
                         thumbnailUrl: thumbnailUrl,
                         sourceUrl: url,
                         mediaType: 1,
-                        showAdAttribution: true,
+                        showAdAttribution: false,
                         renderLargerThumbnail: true
                     }
                 }

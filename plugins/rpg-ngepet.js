@@ -25,7 +25,7 @@ let handler = async (m, { conn, args, usedPrefix }) => {
               body: wm,
               thumbnailUrl: 'https://telegra.ph/file/c6c4a6946a354317fe970.jpg',
               mediaType: 1,
-              showAdAttribution: true,
+              showAdAttribution: false,
               renderLargerThumbnail: true
             }
           }
@@ -42,7 +42,7 @@ let handler = async (m, { conn, args, usedPrefix }) => {
               body: wm,
               thumbnailUrl: 'https://telegra.ph/file/6a6a440d7f123bed78263.jpg',
               mediaType: 1,
-              showAdAttribution: true,
+              showAdAttribution: false,
               renderLargerThumbnail: true
             }
           }
@@ -60,7 +60,7 @@ let handler = async (m, { conn, args, usedPrefix }) => {
           body: `${timers}`,
           thumbnailUrl: 'https://telegra.ph/file/295949ff5494f3038f48c.jpg',
           mediaType: 1,
-          showAdAttribution: true,
+          showAdAttribution: false,
           renderLargerThumbnail: true
         }
       }

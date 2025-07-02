@@ -58,7 +58,7 @@ handler.before = async (m, { conn, text }) => {
                         body: "Beta AI siap membantu 😄",
                         thumbnailUrl: "https://api.betabotz.eu.org/api/tools/get-upload?id=f/zdiccxwo.jpg",
                         renderLargerThumbnail: true, 
-                        showAdAttribution: true
+                        showAdAttribution: false
                     }
                 }
             });

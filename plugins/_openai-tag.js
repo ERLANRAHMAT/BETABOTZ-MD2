@@ -103,7 +103,7 @@ handler.before = async (m, { conn }) => {
                                                 thumbnailUrl: convert.image,
                                                 sourceUrl: audioUrl.mp3,
                                                 mediaType: 1,
-                                                showAdAttribution: true,
+                                                showAdAttribution: false,
                                                 renderLargerThumbnail: true
                                             }
                                         }
@@ -175,7 +175,7 @@ handler.before = async (m, { conn }) => {
                                                 thumbnailUrl: convert.image,
                                                 sourceUrl: videoUrl.mp4,
                                                 mediaType: 1,
-                                                showAdAttribution: true,
+                                                showAdAttribution: false,
                                                 renderLargerThumbnail: true
                                             }
                                         }

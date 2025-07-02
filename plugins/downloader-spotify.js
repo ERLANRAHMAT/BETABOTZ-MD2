@@ -29,7 +29,7 @@ type
     thumbnailUrl: thumbnail ,
     sourceUrl: thumbnail,
     mediaType: 1,
-    showAdAttribution: true,
+    showAdAttribution: false,
     renderLargerThumbnail: true
     }}})
     await conn.sendMessage(m.chat, { audio: { url: url }, mimetype: 'audio/mpeg', contextInfo: {
@@ -39,7 +39,7 @@ type
     thumbnailUrl: thumbnail,
     sourceUrl: url,
     mediaType: 1,
-    showAdAttribution: true,
+    showAdAttribution: false,
     renderLargerThumbnail: true
     }}} , { quoted: m })
     } catch (e) {

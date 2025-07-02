@@ -366,7 +366,7 @@ async function _spotify(link, m) {
 						thumbnailUrl: thumbnail,
 						sourceUrl: url,
 						mediaType: 1,
-						showAdAttribution: true,
+						showAdAttribution: false,
 						renderLargerThumbnail: true
 					}
 				}

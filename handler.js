@@ -1212,7 +1212,7 @@ module.exports = {
         if (global.isInit) return
         let chat = db.data.chats[id] || {}
         let text = ''
-        switch (action) {
+      switch (action) {
         case 'add':
         case 'remove':
 		case 'leave':
@@ -1221,14 +1221,15 @@ module.exports = {
                 if (chat.welcome) {
                     let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
                     for (let user of participants) {
-                        let pp = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9mFzSckd12spppS8gAJ2KB2ER-ccZd4pBbw&usqp=CAU'
+                        let pp = 'https://telegra.ph/file/70e8de9b1879568954f09.jpg'
                         try {
                              pp = await this.profilePictureUrl(user, 'image')
                         } catch (e) {
                         } finally {
-                            text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc ? groupMetadata.desc.toString() : '') :
-                          (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
-                            this.sendMessage(id, {
+                        text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc ? groupMetadata.desc.toString() : '') :
+                         (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
+                            await this.sendMessage(id, { text: text, contextInfo: { mentionedJid: [user] }}, { quoted: null })
+			    /**this.sendMessage(id, {
                             text: text,
                             contextInfo: {
 			    mentionedJid: [user],
@@ -1236,14 +1237,14 @@ module.exports = {
                             title: action === 'add' ? 'Selamat Datang' : 'Selamat tinggal',
                             body: global.wm,
                             thumbnailUrl: pp,
-                            sourceUrl: 'https://api.betabotz.eu.org',
+                            sourceUrl: 'https://api.botcahx.eu.org',
                             mediaType: 1,
                             renderLargerThumbnail: true 
-                            }}}, { quoted: null})
+                            }}}, { quoted: null })**/
                         }
                     }
-                }
-                break                        
+		}
+                break                    
             case 'promote':
                 text = (chat.sPromote || this.spromote || conn.spromote || '@user ```is now Admin```')
             case 'demote':

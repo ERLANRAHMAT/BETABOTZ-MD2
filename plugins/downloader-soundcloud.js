@@ -22,7 +22,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
                         thumbnailUrl: anu.thumbnail,
                         sourceUrl: anu.url,
                         mediaType: 1,
-                        showAdAttribution: true,
+                        showAdAttribution: false,
                         renderLargerThumbnail: true
                     }
                 }
