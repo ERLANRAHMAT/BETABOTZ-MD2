@@ -1,4 +1,6 @@
-const fs = require('fs')
+const axios = require('axios');
+const fs = require('fs');
+
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   const user = global.db.data.users[m.sender]
   const lastDeliveryTime = user.lastredeem || 0
