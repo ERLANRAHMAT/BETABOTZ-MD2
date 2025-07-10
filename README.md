@@ -1,91 +1,135 @@
-## Harap Dipahami Sebelum Instal 👍
 
-**Pembaruan :**
-- Menggunakan baileys versi terbaru (original bukan mod)
-- Support pairing code only sesuai ketentuan 
-- Wajib menggunakan panel dengan nodejs 20+ sesuai ketentuan baileys terbaru
-- Fitur 90% implementasi dari website api
-- Penambah output url expres.js agar bisa di jalankan di render dsb.
-- Informasi api [WhatsApp](https://whatsapp.com/channel/0029VaApYsQ5Ui2c2rKbpP0S)
-- Informasi Bot [Whatsapp](https://whatsapp.com/channel/0029VaiIG3UJpe8n3Y2MZ51z)
-  ## Note!
-  **Important :**
-  
-- Untuk menggunakan bot ini, kamu diwajibkan mengisi ApiKey terlebih dahulu. Jika tidak mengisinya, bot tidak akan berfungsi dengan baik.
-- Tidak disarankan menginstal bot ini di termux atau panel yang tidak mempunyai kelengkapan express, ffmpeg, imagemagick, webp.
-  
-- Menggunakan 80% fitur dari [`RestApi`](https://api.betabotz.eu.org) sebagai media downloader dan berbagai fitur lain nya.
+---
 
+## ✅ Harap Dipahami Sebelum Instal
 
-## ApiKey Harga
+### 🔄 Pembaruan:
 
-| No | Plan/Role    | Limit          | Expired         | Harga |
-|----|--------------|----------------|-----------------|-------|
-| 1  | Free         | 30 Request/day| -               | Gratis|
-| 2  | Cheap1       | 3000 Request   | 1 bulan         | 3000     |
-| 3  | Cheap2       | 4000 Request   | 1 bulan         | 4000     |
-| 4  | PREMIUM      | 5000 Request   | 1 bulan         | 5000     |
-| 5  | VIP          | 8000 Request  | 2 bulan         | 8000     |
-| 6  | VVIP         | 12000 Request  | 3 bulan         | 12000     |
-| 7  | SUPREME      | 20000 Request  | 4 bulan         | 20000     |
+* Menggunakan **baileys versi terbaru** (original, bukan mod)
+* Support **pairing code only** sesuai ketentuan
+* Wajib menggunakan **panel dengan Node.js 20+** (sesuai ketentuan baileys terbaru)
+* Fitur 90% implementasi dari **website API**
+* Penambahan output URL `express.js` agar bisa dijalankan di Render, dsb.
+* Informasi API: [WhatsApp](https://whatsapp.com/channel/0029VaApYsQ5Ui2c2rKbpP0S)
+* Informasi Bot: [WhatsApp](https://whatsapp.com/channel/0029VaiIG3UJpe8n3Y2MZ51z)
 
-- Jika ingin membeli ApiKey Cheap1, Cheap2, Premium, Vip, Vvip, Supreme silahkan register lalu pilih paket yang diinginkan dan tekan button Buy now [`Pilih`](https://api.betabotz.eu.org/price)
+---
 
-**Website Api :**
-- BOTCAHX (Optional)[`Register`](https://api.botcahx.eu.org)
-- Lann (Wajib) [`Register`](https://api.betabotz.eu.org)
-- Setelah mendapatkan apikey silahkan paste di config.js pada bagian ```global.btc``` dan ```global.lann```
-- Setelah itu install bot kalian dan ketik pada bot .getip
-- Ambil ip dan pergi ke [`Profile Api`](https://api.betabotz.eu.org) untuk melakukan whitelist
-- Cari opsi settings -> management ip dan paste ip kalian disana supaya bot bisa menggunakan api
+## ⚠️ Note!
 
-## Script ini wajib dijalankan di nodejs 20+, jika mencari hosting panel nodejs 20 bisa beli di saya
-- Admin Lann [`Buy`](https://wa.me/62895628117900)
-  
-## BetaBotz Md || Information & Discussion
-- Group Bot [`Join`](https://chat.whatsapp.com/H8XPKS8vmHm2spliGlKY41)
-## Support
+### 🛑 Important:
 
-<a href="https://api.betabotz.eu.org/donasi" target="_blank"><img src="https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" height="32px" alt="Sociabuzz"></a>
+* Untuk menggunakan bot ini, kamu **wajib mengisi ApiKey** terlebih dahulu. Jika tidak, bot tidak akan berfungsi dengan baik.
+* **Tidak disarankan menginstal** bot ini di Termux atau panel yang tidak memiliki kelengkapan `express`, `ffmpeg`, `imagemagick`, dan `webp`.
+* Bot ini menggunakan 80% fitur dari [`RestApi`](https://api.betabotz.eu.org) sebagai media downloader dan berbagai fitur lainnya.
 
+---
 
-### `Render`
+## 🔑 ApiKey & Harga
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://dashboard.render.com/blueprint/new?repo=https%3A%2F%2Fgithub.com%2FERLANRAHMAT%2FBETABOTZ-MD2)
-## Base Ori
-Original base [`Link`](https://github.com/HelgaIlham/ZukaBet)
+| No | Plan/Role | Limit          | Expired | Harga  |
+| -- | --------- | -------------- | ------- | ------ |
+| 1  | Free      | 30 Request/day | -       | Gratis |
+| 2  | Cheap1    | 3000 Request   | 1 bulan | 3.000  |
+| 3  | Cheap2    | 4000 Request   | 1 bulan | 4.000  |
+| 4  | PREMIUM   | 5000 Request   | 1 bulan | 5.000  |
+| 5  | VIP       | 8000 Request   | 2 bulan | 8.000  |
+| 6  | VVIP      | 12000 Request  | 3 bulan | 12.000 |
+| 7  | SUPREME   | 20000 Request  | 4 bulan | 20.000 |
 
-## Run On Heroku
+> Untuk membeli ApiKey Cheap1–Supreme silakan **register**, pilih paket, lalu tekan tombol **Buy Now** [`Pilih`](https://api.betabotz.eu.org/price)
+
+---
+
+## 🌐 Website API
+
+* **BOTCAHX (Opsional):** [`Register`](https://api.botcahx.eu.org)
+* **Lann (Wajib):** [`Register`](https://api.betabotz.eu.org)
+
+### 🔧 Konfigurasi ApiKey
+
+* Setelah mendapatkan ApiKey, paste ke `config.js` pada:
+
+  ```js
+  global.btc = 'API_KEY_BOTCAHX';
+  global.lann = 'API_KEY_LANN';
+  ```
+* Jalankan bot, lalu ketik `.getip` pada bot.
+* Kunjungi [`Profile API`](https://api.betabotz.eu.org), whitelist IP bot di:
+  `Settings -> Management IP`, lalu paste IP dari `.getip`.
+
+---
+
+## ⚙️ Node.js Hosting
+
+Script ini **wajib** dijalankan di Node.js **versi 20+**.
+
+> Jika butuh hosting/panel Node.js 20+, kamu bisa beli ke:
+
+* **Admin Lann:** [`Buy`](https://wa.me/62895628117900)
+
+---
+
+## 💬 BetaBotz MD — Info & Diskusi
+
+* Group WhatsApp Bot: [`Join`](https://chat.whatsapp.com/H8XPKS8vmHm2spliGlKY41)
+
+---
+
+## ☕ Support
+
+<a href="https://api.betabotz.eu.org/donasi" target="_blank">
+<img src="https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" height="32px" alt="Sociabuzz">
+</a>
+
+## 🧱 Base Original
+
+Original Base: [`ZukaBet`](https://github.com/HelgaIlham/ZukaBet)
+
+---
+
+## ☁️ Run On Heroku
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ERLANRAHMAT/BETABOTZ-MD2)
-# Heroku Buildpack
-### Instal Buildpack
+
+### Heroku Buildpack
+
 ```bash
-* heroku/nodejs
-* https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
-* https://github.com/clhuang/heroku-buildpack-webp-binaries.git
+heroku/nodejs
+https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
+https://github.com/clhuang/heroku-buildpack-webp-binaries.git
 ```
 
-## UNTUK PENGGUNA WINDOWS/VPS/RDP
+---
 
-* Unduh & Instal Git [`Klik Disini`](https://git-scm.com/downloads)
-* Unduh & Instal NodeJS [`Klik Disini`](https://nodejs.org/en/download)
-* Unduh & Instal FFmpeg [`Klik Disini`](https://ffmpeg.org/download.html) (**Jangan Lupa Tambahkan FFmpeg ke variabel lingkungan PATH**)
-* Unduh & Instal ImageMagick [`Klik Disini`](https://imagemagick.org/script/download.php)
+## 💻 Untuk Pengguna Windows/VPS/RDP
 
-```javascript
+1. Install Git → [`Download`](https://git-scm.com/downloads)
+2. Install Node.js → [`Download`](https://nodejs.org/en/download)
+3. Install FFmpeg → [`Download`](https://ffmpeg.org/download.html)
+   ⚠️ *Tambahkan FFmpeg ke environment variable (PATH)*
+4. Install ImageMagick → [`Download`](https://imagemagick.org/script/download.php)
+
+### Jalankan Script
+
+```bash
 git clone https://github.com/ERLANRAHMAT/BETABOTZ-MD2
 cd BETABOTZ-MD2
 npm i
 npm start
 ```
-```javascript
-// to get pairing code //
 
+### Pairing Code
+
+```bash
 node index.js --pairing
-
 ```
 
+---
 
-##### All Contributors
-[`All Contri`](https://contributor.betabotz.eu.org)
+## 🙌 Kontributor
+
+Lihat semua kontributor di: [`All Contri`](https://contributor.betabotz.eu.org)
+
+---
+
