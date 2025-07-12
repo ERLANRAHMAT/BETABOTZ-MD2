@@ -11,31 +11,42 @@ let handler = async (m, { usedPrefix, command, text }) => {
             let res = await (await fetch(`https://api.betabotz.eu.org/api/webzone/grow-and-garden-stock?apikey=${lann}`)).json();
             let content = `*🌱 G R O W  &  G A R D E N  S T O C K S 🌱*\n\n`;
 
-            if (res.status && res.result && res.result.data) {
-                let gearStocks = res.result.data.filter(item => item.category === "GEAR STOCKS");
-                let eggStocks = res.result.data.filter(item => item.category === "EGG STOCKS");
-                let seedsStocks = res.result.data.filter(item => item.category === "SEEDS STOCKS");
-                let eventStocks = res.result.data.filter(item => item.category === "EVENT STOCKS");
-
-                content += `*🛠️ Gear Stocks:*\n`;
-                gearStocks.forEach(item => {
-                    content += `  ◦ ${item.name}: ${item.count}\n`;
+            if (res.status && res.result) {
+                content += `*🌾 Seeds Stocks:*\n`;
+                res.result.seeds.items.forEach(item => {
+                    content += `  ◦ ${item}\n`;
                 });
+                content += `  *Last Update*: ${res.result.seeds.lastUpdate}\n`;
+
+                content += `\n*🛠️ Gear Stocks:*\n`;
+                res.result.gears.items.forEach(item => {
+                    content += `  ◦ ${item}\n`;
+                });
+                content += `  *Last Update*: ${res.result.gears.lastUpdate}\n`;
 
                 content += `\n*🥚 Egg Stocks:*\n`;
-                eggStocks.forEach(item => {
-                    content += `  ◦ ${item.name}: ${item.count}\n`;
+                res.result.eggs.items.forEach(item => {
+                    content += `  ◦ ${item}\n`;
                 });
+                content += `  *Last Update*: ${res.result.eggs.lastUpdate}\n`;
 
-                content += `\n*🌾 Seeds Stocks:*\n`;
-                seedsStocks.forEach(item => {
-                    content += `  ◦ ${item.name}: ${item.count}\n`;
+                content += `\n*🎨 Cosmetic Stocks:*\n`;
+                res.result.cosmetic.items.forEach(item => {
+                    content += `  ◦ ${item}\n`;
                 });
+                content += `  *Last Update*: ${res.result.cosmetic.lastUpdate}\n`;
 
-                content += `\n*🎉 Event Stocks:*\n`;
-                eventStocks.forEach(item => {
-                    content += `  ◦ ${item.name}: ${item.count}\n`;
+                content += `\n*☀️ Summer Stocks:*\n`;
+                res.result.summer.items.forEach(item => {
+                    content += `  ◦ ${item}\n`;
                 });
+                content += `  *Last Update*: ${res.result.summer.lastUpdate}\n`;
+
+                content += `\n*🛒 Merchant Stocks:*\n`;
+                res.result.merchant.items.forEach(item => {
+                    content += `  ◦ ${item}\n`;
+                });
+                content += `  *Last Update*: ${res.result.merchant.lastUpdate}\n`;
             } else {
                 content += 'Data stok tidak ditemukan.';
             }
@@ -45,8 +56,16 @@ let handler = async (m, { usedPrefix, command, text }) => {
             let content = `*🌦️ G R O W  &  G A R D E N  W E A T H E R 🌦️*\n\n`;
 
             if (res.status && res.result) {
-                content += `📌 *Weather Status*:\n${res.result.description}\n`;
-                content += `⏰ *Ends*: ${res.result.endsStatus}`;
+                content += `📌 *Current Weather*:\n${res.result.result}\n`;
+                content += `⏰ *Ends*: ${res.result.endsStatus}\n`;
+                content += `📅 *Last Update*: ${res.result.lastUpdate}\n\n`;
+                
+                content += `*📜 Weather History:*\n`;
+                res.result.history.forEach(item => {
+                    content += `  ◦ ${item.description}\n`;
+                    content += `    *Ends*: ${item.endsStatus}\n`;
+                    content += `    *Time*: ${item.time}\n\n`;
+                });
             } else {
                 content += 'Data cuaca tidak ditemukan.';
             }
@@ -56,7 +75,7 @@ let handler = async (m, { usedPrefix, command, text }) => {
             return;
         }
     } catch (error) {
-        throw 'Server Grow Garden Error! Please Contact Admin';
+        throw eror
     }
 };
 
