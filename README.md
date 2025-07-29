@@ -52,3 +52,139 @@
   ```js
   global.btc = 'API_KEY_BOTCAHX';
   global.lann = 'API_KEY_LANN';
+````
+
+  * Jalankan bot, lalu ketik `.getip` pada bot.
+  * Kunjungi [`Profile API`](https://api.betabotz.eu.org), whitelist IP bot di:
+    `Settings -> Management IP`, lalu paste IP dari `.getip`.
+
+-----
+
+## ⚙️ Cara Konfigurasi Owner & LID
+
+Bagian ini menjelaskan bagaimana cara memasukkan nomor owner, moderator, dan premium dengan benar, terutama jika Anda menggunakan Linked Devices (LID).
+
+### 🚀 Menjalankan Bot & Mendapatkan LID
+
+1.  **Clone Repositori:**
+    ```bash
+    git clone [https://github.com/ERLANRAHMAT/BETABOTZ-MD2](https://github.com/ERLANRAHMAT/BETABOTZ-MD2)
+    ```
+2.  **Masuk ke Direktori Bot:**
+    ```bash
+    cd BETABOTZ-MD2
+    ```
+3.  **Instal Dependensi:**
+    ```bash
+    npm install
+    ```
+4.  **Jalankan Bot:**
+    ```bash
+    npm start
+    ```
+5.  **Dapatkan LID Anda:**
+      * Setelah bot berjalan, buat grup WhatsApp baru atau gunakan grup yang sudah ada.
+      * Di grup tersebut, ketik perintah `.getlid`.
+      * Bot akan membalas dengan `ID Target` (JID standar Anda) dan `LID Target` (JID Linked Device Anda).
+      * **Salin LID Target yang diberikan oleh bot.**
+
+### 📝 Mengisi `config.js` dengan LID
+
+Setelah mendapatkan LID Anda:
+
+  * Buka file `config.js`.
+  * Temukan variabel `global.owner`, `global.prems`, dan `global.mods`.
+  * Isi variabel tersebut dengan struktur `['nomorutama', 'lid']`.
+
+**Contoh:**
+
+Jika nomor utama Anda adalah `6285842647866` dan LID yang Anda dapatkan adalah `26777`, maka Anda akan mengisinya seperti ini:
+
+```javascript
+global.owner = [['6285842647866', '26777']]
+global.mods = [['6285842647866', '26777']]
+global.prems = [['6285842647866', '26777']]
+```
+
+**Penting:** Penggunaan format array di dalam array `[['nomerutama', 'lid']]` adalah kunci agar bot dapat mengenali Anda sebagai owner/mod/premium baik melalui JID standar maupun JID LID.
+
+### 🎥 Video Tutorial
+
+Untuk panduan visual yang lebih jelas, cek video ini:
+[Tutorial Untuk Fix Lid Problem Di Sc BETABOTZ-MD2 dan RTXZY-MD](http://www.youtube.com/watch?v=C5LgoJTxqwM)
+
+-----
+
+## ⚙️ Node.js Hosting
+
+Script ini **wajib** dijalankan di Node.js **versi 20+**.
+
+> Jika butuh hosting/panel Node.js 20+, kamu bisa beli ke:
+
+  * **Admin Lann:** [`Buy`](https://wa.me/62895628117900)
+
+-----
+
+## 💬 BetaBotz MD — Info & Diskusi
+
+  * Group WhatsApp Bot: [`Join`](https://chat.whatsapp.com/H8XPKS8vmHm2spliGlKY41)
+
+-----
+
+## ☕ Support
+
+\<a href="https://api.betabotz.eu.org/donasi" target="\_blank"\>
+\<img src="https://img.shields.io/badge/Buy\_Me\_A\_Coffee-FFDD00?style=for-the-badge\&logo=buy-me-a-coffee\&logoColor=black" height="32px" alt="Sociabuzz"\>
+\</a\>
+
+## 🧱 Base Original
+
+Original Base: [`ZukaBet`](https://github.com/HelgaIlham/ZukaBet)
+
+-----
+
+## ☁️ Run On Heroku
+
+[](https://heroku.com/deploy?template=https://github.com/ERLANRAHMAT/BETABOTZ-MD2)
+
+### Heroku Buildpack
+
+```bash
+heroku/nodejs
+[https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git](https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git)
+[https://github.com/clhuang/heroku-buildpack-webp-binaries.git](https://github.com/clhuang/heroku-buildpack-webp-binaries.git)
+```
+
+-----
+
+## 💻 Untuk Pengguna Windows/VPS/RDP
+
+1.  Install Git → [`Download`](https://git-scm.com/downloads)
+2.  Install Node.js → [`Download`](https://nodejs.org/en/download)
+3.  Install FFmpeg → [`Download`](https://ffmpeg.org/download.html)
+    ⚠️ *_Tambahkan FFmpeg ke environment variable (PATH)_*
+4.  Install ImageMagick → [`Download`](https://imagemagick.org/script/download.php)
+
+### Jalankan Script
+
+```bash
+git clone [https://github.com/ERLANRAHMAT/BETABOTZ-MD2](https://github.com/ERLANRAHMAT/BETABOTZ-MD2)
+cd BETABOTZ-MD2
+npm i
+npm start
+```
+
+### Pairing Code
+
+```bash
+node index.js
+--pairing
+```
+
+-----
+
+## 🙌 Kontributor
+
+Lihat semua kontributor di: [`All Contri`](https://contributor.betabotz.eu.org)
+
+-----
