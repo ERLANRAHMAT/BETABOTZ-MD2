@@ -1,6 +1,7 @@
-## ✅ Harap Dipahami Sebelum Instal
 
-### 🔄 Pembaruan:
+## Harap Dipahami Sebelum Instal
+
+### Pembaruan:
 
 * Menggunakan **baileys versi terbaru** (original, bukan mod)
 * Support **pairing code only** sesuai ketentuan
@@ -12,9 +13,9 @@
 
 ---
 
-## ⚠️ Note!
+## Note!
 
-### 🛑 Important:
+### Important:
 
 * Kamu **wajib mengisi ApiKey** agar bot berfungsi dengan baik.
 * **Tidak disarankan menginstal** di Termux atau panel tanpa `express`, `ffmpeg`, `imagemagick`, dan `webp`.
@@ -22,7 +23,7 @@
 
 ---
 
-## 🔑 ApiKey & Harga
+## ApiKey & Harga
 
 | No | Plan/Role | Limit          | Expired | Harga  |
 |----|-----------|----------------|---------|--------|
@@ -38,15 +39,127 @@
 
 ---
 
-## 🌐 Website API
+## Website API
 
 * **BOTCAHX (Opsional):** [`Register`](https://api.botcahx.eu.org)
 * **Lann (Wajib):** [`Register`](https://api.betabotz.eu.org)
 
-### 🔧 Konfigurasi ApiKey
+### ðŸ”§ Konfigurasi ApiKey
 
 1. Setelah mendapatkan ApiKey, masukkan ke `config.js`:
 
    ```js
    global.btc = 'API_KEY_BOTCAHX';
    global.lann = 'API_KEY_LANN';
+   ```
+
+2. Jalankan bot dan ketik `.getip`
+3. Buka [`Profile API`](https://api.betabotz.eu.org), whitelist IP bot di:
+   `Settings -> Management IP`, lalu tempelkan IP dari hasil `.getip`.
+
+---
+
+## Konfigurasi Owner & LID
+
+### Menjalankan Bot & Mendapatkan LID
+
+1. Clone repositori:
+   ```bash
+   git clone https://github.com/ERLANRAHMAT/BETABOTZ-MD2
+   ```
+2. Masuk direktori:
+   ```bash
+   cd BETABOTZ-MD2
+   ```
+3. Instal dependensi:
+   ```bash
+   npm install
+   ```
+4. Jalankan bot:
+   ```bash
+   npm start
+   ```
+
+5. Dapatkan LID:
+   * Buat grup WA, lalu ketik `.getlid`
+   * Salin `LID Target` dari bot
+
+### Mengisi `config.js` dengan LID
+
+Contoh:
+```js
+global.owner = [['6285842647866', '26777']]
+global.mods  = [['6285842647866', '26777']]
+global.prems = [['6285842647866', '26777']]
+```
+
+**Video Panduan:**
+[Tutorial Fix LID BETABOTZ-MD2](http://www.youtube.com/watch?v=C5LgoJTxqwM)
+
+---
+
+## Node.js Hosting
+
+Bot ini wajib dijalankan di **Node.js v20+**  
+> Butuh hosting siap pakai? Hubungi:
+* **Admin Lann:** [`Buy`](https://wa.me/62895628117900)
+
+---
+
+## Info & Diskusi
+
+* Group WhatsApp: [`Join`](https://chat.whatsapp.com/H8XPKS8vmHm2spliGlKY41)
+
+---
+
+## Support
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://api.betabotz.eu.org/donasi)
+
+---
+
+## Base Original
+
+Original Base: [`ZukaBet`](https://github.com/HelgaIlham/ZukaBet)
+
+---
+
+## Run on Heroku
+
+[Deploy](https://heroku.com/deploy?template=https://github.com/ERLANRAHMAT/BETABOTZ-MD2)
+
+### Heroku Buildpacks:
+```bash
+heroku/nodejs
+https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
+https://github.com/clhuang/heroku-buildpack-webp-binaries.git
+```
+
+---
+
+## Untuk Pengguna Windows/VPS/RDP
+
+1. Install Git â†’ [`Download`](https://git-scm.com/downloads)  
+2. Install Node.js â†’ [`Download`](https://nodejs.org/en/download)  
+3. Install FFmpeg â†’ [`Download`](https://ffmpeg.org/download.html)  
+   âš ï¸ Tambahkan ke `PATH`
+4. Install ImageMagick â†’ [`Download`](https://imagemagick.org/script/download.php)
+
+### Jalankan:
+```bash
+git clone https://github.com/ERLANRAHMAT/BETABOTZ-MD2
+cd BETABOTZ-MD2
+npm install
+npm start
+```
+
+### Pairing Code
+```bash
+node index.js --pairing
+```
+
+---
+
+## Kontributor
+
+Lihat semua kontributor di: [`All Contri`](https://contributor.betabotz.eu.org)
