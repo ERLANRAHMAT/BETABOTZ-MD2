@@ -98,6 +98,18 @@ global.prems = [['6285842647866', '26777']]
 
 ---
 
+---
+
+### Penjelasan Masalah @lid
+Beberapa gejala error yang terjadi karena masalah ini antara lain:
+- Bot **tidak merespons** pesan di dalam grup.
+- Bot **tidak mendeteksi nomor owner**, meskipun sudah tercantum di `global.owner`.
+- Bot **tidak mengenali nomor admin** dan tidak menjalankan fitur grup lain yang memerlukan akses admin atau owner.
+
+---
+
+Jika kamu mengalami masalah di atas, silakan ikuti langkah perbaikan yang telah disebutkan.
+
 ## Node.js Hosting
 
 Bot ini wajib dijalankan di **Node.js v20+**  
