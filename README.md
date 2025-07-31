@@ -94,7 +94,7 @@ global.prems = ['6285842647866', '26777']
 ```
 
 **Video Panduan:**
-[Tutorial Fix LID BETABOTZ-MD2](http://www.youtube.com/watch?v=C5LgoJTxqwM)
+[Tutorial Fix LID BETABOTZ-MD2](https://youtube.com/playlist?list=PLuQT2lE0wOYQNhk2E8JAerojcZj8ckMYs&si=kehl9mWEVmctVms0)
 
 ---
 
