@@ -16,7 +16,7 @@ module.exports = {
         if (!m) return
         //console.log(JSON.stringify(m, null, 4))
         try {
-            m = simple.smsg(this, m) || m
+            m = await simple.smsg(this, m) || m
             if (!m) return
             // console.log(m)
             m.exp = 0
