@@ -12,7 +12,7 @@ let media = await q.download()
 let isMedia = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
 let link = await (isMedia ? uploadImage : uploadImage)(media)
 
-let source = await jimp.read(await link)
+let source = await jimp.read(await media)
 let height = await source.getHeight()
 let width = await source.getWidth()
 
