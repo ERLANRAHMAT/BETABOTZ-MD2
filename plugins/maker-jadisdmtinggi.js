@@ -12,7 +12,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
             let out = await uploadImage(img);
             let old = new Date();
             
-            let img_url_api = await (await fetch(`https://api.botcahx.eu.org/api/maker/jadisdmtinggi?url=${out}&apikey=${btc}`)).buffer()
+            let img_url_api = await (await fetch(`https://api.betabotz.eu.org/api/maker/jadisdmtinggi?url=${out}&apikey=${lann}`)).buffer()
             await conn.sendMessage(m.chat, { 
                 image: img_url_api, 
                 caption: `🍟 *Fetching:* ${((new Date() - old) * 1)} ms` 
