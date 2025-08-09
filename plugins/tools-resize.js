@@ -15,7 +15,7 @@ let handler = async (m, { conn, usedPrefix, args }) => {
     let isMedia = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
     if (!isMedia) throw `The "${mime}" type is not supported.`
     let link = await (isMedia ? uploadImage : uploadImage)(media)
-    let source = await jimp.read(await link)
+    let source = await jimp.read(await media)
     let size = {
         before: {
             height: await source.getHeight(),
@@ -26,7 +26,7 @@ let handler = async (m, { conn, usedPrefix, args }) => {
             width: toWidth,
         }
     }
-    let compres = await conn.resize(link, toWidth - 0, toHeight - 0)
+    let compres = await conn.resize(media, toWidth - 0, toHeight - 0)
     let linkCompres = await (isMedia ? uploadImage : uploadImage)(compres)
     conn.sendFile(m.chat, compres, null, `
 • BEFORE
@@ -35,6 +35,18 @@ let handler = async (m, { conn, usedPrefix, args }) => {
 
 • AFTER
 *+* Width : ${size.after.width}
+*+* Height : ${size.after.height}
+
+• LINK
+*+* Original: ${link}
+*+* Compressed: ${linkCompres}`, m)
+}
+
+handler.help = ['resize <width> <height> (reply|caption)']
+handler.tags = ['tools']
+handler.command = /^(resize)$/i
+
+module.exports = handler*+* Width : ${size.after.width}
 *+* Height : ${size.after.height}
 
 • LINK
