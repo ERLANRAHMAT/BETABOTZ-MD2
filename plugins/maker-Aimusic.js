@@ -1,4 +1,4 @@
-const { default: axios } = require('axios');
+const { axios } = require('axios');
 
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
     let [title, style, ...lyricsArr] = text.split('|').map(s => s.trim());
@@ -40,9 +40,7 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 
     } catch (e) {
         console.error(e);
-//m.reply('Gagal membuat lagu....\n*Terjadi kesalahan pada server sunoAi*');
        m.reply('❌ Gagal membuat lagu.\n' + (e?.message || e));
-//await conn.sendMessage('6285803583481@s.whatsapp.net', { text: error});
     }
 };
 
