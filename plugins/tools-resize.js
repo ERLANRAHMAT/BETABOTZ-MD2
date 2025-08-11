@@ -46,16 +46,4 @@ handler.help = ['resize <width> <height> (reply|caption)']
 handler.tags = ['tools']
 handler.command = /^(resize)$/i
 
-module.exports = handler*+* Width : ${size.after.width}
-*+* Height : ${size.after.height}
-
-• LINK
-*+* Original: ${link}
-*+* Compressed: ${linkCompres}`, m)
-}
-
-handler.help = ['resize <width> <height> (reply|caption)']
-handler.tags = ['tools']
-handler.command = /^(resize)$/i
-
 module.exports = handler
