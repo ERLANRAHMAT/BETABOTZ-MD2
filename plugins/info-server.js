@@ -3,30 +3,27 @@ const fetch = require('node-fetch');
 
 let handler = async (m, { conn }) => {
   try {
-    let response = await fetch('https://ip-json.vercel.app/');
-    let json = await response.json();    
-    delete json.status;
+    let response = await fetch('https://freeipapi.com/api/json');
+    let json = await response.json();
     let caption = `乂  *S E R V E R*\n\n`;
-    caption += `┌  ◦  OS : ${os.type()} (${os.arch()} / ${os.release()})\n`;
-    caption += `│  ◦  Ram : ${formatSize(os.totalmem() - os.freemem())} / ${formatSize(os.totalmem())}\n`;    
-    json.result.timeZones = [json.result.timeZones[0]];
-    let currency = json.result.currency || {};
-    let currencyCode = currency.code || 'N/A';
-    let currencyName = currency.name || 'N/A';
+    caption += `┌  ◦  OS: ${os.type()} (${os.arch()} / ${os.release()})\n`;
+    caption += `│  ◦  RAM: ${formatSize(os.totalmem() - os.freemem())} / ${formatSize(os.totalmem())}\n`;
+    json.timeZones = [json.timeZones[0]];
+    let currencies = json.currencies || ['N/A'];
+    let currency = currencies[0] || 'N/A';
 
-    for (let key in json.result) {
-      if (key === 'currency') {
-        caption += `│  ◦  Currency Code : ${currencyCode}\n`;
-        caption += `│  ◦  Currency Name : ${currencyName}\n`;
+    for (let key in json) {
+      if (key === 'currencies') {
+        caption += `│  ◦  Currency: ${currency}\n`;
       } else {
-        caption += `│  ◦  ${ucword(key)} : ${json.result[key]}\n`;
+        caption += `│  ◦  ${ucword(key)}: ${json[key]}\n`;
       }
     }
-    caption += `│  ◦  Uptime : ${toTime(os.uptime() * 1000)}\n`;
-    caption += `└  ◦  Processor : ${os.cpus()[0].model}\n\n`;
+    caption += `│  ◦  Uptime: ${toTime(os.uptime() * 1000)}\n`;
+    caption += `└  ◦  Processor: ${os.cpus()[0].model}\n\n`;
     conn.relayMessage(m.chat, {
       extendedTextMessage: {
-        text: caption, 
+        text: caption,
         contextInfo: {
           externalAdReply: {
             title: `${toTime(os.uptime() * 1000)}`,
@@ -49,6 +46,8 @@ let handler = async (m, { conn }) => {
 
 handler.command = handler.help = ['server'];
 handler.tags = ['info'];
+handler.owner = true;
+
 module.exports = handler;
 
 function deleteMessage() {
