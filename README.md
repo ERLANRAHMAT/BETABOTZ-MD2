@@ -54,7 +54,7 @@
    ```
 
 2. Jalankan bot dan ketik `.getip`
-3. Buka [`Profile API`](https://api.betabotz.eu.org), whitelist IP bot di:
+3. Buka [`Profile API`](https://api.betabotz.eu.org/profile), whitelist IP bot di:
    `Settings -> Management IP`, lalu tempelkan IP dari hasil `.getip`.
 
 ---
@@ -114,7 +114,7 @@ Jika kamu mengalami masalah di atas, silakan ikuti langkah perbaikan yang telah 
 
 Bot ini wajib dijalankan di **Node.js v20+**  
 > Butuh hosting siap pakai? Hubungi:
-* **Admin Lann:** [`Buy`](https://wa.me/62895628117900)
+* **Admin Lann:** [`Buy`](https://wa.me/62895423183527)
 
 ---
 
