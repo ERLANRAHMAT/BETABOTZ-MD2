@@ -62,7 +62,7 @@ module.exports = {
                     if (!isNumber(user.troopcamp)) user.troopcamp = 0
                     if (!isNumber(user.coin)) user.coin = 0
                     if (!isNumber(user.atm)) user.atm = 0
-                    if (!isNumber(user.limit)) user.limit = 10
+                    if (!isNumber(user.limit)) user.limit = 100
                     if (!isNumber(user.glimit)) user.glimit = 10
                     if (!isNumber(user.tprem)) user.tprem = 0
                     if (!isNumber(user.tigame)) user.tigame = 5
@@ -298,513 +298,508 @@ module.exports = {
         
                     //mancing
                     if (!isNumber(user.paus)) user.paus = 0
-             if (!isNumber(user.kepiting)) user.kepiting = 0
-             if (!isNumber(user.gurita)) user.gurita = 0
-             if (!isNumber(user.cumi)) user.cumi= 0
-             if (!isNumber(user.buntal)) user.buntal = 0
-             if (!isNumber(user.dory)) user.dory = 0
-             if (!isNumber(user.lumba)) user.lumba = 0
-             if (!isNumber(user.lobster)) user.lobster = 0
-             if (!isNumber(user.hiu)) user.hiu = 0
-             if (!isNumber(user.udang)) user.udang = 0
-             if (!isNumber(user.ikan)) user.ikan = 0
-             if (!isNumber(user.nila)) user.nila = 0
-             if (!isNumber(user.bawal)) user.bawal = 0
-             if (!isNumber(user.lele)) user.lele = 0
-             if (!isNumber(user.orca)) user.orca = 0
-                
-             if (!isNumber(user.banteng)) user.banteng = 0
-             if (!isNumber(user.harimau)) user.harimau = 0
-             if (!isNumber(user.gajah)) user.gajah = 0
-             if (!isNumber(user.kambing)) user.kambing = 0
-             if (!isNumber(user.panda)) user.panda = 0
-             if (!isNumber(user.buaya)) user.buaya = 0
-             if (!isNumber(user.kerbau)) user.kerbau = 0
-             if (!isNumber(user.sapi)) user.sapi = 0
-             if (!isNumber(user.monyet)) user.monyet = 0
-             if (!isNumber(user.babihutan)) user.babihutan = 0
-             if (!isNumber(user.babi)) user.babi = 0
-             if (!isNumber(user.ayam)) user.ayam = 0
+                     if (!isNumber(user.kepiting)) user.kepiting = 0
+                     if (!isNumber(user.gurita)) user.gurita = 0
+                     if (!isNumber(user.cumi)) user.cumi= 0
+                     if (!isNumber(user.buntal)) user.buntal = 0
+                     if (!isNumber(user.dory)) user.dory = 0
+                     if (!isNumber(user.lumba)) user.lumba = 0
+                     if (!isNumber(user.lobster)) user.lobster = 0
+                     if (!isNumber(user.hiu)) user.hiu = 0
+                     if (!isNumber(user.udang)) user.udang = 0
+                     if (!isNumber(user.ikan)) user.ikan = 0
+                     if (!isNumber(user.nila)) user.nila = 0
+                     if (!isNumber(user.bawal)) user.bawal = 0
+                     if (!isNumber(user.lele)) user.lele = 0
+                     if (!isNumber(user.orca)) user.orca = 0
+                        
+                     if (!isNumber(user.banteng)) user.banteng = 0
+                     if (!isNumber(user.harimau)) user.harimau = 0
+                     if (!isNumber(user.gajah)) user.gajah = 0
+                     if (!isNumber(user.kambing)) user.kambing = 0
+                     if (!isNumber(user.panda)) user.panda = 0
+                     if (!isNumber(user.buaya)) user.buaya = 0
+                     if (!isNumber(user.kerbau)) user.kerbau = 0
+                     if (!isNumber(user.sapi)) user.sapi = 0
+                     if (!isNumber(user.monyet)) user.monyet = 0
+                     if (!isNumber(user.babihutan)) user.babihutan = 0
+                     if (!isNumber(user.babi)) user.babi = 0
+                     if (!isNumber(user.ayam)) user.ayam = 0
          
-                    if (!isNumber(user.lastadventure)) user.lastadventure = 0
-                    if (!isNumber(user.lastberburu)) user.lastberburu = 0
-                    if (!isNumber(user.lastkill)) user.lastkill = 0
-                    if (!isNumber(user.lastfishing)) user.lastfishing = 0
-                    if (!isNumber(user.lastdungeon)) user.lastdungeon = 0
-                    if (!isNumber(user.lastwar)) user.lastwar = 0
-                    if (!isNumber(user.lastsda)) user.lastsda = 0
-                    if (!isNumber(user.lastberbru)) user.lastberbru = 0
-                    if (!isNumber(user.lastduel)) user.lastduel = 0
-                    if (!isNumber(user.lastjb)) user.lastjb = 0
-                    if (!isNumber(user.lastSetStatus)) user.lastSetStatus = 0
-                    if (!isNumber(user.lastmining)) user.lastmining = 0
-                    if (!isNumber(user.lasthunt)) user.lasthunt = 0
-                    if (!isNumber(user.lasthun)) user.lasthun = 0
-                    if (!isNumber(user.lastngocok)) user.lastngocok = 0
-                    if (!isNumber(user.lastgift)) user.lastgift = 0
-                    if (!isNumber(user.lastrob)) user.lastrob = 0
-                    if (!isNumber(user.lastngojek)) user.lastngojek = 0
-                    
-                    if (!isNumber(user.lastngewe)) user.lastngewe = 0
-                    if (!isNumber(user.ngewe)) user.ngewe = 0
-                    if (!isNumber(user.jualan)) user.jualan = 0
-                    if (!isNumber(user.lastjualan)) user.lastjualan = 0
-                    if (!isNumber(user.ngocokk)) user.ngocokk = 0
-                    if (!isNumber(user.lastngocokk)) user.lastngocokk = 0
-                    if (!isNumber(user.lastgrab)) user.lastgrab = 0
-                    if (!isNumber(user.lastberkebon)) user.lastberkebon = 0
-                    if (!isNumber(user.lastcodereg)) user.lastcodereg = 0
-                    if (!isNumber(user.lastdagang)) user.lastdagang = 0
-                    if (!isNumber(user.lasthourly)) user.lasthourly = 0
-                    if (!isNumber(user.lastweekly)) user.lastweekly = 0
-                    if (!isNumber(user.lastyearly)) user.lastyearly = 0
-                    if (!isNumber(user.lastmonthly)) user.lastmonthly = 0
-                    if (!isNumber(user.lastIstigfar)) user.lastIstigfar = 0
-                    if (!isNumber(user.lastturu)) user.lastturu = 0
-                    if (!isNumber(user.lastseen)) user.lastseen = 0
-                    if (!isNumber(user.lastbansos)) user.lastbansos = 0
-                    if (!isNumber(user.lastrampok)) user.lastrampok = 0
-                    if (!('registered' in user)) user.registered = false
-                    if (!user.registered) {
-                    if (!('name' in user)) user.name = this.getName(m.sender)
-        
-                    if (!isNumber(user.apel)) user.apel = 0
-                    if (!isNumber(user.anggur)) user.anggur = 0
-                    if (!isNumber(user.jeruk)) user.jeruk = 0
-                    if (!isNumber(user.semangka)) user.semangka = 0
-                    if (!isNumber(user.mangga)) user.mangga = 0
-                    if (!isNumber(user.stroberi)) user.stroberi = 0
-                    if (!isNumber(user.pisang)) user.pisang = 0
-                    if (!isNumber(user.kayu)) user.kayu = 0
-                    if (!isNumber(user.makanan)) user.makanan = 0
-                    if (!isNumber(user.bibitanggur)) user.bibitanggur = 0
-                    if (!isNumber(user.bibitpisang)) user.bibitpisang = 0
-                    if (!isNumber(user.bibitapel)) user.bibitapel = 0
-                    if (!isNumber(user.bibitmangga)) user.bibitmangga = 0
-                    if (!isNumber(user.bibitjeruk)) user.bibitjeruk = 0
-                   
-                    //sambung kata
-                    if (!isNumber(user.skata)) user.skata = 0
+                      if (!isNumber(user.lastadventure)) user.lastadventure = 0
+                      if (!isNumber(user.lastberburu)) user.lastberburu = 0
+                      if (!isNumber(user.lastkill)) user.lastkill = 0
+                      if (!isNumber(user.lastfishing)) user.lastfishing = 0
+                      if (!isNumber(user.lastdungeon)) user.lastdungeon = 0
+                      if (!isNumber(user.lastwar)) user.lastwar = 0
+                      if (!isNumber(user.lastsda)) user.lastsda = 0
+                      if (!isNumber(user.lastberbru)) user.lastberbru = 0
+                      if (!isNumber(user.lastduel)) user.lastduel = 0
+                      if (!isNumber(user.lastjb)) user.lastjb = 0
+                      if (!isNumber(user.lastSetStatus)) user.lastSetStatus = 0
+                      if (!isNumber(user.lastmining)) user.lastmining = 0
+                      if (!isNumber(user.lasthunt)) user.lasthunt = 0
+                      if (!isNumber(user.lasthun)) user.lasthun = 0
+                      if (!isNumber(user.lastngocok)) user.lastngocok = 0
+                      if (!isNumber(user.lastgift)) user.lastgift = 0
+                      if (!isNumber(user.lastrob)) user.lastrob = 0
+                      if (!isNumber(user.lastngojek)) user.lastngojek = 0
+                      if (!isNumber(user.lastngewe)) user.lastngewe = 0
+                      if (!isNumber(user.ngewe)) user.ngewe = 0
+                      if (!isNumber(user.jualan)) user.jualan = 0
+                      if (!isNumber(user.lastjualan)) user.lastjualan = 0
+                      if (!isNumber(user.ngocokk)) user.ngocokk = 0
+                      if (!isNumber(user.lastngocokk)) user.lastngocokk = 0
+                      if (!isNumber(user.lastgrab)) user.lastgrab = 0
+                      if (!isNumber(user.lastberkebon)) user.lastberkebon = 0
+                      if (!isNumber(user.lastcodereg)) user.lastcodereg = 0
+                      if (!isNumber(user.lastdagang)) user.lastdagang = 0
+                      if (!isNumber(user.lasthourly)) user.lasthourly = 0
+                      if (!isNumber(user.lastweekly)) user.lastweekly = 0
+                      if (!isNumber(user.lastyearly)) user.lastyearly = 0
+                      if (!isNumber(user.lastmonthly)) user.lastmonthly = 0
+                      if (!isNumber(user.lastIstigfar)) user.lastIstigfar = 0
+                      if (!isNumber(user.lastturu)) user.lastturu = 0
+                      if (!isNumber(user.lastseen)) user.lastseen = 0
+                      if (!isNumber(user.lastbansos)) user.lastbansos = 0
+                      if (!isNumber(user.lastrampok)) user.lastrampok = 0
+                      if (!('registered' in user)) user.registered = false
+                      if (!user.registered) {
+                      if (!('name' in user)) user.name = this.getName(m.sender)
+          
+                      if (!isNumber(user.apel)) user.apel = 0
+                      if (!isNumber(user.anggur)) user.anggur = 0
+                      if (!isNumber(user.jeruk)) user.jeruk = 0
+                      if (!isNumber(user.semangka)) user.semangka = 0
+                      if (!isNumber(user.mangga)) user.mangga = 0
+                      if (!isNumber(user.stroberi)) user.stroberi = 0
+                      if (!isNumber(user.pisang)) user.pisang = 0
+                      if (!isNumber(user.kayu)) user.kayu = 0
+                      if (!isNumber(user.makanan)) user.makanan = 0
+                      if (!isNumber(user.bibitanggur)) user.bibitanggur = 0
+                      if (!isNumber(user.bibitpisang)) user.bibitpisang = 0
+                      if (!isNumber(user.bibitapel)) user.bibitapel = 0
+                      if (!isNumber(user.bibitmangga)) user.bibitmangga = 0
+                      if (!isNumber(user.bibitjeruk)) user.bibitjeruk = 0
+                     
+                      //sambung kata
+                      if (!isNumber(user.skata)) user.skata = 0
         
                       
-                        if (!isNumber(user.age)) user.age = -1
-                        if (!isNumber(user.premiumDate)) user.premiumDate = -1
-                        if (!isNumber(user.regTime)) user.regTime = -1
+                      if (!isNumber(user.age)) user.age = -1
+                      if (!isNumber(user.premiumDate)) user.premiumDate = -1
+                      if (!isNumber(user.regTime)) user.regTime = -1
                         
         }
-                    if (!isNumber(user.level)) user.level = 0
-                    if (!user.job) user.job = 'Pengangguran'
-                    if (!isNumber(user.jobexp)) user.jobexp = 0
-                    if (!('jail' in user)) user.jail = false
-                    if (!('penjara' in user)) user.penjara = false
-                    if (!('dirawat' in user)) user.dirawat = false
-                    if (!isNumber(user.antarpaket)) user.antarpaket = 0
-                    if (!user.lbars) user.lbars = '[▒▒▒▒▒▒▒▒▒]'
-                    if (!user.premium) user.premium = false
-                    if (!user.premiumTime) user.premiumTime= 0
-                    if (!user.vip) user.vip = 'tidak'
-                    if (!isNumber(user.vipPoin)) user.vipPoin = 0
-                    if (!user.role) user.role = 'Newbie ㋡'
-                    if (!('autolevelup' in user)) user.autolevelup = true
-                    if (!('lastIstigfar' in user)) user.lastIstigfar = true
+                      if (!isNumber(user.level)) user.level = 0
+                      if (!user.job) user.job = 'Pengangguran'
+                      if (!isNumber(user.jobexp)) user.jobexp = 0
+                      if (!('jail' in user)) user.jail = false
+                      if (!('penjara' in user)) user.penjara = false
+                      if (!('dirawat' in user)) user.dirawat = false
+                      if (!isNumber(user.antarpaket)) user.antarpaket = 0
+                      if (!user.lbars) user.lbars = '[▒▒▒▒▒▒▒▒▒]'
+                      if (!user.premium) user.premium = false
+                      if (!user.premiumTime) user.premiumTime= 0
+                      if (!user.vip) user.vip = 'tidak'
+                      if (!isNumber(user.vipPoin)) user.vipPoin = 0
+                      if (!user.role) user.role = 'Newbie ㋡'
+                      if (!('autolevelup' in user)) user.autolevelup = true
+                      if (!('lastIstigfar' in user)) user.lastIstigfar = true
                   
-                    //demon slayer dan rpg baru
-                    if (!("skill" in user)) user.skill = ""
-                    if (!("korps" in user)) user.korps = ""
-                    if (!("korpsgrade" in user)) user.korpsgrade = ""
-                    if (!("breaths" in user)) user.breaths = ""
-                    if (!("magic" in user)) user.magic = ""
-                    if (!("demon" in user)) user.demon = ""
-                    if (!("job" in user)) user.job = "Not Have"  
-                    if (!isNumber(user.darahiblis)) user.darahiblis = 0
-                    if (!isNumber(user.lastyoutuber)) user.lastyoutuber = 0
-                    if (!isNumber(user.subscribers)) user.subscribers = 0
-                    if (!isNumber(user.viewers)) user.viewers = 0
-                    if (!isNumber(user.like)) user.like = 0
-                    if (!isNumber(user.playButton)) user.playButton = 0
-                    if (!isNumber(user.demonblood)) user.demonblood = 0
-                    if (!isNumber(user.demonkill)) user.demonkill = 0
-                    if (!isNumber(user.hashirakill)) user.hashirakill = 0
-                    if (!isNumber(user.alldemonkill)) user.alldemonkill = 0
-                    if (!isNumber(user.allhashirakill)) user.allhashirakill = 0
-                    if (!isNumber(user.attack)) user.attack = 0
-                    if (!isNumber(user.strenght)) user.strenght = 0
-                    if (!isNumber(user.speed)) user.speed = 0
-                    if (!isNumber(user.defense)) user.defense = 0
-                    if (!isNumber(user.regeneration)) user.regeneration = 0                    
-                    if (!isNumber(user.dana)) user.dana = 0
-                    if (!isNumber(user.gopay)) user.gopay = 0
-                    if (!isNumber(user.ovo)) user.ovo = 0
-                    if (!isNumber(user.lastngaji)) user.lastngaji = 0
-                    if (!isNumber(user.lastlonte)) user.lastlonte = 0
-                    if (!isNumber(user.lastkoboy)) user.lastkoboy = 0
-                    if (!isNumber(user.lastdate)) user.lastdate = 0
-                    if (!isNumber(user.lasttambang)) user.lasttambang = 0
-                    if (!isNumber(user.lastngepet)) user.lastngepet = 0
-                    if (!isNumber(user.lasttaxi)) user.lasttaxi = 0
-                    if (!isNumber(user.taxi)) user.taxi = 0
-                    if (!isNumber(user.lastjobkerja)) user.lastjobkerja = 0
-                    if (!isNumber(user.lastjobchange)) user.lastjobchange = 0  
-                } else global.db.data.users[m.sender] = {
-                    lastjobkerja: 0,
-                    lastjobchange: 0,
-                    taxi: 0,
-                    lasttaxi: 0,
-                    lastyoutuber: 0,
-                    subscribers: 0,
-                    viewers: 0,
-                    like: 0,
-                    playButton: 0,
-                    saldo: 0,
-                    pengeluaran: 0,
-                    healt: 100,
-                    health: 100,
-                    energi: 100,
-                    power: 100,
-                    title: '',
-                    haus: 100,
-                    laper: 100,
-                    tprem: 0,
-                    stamina : 100,
-                    level: 0,
-                    follow: 0,
-                    lastfollow: 0,
-                    followers: 0,
-                    pasangan: '',
-                    sahabat: '', 
-                    location: 'Gubuk', 
-                    titlein: 'Belum Ada',
-                    ultah: '', 
-                    waifu: 'Belum Di Set', 
-                    husbu: 'Belum Di Set',
-                    pc : 0,
-                    exp: 0,
-                    coin: 0,
-                    atm: 0,
-                    limit: 10,
-                    skata: 0,
-                    tigame: 999,
-                    lastclaim: 0,
-                    judilast: 0,
-                    lastnambang: 0,
-                    lastnebang: 0,
-                    lastmulung: 0,
-                    lastkerja: 0,
-                    lastmaling: 0,
-                    lastbunuhi: 0,
-                    lastbisnis: 0,
-                    lastberbisnis: 0,
-                    bisnis: 0,
-                    berbisnis: 0,
-                    lastmancing: 0,
-                    pancing: 0,
-                    pancingan: 0,
-                    totalPancingan: 0,
-                    kardus: 0,
-                    botol: 0,
-                    kaleng: 0,
-                    money: 0,
-                    litecoin: 0,
-                    chip: 0,
-                    tiketcoin: 0,
-                    poin: 0,
-                    bank: 0,
-                    balance: 0,
-                    diamond: 0,
-                    emerald: 0,
-                    rock: 0,
-                    wood: 0,
-                    berlian: 0,
-                    iron: 0,
-                    emas: 0,
-                    common: 0,
-                    uncommon: 0,
-                    mythic: 0,
-                    legendary: 0,
-                    rumahsakit: 0,
-                    tambang: 0,
-                    camptroops: 0,
-                    pertanian: 0,
-                    fortress: 0,
-                    trofi: 0,
-                    rtrofi: 'perunggu',
-                    makanan: 0,
-                    troopcamp: 0,
-                    shield: 0,
-                    arlok: 0,
-                    ojekk: 0,
-                    ojek: 0,
-                    lastngewe: 0,
-                    ngewe: 0,
-                    polisi: 0,
-                    pedagang: 0,
-                    dokter: 0,
-                    petani: 0,
-                    montir: 0,
-                    kuli: 0,
-                    korbanngocok: 0,
-                    //+ stamina
-                    coal: 0,
-                    korekapi: 0,
-                    ayambakar: 0,
-                    gulai: 0,
-                    rendang: 0,
-                    ayamgoreng: 0,
-                    oporayam: 0,
-                    steak: 0,
-                    babipanggang: 0,
-                    ikanbakar: 0,
-                    lelebakar: 0,
-                    nilabakar: 0,
-                    bawalbakar: 0,
-                    udangbakar: 0,
-                    pausbakar: 0,
-                    kepitingbakar: 0,
-                    soda: 0,
-                    vodka: 0,
-                    ganja: 0,
-                    bandage: 0,
-                    sushi: 0,
-                    roti: 0,
-                    //meracik
-                    ramuan: 0,
-                    lastramuanclaim: 0,
-                    gems: 0,
-                    cupon: 0,
-                    lastgemsclaim: 0,
-                    eleksirb: 0,
-                    penduduk: 0,
-                    archer: 0,
-                    shadow: 0,
-                    laststringclaim: 0,
-                    lastpotionclaim: 0,
-                    lastswordclaim: 0,
-                    lastweaponclaim: 0,
-                    lastironclaim: 0,
-                    lastmancingclaim: 0,
-                    anakpancingan: 0,
+                      //demon slayer dan rpg baru
+                      if (!("skill" in user)) user.skill = ""
+                      if (!("korps" in user)) user.korps = ""
+                      if (!("korpsgrade" in user)) user.korpsgrade = ""
+                      if (!("breaths" in user)) user.breaths = ""
+                      if (!("magic" in user)) user.magic = ""
+                      if (!("demon" in user)) user.demon = ""
+                      if (!isNumber(user.darahiblis)) user.darahiblis = 0
+                      if (!isNumber(user.demonblood)) user.demonblood = 0
+                      if (!isNumber(user.demonkill)) user.demonkill = 0
+                      if (!isNumber(user.hashirakill)) user.hashirakill = 0
+                      if (!isNumber(user.alldemonkill)) user.alldemonkill = 0
+                      if (!isNumber(user.allhashirakill)) user.allhashirakill = 0
+                      if (!isNumber(user.attack)) user.attack = 0
+                      if (!isNumber(user.strenght)) user.strenght = 0
+                      if (!isNumber(user.speed)) user.speed = 0
+                      if (!isNumber(user.defense)) user.defense = 0
+                      if (!isNumber(user.regeneration)) user.regeneration = 0                    
+                      if (!isNumber(user.dana)) user.dana = 0
+                      if (!isNumber(user.gopay)) user.gopay = 0
+                      if (!isNumber(user.ovo)) user.ovo = 0
+                      if (!isNumber(user.lastngaji)) user.lastngaji = 0
+                      if (!isNumber(user.lastlonte)) user.lastlonte = 0
+                      if (!isNumber(user.lastkoboy)) user.lastkoboy = 0
+                      if (!isNumber(user.lastdate)) user.lastdate = 0
+                      if (!isNumber(user.lasttambang)) user.lasttambang = 0
+                      if (!isNumber(user.lastngepet)) user.lastngepet = 0
+                      if (!isNumber(user.lasttaxi)) user.lasttaxi = 0
+                      if (!isNumber(user.taxi)) user.taxi = 0  
+                      if (!isNumber(user.lastyoutuber)) user.lastyoutuber = 0
+                      if (!isNumber(user.subscribers)) user.subscribers = 0
+                      if (!isNumber(user.viewers)) user.viewers = 0
+                      if (!isNumber(user.like)) user.like = 0
+                      if (!isNumber(user.playButton)) user.playButton = 0
+                   
+                  } else global.db.data.users[m.sender] = {
+                      taxi: 0,
+                      lasttaxi: 0,
+                      lastyoutuber: 0,
+                      subscribers: 0,
+                      viewers: 0,
+                      like: 0,
+                      playButton: 0,
+                      saldo: 0,
+                      pengeluaran: 0,
+                      healt: 100,
+                      health: 100,
+                      energi: 100,
+                      power: 100,
+                      title: '',
+                      haus: 100,
+                      laper: 100,
+                      tprem: 0,
+                      stamina : 100,
+                      level: 0,
+                      follow: 0,
+                      lastfollow: 0,
+                      followers: 0,
+                      pasangan: '',
+                      sahabat: '', 
+                      location: 'Gubuk', 
+                      titlein: 'Belum Ada',
+                      ultah: '', 
+                      waifu: 'Belum Di Set', 
+                      husbu: 'Belum Di Set',
+                      pc : 0,
+                      exp: 0,
+                      coin: 0,
+                      atm: 0,
+                      limit: 100,
+                      skata: 0,
+                      tigame: 999,
+                      lastclaim: 0,
+                      judilast: 0,
+                      lastnambang: 0,
+                      lastnebang: 0,
+                      lastmulung: 0,
+                      lastkerja: 0,
+                      lastmaling: 0,
+                      lastbunuhi: 0,
+                      lastbisnis: 0,
+                      lastberbisnis: 0,
+                      bisnis: 0,
+                      berbisnis: 0,
+                      lastmancing: 0,
+                      pancing: 0,
+                      pancingan: 0,
+                      totalPancingan: 0,
+                      kardus: 0,
+                      botol: 0,
+                      kaleng: 0,
+                      money: 0,
+                      litecoin: 0,
+                      chip: 0,
+                      tiketcoin: 0,
+                      poin: 0,
+                      bank: 0,
+                      balance: 0,
+                      diamond: 0,
+                      emerald: 0,
+                      rock: 0,
+                      wood: 0,
+                      berlian: 0,
+                      iron: 0,
+                      emas: 0,
+                      common: 0,
+                      uncommon: 0,
+                      mythic: 0,
+                      legendary: 0,
+                      rumahsakit: 0,
+                      tambang: 0,
+                      camptroops: 0,
+                      pertanian: 0,
+                      fortress: 0,
+                      trofi: 0,
+                      rtrofi: 'perunggu',
+                      makanan: 0,
+                      troopcamp: 0,
+                      shield: 0,
+                      arlok: 0,
+                      ojekk: 0,
+                      ojek: 0,
+                      lastngewe: 0,
+                      ngewe: 0,
+                      polisi: 0,
+                      pedagang: 0,
+                      dokter: 0,
+                      petani: 0,
+                      montir: 0,
+                      kuli: 0,
+                      korbanngocok: 0,
+                      //+ stamina
+                      coal: 0,
+                      korekapi: 0,
+                      ayambakar: 0,
+                      gulai: 0,
+                      rendang: 0,
+                      ayamgoreng: 0,
+                      oporayam: 0,
+                      steak: 0,
+                      babipanggang: 0,
+                      ikanbakar: 0,
+                      lelebakar: 0,
+                      nilabakar: 0,
+                      bawalbakar: 0,
+                      udangbakar: 0,
+                      pausbakar: 0,
+                      kepitingbakar: 0,
+                      soda: 0,
+                      vodka: 0,
+                      ganja: 0,
+                      bandage: 0,
+                      sushi: 0,
+                      roti: 0,
+                      //meracik
+                      ramuan: 0,
+                      lastramuanclaim: 0,
+                      gems: 0,
+                      cupon: 0,
+                      lastgemsclaim: 0,
+                      eleksirb: 0,
+                      penduduk: 0,
+                      archer: 0,
+                      shadow: 0,
+                      laststringclaim: 0,
+                      lastpotionclaim: 0,
+                      lastswordclaim: 0,
+                      lastweaponclaim: 0,
+                      lastironclaim: 0,
+                      lastmancingclaim: 0,
+                      anakpancingan: 0,
                     //mancing
-             as: 0,
-            paus: 0,
-            kepiting: 0,
-            gurita: 0,
-            cumi: 0,
-            buntal: 0,
-            dory: 0,
-            lumba: 0,
-            lobster: 0,
-            hiu: 0,
-            lele: 0,
-            nila: 0,
-            bawal: 0,
-            udang: 0,
-            ikan: 0,
-            orca: 0,
-            banteng: 0,
-            harimau: 0,
-            gajah: 0,
-            kambing: 0,
-            panda: 0,
-            buaya: 0,
-            kerbau : 0,
-            sapi: 0,
-            monyet : 0,
-            babihutan: 0,
-            babi: 0,
-            ayam: 0,
-            apel: 20,
-            ayamb: 0,
-            ayamg: 0,
-            ssapi: 0,
-            sapir: 0,
-            leleb: 0,
-            leleg: 0,
-            esteh: 0,
-                    pet: 0,
-                    potion: 0,
-                    sampah: 0,
-                    kucing: 0,
-                    kucinglastclaim: 0,
-                    kucingexp: 0,
-                    kuda: 0,
-                    kudalastclaim: 0,
-                    rubah: 0,
-                    rubahlastclaim: 0,
-                    rubahexp: 0,
-                    anjing: 0,
-                    anjinglastclaim: 0,
-                    anjingexp: 0,
-                    naga: 0,
-                    nagalastclaim: 0,
-                    griffin: 0,
-                    griffinlastclaim: 0,
-                    centaur: 0,
-                    fightnaga: 0,
-                    centaurlastclaim: 0,
-                    serigala: 0,
-                    serigalalastclaim: 0,
-                    serigalaexp: 0,
-                    phonix: 0,
-                    phonixlastclaim: 0,
-                    phonixexp : 0,
-                    makanannaga: 0,
-                    makananphonix: 0,
-                    makanancentaur: 0,
-                    makananserigala: 0,
-                    
-                    Banneduser: false,
-                    BannedReason: '',
-                    banned: false, 
-                    bannedTime: 0,
-                    warn: 0,
-                    afk: -1,
-                    afkReason: '',
-                    anakkucing: 0,
-                    anakkuda: 0,
-                    anakrubah: 0,
-                    anakanjing: 0,
-                    makananpet: 0,
-                    makananPet: 0,
-                    antispam: 0,
-                    antispamlastclaim: 0,
-                    kayu: 0,
-                    batu: 0,
-                    string: 0,
-                    umpan: 0,
-                    armor: 0,
-                    armordurability: 0,
-                    weapon: 0,
-                    weapondurability: 0,
-                    sword: 0,
-                    sworddurability: 0,
-                    pickaxe: 0,
-                    pickaxedurability: 0,
-                    fishingrod: 0,
-                    fishingroddurability: 0,
-                    katana: 0,
-                    katanadurability: 0,
-                    bow: 0,
-                    bowdurability: 0,
-                    kapak: 0,
-                    kapakdurability: 0,
-                    axe: 0,
-                    axedurability: 0,
-                    pisau: 0,
-                    pisaudurability: 0,                  
-                    kerjasatu: 0,
-                    kerjadua: 0,
-                    kerjatiga: 0,
-                    kerjaempat: 0,
-                    kerjalima: 0,
-                    kerjaenam: 0,
-                    kerjatujuh: 0,
-                    kerjadelapan: 0,
-                    kerjasembilan: 0,
-                    kerjasepuluh: 0,
-                    kerjasebelas: 0,
-                    kerjaduabelas: 0,
-                    kerjatigabelas: 0,
-                    kerjaempatbelas: 0,
-                    kerjalimabelas: 0,    
-                    pekerjaansatu: 0,
-                    pekerjaandua: 0,
-                    pekerjaantiga: 0,
-                    pekerjaanempat: 0,
-                    pekerjaanlima: 0,
-                    pekerjaanenam: 0,
-                    pekerjaantujuh: 0,
-                    pekerjaandelapan: 0,
-                    pekerjaansembilan: 0,
-                    pekerjaansepuluh: 0,
-                    pekerjaansebelas: 0,
-                    pekerjaanduabelas: 0,
-                    pekerjaantigabelas: 0,
-                    pekerjaanempatbelas: 0,
-                    pekerjaanlimabelas: 0,                    
-                    lastadventure: 0,
-                    lastwar: 0,
-                    lastberkebon: 0,
-                    lastberburu: 0,
-                    lastbansos: 0,
-                    lastrampok: 0,
-                    lastkill: 0,
-                    lastfishing: 0,
-                    lastdungeon: 0,
-                    lastduel: 0,
-                    lastmining: 0,
-                    lasthourly: 0,
-                    lastdagang: 0,
-                    lasthunt: 0,
-                    lasthun : 0,
-                    lastweekly: 0,
-                    lastmonthly: 0,
-                    lastyearly: 0,
-                    lastjb: 0,
-                    lastrob: 0,
-                    lastdaang: 0,
-                    lastngojek: 0,
-                    lastgrab: 0,
-                    lastngocok: 0,
-                    lastturu: 0,
-                    lastseen: 0,
-                    lastSetStatus: 0,
-                    registered: false,
-                    apel: 20,
-                    mangga: 0,
-                    stroberi: 0,
-                    semangka: 0,
-                    jeruk: 0,
-                    semangka: 0,
-                    name: this.getName(m.sender),
-                    age: -1,
-                    regTime: -1,
-                    premiumDate: -1, 
-                    premium: false,
-                    premiumTime: 0,
-                    vip: 'tidak', 
-                    vipPoin: 0,
-                    job: 'Pengangguran', 
-                    jobexp: 0,
-                    jail: false, 
-                    penjara: false, 
-                    antarpaket: 0,
-                    dirawat: false, 
-                    lbars: '[▒▒▒▒▒▒▒▒▒]', 
-                    role: 'Newbie ㋡', 
-                    registered: false,
-                    name: this.getName(m.sender),
-                    age: -1,
-                    regTime: -1,
-                    autolevelup: true,
-                    lastIstigfar: 0,
-                    
-                    skill: "",
-                    korps: "",
-                    korpsgrade: "",
-                    demon: "",
-                    breaths: "",
-                    magic: "",
-                    darahiblis: 0,
-                    demonblood: 0,
-                    demonkill: 0,
-                    hashirakill: 0,
-                    alldemonkill: 0,
-                    allhashirakill: 0,
-                    attack: 0,
-                    speed: 0,
-                    strenght: 0,
-                    defense: 0,
-                    regeneration: 0,
-                    ovo: 0,
-                    dana: 0,
-                    gopay: 0,
-                    lastngaji: 0,
-                    lastlonte: 0,
-                    lastkoboy: 0,
-                    lastdate: 0,
-                    lasttambang: 0,
-                    lastngepet: 0,
-                }
+                      as: 0,
+                      paus: 0,
+                      kepiting: 0,
+                      gurita: 0,
+                      cumi: 0,
+                      buntal: 0,
+                      dory: 0,
+                      lumba: 0,
+                      lobster: 0,
+                      hiu: 0,
+                      lele: 0,
+                      nila: 0,
+                      bawal: 0,
+                      udang: 0,
+                      ikan: 0,
+                      orca: 0,
+                      banteng: 0,
+                      harimau: 0,
+                      gajah: 0,
+                      kambing: 0,
+                      panda: 0,
+                      buaya: 0,
+                      kerbau : 0,
+                      sapi: 0,
+                      monyet : 0,
+                      babihutan: 0,
+                      babi: 0,
+                      ayam: 0,
+                      apel: 20,
+                      ayamb: 0,
+                      ayamg: 0,
+                      ssapi: 0,
+                      sapir: 0,
+                      leleb: 0,
+                      leleg: 0,
+                      esteh: 0,
+                      pet: 0,
+                      potion: 0,
+                      sampah: 0,
+                      kucing: 0,
+                      kucinglastclaim: 0,
+                      kucingexp: 0,
+                      kuda: 0,
+                      kudalastclaim: 0,
+                      rubah: 0,
+                      rubahlastclaim: 0,
+                      rubahexp: 0,
+                      anjing: 0,
+                      anjinglastclaim: 0,
+                      anjingexp: 0,
+                      naga: 0,
+                      nagalastclaim: 0,
+                      griffin: 0,
+                      griffinlastclaim: 0,
+                      centaur: 0,
+                      fightnaga: 0,
+                      centaurlastclaim: 0,
+                      serigala: 0,
+                      serigalalastclaim: 0,
+                      serigalaexp: 0,
+                      phonix: 0,
+                      phonixlastclaim: 0,
+                      phonixexp : 0,
+                      makanannaga: 0,
+                      makananphonix: 0,
+                      makanancentaur: 0,
+                      makananserigala: 0,
+                      
+                      Banneduser: false,
+                      BannedReason: '',
+                      banned: false, 
+                      bannedTime: 0,
+                      warn: 0,
+                      afk: -1,
+                      afkReason: '',
+                      anakkucing: 0,
+                      anakkuda: 0,
+                      anakrubah: 0,
+                      anakanjing: 0,
+                      makananpet: 0,
+                      makananPet: 0,
+                      antispam: 0,
+                      antispamlastclaim: 0,
+                      kayu: 0,
+                      batu: 0,
+                      string: 0,
+                      umpan: 0,
+                      armor: 0,
+                      armordurability: 0,
+                      weapon: 0,
+                      weapondurability: 0,
+                      sword: 0,
+                      sworddurability: 0,
+                      pickaxe: 0,
+                      pickaxedurability: 0,
+                      fishingrod: 0,
+                      fishingroddurability: 0,
+                      katana: 0,
+                      katanadurability: 0,
+                      bow: 0,
+                      bowdurability: 0,
+                      kapak: 0,
+                      kapakdurability: 0,
+                      axe: 0,
+                      axedurability: 0,
+                      pisau: 0,
+                      pisaudurability: 0,                  
+                      kerjasatu: 0,
+                      kerjadua: 0,
+                      kerjatiga: 0,
+                      kerjaempat: 0,
+                      kerjalima: 0,
+                      kerjaenam: 0,
+                      kerjatujuh: 0,
+                      kerjadelapan: 0,
+                      kerjasembilan: 0,
+                      kerjasepuluh: 0,
+                      kerjasebelas: 0,
+                      kerjaduabelas: 0,
+                      kerjatigabelas: 0,
+                      kerjaempatbelas: 0,
+                      kerjalimabelas: 0,    
+                      pekerjaansatu: 0,
+                      pekerjaandua: 0,
+                      pekerjaantiga: 0,
+                      pekerjaanempat: 0,
+                      pekerjaanlima: 0,
+                      pekerjaanenam: 0,
+                      pekerjaantujuh: 0,
+                      pekerjaandelapan: 0,
+                      pekerjaansembilan: 0,
+                      pekerjaansepuluh: 0,
+                      pekerjaansebelas: 0,
+                      pekerjaanduabelas: 0,
+                      pekerjaantigabelas: 0,
+                      pekerjaanempatbelas: 0,
+                      pekerjaanlimabelas: 0,                    
+                      lastadventure: 0,
+                      lastwar: 0,
+                      lastberkebon: 0,
+                      lastberburu: 0,
+                      lastbansos: 0,
+                      lastrampok: 0,
+                      lastkill: 0,
+                      lastfishing: 0,
+                      lastdungeon: 0,
+                      lastduel: 0,
+                      lastmining: 0,
+                      lasthourly: 0,
+                      lastdagang: 0,
+                      lasthunt: 0,
+                      lasthun : 0,
+                      lastweekly: 0,
+                      lastmonthly: 0,
+                      lastyearly: 0,
+                      lastjb: 0,
+                      lastrob: 0,
+                      lastdaang: 0,
+                      lastngojek: 0,
+                      lastgrab: 0,
+                      lastngocok: 0,
+                      lastturu: 0,
+                      lastseen: 0,
+                      lastSetStatus: 0,
+                      registered: false,
+                      apel: 20,
+                      mangga: 0,
+                      stroberi: 0,
+                      semangka: 0,
+                      jeruk: 0,
+                      semangka: 0,
+                      name: this.getName(m.sender),
+                      age: -1,
+                      regTime: -1,
+                      premiumDate: -1, 
+                      premium: false,
+                      premiumTime: 0,
+                      vip: 'tidak', 
+                      vipPoin: 0,
+                      job: 'Pengangguran', 
+                      jobexp: 0,
+                      jail: false, 
+                      penjara: false, 
+                      antarpaket: 0,
+                      dirawat: false, 
+                      lbars: '[▒▒▒▒▒▒▒▒▒]', 
+                      role: 'Newbie ㋡', 
+                      registered: false,
+                      name: this.getName(m.sender),
+                      age: -1,
+                      regTime: -1,
+                      autolevelup: true,
+                      lastIstigfar: 0,
+                      
+                      skill: "",
+                      korps: "",
+                      korpsgrade: "",
+                      demon: "",
+                      breaths: "",
+                      magic: "",
+                      darahiblis: 0,
+                      demonblood: 0,
+                      demonkill: 0,
+                      hashirakill: 0,
+                      alldemonkill: 0,
+                      allhashirakill: 0,
+                      attack: 0,
+                      speed: 0,
+                      strenght: 0,
+                      defense: 0,
+                      regeneration: 0,
+                      ovo: 0,
+                      dana: 0,
+                      gopay: 0,
+                      lastngaji: 0,
+                      lastlonte: 0,
+                      lastkoboy: 0,
+                      lastdate: 0,
+                      lasttambang: 0,
+                      lastngepet: 0,
+                  }
              let chat = global.db.data.chats[m.chat]
             if (typeof chat !== 'object') global.db.data.chats[m.chat] = {}
             if (chat) {
@@ -815,8 +810,8 @@ module.exports = {
                 if (!('isBannedTime' in chat)) chat.isBannedTime = false
                 if (!('mute' in chat)) chat.mute = false
                 if (!('listStr' in chat)) chat.listStr = {}
-                if (!('sWelcome' in chat)) chat.sWelcome = '*Selamat datang @user!*\n\n     Di group @subject\n\n╭─────「 *intro* 」\n│\n│─⪼ Nama : \n│─⪼ Umur :\n│─⪼ Askot :\n│─⪼ Gender :\n╰─────────────\n\n> semoga betah'
-                if (!('sBye' in chat)) chat.sBye = 'Al-fatihah untuk @user'
+                if (!('sWelcome' in chat)) chat.sWelcome = 'Hai, @user!\nSelamat datang di grup @subject\n\n@desc'
+                if (!('sBye' in chat)) chat.sBye = 'Selamat tinggal @user!'
                 if (!('sPromote' in chat)) chat.sPromote = ''
                 if (!('sDemote' in chat)) chat.sDemote = ''
                 if (!('delete' in chat)) chat.delete = true
@@ -825,7 +820,6 @@ module.exports = {
                 if (!('antiSticker' in chat)) chat.antiSticker = false
                 if (!('antiStickernokick' in chat)) chat.antiStickernokick = false
                 if (!('viewonce' in chat)) chat.viewonce = false
-                if (!('antiporn' in chat)) chat.antiporn = false
                 if (!('antiToxic' in chat)) chat.antiToxic = false
                 if (!isNumber(chat.expired)) chat.expired = 0
                 if (!("memgc" in chat)) chat.memgc = {}
@@ -846,35 +840,16 @@ module.exports = {
                 if (!('antilinktt' in chat)) chat.antilinktt = false
                 if (!('antilinkttnokick' in chat)) chat.antilinkttnokick = false
                 if (!('antibot' in chat)) chat.antibot = false
-                if (!('autohd' in chat)) chat.autohd = false
-                if (!('autobio' in chat)) chat.autobio = false
-                if (!('rpg' in chat)) chat.rpg = false
-                if (!('autobackup' in chat)) chat.autobackup = false
-                if (!('autodl' in chat)) chat.autodl = true 
-                if (!('notifgempa' in chat)) chat.notifgempa = false
-                if (!('notifcuaca' in chat)) chat.notifcuaca = false
-                if (!('notifsholat' in chat)) chat.notifsholat = false
-                if (!('autotranslate' in chat)) chat.autotranslate = false
-                if (!('antitagsw' in chat)) chat.antitagsw = false
             } else global.db.data.chats[m.chat] = {
-                autotranslate: false,
-                notifsholat: false,
-                notifgempa: false,
-                notifcuaca: false,    
-                autodl: true,
-                autobackup: false,
-                autobio: false,
-                autohd: false,
-                antiporn: false,
                 isBanned: false,
-                welcome: false,
+                welcome: true,
                 welcometype: 1,
                 detect: false,
                 isBannedTime: false,
                 mute: false,
                 listStr: {},
-                sWelcome: '*Selamat datang @user!*\n\n     Di group @subject\n\n╭─────「 *intro* 」\n│\n│─⪼ Nama : \n│─⪼ Umur :\n│─⪼ Askot :\n│─⪼ Gender :\n╰─────────────\n\n> semoga betah',
-                sBye: 'Al-fatihah untuk @user',
+                sWelcome: 'Hai, @user!\nSelamat datang di grup @subject\n\n@desc',
+                sBye: 'Selamat tinggal @user!',
                 sPromote: '',
                 sDemote: '',
                 delete: false, 
@@ -883,7 +858,7 @@ module.exports = {
                 antiSticker: false, 
                 antiStickernokick: false, 
                 viewonce: false,
-                antiToxic: false,
+                antiToxic: true,
                 antilinkig: false, 
                 antilinkignokick: false, 
                 antilinkyt: false, 
@@ -901,35 +876,39 @@ module.exports = {
                 antilinktt: false, 
                 antilinkttnokick: false, 
                 antibot: false, 
-                rpg: false,
-                antitagsw: false,
-	        antidelete: false,
-		autoacc: false
+                rpg: false, 
             }
-            let memgc = global.db.data.chats[m.chat].memgc[m.sender]
-            if (typeof memgc !== 'object') global.db.data.chats[m.chat].memgc[m.sender] = {}
+            let memgc = global.db.data.chats[m.chat]?.memgc?.[m.sender];
+            if (typeof memgc !== 'object' || memgc === null) {
+                global.db.data.chats[m.chat] = global.db.data.chats[m.chat] || {};
+                global.db.data.chats[m.chat].memgc = global.db.data.chats[m.chat].memgc || {};
+                global.db.data.chats[m.chat].memgc[m.sender] = {};
+                memgc = global.db.data.chats[m.chat].memgc[m.sender];
+            }
             if (memgc) {
-                if (!('blacklist' in memgc)) memgc.blacklist = false
-                if (!('banned' in memgc)) memgc.banned = false
-                if (!isNumber(memgc.bannedTime)) memgc.bannedTime = 0
-                if (!isNumber(memgc.chat)) memgc.chat = 0
-                if (!isNumber(memgc.chatTotal)) memgc.chatTotal = 0
-                if (!isNumber(memgc.command)) memgc.command = 0
-                if (!isNumber(memgc.commandTotal)) memgc.commandTotal = 0
-                if (!isNumber(memgc.lastseen)) memgc.lastseen = 0
-            } else global.db.data.chats[m.chat].memgc[m.sender] = {
-                blacklist: false,
-                banned: false,
-                bannedTime: 0,
-                chat: 0,
-                chatTotal: 0,
-                command: 0,
-                commandTotal: 0,
-                lastseen: 0
+                if (!('blacklist' in memgc)) memgc.blacklist = false;
+                if (!('banned' in memgc)) memgc.banned = false;
+                if (!isNumber(memgc.bannedTime)) memgc.bannedTime = 0;
+                if (!isNumber(memgc.chat)) memgc.chat = 0;
+                if (!isNumber(memgc.chatTotal)) memgc.chatTotal = 0;
+                if (!isNumber(memgc.command)) memgc.command = 0;
+                if (!isNumber(memgc.commandTotal)) memgc.commandTotal = 0;
+                if (!isNumber(memgc.lastseen)) memgc.lastseen = 0;
+            } else {
+                global.db.data.chats[m.chat].memgc[m.sender] = {
+                    blacklist: false,
+                    banned: false,
+                    bannedTime: 0,
+                    chat: 0,
+                    chatTotal: 0,
+                    command: 0,
+                    commandTotal: 0,
+                    lastseen: 0
+                };
             }
-        } catch (e) {
-            console.error(e)
-        }
+            } catch (e) {
+                console.error(e);
+            }
             if (opts['nyimak']) return
             if (!m.fromMe && opts['self']) return
             if (opts['pconly'] && m.chat.endsWith('g.us')) return
@@ -953,17 +932,17 @@ module.exports = {
                     console.error(e)
                 }
             }
-            if (m.id.startsWith('3EB0') || (m.id.startsWith('BAE5') && m.id.length === 16 || m.isBaileys && m.fromMe)) return;
+        //if (m.id.startsWith('BAE5') && m.id.length === 16 || m.isBaileys && m.fromMe) return
+	if (m.id.startsWith('3EB0') || (m.id.startsWith('BAE5') && m.id.length === 16 || m.isBaileys && m.fromMe)) return;	
             m.exp += Math.ceil(Math.random() * 10)
 
             let usedPrefix
-            
             let _user = global.db.data && global.db.data.users && global.db.data.users[m.sender]
-            
+
             const detectwhat = m.sender.includes('@lid') ? '@lid' : '@s.whatsapp.net';
             const ownerNumbers = global.owner.map(v => v.replace(/[^0-9]/g, '')); 
             const mappedOwners = ownerNumbers.map(v => v + detectwhat); 
-            console.log('DEBUG: mappedOwners (JID format for comparison):', mappedOwners);
+            //console.log('DEBUG: mappedOwners (JID format for comparison):', mappedOwners);
             const isROwner = mappedOwners.includes(m.sender);
             const isOwner = isROwner || m.fromMe
             const isMods = isROwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + detectwhat).includes(m.sender)
@@ -1061,10 +1040,7 @@ module.exports = {
                         user.commandTotal++
                         user.lastCmd = Date.now()
                     }
-                    if (plugin.rpg && !global.db.data.chats[m.chat].rpg) { // rpg
-                        fail('rpg', m, this) 
-                        continue
-                    }
+                    
                     if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { // Both Owner
                         fail('owner', m, this)
                         continue
@@ -1210,26 +1186,16 @@ module.exports = {
                  console.log(m, m.quoted, e)
              }
             if (opts['autoread']) await this.readMessages([m.key])
-                let chat = global.db.data.chats[m.chat]
-
-        user.chat++
-        user.chatTotal++
-        user.lastseen = Date.now()
-
-        if (m.isGroup) {
-            chat.memgc[m.sender].chat++
-            chat.memgc[m.sender].chatTotal++
-            chat.memgc[m.sender].lastseen = Date.now()
-        }
         }
     },
-   async participantsUpdate({ id, participants, action }) {
+	
+  async participantsUpdate({ id, participants, action }) {
         if (opts['self']) return
         // if (id in conn.chats) return // First login will spam
         if (global.isInit) return
         let chat = db.data.chats[id] || {}
         let text = ''
-      switch (action) {
+        switch (action) {
         case 'add':
         case 'remove':
 		case 'leave':
@@ -1276,7 +1242,7 @@ module.exports = {
         }
     },
     async delete({ remoteJid, fromMe, id, participant }) {
-        if (fromMe) return
+        /*if (fromMe) return
         let chats = Object.entries(conn.chats).find(([user, data]) => data.messages && data.messages[id])
         if (!chats) return
         let msg = JSON.parse(chats[1].messages[id])
@@ -1289,7 +1255,7 @@ Untuk mematikan fitur ini, ketik
 `.trim(), msg, {
             mentions: [participant]
         })
-        this.copyNForward(msg.key.remoteJid, msg).catch(e => console.log(e, msg))
+        this.copyNForward(msg.key.remoteJid, msg).catch(e => console.log(e, msg))*/
     }
 }
 
@@ -1299,12 +1265,11 @@ global.dfail = (type, m, conn) => {
         owner: 'Perintah ini hanya dapat digunakan oleh _*Owner Bot*_!',
         mods: 'Perintah ini hanya dapat digunakan oleh _*Moderator*_ !',
         premium: 'Perintah ini hanya untuk member _*Premium*_ !',
-        rpg: 'Fitur RPG Dimatikan Oleh Admin\n\n> ketik *.enable rpg* agar dapat akses fitur rpg',
         group: 'Perintah ini hanya dapat digunakan di grup!',
         private: 'Perintah ini hanya dapat digunakan di Chat Pribadi!',
         admin: 'Perintah ini hanya untuk *Admin* grup!',
         botAdmin: 'Jadikan bot sebagai *Admin* untuk menggunakan perintah ini!',
-        unreg: 'Silahkan daftar untuk menggunakan fitur ini dengan cara mengetik:\n\n*.daftar nama.umur*\n\nContoh: *#daftar budi.16*',
+        unreg: 'Silahkan daftar untuk menggunakan fitur ini dengan cara mengetik:\n\n*#daftar nama.umur*\n\nContoh: *#daftar Mansur.16*',
         restrict: 'Fitur ini di *disable*!'
     }[type]
     if (msg) return m.reply(msg)
