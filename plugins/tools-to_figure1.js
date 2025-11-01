@@ -20,19 +20,12 @@ let handler = async (m, { conn, usedPrefix, command }) => {
         
         let res = await fetch(apiUrl);
 
-        // --- PERBAIKAN UTAMA DI SINI ---
-
-        // 1. Cek apakah request ke API sukses
         if (!res.ok) {
-            // Jika API mengembalikan error (misal: 404, 500), coba baca errornya sebagai teks
             let errorText = await res.text();
             throw `Gagal memproses gambar di API. Status: ${res.status}. Pesan: ${errorText}`;
         }
 
-        // 2. Ambil respons sebagai buffer gambar, bukan JSON
         let imageBuffer = await res.buffer();
-
-        // 3. Kirim buffer gambar tersebut
         await conn.sendFile(m.chat, imageBuffer, 'figure.jpg', 'Ini hasilnya!', m);
 
     } catch (e) {
