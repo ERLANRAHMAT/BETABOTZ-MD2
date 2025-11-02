@@ -1,0 +1,211 @@
+╔════════════════════════════════════════════════════════════╗
+║     CARA MENJALANKAN BOT WHATSAPP PPOB & DOWNLOADER       ║
+╚════════════════════════════════════════════════════════════╝
+
+📱 UNTUK TERMUX (ANDROID):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Install Termux dari F-Droid atau GitHub
+   (JANGAN dari Google Play Store!)
+
+2. Buka Termux dan jalankan:
+   
+   pkg update && pkg upgrade -y
+   pkg install nodejs git ffmpeg -y
+   
+3. Clone atau copy folder bot ke Termux
+
+4. Masuk ke folder bot:
+   
+   cd whatsapp-bot-ppob
+   
+5. Install dependencies:
+   
+   npm install
+   
+6. Edit konfigurasi (PENTING!):
+   
+   nano bot-config.js
+   
+   Ganti nomor owner dengan nomor WhatsApp Anda:
+   number: '6281234567890'  <-- GANTI INI
+   
+   Tekan Ctrl+X, lalu Y, lalu Enter untuk save
+
+7. Jalankan bot:
+   
+   npm start
+   
+8. Scan QR Code yang muncul dengan WhatsApp Anda
+
+9. Selesai! Bot sudah berjalan.
+
+10. Agar bot tetap jalan:
+    
+    termux-wake-lock
+    
+    Jangan tutup Termux, minimize saja.
+
+
+💻 UNTUK VPS/SERVER LINUX:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Install dependencies:
+   
+   sudo apt update && sudo apt upgrade -y
+   sudo apt install nodejs npm git ffmpeg -y
+   
+2. Clone repository:
+   
+   git clone <repository-url>
+   cd whatsapp-bot-ppob
+   
+3. Install packages:
+   
+   npm install
+   
+4. Edit config:
+   
+   nano bot-config.js
+   
+   Ganti nomor owner
+
+5. Jalankan bot:
+   
+   npm start
+   
+6. Scan QR Code
+
+7. Untuk background process, gunakan PM2:
+   
+   npm install -g pm2
+   pm2 start bot.js --name whatsapp-bot
+   pm2 save
+   pm2 startup
+
+
+🐳 UNTUK PANEL PTERODACTYL:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Buat server baru dengan Node.js Egg
+
+2. Upload semua file bot ke server
+
+3. Buka Console dan jalankan:
+   
+   npm install
+   
+4. Edit config via File Manager:
+   - Buka bot-config.js
+   - Ganti nomor owner
+   - Save
+
+5. Set Startup Command:
+   - Buka tab Startup
+   - Set command: npm start
+   - Save
+
+6. Start server
+
+7. Scan QR Code di console
+
+8. Selesai!
+
+
+📝 KONFIGURASI PENTING:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+File: bot-config.js
+
+1. Nomor Owner (WAJIB DIGANTI):
+   
+   owner: {
+       number: '6281234567890',  <-- GANTI
+       numbers: ['6281234567890'] <-- GANTI
+   }
+
+2. Prefix (opsional):
+   
+   prefix: '.'  <-- Bisa diganti sesuai keinginan
+
+3. Mode (opsional):
+   
+   mode: 'public'  <-- public atau self
+
+4. PPOB API (jika ingin aktifkan PPOB):
+   
+   ppob: {
+       enabled: true,
+       apiKey: 'YOUR_API_KEY',     <-- Ganti
+       apiUrl: 'API_URL',          <-- Ganti
+       username: 'YOUR_USERNAME'   <-- Ganti
+   }
+
+
+🎯 TEST BOT:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Setelah bot berjalan, kirim pesan ke bot:
+
+.menu
+
+Jika bot merespon dengan menu, berarti BERHASIL! ✅
+
+
+🔧 TROUBLESHOOTING:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❌ Bot tidak merespon?
+   → Cek mode bot di bot-config.js (pastikan 'public')
+   → Cek prefix yang digunakan
+
+❌ QR Code tidak muncul?
+   → Hapus folder auth_info
+   → Jalankan ulang: npm start
+
+❌ Error saat npm install?
+   → Hapus node_modules: rm -rf node_modules
+   → Install ulang: npm install
+
+❌ Bot mati terus?
+   → Cek log error di console
+   → Pastikan koneksi internet stabil
+   → Cek RAM mencukupi (min 512MB)
+
+
+📚 DOKUMENTASI LENGKAP:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Baca file-file berikut untuk panduan lengkap:
+
+📖 README-BOT.md              - Dokumentasi lengkap
+🚀 QUICK-START.md             - Panduan cepat
+📱 INSTALL-TERMUX.md          - Panduan Termux detail
+🐳 INSTALL-PTERODACTYL.md     - Panduan Pterodactyl detail
+💰 CARA-INTEGRASI-PPOB.md     - Integrasi PPOB
+❓ FAQ.md                     - Pertanyaan umum
+📁 STRUKTUR-PROJECT.md        - Struktur project
+📋 RINGKASAN-BOT.md           - Ringkasan fitur
+
+
+💡 TIPS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Backup folder auth_info secara berkala
+✅ Jangan share folder auth_info dengan siapapun
+✅ Gunakan mode 'self' untuk testing
+✅ Monitor log error secara berkala
+✅ Update bot secara berkala
+
+
+📞 BUTUH BANTUAN?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- Baca FAQ.md
+- Buat issue di GitHub
+- Join grup support (jika ada)
+
+
+╔════════════════════════════════════════════════════════════╗
+║              SELAMAT MENGGUNAKAN BOT! 🎉                   ║
+╚════════════════════════════════════════════════════════════╝
