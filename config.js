@@ -1,6 +1,6 @@
-global.owner = ['62895401166720', '27733308485886']  
-global.mods = ['62895401166720', '27733308485886'] 
-global.prems = ['62895401166720', '27733308485886']
+global.owner = ['62895401166720']  
+global.mods = ['62895401166720'] 
+global.prems = ['62895401166720']
 global.nameowner = 'Lann'
 global.numberowner = '62895401166720'
 global.mail = 'support@tioprm.eu.org' 
