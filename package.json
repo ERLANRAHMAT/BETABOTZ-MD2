@@ -1,5 +1,5 @@
 {
-    "name": "rtxzy",
+    "name": "BETABOTZ-MD2",
     "version": "8.0.2",
     "description": "Lightweight WhatsApp Bot",
     "depecrated": false,
@@ -23,23 +23,23 @@
         "Games-wabot",
         "wabot-aq",
         "whiskeysockets",
-        "botcahx",
+        "ERLANRAHMAT",
         "baileys"
     ],
-    "homepage": "https://github.com/BOTCAHX/RTXZY-MD",
+    "homepage": "https://github.com/ERLANRAHMAT/RTXZY-MD",
     "author": {
-        "name": "BOTCAHX"
+        "name": "ERLANRAHMAT"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/BOTCAHX/RTXZY-MD.git"
+        "url": "git+https://github.com/ERLANRAHMAT/BETABOTZ-MD2.git"
     },
     "bugs": {
-        "url": "https://github.com/BOTCAHX/RTXZY-MD/issues"
+        "url": "https://github.com/ERLANRAHMAT/RTXZY-MD/issues"
     },
     "license": "MIT",
     "dependencies": {
-        "@adiwajshing/baileys": "npm:baileys@6.7.21",
+        "@adiwajshing/baileys": "npm:baileys",
         "@adiwajshing/keyed-db": "^0.2.4",
         "@vitalets/google-translate-api": "^9.0.0",
         "javascript-obfuscator": "^4.0.2",
@@ -68,6 +68,7 @@
         "node-gtts": "2.0.2",
         "node-os-utils": "^1.3.7",
         "node-webpmux": "^3.1.3",
+        "node-schedule": "2.1.1",
         "nodemon": "^2.0.20",
         "ocr-space-api-wrapper": "^2.3.2",
         "os": "^0.1.2",

@@ -40,8 +40,6 @@
 ---
 
 ## Website API
-
-* **BOTCAHX (Opsional):** [`Register`](https://api.botcahx.eu.org)
 * **Lann (Wajib):** [`Register`](https://api.betabotz.eu.org)
 
 ### ðŸ”§ Konfigurasi ApiKey
@@ -49,7 +47,6 @@
 1. Setelah mendapatkan ApiKey, masukkan ke `config.js`:
 
    ```js
-   global.btc = 'API_KEY_BOTCAHX';
    global.lann = 'API_KEY_LANN';
    ```
 
@@ -58,44 +55,13 @@
    `Settings -> Management IP`, lalu tempelkan IP dari hasil `.getip`.
 
 ---
-
-## Konfigurasi Owner & LID
-
-### Menjalankan Bot & Mendapatkan LID
-
-1. Clone repositori:
-   ```bash
-   git clone https://github.com/ERLANRAHMAT/BETABOTZ-MD2
-   ```
-2. Masuk direktori:
-   ```bash
-   cd BETABOTZ-MD2
-   ```
-3. Instal dependensi:
-   ```bash
-   npm install
-   ```
-4. Jalankan bot:
-   ```bash
-   npm start
-   ```
-
-5. Dapatkan LID:
-   * Buat grup WA, lalu ketik `.getlid`
-   * Salin `LID Target` dari bot
-
-### Mengisi `config.js` dengan LID
-
-Contoh:
-```js
-global.owner = ['6285842647866', '26777']
-global.mods  = ['6285842647866', '26777']
-global.prems = ['6285842647866', '26777']
-```
-
-**Video Panduan:**
-[Tutorial Fix LID BETABOTZ-MD2](https://youtube.com/playlist?list=PLuQT2lE0wOYQNhk2E8JAerojcZj8ckMYs&si=kehl9mWEVmctVms0)
-
+**Informasi Pembaruan:**  
+----  
+- ✅ **Update  Lid resolver **  Penanganan lid jadi terbaru
+- ✅ **Update  Lid resolver**  Penanganan lid jadi terbaru
+- ✅ **Menggunakan Baileys Latest**  [Baileys](https://github.com/WhiskeySockets/Baileys)
+- ✅ **Delete QR Code** Jadi Alternatif Nya Memakai Pairing Code
+- ✅ **Wajib Menggunakan Node.js 21+**
 ---
 
 ---

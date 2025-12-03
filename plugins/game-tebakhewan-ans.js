@@ -8,7 +8,8 @@ handler.before = async function (m)  {
     this.tebakhewan = this.tebakhewan ? this.tebakhewan : {}
     if (!(id in this.tebakhewan))
         return this.reply(m.chat, 'Soal itu telah berakhir', m)
-    if (m.quoted.id == this.tebakhewan[id][0].id) {
+    if (m.quoted.id == this.tebakhewan[id][0].key.id
+) {
         let isSurrender = /^((me)?nyerah|surr?ender)$/i.test(m.text)
         if (isSurrender) {
             clearTimeout(this.tebakhewan[id][3])
