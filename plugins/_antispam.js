@@ -1,4 +1,4 @@
-exports.before = async function (m, { isAdmin, isOwner }) {
+/*exports.before = async function (m, { isAdmin, isOwner }) {
     let user = db.data.users[m.sender];
     let chat = db.data.chats[m.chat];
 
@@ -40,3 +40,4 @@ exports.before = async function (m, { isAdmin, isOwner }) {
         };
     }
 };
+*/
