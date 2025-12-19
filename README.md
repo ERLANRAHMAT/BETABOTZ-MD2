@@ -5,7 +5,7 @@
 
 * Menggunakan **baileys versi terbaru** (original, bukan mod)
 * Support **pairing code only** sesuai ketentuan
-* Wajib menggunakan **panel dengan Node.js 21+** (sesuai ketentuan baileys terbaru)
+* Wajib menggunakan **panel dengan Node.js 20+** (sesuai ketentuan baileys terbaru)
 * Fitur 90% implementasi dari **website API**
 * Penambahan output URL `express.js` agar bisa dijalankan di Render, dsb.
 * Informasi API: [WhatsApp](https://whatsapp.com/channel/0029VaApYsQ5Ui2c2rKbpP0S)
