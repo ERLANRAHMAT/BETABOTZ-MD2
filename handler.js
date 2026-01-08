@@ -937,7 +937,6 @@ module.exports = {
             m.exp += Math.ceil(Math.random() * 10)
 
             let usedPrefix
-            let usedPrefix
             let _user = global.db.data && global.db.data.users && global.db.data.users[m.sender]
 
             //let isROwner = [global.conn.user.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
