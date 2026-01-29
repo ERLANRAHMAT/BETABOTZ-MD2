@@ -15,6 +15,8 @@ global.author = 'Bot WhatsApp'
 global.maxwarn = '2' // Peringatan maksimum
 global.antiporn = true // Auto delete pesan porno (bot harus admin)
 
+// Prefix
+global.prefix = './#'
 //INI WAJIB DI ISI!//
 global.lann = ''
 global.aksesKey = '' // Register dan buy 
