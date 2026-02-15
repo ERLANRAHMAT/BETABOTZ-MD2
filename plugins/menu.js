@@ -112,36 +112,25 @@ handler.exp = 3;
 
 module.exports = handler;
 
-function sendMenu(m, conn, text, replace) {
+async function sendMenu(m, conn, text, replace) {
     text = text.replace(/%\w+/g, match => replace[match.slice(1)] || match);
-    conn.relayMessage(m.chat, {
-        extendedTextMessage: {
-            text,
-            contextInfo: {
-                mentionedJid: [m.sender],
-                externalAdReply: {
-                    title: replace.date,
-                    mediaType: 1,
-                    previewType: 0,
-                    renderLargerThumbnail: true,
-                    thumbnailUrl: 'https://telegra.ph/file/3a34bfa58714bdef500d9.jpg',
-                    sourceUrl: 'https://whatsapp.com/channel/0029Va8ZH8fFXUuc69TGVw1q'
-                }
-            },
-            mentions: [m.sender]
-        }
-    }, {});
+
+    await conn.sendFile(
+        m.chat,
+        'https://telegra.ph/file/3a34bfa58714bdef500d9.jpg',
+        null,
+        text,
+        m
+    );
 
     // Music di Menu
     let musicPath = path.join(__dirname, 'music.mp3');
     if (fs.existsSync(musicPath)) {
-        conn.sendMessage(m.chat, { 
+        await conn.sendMessage(m.chat, { 
             audio: { url: musicPath }, 
             mimetype: 'audio/mpeg',
             ptt: false 
         }, { quoted: m });
-    } else {
-        console.warn('Music file not found:', musicPath);
     }
 }
 
