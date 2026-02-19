@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 global.owner = ["6281289694906"]; // wajib di isi tidak boleh kosong
 global.mods = ["6281289694906"]; // wajib di isi tidak boleh kosong
 global.prems = ["6281289694906"]; // wajib di isi tidak boleh kosong
@@ -21,11 +23,15 @@ global.gcspam = false; // Set true/false untuk menutup grup ketika spam (default
 
 // APIKEY INI WAJIB DI ISI! //
 global.lann = "";
-// Daftar terlebih dahulu https://api.botcahx.eu.org
+// global.lann = process.env.API_KEY_BETABOTZ;
+// aktifkan akses .env di atas jika kamu ingin menaruh key api di .env
+// Daftar terlebih dahulu https://api.betabotz.eu.org
 
 // AKSESKEY INI DI ISI JIKA DIPERLUKAN (e.g suno ai (ai music ) & fitur prem lainnya//
 global.aksesKey = "";
-// Daftar terlebih dahulu https://api.botcahx.eu.org
+// global.aksesKey = process.env.API_KEY_BETABOTZ_AKSESKEY;
+// aktifkan akses .env di atas jika kamu ingin menaruh key api di .env
+// Daftar terlebih dahulu https://api.betabotz.eu.org
 
 // Tidak boleh diganti atau di ubah
 global.APIs = {
