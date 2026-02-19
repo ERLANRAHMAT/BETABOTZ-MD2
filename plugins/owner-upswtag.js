@@ -1,122 +1,134 @@
-const baileys = require("@adiwajshing/baileys");
+const crypto = require("crypto");
+const {
+  generateWAMessageContent,
+  generateWAMessageFromContent,
+} = require("@adiwajshing/baileys");
 
-let handler = async (m, { conn, args }) => {
-    async function fetchParticipants(...jids) {
-        let results = [];
-        for (const jid of jids) {
-            let { participants } = await conn.groupMetadata(jid);
-            participants = participants.map(({ id }) => id);
-            results = results.concat(participants);
-        }
-        return results;
-    }
+const handler = async (
+  m,
+  { conn, text, command, prefix, isOwner, isSewa, isBotAdmin },
+) => {
+  async function groupStatus(jid, content) {
+    const inside = await generateWAMessageContent(content, {
+      upload: conn.waUploadToServer,
+    });
 
-    async function mentionStatus(jids, content) {
-        const msg = await baileys.generateWAMessage(baileys.STORIES_JID, content, {
-            upload: conn.waUploadToServer
-        });
+    const messageSecret = crypto.randomBytes(32);
+    const message = generateWAMessageFromContent(
+      jid,
+      {
+        messageContextInfo: { messageSecret },
+        groupStatusMessageV2: {
+          message: {
+            ...inside,
+            messageContextInfo: { messageSecret },
+          },
+        },
+      },
+      {},
+    );
 
-        let statusJidList = [];
-        for (const _jid of jids) {
-            if (_jid.endsWith("@g.us")) {
-                for (const jid of await fetchParticipants(_jid)) {
-                    statusJidList.push(jid);
-                }
-            } else {
-                statusJidList.push(_jid);
-            }
-        }
-        statusJidList = [...new Set(statusJidList)];
+    await conn.relayMessage(jid, message.message, {
+      messageId: message.key.id,
+    });
+    return message;
+  }
 
-        await conn.relayMessage(msg.key.remoteJid, msg.message, {
-            messageId: msg.key.id,
-            statusJidList,
-            additionalNodes: [
-                {
-                    tag: "meta",
-                    attrs: {},
-                    content: [
-                        {
-                            tag: "mentioned_users",
-                            attrs: {},
-                            content: jids.map((jid) => ({
-                                tag: "to",
-                                attrs: { jid },
-                                content: undefined
-                            }))
-                        }
-                    ]
-                }
-            ]
-        });
+  // --- PERBAIKAN: Mengganti 'mess.grup' dan menghapus 'isBotAdmin' ---
+  if (!m.isGroup)
+    return m.reply("❌ Perintah ini hanya bisa digunakan di dalam grup.");
+  // Baris 'if (!isBotAdmin) return m.reply(mess.botAdmin);' telah dihapus.
+  // INGAT: Bot mungkin tetap GAGAL memposting status jika bukan admin grup.
+  // -------------------------------------------------------------------
 
-        for (const jid of jids) {
-            let type = jid.endsWith("@g.us") ? "groupStatusMentionMessage" : "statusMentionMessage";
-            await conn.relayMessage(jid, {
-                [type]: {
-                    message: {
-                        protocolMessage: {
-                            key: msg.key,
-                            type: 25
-                        }
-                    }
-                }
-            }, {
-                additionalNodes: [
-                    {
-                        tag: "meta",
-                        attrs: { is_status_mention: "true" },
-                        content: undefined
-                    }
-                ]
-            });
-        }
+  // Tentukan pesan mana yang jadi sumber: pesan yang dibalas (m.quoted) atau pesan saat ini (m)
+  let q = m.quoted ? m.quoted : m;
 
-        return msg;
-    }
+  // Tentukan apakah sumbernya adalah pesan media yang didukung (image, video, audio)
+  let isMedia =
+    q.mtype === "imageMessage" ||
+    q.mtype === "videoMessage" ||
+    q.mtype === "audioMessage";
 
-    let q = m.quoted ? m.quoted : m;
-    let mime = (q.msg || q).mimetype || '';
-    let content = {};
+  let media;
+  let mimeType = isMedia ? q.mimetype || q.mtype : null;
+  let caption = text ? text.trim() : "";
 
-    if (mime) {
-        let media = await q.download();
-
-        if (/image/.test(mime)) {
-            content.image = media;
-        } else if (/video/.test(mime)) {
-            content.video = media;
-        } else if (/audio/.test(mime)) {
-            content.audio = media;
-        } else {
-            return m.reply("Jenis file tidak didukung!");
-        }
-
-        if (q.text) content.caption = q.text;
-    } else if (args[0]) {
-        let url = args[0];
-        let type = args[1] || 'text';
-
-        if (type === 'image') {
-            content.image = { url };
-        } else if (type === 'video') {
-            content.video = { url };
-        } else if (type === 'audio') {
-            content.audio = { url };
-        } else {
-            content.text = args.slice(1).join(" ") || url;
-        }
+  // Jika sumbernya adalah media yang didukung, coba unduh
+  if (isMedia) {
+    if (q.download && typeof q.download === "function") {
+      try {
+        media = await q.download();
+      } catch (e) {
+        console.error("Gagal mengunduh media:", e);
+        return m.reply("❌ Gagal mengunduh media.");
+      }
     } else {
-        return m.reply("Reply media atau masukkan URL dengan format:\n.status <url> <image/video/audio/text>");
+      return m.reply("❌ Pesan media tidak dapat diproses.");
     }
+  }
 
-    mentionStatus([m.chat], content).catch(console.error);
+  let options = {};
+  let contentProvided = false;
+
+  if (media) {
+    if (/image/.test(mimeType)) {
+      options = caption ? { image: media, caption } : { image: media };
+      contentProvided = true;
+    } else if (/video/.test(mimeType)) {
+      options = caption ? { video: media, caption } : { video: media };
+      contentProvided = true;
+    } else if (/audio/.test(mimeType)) {
+      options = caption
+        ? { audio: media, mimetype: "audio/mpeg", ptt: false, caption }
+        : { audio: media, mimetype: "audio/mpeg", ptt: false };
+      contentProvided = true;
+    } else {
+      if (caption) {
+        options = { text: caption };
+        contentProvided = true;
+      } else {
+        return m.reply("❌ Tipe media tidak didukung untuk status grup!");
+      }
+    }
+  } else if (caption) {
+    options = { text: caption };
+    contentProvided = true;
+  }
+
+  if (!contentProvided) {
+    const safeCommand = command || "upswgc";
+    const safePrefix = prefix || ".";
+
+    return m.reply(`Cara Pengguna:
+*${safePrefix}${safeCommand}* Teks Langsung
+ATAU
+Kirim/Reply foto/video/audio dengan atau tanpa caption`);
+  }
+
+  let targetGc = m.chat;
+
+  // --- PERBAIKAN: Mengganti 'mess.owner' ---
+  if (isOwner && caption.includes("|")) {
+    const [idgc, ...rest] = caption.split("|");
+    targetGc = idgc.trim();
+    if (Object.keys(options).length > 0 && options.caption !== undefined) {
+      options.caption = rest.join("|").trim();
+    } else if (Object.keys(options).length > 0 && options.text !== undefined) {
+      options.text = rest.join("|").trim();
+    }
+  }
+
+  // Jika non-owner mencoba menargetkan GC lain, tolak
+  if (!isOwner && m.chat !== targetGc) {
+    return m.reply("🚫 Fitur menargetkan grup lain hanya untuk Owner.");
+  }
+  // ------------------------------------------
+
+  await groupStatus(targetGc, options);
+
+  await conn.sendMessage(m.chat, { react: { text: "✅", key: m.key } });
 };
 
-handler.command = ['upswtag'];
-handler.tags = ['tools'];
-handler.help = ['upswtag'];
-handler.group = true 
-handler.owner = true
-
+handler.command = ["upswgc", "swgc"];
 module.exports = handler;
