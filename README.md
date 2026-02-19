@@ -50,8 +50,15 @@
    global.lann = 'API_KEY_LANN';
    ```
 
-2. Jalankan bot dan ketik `.getip`
-3. Buka [`Profile API`](https://api.betabotz.eu.org/profile), whitelist IP bot di:
+2. atau kamu bisa memasukan nya ke `.env` dari `.env.example`, setelah itu hapus komentar gunakan yang menggunakan .env di `config.js`:
+
+   ```js
+   API_KEY_BETABOTZ=
+   API_KEY_BETABOTZ_AKSESKEY=
+   ```
+
+3. Jalankan bot dan ketik `.getip`
+4. Buka [`Profile API`](https://api.betabotz.eu.org/profile), whitelist IP bot di:
    `Settings -> Management IP`, lalu tempelkan IP dari hasil `.getip`.
 
 ---
