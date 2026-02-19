@@ -840,6 +840,8 @@ module.exports = {
                 if (!('antilinktt' in chat)) chat.antilinktt = false
                 if (!('antilinkttnokick' in chat)) chat.antilinkttnokick = false
                 if (!('antibot' in chat)) chat.antibot = false
+                if (!('rpg' in chat)) chat.rpg = false
+                if (!("nsfw" in chat)) chat.nsfw = false;
             } else global.db.data.chats[m.chat] = {
                 isBanned: false,
                 welcome: true,
@@ -950,14 +952,15 @@ module.exports = {
             let isOwner = isROwner || m.fromMe
             let isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
             let isPrems = isROwner || (db.data.users[m.sender].premiumTime > 0 || db.data.users[m.sender].premium)
-           
             const groupMetadata = (m.isGroup ? (conn.chats[m.chat] || {}).metadata || (await this.groupMetadata(m.chat).catch((_) => null)) : {}) || {};
             const participants = (m.isGroup ? groupMetadata.participants : []) || [];
-            const user = (m.isGroup ? participants.find((u) => conn.getJid(u.id) === m.sender) : {}) || {}; // User Data
-            const bot = (m.isGroup ? participants.find((u) => conn.getJid(u.id) == this.user.jid) : {}) || {}; // Your Data
-            const isRAdmin = user?.admin == 'superadmin' || false;
-            const isAdmin = isRAdmin || user?.admin == 'admin' || false; // Is User Admin?
-            const isBotAdmin = bot?.admin || false; // Are you Admin?
+            const user = participants.find((u) => u.id === m.sender) ||
+                         participants.find((u) => u.phoneNumber === m.sender) || {};
+            const bot = participants.find((u) => u.id === this.user.jid) ||
+                        participants.find((u) => u.phoneNumber === this.user.jid) || {};
+            const isRAdmin    = user?.admin === 'superadmin' || false;
+            const isAdmin     = isRAdmin || user?.admin === 'admin' || false;
+            const isBotAdmin  = bot?.admin === 'admin' || bot?.admin === 'superadmin' || false;
             for (let name in global.plugins) {
                 let plugin = global.plugins[name]
                 if (!plugin) continue
@@ -1037,6 +1040,16 @@ module.exports = {
                     if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { // Both Owner
                         fail('owner', m, this)
                         continue
+                    }
+                    if (plugin.rpg && !global.db.data.chats[m.chat].rpg) {
+                        // rpg
+                        fail("rpg", m, this);
+                        continue;
+                    }
+                    if (plugin.nsfw && !global.db.data.chats[m.chat].nsfw) {
+                        // nsfw
+                        fail("nsfw", m, this);
+                        continue;
                     }
                     if (plugin.rowner && !isROwner) { // Real Owner
                         fail('rowner', m, this)
@@ -1275,6 +1288,8 @@ global.dfail = (type, m, conn) => {
         owner: 'Perintah ini hanya dapat digunakan oleh _*Owner Bot*_!',
         mods: 'Perintah ini hanya dapat digunakan oleh _*Moderator*_ !',
         premium: 'Perintah ini hanya untuk member _*Premium*_ !',
+        rpg: "Fitur RPG Dimatikan Oleh Admin\n\n> ketik *.enable rpg* agar dapat akses fitur rpg",
+        nsfw: "Fitur NSFW Dimatikan Oleh Admin\n\n> ketik *.enable nsfw* agar dapat akses fitur NSFW",
         group: 'Perintah ini hanya dapat digunakan di grup!',
         private: 'Perintah ini hanya dapat digunakan di Chat Pribadi!',
         admin: 'Perintah ini hanya untuk *Admin* grup!',

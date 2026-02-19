@@ -28,6 +28,7 @@ let handler = async (m, { conn }) => {
 handler.help = handler.command = ['randombokep'];
 handler.tags = ['internet'];
 handler.premium = true;
+handler.nsfw = true;
 handler.limit = 500;
 
 module.exports = handler;

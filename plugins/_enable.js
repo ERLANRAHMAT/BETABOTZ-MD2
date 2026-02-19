@@ -24,6 +24,15 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
           chat.notifcuaca = isEnable
       } else return global.dfail('group', m, conn)
       break
+      case "nsfw":
+      if (m.isGroup) {
+        if (!(isAdmin || isOwner)) {
+          global.dfail("admin", m, conn);
+          throw false;
+        }
+      }
+      chat.nsfw = isEnable;
+      break;
     case 'notifsholat':
       if (m.isGroup) {
           if (!(isAdmin || isOwner)) {
@@ -319,7 +328,8 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       chat.autodl = isEnable
       break
     default:
-      if (!/[01]/.test(command)) return m.reply(`
+      if (!/[01]/.test(command)) return m.reply(
+        `
 List option:
 | autodl
 | autobackup
@@ -350,10 +360,12 @@ List option:
 | gconly
 | swonly
 | autodatabase
+| nsfw
 Contoh:
 ${usedPrefix}enable welcome
 ${usedPrefix}disable welcome
-`.trim())
+`.trim(),
+      );
       throw 'error'
   }
   m.reply(`

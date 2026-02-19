@@ -1,40 +1,51 @@
-global.owner = ['62895401166720']  
-global.mods = ['62895401166720'] 
-global.prems = ['62895401166720']
-global.nameowner = 'Lann'
-global.numberowner = '62895401166720'
-global.mail = 'support@tioprm.eu.org' 
-global.gc = 'https://chat.whatsapp.com/G4f1fTpz9zL4EH3FyIcaPR'
-global.instagram = 'https://instagram.com/erlanrahmat_14'
-global.wm = '© Tio'
-global.wait = '_*Tunggu sedang di proses...*_'
-global.eror = '_*Server Error*_'
-global.stiker_wait = '*⫹⫺ Stiker sedang dibuat...*'
-global.packname = 'Made With'
-global.author = 'Bot WhatsApp'
-global.maxwarn = '2' // Peringatan maksimum
-global.antiporn = true // Auto delete pesan porno (bot harus admin)
+global.owner = ["6281289694906"]; // wajib di isi tidak boleh kosong
+global.mods = ["6281289694906"]; // wajib di isi tidak boleh kosong
+global.prems = ["6281289694906"]; // wajib di isi tidak boleh kosong
+global.nameowner = "Tio"; // wajib di isi tidak boleh kosong
+global.numberowner = "6281289694906"; // wajib di isi tidak boleh kosong
+global.mail = "support@tioprm.eu.org"; // wajib di isi tidak boleh kosong
+global.gc = "https://chat.whatsapp.com/I5RpePh2b5u37OyFjzCNTr"; // wajib di isi tidak boleh kosong
+global.instagram = "https://instagram.com/prm2.0"; // wajib di isi tidak boleh kosong
+global.wm = "© BOTCAHX"; // isi nama bot atau nama kalian
+global.wait = "_*Tunggu sedang di proses...*_"; // ini pesan simulasi loading
+global.eror = "_*Server Error*_"; // ini pesan saat terjadi kesalahan
+global.stiker_wait = "*⫹⫺ Stiker sedang dibuat...*"; // ini pesan simulasi saat loading pembuatan sticker
+global.packname = "Made With"; // watermark stikcker packname
+global.author = "Bot WhatsApp"; // watermark stikcker author
+global.maxwarn = "5"; // Peringatan maksimum Warn
 
-// Prefix
-global.prefix = './#'
-//INI WAJIB DI ISI!//
-global.lann = ''
-global.aksesKey = '' // Register dan buy 
-//Daftar terlebih dahulu https://api.betabotz.eu.org
+global.autobio = false; // Set true/false untuk mengaktifkan atau mematikan autobio (default: false)
+global.antiporn = false; // Set true/false untuk Auto delete pesan porno (bot harus admin) (default: false)
+global.spam = false; // Set true/false untuk anti spam (default: false)
+global.gcspam = false; // Set true/false untuk menutup grup ketika spam (default: false)
 
-global.APIs = {   
-  lann: 'https://api.betabotz.eu.org',
-}
-global.APIKeys = { 
-  'https://api.betabotz.eu.org': global.lann, 
-}
+// APIKEY INI WAJIB DI ISI! //
+global.btc = "822bd8ca";
+global.lann = "aquamarin";
+// Daftar terlebih dahulu https://api.botcahx.eu.org
 
-let fs = require('fs')
-let chalk = require('chalk')
-let file = require.resolve(__filename)
+// AKSESKEY INI DI ISI JIKA DIPERLUKAN (e.g suno ai (ai music ) & fitur prem lainnya//
+global.aksesKey = "minatoaqua";
+// Daftar terlebih dahulu https://api.botcahx.eu.org
+
+// Tidak boleh diganti atau di ubah
+global.APIs = {
+  btc: "https://api.botcahx.eu.org",
+  lann: "https://api.betabotz.eu.org",
+};
+
+//Tidak boleh diganti atau di ubah
+global.APIKeys = {
+  "https://api.botcahx.eu.org": global.btc,
+  "https://api.betabotz.eu.org": global.lann,
+};
+
+let fs = require("fs");
+let chalk = require("chalk");
+let file = require.resolve(__filename);
 fs.watchFile(file, () => {
-  fs.unwatchFile(file)
-  console.log(chalk.redBright("Update 'config.js'"))
-  delete require.cache[file]
-  require(file)
-})
+  fs.unwatchFile(file);
+  console.log(chalk.redBright("Update 'config.js'"));
+  delete require.cache[file];
+  require(file);
+});
