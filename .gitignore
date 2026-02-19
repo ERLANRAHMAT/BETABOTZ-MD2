@@ -3,3 +3,4 @@ package-lock.json
 database.json
 sessions
 .env
+tmp
