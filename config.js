@@ -20,7 +20,6 @@ global.spam = false; // Set true/false untuk anti spam (default: false)
 global.gcspam = false; // Set true/false untuk menutup grup ketika spam (default: false)
 
 // APIKEY INI WAJIB DI ISI! //
-global.btc = "";
 global.lann = "";
 // Daftar terlebih dahulu https://api.botcahx.eu.org
 
@@ -30,13 +29,11 @@ global.aksesKey = "";
 
 // Tidak boleh diganti atau di ubah
 global.APIs = {
-  btc: "https://api.botcahx.eu.org",
   lann: "https://api.betabotz.eu.org",
 };
 
 //Tidak boleh diganti atau di ubah
 global.APIKeys = {
-  "https://api.botcahx.eu.org": global.btc,
   "https://api.betabotz.eu.org": global.lann,
 };
 
