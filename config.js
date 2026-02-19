@@ -25,7 +25,7 @@ global.lann = "";
 // Daftar terlebih dahulu https://api.botcahx.eu.org
 
 // AKSESKEY INI DI ISI JIKA DIPERLUKAN (e.g suno ai (ai music ) & fitur prem lainnya//
-global.aksesKey = "ma";
+global.aksesKey = "";
 // Daftar terlebih dahulu https://api.botcahx.eu.org
 
 // Tidak boleh diganti atau di ubah
