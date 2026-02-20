@@ -130,17 +130,12 @@ https://github.com/clhuang/heroku-buildpack-webp-binaries.git
    âš ï¸ Tambahkan ke `PATH`
 4. Install ImageMagick â†’ [`Download`](https://imagemagick.org/script/download.php)
 
-### Jalankan:
+### Jalankan (Pairing Code):
 ```bash
 git clone https://github.com/ERLANRAHMAT/BETABOTZ-MD2
 cd BETABOTZ-MD2
 npm install
 npm start
-```
-
-### Pairing Code
-```bash
-node index.js --pairing
 ```
 
 ---
