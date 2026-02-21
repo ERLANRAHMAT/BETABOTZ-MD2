@@ -860,7 +860,7 @@ module.exports = {
                 antiSticker: false, 
                 antiStickernokick: false, 
                 viewonce: false,
-                antiToxic: true,
+                antiToxic: false,
                 antilinkig: false, 
                 antilinkignokick: false, 
                 antilinkyt: false, 
