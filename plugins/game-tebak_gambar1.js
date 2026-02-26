@@ -9,7 +9,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     throw false
   }
   if (!src) src = await (await fetch(`https://api.betabotz.eu.org/api/game/tebakgambar?apikey=${lann}`)).json()
-  let json = src[Math.floor(Math.random() * src.length)]
+  let json = src
   if (!json) throw "Terjadi kesalahan, ulangi lagi perintah!"
   let caption = `
 ≡ _GAME TEBAK GAMBAR_
@@ -22,7 +22,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 ▢ *REPLAY* pesan ini untuk\nmenjawab
 └──────────────
 
-    `.trim()
+    `.trim();
   conn.tebakgambar[id] = [
     await conn.sendMessage(m.chat, { image: { url: json.img }, caption: caption}, { quoted: m }),
     json, poin,

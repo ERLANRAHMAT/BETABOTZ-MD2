@@ -10,7 +10,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     throw false
   }
   if (!src) src = await (await fetch(`https://api.betabotz.eu.org/api/game/tebakheroml?apikey=${lann}`)).json()
-  let json = src[Math.floor(Math.random() * src.length)]
+  let json = src
   if (!json) throw "Terjadi kesalahan, ulangi lagi perintah!"
   let caption = `
 ≡ _TEBAK HERO ML_
