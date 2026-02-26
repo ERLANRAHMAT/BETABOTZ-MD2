@@ -10,13 +10,11 @@ async function getGempaInfo() {
         const res = response.data.result.result;
 
         if (!res) {
-            console.log('Data gempa tidak tersedia');
             return;
         }
 
 
         if (lastGempaData && lastGempaData.waktu === res.waktu) {
-            console.log('Data gempa belum berubah, tidak ada pengingat.');
             return;
         }
 
