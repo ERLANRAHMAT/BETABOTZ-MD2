@@ -4,7 +4,7 @@ let handler = async(m, { groupMetadata, command, conn, text, args, usedPrefix })
 		throw '*Example*: .sawer 1000';
 	};
 	let count = parseInt(args[0]);
-    let ps = groupMetadata.participants.map(v => v.id);
+    let ps = groupMetadata.participants.map((v) => v.phoneNumber);
     let a = ps[Math.floor(Math.random() * ps.length)]; // Memilih secara acak peserta dari array ps
     let name = await conn.getName(m.sender);
     let user = global.db.data.users[m.sender];
@@ -17,7 +17,7 @@ let handler = async(m, { groupMetadata, command, conn, text, args, usedPrefix })
     aa.money += count;
 
     conn.reply(m.chat, hsl, m);
-}
+}   
 
 handler.help = ['sawer'];
 handler.tags = ['rpg'];

@@ -3,9 +3,9 @@ let handler = async (m, { conn, command, text }) => {
   conn.reply(m.chat, `
 ${command} *${text}*
 *${text}* is *${Math.floor(Math.random() * 101)}*% ${command.replace('how', '').toUpperCase()}
-`.trim(), m, m.mentionedJid ? {
+`.trim(), m, m.phoneNumber ? {
     contextInfo: {
-      mentionedJid: m.mentionedJid
+      mentionedJid: m.phoneNumber
     }
   } : {})
 }
