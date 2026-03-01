@@ -35,16 +35,6 @@ let handler = async (m, { conn, text, usedPrefix }) => {
             await conn.relayMessage(m.chat, {
                 extendedTextMessage: {
                     text: caption,
-                    contextInfo: {
-                        externalAdReply: {
-                            title: convert.title,
-                            mediaType: 1,
-                            previewType: 0,
-                            renderLargerThumbnail: true,
-                            thumbnailUrl: convert.image,
-                            sourceUrl: videoUrl.mp4
-                        }
-                    },
                     mentions: [m.sender]
                 }
             }, {});
@@ -54,17 +44,6 @@ let handler = async (m, { conn, text, usedPrefix }) => {
                     url: videoUrl.result.mp4
                 },
                 mimetype: 'video/mp4',
-                contextInfo: {
-                    externalAdReply: {
-                        title: convert.title,
-                        body: "",
-                        thumbnailUrl: convert.image,
-                        sourceUrl: videoUrl.mp4,
-                        mediaType: 1,
-                        showAdAttribution: false,
-                        renderLargerThumbnail: true
-                    }
-                }
             }, {
                 quoted: m
             });
@@ -150,7 +129,7 @@ let handler = async (m, { conn, text }) => {
                         thumbnailUrl: thumbnailUrl,
                         sourceUrl: url,
                         mediaType: 1,
-                        showAdAttribution: false,
+                        showAdAttribution: true,
                         renderLargerThumbnail: true
                     }
                 }
