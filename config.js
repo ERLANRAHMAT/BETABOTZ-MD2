@@ -22,6 +22,10 @@ global.antiporn = false; // Set true/false untuk Auto delete pesan porno (bot ha
 global.spam = false; // Set true/false untuk anti spam (default: false)
 global.gcspam = false; // Set true/false untuk menutup grup ketika spam (default: false)
 
+
+// Prefix dari bot
+global.prefix = './#'
+
 // APIKEY INI WAJIB DI ISI! //
 global.lann = "";
 // global.lann = process.env.API_KEY_BETABOTZ;
