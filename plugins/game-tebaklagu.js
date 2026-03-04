@@ -10,7 +10,7 @@ let handler = async (m, { conn, command, usedPrefix }) => {
         throw false
     }
     let data = await (await fetch(`https://api.betabotz.eu.org/api/game/tebaklagu?apikey=${lann}`)).json()
-    let json = data[Math.floor(Math.random() * data.length)]
+    let json = data
     let caption = `*${command.toUpperCase()}*
 Penyanyi: ${json.artis}
 

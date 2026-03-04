@@ -3,38 +3,39 @@ let fetch = require('node-fetch')
 let timeout = 100000
 let poin = 10000
 let handler = async (m, { conn, usedPrefix }) => {
-    conn.asahotak = conn.asahotak ? conn.asahotak : {}
+    conn.tebaknegara = conn.tebaknegara ? conn.tebaknegara : {}
     let id = m.chat
-    if (id in conn.asahotak) {
-        conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.asahotak[id][0])
+    if (id in conn.tebaknegara) {
+        conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebaknegara[id][0])
         throw false
     }
     // di sini dia ngambil data dari api
-    let src = await (await fetch(`https://api.betabotz.eu.org/api/game/asahotak?apikey=${lann}`)).json()
+    let src = await (await fetch(`https://api.betabotz.eu.org/api/game/tebaknegara?apikey=${lann}`)).json()
     let json = src
     // buat caption buat di tampilin di wa
     let caption = `
-${json.soal}
 
-┌─⊷ *SOAL*
+┌─⊷ *SOAL TEBAK NEGARA*
+▢ Deskripsi: ${json.deskripsi}
+▢ Clue: ${json.clue}
 ▢ Timeout *${(timeout / 1000).toFixed(2)} detik*
-▢ Ketik ${usedPrefix}toka untuk bantuan
+▢ Ketik ${usedPrefix}tbn untuk bantuan
 ▢ Bonus: ${poin} money
 ▢ *Balas/ replay soal ini untuk menjawab*
 └──────────────
-`.trim()
-    conn.asahotak[id] = [
+`.trim();
+    conn.tebaknegara[id] = [
         await conn.reply(m.chat, caption, m),
         json, poin,
         setTimeout(() => {
-            if (conn.asahotak[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.asahotak[id][0])
-            delete conn.asahotak[id]
+            if (conn.tebaknegara[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.tebaknegara[id][0])
+            delete conn.tebaknegara[id]
         }, timeout)
     ]
 }
-handler.help = ['asahotak']
+handler.help = ['tebaknegara']
 handler.tags = ['game']
-handler.command = /^asahotak/i
+handler.command = /^tebaknegara/i
 handler.register = false
 handler.group = true
 

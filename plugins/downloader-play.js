@@ -31,39 +31,48 @@ let handler = async (m, { conn, text, usedPrefix }) => {
             caption += `∘ Description : ${convert.description}\n`;
             caption += `∘ Thumbnail : ${convert.image}`;
 
-            await conn.relayMessage(m.chat, {
-                extendedTextMessage: {
-                    text: caption,
-                    contextInfo: {
-                        externalAdReply: {
-                            title: convert.title,
-                            mediaType: 1,
-                            previewType: 0,
-                            renderLargerThumbnail: true,
-                            thumbnailUrl: convert.image,
-                            sourceUrl: audioUrl.mp3
-                        }
-                    },
-                    mentions: [m.sender]
-                }
-            }, {});
+            // await conn.relayMessage(m.chat, {
+                // extendedTextMessage: {
+                    // text: caption,
+                    // contextInfo: {
+                        // externalAdReply: {
+                            // title: convert.title,
+                            // mediaType: 1,
+                            // previewType: 0,
+                            // renderLargerThumbnail: true,
+                            // thumbnailUrl: convert.image,
+                            // sourceUrl: audioUrl.mp3
+                        // }
+                    // },
+                    // mentions: [m.sender]
+                // }
+            // }, {});
 
+            // await conn.sendMessage(m.chat, {
+                // audio: {
+                    // url: audioUrl.result.mp3
+                // },
+                // mimetype: 'audio/mpeg',
+                // contextInfo: {
+                    // externalAdReply: {
+                        // title: convert.title,
+                        // body: "",
+                        // thumbnailUrl: convert.image,
+                        // sourceUrl: audioUrl.mp3,
+                        // mediaType: 1,
+                        // showAdAttribution: false,
+                        // renderLargerThumbnail: true
+                    // }
+                // }
+            // }, {
+                // quoted: m
+            // });
+            await m.reply(caption);
             await conn.sendMessage(m.chat, {
                 audio: {
                     url: audioUrl.result.mp3
                 },
                 mimetype: 'audio/mpeg',
-                contextInfo: {
-                    externalAdReply: {
-                        title: convert.title,
-                        body: "",
-                        thumbnailUrl: convert.image,
-                        sourceUrl: audioUrl.mp3,
-                        mediaType: 1,
-                        showAdAttribution: false,
-                        renderLargerThumbnail: true
-                    }
-                }
             }, {
                 quoted: m
             });
@@ -73,12 +82,9 @@ let handler = async (m, { conn, text, usedPrefix }) => {
     }
 };
 
-handler.command = handler.help = ['play', 'ds', 'song'];
-handler.tags = ['downloader'];
-handler.exp = 0;
-handler.limit = true;
-handler.premium = false;
 
+handler.help = handler.command = ["play"];
+handler.tags = ["internet", "downloader"];
 module.exports = handler;
 
 async function youtube(url) {
@@ -149,7 +155,7 @@ let handler = async (m, { conn, text }) => {
                         thumbnailUrl: thumbnailUrl,
                         sourceUrl: url,
                         mediaType: 1,
-                        showAdAttribution: false,
+                        showAdAttribution: true,
                         renderLargerThumbnail: true
                     }
                 }

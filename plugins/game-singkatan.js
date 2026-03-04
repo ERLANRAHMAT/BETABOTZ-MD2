@@ -3,41 +3,41 @@ let fetch = require('node-fetch')
 let timeout = 100000
 let poin = 10000
 let handler = async (m, { conn, usedPrefix }) => {
-    conn.kimia = conn.kimia ? conn.kimia : {}
+    conn.singkatan = conn.singkatan ? conn.singkatan : {}
     let id = m.chat
-    if (id in conn.kimia) {
-        conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.kimia[id][0])
+    if (id in conn.singkatan) {
+        conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.singkatan[id][0])
         throw false
     }
     // di sini dia ngambil data dari api
-    let src = await (await fetch(`https://api.betabotz.eu.org/api/game/tebakkimia?apikey=${lann}`)).json()
+    let src = await (await fetch(`https://api.betabotz.eu.org/api/game/singkatan?apikey=${lann}`)).json()
     let json = src
     // buat caption buat di tampilin di wa
     let caption = `
-*${json.nama}*
 
 ┌─⊷ *SOAL*
-▢ Apa rumus kimia dari zat kimia/ senyawa di atas?
+▢ Singkatan nya: ${json.singkatan}, Tebak kepanjangannya apa?
+▢ Deskripsi: ${json.deskripsi}
 ▢ Timeout *${(timeout / 1000).toFixed(2)} detik*
-▢ Ketik ${usedPrefix}kmi untuk bantuan
+▢ Ketik ${usedPrefix}sktn untuk bantuan
 ▢ Bonus: ${poin} money
 ▢ *Balas/ replay soal ini untuk menjawab*
 └──────────────
-`.trim()
-    conn.kimia[id] = [
+`.trim();
+    conn.singkatan[id] = [
         await conn.reply(m.chat, caption, m),
         json, poin,
         setTimeout(() => {
-            if (conn.kimia[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.lambang}*`, conn.kimia[id][0])
-            delete conn.kimia[id]
+            if (conn.singkatan[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.kepanjangan}*`, conn.singkatan[id][0])
+            delete conn.singkatan[id]
         }, timeout)
     ]
 }
-handler.help = ['tebakkimia']
+handler.help = ['singkatan']
 handler.tags = ['game']
-handler.command = /^tebakkimia/i
+handler.command = /^singkatan/i
 handler.register = false
-handler.group = false
+handler.group = true
 
 module.exports = handler
 
