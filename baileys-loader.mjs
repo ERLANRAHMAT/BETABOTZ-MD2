@@ -12,6 +12,7 @@ export const loadBaileys = async () => {
         makeInMemoryStore: baileys.makeInMemoryStore,
         jidDecode: baileys.jidDecode,
         fetchLatestBaileysVersion: baileys.fetchLatestBaileysVersion,
+        WAMessageStubType: baileys.fetchLatestBaileysVersion,
         proto: baileys.proto,
         Browsers: baileys.Browsers,
         makeWASocket: baileys.default || baileys.makeWASocket,
@@ -20,6 +21,11 @@ export const loadBaileys = async () => {
         getBinaryNodeChild: baileys.getBinaryNodeChild,
         areJidsSameUser: baileys.areJidsSameUser,
         WAMessageStubType: baileys.WAMessageStubType,
-        WA_DEFAULT_EPHEMERAL: baileys.WA_DEFAULT_EPHEMERAL
+        WA_DEFAULT_EPHEMERAL: baileys.WA_DEFAULT_EPHEMERAL,
+        MessageType: baileys.MessageType,
+        generateWAMessageContent: baileys.generateWAMessageContent,
+        generateWAMessage: baileys.generateWAMessage,
+        S_WHATSAPP_NET: baileys.S_WHATSAPP_NET,
+        getDevice: baileys.getDevice,
     };
 };

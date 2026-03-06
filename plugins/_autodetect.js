@@ -1,8 +1,11 @@
 /* 
 
-const { WAMessageStubType } = require('@adiwajshing/baileys');
+const { loadBaileys } = require('../baileys-loader.mjs')
+let baileys
 module.exports = {
 before: async function before(m) {
+  if (!baileys) baileys = await loadBaileys();
+  const { WAMessageStubType } = baileys;
     let fkon = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: 'status@broadcast' } : {}) }, message: { contactMessage: { displayName: m.name, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:RhmttDev\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
     if (!m.messageStubType || !m.isGroup || m.fromMe) return;
     let chat = global.db.data.chats[m.chat];

@@ -1,6 +1,8 @@
-const { MessageType } = require("@adiwajshing/baileys")
-
+const { loadBaileys } = require('../baileys-loader.mjs')
+let baileys
 async function handler(m, { command }) {
+  if (!baileys) baileys = await loadBaileys();
+  const { MessageType } = baileys;
     command = command.toLowerCase()
     this.anonymous = this.anonymous ? this.anonymous : {}
     switch (command) {

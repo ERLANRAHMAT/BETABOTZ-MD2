@@ -1,5 +1,8 @@
-let { groupsSettingUpdate } = require('@adiwajshing/baileys')
+const { loadBaileys } = require('../baileys-loader.mjs')
+let baileys
 let handler = async (m, { isAdmin, isOwner, isBotAdmin, conn, args, usedPrefix, command }) => {
+  if (!baileys) baileys = await loadBaileys();
+  const { groupsSettingUpdate } = baileys;
 	if (!(isAdmin || isOwner)) {
 		global.dfail('admin', m, conn)
 		throw false

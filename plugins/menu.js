@@ -1,14 +1,5 @@
-const {
-    BufferJSON, 
-    WA_DEFAULT_EPHEMERAL, 
-    generateWAMessageFromContent, 
-    proto, 
-    generateWAMessageContent, 
-    generateWAMessage, 
-    prepareWAMessageMedia, 
-    areJidsSameUser, 
-    getContentType 
-} = require('@adiwajshing/baileys');
+const { loadBaileys } = require('../baileys-loader.mjs')
+let baileys
 
 process.env.TZ = 'Asia/Jakarta';
 let fs = require('fs');
@@ -36,6 +27,8 @@ const defaultMenu = {
 };
 
 let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
+  if (!baileys) baileys = await loadBaileys();
+  const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType } = baileys;
     try {
         let { exp, limit, level } = global.db.data.users[m.sender];
         let name = `@${m.sender.split`@`[0]}`;

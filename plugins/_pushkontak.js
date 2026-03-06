@@ -1,7 +1,5 @@
-const { 
-    makeWASocket,
-    proto
-} = require("@adiwajshing/baileys");    
+const { loadBaileys } = require('../baileys-loader.mjs')
+let baileys    
 
 let handler = async (m, {
     conn,
