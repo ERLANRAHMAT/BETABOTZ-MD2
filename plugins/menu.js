@@ -1,3 +1,6 @@
+const { loadBaileys } = require('../baileys-loader.mjs')
+let baileys
+
 process.env.TZ = 'Asia/Jakarta';
 let fs = require('fs');
 let path = require('path');
@@ -24,6 +27,8 @@ const defaultMenu = {
 };
 
 let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
+  if (!baileys) baileys = await loadBaileys();
+  const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType } = baileys;
     try {
         let { exp, limit, level } = global.db.data.users[m.sender];
         let name = `@${m.sender.split`@`[0]}`;
@@ -111,15 +116,14 @@ async function sendMenu(m, conn, text, replace) {
         m
     );
 
+    // Music di Menu
     let musicPath = path.join(__dirname, 'music.mp3');
     if (fs.existsSync(musicPath)) {
-        conn.sendMessage(m.chat, { 
+        await conn.sendMessage(m.chat, { 
             audio: { url: musicPath }, 
             mimetype: 'audio/mpeg',
             ptt: false 
         }, { quoted: m });
-    } else {
-        console.warn('Music file not found:', musicPath);
     }
 }
 

@@ -1,7 +1,10 @@
 let fetch = require('node-fetch');
-const { generateWAMessageContent, generateWAMessageFromContent, proto } = require('@adiwajshing/baileys');
+const { loadBaileys } = require('../baileys-loader.mjs')
+let baileys
 
 let handler = async (m, { usedPrefix, command, conn, args }) => {
+  if (!baileys) baileys = await loadBaileys();
+  const { generateWAMessageContent, generateWAMessageFromContent, proto } = baileys;
   if (!args[0]) throw `*🚩 Example:* ${usedPrefix}${command} Zhao Lusi`;
   m.reply('Please wait...');
 

@@ -1,14 +1,8 @@
 const { loadBaileys } = require("../baileys-loader.mjs");
-
 let baileys;
-
 let handler = async (m) => {
-  if (!baileys) {
-    baileys = await loadBaileys();
-  }
-
+  if (!baileys) baileys = await loadBaileys();
   const { getDevice } = baileys;
-
   m.reply(await getDevice(m.quoted ? m.quoted.id : m.key.id));
 };
 

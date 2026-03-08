@@ -1,11 +1,10 @@
-const {
-	getBinaryNodeChild,
-	getBinaryNodeChildren
-} = require('@adiwajshing/baileys')
-
+const { loadBaileys } = require('../baileys-loader.mjs')
+let baileys
 const fetch = require('node-fetch')
 
 let handler = async (m, { conn, text, participants, usedPrefix, command }) => {
+  if (!baileys) baileys = await loadBaileys();
+  const { getBinaryNodeChild, getBinaryNodeChildren } = baileys;
 	if (!text) throw `_Masukan nomor!_\nContoh:\n\n${usedPrefix + command} ${global.owner[0]}`
 	m.reply('_Sedang di proses..._')
     let _participants = participants.map(user => user.id)

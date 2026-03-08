@@ -1,4 +1,5 @@
-const { trimUndefined } = require('@adiwajshing/baileys');
+const { loadBaileys } = require('../baileys-loader.mjs')
+let baileys
 let fetch = require('node-fetch')
 const axios = require('axios');
 

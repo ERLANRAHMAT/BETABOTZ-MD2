@@ -1,11 +1,9 @@
-const {
-    proto,
-    generateWAMessage,
-    areJidsSameUser
-} = require('@adiwajshing/baileys')
-
+const { loadBaileys } = require('../baileys-loader.mjs')
+let baileys
 module.exports = {
     async all(m, chatUpdate) {
+      if (!baileys) baileys = await loadBaileys();
+      const { proto, generateWAMessage, areJidsSameUser } = baileys;
         if (m.isBaileys) return
         if (!m.message) return
         if (!m.msg.fileSha256) return

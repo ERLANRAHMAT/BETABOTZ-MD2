@@ -1,7 +1,10 @@
 const uploadImage = require('../lib/uploadImage')
-const { MessageType } = require('@adiwajshing/baileys')
+const { loadBaileys } = require('../baileys-loader.mjs')
+let baileys
 const { sticker } = require('../lib/sticker')
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+  if (!baileys) baileys = await loadBaileys();
+  const { MessageType } = baileys;
 
     let [atas, bawah] = text.split`|`
     let q = m.quoted ? m.quoted : m

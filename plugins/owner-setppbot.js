@@ -1,32 +1,32 @@
 /*di bawah ini buat pp biasa non panjang pilih salah satu*/
+// const jimp = require('jimp');
+
 let handler = async (m, { conn, usedPrefix, command }) => {
     let q = m.quoted ? m.quoted : m
     let mime = (q.msg || q).mimetype || ''
     if (/image/.test(mime)) {
-    	try {
-        let img = await q.download()
-        let noBot = conn.user.jid
-        if (!img) throw 'Gambar tidak ditemukan'
-          await conn.updateProfilePicture(noBot ,img)
-		m.reply('ppbot berhasil di ganti')
-		} catch (e) {
-			console.log(e)
-			m.reply(`Terjadi kesalahan, coba lagi nanti.`)
-			}
+        try {
+            let img = await q.download()
+            let noBot = conn.user.jid
+            if (!img) throw 'Gambar tidak ditemukan'
+            await conn.updateProfilePicture(noBot, img)
+            m.reply('ppbot berhasil di ganti')
+        } catch (e) {
+            console.log(e)
+            m.reply(`Terjadi kesalahan, coba lagi nanti.`)
+        }
     } else throw `kirim/balas gambar dengan caption *${usedPrefix + command}*`
 }
+
 handler.help = ['setppbot'].map(v => v + ' <caption / reply image>')
 handler.tags = ['adminry']
 handler.command = /^(setppbot)$/i
-
 handler.rowner = true
+
 module.exports = handler
 
 /*di bawah ini buat pp panjang aktifin aja pilih salah satu*/
 // const { S_WHATSAPP_NET } = require('@adiwajshing/baileys');
-// const jimp = require('jimp');
-
-// let handler = async (m, { conn, command, usedPrefix }) => {
 //     let q = m.quoted ? m.quoted : m;
 //     let mime = (q.msg || q).mimetype || q.mediaType || '';
 //     if (/image/g.test(mime) && !/webp/g.test(mime)) {

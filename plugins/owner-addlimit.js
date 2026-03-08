@@ -9,9 +9,12 @@ Buy Script?
 */
 
 
-const { MessageType } = require('@adiwajshing/baileys');
+const { loadBaileys } = require('../baileys-loader.mjs')
+let baileys
 
 let handler = async (m, { conn, text }) => {
+  if (!baileys) baileys = await loadBaileys();
+  const { MessageType } = baileys;
   if (!text) {
     throw 'Masukkan jumlah limit yang ingin ditambahkan pada pengguna. Contoh: .addlimit @user 10';
   }
