@@ -1,11 +1,19 @@
-const { getDevice } = require('@adiwajshing/baileys')
+const { loadBaileys } = require("../baileys-loader.mjs");
+
+let baileys;
 
 let handler = async (m) => {
-	m.reply(await getDevice(m.quoted ? m.quoted.id : m.key.id))
-}
+  if (!baileys) {
+    baileys = await loadBaileys();
+  }
 
-handler.help = ['device']
-handler.tags = ['tools']
-handler.command = /^(device)$/i
+  const { getDevice } = baileys;
 
-module.exports = handler
+  m.reply(await getDevice(m.quoted ? m.quoted.id : m.key.id));
+};
+
+handler.help = ["device"];
+handler.tags = ["tools"];
+handler.command = /^(device)$/i;
+
+module.exports = handler;

@@ -1,15 +1,3 @@
-const {
-    BufferJSON, 
-    WA_DEFAULT_EPHEMERAL, 
-    generateWAMessageFromContent, 
-    proto, 
-    generateWAMessageContent, 
-    generateWAMessage, 
-    prepareWAMessageMedia, 
-    areJidsSameUser, 
-    getContentType 
-} = require('@adiwajshing/baileys');
-
 process.env.TZ = 'Asia/Jakarta';
 let fs = require('fs');
 let path = require('path');
@@ -123,14 +111,15 @@ async function sendMenu(m, conn, text, replace) {
         m
     );
 
-    // Music di Menu
     let musicPath = path.join(__dirname, 'music.mp3');
     if (fs.existsSync(musicPath)) {
-        await conn.sendMessage(m.chat, { 
+        conn.sendMessage(m.chat, { 
             audio: { url: musicPath }, 
             mimetype: 'audio/mpeg',
             ptt: false 
         }, { quoted: m });
+    } else {
+        console.warn('Music file not found:', musicPath);
     }
 }
 
