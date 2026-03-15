@@ -1,8 +1,10 @@
-module.exports = {
-    before: async function (m, {conn, groupMetadata}) {
-    if (!m.isGroup) return
+exports.before = async function(m, { isBotAdmin }) {
+    if (!m.isGroup) return;
+    if ( !isBotAdmin) {
+          // Jika bot bukan admin, tidak melakukan apa-apa
+    } else {
     let chat = db.data.chats[m.chat]
-    if (chat.autoacc) return
+    if (chat.autoacc) {
         let mode = await conn.groupMetadata(m.chat)
         if (mode.joinApprovalMode) {
             conn.groupRequestParticipantsList(m.chat).then(async (data) => {
@@ -17,4 +19,4 @@ module.exports = {
             })
         }
     }
-}
+}}

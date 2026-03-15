@@ -840,6 +840,7 @@ module.exports = {
                 if (!('antilinktt' in chat)) chat.antilinktt = false
                 if (!('antilinkttnokick' in chat)) chat.antilinkttnokick = false
                 if (!('antibot' in chat)) chat.antibot = false
+                if (!("autoacc" in chat)) chat.autoacc = false;
             } else global.db.data.chats[m.chat] = {
                 isBanned: false,
                 welcome: true,
@@ -857,6 +858,7 @@ module.exports = {
                 antiLinknokick: false,
                 antiSticker: false, 
                 antiStickernokick: false, 
+                autoacc: false,
                 viewonce: false,
                 antiToxic: true,
                 antilinkig: false, 
