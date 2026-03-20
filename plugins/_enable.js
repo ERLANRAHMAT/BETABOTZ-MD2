@@ -54,7 +54,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       chat.welcome = isEnable
       break
-      case 'autoacc':
+    case 'autoacc':
       if (!m.isGroup) {
         if (!isOwner) {
           global.dfail('group', m, conn)
@@ -65,6 +65,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
         throw false
       }
       chat.autoacc = isEnable
+      break
     case 'detect':
       if (!m.isGroup) {
         if (!isOwner) {
@@ -349,6 +350,7 @@ List option:
 | autosticker
 | autolevelup
 | antisticker
+| autoacc
 | detect
 | viewonce
 | document
