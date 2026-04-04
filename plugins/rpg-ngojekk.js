@@ -29,35 +29,13 @@ let handler = async (m, { conn }) => {
       var zero4 = `${rbrb4}`
       var zero5 = `${rbrb5}`
 
-      let arr = [
-          `Mendapatkan Orderan...`, 
-          `🚶🛵⬛⬛⬛⬛⬛⬛⬛⬛
-          ⬛⬜⬜⬜⬛⬜⬜⬜⬛⬛
-          ⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
-          🏘️🏘️🏘️🏘️🌳  🌳 🏘️       \n\n\n➕ Mengantar ke tujuan....`, 
-          `⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
-          ⬛⬜⬜⬛⬛⬜⬜⬜⬛⬛
-          ⬛⬛⬛⬛⬛⬛⬛🛵⬛⬛
-          🏘️🏘️🏘️🏘️🌳  🌳 🏘️       \n\n\n➕ Sampai di tujuan...`, 
-          `➕ 💹Menerima gaji....`, 
-          `*—[ Hasil Ngojek ${name} ]—*
-          ➕ 💹 Uang = [ ${zero4} ]
-          ➕ ✨ Exp = [ ${zero5} ] 		 
-          ➕ 😍 Order Selesai = +1
-          ➕  📥Total Order Sebelumnya : ${order}
-          ${wm}`
-      ]
 
-      let { key } = await conn.sendMessage(m.chat, {text: 'Mencari pelanggan.....'})
-      for (let i = 0; i < arr.length; i++) {
-          await new Promise(resolve => setTimeout(resolve, 10000));
-          await conn.sendMessage(m.chat, { text: arr[i], edit: key });
-      }
 
       global.db.data.users[m.sender].money += rbrb4
       global.db.data.users[m.sender].exp += rbrb5
       global.db.data.users[m.sender].ojek += 1
 
+    m.reply(`*—[ Hasil Ngojek ]—*\n➕ 💹 Uang = [ ${zero4} ]\n➕ ✨ Exp = [ ${zero5} ]\n➕ 😍 Order Selesai = +1\n➕  📥Total Order Sebelumnya : ${order}`)
   } else m.reply(`Sepertinya anda sudah kecapekan silahkan istirahat dulu sekitar\n*${timers}*`)
 }
 handler.help = ['ojek']
