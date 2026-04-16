@@ -18,7 +18,7 @@ global.antiporn = true // Auto delete pesan porno (bot harus admin)
 // Prefix
 global.prefix = './#'
 //INI WAJIB DI ISI!//
-global.lann = ''
+global.lann = 'VVIP-69e057552987e6e667fa'
 global.aksesKey = '' // Register dan buy 
 //Daftar terlebih dahulu https://api.betabotz.eu.org
 
@@ -26,7 +26,7 @@ global.APIs = {
   lann: 'https://api.betabotz.eu.org',
 }
 global.APIKeys = { 
-  'https://api.betabotz.eu.org': global.lann, 
+  'https://api.betabotz.eu.org': 'VVIP-69e057552987e6e667fa'
 }
 
 let fs = require('fs')
