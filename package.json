@@ -10,7 +10,7 @@
         "plugins": "plugins"
     },
     "scripts": {
-        "start": "node index.js --autocleartmp",
+         "start": "node index.js --pairing && node index.js --autocleartmp",
         "test": "node test.js",
         "test2": "nodemon index.js --server --autocleartmp"
     },
