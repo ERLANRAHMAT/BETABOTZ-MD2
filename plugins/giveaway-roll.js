@@ -13,15 +13,6 @@ let handler = async (m, { conn, usedPrefix }) => {
     let cita = absen[Math.floor(Math.random() * absen.length)]
     let tag = `@${cita.split`@`[0]}`
     let loadd = [
- '■□ 10%',
- '□■ 20%',
- '■□ 30%',
- '□■ 40%',
- '■□ 50%',
- '□■ 60%',
- '■□ 70%',
- '□■ 80%',
- '■□ 90%',
  '*Mendapatkan Pemenangnya*'
  ]
 

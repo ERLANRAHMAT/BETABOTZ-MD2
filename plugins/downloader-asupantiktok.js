@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   const username = [
     'natajadeh',
@@ -22,7 +23,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     'toodlesprunky',
     'wasawho',
     'paphricia',
-    'queenzlyjlita',
+    'queenzlyyjelita',
     'apol1yon',
     'eliceannabella',
     'aintyrbaby',
@@ -38,7 +39,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     'irenefennn',
     'mellyllyyy',
     'xsta_xstar',
-    'mellyllyyy',
     'n0_0ella',
     'kutubuku6690',
     'cesiann',
@@ -61,33 +61,60 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     'shiraishi.ito',
     'itsceceh',
     'senpai_cj7',
+    'miawwchu',
+    'sinclareee',
+    'yyourcandle',
+    'sukamatchaa255',
+    'tilalaamisyu',
+    'cricezie',
+    'nabilakhoeruniza5',
+    'caca.kiyowo',
+    'jennangelina_',
+    'ciisel22',
+    'meytwohuhuy',
+    'panggilkez',
+    'strangerfr0mhell',
+    'deboraballtes22',
+    'nabilakhoeruniza5',
+    'natasya_aya22',
+    'kumohano',
+    'yingying_qc',
+    'reliabl7271',
+    'cgdh5810hfx',
+    'lilibaby1007',
+    'qiqi200461',
+    'jamonghae._',
+    'singing2life2nd',
+    'lisa18202',
   ];
   const pickuser = username[Math.floor(Math.random() * username.length)];
   const query = args[0] ? args[0] : pickuser;
   try {
     const res = await fetch(`https://api.betabotz.eu.org/api/asupan/tiktok?query=${query}&apikey=${lann}`);
     const api = await res.json();
-    
-    const video = api.result.data[0];
+
+    const video = api.result.data;
     const author = video.author;
-    const music = video.music_info;
-    
+    const music = video.music;
+    const stats = video.stats;
+
     let capt = `乂 *T I K T O K*\n\n`;
     capt += `  ◦ *Author* : ${author.nickname} (@${author.unique_id})\n`;
-    capt += `  ◦ *Views* : ${video.play_count}\n`;
-    capt += `  ◦ *Likes* : ${video.digg_count}\n`;
-    capt += `  ◦ *Shares* : ${video.share_count}\n`;
-    capt += `  ◦ *Comments* : ${video.comment_count}\n`;
+    capt += `  ◦ *Views* : ${stats.play_count}\n`;
+    capt += `  ◦ *Likes* : ${stats.digg_count}\n`;
+    capt += `  ◦ *Shares* : ${stats.share_count}\n`;
+    capt += `  ◦ *Comments* : ${stats.comment_count}\n`;
     capt += `  ◦ *Duration* : ${Math.floor(video.duration / 60)} menit ${Math.floor(video.duration % 60)} detik\n`;
     capt += `  ◦ *Sound* : ${music.title} - ${music.author}\n`;
-    capt += `  ◦ *Caption* : ${video.title || '-'}\n\n`;
-    conn.sendFile(m.chat, video.play, null, capt, m);
+    capt += `  ◦ *Caption* : ${video.caption || '-'}\n\n`;
+
+    conn.sendFile(m.chat, video.video, null, capt, m);
   } catch (error) {
     throw `🚩 *Username Tidak Ditemukan*`
   }
 }
 handler.help = ['asupantiktok'].map(v => v + ' <username>');
-handler.tags = ['internet'];
+handler.tags = ['downloader'];
 handler.command = /^(asupantiktok)$/i;
 handler.limit = true;
 
