@@ -29,7 +29,7 @@ async function checkAntiLink(m, { conn, isAdmin, isBotAdmin }) {
 }
 
 async function checkAntilinkCh (m, { conn, isAdmin, isBotAdmin }) {
-  if (m.isBaileys || m.fromMe || !m.isGroup || isAdmin) return true
+  if (m.isBaileys || m.fromMe || !m.isGroup || isAdmin) return false
   let chat = global.db.data.chats[m.chat]
   let user = global.db.data.users[m.sender]
   if (!user) return true
@@ -52,8 +52,9 @@ async function checkAntilinkCh (m, { conn, isAdmin, isBotAdmin }) {
       user.warnLink = 0;
       await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove');
     }
+    return true; 
   }
-  return true
+  return false;
 }
 
 // isi array ini dengan fungsi yang mau di tambah sebelum afk jalan
