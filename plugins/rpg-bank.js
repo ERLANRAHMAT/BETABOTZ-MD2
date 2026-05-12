@@ -21,23 +21,18 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   capt += `> *${usedPrefix} atm <jumlah>* untuk menabung\n`
   capt += `> *${usedPrefix} pull <jumlah>* untuk menarik uang\n`
 
-  await conn.relayMessage(m.chat, {
-            extendedTextMessage:{
-                text: capt, 
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    externalAdReply: {
-                        title: wm,
-                        mediaType: 1,
-                        previewType: 0,
-                        renderLargerThumbnail: true,
-                        thumbnailUrl: 'https://api.betabotz.eu.org/api/tools/get-upload?id=f/106ebnd3.jpg',
-                        sourceUrl: 'https://whatsapp.com/channel/0029Va8ZH8fFXUuc69TGVw1q'
-                    }
-                }, 
-                mentions: [m.sender]
-            }
-        }, {})
+  await conn.sendMessage(
+    m.chat,
+    {
+      image: {
+        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIiXrZfzbrdryj4p1M69g0gLTVE7RR00k6kXSu4vPz12R5MhFQ-vhHjKE&s",
+      },
+      caption: capt,
+      mentions: [m.sender],
+    },
+    { quoted: m },
+  );
+
 }
 
 handler.help = ['bank']

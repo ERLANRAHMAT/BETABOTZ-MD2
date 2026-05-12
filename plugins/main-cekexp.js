@@ -12,5 +12,7 @@ if (!text) throw `Masukan Username Di Website Api!`
 }          
 handler.command = handler.help = ['checkexp','cekexp', 'expapi'];
 handler.tags = ['main'];
-handler.private = true
+handler.private = true;
+handler.owner = true;
+handler.rowner = true;
 module.exports = handler;

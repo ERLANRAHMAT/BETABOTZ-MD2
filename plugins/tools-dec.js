@@ -1,10 +1,13 @@
+const { loadBaileys } = require('../baileys-loader.mjs')
+let baileys
 const { deobfuscate } = require('obfuscator-io-deobfuscator')
 const fs = require('fs')
 const path = require('path')
 const crypto = require('crypto')
-const { downloadContentFromMessage } = require('@adiwajshing/baileys')
 
 let handler = async (m, { conn, text, args }) => {
+  if (!baileys) baileys = await loadBaileys();
+  const { downloadContentFromMessage } = baileys;
     let code
     const tempDir = path.join(__dirname, './temp')
     if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true })

@@ -1,6 +1,9 @@
-const { proto } = require('@adiwajshing/baileys'); 
+const { loadBaileys } = require('../baileys-loader.mjs')
+let baileys 
 
 let handler = async (m, { conn, text }) => {
+  if (!baileys) baileys = await loadBaileys();
+  const { proto } = baileys;
     try {
 
         let teks = text 
