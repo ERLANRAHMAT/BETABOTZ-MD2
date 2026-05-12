@@ -13,20 +13,15 @@ let handler = async (m, { conn, command, args }) => {
     let msg = data.result.map(({ title, url, description }) => {
       return `*${title}*\n_${url}_\n_${description}_`;
     }).join('\n\n');
-    conn.relayMessage(m.chat, {
-     extendedTextMessage:{
-                text: msg, 
-                contextInfo: {
-                     externalAdReply: {
-                        title: wm,
-                        mediaType: 1,
-                        previewType: 0,
-                        renderLargerThumbnail: true,
-                        thumbnailUrl: 'https://telegra.ph/file/d7b761ea856b5ba7b0713.jpg',
-                        sourceUrl: ''
-                    }
-                }, mentions: [m.sender]
-}}, {})
+    conn.sendMessage(
+      m.chat,
+      {
+        image: { url: "https://telegra.ph/file/d7b761ea856b5ba7b0713.jpg" },
+        caption: `🔍 *Hasil Pencarian: ${text}*\n\n${msg}`,
+        mentions: [m.sender],
+      },
+      { quoted: m },
+    );
   } catch (e) {
     throw eror
   }
