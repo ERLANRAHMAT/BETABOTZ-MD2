@@ -17,7 +17,9 @@ let handler = async (m, { conn, text: txt, usedPrefix, participants }) => {
         lawan = users[Math.floor(users.length * Math.random())]
     }
 
-    m.reply(`*Kamu* (${text} level ${user[text]}) menantang *'@' +${conn.getName(lawan)}* (${text} level ${global.db.data.users[lawan][text]}) dan sedang dalam pertarungan.\n\nTunggu 5 menit lagi dan lihat siapa yg menang.`)
+    m.reply(
+      `*Kamu* (${text} level ${user[text]}) menantang *'@' +${await conn.getName(lawan)}* (${text} level ${global.db.data.users[lawan][text]}) dan sedang dalam pertarungan.\n\nTunggu 5 menit lagi dan lihat siapa yg menang.`,
+    );
     conn.battlepet[id] = true
 
     await delay(300000)

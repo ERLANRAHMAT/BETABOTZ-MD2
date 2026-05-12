@@ -368,7 +368,7 @@ module.exports = {
           if (!isNumber(user.lastrampok)) user.lastrampok = 0;
           if (!("registered" in user)) user.registered = false;
           if (!user.registered) {
-            if (!("name" in user)) user.name = this.getName(m.sender);
+          if (!('name' in user)) user.name = await this.getName(m.sender)
 
             if (!isNumber(user.apel)) user.apel = 0;
             if (!isNumber(user.anggur)) user.anggur = 0;
@@ -762,7 +762,7 @@ module.exports = {
             semangka: 0,
             jeruk: 0,
             semangka: 0,
-            name: this.getName(m.sender),
+            name: await this.getName(m.sender),
             age: -1,
             regTime: -1,
             premiumDate: -1,
@@ -1332,45 +1332,19 @@ module.exports = {
             )
               continue;
 
-            let pp = "https://telegra.ph/file/70e8de9b1879568954f09.jpg";
-            try {
-              pp = await this.profilePictureUrl(jid, "image");
-            } catch {}
-
             const isAdd = ["add", "invite", "invite_v4"].includes(action);
 
-            text = (
-              isAdd
-                ? chat.sWelcome ||
-                  this.welcome ||
-                  conn.welcome ||
-                  "Welcome, @user!"
-                : chat.sBye || this.bye || conn.bye || "Bye, @user!"
-            )
-              .replace("@subject", groupMetadata.subject || "this group")
-              .replace("@desc", groupMetadata.desc?.toString() || "")
-              .replace("@user", "@" + jid.split("@")[0]);
+            text = (isAdd
+                        ? (chat.sWelcome || this.welcome || 'Selamat datang @user 👋')
+                        : (chat.sBye || this.bye || 'Selamat tinggal @user 👋'))
+                        .replace('@subject', groupMetadata.subject || 'Group')
+                        .replace('@desc', groupMetadata.desc?.toString() || '')
+                        .replace('@user', '@' + jid.split('@')[0])
 
             await this.sendMessage(id, {
               text,
               mentions: [jid],
             });
-            /*
-                    await this.sendMessage(id, {
-                        text: text,
-                        mentions: [jid],
-                        contextInfo: {
-                            externalAdReply: {
-                                title: isAdd ? 'Selamat Datang' : 'Selamat Tinggal',
-                                body: global.wm || 'Bot WhatsApp',
-                                thumbnailUrl: pp,
-                                sourceUrl: 'https://api.botcahx.eu.org',
-                                mediaType: 1,
-                                renderLargerThumbnail: true
-                            }
-                        }
-                    })
- */
           }
         }
         break;

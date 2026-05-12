@@ -57,22 +57,15 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
         
         teks += `*Preview:* ${json.result.image}\n`;
         
-        await conn.relayMessage(m.chat, {
-          extendedTextMessage: {
-            text: teks,
-            contextInfo: {
-              externalAdReply: {
-                title: 'DEVICE INFORMATION',
-                mediaType: 1,
-                previewType: 0,
-                renderLargerThumbnail: true,
-                thumbnailUrl: json.result.image,
-                sourceUrl: json.result.url
-              }
-            },
-            mentions: [m.sender]
-          }
-        }, {});
+        await conn.sendMessage(
+          m.chat,
+          {
+            image: { url: json.result.image },
+            caption: teks,
+            mentions: [m.sender],
+          },
+          { quoted: m },
+        );
   } catch (e) {
     throw `🚩 *Gagal Memuat Data!*`;
   }
