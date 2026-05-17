@@ -153,7 +153,7 @@ let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
                             m.chat,
                             {
                                 image: {
-                                    url: "https://telegra.ph/file/3a34bfa58714bdef500d9.jpg",
+                                    url: global.thumb || "thumb.jpg",
                                 },
                                 caption: text,
                                 mentions: [m.sender],
@@ -227,7 +227,7 @@ let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
                 await conn.sendMessage(
                     m.chat,
                     {
-                        image: { url: "https://telegra.ph/file/3a34bfa58714bdef500d9.jpg" },
+                        image: { url: global.thumb || "thumb.jpg" },
                         caption: text,
                         mentions: [m.sender],
                     },

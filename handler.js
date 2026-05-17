@@ -368,7 +368,7 @@ module.exports = {
           if (!isNumber(user.lastrampok)) user.lastrampok = 0;
           if (!("registered" in user)) user.registered = false;
           if (!user.registered) {
-          if (!('name' in user)) user.name = await this.getName(m.sender)
+            if (!("name" in user)) user.name = await this.getName(m.sender);
 
             if (!isNumber(user.apel)) user.apel = 0;
             if (!isNumber(user.anggur)) user.anggur = 0;
@@ -993,24 +993,51 @@ module.exports = {
         global.db.data.users[m.sender];
 
       //let isROwner = [global.conn.user.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
-      let isROwner = [global.conn.user.jid, ...global.owner]
+      /**let isROwner = [global.conn.user.jid, ...global.owner]
               .map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net')
               .includes(
                 m.sender.endsWith('@lid') 
                   ? conn.getJid(m.sender)?.replace(/[^0-9]/g, '') + '@s.whatsapp.net' 
                   : m.sender.replace(/[^0-9]/g, '') + '@s.whatsapp.net'
-              );
-      let isOwner = isROwner || m.fromMe
-            let isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
-            let isPrems = isROwner || (db.data.users[m.sender].premiumTime > 0 || db.data.users[m.sender].premium)
+              );**/
+      let isROwner = [global.conn.user.jid, ...(global.owner || [])]
+        .filter((v) => v != null)
+        .map((v) => String(v).replace(/[^0-9]/g, "") + "@s.whatsapp.net")
+        .includes(
+          m.sender.endsWith("@lid")
+            ? (conn.getJid(m.sender) || m.sender).replace(/[^0-9]/g, "") +
+                "@s.whatsapp.net"
+            : m.sender.replace(/[^0-9]/g, "") + "@s.whatsapp.net",
+        );
+      let isOwner = isROwner || m.fromMe;
+      let isMods =
+        isOwner ||
+        global.mods
+          .map((v) => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net")
+          .includes(m.sender);
+      let isPrems =
+        isROwner ||
+        db.data.users[m.sender].premiumTime > 0 ||
+        db.data.users[m.sender].premium;
 
-            const groupMetadata = (m.isGroup ? (conn.chats[m.chat] || {}).metadata || (await this.groupMetadata(m.chat).catch((_) => null)) : {}) || {};
-            const participants = (m.isGroup ? groupMetadata.participants : []) || [];
-            const user = participants.find((u) => (u.jid || u.phoneNumber || u.id) === m.sender) || {};
-            const bot  = participants.find((u) => (u.jid || u.phoneNumber || u.id) === this.user.jid) || {};
-            const isRAdmin    = user?.admin === 'superadmin' || false;
-            const isAdmin     = isRAdmin || user?.admin === 'admin' || false;
-            const isBotAdmin  = bot?.admin === 'admin' || bot?.admin === 'superadmin' || false;
+      const groupMetadata =
+        (m.isGroup
+          ? (conn.chats[m.chat] || {}).metadata ||
+            (await this.groupMetadata(m.chat).catch((_) => null))
+          : {}) || {};
+      const participants = (m.isGroup ? groupMetadata.participants : []) || [];
+      const user =
+        participants.find(
+          (u) => (u.jid || u.phoneNumber || u.id) === m.sender,
+        ) || {};
+      const bot =
+        participants.find(
+          (u) => (u.jid || u.phoneNumber || u.id) === this.user.jid,
+        ) || {};
+      const isRAdmin = user?.admin === "superadmin" || false;
+      const isAdmin = isRAdmin || user?.admin === "admin" || false;
+      const isBotAdmin =
+        bot?.admin === "admin" || bot?.admin === "superadmin" || false;
       for (let name in global.plugins) {
         let plugin = global.plugins[name];
         if (!plugin) continue;

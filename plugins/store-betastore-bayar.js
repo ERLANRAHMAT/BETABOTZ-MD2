@@ -1,7 +1,7 @@
 const { loadBaileys } = require('../baileys-loader.mjs')
 let baileys
 
-const qrisUrl = 'https://files.catbox.moe/spv9di.jpg'; 
+const qrisUrl = global.qris || 'qris.jpg'; 
 
 const handler = async (message, { conn }) => {
   if (!baileys) baileys = await loadBaileys();
