@@ -1,7 +1,7 @@
 const { loadBaileys } = require('../baileys-loader.mjs')
 let baileys
 
-const qrisUrl = global.qris || 'qris.jpg'; 
+const qrisUrl = global.qris || 'https://cdn.filn.pp.ua/uploads/betabotzapi/41616.jpg'; 
 
 const handler = async (message, { conn }) => {
   if (!baileys) baileys = await loadBaileys();
