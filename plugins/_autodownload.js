@@ -304,22 +304,136 @@ async function downloadyt(link, m) {
 	}
 }
 
-// DOWNLOADER INSTAGRAM 
+// DOWNLOADER INSTAGRAM
 async function downloadInstagram(link, m) {
 	try {
-		if (global.db.data.users[m.sender].limit > 0) {
-			const response = await fetch(`https://api.betabotz.eu.org/api/download/igdowloader?url=${link}&apikey=${lann}`);
-			let message = await response.json()
-			global.db.data.users[m.sender].limit -= 1
-			for (let i of message.message) {
-				conn.sendFile(m.chat, i._url, null, `*Instagram Downloader*`, m)
+		if (global.db.data.users[m.sender].limit <= 0) {
+			return conn.reply(m.chat, 'limit kamu habis!', m)
+		}
+
+		let message
+		let isV2 = false
+
+		try {
+			const res = await fetch(
+				`https://api.betabotz.eu.org/api/download/igdowloader?url=${encodeURIComponent(link)}&apikey=${lann}`
+			)
+
+			const text = await res.text()
+
+			try {
+				message = JSON.parse(text)
+			} catch {
+				throw new Error('API V1 bukan JSON')
+			}
+
+			if (
+				!message.message ||
+				!Array.isArray(message.message) ||
+				message.message.length === 0 ||
+				!message.message[0]._url
+			) {
+				throw new Error('Media tidak valid dari API V1')
+			}
+
+		} catch (e) {
+			console.log('Fallback ke API V2:', e.message)
+
+			isV2 = true
+
+			const res2 = await fetch(
+				`https://api.betabotz.eu.org/api/download/igdowloader-v2?url=${encodeURIComponent(link)}&apikey=${lann}`
+			)
+
+			const text2 = await res2.text()
+
+			try {
+				message = JSON.parse(text2)
+			} catch {
+				throw new Error('API V2 bukan JSON')
 			}
 		}
-		else {
-			conn.reply(m.chat, 'limit kamu habis!', m);
+
+		global.db.data.users[m.sender].limit -= 1
+		if (!isV2) {
+			for (const media of message.message) {
+				if (!media._url) continue
+
+				await conn.sendFile(
+					m.chat,
+					media._url,
+					null,
+					'*Instagram Downloader*',
+					m
+				)
+			}
+
+			return
 		}
+
+		if (
+			!message.result ||
+			!message.result.data ||
+			!message.result.data.xdt_shortcode_media
+		) {
+			throw 'Gagal mengambil media Instagram! (v2)'
+		}
+
+		const media = message.result.data.xdt_shortcode_media
+
+		let caption = ''
+
+		if (
+			media.edge_media_to_caption &&
+			media.edge_media_to_caption.edges &&
+			media.edge_media_to_caption.edges.length > 0
+		) {
+			caption = media.edge_media_to_caption.edges[0].node.text
+		}
+
+		if (media.video_url) {
+			return await conn.sendMessage(
+				m.chat,
+				{
+					video: { url: media.video_url },
+					caption: caption
+						? `*Instagram Downloader*\n\n${caption}`
+						: '*Instagram Downloader*'
+				},
+				{ quoted: m }
+			)
+		}
+
+		const img =
+			media.display_url ||
+			media.thumbnail_src ||
+			(media.display_resources &&
+				media.display_resources[0] &&
+				media.display_resources[0].src)
+
+		if (!img) {
+			throw 'Media tidak ditemukan!'
+		}
+
+		await conn.sendMessage(
+			m.chat,
+			{
+				image: { url: img },
+				caption: caption
+					? `*Instagram Downloader*\n\n${caption}`
+					: '*Instagram Downloader*'
+			},
+			{ quoted: m }
+		)
+
 	} catch (err) {
-		m.reply(`${eror}`)
+		console.error(err)
+
+		m.reply(
+			typeof err === 'string'
+				? err
+				: err.message || 'Terjadi kesalahan'
+		)
 	}
 }
 
