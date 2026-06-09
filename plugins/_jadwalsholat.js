@@ -44,7 +44,7 @@ ${jadwalSholat}
             throw 'Error: Tidak ada data untuk tanggal hari ini';
         }
     } catch (error) {
-        m.reply('Terjadi kesalahan: ' + error);
+        m.reply('Terjadi kesalahan, hubungi owner melalui .lapor');
     }
 };
 
