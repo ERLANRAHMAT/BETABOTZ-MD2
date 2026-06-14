@@ -1261,8 +1261,11 @@ module.exports = {
             console.error(e);
             if (e) {
               let text = util.format(e);
-              for (let key of Object.values(APIKeys))
-                text = text.replace(new RegExp(key, "g"), "#HIDDEN#");
+              for (const key of Object.values(APIKeys)) {
+                if (!key) continue;
+                const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+                text = text.replace(new RegExp(escaped, "g"), "#HIDDEN#");
+              }
               if (e.name)
                 for (let jid of owner
                   .map((v) => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net")
