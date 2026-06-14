@@ -24,7 +24,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
         chat.notifcuaca = isEnable;
       } else return global.dfail("group", m, conn);
       break;
-      case "nsfw":
+    case "nsfw":
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail("admin", m, conn);
@@ -328,6 +328,15 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       chat.antilinkch = isEnable;
       break;
+    case "anticall":
+      if (m.isGroup) {
+        if (!(isAdmin || isOwner)) {
+          global.dfail("admin", m, conn);
+          throw false;
+        }
+      }
+      chat.antiCall = isEnable;
+      break;
     case "antitagsw":
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
@@ -351,6 +360,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
         return m.reply(
           `
 List option:
+| anticall
 | antilinkch
 | antitagsw
 | autodl
