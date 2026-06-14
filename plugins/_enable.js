@@ -335,7 +335,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
           throw false;
         }
       }
-      antiCall = isEnable;
+      global.anticall = isEnable;
       break;
     case "antitagsw":
       if (m.isGroup) {
