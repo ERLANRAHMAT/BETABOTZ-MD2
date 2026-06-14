@@ -3,8 +3,14 @@ let handler = async (m, { conn, command, args }) => {
         const API_URL = `https://task.aniqu.biz.id/api/bot/tasks?token=${taskToken}`;
         
         let response = await fetch(API_URL);
+        if (response.status === 401) {
+          return conn.reply(
+            m.chat,
+            "⚠️ Fitur rekap tugas sedang tidak tersedia karena *Task API Token* belum diatur atau tidak valid.\n\nSilakan daftar di https://task.aniqu.biz.id/register-moderator untuk mendapatkan token yang valid.",
+            m,
+          );
+        }
         if (!response.ok) throw new Error(`Gagal mengambil data dari API (Status: ${response.status})`);
-        
         let resJson = await response.json();
         let tasksList = resJson.data; 
         
