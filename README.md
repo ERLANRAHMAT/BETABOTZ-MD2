@@ -139,6 +139,14 @@ npm start
 ```
 ---
 
+## Website ANIQU-task
+
+Sebuah sistem untuk mengelola dan pengingat yang di kirim melalui discord dan whatsapp 
+* **Tidak Wajib** [`Dashbaord`](https://task.aniqu.biz.id)
+- Tutorial [Youtube](https://youtube.com/playlist?list=PLGv_-znSuMIwhZPH2y06HWisHZbn7dXL3&si=PltQSbqZT5zotVZx)
+
+---
+
 ## Kontributor
 
 Lihat semua kontributor di: [`All Contri`](https://contributor.betabotz.eu.org)
