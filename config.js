@@ -40,14 +40,23 @@ global.aksesKey = "";
 // aktifkan akses .env di atas jika kamu ingin menaruh key api di .env
 // Daftar terlebih dahulu https://api.betabotz.eu.org
 
+//INI OPTIONAL BOLEH DI ISI BOLEH JUGA ENGGA
+// fitur reminder dan kelola tugas, cek di youtube https://www.youtube.com/playlist?list=PLGv_-znSuMIwhZPH2y06HWisHZbn7dXL3
+// global.taskToken = process.env.API_KEY_TOKEN;
+global.taskToken = ""
+//Daftar daftar di https://task.aniqu.biz.id
+
+
 // Tidak boleh diganti atau di ubah
 global.APIs = {
   lann: "https://api.betabotz.eu.org",
+  taskToken: "https://task.aniqu.biz.id/", //OPSIONAL
 };
 
 //Tidak boleh diganti atau di ubah
 global.APIKeys = {
   "https://api.betabotz.eu.org": global.lann,
+  "https://task.aniqu.biz.id/": global.taskToken, //OPSIONAL
 };
 
 let fs = require("fs");

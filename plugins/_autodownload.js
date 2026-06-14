@@ -356,16 +356,28 @@ async function downloadInstagram(link, m) {
 
 		global.db.data.users[m.sender].limit -= 1
 		if (!isV2) {
+			const urls = []
+			const seen = new Set()
 			for (const media of message.message) {
-				if (!media._url) continue
+				if (!media || !media._url) continue
+				if (seen.has(media._url)) continue
+				seen.add(media._url)
+				urls.push(media._url)
+			}
 
+			if (urls.length === 0) {
+				throw 'Media tidak ditemukan!'
+			}
+
+			for (const url of urls) {
 				await conn.sendFile(
 					m.chat,
-					media._url,
+					url,
 					null,
 					'*Instagram Downloader*',
 					m
 				)
+				await _sleep(3000)
 			}
 
 			return
@@ -391,40 +403,79 @@ async function downloadInstagram(link, m) {
 			caption = media.edge_media_to_caption.edges[0].node.text
 		}
 
-		if (media.video_url) {
-			return await conn.sendMessage(
-				m.chat,
-				{
-					video: { url: media.video_url },
-					caption: caption
-						? `*Instagram Downloader*\n\n${caption}`
-						: '*Instagram Downloader*'
-				},
-				{ quoted: m }
-			)
-		}
-
-		const img =
-			media.display_url ||
-			media.thumbnail_src ||
-			(media.display_resources &&
-				media.display_resources[0] &&
-				media.display_resources[0].src)
-
-		if (!img) {
-			throw 'Media tidak ditemukan!'
-		}
-
-		await conn.sendMessage(
-			m.chat,
-			{
-				image: { url: img },
-				caption: caption
+		const sendCaption = (index) =>
+			index === 0
+				? caption
 					? `*Instagram Downloader*\n\n${caption}`
 					: '*Instagram Downloader*'
-			},
-			{ quoted: m }
-		)
+				: ''
+
+		const items = []
+		const seen = new Set()
+
+		if (
+			media.edge_sidecar_to_children &&
+			media.edge_sidecar_to_children.edges &&
+			media.edge_sidecar_to_children.edges.length > 0
+		) {
+			for (const edge of media.edge_sidecar_to_children.edges) {
+				const node = edge.node
+				if (!node) continue
+
+				let url = null
+				if (node.is_video && node.video_url) url = node.video_url
+				else
+					url =
+						node.display_url ||
+						node.thumbnail_src ||
+						(node.display_resources &&
+							node.display_resources[0] &&
+							node.display_resources[0].src)
+
+				if (!url || seen.has(url)) continue
+				seen.add(url)
+				items.push({ url, isVideo: !!node.is_video })
+			}
+		}
+
+		if (items.length === 0) {
+			if (typeof media.has_audio !== 'undefined' && media.has_audio === true && media.video_url) {
+				items.push({ url: media.video_url, isVideo: true })
+			} else {
+				const img =
+					media.display_url ||
+					media.thumbnail_src ||
+					(media.display_resources &&
+						media.display_resources[0] &&
+						media.display_resources[0].src)
+				if (!img) throw 'Media tidak ditemukan!'
+				items.push({ url: img, isVideo: false })
+			}
+		}
+
+		for (let i = 0; i < items.length; i++) {
+			const item = items[i]
+			if (item.isVideo) {
+				await conn.sendMessage(
+					m.chat,
+					{
+						video: { url: item.url },
+						caption: sendCaption(i)
+					},
+					{ quoted: m }
+				)
+			} else {
+				await conn.sendMessage(
+					m.chat,
+					{
+						image: { url: item.url },
+						caption: sendCaption(i)
+					},
+					{ quoted: m }
+				)
+			}
+			await _sleep(3000)
+		}
 
 	} catch (err) {
 		console.error(err)

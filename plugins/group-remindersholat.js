@@ -11,7 +11,7 @@ async function getPrayerTimesAndSetReminders() {
 
         let data = response.data;
         if (!data || data.result.code !== 200) {
-            console.log(`[❗] Jadwal shalat untuk kota ${city.toUpperCase()} tidak ditemukan atau tidak tersedia.`);
+            console.log(`[JADWAL SHOLAT] Jadwal shalat untuk kota ${city.toUpperCase()} tidak ditemukan atau tidak tersedia.`);
             return;
         }
         const prayerTimes = getPrayerTimes(data);
@@ -29,11 +29,11 @@ async function getPrayerTimesAndSetReminders() {
 
             setPrayerTimers(jadwal);
         } else {
-            console.log(`[❗] Tidak ada data jadwal sholat untuk tanggal hari ini.`);
+            console.log(`[JADWAL SHOLAT] Tidak ada data jadwal sholat untuk tanggal hari ini.`);
         }
 
     } catch (error) {
-        console.error(`[❗] Terjadi kesalahan saat mengambil data.`);
+        console.error(`[JADWAL SHOLAT] Terjadi kesalahan saat mengambil data.`);
     }
 }
 
@@ -101,7 +101,7 @@ function startDailyPrayerReminder() {
 
     setInterval(() => {
         let now = new Date();
-        console.log(`Mengambil jadwal sholat untuk hari ini (${now.toLocaleDateString()})`);
+        console.log(`[JADWAL SHOLAT] Mengambil jadwal sholat untuk hari ini (${now.toLocaleDateString()})`);
         getPrayerTimesAndSetReminders();
     }, 6 * 60 * 60 * 1000); // setiap 6 jam seklai get data dari api
 }

@@ -835,6 +835,7 @@ module.exports = {
           if (!("antiStickernokick" in chat)) chat.antiStickernokick = false;
           if (!("viewonce" in chat)) chat.viewonce = false;
           if (!("antiporn" in chat)) chat.antiporn = false;
+          if (!("anticall" in chat)) chat.anticall = true;
           if (!("antiToxic" in chat)) chat.antiToxic = false;
           if (!isNumber(chat.expired)) chat.expired = 0;
           if (!("memgc" in chat)) chat.memgc = {};
@@ -899,6 +900,7 @@ module.exports = {
             antiSticker: false,
             antiStickernokick: false,
             viewonce: false,
+            anticall: true,
             antiToxic: false,
             antilinkig: false,
             antilinkignokick: false,
