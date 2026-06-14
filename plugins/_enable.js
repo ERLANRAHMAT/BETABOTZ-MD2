@@ -335,7 +335,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
           throw false;
         }
       }
-      chat.antiCall = isEnable;
+      antiCall = isEnable;
       break;
     case "antitagsw":
       if (m.isGroup) {
