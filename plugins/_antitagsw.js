@@ -5,11 +5,10 @@
         let chat = global.db.data.chats[m.chat]
         if (chat.antitagsw) {
         const isTaggingInStatus = (
-            m.mtype === 'groupStatusMention' || 
-            (m.quoted && m.quoted.mtype === 'groupStatusMentionMessage') ||
-            (m.message && m.message.groupStatusMention) ||
-            (m.message && m.message.groupStatusMentionMessage) ||
-            (m.message && m.message.protocolMessage && m.message.protocolMessage.type === 25)
+            m.mtype === 'groupStatusMention' ||
+            m.mtype === 'groupStatusMentionMessage' ||
+            m.message?.groupStatusMention ||
+            m.message?.groupStatusMentionMessage
         )
         
         if (!isTaggingInStatus) return
