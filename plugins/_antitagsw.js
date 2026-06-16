@@ -13,7 +13,7 @@
         
         if (!isTaggingInStatus) return
         
-        await conn.sendMessage(m.chat, { delete: m.key })
+        await conn.sendMessage(m.chat, {delete: {remoteJid: m.chat,fromMe: false, id: m.key.id, participant: m.sender, }, });
         }
     }
 
