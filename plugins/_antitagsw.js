@@ -2,8 +2,7 @@ let handler = m => m
 
 handler.before = async (m, { conn, isBotAdmin, isAdmin }) => {
     if(!m.isGroup) return
-    if (!isBotAdmin) return 
-    conn.reply(m.chat, 'Jadikan bot admin untuk menghapus pesan tag.', m)
+    if (!isBotAdmin) return conn.reply(m.chat, 'Jadikan bot admin untuk menghapus pesan tag.', m)
     let chat = global.db.data.chats[m.chat]
     if (chat.antitagsw) {
     const isTaggingInStatus = (
