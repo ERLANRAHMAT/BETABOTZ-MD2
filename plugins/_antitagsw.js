@@ -7,6 +7,8 @@ handler.before = async (m, { conn, isBotAdmin, isAdmin }) => {
     const isTaggingInStatus = (
         m.mtype === 'groupStatusMentionMessage' || 
         (m.quoted && m.quoted.mtype === 'groupStatusMentionMessage') ||
+        (m.quoted && m.quoted.mtype === 'groupStatusMention') ||
+        (m.message && m.message.groupStatusMention) ||
         (m.message && m.message.groupStatusMentionMessage) ||
         (m.message && m.message.protocolMessage && m.message.protocolMessage.type === 25)
     )
@@ -33,6 +35,8 @@ handler.before = async (m, { conn, isBotAdmin, isAdmin }) => {
         m.mtype === 'groupStatusMentionMessage' || 
         (m.quoted && m.quoted.mtype === 'groupStatusMentionMessage') ||
         (m.message && m.message.groupStatusMentionMessage) ||
+        (m.quoted && m.quoted.mtype === 'groupStatusMention') ||
+        (m.message && m.message.groupStatusMention) ||
         (m.message && m.message.protocolMessage && m.message.protocolMessage.type === 25)
     )
     
