@@ -55,11 +55,12 @@ let handler = async (m, { conn }) => {
     let nomor = 1;
 
     for (let i = 0; i < Math.min(memgc.length, 20); i++) {
+       
+        const jid = memgc[i];
+        const data = user[jid] || {};
         if (!user[jid]?.name && (p?.name || p?.notify)) {
             user[jid].name = p?.name || p?.notify;
         }
-        const jid = memgc[i];
-        const data = user[jid] || {};
 
         let name = getNameFromGroup(jid);
 
