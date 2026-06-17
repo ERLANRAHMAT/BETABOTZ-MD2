@@ -40,12 +40,13 @@ let handler = async (m, { conn }) => {
         const data = user[jid] || {};
 
         let name =
-            conn.contacts?.[jid]?.name ||
-            conn.contacts?.[jid]?.notify ||
-            conn.chats?.[jid]?.name ||
             user[jid]?.name ||
+            conn.store?.contacts?.[jid]?.name ||
+            conn.contacts?.[jid]?.notify ||
+            conn.contacts?.[jid]?.name ||
             (await conn.getName(jid).catch(() => null)) ||
-            jid.split("@")[0];
+            m?.message?.pushName ||
+            (jid.endsWith("@s.whatsapp.net") ? jid.split("@")[0] : jid);
 
         caption += `*${nomor++}.* ${name}\n`;
         caption += `Chat Today : ${toRupiah(data.chat || 0)}\n`;
