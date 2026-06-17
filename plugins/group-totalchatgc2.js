@@ -58,3 +58,8 @@ handler.admin = true;
 handler.group = true;
 
 module.exports = handler;
+
+
+function toRupiah(number) {
+    return Number(number || 0).toLocaleString('id-ID');
+}
