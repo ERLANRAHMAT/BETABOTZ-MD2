@@ -39,7 +39,14 @@ let handler = async (m, { conn }) => {
         const jid = memgc[i];
         const data = user[jid] || {};
 
-        caption += `*${nomor++}.* ${conn.getName(jid)}\n`;
+        let name;
+        try {
+            name = await conn.getName(jid);
+        } catch {
+            name = jid.split("@")[0];
+        }
+
+        caption += `*${nomor++}.* ${name}\n`;
         caption += `Chat Today : ${toRupiah(data.chat || 0)}\n`;
         caption += `Total Chat : ${toRupiah(data.chatTotal || 0)}\n`;
         caption += `Last Chat : ${getTime(data.lastseen)}\n\n`;
