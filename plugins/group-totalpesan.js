@@ -37,18 +37,17 @@ let handler = async (m, { conn }) => {
     const normalize = (id) => id?.split(":")[0];
 
     const getNameFromGroup = (jid) => {
-        jid = normalize(jid);
+        const base = jid?.split(":")[0];
 
-        let p = participants.find((v) => normalize(v.id) === jid);
+        let p = participants.find((v) => (v.id || "").split(":")[0] === base);
 
         return (
             p?.notify ||
             p?.name ||
-            conn.contacts?.[jid]?.name ||
-            conn.contacts?.[jid]?.notify ||
-            user[jid]?.name ||
-            conn.store?.contacts?.[jid]?.name ||
-            jid
+            conn.store?.contacts?.[base]?.name ||
+            conn.contacts?.[base]?.name ||
+            user[base]?.name ||
+            base.replace("@s.whatsapp.net", "").replace("@lid", "")
         );
     };
 
@@ -56,6 +55,9 @@ let handler = async (m, { conn }) => {
     let nomor = 1;
 
     for (let i = 0; i < Math.min(memgc.length, 20); i++) {
+        if (!user[jid]?.name && (p?.name || p?.notify)) {
+            user[jid].name = p?.name || p?.notify;
+        }
         const jid = memgc[i];
         const data = user[jid] || {};
 
