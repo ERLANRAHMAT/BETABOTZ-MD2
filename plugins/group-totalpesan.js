@@ -34,12 +34,12 @@ let handler = async (m, { conn }) => {
 
     const metadata = await conn.groupMetadata(m.chat);
     const participants = metadata.participants || [];
-    const normalizeJid = (jid) => jid?.replace(/:.*@/g, '@');
+    const normalize = (id) => id?.split(":")[0];
 
     const getNameFromGroup = (jid) => {
-        jid = normalizeJid(jid);
+        jid = normalize(jid);
 
-        let p = participants.find(v => v.id === jid);
+        let p = participants.find((v) => normalize(v.id) === jid);
 
         return (
             p?.notify ||
@@ -47,7 +47,8 @@ let handler = async (m, { conn }) => {
             conn.contacts?.[jid]?.name ||
             conn.contacts?.[jid]?.notify ||
             user[jid]?.name ||
-            jid.split('@')[0]
+            conn.store?.contacts?.[jid]?.name ||
+            jid
         );
     };
 
