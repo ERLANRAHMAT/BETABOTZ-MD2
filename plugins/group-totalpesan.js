@@ -20,6 +20,7 @@ let handler = async (m, { conn }) => {
         return m.reply('Belum ada data statistik chat di grup ini.');
     }
 
+    let nomor = 1;
     let chatToday = 0;
     let chatTotal = 0;
 
@@ -32,35 +33,15 @@ let handler = async (m, { conn }) => {
         `Total chat group hari ini: ${toRupiah(chatToday)}\n` +
         `Total semua chat: ${toRupiah(chatTotal)}\n\n`;
 
-    const metadata = await conn.groupMetadata(m.chat);
-    const participants = metadata.participants || [];
-    const normalize = (id) => id?.split(":")[0];
-
-    const getNameFromGroup = (jid) => {
-        const base = jid?.split(":")[0];
-
-        let p = participants.find((v) => (v.id || "").split(":")[0] === base);
-
-        return (
-            p?.notify ||
-            p?.name ||
-            conn.store?.contacts?.[base]?.name ||
-            conn.contacts?.[base]?.name ||
-            user[base]?.name ||
-            base.replace("@s.whatsapp.net", "").replace("@lid", "")
-        );
-    };
-
     let caption = '';
-    let nomor = 1;
 
     for (let i = 0; i < Math.min(memgc.length, 20); i++) {
         const jid = memgc[i];
         const data = user[jid] || {};
+        
 
-        let name = getNameFromGroup(jid);
-
-        caption += `*${nomor++}.* ${name}\n`;
+        
+        caption += `*${nomor++}.* ${conn.getName(jid)}\n`;
         caption += `Chat Today : ${toRupiah(data.chat || 0)}\n`;
         caption += `Total Chat : ${toRupiah(data.chatTotal || 0)}\n`;
         caption += `Last Chat : ${getTime(data.lastseen)}\n\n`;
