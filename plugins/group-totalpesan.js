@@ -39,12 +39,13 @@ let handler = async (m, { conn }) => {
         const jid = memgc[i];
         const data = user[jid] || {};
 
-        let name;
-        try {
-            name = await conn.getName(jid);
-        } catch {
-            name = jid.split("@")[0];
-        }
+        let name =
+            conn.contacts?.[jid]?.name ||
+            conn.contacts?.[jid]?.notify ||
+            conn.chats?.[jid]?.name ||
+            user[jid]?.name ||
+            (await conn.getName(jid).catch(() => null)) ||
+            jid.split("@")[0];
 
         caption += `*${nomor++}.* ${name}\n`;
         caption += `Chat Today : ${toRupiah(data.chat || 0)}\n`;
