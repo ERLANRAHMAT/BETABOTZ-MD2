@@ -60,6 +60,31 @@ handler.group = true;
 module.exports = handler;
 
 
+function parseMs(ms) {
+    return {
+        days: Math.trunc(ms / 86400000),
+        hours: Math.trunc(ms / 3600000) % 24,
+        minutes: Math.trunc(ms / 60000) % 60,
+        seconds: Math.trunc(ms / 1000) % 60
+    };
+}
+
+function getTime(ms) {
+    if (!ms || isNaN(ms)) return 'Belum pernah';
+
+    const diff = Date.now() - Number(ms);
+
+    if (diff < 0) return 'Baru saja';
+
+    const now = parseMs(diff);
+
+    if (now.days) return `${now.days} hari lalu`;
+    if (now.hours) return `${now.hours} jam lalu`;
+    if (now.minutes) return `${now.minutes} menit lalu`;
+
+    return 'Baru saja';
+}
+
 function toRupiah(number) {
     return Number(number || 0).toLocaleString('id-ID');
 }
