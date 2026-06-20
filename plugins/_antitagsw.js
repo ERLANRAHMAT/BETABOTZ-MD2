@@ -4,9 +4,12 @@ handler.before = async (m, { conn, isBotAdmin, isAdmin }) => {
     if(!m.isGroup) return
     let chat = global.db.data.chats[m.chat]
     if (chat.antitagsw) {
+    if (!isBotAdmin) return conn.reply(m.chat, 'Jadikan bot admin untuk menghapus pesan tag.', m)
     const isTaggingInStatus = (
         m.mtype === 'groupStatusMentionMessage' || 
         (m.quoted && m.quoted.mtype === 'groupStatusMentionMessage') ||
+        (m.quoted && m.quoted.mtype === 'groupStatusMention') ||
+        (m.message && m.message.groupStatusMention) ||
         (m.message && m.message.groupStatusMentionMessage) ||
         (m.message && m.message.protocolMessage && m.message.protocolMessage.type === 25)
     )
@@ -29,10 +32,13 @@ handler.before = async (m, { conn, isBotAdmin, isAdmin }) => {
     if(!m.isGroup) return
     let chat = global.db.data.chats[m.chat]
     if (chat.antitagsw) {
+    if (!isBotAdmin) return conn.reply(m.chat, 'Jadikan bot admin untuk menghapus pesan tag.', m)
     const isTaggingInStatus = (
         m.mtype === 'groupStatusMentionMessage' || 
         (m.quoted && m.quoted.mtype === 'groupStatusMentionMessage') ||
         (m.message && m.message.groupStatusMentionMessage) ||
+        (m.quoted && m.quoted.mtype === 'groupStatusMention') ||
+        (m.message && m.message.groupStatusMention) ||
         (m.message && m.message.protocolMessage && m.message.protocolMessage.type === 25)
     )
     

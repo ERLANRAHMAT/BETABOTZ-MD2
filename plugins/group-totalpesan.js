@@ -1,29 +1,54 @@
-// let handler = async (m, { conn, groupMetadata }) => {
-//     let user = global.db.data.chats[m.chat].memgc;
-//     let memgc = Object.keys(user).filter(v => v != conn.user.jid).sort((a, b) => {
-//         const totalA = user[a].chat;
-//         const totalB = user[b].chat;
-//         return totalB - totalA;
-//     });
+// let handler = async (m, { conn }) => {
+//     const user = global.db.data.chats[m.chat]?.memgc || {};
+
+//     let memgc = Object.keys(user)
+//         .filter(jid => {
+//             const isUser =
+//                 jid.endsWith('@s.whatsapp.net') ||
+//                 jid.endsWith('@lid');
+//             const isGroup = jid.endsWith('@g.us');
+
+//             return isUser && !isGroup;
+//         })
+//         .sort((a, b) => {
+//             const totalA = user[a]?.chat || 0;
+//             const totalB = user[b]?.chat || 0;
+//             return totalB - totalA;
+//         });
+
+//     if (!memgc.length) {
+//         return m.reply('Belum ada data statistik chat di grup ini.');
+//     }
+
 //     let nomor = 1;
 //     let chatToday = 0;
 //     let chatTotal = 0;
-//     for (let number of memgc) {
-//         chatToday += user[number].chat;
-//         chatTotal += user[number].chatTotal;
+
+//     for (const jid of memgc) {
+//         chatToday += Number(user[jid]?.chat || 0);
+//         chatTotal += Number(user[jid]?.chatTotal || 0);
 //     }
-//     let head = `Total chat group hari ini: ${toRupiah(chatToday)} \nTotal semua chat: ${toRupiah(chatTotal)} \n\n`;
+
+//     let head =
+//         `Total chat group hari ini: ${toRupiah(chatToday)}\n` +
+//         `Total semua chat: ${toRupiah(chatTotal)}\n\n`;
+
 //     let caption = '';
-//     for (let i = 0; i < memgc.length; i++) {
-//         if (typeof user[memgc[i]] != 'undefined' && nomor != 21) {
-//             caption += `*${nomor++}.* ${conn.getName(memgc[i])}\n`;
-//             caption += `Chat Today : ${toRupiah(user[memgc[i]].chat)}\n`;
-//             caption += `Total Chat : ${toRupiah(user[memgc[i]].chatTotal)} \n`;
-//             caption += `Last Chat : ${getTime(user[memgc[i]].lastseen)}\n\n`;
-//         }
+
+//     for (let i = 0; i < Math.min(memgc.length, 20); i++) {
+//         const jid = memgc[i];
+//         const data = user[jid] || {};
+        
+
+        
+//         caption += `*${nomor++}.* ${conn.getName(jid)}\n`;
+//         caption += `Chat Today : ${toRupiah(data.chat || 0)}\n`;
+//         caption += `Total Chat : ${toRupiah(data.chatTotal || 0)}\n`;
+//         caption += `Last Chat : ${getTime(data.lastseen)}\n\n`;
 //     }
+
 //     await m.reply(head + caption.trim());
-// }
+// };
 
 // handler.help = ['totalchatgc'];
 // handler.tags = ['group'];
@@ -34,24 +59,30 @@
 // module.exports = handler;
 
 // function parseMs(ms) {
-//     if (typeof ms !== 'number') throw 'Parameter must be filled with number';
 //     return {
 //         days: Math.trunc(ms / 86400000),
 //         hours: Math.trunc(ms / 3600000) % 24,
 //         minutes: Math.trunc(ms / 60000) % 60,
-//         seconds: Math.trunc(ms / 1000) % 60,
-//         milliseconds: Math.trunc(ms) % 1000,
-//         microseconds: Math.trunc(ms * 1000) % 1000,
-//         nanoseconds: Math.trunc(ms * 1e6) % 1000
+//         seconds: Math.trunc(ms / 1000) % 60
 //     };
 // }
 
 // function getTime(ms) {
-//     let now = parseMs(+new Date() - ms);
-//     if (now.days) return `${now.days} days ago`;
-//     else if (now.hours) return `${now.hours} hours ago`;
-//     else if (now.minutes) return `${now.minutes} minutes ago`;
-//     else return `a few seconds ago`;
+//     if (!ms || isNaN(ms)) return 'Belum pernah';
+
+//     const diff = Date.now() - Number(ms);
+
+//     if (diff < 0) return 'Baru saja';
+
+//     const now = parseMs(diff);
+
+//     if (now.days) return `${now.days} hari lalu`;
+//     if (now.hours) return `${now.hours} jam lalu`;
+//     if (now.minutes) return `${now.minutes} menit lalu`;
+
+//     return 'Baru saja';
 // }
 
-// const toRupiah = number => parseInt(number).toLocaleString().replace(/,/gi, ".");
+// function toRupiah(number) {
+//     return Number(number || 0).toLocaleString('id-ID');
+// }
