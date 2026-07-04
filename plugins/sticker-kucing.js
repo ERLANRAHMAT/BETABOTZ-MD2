@@ -12,7 +12,7 @@ let handler = async (m, {conn, command, text, userPrefix}) => {
     }
 }
 
-handler.command = handler.info = ['sticker-kucing', 'stikercat'];
+handler.command = handler.info = ['stickerkucing', 'stikercat'];
 handler.help = ['sticker']
 handler.limit = true
 module.exports = handler;
