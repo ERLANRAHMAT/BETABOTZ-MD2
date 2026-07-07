@@ -11,7 +11,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     const {
       thumbnail,
       title,
-      name,
+      artist,
       duration,
       url
     } = jsons.result.data;
@@ -19,8 +19,9 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       id,
       type
     } = jsons.result.data.artist;
-    let captionvid = `∘ Title: ${title}\n∘ Id: ${id}\n∘ Duration: ${duration}\n∘ Type: ${type}`;
-    await m.reply(captionvid);
+    let captionvid = ` ∘ Title: ${title}\n∘ Artits: ${artist}\n\n∘ Duration: ${duration}\n`;
+    let pesan = await conn.sendFile(m.chat, thumbnail, "thumb.png", captionvid, m)
+    // await m.reply(captionvid);
     await conn.sendMessage(m.chat, {
       audio: { url: url },
       mimetype: 'audio/mpeg',

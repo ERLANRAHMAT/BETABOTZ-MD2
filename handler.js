@@ -867,6 +867,7 @@ module.exports = {
           if (!("notifsholat" in chat)) chat.notifsholat = false;
           if (!("autotranslate" in chat)) chat.autotranslate = false;
           if (!("antitagsw" in chat)) chat.antitagsw = false;
+          if (!("autowm" in chat)) chat.autowm = false;
           if (!("autoacc" in chat)) chat.autoacc = false;
           if (!("antiLinkCh" in chat)) chat.antiLinkCh = false;
         } else
@@ -922,6 +923,7 @@ module.exports = {
             rpg: false,
             nsfw: false,
             antitagsw: false,
+            autowm: false,
             antidelete: false,
           };
         let memgc = global.db.data.chats[m.chat]?.memgc?.[m.sender];

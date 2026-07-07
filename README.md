@@ -5,7 +5,7 @@
 
 * Menggunakan **baileys versi terbaru** (original, bukan mod)
 * Support **pairing code only** sesuai ketentuan
-* Wajib menggunakan **panel dengan Node.js 20+** (sesuai ketentuan baileys terbaru)
+* Wajib menggunakan **panel dengan Node.js 22+** (sesuai ketentuan baileys terbaru)
 * Fitur 90% implementasi dari **website API**
 * Penambahan output URL `express.js` agar bisa dijalankan di Render, dsb.
 * Informasi API: [WhatsApp](https://whatsapp.com/channel/0029VbCQLA43AzNYDInpyO2v)
@@ -68,7 +68,7 @@
 - ✅ **Update  Lid resolver**  Penanganan lid jadi terbaru
 - ✅ **Menggunakan Baileys Latest**  [Baileys](https://github.com/WhiskeySockets/Baileys)
 - ✅ **Delete QR Code** Jadi Alternatif Nya Memakai Pairing Code
-- ✅ **Wajib Menggunakan Node.js 21+**
+- ✅ **Wajib Menggunakan Node.js 22+**
 ---
 
 ---
@@ -85,7 +85,7 @@ Jika kamu mengalami masalah di atas, silakan ikuti langkah perbaikan yang telah 
 
 ## Node.js Hosting
 
-Bot ini wajib dijalankan di **Node.js v20+**  
+Bot ini wajib dijalankan di **Node.js v22+**  
 > Butuh hosting siap pakai? Hubungi:
 * **Admin Lann:** [`Buy`](https://wa.me/62895423183527)
 
