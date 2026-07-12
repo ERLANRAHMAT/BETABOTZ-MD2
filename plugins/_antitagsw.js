@@ -4,7 +4,7 @@ handler.before = async (m, { conn, isBotAdmin, isAdmin }) => {
     if(!m.isGroup) return
     let chat = global.db.data.chats[m.chat]
     if (chat.antitagsw) {
-    if (!isBotAdmin) return conn.reply(m.chat, 'Jadikan bot admin untuk menghapus pesan tag.', m)
+    if (!isBotAdmin) return;
     const isTaggingInStatus = (
         m.mtype === 'groupStatusMentionMessage' || 
         (m.quoted && m.quoted.mtype === 'groupStatusMentionMessage') ||
@@ -32,7 +32,7 @@ handler.before = async (m, { conn, isBotAdmin, isAdmin }) => {
     if(!m.isGroup) return
     let chat = global.db.data.chats[m.chat]
     if (chat.antitagsw) {
-    if (!isBotAdmin) return conn.reply(m.chat, 'Jadikan bot admin untuk menghapus pesan tag.', m)
+    if (!isBotAdmin) return;
     const isTaggingInStatus = (
         m.mtype === 'groupStatusMentionMessage' || 
         (m.quoted && m.quoted.mtype === 'groupStatusMentionMessage') ||
