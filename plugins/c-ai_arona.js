@@ -14,17 +14,9 @@ let handler = async (m, { conn, text }) => {
         }, 300000) // 5 minutes timeout
       };
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *ARONA* 」───⬣" + "\n\n" + `Halo sensei! arona yang hebat siap membantu!`,
-        contextInfo: {
-          externalAdReply: {
-            title: "arona",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *ARONA* 」───⬣" + "\n\n" + `Halo sensei! arona yang hebat siap membantu!`,
+        mentions: [m.sender]
       }, { quoted: m });
     } else {
       clearTimeout(conn.arona[m.sender].timeout);
@@ -38,17 +30,9 @@ let handler = async (m, { conn, text }) => {
       delete conn.arona[m.sender];
     }
     await conn.sendMessage(m.chat, {
-      text: "⬣───「 *ARONA* 」───⬣" + "\n\n" + `panggil aku lagi jika sensei butuh bantuan ya!`,
-      contextInfo: {
-        externalAdReply: {
-          title: "arona",
-          body: '',
-          thumbnailUrl: `${pickRandom(img)}`,
-          sourceUrl: null,
-          mediaType: 1,
-          renderLargerThumbnail: true
-        }
-      }
+      image: { url: pickRandom(img) },
+      caption: "⬣───「 *ARONA* 」───⬣" + "\n\n" + `panggil aku lagi jika sensei butuh bantuan ya!`,
+      mentions: [m.sender]
     }, { quoted: m });
   }
 };
@@ -91,17 +75,9 @@ handler.before = async (m, { conn }) => {
       ];
       let res = await aiBeta(message);
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *ARONA* 」───⬣" + "\n\n" + res.result,
-        contextInfo: {
-          externalAdReply: {
-            title: "arona",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *ARONA* 」───⬣" + "\n\n" + res.result,
+        mentions: [m.sender]
       }, { quoted: m });
 
       // Ubah cara menyimpan pesan

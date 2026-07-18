@@ -18,7 +18,7 @@ global.packname = "Made With"; // watermark stikcker packname
 global.author = "Bot WhatsApp"; // watermark stikcker author
 global.maxwarn = "3"; // Peringatan maksimum Warn
 global.groupLapor = "120363216901617825@g.us"; // grub dimana bot mengirim laporan error dari user
-
+global.idchannel = ["123123412341234@newsletter"]; // channel untuk pengumuman bot max 3
 global.autobio = false; // Set true/false untuk mengaktifkan atau mematikan autobio (default: false)
 global.antiporn = false; // Set true/false untuk Auto delete pesan porno (bot harus admin) (default: false)
 global.spam = false; // Set true/false untuk anti spam (default: false)
