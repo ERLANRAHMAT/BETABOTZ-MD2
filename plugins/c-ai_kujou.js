@@ -14,17 +14,9 @@ let handler = async (m, { conn, text }) => {
         }, 300000) // 5 minutes timeout
       };
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *KUJOU* 」───⬣" + "\n\n" + `Oh, tentu saja. Apa yang bisa kubantu?`,
-        contextInfo: {
-          externalAdReply: {
-            title: "Kujou",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *KUJOU* 」───⬣" + "\n\n" + `Oh, tentu saja. Apa yang bisa kubantu?`,
+        mentions: [m.sender]
       }, { quoted: m });
     } else {
       clearTimeout(conn.Kujou[m.sender].timeout);
@@ -38,17 +30,9 @@ let handler = async (m, { conn, text }) => {
       delete conn.Kujou[m.sender];
     }
     await conn.sendMessage(m.chat, {
-      text: "⬣───「 *KUJOU* 」───⬣" + "\n\n" + `terima kasihh...`,
-      contextInfo: {
-        externalAdReply: {
-          title: "Kujou",
-          body: '',
-          thumbnailUrl: `${pickRandom(img)}`,
-          sourceUrl: null,
-          mediaType: 1,
-          renderLargerThumbnail: true
-        }
-      }
+      image: { url: pickRandom(img) },
+      caption: "⬣───「 *KUJOU* 」───⬣" + "\n\n" + `terima kasihh...`,
+      mentions: [m.sender]
     }, { quoted: m });
   }
 };
@@ -99,17 +83,9 @@ Sifat Pemimpin: Sebagai seorang pemimpin, Alisa memiliki kemampuan untuk memimpi
       ];
       let res = await aiBeta(message);
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *KUJOU* 」───⬣" + "\n\n" + res.result,
-        contextInfo: {
-          externalAdReply: {
-            title: "Kujou",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *KUJOU* 」───⬣" + "\n\n" + res.result,
+        mentions: [m.sender]
       }, { quoted: m });
 
       // Ubah cara menyimpan pesan

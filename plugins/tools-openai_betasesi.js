@@ -50,17 +50,7 @@ handler.before = async (m, { conn, text }) => {
         
         if (json.message) {
             await conn.sendMessage(m.chat, {
-                text: json.message,
-                contextInfo: {
-                    externalAdReply: {
-                        mediaType: 1,
-                        title: "Beta AI - Jawaban dari Pertanyaanmu",
-                        body: "Beta AI siap membantu 😄",
-                        thumbnailUrl: "https://api.betabotz.eu.org/api/tools/get-upload?id=f/zdiccxwo.jpg",
-                        renderLargerThumbnail: true, 
-                        showAdAttribution: false
-                    }
-                }
+                text: json.message
             });
         }
  

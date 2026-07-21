@@ -48,16 +48,6 @@ handler.before = async (m, { conn }) => {
             await conn.relayMessage(m.chat, {
                 extendedTextMessage: {
                     text: caption,
-                    contextInfo: {
-                        externalAdReply: {
-                            title: selectedTrack.title,
-                            mediaType: 1,
-                            previewType: 0,
-                            renderLargerThumbnail: true,
-                            thumbnailUrl: selectedTrack.image,
-                            sourceUrl: audioUrl.mp3
-                        }
-                    },
                     mentions: [m.sender]
                 }
             }, {});

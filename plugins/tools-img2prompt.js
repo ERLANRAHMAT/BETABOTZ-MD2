@@ -11,17 +11,7 @@ async function handler(m, { conn, usedPrefix, command }) {
       const api = await fetch(`https://api.betabotz.eu.org/api/tools/img2prompt?url=${out}&apikey=${lann}`);
       const res = await api.json();
       await conn.sendMessage(m.chat, {
-    text: res.result,
-    contextInfo: {
-        externalAdReply: {
-            title: 'Img2Prompt',
-            body: '',
-            thumbnailUrl: 'https://telegra.ph/file/dbb8cc0a157e3aa856877.jpg',
-            sourceUrl: "https://api.betabotz.eu.org",
-            mediaType: 1,
-            renderLargerThumbnail: true
-        }
-    }
+    text: res.result
 }, {
     quoted: m
 })

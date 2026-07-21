@@ -15,17 +15,8 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
     }     
     await conn.relayMessage(m.chat, {
      extendedTextMessage:{
-                text: teks, 
-                contextInfo: {
-                     externalAdReply: {
-                        title: '',
-                        mediaType: 1,
-                        previewType: 0,
-                        renderLargerThumbnail: true,
-                        thumbnailUrl: 'https://www.scdn.co/i/_global/open-graph-default.png',
-                        sourceUrl: ''
-                    }
-                }, mentions: [m.sender]
+                text: teks,
+                mentions: [m.sender]
     }}, {})
   } catch (e) {
     throw `🚩 *Gagal Memuat Data!*`;

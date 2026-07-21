@@ -21,17 +21,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         }
        
         await conn.sendMessage(m.chat, {
-            text: msg,
-            contextInfo: {
-                externalAdReply: {
-                    title: 'Terabox Downloader',
-                    body: `Processing ${data.result.length} file(s)`,
-                    thumbnailUrl: 'https://api.betabotz.eu.org/api/tools/get-upload?id=f/ihnv9wct.jpg',
-                    sourceUrl: null,
-                    mediaType: 1,
-                    renderLargerThumbnail: true
-                }
-            }
+            text: msg
         })
 
         const total = data.result.length

@@ -14,17 +14,9 @@ let handler = async (m, { conn, text }) => {
         }, 300000) // 5 minutes timeout
       };
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *Elaina* 」───⬣" + "\n\n" + `Hello!! Penyihir hebat siap membantu!!`,
-        contextInfo: {
-          externalAdReply: {
-            title: "Elaina",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *Elaina* 」───⬣" + "\n\n" + `Hello!! Penyihir hebat siap membantu!!`,
+        mentions: [m.sender]
       }, { quoted: m });
     } else {
       clearTimeout(conn.elaina[m.sender].timeout);
@@ -38,17 +30,9 @@ let handler = async (m, { conn, text }) => {
       delete conn.elaina[m.sender];
     }
     await conn.sendMessage(m.chat, {
-      text: "⬣───「 *Elaina* 」───⬣" + "\n\n" + `bye bye~~~`,
-      contextInfo: {
-        externalAdReply: {
-          title: "Elaina",
-          body: '',
-          thumbnailUrl: `${pickRandom(img)}`,
-          sourceUrl: null,
-          mediaType: 1,
-          renderLargerThumbnail: true
-        }
-      }
+      image: { url: pickRandom(img) },
+      caption: "⬣───「 *Elaina* 」───⬣" + "\n\n" + `bye bye~~~`,
+      mentions: [m.sender]
     }, { quoted: m });
   }
 };
@@ -102,17 +86,9 @@ Sihir itu keren, sih, tapi bukan berarti bisa sembarangan dipakai. Aku lebih suk
       ];
       let res = await aiBeta(message);
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *Elaina* 」───⬣" + "\n\n" + res.result,
-        contextInfo: {
-          externalAdReply: {
-            title: "Elaina",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *Elaina* 」───⬣" + "\n\n" + res.result,
+        mentions: [m.sender]
       }, { quoted: m });
 
       // Ubah cara menyimpan pesan

@@ -14,17 +14,9 @@ let handler = async (m, { conn, text }) => {
         }, 300000) // 5 minutes timeout
       };
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *NAHIDA* 」───⬣" + "\n\n" + `hello!! nahida siap membantu`,
-        contextInfo: {
-          externalAdReply: {
-            title: "nahida",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *NAHIDA* 」───⬣" + "\n\n" + `hello!! nahida siap membantu`,
+        mentions: [m.sender]
       }, { quoted: m });
     } else {
       clearTimeout(conn.nahida[m.sender].timeout);
@@ -38,17 +30,9 @@ let handler = async (m, { conn, text }) => {
       delete conn.nahida[m.sender];
     }
     await conn.sendMessage(m.chat, {
-      text: "⬣───「 *NAHIDA* 」───⬣" + "\n\n" + `:)`,
-      contextInfo: {
-        externalAdReply: {
-          title: "nahida",
-          body: '',
-          thumbnailUrl: `${pickRandom(img)}`,
-          sourceUrl: null,
-          mediaType: 1,
-          renderLargerThumbnail: true
-        }
-      }
+      image: { url: pickRandom(img) },
+      caption: "⬣───「 *NAHIDA* 」───⬣" + "\n\n" + `:)`,
+      mentions: [m.sender]
     }, { quoted: m });
   }
 };
@@ -91,17 +75,9 @@ handler.before = async (m, { conn }) => {
       ];
       let res = await aiBeta(message);
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *NAHIDA* 」───⬣" + "\n\n" + res.result,
-        contextInfo: {
-          externalAdReply: {
-            title: "nahida",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *NAHIDA* 」───⬣" + "\n\n" + res.result,
+        mentions: [m.sender]
       }, { quoted: m });
 
       // Ubah cara menyimpan pesan

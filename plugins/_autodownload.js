@@ -525,18 +525,13 @@ async function _spotify(link, m) {
 				type
 			} = jsons.result.data.artist
 			await conn.sendMessage(m.chat, {
-				audio: { url: url }, mimetype: 'audio/mpeg', contextInfo: {
-					externalAdReply: {
-						title: title,
-						body: "",
-						thumbnailUrl: thumbnail,
+					audio: { url: url },
+					mimetype: 'audio/mpeg',
 						sourceUrl: url,
 						mediaType: 1,
 						showAdAttribution: false,
 						renderLargerThumbnail: true
-					}
-				}
-			}, { quoted: m })
+			}, { quoted: m });
 		}
 		else {
 			conn.reply(m.chat,

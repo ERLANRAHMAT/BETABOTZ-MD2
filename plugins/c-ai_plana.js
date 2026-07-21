@@ -14,17 +14,9 @@ let handler = async (m, { conn, text }) => {
         }, 300000) // 5 minutes timeout
       };
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *PLANA* 」───⬣" + "\n\n" + `Halo sensei! plana siap membantu sensei`,
-        contextInfo: {
-          externalAdReply: {
-            title: "plana",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *PLANA* 」───⬣" + "\n\n" + `Halo sensei! plana siap membantu sensei`,
+        mentions: [m.sender]
       }, { quoted: m });
     } else {
       clearTimeout(conn.plana[m.sender].timeout);
@@ -38,17 +30,9 @@ let handler = async (m, { conn, text }) => {
       delete conn.plana[m.sender];
     }
     await conn.sendMessage(m.chat, {
-      text: "⬣───「 *PLANA* 」───⬣" + "\n\n" + `Senang sudah membantu sensei`,
-      contextInfo: {
-        externalAdReply: {
-          title: "plana",
-          body: '',
-          thumbnailUrl: `${pickRandom(img)}`,
-          sourceUrl: null,
-          mediaType: 1,
-          renderLargerThumbnail: true
-        }
-      }
+      image: { url: pickRandom(img) },
+      caption: "⬣───「 *PLANA* 」───⬣" + "\n\n" + `Senang sudah membantu sensei`,
+      mentions: [m.sender]
     }, { quoted: m });
   }
 };
@@ -91,17 +75,9 @@ handler.before = async (m, { conn }) => {
       ];
       let res = await aiBeta(message);
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *PLANA* 」───⬣" + "\n\n" + res.result,
-        contextInfo: {
-          externalAdReply: {
-            title: "plana",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *PLANA* 」───⬣" + "\n\n" + res.result,
+        mentions: [m.sender]
       }, { quoted: m });
 
       // Ubah cara menyimpan pesan
