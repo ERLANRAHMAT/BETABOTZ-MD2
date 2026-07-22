@@ -129,16 +129,8 @@ async function aiBeta(message) {
 };
 
 const img = [
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/f3m9ddy2.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/golirjy7.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/zvvxui.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/kk5k4fi.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/5a8dijtv.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/4nu20qtq.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/2je8jdv.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/evqdk7y.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/1cxecx4a.jpg`,
-  ]
+  `https://cdn.filn.pp.ua/uploads/betabotzapi/46726.jpg`,
+];
 
 function pickRandom(list) {
   return list[Math.floor(list.length * Math.random())]
