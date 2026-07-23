@@ -1,11 +1,11 @@
 
-## Harap Dipahami Sebelum Instal
+## JANGAN DIPAKAI DULU INI UJI COBA ESM
 
 ### Pembaruan:
 
 * Menggunakan **baileys versi terbaru** (original, bukan mod)
 * Support **pairing code only** sesuai ketentuan
-* Wajib menggunakan **panel dengan Node.js 22+** (sesuai ketentuan baileys terbaru)
+* Wajib menggunakan **panel dengan   Node.js 22+** (sesuai ketentuan baileys terbaru)
 * Fitur 90% implementasi dari **website API**
 * Penambahan output URL `express.js` agar bisa dijalankan di Render, dsb.
 * Informasi API: [WhatsApp](https://whatsapp.com/channel/0029VbCQLA43AzNYDInpyO2v)

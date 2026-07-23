@@ -4,3 +4,4 @@ database.json
 sessions
 .env
 tmp
+main.js

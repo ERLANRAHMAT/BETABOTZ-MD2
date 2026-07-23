@@ -1,63 +1,58 @@
-const cluster = require('cluster');
-const { spawn } = require('child_process');
-const path = require('path');
-const fs = require('fs');
-const os = require('os');
-const express = require('express');
-const app = express();
+const __dirname = import.meta.dirname;
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+import cluster from 'cluster';
+import { spawn } from 'child_process';
+import path from 'path';
+import fs from 'fs';
+import os from 'os';
+import http from 'http';
 
-const nodeVersion = parseInt(process.versions.node.split(".")[0]);
+const nodeVersion = parseInt(process.versions.node.split('.')[0]);
 if (nodeVersion < 22) {
-  console.error(
-    `\x1b[31m❌ Node.js ${nodeVersion} is not supported. Please use Node.js 22 or higher.\x1b[0m`,
-  );
+  console.error(`\x1b[31m❌ Node.js ${nodeVersion} is not supported. Please use Node.js 22 or higher.\x1b[0m`);
   process.exit(1);
 }
 
-// Express.js 
-const ports = [4000, 3000, 5000, 8000];
+// HTTP Server
+const ports = [4000, 3000, 5000, 8000, 8080, 4444];
 let availablePortIndex = 0;
 
-function checkPort(port) {
-  return new Promise((resolve, reject) => {
-    const server = app.listen(port, () => {
-      server.close();
-      resolve(true);
-    });
-    server.on('error', reject);
-  });
-}
-
-async function startServer() {
-  const port = ports[availablePortIndex];
-  const isPortAvailable = await checkPort(port);
-
-  if (isPortAvailable) {
-    console.log('\x1b[33m%s\x1b[0m', `🌐 Port ${port} is open`);
-    app.get('/', (req, res) => {
-      res.setHeader('Content-Type', 'application/json');
-      const data = {
-        status: 'true',
-        message: 'Bot Successfully Activated!',
-        author: 'BETABOTZ'
-      };
-      const result = {
-        response: data
-      };
-      res.send(JSON.stringify(result, null, 2));
-    });
+const server = http.createServer((req, res) => {
+  if (req.method === 'GET' && req.url === '/') {
+    res.setHeader('Content-Type', 'application/json');
+    const data = {
+      status: 'true',
+      message: 'Bot Successfully Activated!',
+      author: 'BETABOTZ'
+    };
+    res.writeHead(200);
+    res.end(JSON.stringify({ response: data }, null, 2));
   } else {
-    console.log(`Port ${port} is already in use. Trying another port...`);
-    availablePortIndex++;
-
-    if (availablePortIndex >= ports.length) {
-      console.log('No more available ports. Exiting...');
-      process.exit(1);
-    } else {
-      ports[availablePortIndex] = parseInt(port) + 1;
-      startServer();
-    }
+    res.writeHead(404);
+    res.end();
   }
+});
+
+function startServer() {
+  const port = ports[availablePortIndex];
+  server.listen(port, () => {
+    console.log('\x1b[33m%s\x1b[0m', `🌐 Port ${port} is open`);
+  });
+
+  server.on('error', (e) => {
+    if (e.code === 'EADDRINUSE') {
+      console.log(`Port ${port} is already in use. Trying another port...`);
+      availablePortIndex++;
+      if (availablePortIndex >= ports.length) {
+        console.log('No more available ports. Exiting...');
+        process.exit(1);
+      }
+      server.listen(ports[availablePortIndex]);
+    } else {
+      console.error(e);
+    }
+  });
 }
 
 startServer();
