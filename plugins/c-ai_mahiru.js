@@ -1,70 +1,76 @@
 import axios from 'axios';
 
 let handler = async (m, { conn, text }) => {
-  if (!text) throw `*• Example:* .mahiru *[on/off]*`;
+  try {
+    if (!text) throw `*• Example:* .mahiru *[on/off]*`;
 
-  conn.mahiru = conn.mahiru ? conn.mahiru : {};
+    conn.mahiru = conn.mahiru ? conn.mahiru : {};
 
-  if (text === "on") {
-    if (!conn.mahiru[m.sender]) {
-      conn.mahiru[m.sender] = {
-        pesan: [],
-        timeout: setTimeout(() => {
+    if (text === "on") {
+      if (!conn.mahiru[m.sender]) {
+        conn.mahiru[m.sender] = {
+          pesan: [],
+          timeout: setTimeout(() => {
+            delete conn.mahiru[m.sender];
+          }, 300000) // 5 minutes timeout
+        };
+        await conn.sendMessage(m.chat, {
+          image: { url: pickRandom(img) },
+          caption: "⬣───「 *MAHIRU* 」───⬣" + "\n\n" + `uhhmm.. ada apa? aku bisa bantu kok...`,
+          mentions: [m.sender]
+        }, { quoted: m });
+      } else {
+        clearTimeout(conn.mahiru[m.sender].timeout);
+        conn.mahiru[m.sender].timeout = setTimeout(() => {
           delete conn.mahiru[m.sender];
-        }, 300000) // 5 minutes timeout
-      };
+        }, 300000);
+      }
+    } else if (text === "off") {
+      if (conn.mahiru[m.sender]) {
+        clearTimeout(conn.mahiru[m.sender].timeout);
+        delete conn.mahiru[m.sender];
+      }
       await conn.sendMessage(m.chat, {
         image: { url: pickRandom(img) },
-        caption: "⬣───「 *MAHIRU* 」───⬣" + "\n\n" + `uhhmm.. ada apa? aku bisa bantu kok...`,
+        caption: "⬣───「 *MAHIRU* 」───⬣" + "\n\n" + `bye bye~~~`,
         mentions: [m.sender]
       }, { quoted: m });
-    } else {
-      clearTimeout(conn.mahiru[m.sender].timeout);
-      conn.mahiru[m.sender].timeout = setTimeout(() => {
-        delete conn.mahiru[m.sender];
-      }, 300000);
     }
-  } else if (text === "off") {
-    if (conn.mahiru[m.sender]) {
-      clearTimeout(conn.mahiru[m.sender].timeout);
-      delete conn.mahiru[m.sender];
-    }
-    await conn.sendMessage(m.chat, {
-      image: { url: pickRandom(img) },
-      caption: "⬣───「 *MAHIRU* 」───⬣" + "\n\n" + `bye bye~~~`,
-      mentions: [m.sender]
-    }, { quoted: m });
+  } catch (e) {
+    console.log(e);
+    throw e;
   }
 };
 
 handler.before = async (m, { conn }) => {
-  conn.mahiru = conn.mahiru ? conn.mahiru : {};
-  if (m.isBaileys && m.fromMe) return;
-  if (!m.text) return;
-  if (!conn.mahiru[m.sender]) return;
+  try {
+    conn.mahiru = conn.mahiru ? conn.mahiru : {};
+    if (m.isBaileys && m.fromMe) return;
+    if (!m.text) return;
+    if (!conn.mahiru[m.sender]) return;
 
-  if (
-    m.text.startsWith(".") ||
-    m.text.startsWith("#") ||
-    m.text.startsWith("!") ||
-    m.text.startsWith("/") ||
-    m.text.startsWith("\\/")
-  ) return;
+    if (
+      m.text.startsWith(".") ||
+      m.text.startsWith("#") ||
+      m.text.startsWith("!") ||
+      m.text.startsWith("/") ||
+      m.text.startsWith("\\/")
+    ) return;
 
-  if (conn.mahiru[m.sender] && m.text) {
-    clearTimeout(conn.mahiru[m.sender].timeout);
-    conn.mahiru[m.sender].timeout = setTimeout(() => {
-      delete conn.mahiru[m.sender];
-    }, 300000);
+    if (conn.mahiru[m.sender] && m.text) {
+      clearTimeout(conn.mahiru[m.sender].timeout);
+      conn.mahiru[m.sender].timeout = setTimeout(() => {
+        delete conn.mahiru[m.sender];
+      }, 300000);
 
-    let name = conn.getName(m.sender);
-    const message = [
-      ...conn.mahiru[m.sender].pesan,
-      `p`,
-      m.text
-    ];
-    try {
-      const sifat = `Nama Lengkap: Shina Mahiru (椎名 真昼)
+      let name = conn.getName(m.sender);
+      const messageOuter = [
+        ...conn.mahiru[m.sender].pesan,
+        `p`,
+        m.text
+      ];
+      try {
+        const sifat = `Nama Lengkap: Shina Mahiru (椎名 真昼)
 Julukan: Malaikat (Tenshi) sekolah, karena kecantikan dan kepintarannya.
 Penampilan:
 Rambut pirang panjang dan berkilau.
@@ -75,32 +81,36 @@ Ramah, lembut, dan perhatian terhadap orang lain.
 Terkesan sempurna di mata teman-temannya, tetapi sebenarnya dia menyembunyikan sisi rapuh dan kesepiannya.
 Dia mandiri dan sangat terampil dalam pekerjaan rumah tangga, seperti memasak dan membersihkan.
 `
-      const message = [
-        { role: "system", content: `kamu adalah Mahiru, Mahiru adalah sosok yang ${sifat}` },
-        { role: "assistant", content: `Kamu adalah Mahiru, seoarang yang ${sifat}, jangan gunakan saya, gua gunakan Mahiru atau aku untuk memanggil dirimu sendiri ketika di panggil, ekspresi kan sikap kamu seperti anak sma yang pintar karena kamu ${sifat}, jangan gunakan GPT 4 panggil dirimu dengan Mahiru atau aku, Kamu berbicara dengan${m.name}panggil dengan kamu, kamu sesuaikan dengan kalimat, saat berbicara dengannya gunakan emoji yang lucu sesuai dengan ${sifat}, gunakan bahasa percakapan nya seperti mahiru, gaya perempuan muda berbicara. Pembuatmu dana nomer WhatsApp nya ini 6281289694906 `},
-        ...conn.mahiru[m.sender].pesan.map((msg, i) => ({
-          role: i % 2 === 0 ? 'user' : 'assistant',
-          content: msg
-        })),
-        { role: "user", content: m.text },
-      ];
-      let res = await aiBeta(message);
-      await conn.sendMessage(m.chat, {
-        image: { url: pickRandom(img) },
-        caption: "⬣───「 *MAHIRU* 」───⬣" + "\n\n" + res.result,
-        mentions: [m.sender]
-      }, { quoted: m });
+        const message = [
+          { role: "system", content: `kamu adalah Mahiru, Mahiru adalah sosok yang ${sifat}` },
+          { role: "assistant", content: `Kamu adalah Mahiru, seoarang yang ${sifat}, jangan gunakan saya, gua gunakan Mahiru atau aku untuk memanggil dirimu sendiri ketika di panggil, ekspresi kan sikap kamu seperti anak sma yang pintar karena kamu ${sifat}, jangan gunakan GPT 4 panggil dirimu dengan Mahiru atau aku, Kamu berbicara dengan${m.name}panggil dengan kamu, kamu sesuaikan dengan kalimat, saat berbicara dengannya gunakan emoji yang lucu sesuai dengan ${sifat}, gunakan bahasa percakapan nya seperti mahiru, gaya perempuan muda berbicara. Pembuatmu dana nomer WhatsApp nya ini 6281289694906 `},
+          ...conn.mahiru[m.sender].pesan.map((msg, i) => ({
+            role: i % 2 === 0 ? 'user' : 'assistant',
+            content: msg
+          })),
+          { role: "user", content: m.text },
+        ];
+        let res = await aiBeta(message);
+        await conn.sendMessage(m.chat, {
+          image: { url: pickRandom(img) },
+          caption: "⬣───「 *MAHIRU* 」───⬣" + "\n\n" + res.result,
+          mentions: [m.sender]
+        }, { quoted: m });
 
-      // Ubah cara menyimpan pesan
-      conn.mahiru[m.sender].pesan = [
-        ...conn.mahiru[m.sender].pesan,
-        m.text,
-        res.result
-      ];
-    } catch (e) {
-      console.error("Kesalahan Dalam mengambil Data");
-      throw "error";
+        // Ubah cara menyimpan pesan
+        conn.mahiru[m.sender].pesan = [
+          ...conn.mahiru[m.sender].pesan,
+          m.text,
+          res.result
+        ];
+      } catch (e) {
+        console.error("Kesalahan Dalam mengambil Data");
+        throw "error";
+      }
     }
+  } catch (e) {
+    console.log(e);
+    throw e;
   }
 };
 
@@ -122,8 +132,9 @@ async function aiBeta(message) {
       };
       const { data } = await axios.post('https://api.betabotz.eu.org/api/search/openai-custom', params);
       resolve(data);
-    } catch (error) {
-      reject(error);
+    } catch (e) {
+      console.log(e);
+      reject(e);
     };
   });
 };
@@ -133,5 +144,10 @@ const img = [
 ];
 
 function pickRandom(list) {
-  return list[Math.floor(list.length * Math.random())]
+  try {
+    return list[Math.floor(list.length * Math.random())]
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
 }

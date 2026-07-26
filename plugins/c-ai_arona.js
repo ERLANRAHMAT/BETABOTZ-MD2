@@ -1,95 +1,105 @@
 import axios from 'axios';
 
 let handler = async (m, { conn, text }) => {
-  if (!text) throw `*• Example:* .arona *[on/off]*`;
+  try {
+    if (!text) throw `*• Example:* .arona *[on/off]*`;
 
-  conn.arona = conn.arona ? conn.arona : {};
+    conn.arona = conn.arona ? conn.arona : {};
 
-  if (text === "on") {
-    if (!conn.arona[m.sender]) {
-      conn.arona[m.sender] = {
-        pesan: [],
-        timeout: setTimeout(() => {
+    if (text === "on") {
+      if (!conn.arona[m.sender]) {
+        conn.arona[m.sender] = {
+          pesan: [],
+          timeout: setTimeout(() => {
+            delete conn.arona[m.sender];
+          }, 300000) // 5 minutes timeout
+        };
+        await conn.sendMessage(m.chat, {
+          image: { url: pickRandom(img) },
+          caption: "⬣───「 *ARONA* 」───⬣" + "\n\n" + `Halo sensei! arona yang hebat siap membantu!`,
+          mentions: [m.sender]
+        }, { quoted: m });
+      } else {
+        clearTimeout(conn.arona[m.sender].timeout);
+        conn.arona[m.sender].timeout = setTimeout(() => {
           delete conn.arona[m.sender];
-        }, 300000) // 5 minutes timeout
-      };
+        }, 300000);
+      }
+    } else if (text === "off") {
+      if (conn.arona[m.sender]) {
+        clearTimeout(conn.arona[m.sender].timeout);
+        delete conn.arona[m.sender];
+      }
       await conn.sendMessage(m.chat, {
         image: { url: pickRandom(img) },
-        caption: "⬣───「 *ARONA* 」───⬣" + "\n\n" + `Halo sensei! arona yang hebat siap membantu!`,
+        caption: "⬣───「 *ARONA* 」───⬣" + "\n\n" + `panggil aku lagi jika sensei butuh bantuan ya!`,
         mentions: [m.sender]
       }, { quoted: m });
-    } else {
-      clearTimeout(conn.arona[m.sender].timeout);
-      conn.arona[m.sender].timeout = setTimeout(() => {
-        delete conn.arona[m.sender];
-      }, 300000);
     }
-  } else if (text === "off") {
-    if (conn.arona[m.sender]) {
-      clearTimeout(conn.arona[m.sender].timeout);
-      delete conn.arona[m.sender];
-    }
-    await conn.sendMessage(m.chat, {
-      image: { url: pickRandom(img) },
-      caption: "⬣───「 *ARONA* 」───⬣" + "\n\n" + `panggil aku lagi jika sensei butuh bantuan ya!`,
-      mentions: [m.sender]
-    }, { quoted: m });
+  } catch (e) {
+    console.log(e);
+    throw e;
   }
 };
 
 handler.before = async (m, { conn }) => {
-  conn.arona = conn.arona ? conn.arona : {};
-  if (m.isBaileys && m.fromMe) return;
-  if (!m.text) return;
-  if (!conn.arona[m.sender]) return;
+  try {
+    conn.arona = conn.arona ? conn.arona : {};
+    if (m.isBaileys && m.fromMe) return;
+    if (!m.text) return;
+    if (!conn.arona[m.sender]) return;
 
-  if (
-    m.text.startsWith(".") ||
-    m.text.startsWith("#") ||
-    m.text.startsWith("!") ||
-    m.text.startsWith("/") ||
-    m.text.startsWith("\\/")
-  ) return;
+    if (
+      m.text.startsWith(".") ||
+      m.text.startsWith("#") ||
+      m.text.startsWith("!") ||
+      m.text.startsWith("/") ||
+      m.text.startsWith("\\/")
+    ) return;
 
-  if (conn.arona[m.sender] && m.text) {
-    clearTimeout(conn.arona[m.sender].timeout);
-    conn.arona[m.sender].timeout = setTimeout(() => {
-      delete conn.arona[m.sender];
-    }, 300000);
+    if (conn.arona[m.sender] && m.text) {
+      clearTimeout(conn.arona[m.sender].timeout);
+      conn.arona[m.sender].timeout = setTimeout(() => {
+        delete conn.arona[m.sender];
+      }, 300000);
 
-    let name = conn.getName(m.sender);
-    const message = [
-      ...conn.arona[m.sender].pesan,
-      `p`,
-      m.text
-    ];
-    try {
-      const message = [
-        { role: "system", content: `kamu adalah arona, Seorang murid dari sensei di Blue archive yang siap membantu sensei kapan pun! 🍄✨` },
-        { role: "assistant", content: `Saya adalah arona, Lu Asissten nya ${name}, arona yang pintar, panggil saya sebagai arona sensei!, saya dibuat oleh dana, dana sangat pintar dalam pemrograman, tapi tidak. Terlalu juga, dana berumur 20 tahun, Sekarang gaya bahasa saya seperti anak sma selatan yang menggunakan kata, aku, lu, gw, dan kalo kamu tidak suka dengan jawaban orang bisa menggunakan kata apan sih, gajelas lu, pergi Sono, apacoba ` },
-        ...conn.arona[m.sender].pesan.map((msg, i) => ({
-          role: i % 2 === 0 ? 'user' : 'assistant',
-          content: msg
-        })),
-        { role: "user", content: m.text },
-      ];
-      let res = await aiBeta(message);
-      await conn.sendMessage(m.chat, {
-        image: { url: pickRandom(img) },
-        caption: "⬣───「 *ARONA* 」───⬣" + "\n\n" + res.result,
-        mentions: [m.sender]
-      }, { quoted: m });
-
-      // Ubah cara menyimpan pesan
-      conn.arona[m.sender].pesan = [
+      let name = conn.getName(m.sender);
+      const messageOuter = [
         ...conn.arona[m.sender].pesan,
-        m.text,
-        res.result
+        `p`,
+        m.text
       ];
-    } catch (e) {
-      console.error("Kesalahan Dalam mengambil Data");
-      throw "error";
+      try {
+        const message = [
+          { role: "system", content: `kamu adalah arona, Seorang murid dari sensei di Blue archive yang siap membantu sensei kapan pun! 🍄✨` },
+          { role: "assistant", content: `Saya adalah arona, Lu Asissten nya ${name}, arona yang pintar, panggil saya sebagai arona sensei!, saya dibuat oleh dana, dana sangat pintar dalam pemrograman, tapi tidak. Terlalu juga, dana berumur 20 tahun, Sekarang gaya bahasa saya seperti anak sma selatan yang menggunakan kata, aku, lu, gw, dan kalo kamu tidak suka dengan jawaban orang bisa menggunakan kata apan sih, gajelas lu, pergi Sono, apacoba ` },
+          ...conn.arona[m.sender].pesan.map((msg, i) => ({
+            role: i % 2 === 0 ? 'user' : 'assistant',
+            content: msg
+          })),
+          { role: "user", content: m.text },
+        ];
+        let res = await aiBeta(message);
+        await conn.sendMessage(m.chat, {
+          image: { url: pickRandom(img) },
+          caption: "⬣───「 *ARONA* 」───⬣" + "\n\n" + res.result,
+          mentions: [m.sender]
+        }, { quoted: m });
+
+        // Ubah cara menyimpan pesan
+        conn.arona[m.sender].pesan = [
+          ...conn.arona[m.sender].pesan,
+          m.text,
+          res.result
+        ];
+      } catch (e) {
+        console.error("Kesalahan Dalam mengambil Data");
+        throw "error";
+      }
     }
+  } catch (e) {
+    console.log(e);
+    throw e;
   }
 };
 
@@ -111,8 +121,9 @@ async function aiBeta(message) {
       };
       const { data } = await axios.post('https://api.betabotz.eu.org/api/search/openai-custom', params);
       resolve(data);
-    } catch (error) {
-      reject(error);
+    } catch (e) {
+      console.log(e);
+      reject(e);
     };
   });
 };
@@ -122,5 +133,10 @@ const img = [
 ]
 
 function pickRandom(list) {
-  return list[Math.floor(list.length * Math.random())]
+  try {
+    return list[Math.floor(list.length * Math.random())]
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
 }

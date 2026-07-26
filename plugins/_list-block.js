@@ -1,12 +1,19 @@
 import fetch from 'node-fetch';
-var handler = async (m, {
- conn 
- }) => {
-var block = await conn.fetchBlocklist()                    
-conn.reply(m.chat, 'List Block:\n\n' + `Total: ${block == undefined ? '*0* Diblokir' : '*' + block.length + '* Diblokir'}\n` + block.map(v => '乂 @' + v.replace(/@.+/, '')).join`\n`, m, { mentions: block })
+
+let handler = async (m, { conn }) => {
+  try {
+    let block = await conn.fetchBlocklist() || [];
+    let text = `List Block:\n\nTotal: *${block.length}* Diblokir\n` + block.map(v => '乂 @' + v.replace(/@.+/, '')).join('\n');
+    await conn.reply(m.chat, text, m, { mentions: block });
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
 };
+
 handler.help = ['blocklist'];
 handler.tags = ['info'];
-handler.command = /^listbloc?k|bloc?klist|daftarbloc?k|blocks$/i
+handler.command = /^listbloc?k|bloc?klist|daftarbloc?k|blocks$/i;
 handler.owner = false;
+
 export default handler;

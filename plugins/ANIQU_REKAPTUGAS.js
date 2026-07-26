@@ -95,8 +95,8 @@ let handler = async (m, { conn, command, args }) => {
         conn.reply(m.chat, result.trim(), m);
 
     } catch (err) {
-        console.error(err);
-        conn.reply(m.chat, `Terjadi kesalahan: ${err.message}`, m);
+        console.log(err);
+        throw err;
     }
 };
 

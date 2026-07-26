@@ -1,7 +1,10 @@
 import fetch from 'node-fetch';
-let handler = async (m, { conn } ) => {   
-let res = await fetch(`https://api.betabotz.eu.org/api/webzone/gore?apikey=${lann}`).then(result => result.json())
-let anu =`
+
+let handler = async (m, { conn }) => {   
+    try {
+        let res = await fetch(`https://api.betabotz.eu.org/api/webzone/gore?apikey=${lann}`).then(result => result.json());
+        
+        let anu = `
 ─────> *GORE* <─────
 
 *JUDUL*:
@@ -11,12 +14,20 @@ ${res.result.title}\n
 *COMMENT*: ${res.result.comments}
 *LINK*: ${res.result.url}\n
 \`gunakan vpn jika ingin menonton\`
-`
-conn.sendMessage(m.chat, {
-                    text: anu,
-                    mentions: [m.sender]
-    }, {})
+`;
+
+        conn.sendMessage(m.chat, {
+            text: anu,
+            mentions: [m.sender]
+        }, {});
+    } catch (e) {
+        if (e !== false) {
+            console.log(e);
+            throw e;
+        }
+    }
 }
+
 handler.help = ['gore']
 handler.tags = ['internet', 'downloader'];
 handler.command = /^(gore)$/i
@@ -31,7 +42,4 @@ handler.botAdmin = false
 
 handler.fail = null
 
-export default handler
-
-
-//danapurta133
+export default handler;

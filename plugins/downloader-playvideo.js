@@ -66,7 +66,8 @@ async function youtube(url) {
    const { data } = await axios.get("https://api.betabotz.eu.org/api/download/ytmp4?url="+url+"&apikey="+lann)
    return data;
    } catch (e) {
-   return e;
+   console.log(e);
+      throw e;
    }
 }
 

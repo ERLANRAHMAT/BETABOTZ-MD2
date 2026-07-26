@@ -27,7 +27,8 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       mimetype: 'audio/mpeg',
     }, { quoted: m });
   } catch (e) {
-    throw `*Server down!*`;
+      console.log(e);
+      throw e;
   }
 };
 handler.help = ['spotify']

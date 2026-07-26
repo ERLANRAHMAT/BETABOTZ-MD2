@@ -40,8 +40,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         }
 
     } catch (e) {
-        console.error(e);
-        throw `Terjadi kesalahan saat memproses permintaan!`;
+       console.log(e);
+      throw e;
     }
 };
 

@@ -30,8 +30,8 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       });
     }
   } catch (e) {
-    console.error(e);
-    throw `Terjadi kesalahan! Pastikan URL yang diberikan valid atau coba lagi nanti.`;
+      console.log(e);
+      throw e;
   }
 };
 

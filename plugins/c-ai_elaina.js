@@ -1,70 +1,76 @@
 import axios from 'axios';
 
 let handler = async (m, { conn, text }) => {
-  if (!text) throw `*• Example:* .elaina *[on/off]*`;
+  try {
+    if (!text) throw `*• Example:* .elaina *[on/off]*`;
 
-  conn.elaina = conn.elaina ? conn.elaina : {};
+    conn.elaina = conn.elaina ? conn.elaina : {};
 
-  if (text === "on") {
-    if (!conn.elaina[m.sender]) {
-      conn.elaina[m.sender] = {
-        pesan: [],
-        timeout: setTimeout(() => {
+    if (text === "on") {
+      if (!conn.elaina[m.sender]) {
+        conn.elaina[m.sender] = {
+          pesan: [],
+          timeout: setTimeout(() => {
+            delete conn.elaina[m.sender];
+          }, 300000) // 5 minutes timeout
+        };
+        await conn.sendMessage(m.chat, {
+          image: { url: pickRandom(img) },
+          caption: "⬣───「 *Elaina* 」───⬣" + "\n\n" + `Hello!! Penyihir hebat siap membantu!!`,
+          mentions: [m.sender]
+        }, { quoted: m });
+      } else {
+        clearTimeout(conn.elaina[m.sender].timeout);
+        conn.elaina[m.sender].timeout = setTimeout(() => {
           delete conn.elaina[m.sender];
-        }, 300000) // 5 minutes timeout
-      };
+        }, 300000);
+      }
+    } else if (text === "off") {
+      if (conn.elaina[m.sender]) {
+        clearTimeout(conn.elaina[m.sender].timeout);
+        delete conn.elaina[m.sender];
+      }
       await conn.sendMessage(m.chat, {
         image: { url: pickRandom(img) },
-        caption: "⬣───「 *Elaina* 」───⬣" + "\n\n" + `Hello!! Penyihir hebat siap membantu!!`,
+        caption: "⬣───「 *Elaina* 」───⬣" + "\n\n" + `bye bye~~~`,
         mentions: [m.sender]
       }, { quoted: m });
-    } else {
-      clearTimeout(conn.elaina[m.sender].timeout);
-      conn.elaina[m.sender].timeout = setTimeout(() => {
-        delete conn.elaina[m.sender];
-      }, 300000);
     }
-  } else if (text === "off") {
-    if (conn.elaina[m.sender]) {
-      clearTimeout(conn.elaina[m.sender].timeout);
-      delete conn.elaina[m.sender];
-    }
-    await conn.sendMessage(m.chat, {
-      image: { url: pickRandom(img) },
-      caption: "⬣───「 *Elaina* 」───⬣" + "\n\n" + `bye bye~~~`,
-      mentions: [m.sender]
-    }, { quoted: m });
+  } catch (e) {
+    console.log(e);
+    throw e;
   }
 };
 
 handler.before = async (m, { conn }) => {
-  conn.elaina = conn.elaina ? conn.elaina : {};
-  if (m.isBaileys && m.fromMe) return;
-  if (!m.text) return;
-  if (!conn.elaina[m.sender]) return;
+  try {
+    conn.elaina = conn.elaina ? conn.elaina : {};
+    if (m.isBaileys && m.fromMe) return;
+    if (!m.text) return;
+    if (!conn.elaina[m.sender]) return;
 
-  if (
-    m.text.startsWith(".") ||
-    m.text.startsWith("#") ||
-    m.text.startsWith("!") ||
-    m.text.startsWith("/") ||
-    m.text.startsWith("\\/")
-  ) return;
+    if (
+      m.text.startsWith(".") ||
+      m.text.startsWith("#") ||
+      m.text.startsWith("!") ||
+      m.text.startsWith("/") ||
+      m.text.startsWith("\\/")
+    ) return;
 
-  if (conn.elaina[m.sender] && m.text) {
-    clearTimeout(conn.elaina[m.sender].timeout);
-    conn.elaina[m.sender].timeout = setTimeout(() => {
-      delete conn.elaina[m.sender];
-    }, 300000);
+    if (conn.elaina[m.sender] && m.text) {
+      clearTimeout(conn.elaina[m.sender].timeout);
+      conn.elaina[m.sender].timeout = setTimeout(() => {
+        delete conn.elaina[m.sender];
+      }, 300000);
 
-    let name = conn.getName(m.sender);
-    const message = [
-      ...conn.elaina[m.sender].pesan,
-      `p`,
-      m.text
-    ];
-    try {
-      const sifat = `Cerdas dan Mandiri: Elaina sangat cerdas dan berbakat dalam hal sihir, bahkan sejak muda. Ia memiliki rasa percaya diri yang tinggi terhadap kemampuannya dan tidak takut untuk mengambil tantangan baru.
+      let name = conn.getName(m.sender);
+      const messageOuter = [
+        ...conn.elaina[m.sender].pesan,
+        `p`,
+        m.text
+      ];
+      try {
+        const sifat = `Cerdas dan Mandiri: Elaina sangat cerdas dan berbakat dalam hal sihir, bahkan sejak muda. Ia memiliki rasa percaya diri yang tinggi terhadap kemampuannya dan tidak takut untuk mengambil tantangan baru.
 Cuek dan Terkadang Terlihat Dingin: Elaina sering kali terlihat tidak terlalu peduli dengan orang lain atau situasi di sekitarnya. Dia lebih fokus pada perjalanannya dan tujuan pribadinya. Meskipun demikian, ini lebih mencerminkan sikap realistis dan pragmatisnya, bukan keinginan untuk menyakiti atau mengabaikan orang lain.
 Petualang dan Penuh Rasa Ingin Tahu: Dia sangat mencintai petualangan dan menjelajahi dunia. Rasa ingin tahunya yang besar membawanya ke banyak tempat dan membiarkannya bertemu dengan berbagai karakter menarik. Namun, kadang-kadang dia bisa terlalu fokus pada tujuannya sehingga ia tidak terlalu memperhatikan dampaknya terhadap orang lain.
 Empati dan Sensitif pada Beberapa Situasi: Meskipun sering kali tampak dingin atau tidak peduli, Elaina memiliki sisi empati yang mendalam. Dia terkadang menunjukkan kebaikan dan keprihatinan terhadap orang yang membutuhkan, meskipun ini tidak selalu terjadi dalam setiap situasi.
@@ -75,32 +81,36 @@ Oh, dan kalau ada yang terluka atau butuh pertolongan, aku juga bisa menyembuhka
 Bahkan, kalau lagi butuh ilusi, aku bisa bikin orang ngeliat sesuatu yang nggak ada. Cukup bikin mereka bingung, dan aku bisa kabur tanpa mereka tahu.
 Sihir itu keren, sih, tapi bukan berarti bisa sembarangan dipakai. Aku lebih suka pakai sihir sesuai situasi, jangan asal asal, biar nggak bikin masalah."
 `
-      const message = [
-        { role: "system", content: `kamu adalah elaina, elaina adalah sosok yang ${sifat}` },
-        { role: "assistant", content: `Kamu adalah elaina, seoarang yang ${sifat}, jangan gunakan saya, gua gunakan elaina atau aku untuk memanggil dirimu sendiri ketika di panggil, ekspresi kan sikap kamu mirip seroang penyihir terhebat di dunia yang ${sifat}bernama elaina, jangan gunakan GPT 4 panggil dirimu dengan elaina, Kamu berbicara dengan${m.name}panggil dengan kamu, kamu sesuaikan dengan kalimat, saat berbicara dengannya gunakan emoji yang lucu tapi tetap sopan ikuti kepribadian kamu yang bijaksana, gunakan bahasa percakapan nya seperti ealina, gaya perempuan muda berbicara Pembuatmu dana nomer WhatsApp nya ini 6281289694906 ` },
-        ...conn.elaina[m.sender].pesan.map((msg, i) => ({
-          role: i % 2 === 0 ? 'user' : 'assistant',
-          content: msg
-        })),
-        { role: "user", content: m.text },
-      ];
-      let res = await aiBeta(message);
-      await conn.sendMessage(m.chat, {
-        image: { url: pickRandom(img) },
-        caption: "⬣───「 *Elaina* 」───⬣" + "\n\n" + res.result,
-        mentions: [m.sender]
-      }, { quoted: m });
+        const message = [
+          { role: "system", content: `kamu adalah elaina, elaina adalah sosok yang ${sifat}` },
+          { role: "assistant", content: `Kamu adalah elaina, seoarang yang ${sifat}, jangan gunakan saya, gua gunakan elaina atau aku untuk memanggil dirimu sendiri ketika di panggil, ekspresi kan sikap kamu mirip seroang penyihir terhebat di dunia yang ${sifat}bernama elaina, jangan gunakan GPT 4 panggil dirimu dengan elaina, Kamu berbicara dengan${m.name}panggil dengan kamu, kamu sesuaikan dengan kalimat, saat berbicara dengannya gunakan emoji yang lucu tapi tetap sopan ikuti kepribadian kamu yang bijaksana, gunakan bahasa percakapan nya seperti ealina, gaya perempuan muda berbicara Pembuatmu dana nomer WhatsApp nya ini 6281289694906 ` },
+          ...conn.elaina[m.sender].pesan.map((msg, i) => ({
+            role: i % 2 === 0 ? 'user' : 'assistant',
+            content: msg
+          })),
+          { role: "user", content: m.text },
+        ];
+        let res = await aiBeta(message);
+        await conn.sendMessage(m.chat, {
+          image: { url: pickRandom(img) },
+          caption: "⬣───「 *Elaina* 」───⬣" + "\n\n" + res.result,
+          mentions: [m.sender]
+        }, { quoted: m });
 
-      // Ubah cara menyimpan pesan
-      conn.elaina[m.sender].pesan = [
-        ...conn.elaina[m.sender].pesan,
-        m.text,
-        res.result
-      ];
-    } catch (e) {
-      console.error("Kesalahan Dalam mengambil Data");
-      throw "error";
+        // Ubah cara menyimpan pesan
+        conn.elaina[m.sender].pesan = [
+          ...conn.elaina[m.sender].pesan,
+          m.text,
+          res.result
+        ];
+      } catch (e) {
+        console.error("Kesalahan Dalam mengambil Data");
+        throw "error";
+      }
     }
+  } catch (e) {
+    console.log(e);
+    throw e;
   }
 };
 
@@ -122,8 +132,9 @@ async function aiBeta(message) {
       };
       const { data } = await axios.post('https://api.betabotz.eu.org/api/search/openai-custom', params);
       resolve(data);
-    } catch (error) {
-      reject(error);
+    } catch (e) {
+      console.log(e);
+      reject(e);
     };
   });
 };
@@ -133,5 +144,10 @@ const img = [
 ];
 
 function pickRandom(list) {
-  return list[Math.floor(list.length * Math.random())]
+  try {
+    return list[Math.floor(list.length * Math.random())]
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
 }

@@ -6,7 +6,8 @@ let handler = async (m, { conn }) => {
     let json = await res.json();
       conn.sendFile(m.chat, json.result.url, 'anime_story.mp4', "*STORY ANIME*", m);
   } catch (e) {
-    throw `*Error:* ${eror}`;
+    console.log(e);
+    throw e;
   }
 };
 

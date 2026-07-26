@@ -8,10 +8,8 @@ const get = await fetch(`https://api.betabotz.eu.org/api/download/fbdown?url=${u
 var js = await get.json()   
 conn.sendFile(m.chat, js.result[0]._url, 'fb.mp4', '', m);
   } catch (e) {
-    console.log(e);
-    if (m.sender) {
-      conn.reply(m.chat, `_*Terjadi kesalahan!*_`, m);
-    }
+      console.log(e);
+      throw e;
   }
 };
 handler.help = ['facebook'];

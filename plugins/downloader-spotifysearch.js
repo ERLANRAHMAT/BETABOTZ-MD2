@@ -19,7 +19,8 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
                 mentions: [m.sender]
     }}, {})
   } catch (e) {
-    throw `🚩 *Gagal Memuat Data!*`;
+     console.log(e);
+     throw e;
   }
 };
 

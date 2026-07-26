@@ -9,10 +9,10 @@ try {
   await m.reply(wait)
   let res = await (await fetch(`https://api.betabotz.eu.org/api/search/lepton-ai?apikey=${lann}&text=${text}`)).json()
   await m.reply(res.result.result)
-} catch (err) {
-  console.error(err)
-  throw eror
- }
+} catch (e) {
+    console.log(e);
+    throw e;
+  }
 }
 handler.command = handler.help = ['lepton'];
 handler.tags = ['ai'];

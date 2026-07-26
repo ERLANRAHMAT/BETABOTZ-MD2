@@ -12,8 +12,8 @@ let handler = async (m, { text, usedPrefix, command }) => {
 
         await m.reply(`📄 *Hasil Pastebin:*\n\n${json.result}`);
     } catch (e) {
-        console.error(e);
-        throw "❌ Terjadi kesalahan saat mengambil data dari Pastebin!";
+          console.log(e);
+          throw e;
     }
 };
 

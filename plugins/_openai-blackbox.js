@@ -4,16 +4,16 @@ var handler = async (m, {
  usedPrefix, 
  command
  }) => {
-if (!text) throw `Masukkan pertanyaan!\n\n*Contoh:* buatkan saya code express.js`
-try {
-  await m.reply(wait)
-  var apii = await fetch(`https://api.betabotz.eu.org/api/search/blackbox-chat?text=${text}&apikey=${lann}`)
-  var res = await apii.json()
-  await m.reply(res.message)
-} catch (err) {
-  console.error(err)
-  throw "Terjadi kesalahan dalam menjawab pertanyaan"
-}
+  try {
+    if (!text) throw `Masukkan pertanyaan!\n\n*Contoh:* buatkan saya code express.js`
+    await m.reply(wait)
+    var apii = await fetch(`https://api.betabotz.eu.org/api/search/blackbox-chat?text=${text}&apikey=${lann}`)
+    var res = await apii.json()
+    await m.reply(res.message)
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
 }
 handler.command = handler.help = ['blackbox','blackboxai','aicoding'];
 handler.tags = ['tools'];

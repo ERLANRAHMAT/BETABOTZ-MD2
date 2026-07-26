@@ -1,21 +1,23 @@
 import fetch from 'node-fetch';
-var handler = async (m, {
- text, 
- usedPrefix, 
- command
- }) => {
-if (!text) throw `Masukkan pertanyaan!\n\n*Contoh:* Siapa presiden Indonesia? `
-try {
-  await m.reply(wait)
-  var apii = await fetch(`https://api.betabotz.eu.org/api/search/bard-ai?apikey=${lann}&text=${text}`)
-  var res = await apii.json()
-  await m.reply(res.message)
-} catch (err) {
-  console.error(err)
-  throw "Terjadi kesalahan dalam menjawab pertanyaan"
-}
-}
-handler.command = handler.help = ['bard','bardai'];
+
+let handler = async (m, { text, usedPrefix, command }) => {
+  try {
+    if (!text) throw `Masukkan pertanyaan!\n\n*Contoh:* Siapa presiden Indonesia? `;
+    
+    await m.reply(global.wait);
+    
+    let apii = await fetch(`https://api.betabotz.eu.org/api/search/bard-ai?apikey=${global.lann}&text=${text}`);
+    let res = await apii.json();
+    
+    await m.reply(res.message);
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+};
+
+handler.command = handler.help = ['bard', 'bardai'];
 handler.tags = ['tools'];
-handler.premium = false
+handler.premium = false;
+
 export default handler;

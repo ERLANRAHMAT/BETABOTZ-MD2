@@ -22,7 +22,8 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         conn.sendMessage(m.chat, { document: { url: url }, mimetype: ext, fileName: filename }, { quoted: m });
         
     } catch (e) {
-        throw eror
+            console.log(e);
+            throw e;
     }
 };
 

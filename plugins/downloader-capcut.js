@@ -28,7 +28,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
     } catch (e) {
         console.log(e);
-        throw `Terjadi Kesalahan!`;
+        throw e;
     }
 };
 

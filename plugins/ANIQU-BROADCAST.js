@@ -15,14 +15,14 @@ let sentBroadcasts = new Map();
 
 // Fungsi pengiriman khusus Broadcast (dengan Hidetag penuh)
 async function sendBroadcastHidetag(jid, text) {
-    const botConn = global.conn || (typeof conn !== 'undefined' ? conn : null);
-    
-    if (!botConn) {
-        console.error('[ANIQU BROADCAST] Tidak ada koneksi WhatsApp aktif!');
-        return;
-    }
-
     try {
+        const botConn = global.conn || (typeof conn !== 'undefined' ? conn : null);
+        
+        if (!botConn) {
+            console.error('[ANIQU BROADCAST] Tidak ada koneksi WhatsApp aktif!');
+            return;
+        }
+
         const groupMetadata = await botConn.groupMetadata(jid);
         const participants = groupMetadata.participants.map(p => p.id);
 
@@ -31,8 +31,9 @@ async function sendBroadcastHidetag(jid, text) {
             mentions: participants 
         });
         console.log(`[ANIQU BROADCAST] Berhasil mengirim pesan massal ke grup: ${jid}`);
-    } catch (error) {
-        console.error(`[ANIQU BROADCAST] Gagal mengirim pesan ke ${jid}:`, error.message);
+    } catch (e) {
+        console.log(e);
+        throw e;
     }
 }
 
@@ -81,20 +82,36 @@ async function checkAndSendBroadcast() {
             }
         }
 
-    } catch (error) {
-        console.error('[ANIQU BROADCAST] Gagal pull data API:', error.message);
+    } catch (e) {
+        console.log(e);
+        throw e;
     }
 }
 
-setInterval(() => {
-    checkAndSendBroadcast();
-}, BROADCAST_INTERVAL_MINUTES * 60 * 1000);
+try {
+    setInterval(() => {
+        try {
+            checkAndSendBroadcast();
+        } catch (e) {
+            console.log(e);
+            throw e;
+        }
+    }, BROADCAST_INTERVAL_MINUTES * 60 * 1000);
 
-// Opsional: Jalankan satu kali di awal saat bot baru menyala
-setTimeout(() => {
-    checkAndSendBroadcast();
-}, 5000);
+    // Opsional: Jalankan satu kali di awal saat bot baru menyala
+    setTimeout(() => {
+        try {
+            checkAndSendBroadcast();
+        } catch (e) {
+            console.log(e);
+            throw e;
+        }
+    }, 5000);
 
-console.log(`[ANIQU BROADCAST] Sistem pull broadcast aktif (Cek per ${BROADCAST_INTERVAL_MINUTES} menit)!`);
+    console.log(`[ANIQU BROADCAST] Sistem pull broadcast aktif (Cek per ${BROADCAST_INTERVAL_MINUTES} menit)!`);
+} catch (e) {
+    console.log(e);
+    throw e;
+}
 
 */

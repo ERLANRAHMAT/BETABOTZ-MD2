@@ -1232,7 +1232,7 @@ export default {
                       try {
                         if (typeof e === "string") return await m.reply(e);
 
-                        let text = e?.stack || require("util").format(e);
+                        let text = e?.stack || util.format(e);
 
                         if (typeof APIKeys !== "undefined") {
                           Object.values(APIKeys).forEach((key) => {

@@ -3,15 +3,15 @@ import uploader from '../lib/uploadImage.js';
 import uploadFile from '../lib/uploadFile.js';
 
 let handler = async (m, { conn, text, command, usedPrefix }) => {
-  if (!text) throw `Reply media with text\nExample: ${usedPrefix + command} what is this?`;
-  
-  let q = m.quoted ? m.quoted : m;
-  let mime = (q.msg || q).mimetype || q.mediaType || '';
-  let media, urlAPI;
-  
-  await m.reply(wait);
-  
   try {
+    if (!text) throw `Reply media with text\nExample: ${usedPrefix + command} what is this?`;
+    
+    let q = m.quoted ? m.quoted : m;
+    let mime = (q.msg || q).mimetype || q.mediaType || '';
+    let media, urlAPI;
+    
+    await m.reply(wait);
+    
     if (/image/g.test(mime) && !/webp/g.test(mime)) {
       let buffer = await q.download();
       media = await uploader(buffer);
@@ -34,14 +34,14 @@ let handler = async (m, { conn, text, command, usedPrefix }) => {
 
     let json = await (await fetch(urlAPI)).json();
     if (json.status && json.result) {
-      conn.sendMessage(m.chat, { text: json.result }, { quoted: m });
+      await conn.sendMessage(m.chat, { text: json.result }, { quoted: m });
     } else {
       throw 'Failed to get response from Bard';
     }
     
-  } catch (err) {
-    console.error(err);
-    throw `${eror}\n\nDetails: ${err.message}`;
+  } catch (e) {
+    console.log(e);
+    throw e;
   }
 }
 

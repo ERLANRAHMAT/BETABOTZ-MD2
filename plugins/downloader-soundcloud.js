@@ -17,8 +17,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             quoted: m
         });
     } catch (e) {
-        console.log(e)
-        m.reply(`Invalid Soundcloud URL / terjadi kesalahan.`)
+        console.log(e);
+        throw e;
     }
 }
 
