@@ -1,4 +1,4 @@
-let fetch = require("node-fetch");
+import fetch from 'node-fetch';
 let handler = async (m, {
     conn,
     text,
@@ -36,4 +36,4 @@ handler.help = ['lirik'].map(v => v + ' <Title>')
 handler.tags = ['internet']
 handler.command = /^(lirik|lyrics|lyric)$/i
 
-module.exports = handler
+export default handler

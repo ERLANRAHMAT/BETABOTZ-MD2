@@ -227,6 +227,6 @@ handler.command = ["blacklist", "unblacklist"];
 handler.owner = true;
 handler.group = true;
 
-module.exports = handler;
+export default handler;
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));

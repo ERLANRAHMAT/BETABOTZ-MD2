@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://youtu.be/4rDOsvzTicY?si=3Ps-SJyRGzMa83QT`;    
@@ -29,5 +29,5 @@ handler.botAdmin = false;
 handler.fail = null;
 handler.private = false;
 
-module.exports = handler;
+export default handler;
 

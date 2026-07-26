@@ -6,8 +6,7 @@
    Dont Delete This Watermark and Sell This Code !!!!
 */
 
-const fetch = require('node-fetch')
-
+import fetch from 'node-fetch';
 //mulai
 
 let handler = async (m, {conn, command}) => {
@@ -112,6 +111,6 @@ handler.help = handler.command = ['remaja', 'anak', 'budaya', 'misteri', 'romant
 handler.tags = ['cerpen']
 handler.group = false;
 handler.limit = true;
-module.exports = handler;
+export default handler;
 
 //dana_putra13

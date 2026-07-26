@@ -1,4 +1,4 @@
-var fetch = require("node-fetch");
+import fetch from 'node-fetch';
 var handler = async (m, {
  conn 
  }) => {
@@ -9,4 +9,4 @@ handler.help = ['blocklist'];
 handler.tags = ['info'];
 handler.command = /^listbloc?k|bloc?klist|daftarbloc?k|blocks$/i
 handler.owner = false;
-module.exports = handler;
+export default handler;

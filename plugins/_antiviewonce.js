@@ -1,4 +1,4 @@
-exports.before = async function(m) {
+export const before = async function(m) {
     if (m.isBaileys && m.fromMe) return;
     let chat = db.data.chats[m.chat];
     if (chat.viewonce && m.isGroup && m.mtype === 'viewOnceMessageV2') {

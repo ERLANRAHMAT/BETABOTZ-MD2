@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, usedPrefix, command }) => {
   if (command === 'checksub') {
@@ -86,7 +86,7 @@ handler.tags = ['tools'];
 handler.premium = false;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;
 
 async function whois(subdomain, domain) {
   const url = `https://api.betabotz.eu.org/api/tools/whois-subdo?subdomain=${encodeURIComponent(subdomain)}&domain=${encodeURIComponent(domain)}&apikey=${lann}`;

@@ -1,6 +1,6 @@
-// const { loadBaileys } = require('../baileys-loader.mjs')
+// const { loadBaileys } = import '../baileys-loader.mjs'
 // let baileys
-// const fetch = require('node-fetch')
+// const fetch = import 'node-fetch'
 
 // let handler = async (m, { conn, text, participants, usedPrefix, command }) => {
 //   if (!baileys) baileys = await loadBaileys();
@@ -60,7 +60,7 @@
 // handler.botAdmin = true
 // handler.fail = null
 
-// module.exports = handler
+// export default handler
 
 
 // rawan banned matiin aja deh

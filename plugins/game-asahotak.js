@@ -1,5 +1,4 @@
-let fetch = require('node-fetch')
-
+import fetch from 'node-fetch';
 let timeout = 100000
 let poin = 10000
 let handler = async (m, { conn, usedPrefix }) => {
@@ -38,7 +37,7 @@ handler.command = /^asahotak/i
 handler.register = false
 handler.group = true
 
-module.exports = handler
+export default handler
 
 // tested di bileys versi 6.5.0 dan sharp versi 0.30.5
 // danaputra133

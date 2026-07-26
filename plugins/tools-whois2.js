@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 const handler = async (m, { text, usedPrefix, command }) => {
   if (!text) {
     throw `Masukkan Domain/Sub Domain!\n\n*Contoh:* botcahx.eu.org`;
@@ -23,4 +23,4 @@ const handler = async (m, { text, usedPrefix, command }) => {
 handler.command = ['whois2'];
 handler.tags = ['internet'];
 handler.premium = false;
-module.exports = handler;
+export default handler;

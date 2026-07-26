@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+import fetch from 'node-fetch';
 
 const handler = async (m, {
     conn,
@@ -38,7 +38,7 @@ handler.botAdmin = false;
 handler.fail = null;
 handler.private = false;
 
-module.exports = handler;
+export default handler;
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));

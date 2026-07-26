@@ -1,4 +1,4 @@
-var fetch = require("node-fetch")
+import fetch from 'node-fetch';
 var handler = async (m, {
  text, 
  usedPrefix, 
@@ -16,4 +16,4 @@ conn.sendMessage(m.chat, { video: { url: hasil.result.url }, fileName: 'xnxx.mp4
 }
 handler.command = handler.help = ['xnxxdown'];
 handler.tags = ['internet'];
-module.exports = handler;
+export default handler;

@@ -1,5 +1,5 @@
-const util = require('util');
-const path = require('path');
+import util from 'util';
+import path from 'path';
 
 const user = (a) => '@' + a.split('@')[0];
 
@@ -29,7 +29,7 @@ handler.tags = ['fun'];
 handler.group = true;
 handler.limit = 2;
 
-module.exports = handler;
+export default handler;
 
 function pickRandom(list) {
   return list[Math.floor(Math.random() * list.length)];

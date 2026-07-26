@@ -1,5 +1,5 @@
-let fetch = require('node-fetch');
-const { loadBaileys } = require('../baileys-loader.mjs');
+import fetch from 'node-fetch';
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys;
 
 const MAX_IMAGE_SEND = 20;
@@ -124,4 +124,4 @@ handler.help = ['pinterest <keyword>'];
 handler.tags = ['internet', 'downloader'];
 handler.command = /^(pinterest|pin)$/i;
 
-module.exports = handler;
+export default handler;

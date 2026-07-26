@@ -60,4 +60,4 @@ handler.owner = true
 handler.group = false
 handler.botAdmin = false
 
-module.exports = handler
+export default handler

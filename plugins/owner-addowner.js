@@ -18,4 +18,4 @@ handler.command = /^(add|tambah|\+)owner$/i
 
 handler.owner = true
 
-module.exports = handler
+export default handler

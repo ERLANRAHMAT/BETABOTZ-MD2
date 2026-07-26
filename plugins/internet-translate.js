@@ -1,4 +1,4 @@
-const { translate } = require('@vitalets/google-translate-api');
+import { translate } from '@vitalets/google-translate-api';
 const defaultLang = 'id'
 let handler = async (m, { args, usedPrefix, command }) => {
     if (!args[0] && !m.quoted) {
@@ -18,4 +18,4 @@ let handler = async (m, { args, usedPrefix, command }) => {
 handler.help = ['tr <leng> <text>']
 handler.tags = ['tools']
 handler.command = ['translate', 'tl', 'trid', 'tr']
-module.exports = handler
+export default handler

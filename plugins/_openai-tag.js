@@ -1,5 +1,5 @@
-const axios = require('axios');
-let search = require("yt-search");
+import axios from 'axios';
+import search from 'yt-search';
 
 let handler = async (m, { conn, text, command }) => {
 // kosong
@@ -267,4 +267,4 @@ handler.before = async (m, { conn }) => {
     }
 };
 
-module.exports = handler;
+export default handler;

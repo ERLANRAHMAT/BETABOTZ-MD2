@@ -1,5 +1,5 @@
-let cp = require ('child_process')
-let { promisify } = require ('util')
+import cp from 'child_process';
+import { promisify } from 'util';
 let exec = promisify(cp.exec).bind(cp)
 let handler = async (m, { conn}) => {
 	await conn.reply(m.chat, `Please Wait`, m)
@@ -27,4 +27,4 @@ handler.help = ['speedtest']
 handler.tags = ['info']
 handler.command = /^(speedtest|ookla)$/i
 handler.premium = false
-module.exports = handler
+export default handler

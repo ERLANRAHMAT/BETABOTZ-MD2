@@ -1,4 +1,4 @@
-var fetch = require("node-fetch");
+import fetch from 'node-fetch';
 
 var handler = async (m, { text, usedPrefix, command }) => {
   if (!text) {
@@ -27,4 +27,4 @@ throw `Can't find data!`
 handler.command = ['xnxxsearch'];
 handler.tags = ['internet'];
 
-module.exports = handler;
+export default handler;

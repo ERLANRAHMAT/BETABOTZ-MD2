@@ -26,4 +26,4 @@ handler.help = ['searchfitur']
 handler.tags = ['tools']
 handler.command = ['searchfitur']
 
-module.exports = handler;
+export default handler;

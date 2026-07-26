@@ -1,5 +1,4 @@
-const fetch = require('node-fetch')
-
+import fetch from 'node-fetch';
 let handler = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `uhm.. cari apa?\n\ncontoh:\n${usedPrefix + command} mabar`    
     try {
@@ -20,4 +19,4 @@ handler.tags = ['tools']
 handler.command = /^carig(ro?up|c)/i
 handler.limit = true
 
-module.exports = handler
+export default handler

@@ -1,6 +1,6 @@
-var { 
+import { 
 sticker5 
-} = require('../lib/sticker')
+} from '../lib/sticker.js';
 let handler = async (m, {conn, command, text, userPrefix}) => {
     try {
             const res = `https://api.betabotz.eu.org/api/sticker/meme-kucing?apikey=${global.lann}`;
@@ -15,4 +15,4 @@ let handler = async (m, {conn, command, text, userPrefix}) => {
 handler.command = handler.info = ['stickerkucing', 'stikercat'];
 handler.help = ['sticker']
 handler.limit = true
-module.exports = handler;
+export default handler;

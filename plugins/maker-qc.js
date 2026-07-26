@@ -1,10 +1,10 @@
-let { sticker5 } = require('../lib/sticker.js')
-let axios = require('axios')
-const FormData = require('form-data')
-const { fromBuffer } = require('file-type')
-const sharp = require('sharp')
-const fetch = require('node-fetch')
-
+import { sticker5 } from '../lib/sticker.js';
+import axios from 'axios';
+import FormData from 'form-data';
+import pkg from 'file-type';
+const { fromBuffer } = pkg;
+import sharp from 'sharp';
+import fetch from 'node-fetch';
 let handler = async (m, { conn, text, args }) => {
     try {
         let q = m.quoted ? m.quoted : m
@@ -57,7 +57,7 @@ handler.help = ['qc']
 handler.tags = ['sticker']
 handler.command = /^(qc|quotely)$/i
 
-module.exports = handler
+export default handler
 
 async function ___qctext(text, name, url, color) {
     let body = {

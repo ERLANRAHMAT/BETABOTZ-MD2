@@ -39,4 +39,4 @@ handler.tags = ['group']
 handler.help = ['cekasalmember']
 handler.command = ['cekasalmember', 'asalmember']
 handler.group = true
-module.exports = handler
+export default handler

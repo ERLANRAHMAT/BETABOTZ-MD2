@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+import fetch from 'node-fetch';
 let handler = async (m, { text, usedPrefix, command }) => {
   if (!text) throw `Masukkan Domain!\n\n*Contoh:* betabotz.eu.org`;
   if (text.includes('https://') || text.includes('http://')) throw `Tolong masukkan tanpa domain *https/http!*. Contoh: betabotz.eu.org`;  
@@ -25,4 +25,4 @@ handler.help = ['whois', 'whoislookup'];
 handler.tags = ['tools'];
 handler.premium = false;
 handler.limit = true
-module.exports = handler;
+export default handler;

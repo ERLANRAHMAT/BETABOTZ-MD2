@@ -1,6 +1,6 @@
 // Thanks To Kasan
 
-const util = require('util');
+import util from 'util';
 
 let handler = m => m
 handler.before = async function (m) {
@@ -89,4 +89,4 @@ function formatNumber(number) {
 return number.toLocaleString();
 }
 
-module.exports = handler
+export default handler

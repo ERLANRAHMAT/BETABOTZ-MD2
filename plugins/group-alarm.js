@@ -5,8 +5,8 @@ wm ini boleh di hapus bebas kalian juga boleh belajar cara kerja code ny. Happy 
 jangan lupa follow github admin = danaputra133
 */
 
-// let moment = require('moment-timezone');
-// let schedule = require('node-schedule');
+// let moment = import 'moment-timezone';
+// let schedule = import 'node-schedule';
 
 // const timeZone = 'Asia/Jakarta';
 

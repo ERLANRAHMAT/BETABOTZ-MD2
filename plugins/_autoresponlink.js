@@ -1,4 +1,4 @@
-let fs = require('fs')
+import fs from 'fs';
 let handler = m => m
 
 handler.all = async function (m, { isBlocked }) {
@@ -14,4 +14,4 @@ Jika berminat hubungi: @${global.owner[0]} untuk order:)
     }
 }
 
-module.exports = handler
+export default handler

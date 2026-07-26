@@ -70,4 +70,4 @@ handler.tags = ['info']
 handler.command = /^(role|levelrole)$/i
 handler.register = true
 handler.rpg = true
-module.exports = handler
+export default handler

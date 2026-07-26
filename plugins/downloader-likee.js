@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://l.likee.video/v/tmj1oh`;    
@@ -24,4 +24,4 @@ handler.command = handler.help = ['likee'];
 handler.tags = ['downloader'];
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

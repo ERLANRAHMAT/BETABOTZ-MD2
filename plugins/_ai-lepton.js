@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 let handler = async (m, {
  text, 
  usedPrefix, 
@@ -18,4 +18,4 @@ handler.command = handler.help = ['lepton'];
 handler.tags = ['ai'];
 handler.premium = false
 handler.limit = true;
-module.exports = handler;
+export default handler;

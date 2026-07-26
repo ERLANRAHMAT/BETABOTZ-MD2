@@ -1,4 +1,4 @@
-const { loadBaileys } = require("../baileys-loader.mjs");
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys;
 let handler = async (m) => {
   if (!baileys) baileys = await loadBaileys();
@@ -10,4 +10,4 @@ handler.help = ["device"];
 handler.tags = ["tools"];
 handler.command = /^(device)$/i;
 
-module.exports = handler;
+export default handler;

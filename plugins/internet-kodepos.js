@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `Penggunaan:\n${usedPrefix + command} <nama daerah>\n\nContoh:\n${usedPrefix + command} Cilacap`;
@@ -24,4 +24,4 @@ handler.help = ['kodepos'];
 handler.tags = ['internet'];
 handler.command = /^(kodepos)$/i;
 
-module.exports = handler;
+export default handler;

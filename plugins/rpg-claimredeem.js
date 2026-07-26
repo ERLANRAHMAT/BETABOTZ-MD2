@@ -1,5 +1,5 @@
-const axios = require('axios');
-const fs = require('fs');
+import axios from 'axios';
+import fs from 'fs';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   const user = global.db.data.users[m.sender]
@@ -55,7 +55,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 handler.help = ["claimredeem *[code redeem]*"]
 handler.tags = ["rpg"]
 handler.command = ["claimredeem"]
-module.exports = handler
+export default handler
 
 function clockString(ms) {
   let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)

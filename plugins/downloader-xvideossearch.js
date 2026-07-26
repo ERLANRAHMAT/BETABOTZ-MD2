@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from 'axios';
 
 var handler = async (m, { text, usedPrefix, command }) => {
   if (!text) {
@@ -27,4 +27,4 @@ var handler = async (m, { text, usedPrefix, command }) => {
 handler.command = ['xvideossearch','xsearch'];
 handler.tags = ['internet'];
 
-module.exports = handler;
+export default handler;

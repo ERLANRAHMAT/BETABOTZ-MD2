@@ -20,7 +20,7 @@ handler.before = async function (m, { user, isBotAdmin, isAdmin }) {
   return true
 }
 
-module.exports = handler */
+export default handler */
 
 // di bawah kode jika user send link grub lain maka pesan nya akan di hapus
 /* let handler = m => m
@@ -40,4 +40,4 @@ handler.before = async function (m, { isAdmin, isBotAdmin }) {
   return true
 }
 
-module.exports = handler */
+export default handler */

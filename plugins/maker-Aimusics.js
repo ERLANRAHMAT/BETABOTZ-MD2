@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, text, args, usedPrefix, command }) => {
     let [title, style, ...lyricsArr] = text.split('|').map(s => s.trim());
@@ -50,7 +50,7 @@ handler.command = handler.help = ['aimusic', 'musicgen', 'sunoai'];
 handler.tags = ['ai'];
 handler.limit = true;
 
-module.exports = handler;
+export default handler;
 
 async function generateMusic(title, style, lyrics) {
     const payload = {

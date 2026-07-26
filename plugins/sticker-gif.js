@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
-const uploader = require('../lib/uploadFile');
+import fetch from 'node-fetch';
+import uploader from '../lib/uploadFile.js';
 
 let handler = async (m, { conn, usedPrefix, command }) => {
 	let q = m.quoted ? m.quoted : m
@@ -29,4 +29,4 @@ handler.tags = ['tools']
 handler.command = /^(toimg|togif)$/i
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

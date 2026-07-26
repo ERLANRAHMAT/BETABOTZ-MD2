@@ -1,6 +1,5 @@
 
-let fetch = require('node-fetch')
-
+import fetch from 'node-fetch';
 let handler = async (m, { conn, command }) => {
 let audio = 'src/lagu.mp3'
 const img = await fetch(`https://telegra.ph/file/3947ccd86c9e9426eec8b.jpg`).then(res => res.buffer())
@@ -53,4 +52,4 @@ conn.sendMessage(m.chat, { audio: { url: audio }, mimetype: 'audio/mpeg' }, { qu
 handler.customPrefix = /^(betabotz)$/i 
 handler.command = new RegExp
 handler.tags = ['main']
-module.exports = handler
+export default handler

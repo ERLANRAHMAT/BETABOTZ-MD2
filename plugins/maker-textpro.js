@@ -261,4 +261,4 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
 handler.command = handler.help = ['giraffe','magma','batman','marvelstudio2','marvelstudio','avengers','ninjalogo','glitch3','glitch2','glitch','grafity','grafity2','blood','jokerlogo','hallowen2','space','thunder2','1917','3dstone','harrypotter','wolflogo','naturalleaves','blackpink','blackpink2','dropwater','christmas','gradient','captainamerica','rusty','ice','honey','blood','koi','lava','bread','strawberry','toxic','wicker','fabric','pornhub','holograpic','deluxesilver','writing','engraved','gluetext','neondevil','skytext','vintage','multicolor','robot','scifi','artpapper','glossy','watercolor','neongreen','brokenglass','artpapper','valentine2','neonlight','neongalaxy','magma','hallowen','valentine']
 handler.tags = ['maker'];
 handler.limit = true;
-module.exports = handler;
+export default handler;

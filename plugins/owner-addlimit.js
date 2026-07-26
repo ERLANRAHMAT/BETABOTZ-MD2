@@ -9,7 +9,7 @@ Buy Script?
 */
 
 
-const { loadBaileys } = require('../baileys-loader.mjs')
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys
 
 let handler = async (m, { conn, text }) => {
@@ -58,4 +58,4 @@ handler.tags = ['xp'];
 handler.command = /^addlimit$/i;
 handler.owner = true;
 
-module.exports = handler;
+export default handler;

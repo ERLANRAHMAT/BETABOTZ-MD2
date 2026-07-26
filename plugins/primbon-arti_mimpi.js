@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 // if (!text) throw `Masukkan Nama!\n\ncontoh: ${usedPrefix + command} "dana"`;
 if (!text) throw `Masukkan Mimpi kamu!\n\ncontoh: ${usedPrefix + command} mandi `;
@@ -20,7 +20,7 @@ throw `Internal server eror!\n\nulangi lagi perintah`
     handler.command = /^(artimimpi)$/i
     handler.group = true
     
-    module.exports = handler
+    export default handler
     
 
   //   {

@@ -1,6 +1,4 @@
-const { createHash } = require('crypto')
-
-
+import { createHash } from 'crypto';
 let handler = async function (m, { text, usedPrefix }) { 
 
     let sn = createHash('md5').update(m.sender).digest('hex')
@@ -16,4 +14,4 @@ handler.group = true
 handler.rpg = true
 
 
-module.exports = handler
+export default handler

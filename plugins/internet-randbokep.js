@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 let handler = async (m, { conn }) => {
   const q = [
     //tambahin sendiri saya ga pernah nontooon
@@ -31,7 +31,7 @@ handler.premium = true;
 handler.nsfw = true;
 handler.limit = 500;
 
-module.exports = handler;
+export default handler;
 
 function getRandomResult(data) {
   const results = data.result;

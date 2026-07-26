@@ -18,4 +18,4 @@ handler.help = ['alay']
 handler.tags = ['fun']
 handler.command = ['alay']
 
-module.exports = handler
+export default handler

@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, usedPrefix, command }) => {
   if (!text) throw `*Example:* ${usedPrefix + command} 081324323543`;
@@ -36,4 +36,4 @@ let handler = async (m, { text, usedPrefix, command }) => {
 handler.command = handler.help = ["getcontact", "getco"];
 handler.tags = ['tools'];
 handler.limit = true;
-module.exports = handler;
+export default handler;

@@ -46,4 +46,4 @@ handler.help = ["bomb"];
 handler.tags = ["game"];
 handler.command = /^(bomb)$/i;
 
-module.exports = handler;
+export default handler;

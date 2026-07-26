@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `Penggunaan:\n${usedPrefix + command} <teks>\n\nContoh:\n${usedPrefix + command} Jakarta`;
@@ -18,4 +18,4 @@ handler.help = ['cuaca'];
 handler.tags = ['internet'];
 handler.command = /^(cuaca|weather)$/i;
 
-module.exports = handler;
+export default handler;

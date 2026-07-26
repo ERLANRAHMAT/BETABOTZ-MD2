@@ -1223,36 +1223,65 @@ export default {
                         chatUpdate,
                     }                          
                     try {
-                        await plugin.call(this, m, extra)
-                        if (!isPrems) m.limit = m.limit || plugin.limit || false
+                      await plugin.call(this, m, extra);
+                      if (!isPrems) m.limit = m.limit || plugin.limit || false;
                     } catch (e) {
-                        // Error occured
-                        m.error = e
-                        console.error(e)
-                        if (e) {
-                            let text = util.format(e)
-                            for (let key of Object.values(APIKeys))
-                                text = text.replace(new RegExp(key, 'g'), '#HIDDEN#')
-                            if (e.name)
-                            for (let jid of owner.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').filter(v => v != this.user.jid)) {
-                                let data = (await this.onWhatsApp(jid))[0] || {}
-                                if (data.exists)
-                                    //m.reply(`*Plugin:* ${m.plugin}\n*Sender:* @${m.sender.split`@`[0]}\n*Chat:* ${m.chat}\n*Chat Name:* ${await this.getName(m.chat)}\n*Command:* ${usedPrefix}${command} ${args.join(' ')}\n\n\`\`\`${text}\`\`\``.trim(), data.jid, { mentions: [m.sender] })
-									console.error(`Plugin:${m.plugin} | Sender:@${m.sender.split('@')[0]} | Chat:${m.chat} | ChatName:${await this.getName(m.chat)} | Command:${usedPrefix}${command} ${args.join(' ')} | Error:${text}`)
-                            }
-                            m.reply(text)
+                      m.error = e;
+                      console.error("Handler Error:", e);
+
+                      try {
+                        if (typeof e === "string") return await m.reply(e);
+
+                        let text = e?.stack || require("util").format(e);
+
+                        if (typeof APIKeys !== "undefined") {
+                          Object.values(APIKeys).forEach((key) => {
+                            text = text.replace(
+                              new RegExp(key, "g"),
+                              "#HIDDEN#",
+                            );
+                          });
                         }
+
+                        await m.reply(global.eror || "_*Server Error*_");
+
+                        let chatName = m.chat;
+                        try {
+                          chatName =
+                            (await this.getName(m.chat)) || "Private Chat";
+                        } catch {}
+
+                        if (global.lapor && global.groupLapor) {
+                          let cmd =
+                            `${usedPrefix || ""}${command || ""} ${args?.join(" ") || ""}`.trim();
+                          let errorMsg =
+                            `*⚠️ [ LAPORAN ERROR BOT ] ⚠️*\n\n` +
+                            `*Plugin:* ${m.plugin || "Unknown"}\n` +
+                            `*Sender:* @${m.sender.split("@")[0]}\n` +
+                            `*Chat:* ${m.chat}\n` +
+                            `*Chat Name:* ${chatName}\n` +
+                            `*Command:* ${cmd}\n\n` +
+                            `*Log Error:*\n\`\`\`${text}\`\`\``;
+
+                          await this.sendMessage(global.groupLapor, {
+                            text: errorMsg.trim(),
+                            mentions: [m.sender],
+                          });
+                        }
+                      } catch (err) {
+                        console.error(err);
+                      }
                     } finally {
-                        // m.reply(util.format(_user))
-                        if (typeof plugin.after === 'function') {
-                            try {
-                                await plugin.after.call(this, m, extra)
-                            } catch (e) {
-                                console.error(e)
-                            }
+                      // m.reply(util.format(_user))
+                      if (typeof plugin.after === "function") {
+                        try {
+                          await plugin.after.call(this, m, extra);
+                        } catch (e) {
+                          console.error(e);
                         }
-                        if (m.limit) m.reply(+ m.limit + ' Limit terpakai')
-                   }
+                      }
+                      if (m.limit) m.reply(+m.limit + " Limit terpakai");
+                    }
                     break
                 }
             }

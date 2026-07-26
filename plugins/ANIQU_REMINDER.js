@@ -4,8 +4,8 @@
 // Tutorial https://www.youtube.com/playlist?list=PLGv_-znSuMIwhZPH2y06HWisHZbn7dXL3
 
 /*
-const axios = require('axios');
-const { setInterval } = require('timers');
+import axios from 'axios';
+import { setInterval } from 'timers';
 
 // Pengaturan Jam Pengingat (Gunakan format 24 jam)
 const TIME_H_MINUS = { hour: 19, minute: 0 };  // Waktu untuk reminder H-3 & H-1

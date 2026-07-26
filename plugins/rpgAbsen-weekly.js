@@ -23,7 +23,7 @@ handler.command = /^(weekly)$/i
 handler.limit = true
 handler.fail = null
 handler.rpg = true
-module.exports = handler
+export default handler
 
 function msToTime(duration) {
   var milliseconds = parseInt((duration % 1000) / 100),

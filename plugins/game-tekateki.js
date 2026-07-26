@@ -1,6 +1,5 @@
-let fs = require('fs')
-let fetch = require('node-fetch')
-
+import fs from 'fs';
+import fetch from 'node-fetch';
 let timeout = 100000
 let poin = 10000
 let handler = async (m, { conn, usedPrefix }) => {
@@ -40,4 +39,4 @@ handler.tags = ['game']
 handler.command = /^tekateki/i
 handler.group = true
 
-module.exports = handler
+export default handler

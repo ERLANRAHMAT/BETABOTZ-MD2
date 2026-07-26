@@ -1,4 +1,4 @@
-var axios = require('axios');
+import axios from 'axios';
 var handler = async (m, { conn }) => {
   try {
     var response = await axios.get(`https://api.betabotz.eu.org/api/search/gempa?apikey=${lann}`);
@@ -14,4 +14,4 @@ handler.command = handler.help = ['infogempa', 'gempa'];
 handler.tags = ['info'];
 handler.premium = false;
 handler.limit = true;
-module.exports = handler;
+export default handler;

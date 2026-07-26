@@ -1,4 +1,4 @@
-const { loadBaileys } = require('../baileys-loader.mjs')
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys    
 
 let handler = async (m, {
@@ -65,4 +65,4 @@ handler.tags = ['owner'];
 handler.owner = true;
 handler.group = true;
 
-module.exports = handler;   
+export default handler;   

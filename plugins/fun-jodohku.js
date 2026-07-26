@@ -24,4 +24,4 @@ handler.tags = ['fun'];
 handler.command = /^(jodohku)$/i;
 handler.group = true; 
 
-module.exports = handler;
+export default handler;

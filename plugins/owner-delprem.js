@@ -1,4 +1,4 @@
-const { loadBaileys } = require('../baileys-loader.mjs')
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys
 
 let handler = async (m, { conn, text, usedPrefix }) => {
@@ -25,6 +25,6 @@ handler.command = /^(unprem|delprem)$/i;
 handler.owner = true;
 handler.fail = null;
 
-module.exports = handler;
+export default handler;
 
 // hapis skibidi

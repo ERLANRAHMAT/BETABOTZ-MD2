@@ -9,4 +9,4 @@ handler.command = /^tboa$/i
 
 handler.limit = true
 
-module.exports = handler
+export default handler

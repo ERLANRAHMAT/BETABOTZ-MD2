@@ -1,4 +1,4 @@
-const moment = require('moment-timezone');
+import moment from 'moment-timezone';
 
 let handler = async (m, { text, conn, usedPrefix, command }) => {
     try {
@@ -192,7 +192,7 @@ handler.command = /^dreamworld|dream|mimpi$/i;
 handler.group = true;
 handler.limit = 1;
 
-module.exports = handler;
+export default handler;
 
 //base by DEVOLUTION-MD1
 //recode by danaputra133

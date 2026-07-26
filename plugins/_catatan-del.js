@@ -38,4 +38,4 @@ handler.help = ['hapuscatatan title']
 handler.tags = ['internet']
 handler.command = /^hapuscatatan$/i
 
-module.exports = handler
+export default handler

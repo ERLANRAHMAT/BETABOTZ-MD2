@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 let handler = async (m, { conn }) => {
   try {
     conn.reply(m.chat, wait, m)
@@ -14,4 +14,4 @@ handler.help = ['storyanime'];
 handler.tags = ['downloader'];
 handler.command = /^(storyanime)$/i;
 handler.limir = true 
-module.exports = handler;
+export default handler;

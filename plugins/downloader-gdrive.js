@@ -1,5 +1,4 @@
-let fetch = require('node-fetch')
-
+import fetch from 'node-fetch';
 let handler = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `*Example:* ${usedPrefix + command} https://drive.google.com/file/d/1thDYWcS5p5FFhzTpTev7RUv0VFnNQyZ4/view?usp=drivesdk`
     m.reply(wait)   
@@ -13,4 +12,4 @@ let handler = async (m, { text, usedPrefix, command }) => {
 handler.command = handler.help = ['gdrive','gdrivedl']
 handler.tags = ['downloader']
 handler.limit = true
-module.exports = handler
+export default handler

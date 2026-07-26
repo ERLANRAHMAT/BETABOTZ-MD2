@@ -30,4 +30,4 @@ handler.tags = ['absen']
 handler.command = /^cekabsen$/i
 handler.group = true
 
-module.exports = handler;
+export default handler;

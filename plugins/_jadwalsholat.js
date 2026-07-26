@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 function getPrayerTimes(jsonData) {
     const today = new Date();
@@ -53,4 +53,4 @@ handler.tags = ['islam'];
 handler.command = /^(jadwal)?s(a|o|ha|ho)lat$/i;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

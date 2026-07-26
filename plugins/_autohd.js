@@ -1,7 +1,6 @@
-const fetch = require('node-fetch');
-const uploadImage = require('../lib/uploadImage.js');
-
-exports.before = async function(m, { isAdmin, isBotAdmin }) {
+import fetch from 'node-fetch';
+import uploadImage from '../lib/uploadImage.js';
+export const before = async function(m, { isAdmin, isBotAdmin }) {
   if (global.db.data.users[m.sender].limit > 0) {
     if (m.isBaileys && m.fromMe) return;
     let chat = global.db.data.chats[m.chat]

@@ -25,4 +25,4 @@ handler.help = ['guildwaracc <nama_guild>'];
 handler.tags = ['rpgG'];
 handler.command = /^(guildwaracc)$/i;
 handler.rpg = true;
-module.exports = handler;
+export default handler;

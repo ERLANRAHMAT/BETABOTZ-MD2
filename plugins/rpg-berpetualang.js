@@ -133,4 +133,4 @@ handler.group = true;
 handler.limit = true;
 handler.rpg = true;
 handler.register = true;
-module.exports = handler;
+export default handler;

@@ -1,5 +1,5 @@
-const uploadImage = require('../lib/uploadImage');
-const fetch = require('node-fetch');
+import uploadImage from '../lib/uploadImage.js';
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, usedPrefix, command }) => {
     var q = m.quoted ? m.quoted : m;
@@ -47,4 +47,4 @@ handler.tags = ['maker'];
 handler.premium = false;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

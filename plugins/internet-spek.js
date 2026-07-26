@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, conn, usedPrefix, command }) => {
   if (!text) throw `*🚩 Contoh:* ${usedPrefix + command} Infinix Hot 40 Pro`;  
@@ -77,4 +77,4 @@ handler.premium = false;
 handler.group = false;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

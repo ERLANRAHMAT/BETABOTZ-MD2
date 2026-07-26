@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, {
   conn,
@@ -59,7 +59,7 @@ handler.command = handler.help = ['bing', 'bingimg']
 handler.tags = ['tools']
 handler.limit = true
 
-module.exports = handler
+export default handler
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));

@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     let quoteText = text || (m.quoted ? m.quoted.text : '');
@@ -23,4 +23,4 @@ handler.help = ['iqc <teks>'];
 handler.tags = ['maker', 'tools'];
 handler.command = /^(iqc|imagequote)$/i;
 
-module.exports = handler;
+export default handler;

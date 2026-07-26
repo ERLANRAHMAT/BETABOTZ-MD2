@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { conn, usedPrefix, command }) => {
 try {
   await m.reply(wait)
@@ -27,7 +27,7 @@ throw `Internal server eror!`
     handler.command = /^(tafsir)$/i
     handler.group = true
     
-    module.exports = handler
+    export default handler
 
     function pickRandom(list) {
       return list[Math.floor(list.length * Math.random())]

@@ -1,4 +1,4 @@
-module.exports = Object.assign(async function handler(m, { isOwner, isPremium, command }) {
+export default Object.assign(async function handler(m, { isOwner, isPremium, command }) {
     if (!(isOwner || isPremium)) {
         global.dfail('premium', m, conn)
         throw false

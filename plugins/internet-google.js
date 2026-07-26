@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, command, args }) => {
   let text = args[0];
@@ -32,4 +32,4 @@ handler.tags = ['internet'];
 handler.command = /^google$/i;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

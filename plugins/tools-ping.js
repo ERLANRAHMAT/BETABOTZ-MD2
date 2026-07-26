@@ -1,11 +1,11 @@
-var { totalmem,
+import { totalmem,
 freemem
- } = require('os')
-var os = require("os");
-var util = require("util");
-var osu = require("node-os-utils");
-var { performance } = require("perf_hooks");
-var { sizeFormatter } = require("human-readable");
+ } from 'os';
+import os from 'os';
+import util from 'util';
+import osu from 'node-os-utils';
+import { performance } from 'perf_hooks';
+import { sizeFormatter } from 'human-readable';
 var format = sizeFormatter({
   std: "JEDEC", // 'SI' (default) | 'IEC' | 'JEDEC'
   decimalPlaces: 2,
@@ -97,7 +97,7 @@ ${muptime}
 *s ᴇ ʀ ᴠ ᴇ ʀ*
 *🛑 ʀᴀᴍ:* ${format(totalmem() - freemem())} / ${format(totalmem())}
 *🔵 ғʀᴇᴇRAM:* ${format(freemem())}
-*🔴 ᴍᴇᴍᴏʀy:* ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
+*🔴 ᴍᴇᴍᴏʀy:* ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(totalmem() / 1024 / 1024)}MB
 *🔭 ᴘʟᴀᴛғᴏʀᴍ:* ${os.platform()}
 *🧿 sᴇʀᴠᴇʀ:* ${os.hostname()}
 *💻 ᴏs:* ${OS}
@@ -164,7 +164,7 @@ conn.sendMessage(
 handler.help = ['ping', 'speed'];
 handler.tags = ['info'];
 handler.command = /^(ping|speed|pong|ingfo)$/i
-module.exports = handler;
+export default handler;
 
 function clockString(ms) {
   var d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)

@@ -49,4 +49,4 @@ handler.command = /^tebakhewan/i
 handler.limit = false
 handler.group = true
 
-module.exports = handler
+export default handler

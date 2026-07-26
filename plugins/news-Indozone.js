@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { conn }) => {
 try {
   let res = await fetch(`https://api.betabotz.eu.org/api/news/Indozone?&apikey=${lann}`);
@@ -29,7 +29,7 @@ throw `Internal server eror!`
     handler.command = /^(Indozone)$/i
     handler.group = true
     
-    module.exports = handler
+    export default handler
 
     function pickRandom(list) {
       return list[Math.floor(list.length * Math.random())]

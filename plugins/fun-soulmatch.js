@@ -1,4 +1,4 @@
-const moment = require('moment-timezone');
+import moment from 'moment-timezone';
 
 let handler = async (m, { text, conn }) => {
     if (!text) {
@@ -149,7 +149,7 @@ handler.command = /^soulmatch$/i;
 handler.group = true;
 handler.limit = 1;
 
-module.exports = handler;
+export default handler;
 
 
 //base by DEVOLUTION-MD1

@@ -1,5 +1,5 @@
-const yts = require('yt-search')
-let axios = require("axios");
+import yts from 'yt-search';
+import axios from 'axios';
 let handler = async (m, { conn, text, usedPrefix, command}) => {
     if (!text) throw `[❗] *Penggunaan:* ${usedPrefix + command} <search>`;   
     conn.sendMessage(m.chat, { react: { text: '🎧', key: m.key }})
@@ -57,7 +57,7 @@ handler.help = ['yts4 <pencarian>'];
 handler.tags = ['downloader'];
 handler.command = /^(yts4)$/i;
 handler.limit = true;
-module.exports = handler;
+export default handler;
 
 async function youtube(url) {
    try {

@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 if (!text) throw `Masukkan kisah nabi yang ingin kamu cari!\n\ncontoh: ${usedPrefix + command} ISA`;
 try {
@@ -19,7 +19,7 @@ throw `Internal server eror!\n\nulangi lagi perintah dengan kisah lain!`
     handler.command = /^(kisahnabi)$/i
     handler.group = true
     
-    module.exports = handler
+    export default handler
 
     function pickRandom(list) {
       return list[Math.floor(list.length * Math.random())]

@@ -1,4 +1,4 @@
-const similarity = require('similarity')
+import similarity from 'similarity';
 const threshold = 0.72
 
     let handler = m => m
@@ -31,4 +31,4 @@ const threshold = 0.72
     }
 
     handler.exp = 0
-    module.exports = handler
+    export default handler

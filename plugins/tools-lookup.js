@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 const handler = async (m, { text, usedPrefix, command }) => {
   if (!text) throw `Masukkan Domain/Sub Domain!\n\n*Contoh:* botcahx.eu.org`;
 
@@ -39,4 +39,4 @@ handler.help = ['dnslookup', 'hackertarget', 'lookup','dns'];
 handler.tags = ['tools'];
 handler.premium = false;
 
-module.exports = handler;
+export default handler;

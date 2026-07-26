@@ -1,6 +1,6 @@
-var fs = require('fs');
-var path = require('path');
-var fetch = require('node-fetch');
+import fs from 'fs';
+import path from 'path';
+import fetch from 'node-fetch';
 
 var handler = async (m, { conn, command, args }) => {
   if (!args[0]) return conn.reply(m.chat, 'Input URL!', m);
@@ -46,4 +46,4 @@ handler.command = ['sshp', 'sshandphone', 'sstablet',]
 handler.limit = true;
 handler.fail = null;
 
-module.exports = handler;
+export default handler;

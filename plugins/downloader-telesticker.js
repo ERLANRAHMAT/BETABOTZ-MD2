@@ -1,4 +1,4 @@
-var fetch = require("node-fetch");
+import fetch from 'node-fetch';
 var handler = async (m, {
   conn,
   args,
@@ -32,4 +32,4 @@ handler.command = /^(telestick|stele)$/i;
 handler.tags = ['downloader'];
 handler.limit = 100;
 handler.fail = null;
-module.exports = handler;
+export default handler;

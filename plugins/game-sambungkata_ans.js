@@ -1,4 +1,4 @@
-// const { sKata, cKata } = require('../lib/sambung-kata')
+// const { sKata, cKata } = import '../lib/sambung-kata.js'
 
 // let handler = m => m
 
@@ -70,7 +70,7 @@
 //     return true
 // }
 
-// module.exports = handler
+// export default handler
 
 // async function genKata() {
 //     let json = await sKata()

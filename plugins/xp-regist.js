@@ -1,4 +1,4 @@
-const { createHash } = require('crypto')
+import { createHash } from 'crypto';
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
 let handler = async function (m, { text, usedPrefix }) {
   let user = global.db.data.users[m.sender]
@@ -31,4 +31,4 @@ handler.tags = ['xp']
 
 handler.command = /^(daftar|reg(ister)?)$/i
 
-module.exports = handler
+export default handler

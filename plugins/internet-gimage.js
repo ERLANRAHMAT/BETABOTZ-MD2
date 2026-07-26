@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Use example ${usedPrefix}${command} Minecraft`;  
@@ -16,7 +16,7 @@ handler.help = ['gimage <query>', 'image <query>'];
 handler.tags = ['internet'];
 handler.command = /^(gimage|image)$/i;
 
-module.exports = handler;
+export default handler;
 
 function pickRandom(arr) {
     return arr[Math.floor(Math.random() * arr.length)];

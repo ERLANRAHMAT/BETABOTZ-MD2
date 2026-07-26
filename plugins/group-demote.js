@@ -38,7 +38,7 @@ handler.botAdmin = true;
 handler.admin = true;
 handler.fail = null;
 
-module.exports = handler;
+export default handler;
 
 
 //fix bagian ketika comamnd berjalan mreplay tidak mau terkirim

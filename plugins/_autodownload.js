@@ -1,7 +1,7 @@
-const { loadBaileys } = require('../baileys-loader.mjs')
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys
-let fetch = require('node-fetch')
-const axios = require('axios');
+import fetch from 'node-fetch';
+import axios from 'axios';
 
 
 let handler = m => m
@@ -852,4 +852,4 @@ handler.before = async function (m, { conn, isPrems }) {
 }
 
 
-module.exports = handler
+export default handler

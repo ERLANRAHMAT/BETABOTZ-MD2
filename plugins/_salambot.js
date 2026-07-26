@@ -9,4 +9,4 @@ handler.limit = false
 handler.group = false
 
 
-module.exports = handler
+export default handler

@@ -27,7 +27,7 @@ handler.tags = ["owner"]
 handler.command = /^(block|unblock)$/i
 handler.owner = true
 
-module.exports = handler
+export default handler
 
 
 

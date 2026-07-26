@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
-const uploadImage = require('../lib/uploadImage.js');
+import fetch from 'node-fetch';
+import uploadImage from '../lib/uploadImage.js';
 
 async function handler(m, { conn, usedPrefix, command }) {
   try {
@@ -31,5 +31,5 @@ handler.premium = false;
 handler.limit = false;
 handler.group = true;
 
-module.exports = handler;
+export default handler;
 

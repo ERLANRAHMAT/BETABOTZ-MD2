@@ -28,4 +28,4 @@ handler.command = ['setcmd']
 handler.premium = true
 handler.fail = null
 
-module.exports = handler
+export default handler

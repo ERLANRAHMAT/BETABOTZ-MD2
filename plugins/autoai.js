@@ -1,5 +1,5 @@
 
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, text }) => {
     conn.egvuaxrl = conn.egvuaxrl ? conn.egvuaxrl : {};
@@ -67,4 +67,4 @@ handler.command = ['autoai'];
 handler.tags = ["ai"];
 handler.help = ['autoai'].map(a => a + " *[on/off]*");
 
-module.exports = handler;
+export default handler;

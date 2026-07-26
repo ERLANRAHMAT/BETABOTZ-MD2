@@ -55,7 +55,7 @@ handler.before = async function(m, { conn, participants, isPrems, isAdmin }) {
   } 
 }
 
-module.exports = handler
+export default handler
 
 //base code by adrian
 //edit by dana

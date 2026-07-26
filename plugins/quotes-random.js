@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, command }) => {
     let anu = `─────〔 *${command}* 〕─────\n`;
@@ -62,4 +62,4 @@ handler.admin = false;
 handler.botAdmin = false;
 handler.fail = null;
 
-module.exports = handler;
+export default handler;

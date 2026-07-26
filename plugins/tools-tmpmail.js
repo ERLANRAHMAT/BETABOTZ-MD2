@@ -1,5 +1,5 @@
-let axios = require('axios');
-let cheerio = require('cheerio');
+import axios from 'axios';
+import { load } from 'cheerio';
 
 let handler = async (m, { conn, command, usedPrefix }) => {
     conn.sessionsMail = conn.sessionsMail || {};
@@ -68,7 +68,7 @@ handler.tags = ['tools'];
 handler.help = ['tempmail', 'cekmail', 'checkmail'];
 handler.limit = true;
 
-module.exports = handler;
+export default handler;
 
 function extractText(html) {
     let $ = cheerio.load(html);

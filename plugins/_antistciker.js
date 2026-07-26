@@ -16,4 +16,4 @@ async function before(m, { isAdmin, isBotAdmin }) {
     return;
 }
 
-module.exports = { before };
+export default { before };

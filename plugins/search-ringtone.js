@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, {conn, text, usedPrefix, command}) => {
     if (!text) throw `Masukan nama Hp!\n\nContoh:\n${usedPrefix + command} oppo`;
@@ -30,7 +30,7 @@ handler.command = /^(ringtone)$/i
 handler.group = false
 handler.limit = true
     
-module.exports = handler
+export default handler
 
 
 function pickRandom(list) {

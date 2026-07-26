@@ -1,5 +1,5 @@
-const axios = require('axios');
-const { Sticker, StickerTypes } = require('wa-sticker-formatter');
+import axios from 'axios';
+import { Sticker, StickerTypes } from 'wa-sticker-formatter';
 
 const handler = async (m, { conn, args, text }) => {
     var arr = ["atas", "bawah"];
@@ -58,7 +58,7 @@ handler.help = ["coinflip"];
 handler.tags = ["rpg"];
 handler.command = /^(coinflip|putarkoin)$/i;
 handler.rpg = true
-module.exports = handler;
+export default handler;
 
 async function createSticker(img, url, wm, author, quality) {
     let stickerMetadata = {

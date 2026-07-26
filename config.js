@@ -4,8 +4,6 @@ dotenv.config();
 // Timezone
 process.env.TZ = 'Asia/Jakarta';
 
-
-
 // Pengaturan Bot disini Semua
 global.owner = ["6281289694906"]; // wajib di isi tidak boleh kosong
 global.mods = ["6281289694906"]; // wajib di isi tidak boleh kosong
@@ -17,13 +15,14 @@ global.gc = "https://chat.whatsapp.com/I5RpePh2b5u37OyFjzCNTr"; // wajib di isi 
 global.instagram = "https://www.instagram.com/dana_putra13/"; // wajib di isi tidak boleh kosong
 global.wm = "© Aquabot"; // isi nama bot atau nama kalian
 global.wait = "_*Tunggu sedang di proses...*_"; // ini pesan simulasi loading
-global.eror = "_*Server Error*_"; // ini pesan saat terjadi kesalahan
+global.eror = "_*Server Error*_\n\nMohon jangan di spam ya. Silakan laporkan masalah ini ke admin menggunakan perintah *.lapor*"; // ini pesan saat terjadi kesalahan
 global.stiker_wait = "*⫹⫺ Stiker sedang dibuat...*"; // ini pesan simulasi saat loading pembuatan sticker
 global.qris = "https://cdn.filn.pp.ua/uploads/betabotzapi/41616.jpg";
 global.thumb = "https://telegra.ph/file/3a34bfa58714bdef500d9.jpg";
 global.packname = "Made With"; // watermark stikcker packname
 global.author = "Bot WhatsApp"; // watermark stikcker author
 global.maxwarn = "3"; // Peringatan maksimum Warn
+global.lapor = false  // set true agar bot mengirim return json error ke grub lapor, jika false tidak ada
 global.groupLapor = "120363216901617825@g.us"; // grub dimana bot mengirim laporan error dari user
 global.idchannel = ["123123412341234@newsletter"]; // channel untuk pengumuman bot max 3
 global.autobio = false; // Set true/false untuk mengaktifkan atau mematikan autobio (default: false)
@@ -36,13 +35,13 @@ global.prefix = './#'
 
 
 // APIKEY INI WAJIB DI ISI! //
-global.lann = "";
+global.lann = "YOUR_APIKEY_HERE";
 // global.lann = process.env.API_KEY_BETABOTZ;
 // aktifkan akses .env di atas jika kamu ingin menaruh key api di .env
 // Daftar terlebih dahulu https://api.betabotz.eu.org
 
 // AKSESKEY INI DI ISI JIKA DIPERLUKAN (e.g suno ai (ai music ) & fitur prem lainnya//
-global.aksesKey = "";
+global.aksesKey = "YOUR_AKSESKEY_HERE";
 // global.aksesKey = process.env.API_KEY_BETABOTZ_AKSESKEY;
 // aktifkan akses .env di atas jika kamu ingin menaruh key api di .env
 // Daftar terlebih dahulu https://api.betabotz.eu.org

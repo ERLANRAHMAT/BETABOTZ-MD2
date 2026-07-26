@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `contoh:\n${usedPrefix + command} jokowi`
     try {
@@ -32,4 +32,4 @@ handler.tags = ['stalk']
 handler.command = /^(twstalk|twitterstalk)$/i
 handler.limit = true
 
-module.exports = handler
+export default handler

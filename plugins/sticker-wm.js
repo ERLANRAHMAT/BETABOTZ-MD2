@@ -1,7 +1,6 @@
-const uploadFile = require('../lib/uploadFile')
-const uploadImage = require('../lib/uploadImage')
-let fetch = require("node-fetch")
-
+import uploadFile from '../lib/uploadFile.js';
+import uploadImage from '../lib/uploadImage.js';
+import fetch from 'node-fetch';
 let handler = async (m, { conn, text, usedPrefix, command}) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
@@ -39,4 +38,4 @@ handler.help = ['wm', 'watermark']
 handler.tags = ['sticker']
 handler.command = /^wm|watermark?$/i
 
-module.exports = handler
+export default handler

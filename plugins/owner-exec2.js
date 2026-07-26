@@ -1,5 +1,5 @@
-let cp = require('child_process')
-let { promisify } = require('util')
+import cp from 'child_process';
+import { promisify } from 'util';
 let exec = promisify(cp.exec).bind(cp)
 let handler = async (m, { conn, isOwner, command, text }) => {
   if (global.conn.user.jid != conn.user.jid) return
@@ -20,4 +20,4 @@ handler.tags = ['advanced']
 handler.customPrefix = /^[$] /
 handler.command = new RegExp
 handler.rowner = true
-module.exports = handler
+export default handler

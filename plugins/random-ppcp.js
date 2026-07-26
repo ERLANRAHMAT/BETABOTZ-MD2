@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { conn, command }) => {
   let res = await fetch(`https://api.betabotz.eu.org/api/wallpaper/couplepp?apikey=${lann}`)
   if (res.status != 200) throw await res.text()
@@ -12,4 +12,4 @@ handler.help = ['ppcp']
 handler.tags = ['internet']
 handler.command = /^ppcp$/i
 
-module.exports = handler
+export default handler

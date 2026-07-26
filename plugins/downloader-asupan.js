@@ -34,4 +34,4 @@ function pickRandom(list) {
   return list[Math.floor(list.length * Math.random())]
 }
 
-module.exports = handler
+export default handler

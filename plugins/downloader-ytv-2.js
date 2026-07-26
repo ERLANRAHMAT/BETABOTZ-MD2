@@ -1,4 +1,4 @@
-const youtube = require("yt-search");
+import youtube from 'yt-search';
 let handler = async (m, { conn, text }) => {
   if (!text) throw 'Url nya mana?'
   m.reply('_Proses..._')
@@ -9,4 +9,4 @@ let handler = async (m, { conn, text }) => {
 }
 handler.command = handler.help = ['ytv2']
 handler.tags = ['downloader']
-module.exports = handler
+export default handler

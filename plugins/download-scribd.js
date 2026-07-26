@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `*Contoh:*\n${usedPrefix + command} https://www.scribd.com/document/806367834/Pengembangan-Meta-AI`;
@@ -33,4 +33,4 @@ handler.tags = ['downloader'];
 handler.command = /^(scribd|scribddl|dlscribd)$/i;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

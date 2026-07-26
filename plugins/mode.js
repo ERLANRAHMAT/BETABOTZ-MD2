@@ -22,7 +22,7 @@ handler.customPrefix = /^(mode)$/i
 handler.command = new RegExp
 handler.limit = false
 
-module.exports = handler
+export default handler
 
 function clockString(ms) {
     let days = Math.floor(ms / (24 * 60 * 60 * 1000));

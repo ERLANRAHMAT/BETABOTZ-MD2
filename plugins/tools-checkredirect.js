@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, usedPrefix, command }) => {
   if (!text) throw `Masukkan URL yang ingin diperiksa!\n\n*Contoh:* ${usedPrefix + command} https://tinyurl.com/bdtf7se9`;
@@ -24,4 +24,4 @@ handler.command = handler.help = ['checkredirect', 'cekredirect'];
 handler.tags = ['tools'];
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

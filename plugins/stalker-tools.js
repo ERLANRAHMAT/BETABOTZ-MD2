@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, {
   conn,
@@ -219,4 +219,4 @@ handler.command = handler.help = ['ffstalk', 'mlstalk', 'mlstalk2', 'supersussta
 handler.tags = ['stalk'];
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

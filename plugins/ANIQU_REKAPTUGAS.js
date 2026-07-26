@@ -104,4 +104,4 @@ handler.help = ['rekaptugas', 'rekaptugas semua'];
 handler.tags = ['tools'];
 handler.command = ["rekaptugas", "rekaptugas semua"];
 
-module.exports = handler;
+export default handler;

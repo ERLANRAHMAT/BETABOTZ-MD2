@@ -32,4 +32,4 @@ handler.command = /^buyattack$/i;
 handler.rpg = true;
 handler.register = true;
 
-module.exports = handler;
+export default handler;

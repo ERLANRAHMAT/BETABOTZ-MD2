@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { conn, usedPrefix, command }) => {
 try {
   let res = await fetch(`https://api.betabotz.eu.org/api/muslim/bacaanshalat?&apikey=${lann}`);
@@ -25,7 +25,7 @@ throw `Internal server eror!`
     handler.command = /^(bacaanshalat)$/i
     handler.group = true
     
-    module.exports = handler
+    export default handler
     
 
 

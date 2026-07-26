@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `*Contoh:*\n${usedPrefix + command} https://www.slideshare.net/slideshow/advanced-machine-learning-introduction-to-machine-learning/273225055`;
@@ -59,4 +59,4 @@ handler.tags = ['downloader'];
 handler.command = /^(slideshare|dlslideshare|slidesdl)$/i;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

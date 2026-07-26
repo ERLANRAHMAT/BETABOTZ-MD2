@@ -4,7 +4,7 @@
 // Tutorial https://www.youtube.com/playlist?list=PLGv_-znSuMIwhZPH2y06HWisHZbn7dXL3
 
 /*
-const axios = require('axios');
+import axios from 'axios';
 const BROADCAST_URL = `https://task.aniqu.biz.id/api/bot/broadcast/whatsapp-pull?token=${taskToken}`;
 
 // Atur interval pengecekan di sini (dalam hitungan MENIT)

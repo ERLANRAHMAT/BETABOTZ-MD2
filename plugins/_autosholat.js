@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 before: async function (m) {
     this.autosholat = this.autosholat || {}
     let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? this.user.jid : m.sender

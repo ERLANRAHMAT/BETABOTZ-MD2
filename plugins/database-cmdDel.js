@@ -13,4 +13,4 @@ handler.help = ['cmd'].map(v => 'del' + v + ' <teks>')
 handler.tags = ['database', 'premium']
 handler.command = ['delcmd']
 handler.premium = true
-module.exports = handler
+export default handler

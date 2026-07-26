@@ -1,4 +1,4 @@
-const { loadBaileys } = require('../baileys-loader.mjs')
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys
 async function handler(m, { command }) {
   if (!baileys) baileys = await loadBaileys();
@@ -50,4 +50,4 @@ handler.tags = 'anonymous'
 handler.command = ['start', 'leave', 'next']
 handler.private = true
 
-module.exports = handler
+export default handler

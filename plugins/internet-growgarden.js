@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { usedPrefix, command, text }) => {
     try {
@@ -82,4 +82,4 @@ let handler = async (m, { usedPrefix, command, text }) => {
 handler.command = ['growgarden'];
 handler.tags = ['internet'];
 handler.limit = true;
-module.exports = handler;
+export default handler;

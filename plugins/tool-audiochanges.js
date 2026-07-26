@@ -1,7 +1,6 @@
-const fs = require('fs')
-const path = require('path')
-const { exec } = require('child_process')
-
+import fs from 'fs';
+import path from 'path';
+import { exec } from 'child_process';
 let handler = async (m, { conn, args, usedPrefix, command }) => {
     try {
         let q = m.quoted ? m.quoted : m
@@ -42,4 +41,4 @@ handler.help = ['bass', 'blown', 'deep', 'earrape', 'fast', 'fat', 'nightcore', 
 handler.tags = ['voice']
 handler.command = /^(bass|blown|deep|earrape|fas?t|nightcore|reverse|robot|slow|smooth|tupai|squirrel|chipmunk|vibra)$/i
 
-module.exports = handler
+export default handler

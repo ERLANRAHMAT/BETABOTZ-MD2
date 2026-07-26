@@ -1,4 +1,4 @@
-var fetch = require('node-fetch');
+import fetch from 'node-fetch';
 var handler = async (m, {
  text, 
  usedPrefix, 
@@ -18,4 +18,4 @@ try {
 handler.command = handler.help = ['blackbox','blackboxai','aicoding'];
 handler.tags = ['tools'];
 handler.premium = false
-module.exports = handler;
+export default handler;

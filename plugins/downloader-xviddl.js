@@ -1,4 +1,4 @@
-var fetch = require("node-fetch")
+import fetch from 'node-fetch';
 var handler = async (m, {
  text, 
  usedPrefix, 
@@ -16,4 +16,4 @@ throw `*Server Error!*`
   }                                                    
 handler.command = handler.help = ['xvideosdown','xdown'];
 handler.tags = ['internet'];
-module.exports = handler;
+export default handler;

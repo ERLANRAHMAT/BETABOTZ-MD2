@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Masukan Text!\n\ncontoh:\n${usedPrefix + command} YHAHAH WAHYU`;    
@@ -115,4 +115,4 @@ handler.group = true;
 handler.fail = null;
 handler.private = false;
 
-module.exports = handler;
+export default handler;

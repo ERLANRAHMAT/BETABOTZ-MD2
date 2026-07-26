@@ -1,6 +1,5 @@
-let fs = require('fs')
-let path = require('path')
-
+import fs from 'fs';
+import path from 'path';
 let timeout = 100000
 let poin = 10000
 let handler = async (m, { conn, usedPrefix }) => {
@@ -44,4 +43,4 @@ handler.command = /^tebakislami/i
 handler.register = false
 handler.group = true
 
-module.exports = handler
+export default handler

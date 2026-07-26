@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Masukkan Nama dan Tanggal Lahir!\n\ncontoh: ${usedPrefix + command} cowo|cewe`;
@@ -53,7 +53,7 @@ handler.tags = ['fun']
 handler.command = /^(kecocokanpasangan)$/i
 handler.group = true
 
-module.exports = handler;
+export default handler;
 
 //danaputra133
 //di bantu erlan aka

@@ -78,7 +78,7 @@ handler.command = ['slot']
 handler.group = true
 handler.rpg = true
 
-module.exports = handler
+export default handler
 
 function msToTime(duration) {
     var milliseconds = parseInt((duration % 1000) / 100),

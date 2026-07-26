@@ -1,6 +1,6 @@
-const axios = require('axios');
+import axios from 'axios';
 
-module.exports = {
+export default {
     before: async function (m) {
         const chat = global.db.data.chats[m.chat];
         if (!chat || !chat.autotranslate) return;

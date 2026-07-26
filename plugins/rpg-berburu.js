@@ -91,7 +91,7 @@ handler.tags = ['rpg']
 handler.command = /^(berburu|hunt)$/i
 handler.rpg = true
 
-module.exports = handler
+export default handler
 
 function clockString(ms) {
     let h = Math.floor(ms / 3600000)

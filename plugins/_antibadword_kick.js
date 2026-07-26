@@ -24,7 +24,7 @@
 //     return true;
 // }
 
-// module.exports = { before };
+// export default { before };
 
 // //kalau mau fitur kick jalan eang agak ribet ahrus restart bot gakt ahu kenapa
 // //pilih salah satu! antara kick/ non kick

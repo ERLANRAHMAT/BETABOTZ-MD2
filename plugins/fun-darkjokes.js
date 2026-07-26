@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { conn, text }) => {
 try { 
 let img = await fetch(`https://api.betabotz.eu.org/api/wallpaper/darkjokes?apikey=${lann}`).then(result => result.buffer())
@@ -11,4 +11,4 @@ handler.command = /^(darkjokes)$/i
 handler.tags = ['fun']
 handler.help = ['darkjokes']
 handler.limit = true
-module.exports = handler
+export default handler

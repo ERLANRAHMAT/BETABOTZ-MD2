@@ -10,4 +10,4 @@ handler.help = ["sc", "sourcecode"];
 handler.tags = ["info"];
 handler.command = /^(sc|sourcecode)$/i;
 
-module.exports = handler;
+export default handler;

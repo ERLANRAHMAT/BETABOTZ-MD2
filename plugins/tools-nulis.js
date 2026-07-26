@@ -1,7 +1,6 @@
- const { format } = require('util')
-// let path = require('path')
-const { spawn } = require('child_process')
-
+ import { format } from 'util';
+// let path = import 'path'
+import { spawn } from 'child_process';
 // Font By MFarelS:V
 let fontPath = 'src/font/Zahraaa.ttf'
 let handler = async (m, { conn, args }) => {
@@ -65,7 +64,7 @@ handler.tags = ['tools']
 handler.command = /^nulis$/i
 
 
-module.exports = handler
+export default handler
 
 // BY MFARELS NJEENK
 // https://GitHub.com/MFarelS/

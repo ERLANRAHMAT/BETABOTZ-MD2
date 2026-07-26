@@ -19,4 +19,4 @@ handler.help = ['guildwarpause'];
 handler.tags = ['rpgG'];
 handler.command = /^(guildwarpause)$/i;
 handler.rpg = true;
-module.exports = handler;
+export default handler;

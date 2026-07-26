@@ -1,8 +1,13 @@
-const { Image } = require("node-webpmux");
-const fs = require('fs');
-const path = require('path');
-const fetch = require("node-fetch");
-const uploadImage = require('../lib/uploadImage'); 
+import WebP from 'node-webpmux';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fetch from 'node-fetch';
+import uploadImage from '../lib/uploadImage.js'; 
+
+const { Image } = WebP;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 let handler = m => m;
 
@@ -77,4 +82,4 @@ handler.all = async function(m) {
     return !0;
 };
 
-module.exports = handler;
+export default handler;

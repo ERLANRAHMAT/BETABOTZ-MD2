@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, usedPrefix, text, command }) => {
     if (!text) throw `Example: \`${usedPrefix + command} kadita\``
@@ -101,4 +101,4 @@ handler.tags = ['internet'];
 handler.help = ['heroml <hero_name>'];
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

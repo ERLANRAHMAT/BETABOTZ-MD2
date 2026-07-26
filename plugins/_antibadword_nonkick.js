@@ -1,6 +1,7 @@
 let badwordRegex = /anj|asw|kont|ToIol|gblk|T0lol|Bgsd|ajn|anjingk|bajingan|bangsat|kontol|memek|pepekq|meki|titit|peler|tetek|toket|ngewe|goblok|tolol|idiot|ngentotd|jembut|bego|dajjal|jancuk|pantek|pukimak|kimak|kampang|lonte|colimek|pelacur|henceut|nigga|fuck|dick|bitch|tits|bastard|asshole/i; // tambahin sendiri
+let handler = (m) => m;
 
-async function before(m, { isBotAdmin }) {
+handler.before = async function (m, { isBotAdmin }) {
     if (m.isBaileys && m.fromMe) return;
     let chat = global.db.data.chats[m.chat];
     let user = global.db.data.users[m.sender];
@@ -16,6 +17,6 @@ PERINGATAN JANGAN GUNAKAN KATA TOXIC UNTUK KENYAMANAN CHAT!
     return true;
 }
 
-module.exports = { before };
+export default handler;
 
 //kalau mau fitur kick jalan eang agak ribet ahrus restart bot gakt ahu kenapa

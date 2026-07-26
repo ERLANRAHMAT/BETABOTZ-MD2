@@ -9,4 +9,4 @@ handler.command = /^tbcl$/i
 
 handler.limit = true
     
-module.exports = handler
+export default handler

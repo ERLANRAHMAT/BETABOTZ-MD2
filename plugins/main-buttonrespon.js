@@ -1,8 +1,8 @@
-const { loadBaileys } = require('../baileys-loader.mjs')
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys
-//const util = require('util')
+//const util = import 'util'
 
-module.exports = {
+export default {
     async all(m, chatUpdate) {
       if (!baileys) baileys = await loadBaileys();
       const { proto, generateWAMessage, areJidsSameUser } = baileys;

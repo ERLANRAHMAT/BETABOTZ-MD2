@@ -77,4 +77,4 @@ handler.help = ['afk [alasan]']
 handler.tags = ['main']
 handler.command = /^afk$/i
 
-module.exports = handler
+export default handler;

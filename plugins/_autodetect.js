@@ -1,8 +1,8 @@
 /* 
 
-const { loadBaileys } = require('../baileys-loader.mjs')
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys
-module.exports = {
+export default {
 before: async function before(m) {
   if (!baileys) baileys = await loadBaileys();
   const { WAMessageStubType } = baileys;

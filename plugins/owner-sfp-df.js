@@ -1,4 +1,4 @@
-let fs = require('fs');
+import fs from 'fs';
 let handler = async (m, { text, usedPrefix, command }) => {
   if (!text) throw `uhm.. teksnya mana?\n\npenggunaan:\n${usedPrefix + command} <teks>\n\ncontoh:\n${usedPrefix + command} menu`;
 
@@ -20,4 +20,4 @@ handler.tags = ['owner'];
 handler.command = /^(sf|df)$/i;
 handler.rowner = true;
 
-module.exports = handler;
+export default handler;

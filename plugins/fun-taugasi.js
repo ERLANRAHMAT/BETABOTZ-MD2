@@ -1,4 +1,4 @@
- const fetch = require('node-fetch');
+ import fetch from 'node-fetch';
 
 let handler = async (m, { conn }) => {
   let res = await fetch(`https://api.betabotz.eu.org/api/random/taugasih?apikey=${lann}`).then(result => result.json());
@@ -12,4 +12,4 @@ handler.limit = true;
 handler.admin = false;
 handler.fail = null;
 
-module.exports = handler;
+export default handler;

@@ -1,5 +1,5 @@
 let regex = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { args, usedPrefix, command }) => {
 
     if (!args[0]) throw 'link githubnya mana? contoh: https://github.com/BOTCAHX/RTXZY-MD'
@@ -20,4 +20,4 @@ handler.command = /gitclone/i
 
 handler.limit = true
 
-module.exports = handler
+export default handler

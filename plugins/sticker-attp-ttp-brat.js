@@ -1,9 +1,8 @@
-let { 
+import { 
     sticker5 
-} = require('../lib/sticker')
-let fs = require('fs')
-let fetch = require('node-fetch')
-
+} from '../lib/sticker.js';
+import fs from 'fs';
+import fetch from 'node-fetch';
 let handler = async (m, {
     conn, 
     args, 
@@ -91,4 +90,4 @@ handler.tags = ['sticker']
 handler.limit = true
 handler.group = false
 
-module.exports = handler
+export default handler

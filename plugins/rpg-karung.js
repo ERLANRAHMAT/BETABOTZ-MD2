@@ -19,4 +19,4 @@ handler.tags = ['rpg']
 handler.command = /^(karung)$/i
 handler.rpg = true
 
-module.exports = handler
+export default handler

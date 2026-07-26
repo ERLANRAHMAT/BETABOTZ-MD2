@@ -1,5 +1,4 @@
-const TicTacToe = require("../lib/tictactoe")
-
+import TicTacToe from '../lib/tictactoe.js';
 let handler = async (m, { conn, usedPrefix, command, text }) => {
     conn.game = conn.game ? conn.game : {}
     if (Object.values(conn.game).find(room => room.id.startsWith('tictactoe') && [room.game.playerX, room.game.playerO].includes(m.sender))) throw 'Kamu masih didalam game'
@@ -63,4 +62,4 @@ handler.help = ['tictactoe', 'ttt'].map(v => v + ' [custom room name]')
 handler.tags = ['game']
 handler.command = /^(tictactoe|t{3})$/
 
-module.exports = handler
+export default handler

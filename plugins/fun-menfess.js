@@ -29,4 +29,4 @@ handler.help = ['menfess']
 handler.command = /^(menfess|menfes)$/i
 handler.private = true
 
-module.exports = handler
+export default handler

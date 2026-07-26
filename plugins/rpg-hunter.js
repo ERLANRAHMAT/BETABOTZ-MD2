@@ -112,7 +112,7 @@ handler.group = true
 handler.rpg = true
 handler.fail = null
 
-module.exports = handler
+export default handler
 
 /*function MeNit(ms) {
   let m = isNaN(ms) ? '02' : Math.floor(ms / 1000) % 60

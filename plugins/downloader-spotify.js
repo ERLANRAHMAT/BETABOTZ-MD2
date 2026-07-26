@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) throw `Masukkan URL!\n\nContoh:\n${usedPrefix + command} https://open.spotify.com/track/3zakx7RAwdkUQlOoQ7SJRt`;
@@ -41,4 +41,4 @@ handler.admin = false;
 handler.botAdmin = false;
 handler.fail = null;
 handler.private = false;
-module.exports = handler;
+export default handler;

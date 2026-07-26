@@ -1,7 +1,7 @@
-let gtts = require('node-gtts');
-let fs = require('fs');
-let path = require('path');
-let { spawn } = require('child_process');
+import gtts from 'node-gtts';
+import fs from 'fs';
+import path from 'path';
+import { spawn } from 'child_process';
 
 const defaultLang = 'id';
 let handler = async (m, { conn, args }) => {
@@ -23,7 +23,7 @@ let handler = async (m, { conn, args }) => {
 handler.help = ['tts <teks>'];
 handler.tags = ['tools'];
 handler.command = /^tts$/i;
-module.exports = handler;
+export default handler;
 
 function tts(text, lang = 'id') {
   console.log(lang, text);

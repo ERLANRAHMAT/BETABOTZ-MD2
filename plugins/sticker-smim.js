@@ -1,7 +1,7 @@
-const uploadImage = require('../lib/uploadImage')
-const { loadBaileys } = require('../baileys-loader.mjs')
+import uploadImage from '../lib/uploadImage.js';
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys
-const { sticker } = require('../lib/sticker')
+import { sticker } from '../lib/sticker.js';
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!baileys) baileys = await loadBaileys();
   const { MessageType } = baileys;
@@ -30,4 +30,4 @@ handler.command = /^(smim)$/i
 
 handler.limit = false
 
-module.exports = handler
+export default handler

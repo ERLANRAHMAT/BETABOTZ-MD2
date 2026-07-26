@@ -37,4 +37,4 @@ let handler = async (m, { conn }) => {
 
 handler.help = handler.command = ['channelinfo', 'idch']
 handler.tags = ['main']
-module.exports = handler
+export default handler

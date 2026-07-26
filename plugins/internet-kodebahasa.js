@@ -58,4 +58,4 @@ handler.help = ['kodebahasa']
 handler.tags = ['internet']
 handler.command = /^kodebahasa$/i
 
-module.exports = handler
+export default handler

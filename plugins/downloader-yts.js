@@ -1,4 +1,4 @@
-let yts = require('yt-search')
+import yts from 'yt-search';
 let handler = async (m, { text }) => {
   if (!text) throw 'Cari apa?'
   let results = await yts(text)
@@ -23,4 +23,4 @@ handler.help = ['', 'earch'].map(v => 'yts' + v + ' <pencarian>')
 handler.tags = ['tools', 'internet', 'downloader']
 handler.command = /^yts(earch)?$/i
 
-module.exports = handler
+export default handler

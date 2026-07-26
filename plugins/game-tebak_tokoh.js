@@ -1,7 +1,7 @@
 let timeout = 100000
 let poin = 10000
 let src
-const fs = require('fs');
+import fs from 'fs';
 let handler = async (m, { conn, usedPrefix }) => {
   conn.tebaktokoh = conn.tebaktokoh ? conn.tebaktokoh : {}
   let id = m.chat
@@ -39,4 +39,4 @@ handler.command = /^tebaktokoh/i
 handler.limit = false
 handler.group = true
 
-module.exports = handler
+export default handler

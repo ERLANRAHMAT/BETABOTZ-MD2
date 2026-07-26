@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!args[0]) {
@@ -36,4 +36,4 @@ handler.help = handler.command = ['capcut','cc','capcutdl','ccdl'];
 handler.tags = ['downloader'];
 handler.limit = true;
 handler.group = true;
-module.exports = handler;
+export default handler;

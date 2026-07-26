@@ -1,4 +1,4 @@
-const uploadImage = require('../lib/uploadImage')
+import uploadImage from '../lib/uploadImage.js';
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 
     let [atas, bawah] = text.split`|`
@@ -18,4 +18,4 @@ handler.command = /^(s(tic?ker)?me(me)?)$/i
 
 handler.limit = false
 
-module.exports = handler
+export default handler

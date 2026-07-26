@@ -37,4 +37,4 @@ handler.help = ['getlid']
 handler.tags = ['tools']
 handler.command = /^(getlid)$/i
 
-module.exports = handler
+export default handler

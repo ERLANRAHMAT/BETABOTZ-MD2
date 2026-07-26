@@ -1,4 +1,4 @@
-const { loadBaileys } = require('../baileys-loader.mjs')
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys
 const Skepiting = 7000
 const Slobster = 7000
@@ -578,4 +578,4 @@ handler.tags = ['rpg']
     
 handler.command = /^(pasar|jual)$/i
 handler.rpg = true
-module.exports = handler
+export default handler

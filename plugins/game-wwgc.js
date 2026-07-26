@@ -1,12 +1,11 @@
-const jimp = require('jimp')
-
+import jimp from 'jimp';
 const resize = async (image, width, height) => {
     const read = await jimp.read(image);
     const data = await read.resize(width, height).getBufferAsync(jimp.MIME_JPEG);
     return data;
 };
 
-const {
+import {
     emoji_role,
     sesi,
     playerOnGame,
@@ -44,8 +43,7 @@ const {
     run_vote,
     run_malam,
     run_pagi
-} = require('../lib/werewolf')
-
+} from '../lib/werewolf.js';
 let thumb =
     "https://user-images.githubusercontent.com/72728486/235316834-f9f84ba0-8df3-4444-81d8-db5270995e6d.jpg";
 
@@ -335,4 +333,4 @@ handler.help = ['werewolf'];
 handler.tags = ['game'];
 handler.command = ['ww','werewolf'];
 handler.group = true;
-module.exports = handler
+export default handler

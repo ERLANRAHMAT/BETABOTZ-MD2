@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, {
     text,
@@ -25,4 +25,4 @@ let handler = async (m, {
 handler.command = handler.help = ['2fa', 'authenticator', 'autentikator'];
 handler.tags = ['tools'];
 handler.limit = true;
-module.exports = handler;
+export default handler;

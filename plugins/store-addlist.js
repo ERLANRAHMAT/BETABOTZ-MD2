@@ -1,5 +1,8 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const storeDatabaseFilePath = path.join(__dirname, 'store-database.json');
 
@@ -38,4 +41,4 @@ handler.help = ['addlist'];
 handler.tags = ['store'];
 handler.command = /^addlist$/i;
 handler.owner = false;
-module.exports = handler;
+export default handler;

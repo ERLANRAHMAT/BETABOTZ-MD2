@@ -1,6 +1,5 @@
-const fetch = require('node-fetch');
-const uploadImage = require('../lib/uploadImage')
-
+import fetch from 'node-fetch';
+import uploadImage from '../lib/uploadImage.js';
 let handler = async (m, { conn, usedPrefix, command }) => {
   try {
     const q = m.quoted ? m.quoted : m;
@@ -55,4 +54,4 @@ handler.tags = ['tools'];
 handler.premium = false;
 handler.limit = false;
 
-module.exports = handler;
+export default handler;

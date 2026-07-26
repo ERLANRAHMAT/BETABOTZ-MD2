@@ -1,7 +1,6 @@
 /** !! THIS CODE GENERATE BY RODOTZBOT !! **/
 
-const moment = require('moment-timezone')
-
+import moment from 'moment-timezone';
 let handler = async (m, { conn }) => {
   let user = global.db.data.users[m.sender]
   if (!user) throw 'Anda belum terdaftar di database'
@@ -46,7 +45,7 @@ handler.limit = true
 handler.command = /^dailymisi$/i
 handler.rpg = true
 
-module.exports = handler
+export default handler
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))

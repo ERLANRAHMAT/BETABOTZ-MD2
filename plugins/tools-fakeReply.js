@@ -20,7 +20,7 @@ handler.help = ['fake <text> @user <text2>']
 handler.tags = ['tools']
 handler.command = /^(fitnah|fakereply|fake)$/
 
-module.exports = handler
+export default handler
 
 function copy(obj) {
   return JSON.parse(JSON.stringify(obj))

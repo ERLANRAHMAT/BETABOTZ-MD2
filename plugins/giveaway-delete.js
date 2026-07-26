@@ -11,4 +11,4 @@ handler.tags = ['adminry', 'group']
 handler.command = /^(delete|hapus)giveaway$/i
 handler.group = true
 handler.admin = true
-module.exports = handler
+export default handler

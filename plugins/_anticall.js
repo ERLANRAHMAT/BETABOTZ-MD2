@@ -22,7 +22,6 @@ async function before(m, { conn }) {
   if (global.anticall === false) return
   init(conn)
 }
-
-module.exports = { before }
+export default  { before }
 
 //admin mohon maaf atas kesalahan kode sebelum nya

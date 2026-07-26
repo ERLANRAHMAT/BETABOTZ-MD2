@@ -1,5 +1,5 @@
-const axios = require('axios');
-const moment = require('moment-timezone'); 
+import axios from 'axios';
+import moment from 'moment-timezone'; 
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Masukkan username Roblox yang ingin dicari.\n\n*Contoh:*\n${usedPrefix + command} betabotzz`;
@@ -63,4 +63,4 @@ handler.tags = ['tools', 'stalk'];
 handler.command = /^(roblox|stalkroblox|rbx)$/i;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

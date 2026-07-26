@@ -21,4 +21,4 @@ handler.before = async function (m, { match }) {
     return !0
 }
 
-module.exports = handler
+export default handler

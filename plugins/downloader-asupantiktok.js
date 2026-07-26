@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   const username = [
@@ -118,4 +118,4 @@ handler.tags = ['downloader'];
 handler.command = /^(asupantiktok)$/i;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

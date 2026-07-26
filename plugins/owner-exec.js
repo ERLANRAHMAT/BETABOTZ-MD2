@@ -1,5 +1,7 @@
-let syntaxerror = require('syntax-error')
-let util = require('util')
+import syntaxerror from 'syntax-error'
+import util from 'util'
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
 
 let handler  = async (m, _2) => {
   let { conn, usedPrefix, noPrefix, args, groupMetadata } = _2
@@ -46,7 +48,7 @@ handler.botAdmin = false
 
 handler.fail = null
 
-module.exports = handler
+export default handler
 
 class CustomArray extends Array {
   constructor(...args) {

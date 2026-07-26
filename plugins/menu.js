@@ -1,9 +1,9 @@
 process.env.TZ = 'Asia/Jakarta'
-let fs = require('fs')
-let path = require('path')
-let fetch = require('node-fetch')
-let moment = require('moment-timezone')
-let levelling = require('../lib/levelling')
+import fs from 'fs';
+import path from 'path';
+import fetch from 'node-fetch';
+import moment from 'moment-timezone';
+import levelling from '../lib/levelling.js';
 let arrayMenu = [
   'all', 
   'ai', 
@@ -94,7 +94,7 @@ I am an automated system (WhatsApp Bot) that can help to do something, search an
 
 let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
     try {
-        let package = JSON.parse(await fs.promises.readFile(path.join(__dirname, '../package.json')).catch(_ => '{}'))
+        let pkg = JSON.parse(await fs.promises.readFile(path.join(__dirname, '../package.json')).catch(_ => '{}'))
         let { exp, limit, level, role } = global.db.data.users[m.sender]
         let { min, xp, max } = levelling.xpRange(level, global.multiplier)
         let name = `@${m.sender.split`@`[0]}`
@@ -244,7 +244,7 @@ handler.tags = ['main']
 handler.command = /^(menu|help)$/i
 handler.exp = 3
 
-module.exports = handler
+export default handler
 
 function clockString(ms) {
     if (isNaN(ms)) return '--'

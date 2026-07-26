@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 let handler = async (m, { conn }) => {
   try {
     let res = await fetch(`https://api.betabotz.eu.org/api/random/quotesanime?apikey=${lann}`);
@@ -24,4 +24,4 @@ handler.help = ['anime'];
 handler.tags = ['quotes'];
 handler.command = /^(anime)$/i;
 
-module.exports = handler;
+export default handler;

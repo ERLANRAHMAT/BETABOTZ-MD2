@@ -1,5 +1,5 @@
-const uploadImage = require('../lib/uploadImage');
-const fetch = require('node-fetch');
+import uploadImage from '../lib/uploadImage.js';
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, usedPrefix, command }) => {
     let q = m.quoted ? m.quoted : m;
@@ -39,4 +39,4 @@ handler.help = ['tofigure3'];
 handler.tags = ['maker', 'tools'];
 handler.command = /^(tofigure3)$/i;
 
-module.exports = handler;
+export default handler;

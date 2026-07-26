@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://videy.co/v?id=QtZ8jT1X1`;    
@@ -18,4 +18,4 @@ handler.command = /^(videy|videydl)$/i
 handler.tags = ['downloader'];
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

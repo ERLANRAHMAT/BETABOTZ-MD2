@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `*Example:* ${usedPrefix + command} hai`;
@@ -62,4 +62,4 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 handler.command = handler.help = ['ai','openai','chatgpt'];
 handler.tags = ['tools'];
 handler.premium = false
-module.exports = handler;
+export default handler;

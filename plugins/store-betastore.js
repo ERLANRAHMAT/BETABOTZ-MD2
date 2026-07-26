@@ -1,9 +1,12 @@
 //free source code store by betabotz di buat oleh danapura133
 //silahkan di ganti ganti sesuka hati kalian
 
-const moment = require('moment-timezone');
-const fs = require('fs');
-const path = require('path');
+import moment from 'moment-timezone';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const storeDatabaseFilePath = path.join(__dirname, 'store-database.json');
 
@@ -137,9 +140,7 @@ handler.tags = ['store'];
 handler.command = /^liststore|dellist|editlist|transaksi$/i;
 handler.owner = false; 
 
-module.exports = handler;
-
-module.exports.all = async (message) => {
+handler.all = async (message) => {
     const storeDatabase = loadStoreDatabase();
     storeDatabase.store = storeDatabase.store || {};
     storeDatabase.transactions = storeDatabase.transactions || {};
@@ -165,6 +166,7 @@ module.exports.all = async (message) => {
     }
 };
 
+export default handler;
 
 // no copas code dari luar, logic pakai kepala
 // bebas ubah karena open source

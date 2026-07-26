@@ -1,5 +1,5 @@
-let fs = require('fs')
-let fetch = require('node-fetch')
+import fs from 'fs';
+import fetch from 'node-fetch';
 let winScore = 500
 let rewardAmount = 100 
 
@@ -60,6 +60,6 @@ handler.nyerah = async function (m) {
     }
 }
 
-module.exports = handler
+export default handler
 
 //danaputra_133

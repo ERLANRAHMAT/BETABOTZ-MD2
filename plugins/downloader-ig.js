@@ -1,5 +1,4 @@
-let fetch = require('node-fetch')
-
+import fetch from 'node-fetch';
 let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!args[0]) throw `*Contoh:* ${usedPrefix}${command} https://www.instagram.com/reel/DKPtUL_S9Nh/?igsh=MTE1dTVkb2E4NTFmcw==`
 
@@ -95,7 +94,7 @@ handler.tags = ['downloader']
 handler.command = /^(ig|instagram|igdl|instagramdl|igstory)$/i
 handler.limit = true
 
-module.exports = handler
+export default handler
 
 function sleep(ms) {
    return new Promise(resolve => setTimeout(resolve, ms));

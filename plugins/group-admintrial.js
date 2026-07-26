@@ -78,7 +78,7 @@
 // handler.group = true;
 // handler.admin = true; 
 // handler.botAdmin = true; 
-// module.exports = handler;
+// export default handler;
 // /*
 // *<>JADIADMIN & DEMOTE PAKAI WAKTU, JADI JIKA WAKTU HABIS MISAL YANG JADIADMIN, MAKA KALO WAKTU HABIS AKAN TERDEMOTE OTOMATIS, BEGITUPUN YANG DEMOTE, MAKA AKAN KEDEMOTE DAN AKAN MENJADI ADMIN KEMBALI SESUAI WAKTU TERSEBUT!!<>*
 // SOURCE: https://whatsapp.com/channel/0029VaJYWMb7oQhareT7F40V

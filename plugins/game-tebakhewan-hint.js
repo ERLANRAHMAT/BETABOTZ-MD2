@@ -9,4 +9,4 @@ handler.command = /^hhew$/i
 
 handler.limit = true
     
-module.exports = handler
+export default handler

@@ -1,4 +1,4 @@
-let fs = require ('fs')
+import fs from 'fs';
 let handler = async (m, { conn, text }) => {
     m.reply('Tunggu Sebentar, Sedang mengambil file Database')
     let sesi = await fs.readFileSync('./database.json')
@@ -10,4 +10,4 @@ handler.command = /^(getdb)$/i
 
 handler.rowner = true
 
-module.exports = handler
+export default handler

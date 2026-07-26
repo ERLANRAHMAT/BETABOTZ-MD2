@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');
-const uploader = require('../lib/uploadImage');
-const uploadFile = require('../lib/uploadFile');
+import fetch from 'node-fetch';
+import uploader from '../lib/uploadImage.js';
+import uploadFile from '../lib/uploadFile.js';
 
 let handler = async (m, { conn, text, command, usedPrefix }) => {
   if (!text) throw `Reply media with text\nExample: ${usedPrefix + command} what is this?`;
@@ -50,4 +50,4 @@ handler.tags = ['tools'];
 handler.command = /^(bardimg|bardimage|bardvideo|bardaudio)$/i;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

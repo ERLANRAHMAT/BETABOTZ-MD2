@@ -11,7 +11,7 @@ handler.command = /^(resetlimit|risetlimit)$/i
 
 handler.owner = true
 
-module.exports = handler
+export default handler
 
 function isNumber(x = 0) {
   x = parseInt(x)

@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `*🚩 Example:* ${usedPrefix}${command} https://krakenfiles.com/view/HG9WxZaL08/file.html`
     let data = await (await fetch(`https://api.betabotz.eu.org/api/download/kraken?url=${text}&apikey=${lann}`)).json()
@@ -23,4 +23,4 @@ handler.limit = true;
 handler.register = false;
 handler.premium = false;
 
-module.exports = handler
+export default handler

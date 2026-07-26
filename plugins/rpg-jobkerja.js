@@ -74,4 +74,4 @@ handler.tags = ['rpg'];
 handler.command = /^(jobkerja)$/i;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

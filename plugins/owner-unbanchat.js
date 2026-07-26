@@ -25,4 +25,4 @@ handler.tags = ['owner']
 handler.command = /^unban(chat)?$/i
 
 handler.owner = true
-module.exports = handler
+export default handler

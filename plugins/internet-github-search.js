@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { text }) => {
     if (!text) throw 'Cari apa?'
     let res = await fetch(global.API('https://api.github.com', '/search/repositories', {
@@ -25,7 +25,7 @@ handler.tags = ['tools']
 
 handler.command = /^g(ithub|h)search$/i
 
-module.exports = handler
+export default handler
 
 function formatDate(n, locale = 'id') {
     let d = new Date(n)

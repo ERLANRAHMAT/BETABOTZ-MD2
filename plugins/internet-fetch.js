@@ -1,7 +1,7 @@
 //boleh dicopy kak hehe:v
 // wm © BOTCAHX jangan di ilangin
 
-const axios = require('axios');
+import axios from 'axios';
 let handler = async (m, { text, args }) => {
   if (!/^https?:\/\//.test(text)) throw 'Awali *URL* dengan http:// atau https://';
   try {
@@ -29,7 +29,7 @@ handler.help = ['fetch', 'get'].map(v => v + ' <url>');
 handler.tags = ['internet'];
 handler.command = /^(fetch|get)$/i;
 
-module.exports = handler;
+export default handler;
 function formatSize(bytes) {
   if (bytes === 0) return '0 Bytes';
   const k = 1024;

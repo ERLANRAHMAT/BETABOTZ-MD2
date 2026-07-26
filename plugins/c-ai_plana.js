@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, text }) => {
   if (!text) throw `*• Example:* .plana *[on/off]*`;
@@ -100,7 +100,7 @@ handler.limit = true;
 handler.owner = false;
 handler.group = true
 
-module.exports = handler;
+export default handler;
 
 async function aiBeta(message) {
   return new Promise(async (resolve, reject) => {

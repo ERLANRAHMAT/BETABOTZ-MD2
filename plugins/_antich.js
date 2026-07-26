@@ -34,4 +34,4 @@ Jika mencapai ${maxWarnLink} kali, Anda akan dikeluarkan dari grup.`, null, { me
   return true
 }
 
-module.exports = handler
+export default handler;

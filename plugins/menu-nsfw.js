@@ -114,4 +114,4 @@ handler.command = handler.help = ['gay','ahegao','ass','bdsm','blowjob','cuckold
 handler.tags = ['nsfw']
 handler.limit = true;
 handler.nsfw = true;
-module.exports = handler;
+export default handler;

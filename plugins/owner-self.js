@@ -20,4 +20,4 @@ handler.owner = true
 
 handler.command = /^(self|public)/i
 
-module.exports = handler
+export default handler

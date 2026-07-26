@@ -19,4 +19,4 @@ conn.groupParticipantsUpdate(m.chat, [m.sender], "remove")
    }
     }
 
-module.exports = handler
+export default handler;

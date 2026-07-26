@@ -20,4 +20,4 @@ handler.tags = ['adminry', 'group']
 handler.command = /^(start|mulai)giveaway$/i
 handler.group = true
 handler.admin = true
-module.exports = handler
+export default handler

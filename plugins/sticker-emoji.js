@@ -1,6 +1,6 @@
-var { 
+import { 
 sticker5 
-} = require('../lib/sticker')
+} from '../lib/sticker.js';
 let handler = async (m, { conn, command, text, usedPrefix }) => {
   if (!text) throw `🚩 *Contoh:* ${usedPrefix + command} 🗿`
      await conn.reply(m.chat, wait, m)
@@ -104,4 +104,4 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
 handler.command = handler.help = ['stikapple', 'stikkddi', 'stikgoogle', 'stikdocomo', 'stiksoftbank', 'stikhtc', 'stikmozilla', 'stiklg', 'stikopenmoji', 'stikemojipedia', 'stikjoypixels', 'stikopenmoji', 'stikfacebook', 'stikskype', 'stikwhatsapp', 'stiktwitter', 'stiksamsung', 'stikmicrosoft']
 handler.tags = ['sticker'] 
 handler.limit = true
-module.exports = handler
+export default handler

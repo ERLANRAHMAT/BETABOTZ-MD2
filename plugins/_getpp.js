@@ -1,4 +1,4 @@
-let fetch = require("node-fetch")
+import fetch from 'node-fetch';
 let handler = async(m, { conn, command }) => {
   try {
   let who
@@ -16,4 +16,4 @@ handler.help = ['getpp <@tag/reply>']
 handler.tags = ['group']
 handler.command = /^(getpp|getpic?t?|pp)$/i
 
-module.exports = handler
+export default handler

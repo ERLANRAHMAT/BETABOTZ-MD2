@@ -6,4 +6,4 @@ handler.help = ['purba <teks>']
 handler.tags = ['fun']
 handler.command =  /^(purba)$/i
 
-module.exports = handler
+export default handler

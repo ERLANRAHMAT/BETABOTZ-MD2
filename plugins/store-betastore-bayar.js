@@ -1,4 +1,4 @@
-const { loadBaileys } = require('../baileys-loader.mjs')
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys
 
 const qrisUrl = global.qris || 'https://cdn.filn.pp.ua/uploads/betabotzapi/41616.jpg'; 
@@ -29,7 +29,7 @@ const handler = async (message, { conn }) => {
 
 handler.customPrefix = /^bayar$/i;
 handler.command = new RegExp;
-module.exports = handler;
+export default handler;
 
 // no copas code dari luar, logic pakai kepala
 // bebas ubah karena open source

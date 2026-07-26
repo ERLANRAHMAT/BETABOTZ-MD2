@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let timeout = 100000
 let poin = 10000
 let handler = async (m, { conn, command, usedPrefix }) => {
@@ -37,4 +37,4 @@ handler.tags = ['game']
 handler.command = /^tebaklagu/i
 handler.limit = true
 
-module.exports = handler;
+export default handler;

@@ -1,7 +1,6 @@
-const jimp = require("jimp")
-const uploadImage = require("../lib/uploadImage.js")
-const uploadFile = require("../lib/uploadFile.js")
-
+import jimp from 'jimp';
+import uploadImage from '../lib/uploadImage.js';
+import uploadFile from '../lib/uploadFile.js';
 let handler = async (m, { conn, usedPrefix, args }) => {
     let toWidth = args[0]
     let toHeight = args[1]
@@ -46,4 +45,4 @@ handler.help = ['resize <width> <height> (reply|caption)']
 handler.tags = ['tools']
 handler.command = /^(resize)$/i
 
-module.exports = handler
+export default handler

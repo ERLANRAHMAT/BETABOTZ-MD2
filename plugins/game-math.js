@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 const modes = {
   noob: { bonus: 10, time: 20000, money: 500 },
@@ -100,4 +100,4 @@ handler.help = ['math <mode>'];
 handler.tags = ['game'];
 handler.command = /^math/i;
 
-module.exports = handler;
+export default handler;

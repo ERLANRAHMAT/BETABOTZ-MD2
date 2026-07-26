@@ -1,6 +1,5 @@
-const uploadFile = require('../lib/uploadFile')
-const uploadImage = require('../lib/uploadImage')
-
+import uploadFile from '../lib/uploadFile.js';
+import uploadImage from '../lib/uploadImage.js';
 let handler = async (m) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
@@ -20,4 +19,4 @@ handler.help = ['tourl <reply image>']
 handler.tags = ['sticker']
 handler.command = /^(upload|tourl)$/i
 
-module.exports = handler
+export default handler

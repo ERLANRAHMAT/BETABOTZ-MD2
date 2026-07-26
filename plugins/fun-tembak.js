@@ -45,4 +45,4 @@ handler.tags = ['fun']
 handler.command = /^(tembak)$/i
 handler.group = true
 
-module.exports = handler
+export default handler
