@@ -1,23 +1,23 @@
 import uploadFile from '../lib/uploadFile.js';
-import uploadImage from '../lib/uploadImage.js';
 import fetch from 'node-fetch';
-let handler = async (m, { conn, text, usedPrefix, command}) => {
-  let q = m.quoted ? m.quoted : m
-  let mime = (q.msg || q).mimetype || ''
-  if (!text) throw `Example ${usedPrefix} ${command} lann`;
-  if (/video/g.test(mime) && (q.msg || q).seconds > 11) return m.reply('Maksimal 10 detik!')
-  await m.reply(wait)
-      
-  try {
-    let img = await q.download();
-    if (!img)
-      throw `Balas gambar/video/stiker dengan perintah ${usedPrefix} ${command}`;
 
-    let media = await uploadImage(img, "true");
-    if (q.isAnimated === true) {
-      let res = await fetch(
-        `https://api.betabotz.eu.org/api/tools/webp2mp4?url=${media}&apikey=${lann}`,
-      );
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+  let q = m.quoted ? m.quoted : m;
+  let mime = (q.msg || q).mimetype || '';
+  
+  if (!text) throw `Example ${usedPrefix}${command} lann`;
+  if (!mime) throw `Balas gambar/video/stiker dengan perintah ${usedPrefix}${command}`;
+  if (/video/g.test(mime) && (q.msg || q).seconds > 11) return m.reply('Maksimal 10 detik!');
+  await m.reply(wait);
+  try {
+    let img = await q.download?.();
+    if (!img) throw `Gagal mengunduh media, pastikan kamu membalas gambar/video/stiker.`;
+
+    let media = await uploadFile(img);
+    let isAnimated = (q.msg || q).isAnimated === true;
+
+    if (isAnimated || /video/g.test(mime)) {
+      let res = await fetch(`https://api.betabotz.eu.org/api/tools/webp2mp4?url=${media}&apikey=${global.lann}`);
       let json = await res.json();
       if (!json.result) throw "Gagal mengubah stiker animasi ke video.";
 
@@ -33,12 +33,12 @@ let handler = async (m, { conn, text, usedPrefix, command}) => {
     }
   } catch (e) {
     console.log(e);
-    throw e;
+    if (e !== false) throw e;
   }
 }
 
-handler.help = ['wm', 'watermark']
-handler.tags = ['sticker']
-handler.command = /^wm|watermark?$/i
+handler.help = ['wm', 'watermark'];
+handler.tags = ['sticker'];
+handler.command = /^wm|watermark?$/i;
 
-export default handler
+export default handler;
