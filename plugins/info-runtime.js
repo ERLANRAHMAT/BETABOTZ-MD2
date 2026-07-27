@@ -1,13 +1,12 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
     let _uptime = process.uptime() * 1000
-    let tio = clockString(_uptime)
-    let time = moment().tz('Asia/Jakarta').format('HH:mm:ss')
+    let lann = clockString(_uptime)
 
 var ct = `
 *───「 RUNTIME BOT 」───*
 
-Runtime : ${tio}
-    `
+Runtime : ${lann}
+    `;
 m.reply(ct)
 }
 handler.help = ['runtime']
