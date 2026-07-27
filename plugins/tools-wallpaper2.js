@@ -9,10 +9,10 @@ let handler = async (m, { conn }) => {
             image: { url: apiUrl }, 
             caption: `Berikut adalah wallpaper random (versi 2) untuk Anda!`,
         }, { quoted: m });
-    } catch (error) {
-        console.error(error);
-        throw `Terjadi kesalahan: ${error.message || error}`;
-    }
+    }  catch (e) {
+    console.log(e);
+    throw e;
+  }
 };
 
 handler.tags = ['image', 'internet'];

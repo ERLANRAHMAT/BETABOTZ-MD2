@@ -79,9 +79,9 @@ let handler = async (m, {
             await conn.sendVideoAsSticker(m.chat, res, m, { packname: packname, author: author })
         }
         
-    } catch (e) {
-        console.error('Error:', e)
-        await conn.sendFile(m.chat, error, 'error.webp', '', m)
+    }  catch (e) {
+        console.log(e);
+        throw e;
     }
 }
 

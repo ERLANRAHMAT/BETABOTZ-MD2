@@ -35,9 +35,9 @@ var handler = async (m, { conn, command, args }) => {
     // save file
     img.body.pipe(fs.createWriteStream(filepath));
   } catch (e) {
-    console.log(e);
-    conn.reply(m.chat, `Terjadi error!`, m);
-  }
+      console.log(e);
+      throw e;
+    }
 }
 handler.help = ['sshp', 'sshandphone', 'sstablet'];
 handler.tags = ['tools'];

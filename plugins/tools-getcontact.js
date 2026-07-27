@@ -28,8 +28,9 @@ let handler = async (m, { text, usedPrefix, command }) => {
             console.log(json);
             await m.reply("Nomor yang kamu input tidak ditemukan!");
         }
-    } catch (error) {
-        console.error(error);
+    } catch (e) {
+      console.log(e);
+      throw e;
     }
 };
 

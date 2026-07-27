@@ -17,9 +17,10 @@ let handler = async (m, {
             content += 'Token gagal didapatkan!.';
         }
         await m.reply(content);
-    } catch (error) {
-        throw eror
-    }
+    } catch (e) {
+        console.log(e);
+        throw e;
+  }
 };
 
 handler.command = handler.help = ['2fa', 'authenticator', 'autentikator'];

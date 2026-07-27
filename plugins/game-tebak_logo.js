@@ -1,17 +1,29 @@
-let timeout = 100000
-let poin = 10000
 import fetch from 'node-fetch';
+
+let timeout = 100000;
+let poin = 10000;
+
 let handler = async (m, { conn, usedPrefix }) => {
-  conn.tebaklogo = conn.tebaklogo ? conn.tebaklogo : {}
-  let id = m.chat
-  if (id in conn.tebaklogo) {
-    conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebaklogo[id][0])
-    throw false
-  }
-  let src = await (await fetch(`https://api.betabotz.eu.org/api/game/tebaklogo?apikey=${lann}`)).json()
-  let json = src
-  if (!json) throw "Terjadi kesalahan, ulangi lagi perintah!"
-  let caption = `
+  try {
+    conn.tebaklogo = conn.tebaklogo ? conn.tebaklogo : {};
+    let id = m.chat;
+    if (id in conn.tebaklogo) {
+      await conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebaklogo[id][0]);
+      return;
+    }
+
+    let json;
+    try {
+      let src = await (await fetch(`https://api.betabotz.eu.org/api/game/tebaklogo?apikey=${lann}`)).json();
+      json = src;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+
+    if (!json || !json.jawaban) throw new Error('Format data tebaklogo tidak valid dari API.');
+
+    let caption = `
 ≡ _GAME TEBAK LOGO_
 
 ┌─⊷ *SOAL*
@@ -21,22 +33,31 @@ let handler = async (m, { conn, usedPrefix }) => {
 ▢ Ketik ${usedPrefix}lgo untuk clue jawaban
 ▢ *REPLAY* pesan ini untuk\nmenjawab
 └──────────────
+`.trim();
 
-    `.trim();
-  conn.tebaklogo[id] = [
-    await conn.sendMessage(m.chat, { image: { url: json.img }, caption: caption}, { quoted: m }),
-    json, poin,
-    setTimeout(() => {
-      if (conn.tebaklogo[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.tebaklogo[id][0])
-      delete conn.tebaklogo[id]
-    }, timeout)
-  ]
-}
+    conn.tebaklogo[id] = [
+      await conn.sendMessage(m.chat, { image: { url: json.img }, caption: caption }, { quoted: m }),
+      json, 
+      poin,
+      setTimeout(() => {
+        if (conn.tebaklogo[id]) {
+          conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.tebaklogo[id][0]);
+          delete conn.tebaklogo[id];
+        }
+      }, timeout)
+    ];
+  } catch (e) {
+    if (e !== false) {
+      console.log(e);
+      throw e;
+    }
+  }
+};
 
-handler.help = ['tebaklogo']
-handler.tags = ['game']
+handler.help = ['tebaklogo'];
+handler.tags = ['game'];
 handler.command = /^tebaklogo/i;
-handler.limit = false
-handler.group = true
+handler.limit = false;
+handler.group = true;
 
-export default handler
+export default handler;

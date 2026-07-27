@@ -57,8 +57,8 @@ let handler = async (m, { conn, command, usedPrefix }) => {
 
             m.reply(pesan);
         } catch (e) {
-            console.error(e);
-            m.reply("❌ Terjadi kesalahan saat mengecek email!");
+            console.log(e);
+            throw e;
         }
     }
 };

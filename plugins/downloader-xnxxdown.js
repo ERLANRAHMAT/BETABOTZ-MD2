@@ -11,7 +11,8 @@ let hasil = await anu.json()
 
 conn.sendMessage(m.chat, { video: { url: hasil.result.url }, fileName: 'xnxx.mp4', mimetype: 'video/mp4' }, { quoted: m })
  } catch (e) {
- throw `*Server error!*`
+        console.log(e);
+        throw e;
  }
 }
 handler.command = handler.help = ['xnxxdown'];

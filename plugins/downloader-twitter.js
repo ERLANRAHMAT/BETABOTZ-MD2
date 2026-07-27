@@ -23,7 +23,8 @@ const handler = async (m, {
             conn.sendFile(m.chat, buffer, null, capt, m);           
         }
     } catch (e) {
-        throw '*Server Down!*';
+      console.log(e);
+      throw e;
     }
 };
 

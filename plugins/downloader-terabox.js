@@ -48,8 +48,9 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
                 await conn.reply(m.chat, `Failed to process file: ${file.name}`, m)
             }
         }
-    } catch (error) {
-        throw eror
+    } catch (e) {
+      console.log(e);
+      throw e;
     }
 }
 

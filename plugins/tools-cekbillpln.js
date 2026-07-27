@@ -23,9 +23,10 @@ let handler = async (m, {
             content += 'Data tagihan tidak ditemukan.';
         }
         await m.reply(content);
-    } catch (error) {
-        throw error;
-    }
+    } catch (e) {
+    console.log(e);
+    throw e;
+  }
 };
 
 handler.command = handler.help = ['cekbillpln','tagihanpln','pln'];

@@ -74,8 +74,9 @@ let handler = async (m, { usedPrefix, command, text }) => {
             m.reply(`Please specify a subcommand: \`stock\` or \`weather\`\nExample: \`${usedPrefix + command} stock\` or \`${usedPrefix + command} weather\``);
             return;
         }
-    } catch (error) {
-        throw eror
+    }  catch (e) {
+        console.log(e);
+        throw e;
     }
 };
 

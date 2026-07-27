@@ -29,9 +29,10 @@ let handler = async (m, {
 			`*Rute:*\n${rute}`;
 
 		await conn.sendFile(m.chat, petaStatis, 'peta.png', message, m);
-	} catch (error) {
-		throw `🚩 *Jarak Tidak Ditemukan*`
-	}
+	}  catch (e) {
+        console.log(e);
+        throw e;
+    }
 }
 handler.command = handler.help = ['jarak']
 handler.tags = ['internet']

@@ -34,8 +34,9 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
             await fs.promises.unlink(filename)
         })
     } catch (e) {
-        throw e
-    }
+    console.log(e);
+    throw e;
+  }
 }
 handler.help = ['bass', 'blown', 'deep', 'earrape', 'fast', 'fat', 'nightcore', 'reverse', 'robot', 'slow', 'smooth', 'tupai', 'vibra'].map(v => v + ' [vn]')
 handler.tags = ['voice']

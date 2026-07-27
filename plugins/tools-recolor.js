@@ -19,9 +19,9 @@ command
   .then(res => res.buffer())
 			await conn.sendMessage(m.chat, { image: buff, caption: `🍟 *Fetching* : ${((new Date - old) * 1)} ms` }, { quoted: m })
 		} catch (e) {
-			console.log(e)
-			m.reply(`[ ! ] Identifikasi Gagal.`)
-		}
+      		console.log(e);
+      		throw e;
+    	}
 	} else {
 		m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim`)
 	}

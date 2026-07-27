@@ -91,8 +91,9 @@ let handler = async (m, { conn, usedPrefix, text, command }) => {
         const imageUrl = hero.image || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLClzmCZRv9Ly5D-xaVy16Ph4VvI0-fP-hAWGSlcB2q5PzSLcwav9TBZc&s=10';
         await conn.sendFile(m.chat, imageUrl, 'heroml.jpg', content, m);
 
-    } catch (error) {
-      throw eror
+    }  catch (e) {
+        console.log(e);
+        throw e;
     }
 };
 

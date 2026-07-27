@@ -30,9 +30,9 @@ let handler = async (m, { conn, usedPrefix, command }) => {
         await conn.sendFile(m.chat, imageBuffer, 'figure.jpg', 'Ini hasilnya!', m);
 
     } catch (e) {
-        console.error(e);
-        m.reply(`Terjadi kesalahan: ${e.message}`);
-    }
+    console.log(e);
+    throw e;
+  }
 };
 
 handler.help = ['tofigure3'];

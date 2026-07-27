@@ -74,8 +74,11 @@ users.exp += reward;
 }
 }
 } catch (e) {
-return conn.reply(m.chat, util.format(e), m);
-}
+        if (e !== false) {
+            console.log(e);
+            throw e;
+        }
+    }
 return !0;
 }
 

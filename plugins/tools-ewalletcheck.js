@@ -48,8 +48,8 @@ let handler = async (m, { text, usedPrefix, command }) => {
 
         await m.reply(caption);
     } catch (e) {
-        console.error(e);
-        throw eror;
+      console.log(e);
+      throw e;
     }
 };
 

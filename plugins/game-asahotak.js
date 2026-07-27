@@ -1,18 +1,30 @@
 import fetch from 'node-fetch';
-let timeout = 100000
-let poin = 10000
+
+let timeout = 100000;
+let poin = 10000;
+
 let handler = async (m, { conn, usedPrefix }) => {
-    conn.asahotak = conn.asahotak ? conn.asahotak : {}
-    let id = m.chat
-    if (id in conn.asahotak) {
-        conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.asahotak[id][0])
-        throw false
-    }
-    // di sini dia ngambil data dari api
-    let src = await (await fetch(`https://api.betabotz.eu.org/api/game/asahotak?apikey=${lann}`)).json()
-    let json = src
-    // buat caption buat di tampilin di wa
-    let caption = `
+    try {
+        conn.asahotak = conn.asahotak ? conn.asahotak : {};
+        let id = m.chat;
+        
+        if (id in conn.asahotak) {
+            await conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.asahotak[id][0]);
+            return;
+        }
+
+        let json;
+        try {
+            let src = await (await fetch(`https://api.betabotz.eu.org/api/game/asahotak?apikey=${lann}`)).json();
+            json = src;
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+
+        if (!json || !json.soal) throw new Error('Format data soal tidak valid dari API.');
+
+        let caption = `
 ${json.soal}
 
 ┌─⊷ *SOAL*
@@ -21,23 +33,31 @@ ${json.soal}
 ▢ Bonus: ${poin} money
 ▢ *Balas/ replay soal ini untuk menjawab*
 └──────────────
-`.trim()
-    conn.asahotak[id] = [
-        await conn.reply(m.chat, caption, m),
-        json, poin,
-        setTimeout(() => {
-            if (conn.asahotak[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.asahotak[id][0])
-            delete conn.asahotak[id]
-        }, timeout)
-    ]
-}
-handler.help = ['asahotak']
-handler.tags = ['game']
-handler.command = /^asahotak/i
-handler.register = false
-handler.group = true
+`.trim();
 
-export default handler
+        conn.asahotak[id] = [
+            await conn.reply(m.chat, caption, m),
+            json, 
+            poin,
+            setTimeout(() => {
+                if (conn.asahotak[id]) {
+                    conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.asahotak[id][0]);
+                    delete conn.asahotak[id];
+                }
+            }, timeout)
+        ];
+    } catch (err) {
+        if (err !== false) {
+            console.log(err);
+            throw err;
+        }
+    }
+};
 
-// tested di bileys versi 6.5.0 dan sharp versi 0.30.5
-// danaputra133
+handler.help = ['asahotak'];
+handler.tags = ['game'];
+handler.command = /^asahotak/i;
+handler.register = false;
+handler.group = true;
+
+export default handler;

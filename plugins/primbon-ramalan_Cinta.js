@@ -22,8 +22,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             conn.reply(m.chat, `Maaf, terjadi kesalahan: ${json.message}`, m);
         }
     } catch (e) {
-    throw e
-        //throw `Internal server error!\n\nUlangi lagi perintah.`;
+        console.log(e);
+        throw e;
     }
 }
 

@@ -9,28 +9,31 @@ let handler = async (m, { conn, text, usedPrefix, command}) => {
   await m.reply(wait)
       
   try {
-    let img = await q.download()
-    if (!img) throw `Balas gambar/video/stiker dengan perintah ${usedPrefix} ${command}`
+    let img = await q.download();
+    if (!img)
+      throw `Balas gambar/video/stiker dengan perintah ${usedPrefix} ${command}`;
 
-    let media = await uploadImage(img, "true")
+    let media = await uploadImage(img, "true");
     if (q.isAnimated === true) {
-      let res = await fetch(`https://api.betabotz.eu.org/api/tools/webp2mp4?url=${media}&apikey=${lann}`)
-      let json = await res.json()
-      if (!json.result) throw 'Gagal mengubah stiker animasi ke video.'
+      let res = await fetch(
+        `https://api.betabotz.eu.org/api/tools/webp2mp4?url=${media}&apikey=${lann}`,
+      );
+      let json = await res.json();
+      if (!json.result) throw "Gagal mengubah stiker animasi ke video.";
 
       await conn.sendVideoAsSticker(m.chat, json.result, m, {
-        packname: text || '',
-        author: ''
-      })
+        packname: text || "",
+        author: "",
+      });
     } else {
       await conn.sendImageAsSticker(m.chat, img, m, {
-        packname: text || '',
-        author: ''
-      })
+        packname: text || "",
+        author: "",
+      });
     }
   } catch (e) {
-    console.log(e)
-    throw `Gagal! Balas gambar/video dengan caption *${usedPrefix} ${command}*`
+    console.log(e);
+    throw e;
   }
 }
 

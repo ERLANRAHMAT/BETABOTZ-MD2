@@ -51,12 +51,9 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
 
         return m.reply(caption);
 
-    } catch (error) {
+    } catch (e) {
         console.error('Error in dreamworld command:', error);
-        return m.reply(`╭══════════════════════
-│ ❌ *Terjadi Kesalahan*
-│ Mohon coba beberapa saat lagi
-╰══════════════════════`);
+        throw e;
     }
 };
 

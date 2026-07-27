@@ -96,8 +96,8 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
             await conn.sendFile(m.chat, stiker, 'emror.webp', '', m)
         }
     } catch (e) {
-        console.log(e)
-        throw '*🚩 Stiker tidak di temukan!*'
+        console.log(e);
+        throw e;
     }
 }
 

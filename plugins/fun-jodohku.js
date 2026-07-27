@@ -1,4 +1,5 @@
 let handler = async (m, { conn, participants, command }) => {
+    try {
     if (!m.isGroup) {
         return m.reply('Perintah ini cuma bisa dipakai di dalam grup ya!');
     }
@@ -17,6 +18,11 @@ let handler = async (m, { conn, participants, command }) => {
         text: text,
         mentions: [sender, randomMember]
     }, { quoted: m });
+    }catch (e) {
+      console.log(e);
+      throw e;
+    }
+
 }
 
 handler.help = ['jodohku'];

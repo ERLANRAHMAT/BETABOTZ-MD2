@@ -27,8 +27,8 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       throw `Konten tidak ditemukan!`;
     }
   } catch (e) {
-    console.log(e);
-    throw `✖️ *Server down*` 
+      console.log(e);
+      throw e;
   }
 };
 handler.command = handler.help = ['threads', 'threadsdl'];

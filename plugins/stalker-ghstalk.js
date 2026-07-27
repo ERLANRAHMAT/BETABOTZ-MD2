@@ -26,8 +26,9 @@ let handler = async (m, { text, usedPrefix, command }) => {
                  },
                  { quoted: m },
                );
-    } catch (e) {     
-        throw `Error: ${eror}`
+    }  catch (e) {
+        console.log(e);
+        throw e;
     }
 }
 handler.help = ['ghstalk <username>']

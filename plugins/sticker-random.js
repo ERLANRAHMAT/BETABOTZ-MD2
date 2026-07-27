@@ -33,8 +33,8 @@ var handler = async (m, {
             await conn.sendFile(m.chat, stiker, 'emror.webp', '', m)
         }
     } catch (e) {
-        console.log(e)
-        await conn.sendFile(m.chat, error, 'error.webp', '', m)
+      console.log(e);
+      throw e;
     }
 }
 

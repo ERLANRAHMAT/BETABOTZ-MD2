@@ -14,7 +14,9 @@ let handler = async (m, { conn, text, args }) => {
     let stiker = await sticker5(res.result.results[0].media_formats.png_transparent.url, false, packname, author)
     await conn.sendFile(m.chat, stiker, 'sticker.webp', '', m)
   } catch (e) {
-    m.reply('*🚩 Emoji tidak support!*');
+    // m.reply('*🚩 Emoji tidak support!*');
+    console.log(e);
+    throw e;
   }
 }
 

@@ -15,9 +15,9 @@ let handler = async (m, { text, usedPrefix, command }) => {
 
     await m.reply(message);
   } catch (e) {
-    console.error(e);
-    throw 'Terjadi kesalahan saat memproses permintaan!';
-  }
+      console.log(e);
+      throw e;
+    }
 };
 
 handler.command = handler.help = ['checkredirect', 'cekredirect'];

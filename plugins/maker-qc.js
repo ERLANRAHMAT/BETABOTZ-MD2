@@ -48,8 +48,9 @@ let handler = async (m, { conn, text, args }) => {
         let stiker = await sticker5(bufferqc, false, global.packname, global.author)
         if (stiker) return conn.sendFile(m.chat, stiker, 'Quotly.webp', '', m)
 
-    } catch (e) {
-        throw e
+    }  catch (e) {
+        console.log(e);
+        throw e;
     }
 }
 

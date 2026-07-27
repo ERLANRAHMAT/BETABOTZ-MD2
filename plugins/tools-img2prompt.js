@@ -19,9 +19,9 @@ async function handler(m, { conn, usedPrefix, command }) {
       m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim.`);
     }
   } catch (e) {
-    console.error(e);
-    m.reply(`Identifikasi gagal. Silakan coba lagi.`);
-  }
+      console.log(e);
+      throw e;
+    }
 }
 
 handler.help = ['img2prompt'];

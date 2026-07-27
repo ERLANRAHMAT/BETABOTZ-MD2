@@ -32,10 +32,10 @@ let handler = async (m, { conn, usedPrefix, command }) => {
                 caption: `🍟 *Fetching:* ${((new Date() - old) * 1)} ms\n*Style:* Anime 3D` 
             }, { quoted: m });
 
-        } catch (e) {
-            console.error(e);
-            m.reply("[ ! ] Terjadi kesalahan saat memproses gambar.");
-        }
+        }  catch (e) {
+        console.log(e);
+        throw e;
+    }
     } else {
         m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim.`);
     }

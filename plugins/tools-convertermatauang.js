@@ -33,9 +33,9 @@ let handler = async (m, { text, usedPrefix, command }) => {
 
     m.reply(msg);
   } catch (e) {
-    console.log(e);
-    throw 'Terjadi kesalahan saat mengonversi.';
-  }
+      console.log(e);
+      throw e;
+    }
 };
 
 handler.command = handler.help = ['matauang', 'convertuang', 'konversiuang'];

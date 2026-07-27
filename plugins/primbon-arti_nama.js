@@ -10,9 +10,10 @@ try {
        `―-ARTI NAMA-―\n\nNama: ${json.result.message.nama}\n\nArti: ${json.result.message.arti}`, 
     ]
 conn.reply(m.chat,`${(anu)}`);;
-} catch (e) {
-throw `Internal server eror!\n\nulangi lagi perintah`
-  }
+}  catch (e) {
+        console.log(e);
+        throw e;
+    }
 }
   
     handler.help = ['artinama']

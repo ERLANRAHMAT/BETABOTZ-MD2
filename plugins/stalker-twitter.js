@@ -22,8 +22,9 @@ let handler = async (m, { text, usedPrefix, command }) => {
         } else {
             throw 'Sistem Sedang Bermasalah!'
         }
-    } catch (e) {
-        m.reply('Sistem Sedang Bermasalah!')
+    }  catch (e) {
+        console.log(e);
+        throw e;
     }
 }
 

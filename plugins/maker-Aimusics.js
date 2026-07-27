@@ -40,9 +40,9 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
             }, { quoted: m });
         }
 
-    } catch (e) {
-        console.error(e);
-        m.reply('❌ Gagal membuat lagu');
+    }  catch (e) {
+        console.log(e);
+        throw e;
     }
 };
 

@@ -1,20 +1,34 @@
-import fs from 'fs';
-import path from 'path';
-let timeout = 100000
-let poin = 10000
+import fetch from 'node-fetch';
+
+let timeout = 100000;
+let poin = 10000;
+
 let handler = async (m, { conn, usedPrefix }) => {
-    conn.tebakislami = conn.tebakislami ? conn.tebakislami : {}
-    let id = m.chat
-    if (id in conn.tebakislami) {
-        conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebakislami[id][0])
-        throw false
-    }
-    // di sini dia ngambil data dari file JSON
-    let data = await (await fetch(`https://api.betabotz.eu.org/api/game/kuisislami?apikey=${lann}`)).json()
-    let json = data
-    // buat caption buat di tampilin di wa
-    let options = json.pilihan.map((opt, i) => `${String.fromCharCode(65 + i)}. ${opt}`).join('\n')
-    let caption = `
+    try {
+        conn.tebakislami = conn.tebakislami ? conn.tebakislami : {};
+        let id = m.chat;
+        
+        if (id in conn.tebakislami) {
+            await conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebakislami[id][0]);
+            return;
+        }
+
+        let json;
+        try {
+            let data = await (await fetch(`https://api.betabotz.eu.org/api/game/kuisislami?apikey=${lann}`)).json();
+            json = data;
+        } catch (e) {
+            console.log(e);
+            throw e;
+        }
+
+        if (!json || !json.soal || !json.pilihan || !json.jawaban) {
+            throw new Error('Format data tebakislami tidak valid dari API.');
+        }
+
+        let options = json.pilihan.map((opt, i) => `${String.fromCharCode(65 + i)}. ${opt}`).join('\n');
+        
+        let caption = `
 ${json.soal}
 
 ${options}
@@ -25,22 +39,31 @@ ${options}
 ▢ Ketik ${usedPrefix}tsa untuk clue jawaban
 ▢ *Balas/ replay soal ini untuk menjawab dengan a, b, c, atau d*
 └──────────────
-`.trim()
-    conn.tebakislami[id] = [
-        await conn.reply(m.chat, caption, m),
-        json, poin,
-        setTimeout(() => {
-            if (conn.tebakislami[id]) {
-                conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.tebakislami[id][0])
-                delete conn.tebakislami[id] // Automatically delete the question
-            }
-        }, timeout)
-    ]
-}
-handler.help = ['tebakislami']
-handler.tags = ['game']
-handler.command = /^tebakislami/i
-handler.register = false
-handler.group = true
+`.trim();
 
-export default handler
+        conn.tebakislami[id] = [
+            await conn.reply(m.chat, caption, m),
+            json, 
+            poin,
+            setTimeout(() => {
+                if (conn.tebakislami[id]) {
+                    conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.tebakislami[id][0]);
+                    delete conn.tebakislami[id];
+                }
+            }, timeout)
+        ];
+    } catch (e) {
+        if (e !== false) {
+            console.log(e);
+            throw e;
+        }
+    }
+};
+
+handler.help = ['tebakislami'];
+handler.tags = ['game'];
+handler.command = /^tebakislami/i;
+handler.register = false;
+handler.group = true;
+
+export default handler;

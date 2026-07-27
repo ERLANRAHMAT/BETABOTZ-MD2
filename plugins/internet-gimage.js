@@ -7,9 +7,10 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!res.status) throw eror
     let image = pickRandom(res.result).url;
     conn.sendFile(m.chat, image, 'google.jpg', `*G O O G L E*\n*Result:* ${text}\n*Source:* https://google.com`, m);
-   } catch (e) {
-   throw eror
-  }
+   }  catch (e) {
+        console.log(e);
+        throw e;
+    }
 };
 
 handler.help = ['gimage <query>', 'image <query>'];

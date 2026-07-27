@@ -10,7 +10,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         await conn.sendFile(m.chat, data, 'videy.mp4', "*DONE*", m);      
     } catch (e) {
         console.log(e);
-        throw eror
+        throw e;
     }
 };
 handler.help = ['videy'];

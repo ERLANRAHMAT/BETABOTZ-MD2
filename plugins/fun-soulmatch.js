@@ -136,10 +136,7 @@ ${generateSoulReading(compatibility)}
 
     } catch (error) {
         console.error('Error in soulmatch command:', error);
-        return m.reply(`╭══════════════════════
-│ ❌ *Terjadi Kesalahan*
-│ Mohon coba beberapa saat lagi
-╰═════════════════════`);
+        throw e;
     }
 };
 

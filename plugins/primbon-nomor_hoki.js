@@ -13,9 +13,10 @@ try {
 --Catatan: ${json.result.message.catatan}`, 
     ]
 conn.reply(m.chat,`${(anu)}`);;
-} catch (e) {
-throw `Internal server eror!\n\nulangi lagi perintah`
-  }
+}  catch (e) {
+        console.log(e);
+        throw e;
+    }
 }
   
     handler.help = ['nomerhoki nomor?']

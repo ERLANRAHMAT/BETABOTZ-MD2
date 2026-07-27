@@ -2,7 +2,8 @@ import jimp from 'jimp';
 import uploadImage from '../lib/uploadImage.js';
 import uploadFile from '../lib/uploadFile.js';
 let handler = async (m, { conn, usedPrefix, args }) => {
-    let toWidth = args[0]
+    try {
+        let toWidth = args[0]
     let toHeight = args[1]
     if (!toWidth) throw 'Please provide the width.'
     if (!toHeight) throw 'Please provide the height.'
@@ -39,6 +40,10 @@ let handler = async (m, { conn, usedPrefix, args }) => {
 • LINK
 *+* Original: ${link}
 *+* Compressed: ${linkCompres}`, m)
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
 }
 
 handler.help = ['resize <width> <height> (reply|caption)']

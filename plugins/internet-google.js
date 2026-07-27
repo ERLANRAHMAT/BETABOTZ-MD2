@@ -22,9 +22,10 @@ let handler = async (m, { conn, command, args }) => {
       },
       { quoted: m },
     );
-  } catch (e) {
-    throw eror
-  }
+  }  catch (e) {
+        console.log(e);
+        throw e;
+    }
 };
 
 handler.help = ['google'].map(v => v + ' <pencarian>');

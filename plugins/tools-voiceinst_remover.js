@@ -2,7 +2,8 @@ import fetch from 'node-fetch';
 import uploader from '../lib/uploadFile.js';
 
 let handler = async (m, { conn, usedPrefix, command }) => {
-    let q = m.quoted ? m.quoted : m;
+    try {
+        let q = m.quoted ? m.quoted : m;
     let mime = (q.msg || q).mimetype || q.mediaType || '';
     if (/audio/.test(mime)) {
         let buffer = await q.download();
@@ -29,6 +30,11 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     } else {
         await m.reply(`Reply *audio* with command ${usedPrefix + command}`);
     }
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+    
 }
 
 handler.command = handler.help = ['vocalremover', 'instrumenremover'];

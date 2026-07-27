@@ -20,9 +20,10 @@ let handler = async (m, { text, usedPrefix, command }) => {
     .catch(error => {
       m.reply('Terjadi error saat mencari informasi Subdomain, silakan coba lagi nanti');
     });
-  } catch (error) {
-    m.reply('Terjadi error saat mencari informasi Subdomain, silakan coba lagi nanti');
-  }
+  } catch (e) {
+      console.log(e);
+      throw e;
+    }
 };
 
 handler.command = ['subdomainfinder', 'subfinder'];

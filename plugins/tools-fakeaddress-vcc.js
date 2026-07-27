@@ -59,7 +59,7 @@ let handler = async (m, {
       }
     } catch (e) {
       console.log(e);
-      throw eror
+      throw e;
     }
   }
 }

@@ -16,9 +16,10 @@ const handler = async (m, { text, usedPrefix, command }) => {
     const response = await fetch(`https://whoisjson.com/api/v1/whois?domain=${text}`, options);
     const data = await response.json();
     m.reply(JSON.stringify(data));
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (e) {
+            console.log(e);
+            throw e;
+    }
 };
 handler.command = ['whois2'];
 handler.tags = ['internet'];

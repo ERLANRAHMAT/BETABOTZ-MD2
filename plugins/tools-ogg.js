@@ -11,8 +11,9 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 		let media = await uploader(buffer)
 		let json = await (await fetch(`https://api.betabotz.eu.org/api/tools/video2audio?url=${media}&apikey=${lann}`)).json()		
         await conn.sendFile(m.chat, json.result, "audio.mp3", "*DONE*", m)
-        } catch (err) {
-      throw eror
+        } catch (e) {
+      console.log(e);
+      throw e;
     }
  } else throw `Reply video with command ${usedPrefix + command}`
 }

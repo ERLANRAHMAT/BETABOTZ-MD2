@@ -20,7 +20,8 @@ var handler = async (m, { text, usedPrefix, command }) => {
   await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
   await conn.sendMessage(m.chat, { image: { url: hasil[0].thumb }, caption: teks }, { quoted: m });
   } catch (e) {
-  throw `*Server error*`
+      console.log(e);
+      throw e;
   }
  };
 

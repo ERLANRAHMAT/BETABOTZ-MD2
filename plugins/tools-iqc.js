@@ -13,9 +13,9 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             responseType: 'arraybuffer'
         });
         conn.sendFile(m.chat, response.data,  m);
-    } catch (error) {
-        console.error('Error pada fitur iqc:', error);
-        m.reply('Gagal membuat gambar quote. Silakan coba lagi nanti.');
+    } catch (e) {
+      console.log(e);
+      throw e;
     }
 };
 

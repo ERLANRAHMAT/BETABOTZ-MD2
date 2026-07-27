@@ -8,10 +8,10 @@ let handler = async (m, { text, usedPrefix, command }) => {
         if (!data.result || data.result.length === 0) throw 'Group tidak ditemukan ¯\\_(ツ)_/¯'       
         const teks = data.result.map(group => group.title + '\n' + group.link).join('\n\n')
         m.reply(teks)      
-    } catch (error) {
-        console.error(error)
-        throw eror
-    }
+    } catch (e) {
+    console.log(e);
+    throw e;
+  }
 }
 
 handler.help = ['carigrup <pencarian>']

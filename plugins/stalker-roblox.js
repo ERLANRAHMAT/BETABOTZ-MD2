@@ -52,9 +52,9 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         }
         await conn.sendFile(m.chat, account.profilePicture, 'profile.png', replyText.trim(), m);
 
-    } catch (error) {
-        console.error('Error pada fitur stalkroblox:', error);
-        m.reply(error.message || 'Terjadi kesalahan saat mengambil data.');
+    }  catch (e) {
+        console.log(e);
+        throw e;
     }
 };
 

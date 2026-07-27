@@ -26,9 +26,9 @@ var handler = async (m, { conn, command, args }) => {
     });
     img.body.pipe(dest);    img.body.pipe(fs.createWriteStream(filepath));
   } catch (e) {
-    console.log(e);
-    conn.reply(m.chat, `Terjadi error!`, m);
-  }
+      console.log(e);
+      throw e;
+    }
 }
 handler.help = ['ssweb','sspc'];
 handler.tags = ['tools'];

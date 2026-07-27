@@ -26,8 +26,8 @@ let handler = async (m, {
         txt += `\n`
         await conn.sendFile(m.chat, out, 'age.png', txt, m)
     } catch (e) {
-      console.log(e);
-      m.reply(`[ ! ] Identifikasi Wajah Gagal.`);
+        console.log(e);
+        throw e;
     }
   } else {
     m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim`);
