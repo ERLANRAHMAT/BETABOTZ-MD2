@@ -1,28 +1,54 @@
-let fetch = require('node-fetch');
+const fetch = require('node-fetch');
 
 let handler = async (m, { text, command, usedPrefix }) => {
-	if (!text) throw `Example: ${usedPrefix + command} Janji Suci Yovie Nuno`
-	m.reply(wait)
-  try {
-    let response = await fetch(`https://api.betabotz.eu.org/api/search/chord?song=${text}&apikey=${lann}`);
-    let data = await response.json();
+	if (!text) throw `Example:\n${usedPrefix + command} Tiba Tiba Cinta Datang`;
 
-    if (data.status && data.result) {
-        let txt = `乂 *C H O R D  M U S I C*\n\n`;
-        txt += `◦ *Title:* ${data.result.title ? data.result.title : text}\n`;
-        txt += `◦ *Chord:* ${data.result.chord ? data.result.chord : 'Tidak ditemukan!'}\n\n`;
-        text += `\n`;
-        await m.reply(txt);
-    } else {
-        await m.reply('Lagu tidak ditemukan!')
-    }
-  } catch (error) {
-    throw eror
- }
-}
+	await m.reply(wait);
 
-handler.help = ['chord <judul lagu>']
-handler.tags = ['internet']
-handler.command = /^(chord)$/i
-handler.limit = true
-module.exports = handler
+	try {
+		const res = await fetch(
+			`https://api.betabotz.eu.org/api/search/chord?song=${encodeURIComponent(text)}&apikey=${lann}`
+		);
+
+		if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+		const json = await res.json();
+
+		if (!json.result) {
+			return m.reply('❌ Lagu tidak ditemukan.');
+		}
+
+		const {
+			title = text,
+			artist = '-',
+			url = '-',
+			chord = 'Chord tidak tersedia.'
+		} = json.result;
+
+		let caption = `🎵 *CHORD MUSIC*\n\n`;
+		caption += `📌 *Judul:* ${title}\n`;
+		caption += `👤 *Artist:* ${artist.replace(/^‣\s*/, '')}\n`;
+		caption += `🔗 *Source:* ${url}\n\n`;
+		caption += `🎼 *Chord:*\n`;
+		caption += "```";
+		caption += chord;
+		caption += "```";
+
+		if (caption.length > 3900) {
+			caption = caption.slice(0, 3900) + "\n\n... (Chord dipotong)";
+		}
+
+		await m.reply(caption);
+
+	} catch (error) {
+		console.error(error);
+		await m.reply('❌ Terjadi kesalahan saat mengambil chord lagu.');
+	}
+};
+
+handler.help = ['chord <judul lagu>'];
+handler.tags = ['internet'];
+handler.command = /^chord$/i;
+handler.limit = true;
+
+module.exports = handler;
