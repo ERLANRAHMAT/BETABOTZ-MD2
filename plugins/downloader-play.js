@@ -126,18 +126,8 @@ let handler = async (m, { conn, text }) => {
   `;
     const pesan = conn.relayMessage(m.chat, {
                 extendedTextMessage:{
-                text: infoText, 
-                contextInfo: {
-                     externalAdReply: {
-                        title: wm,
-                        body: "",
-                        mediaType: 1,
-                        previewType: 0,
-                        renderLargerThumbnail: true,
-                        thumbnailUrl: thumbnailUrl,
-                        sourceUrl: url
-                    }
-                }, mentions: [m.sender]
+                text: infoText,
+                mentions: [m.sender]
 }}, {});
 
     audio.pipe(fs.createWriteStream(inputFilePath)).on('finish', async () => {
@@ -145,20 +135,9 @@ let handler = async (m, { conn, text }) => {
         .toFormat('mp3')
         .on('end', async () => {
           let buffer = fs.readFileSync(outputFilePath);                    
-          conn.sendMessage(m.chat, {         
+          conn.sendMessage(m.chat, {
                 audio: buffer,
-                mimetype: 'audio/mpeg',
-                contextInfo: {
-                    externalAdReply: {
-                        title: title,
-                        body: "",
-                        thumbnailUrl: thumbnailUrl,
-                        sourceUrl: url,
-                        mediaType: 1,
-                        showAdAttribution: true,
-                        renderLargerThumbnail: true
-                    }
-                }
+                mimetype: 'audio/mpeg'
             }, {
                 quoted: m
             });

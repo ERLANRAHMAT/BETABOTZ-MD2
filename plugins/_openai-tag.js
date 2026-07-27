@@ -96,8 +96,6 @@ handler.before = async (m, { conn }) => {
                                             url: audioUrl.result.mp3
                                         },
                                         mimetype: 'audio/mpeg',
-                                        contextInfo: {
-                                            externalAdReply: {
                                                 title: convert.title,
                                                 body: "",
                                                 thumbnailUrl: convert.image,
@@ -105,8 +103,6 @@ handler.before = async (m, { conn }) => {
                                                 mediaType: 1,
                                                 showAdAttribution: false,
                                                 renderLargerThumbnail: true
-                                            }
-                                        }
                                     }, {
                                         quoted: m
                                     });
@@ -168,8 +164,6 @@ handler.before = async (m, { conn }) => {
                                             url: videoUrl.result.mp4
                                         },
                                         mimetype: 'video/mp4',
-                                        contextInfo: {
-                                            externalAdReply: {
                                                 title: convert.title,
                                                 body: "",
                                                 thumbnailUrl: convert.image,
@@ -177,9 +171,7 @@ handler.before = async (m, { conn }) => {
                                                 mediaType: 1,
                                                 showAdAttribution: false,
                                                 renderLargerThumbnail: true
-                                            }
-                                        }
-                                    }, {
+                                      }, {
                                         quoted: m
                                     });
                                 }

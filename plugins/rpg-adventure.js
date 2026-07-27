@@ -114,15 +114,6 @@ let str = `
 
 setTimeout(() => {
     conn.reply(m.chat, str, m, {
-        contextInfo: {
-            externalAdReply: {
-                mediaType: 1,
-                title: 'BETABOTZ RPG',
-                thumbnailUrl: 'https://telegra.ph/file/221ec27b2997f203569eb.jpg',
-                renderLargerThumbnail: true,
-                sourceUrl: ''
-            }
-        }
     })
 }, 0)
 setTimeout(() => {

@@ -11,18 +11,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (timeDiff < 300000) {
     const remainingTime = 300000 - timeDiff
     const remainingTimeString = clockString(remainingTime)
-    return conn.reply(m.chat, `Kamu sudah melakukan redeem baru-baru ini. Tunggu ${remainingTimeString} lagi sebelum bisa redeem kembali.`, m, {
-      contextInfo: {
-        externalAdReply: {
-          title: "Betabotz-MD2",
-          body: "Redeem Code Bot Whatsapp",
-          thumbnail: await axios.get("https://www.pic.surf/3wrz", { responseType: "arraybuffer" }).then(res => res.data),
-          sourceUrl: global.gc,
-          mediaType: 1,
-          renderLargerThumbnail: true
-        }
-      }
-    })
+    return conn.reply(m.chat, `Kamu sudah melakukan redeem baru-baru ini. Tunggu ${remainingTimeString} lagi sebelum bisa redeem kembali.`, m)
   }
 
   if (!db.data.redeem || !db.data.redeem.code) {
@@ -60,18 +49,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
 *By Bot Whatsapp*`
 
-  conn.reply(m.chat, successMessage, m, {
-    contextInfo: {
-      externalAdReply: {
-        title: "Betabotz-MD2",
-        body: "Redeem Code By Bot Whatsapp",
-        thumbnail: await axios.get("https://www.pic.surf/3wrz", { responseType: "arraybuffer" }).then(res => res.data),
-        sourceUrl: global.gc,
-        mediaType: 1,
-        renderLargerThumbnail: true
-      }
-    }
-  })
+  conn.reply(m.chat, successMessage, m)
 }
 
 handler.help = ["claimredeem *[code redeem]*"]

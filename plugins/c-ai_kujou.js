@@ -14,17 +14,9 @@ let handler = async (m, { conn, text }) => {
         }, 300000) // 5 minutes timeout
       };
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *KUJOU* 」───⬣" + "\n\n" + `Oh, tentu saja. Apa yang bisa kubantu?`,
-        contextInfo: {
-          externalAdReply: {
-            title: "Kujou",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *KUJOU* 」───⬣" + "\n\n" + `Oh, tentu saja. Apa yang bisa kubantu?`,
+        mentions: [m.sender]
       }, { quoted: m });
     } else {
       clearTimeout(conn.Kujou[m.sender].timeout);
@@ -38,17 +30,9 @@ let handler = async (m, { conn, text }) => {
       delete conn.Kujou[m.sender];
     }
     await conn.sendMessage(m.chat, {
-      text: "⬣───「 *KUJOU* 」───⬣" + "\n\n" + `terima kasihh...`,
-      contextInfo: {
-        externalAdReply: {
-          title: "Kujou",
-          body: '',
-          thumbnailUrl: `${pickRandom(img)}`,
-          sourceUrl: null,
-          mediaType: 1,
-          renderLargerThumbnail: true
-        }
-      }
+      image: { url: pickRandom(img) },
+      caption: "⬣───「 *KUJOU* 」───⬣" + "\n\n" + `terima kasihh...`,
+      mentions: [m.sender]
     }, { quoted: m });
   }
 };
@@ -99,17 +83,9 @@ Sifat Pemimpin: Sebagai seorang pemimpin, Alisa memiliki kemampuan untuk memimpi
       ];
       let res = await aiBeta(message);
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *KUJOU* 」───⬣" + "\n\n" + res.result,
-        contextInfo: {
-          externalAdReply: {
-            title: "Kujou",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *KUJOU* 」───⬣" + "\n\n" + res.result,
+        mentions: [m.sender]
       }, { quoted: m });
 
       // Ubah cara menyimpan pesan
@@ -150,19 +126,8 @@ async function aiBeta(message) {
 };
 
 const img = [
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/qgmarj9o.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/y5m0m1n6.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/iwhn6ihv.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/yndsx07.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/iwhn6ihv.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/7py3p713.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/mgys82by.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/i0x89aln.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/yr7ixo0b.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/p7j7whps.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/f82mti6r.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/s2yb0w8.jpg`,
-  ]
+  `https://cdn.filn.pp.ua/uploads/betabotzapi/1013f.png`,
+];
 
 function pickRandom(list) {
   return list[Math.floor(list.length * Math.random())]

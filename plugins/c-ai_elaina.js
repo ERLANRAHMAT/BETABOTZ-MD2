@@ -14,17 +14,9 @@ let handler = async (m, { conn, text }) => {
         }, 300000) // 5 minutes timeout
       };
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *Elaina* 」───⬣" + "\n\n" + `Hello!! Penyihir hebat siap membantu!!`,
-        contextInfo: {
-          externalAdReply: {
-            title: "Elaina",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *Elaina* 」───⬣" + "\n\n" + `Hello!! Penyihir hebat siap membantu!!`,
+        mentions: [m.sender]
       }, { quoted: m });
     } else {
       clearTimeout(conn.elaina[m.sender].timeout);
@@ -38,17 +30,9 @@ let handler = async (m, { conn, text }) => {
       delete conn.elaina[m.sender];
     }
     await conn.sendMessage(m.chat, {
-      text: "⬣───「 *Elaina* 」───⬣" + "\n\n" + `bye bye~~~`,
-      contextInfo: {
-        externalAdReply: {
-          title: "Elaina",
-          body: '',
-          thumbnailUrl: `${pickRandom(img)}`,
-          sourceUrl: null,
-          mediaType: 1,
-          renderLargerThumbnail: true
-        }
-      }
+      image: { url: pickRandom(img) },
+      caption: "⬣───「 *Elaina* 」───⬣" + "\n\n" + `bye bye~~~`,
+      mentions: [m.sender]
     }, { quoted: m });
   }
 };
@@ -102,17 +86,9 @@ Sihir itu keren, sih, tapi bukan berarti bisa sembarangan dipakai. Aku lebih suk
       ];
       let res = await aiBeta(message);
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *Elaina* 」───⬣" + "\n\n" + res.result,
-        contextInfo: {
-          externalAdReply: {
-            title: "Elaina",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *Elaina* 」───⬣" + "\n\n" + res.result,
+        mentions: [m.sender]
       }, { quoted: m });
 
       // Ubah cara menyimpan pesan
@@ -153,20 +129,8 @@ async function aiBeta(message) {
 };
 
 const img = [
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/2tfpe5e.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/ym208ch9.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/ne42bh8e.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/ulcs8k8.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/hwqox5hw.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/thyutdpc.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/4p40uhn4.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/2tfpe5e.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/46ksjryr.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/a1c10wqy.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/aax59tu.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/e9lties0.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/1rurejp9.jpg`,
-]
+  `https://cdn.filn.pp.ua/uploads/betabotzapi/843a8.png`,
+];
 
 function pickRandom(list) {
   return list[Math.floor(list.length * Math.random())]

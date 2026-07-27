@@ -14,17 +14,9 @@ let handler = async (m, { conn, text }) => {
         }, 300000) // 5 minutes timeout
       };
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *MAHIRU* 」───⬣" + "\n\n" + `uhhmm.. ada apa? aku bisa bantu kok...`,
-        contextInfo: {
-          externalAdReply: {
-            title: "mahiru",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *MAHIRU* 」───⬣" + "\n\n" + `uhhmm.. ada apa? aku bisa bantu kok...`,
+        mentions: [m.sender]
       }, { quoted: m });
     } else {
       clearTimeout(conn.mahiru[m.sender].timeout);
@@ -38,17 +30,9 @@ let handler = async (m, { conn, text }) => {
       delete conn.mahiru[m.sender];
     }
     await conn.sendMessage(m.chat, {
-      text: "⬣───「 *MAHIRU* 」───⬣" + "\n\n" + `bye bye~~~`,
-      contextInfo: {
-        externalAdReply: {
-          title: "mahiru",
-          body: '',
-          thumbnailUrl: `${pickRandom(img)}`,
-          sourceUrl: null,
-          mediaType: 1,
-          renderLargerThumbnail: true
-        }
-      }
+      image: { url: pickRandom(img) },
+      caption: "⬣───「 *MAHIRU* 」───⬣" + "\n\n" + `bye bye~~~`,
+      mentions: [m.sender]
     }, { quoted: m });
   }
 };
@@ -102,17 +86,9 @@ Dia mandiri dan sangat terampil dalam pekerjaan rumah tangga, seperti memasak da
       ];
       let res = await aiBeta(message);
       await conn.sendMessage(m.chat, {
-        text: "⬣───「 *MAHIRU* 」───⬣" + "\n\n" + res.result,
-        contextInfo: {
-          externalAdReply: {
-            title: "mahiru",
-            body: '',
-            thumbnailUrl: `${pickRandom(img)}`,
-            sourceUrl: null,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *MAHIRU* 」───⬣" + "\n\n" + res.result,
+        mentions: [m.sender]
       }, { quoted: m });
 
       // Ubah cara menyimpan pesan
@@ -153,16 +129,8 @@ async function aiBeta(message) {
 };
 
 const img = [
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/f3m9ddy2.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/golirjy7.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/zvvxui.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/kk5k4fi.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/5a8dijtv.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/4nu20qtq.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/2je8jdv.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/evqdk7y.jpg`,
-  `https://api.betabotz.eu.org/api/tools/get-upload?id=f/1cxecx4a.jpg`,
-  ]
+  `https://cdn.filn.pp.ua/uploads/betabotzapi/46726.jpg`,
+];
 
 function pickRandom(list) {
   return list[Math.floor(list.length * Math.random())]

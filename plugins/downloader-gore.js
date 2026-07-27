@@ -13,17 +13,8 @@ ${res.result.title}\n
 \`gunakan vpn jika ingin menonton\`
 `
 conn.sendMessage(m.chat, {
-                    text: anu, 
-                    contextInfo: {
-                         externalAdReply: {
-                            title: "RANDOM GORE",
-                            body: '',
-                            renderLargerThumbnail: true,
-                            thumbnailUrl: 'https://telegra.ph/file/13912a80a67472cad91c3.jpg',
-                            sourceUrl: null,
-                            mediaType: 1,
-                        }
-                    }, mentions: [m.sender]
+                    text: anu,
+                    mentions: [m.sender]
     }, {})
 }
 handler.help = ['gore']
