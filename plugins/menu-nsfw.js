@@ -105,9 +105,9 @@ let handler = async (m, { conn, command }) => {
       const res = `https://api.betabotz.eu.org/api/nsfw/zettai?apikey=${lann}`;
       await conn.sendFile(m.chat, res, 'nsfw.jpg', '', m);
     }
-   } catch (err) {
-  console.error(err)
-  throw "🚩 Terjadi kesalahan"
+   } catch (e) {
+    console.log(e);
+    throw e;
    };
 };
 handler.command = handler.help = ['gay','ahegao','ass','bdsm','blowjob','cuckold','cum','ero','femdom','foot','gangbang','glasses','hentai','gifs','jahy','manga','masturbation','neko','neko2','orgy','tentacles','pussy','panties','thighs','yuri','zettai']
