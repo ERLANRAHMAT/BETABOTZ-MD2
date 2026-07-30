@@ -1,5 +1,5 @@
 
-## JANGAN DIPAKAI DULU INI UJI COBA ESM
+## Harap Dipahami Sebelum Install
 
 ### Pembaruan:
 
