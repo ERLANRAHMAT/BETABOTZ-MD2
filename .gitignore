@@ -8,3 +8,4 @@ tmp
 src/.DS_Store
 *.DS_Store
 bun.lock
+plugins/info-listgroup.json
