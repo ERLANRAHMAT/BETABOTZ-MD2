@@ -18,11 +18,11 @@ global.wait = "_*Tunggu sedang di proses...*_"; // ini pesan simulasi loading
 global.eror = "_*Server Error*_\n\nMohon jangan di spam ya. Silakan laporkan masalah ini ke admin menggunakan perintah *.lapor*"; // ini pesan saat terjadi kesalahan
 global.stiker_wait = "*⫹⫺ Stiker sedang dibuat...*"; // ini pesan simulasi saat loading pembuatan sticker
 global.qris = "https://cdn.filn.pp.ua/uploads/betabotzapi/41616.jpg";
-global.thumb = "https://telegra.ph/file/3a34bfa58714bdef500d9.jpg";
+global.thumb = "https://telegra.ph/file/3a34bfa58714bdef500d9.jpg"; // thumb untuk menu
 global.packname = "Made With"; // watermark stikcker packname
 global.author = "Bot WhatsApp"; // watermark stikcker author
 global.maxwarn = "3"; // Peringatan maksimum Warn
-global.lapor = true  // set true agar bot mengirim return json error ke grub lapor, jika false tidak ada
+global.lapor = false  // set true agar bot mengirim return json error ke grub lapor, jika false tidak ada
 global.groupLapor = "120363216901617825@g.us"; // grub dimana bot mengirim laporan error dari user
 global.idchannel = ["123123412341234@newsletter"]; // channel untuk pengumuman bot max 3
 global.autobio = false; // Set true/false untuk mengaktifkan atau mematikan autobio (default: false)
@@ -80,6 +80,6 @@ import { pathToFileURL } from 'url';
 let file = import.meta.filename;
 fs.watchFile(file, async () => {
   fs.unwatchFile(file);
-  console.log(chalk.redBright("Update 'config.js'"));
+  console.log(chalk.redBright("Update 'config.js, harap bot di restart!'"));
   await import(pathToFileURL(file).href + '?update=' + Date.now());
 });
