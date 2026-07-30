@@ -94,9 +94,9 @@ let handler = async (m, { conn, command, args }) => {
 
         conn.reply(m.chat, result.trim(), m);
 
-    } catch (err) {
-        console.log(err);
-        throw err;
+    } catch (e) {
+        console.log(e);
+        throw e;
     }
 };
 

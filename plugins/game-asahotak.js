@@ -17,9 +17,9 @@ let handler = async (m, { conn, usedPrefix }) => {
         try {
             let src = await (await fetch(`https://api.betabotz.eu.org/api/game/asahotak?apikey=${lann}`)).json();
             json = src;
-        } catch (err) {
-            console.log(err);
-            throw err;
+        } catch (e) {
+            console.log(e);
+            throw e;
         }
 
         if (!json || !json.soal) throw new Error('Format data soal tidak valid dari API.');
@@ -46,10 +46,10 @@ ${json.soal}
                 }
             }, timeout)
         ];
-    } catch (err) {
-        if (err !== false) {
-            console.log(err);
-            throw err;
+    } catch (e) {
+        if (e !== false) {
+            console.log(e);
+            throw e;
         }
     }
 };

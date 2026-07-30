@@ -62,10 +62,10 @@ let handler = async (m, { conn }) => {
                 }
             }, 180000) // 3 minutes
         };
-    } catch (err) {
-        if (err !== false) {
-            console.log(err);
-            throw err;
+    } catch (e) {
+        if (e !== false) {
+            console.log(e);
+            throw e;
         }
     }
 };
