@@ -16,9 +16,9 @@ command
 			let json = await res.json()
 		    await m.reply(json.result)
 		} catch (e) {
-      console.log(e);
-      throw e;
-    }
+      		 console.log(e);
+      		 throw e;
+    	}
 	} else {
 		m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim`)
 	}

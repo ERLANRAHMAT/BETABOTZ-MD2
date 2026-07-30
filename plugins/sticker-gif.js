@@ -16,9 +16,10 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 				json = await (await fetch(`https://api.betabotz.eu.org/api/tools/webp2png?url=${media}&apikey=${lann}`)).json();
 			}
 			await conn.sendFile(m.chat, json.result, null, "*DONE*", m)
-		} catch (err) {
-			throw err
-		}
+		} catch (e) {
+      		console.log(e);
+      		throw e;
+    }
 	} else {
 		throw `Reply sticker with command ${usedPrefix + command}`
 	}

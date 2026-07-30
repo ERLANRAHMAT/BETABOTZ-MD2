@@ -29,8 +29,8 @@ let handler = async (m, { conn, command, usedPrefix }) => {
 
             m.reply(`✅ *Temp Mail Anda:*\n📩 *Email:* ${email}\n⏳ *Tunggu sekitar 5-10 menit sebelum cek.*`);
         } catch (e) {
-            console.error(e);
-            m.reply("❌ Terjadi kesalahan saat membuat email sementara!");
+            console.log(e);
+            throw e;
         }
     } else if (command === "cekmail" || command === "checkmail") {
         if (!conn.sessionsMail[m.sender]) {
