@@ -1,5 +1,4 @@
-let levelling = require('../lib/levelling')
-
+import levelling from '../lib/levelling.js';
 let handler = m => {
   let user = global.db.data.users[m.sender]
   if (!levelling.canLevelUp(user.level, user.exp, global.multiplier)) {
@@ -25,4 +24,4 @@ handler.tags = ['xp']
 
 handler.command = /^level(|up)$/i
 
-module.exports = handler
+export default handler

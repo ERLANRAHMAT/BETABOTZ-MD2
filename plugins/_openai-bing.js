@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, {
   conn,
@@ -6,9 +6,9 @@ let handler = async (m, {
   usedPrefix,
   command
 }) => {
-  if (command == 'bing') {
-    if (!text) throw `Example : ${usedPrefix + command} siapa presiden Indonesia?`;
-    try {
+  try {
+    if (command == 'bing') {
+      if (!text) throw `Example : ${usedPrefix + command} siapa presiden Indonesia?`;
       m.reply(wait)
       let response = await fetch('https://api.betabotz.eu.org/api/search/bing-chat', {
           method: 'POST',
@@ -23,14 +23,9 @@ let handler = async (m, {
         .then(res => res.json());
 
       await conn.reply(m.chat, response.message, m);
-    } catch (e) {
-      console.log(e);
-      throw `*Error:* ${eror}`;
     }
-  }
-  if (command == 'bingimg') {
-    if (!text) throw `Contoh: ${usedPrefix + command} anak berlari menggunakan pakaian merah 3d animation`;
-    try {
+    if (command == 'bingimg') {
+      if (!text) throw `Contoh: ${usedPrefix + command} anak berlari menggunakan pakaian merah 3d animation`;
       m.reply(wait)
       let response = await fetch('https://api.betabotz.eu.org/api/search/bing-img', {
           method: 'POST',
@@ -49,9 +44,10 @@ let handler = async (m, {
         await sleep(3000)
         await conn.sendFile(m.chat, img, 'bing_img.png', `*PROMPT:* ${text}`, m)
       }
-    } catch (error) {
-      throw `Error: ${eror}`
     }
+  } catch (e) {
+    console.log(e);
+    throw e;
   }
 }
 
@@ -59,7 +55,7 @@ handler.command = handler.help = ['bing', 'bingimg']
 handler.tags = ['tools']
 handler.limit = true
 
-module.exports = handler
+export default handler
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));

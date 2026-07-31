@@ -1,4 +1,4 @@
-const moment = require('moment-timezone');
+import moment from 'moment-timezone';
 
 let handler = async (m, { text, conn }) => {
     if (!text) {
@@ -136,10 +136,7 @@ ${generateSoulReading(compatibility)}
 
     } catch (error) {
         console.error('Error in soulmatch command:', error);
-        return m.reply(`╭══════════════════════
-│ ❌ *Terjadi Kesalahan*
-│ Mohon coba beberapa saat lagi
-╰═════════════════════`);
+        throw e;
     }
 };
 
@@ -149,7 +146,7 @@ handler.command = /^soulmatch$/i;
 handler.group = true;
 handler.limit = 1;
 
-module.exports = handler;
+export default handler;
 
 
 //base by DEVOLUTION-MD1

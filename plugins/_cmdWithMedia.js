@@ -1,4 +1,4 @@
-const { loadBaileys } = require('../baileys-loader.mjs');
+import { loadBaileys } from '../baileys-loader.mjs';
 
 let baileysCache = null;
 
@@ -9,7 +9,7 @@ async function getBaileys() {
     return baileysCache;
 }
 
-module.exports = {
+export default {
     async all(m, chatUpdate) {
         if (m.isBaileys) return;
         if (!m.message) return;

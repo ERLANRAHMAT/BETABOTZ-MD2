@@ -242,4 +242,4 @@ handler.fail = null;
 handler.group = true;
 handler.rpg = true
 
-module.exports = handler;
+export default handler;

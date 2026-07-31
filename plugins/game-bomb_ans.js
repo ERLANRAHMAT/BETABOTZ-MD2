@@ -1,6 +1,6 @@
 // Thanks To Kasan
 
-const util = require('util');
+import util from 'util';
 
 let handler = m => m
 handler.before = async function (m) {
@@ -74,8 +74,11 @@ users.exp += reward;
 }
 }
 } catch (e) {
-return conn.reply(m.chat, util.format(e), m);
-}
+        if (e !== false) {
+            console.log(e);
+            throw e;
+        }
+    }
 return !0;
 }
 
@@ -89,4 +92,4 @@ function formatNumber(number) {
 return number.toLocaleString();
 }
 
-module.exports = handler
+export default handler

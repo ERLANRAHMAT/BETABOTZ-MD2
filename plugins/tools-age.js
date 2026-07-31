@@ -1,5 +1,5 @@
-const uploadImage = require('../lib/uploadImage');
-const fetch = require('node-fetch');
+import uploadImage from '../lib/uploadImage.js';
+import fetch from 'node-fetch';
 let handler = async (m, { 
   conn, 
   usedPrefix, 
@@ -26,8 +26,8 @@ let handler = async (m, {
         txt += `\n`
         await conn.sendFile(m.chat, out, 'age.png', txt, m)
     } catch (e) {
-      console.log(e);
-      m.reply(`[ ! ] Identifikasi Wajah Gagal.`);
+        console.log(e);
+        throw e;
     }
   } else {
     m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim`);
@@ -39,4 +39,4 @@ handler.tags = ['tools'];
 handler.premium = false;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

@@ -1,5 +1,6 @@
 let handler = async(m, {conn, command, usedPrefix, text}) => {
-  global.db.data.users[m.sender].catatan = global.db.data.users[m.sender].catatan || []
+  try {
+    global.db.data.users[m.sender].catatan = global.db.data.users[m.sender].catatan || []
   let i = 0
   if (global.db.data.users[m.sender].catatan.length == 0) return m.reply('Kamu belum punya catatan!')
   let txt = '🗒️Daftar catatan🗒️\n\n'
@@ -20,10 +21,15 @@ conn.reply(m.chat, `${isi}`, m, false, {
       mentionedJid: conn.parseMention(text)
     }
   })
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+  
 }
 
 handler.help = ['lihatcatatan <title>']
 handler.tags = ['internet']
 handler.command = /^lihatcatatan$/i
 
-module.exports = handler
+export default handler

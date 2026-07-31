@@ -24,4 +24,4 @@ handler.help = ['guildinvite <@user>'];
 handler.tags = ['rpgG'];
 handler.command = /^(guildinvite)$/i;
 handler.rpg = true;
-module.exports = handler;
+export default handler;

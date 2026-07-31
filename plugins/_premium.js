@@ -8,4 +8,4 @@ handler.before = async function (m) {
     }
 };
 
-module.exports = handler;
+export default handler;

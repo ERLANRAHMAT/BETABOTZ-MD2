@@ -94,4 +94,4 @@ handler.help = ["inventory *@user*"];
 handler.tags = ["rpg"];
 handler.command = /^inv|inventory$/i;
 handler.rpg = true;
-module.exports = handler;
+export default handler;

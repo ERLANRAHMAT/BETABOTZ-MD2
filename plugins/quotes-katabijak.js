@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn }) => {
 const res = await fetch(`https://api.betabotz.eu.org/api/random/bijak?apikey=${lann}`).then(result => result.json())
@@ -25,4 +25,4 @@ handler.botAdmin = false
 
 handler.fail = null
 
-module.exports = handler
+export default handler

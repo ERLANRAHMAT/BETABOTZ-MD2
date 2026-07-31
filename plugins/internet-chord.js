@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, command, usedPrefix }) => {
 	if (!text) throw `Example:\n${usedPrefix + command} Tiba Tiba Cinta Datang`;
@@ -40,10 +40,10 @@ let handler = async (m, { text, command, usedPrefix }) => {
 
 		await m.reply(caption);
 
-	} catch (error) {
-		console.error(error);
-		await m.reply('❌ Terjadi kesalahan saat mengambil chord lagu.');
-	}
+	} catch (e) {
+    console.log(e);
+    throw e;
+  }
 };
 
 handler.help = ['chord <judul lagu>'];
@@ -51,4 +51,4 @@ handler.tags = ['internet'];
 handler.command = /^chord$/i;
 handler.limit = true;
 
-module.exports = handler;
+export default handler

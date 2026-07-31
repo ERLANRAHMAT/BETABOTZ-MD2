@@ -1,4 +1,4 @@
-const { sKata, cKata } = require('.././lib/sambung-kata');
+import { sKata, cKata } from '.././lib/sambung-kata.js';
 
 const game = `• *S A M B U N G - K A T A*
 
@@ -108,7 +108,7 @@ handler.command = /^s(ambung)?kata(debug)?$/i;
 handler.limit = true;
 handler.group = true;
 
-module.exports = handler;
+export default handler;
 
 async function genKata() {
     let json = await sKata();

@@ -1,5 +1,5 @@
 /*di bawah ini buat pp biasa non panjang pilih salah satu*/
-// const jimp = require('jimp');
+// const jimp = import 'jimp';
 
 let handler = async (m, { conn, usedPrefix, command }) => {
     let q = m.quoted ? m.quoted : m
@@ -23,10 +23,10 @@ handler.tags = ['adminry']
 handler.command = /^(setppbot)$/i
 handler.rowner = true
 
-module.exports = handler
+export default handler
 
 /*di bawah ini buat pp panjang aktifin aja pilih salah satu*/
-// const { S_WHATSAPP_NET } = require('@adiwajshing/baileys');
+// const { S_WHATSAPP_NET } = import '@adiwajshing/baileys';
 //     let q = m.quoted ? m.quoted : m;
 //     let mime = (q.msg || q).mimetype || q.mediaType || '';
 //     if (/image/g.test(mime) && !/webp/g.test(mime)) {
@@ -66,7 +66,7 @@ module.exports = handler
 
 // handler.owner = true;
 
-// module.exports = handler;
+// export default handler;
 
 // async function pepe(media) {
 //     const image = await jimp.read(media);

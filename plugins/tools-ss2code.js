@@ -1,5 +1,5 @@
-const fetch = require("node-fetch");
-const uploadImage = require('../lib/uploadImage.js')
+import fetch from 'node-fetch';
+import uploadImage from '../lib/uploadImage.js';
 let handler = async (m, { 
 conn, 
 usedPrefix, 
@@ -16,9 +16,9 @@ command
 			let json = await res.json()
 		    await m.reply(json.result)
 		} catch (e) {
-			console.log(e)
-			m.reply(`[ ! ] Identifikasi Code gagal.`)
-		}
+      		 console.log(e);
+      		 throw e;
+    	}
 	} else {
 		m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim`)
 	}
@@ -29,4 +29,4 @@ handler.tags = ['tools'];
 handler.premium = false;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

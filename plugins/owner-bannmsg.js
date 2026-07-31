@@ -60,4 +60,4 @@ handler.before = function(m, { conn, isAdmin }) {
     }
 }
 
-module.exports = handler;
+export default handler;

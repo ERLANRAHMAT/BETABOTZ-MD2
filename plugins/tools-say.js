@@ -6,4 +6,4 @@ handler.help = ['say <teks>']
 handler.tags = ['tools']
 handler.command = /^(say)$/i
 
-module.exports = handler
+export default handler

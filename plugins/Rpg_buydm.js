@@ -18,4 +18,4 @@ handler.tags = ['econ']
 handler.command = ['buydm', 'buyalldm'] 
 handler.group = true
 handler.rpg = true
-module.exports = handler;
+export default handler;

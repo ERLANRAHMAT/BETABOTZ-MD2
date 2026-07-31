@@ -1,19 +1,30 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 
-let timeout = 100000
-let poin = 10000
+let timeout = 100000;
+let poin = 10000;
+
 let handler = async (m, { conn, usedPrefix }) => {
-    conn.tebaktebakan = conn.tebaktebakan ? conn.tebaktebakan : {}
-    let id = m.chat
-    if (id in conn.tebaktebakan) {
-        conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebaktebakan[id][0])
-        throw false
-    }
-    // di sini dia ngambil data dari api
-    let src = await (await fetch(`https://api.betabotz.eu.org/api/game/tebaktebakan?apikey=${lann}`)).json()
-    let json = src
-    // buat caption buat di tampilin di wa
-    let caption = `
+    try {
+        conn.tebaktebakan = conn.tebaktebakan ? conn.tebaktebakan : {};
+        let id = m.chat;
+        
+        if (id in conn.tebaktebakan) {
+            await conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebaktebakan[id][0]);
+            return;
+        }
+
+        let json;
+        try {
+            let src = await (await fetch(`https://api.betabotz.eu.org/api/game/tebaktebakan?apikey=${lann}`)).json();
+            json = src;
+        } catch (e) {
+            console.log(e);
+            throw e;
+        }
+
+        if (!json || !json.soal || !json.jawaban) throw new Error('Format data tebaktebakan tidak valid dari API.');
+
+        let caption = `
 ${json.soal}
 
 ┌─⊷ *SOAL*
@@ -22,23 +33,31 @@ ${json.soal}
 ▢ Bonus: ${poin} money
 ▢ *Balas/ replay soal ini untuk menjawab*
 └──────────────
-`.trim()
-    conn.tebaktebakan[id] = [
-        await conn.reply(m.chat, caption, m),
-        json, poin,
-        setTimeout(() => {
-            if (conn.tebaktebakan[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.tebaktebakan[id][0])
-            delete conn.tebaktebakan[id]
-        }, timeout)
-    ]
-}
-handler.help = ['tebaktebakan']
-handler.tags = ['game']
-handler.command = /^tebaktebakan/i
-handler.register = false
-handler.group = true
+`.trim();
 
-module.exports = handler
+        conn.tebaktebakan[id] = [
+            await conn.reply(m.chat, caption, m),
+            json, 
+            poin,
+            setTimeout(() => {
+                if (conn.tebaktebakan[id]) {
+                    conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.tebaktebakan[id][0]);
+                    delete conn.tebaktebakan[id];
+                }
+            }, timeout)
+        ];
+    } catch (e) {
+        if (e !== false) {
+            console.log(e);
+            throw e;
+        }
+    }
+};
 
-// tested di bileys versi 6.5.0 dan sharp versi 0.30.5
-// danaputra133
+handler.help = ['tebaktebakan'];
+handler.tags = ['game'];
+handler.command = /^tebaktebakan/i;
+handler.register = false;
+handler.group = true;
+
+export default handler;

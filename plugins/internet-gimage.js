@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Use example ${usedPrefix}${command} Minecraft`;  
@@ -7,16 +7,17 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!res.status) throw eror
     let image = pickRandom(res.result).url;
     conn.sendFile(m.chat, image, 'google.jpg', `*G O O G L E*\n*Result:* ${text}\n*Source:* https://google.com`, m);
-   } catch (e) {
-   throw eror
-  }
+   }  catch (e) {
+        console.log(e);
+        throw e;
+    }
 };
 
 handler.help = ['gimage <query>', 'image <query>'];
 handler.tags = ['internet'];
 handler.command = /^(gimage|image)$/i;
 
-module.exports = handler;
+export default handler;
 
 function pickRandom(arr) {
     return arr[Math.floor(Math.random() * arr.length)];

@@ -914,7 +914,7 @@ handler.command = /^(dungeon)$/i;
 handler.rpg = true;
 handler.mods = false;
 
-module.exports = handler;
+export default handler;
 
 /**
  * pickRandom from array

@@ -5,7 +5,8 @@
 */
 
 let handler = async (m, { conn, args, command, usedPrefix }) => {
-    if (!args.length) {
+    try {
+        if (!args.length) {
         return conn.reply(m.chat, `✨ *Example Usage:* \n🔍 ${usedPrefix}${command} fitur`, m);
     }
     
@@ -20,10 +21,14 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
     let message = `🔎 *Hasil Pencarian untuk:* '${query}' \n\n`;
     message += filteredPlugins.map(([name, v]) => `✅ *${v.help.join(', ')}*\n📌 *Tags:* ${Array.isArray(v.tags) ? v.tags.join(', ') : 'Tidak ada'}\n📂 *Plugin:* ${name}\n`).join('\n');
     conn.reply(m.chat, message, m);
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
 }
 
 handler.help = ['searchfitur']
 handler.tags = ['tools']
 handler.command = ['searchfitur']
 
-module.exports = handler;
+export default handler;

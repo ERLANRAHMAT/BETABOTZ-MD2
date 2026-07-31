@@ -1,6 +1,7 @@
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+  try {
     if (!text) throw `Masukan Text!\n\ncontoh:\n${usedPrefix + command} YHAHAH WAHYU`;    
         m.reply(wait);      
         if (command == 'texttorusia' )  {
@@ -105,6 +106,10 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         //     fileName: `.mp3`,
         //     // caption: caption
         // }, { quoted: m });
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
 };
 handler.command = handler.help = ['texttorusia', 'texttoindo', 'texttoeng', 'texttojp', 'texttofr', 'texttopny', 'texttomy', 'texttojrmn', 'texttoitly', 'texttokr', 'texttothai', 'texttoindia'];
 // handler.help = ['texttorusia'];
@@ -115,4 +120,4 @@ handler.group = true;
 handler.fail = null;
 handler.private = false;
 
-module.exports = handler;
+export default handler;

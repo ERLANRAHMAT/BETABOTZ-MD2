@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 const prem = 1000; // xp yang didapat untuk user prem
 const free = 100; // xp yang didapat untuk user free
@@ -26,7 +26,7 @@ handler.help = handler.command = ['daily'];
 handler.tags = ['rpg'];
 handler.rpg = true
 
-module.exports = handler;
+export default handler;
 
 function msToTime(duration) {
     var milliseconds = parseInt((duration % 1000) / 100),

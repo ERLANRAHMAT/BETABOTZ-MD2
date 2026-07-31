@@ -1,5 +1,5 @@
-let axios = require('axios');
-let moment = require('moment-timezone');
+import axios from 'axios';
+import moment from 'moment-timezone';
 
 const timeZone = 'Asia/Jakarta';
 

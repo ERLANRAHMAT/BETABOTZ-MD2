@@ -100,7 +100,7 @@ handler.tags = ['rpg']
 handler.command = /^(copet)$/i
 handler.group = true
 handler.rpg = true
-module.exports = handler
+export default handler
 
 function clockString(ms) {
   let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)

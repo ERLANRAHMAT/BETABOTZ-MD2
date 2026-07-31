@@ -1,5 +1,5 @@
-const axios = require('axios');
-let search = require("yt-search");
+import axios from 'axios';
+import search from 'yt-search';
 
 let handler = async (m, { conn, text, command }) => {
 // kosong
@@ -49,9 +49,9 @@ handler.before = async (m, { conn }) => {
                         
                         const image = response.data;
                         await conn.sendFile(m.chat, image, 'aiimg.jpg', null, m);
-                    } catch (error) {
-                        console.error(error)
-                        await m.reply('Terjadi kesalahan saat membuat gambar. Mohon coba lagi.');
+                    } catch (e) {
+                        console.log(e);
+                        throw e;
                     }
                     return true;
                 }
@@ -62,60 +62,66 @@ handler.before = async (m, { conn }) => {
                         await m.reply('Silakan berikan judul lagu yang akan di cari.');
                         return true;
                     }
-                        await conn.sendPresenceUpdate('composing', m.chat);
-                    
-                                const look = await search(songprompt);
-                                const convert = look.videos[0];
-                                if (!convert) throw 'Video/Audio Tidak Ditemukan';
-                                if (convert.seconds >= 3600) {
-                                    return conn.reply(m.chat, 'Video is longer than 1 hour!', m);
-                                } else {
-                                    let audioUrl;
-                                    try {
-                                        audioUrl = await youtube(convert.url);
-                                    } catch (e) {
-                                        conn.reply(m.chat, 'Please wait...', m);
-                                        audioUrl = await youtube(convert.url);
-                                    }
-                        
-                                    let caption = '';
-                                    caption += `∘ Title : ${convert.title}\n`;
-                                    caption += `∘ Ext : Search\n`;
-                                    caption += `∘ ID : ${convert.videoId}\n`;
-                                    caption += `∘ Duration : ${convert.timestamp}\n`;
-                                    caption += `∘ Viewers : ${convert.views}\n`;
-                                    caption += `∘ Upload At : ${convert.ago}\n`;
-                                    caption += `∘ Author : ${convert.author.name}\n`;
-                                    caption += `∘ Channel : ${convert.author.url}\n`;
-                                    caption += `∘ Url : ${convert.url}\n`;
-                                    caption += `∘ Description : ${convert.description}\n`;
-                                    caption += `∘ Thumbnail : ${convert.image}`;
-                        
-                                    await conn.sendMessage(m.chat, {
-                                        audio: {
-                                            url: audioUrl.result.mp3
-                                        },
-                                        mimetype: 'audio/mpeg',
-                                                title: convert.title,
-                                                body: "",
-                                                thumbnailUrl: convert.image,
-                                                sourceUrl: audioUrl.mp3,
-                                                mediaType: 1,
-                                                showAdAttribution: false,
-                                                renderLargerThumbnail: true
-                                    }, {
-                                        quoted: m
-                                    });
-                                }
+                    await conn.sendPresenceUpdate('composing', m.chat);
+                
+                    try {
+                        const look = await search(songprompt);
+                        const convert = look.videos[0];
+                        if (!convert) throw 'Video/Audio Tidak Ditemukan';
+                        if (convert.seconds >= 3600) {
+                            return conn.reply(m.chat, 'Video is longer than 1 hour!', m);
+                        } else {
+                            let audioUrl;
+                            try {
+                                audioUrl = await youtube(convert.url);
+                            } catch (e) {
+                                conn.reply(m.chat, 'Please wait...', m);
+                                audioUrl = await youtube(convert.url);
+                            }
+                
+                            let caption = '';
+                            caption += `∘ Title : ${convert.title}\n`;
+                            caption += `∘ Ext : Search\n`;
+                            caption += `∘ ID : ${convert.videoId}\n`;
+                            caption += `∘ Duration : ${convert.timestamp}\n`;
+                            caption += `∘ Viewers : ${convert.views}\n`;
+                            caption += `∘ Upload At : ${convert.ago}\n`;
+                            caption += `∘ Author : ${convert.author.name}\n`;
+                            caption += `∘ Channel : ${convert.author.url}\n`;
+                            caption += `∘ Url : ${convert.url}\n`;
+                            caption += `∘ Description : ${convert.description}\n`;
+                            caption += `∘ Thumbnail : ${convert.image}`;
+                
+                            await conn.sendMessage(m.chat, {
+                                audio: {
+                                    url: audioUrl.result.mp3
+                                },
+                                mimetype: 'audio/mpeg',
+                                        title: convert.title,
+                                        body: "",
+                                        thumbnailUrl: convert.image,
+                                        sourceUrl: audioUrl.mp3,
+                                        mediaType: 1,
+                                        showAdAttribution: false,
+                                        renderLargerThumbnail: true
+                            }, {
+                                quoted: m
+                            });
+                        }
+                    } catch (e) {
+                        console.log(e);
+                        throw e;
+                    }
                             
                     return true;
                 }
                 async function youtube(url) {
                     try {
-                    const { data } = await axios.get("https://api.betabotz.eu.org/api/download/yt?url="+url+"&apikey="+lann)
-                    return data;
+                        const { data } = await axios.get("https://api.betabotz.eu.org/api/download/yt?url="+url+"&apikey="+lann)
+                        return data;
                     } catch (e) {
-                    return e;
+                        console.log(e);
+                        throw e;
                     }
                  }
 
@@ -130,68 +136,63 @@ handler.before = async (m, { conn }) => {
 
                     try {
                         await conn.sendPresenceUpdate('composing', m.chat);
-                         try {
-                                const look = await search(searchvideo);
-                                const convert = look.videos[0];
-                                if (!convert) throw 'Video/Audio Tidak Ditemukan';
-                                if (convert.seconds >= 3600) {
-                                    return conn.reply(m.chat, 'Video is longer than 1 hour!', m);
-                                } else {
-                                    let videoUrl;
-                                    try {
-                                        videoUrl = await yts(convert.url);
-                                    } catch (e) {
-                                        conn.reply(m.chat, 'Please wait...', m);
-                                        videoUrl = await yts(convert.url);
-                                    }
-                        
-                                    let caption = '';
-                                    caption += `∘ Title : ${convert.title}\n`;
-                                    caption += `∘ Ext : Search\n`;
-                                    caption += `∘ ID : ${convert.videoId}\n`;
-                                    caption += `∘ Duration : ${convert.timestamp}\n`;
-                                    caption += `∘ Viewers : ${convert.views}\n`;
-                                    caption += `∘ Upload At : ${convert.ago}\n`;
-                                    caption += `∘ Author : ${convert.author.name}\n`;
-                                    caption += `∘ Channel : ${convert.author.url}\n`;
-                                    caption += `∘ Url : ${convert.url}\n`;
-                                    caption += `∘ Description : ${convert.description}\n`;
-                                    caption += `∘ Thumbnail : ${convert.image}`;
-                    
-                        
-                                    await conn.sendMessage(m.chat, {
-                                        video: {
-                                            url: videoUrl.result.mp4
-                                        },
-                                        mimetype: 'video/mp4',
-                                                title: convert.title,
-                                                body: "",
-                                                thumbnailUrl: convert.image,
-                                                sourceUrl: videoUrl.mp4,
-                                                mediaType: 1,
-                                                showAdAttribution: false,
-                                                renderLargerThumbnail: true
-                                      }, {
-                                        quoted: m
-                                    });
-                                }
+                        const look = await search(searchvideo);
+                        const convert = look.videos[0];
+                        if (!convert) throw 'Video/Audio Tidak Ditemukan';
+                        if (convert.seconds >= 3600) {
+                            return conn.reply(m.chat, 'Video is longer than 1 hour!', m);
+                        } else {
+                            let videoUrl;
+                            try {
+                                videoUrl = await yts(convert.url);
                             } catch (e) {
-                                conn.reply(m.chat, `*Error:* ` + e, m);
+                                conn.reply(m.chat, 'Please wait...', m);
+                                videoUrl = await yts(convert.url);
                             }
-
-
-                    } catch (error) {
-                        console.error(error)
-                        await m.reply('Terjadi kesalahan saat mencari video. Mohon coba lagi.');
+                
+                            let caption = '';
+                            caption += `∘ Title : ${convert.title}\n`;
+                            caption += `∘ Ext : Search\n`;
+                            caption += `∘ ID : ${convert.videoId}\n`;
+                            caption += `∘ Duration : ${convert.timestamp}\n`;
+                            caption += `∘ Viewers : ${convert.views}\n`;
+                            caption += `∘ Upload At : ${convert.ago}\n`;
+                            caption += `∘ Author : ${convert.author.name}\n`;
+                            caption += `∘ Channel : ${convert.author.url}\n`;
+                            caption += `∘ Url : ${convert.url}\n`;
+                            caption += `∘ Description : ${convert.description}\n`;
+                            caption += `∘ Thumbnail : ${convert.image}`;
+            
+                
+                            await conn.sendMessage(m.chat, {
+                                video: {
+                                    url: videoUrl.result.mp4
+                                },
+                                mimetype: 'video/mp4',
+                                        title: convert.title,
+                                        body: "",
+                                        thumbnailUrl: convert.image,
+                                        sourceUrl: videoUrl.mp4,
+                                        mediaType: 1,
+                                        showAdAttribution: false,
+                                        renderLargerThumbnail: true
+                                }, {
+                                quoted: m
+                            });
+                        }
+                    } catch (e) {
+                        console.log(e);
+                        throw e;
                     }
                     return true;
                 }
                 async function yts(url) {
                    try {
-                   const { data } = await axios.get("https://api.betabotz.eu.org/api/download/ytmp4?url="+url+"&apikey="+lann)
-                   return data;
+                       const { data } = await axios.get("https://api.betabotz.eu.org/api/download/ytmp4?url="+url+"&apikey="+lann)
+                       return data;
                    } catch (e) {
-                   return e;
+                       console.log(e);
+                       throw e;
                    }
                 }
 
@@ -236,8 +237,9 @@ handler.before = async (m, { conn }) => {
                                 };
                                 const { data } = await axios.post('https://api.betabotz.eu.org/api/search/openai-custom', params);
                                 resolve(data);
-                            } catch (error) {
-                                reject(error);
+                            } catch (e) {
+                                console.log(e);
+                                reject(e);
                             }
                         });
                     };
@@ -251,20 +253,20 @@ handler.before = async (m, { conn }) => {
                             res.result
                         ];
                     } else {
-                        m.reply("Kesalahan dalam mengambil data silahkan @mention /reset untuk mencoba percakapan baru.");
+                        throw "Kesalahan dalam mengambil data";
                     }
                 } catch (e) {
-                    console.error(e);
-                    m.reply("Terjadi kesalahan dalam memproses permintaan.");
+                    console.log(e);
+                    throw e;
                 }
                 return true;
             }
         }
         return true;
-    } catch (error) {
-        console.error(error);
-        return true;
+    } catch (e) {
+        console.log(e);
+        throw e;
     }
 };
 
-module.exports = handler;
+export default handler;

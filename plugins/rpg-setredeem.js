@@ -113,4 +113,4 @@ handler.tags = ["owner"];
 handler.command = ["sredeem"];
 handler.owner = true;
 
-module.exports = handler;
+export default handler;

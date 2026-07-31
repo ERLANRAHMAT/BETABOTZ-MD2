@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 function getPrayerTimes(jsonData) {
     const today = new Date();
@@ -17,10 +17,10 @@ function getPrayerTimes(jsonData) {
 }
 
 let handler = async (m, { text, usedPrefix, command }) => {
-    if (!text) throw `Gunakan contoh: ${usedPrefix}${command} semarang`;
-
     try {
-        const res = await (await fetch(`https://api.betabotz.eu.org/api/tools/jadwalshalat?kota=${text}&apikey=${lann}`)).json();
+        if (!text) throw `Gunakan contoh: ${usedPrefix}${command} semarang`;
+
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/tools/jadwalshalat?kota=${text}&apikey=${global.lann}`)).json();
         
         if (!res.status || res.result.code !== 200) {
             throw 'Error: API response tidak valid';
@@ -43,8 +43,9 @@ ${jadwalSholat}
         } else {
             throw 'Error: Tidak ada data untuk tanggal hari ini';
         }
-    } catch (error) {
-        m.reply('Terjadi kesalahan, hubungi owner melalui .lapor');
+    } catch (e) {
+        console.log(e);
+        throw e;
     }
 };
 
@@ -53,4 +54,4 @@ handler.tags = ['islam'];
 handler.command = /^(jadwal)?s(a|o|ha|ho)lat$/i;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

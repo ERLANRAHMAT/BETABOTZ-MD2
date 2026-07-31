@@ -116,4 +116,4 @@ handler.rpg = true;
 handler.group = true;
 
 // Ekspor handler perintah RPG
-module.exports = handler;
+export default handler;

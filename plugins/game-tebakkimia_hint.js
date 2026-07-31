@@ -10,6 +10,6 @@ let handler = async (m, { conn }) => {
 }
 handler.command = /^kmi/i
 handler.limit = true
-module.exports = handler
+export default handler
 
 //gh: dana_putra13

@@ -1,5 +1,4 @@
-let fetch = require('node-fetch') 
-
+import fetch from 'node-fetch';
 let handler = async (m, { text }) => {
 	if (!text) throw 'Input Query'
 	let res = await fetch(`http://registry.npmjs.com/-/v1/search?text=${text}`)
@@ -14,4 +13,4 @@ handler.help = ['npmsearch']
 handler.tags = ['tools']
 handler.command = /^npm(js|search)?$/i
 //maapin hyzer
-module.exports = handler
+export default handler

@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) {
@@ -30,8 +30,8 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       });
     }
   } catch (e) {
-    console.error(e);
-    throw `Terjadi kesalahan! Pastikan URL yang diberikan valid atau coba lagi nanti.`;
+      console.log(e);
+      throw e;
   }
 };
 
@@ -41,4 +41,4 @@ handler.tags = ['downloader'];
 handler.limit = true;
 handler.premium = false;
 
-module.exports = handler;
+export default handler;

@@ -18,4 +18,4 @@ handler.help = ['guildleave'];
 handler.tags = ['rpgG'];
 handler.command = /^(guildleave)$/i;
 handler.rpg = true;
-module.exports = handler;
+export default handler;

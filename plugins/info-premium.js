@@ -36,7 +36,7 @@ handler.help = ['cekprem', 'cekpremium', 'premium']
 handler.tags = ['info']
 handler.command = /^(cekprem(ium)?|premium)$/i
 
-module.exports = handler
+export default handler
 
 function msToDate(ms) {
   if (ms <= 0) return 'Sudah habis'

@@ -20,4 +20,4 @@ handler.owner = false
 handler.admin = false
 handler.rpg = true
 
-module.exports = handler
+export default handler

@@ -20,7 +20,7 @@ handler.premium = false
 handler.rpg = true
 
 
-module.exports = handler;
+export default handler;
 
 function msToTime(duration) {
     var milliseconds = parseInt((duration % 1000) / 100),

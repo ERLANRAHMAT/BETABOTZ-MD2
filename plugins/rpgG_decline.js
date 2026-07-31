@@ -19,4 +19,4 @@ handler.help = ['guilddecline'];
 handler.tags = ['rpgG'];
 handler.command = /^(guilddecline)$/i;
 handler.rpg = true;
-module.exports = handler;
+export default handler;

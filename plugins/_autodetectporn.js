@@ -1,5 +1,5 @@
-let fetch = require('node-fetch');
-let uploader = require('../lib/uploadImage');
+import fetch from 'node-fetch';
+import uploader from '../lib/uploadImage.js';
 
 
 let handler = m => m;
@@ -34,4 +34,4 @@ handler.before = async function(m, { conn }) {
     }
 };
 
-module.exports = handler;
+export default handler;

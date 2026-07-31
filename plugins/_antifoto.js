@@ -1,4 +1,4 @@
-exports.before = async function(m, { isAdmin, isBotAdmin }) {
+export const before = async function(m, { isAdmin, isBotAdmin }) {
   if (m.isBaileys && m.fromMe) return;
   let chat = global.db.data.chats[m.chat]
   let isFoto = m.mtype

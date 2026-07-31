@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { text }) => {
 if (!text) throw `Masukan Apikey!`
   try {
@@ -13,4 +13,4 @@ if (!text) throw `Masukan Apikey!`
 handler.command = handler.help = ['checkapi','api'];
 handler.tags = ['main'];
 handler.private = true
-module.exports = handler;
+export default handler;

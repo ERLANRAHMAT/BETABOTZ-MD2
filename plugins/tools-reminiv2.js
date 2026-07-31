@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
-const uploadImage = require('../lib/uploadImage.js');
+import fetch from 'node-fetch';
+import uploadImage from '../lib/uploadImage.js';
 
 async function handler(m, { conn, usedPrefix, command, text }) {
   try {   
@@ -19,9 +19,9 @@ async function handler(m, { conn, usedPrefix, command, text }) {
       m.reply(`Masukan foto/ Resolusi scale!\n\ncontoh:${usedPrefix + command} 2 \nuntuk scale dari foto yang akan di up ada list ini\n\nScale 2 = low, 4 = medium, 6 = high, 8 = extream, 16 = awesome\n\n Jika gagal ulangi lagi dengan scale yang lebih rendah`);
     }
   } catch (e) {
-    console.error(e);
-    m.reply(`Masukan foto/ Resolusi scale!\n\ncontoh:${usedPrefix + command} 2 \nuntuk scale dari foto yang akan di up ada list ini\n\nScale 2 = low, 4 = medium, 6 = high, 8 = extream, 16 = awesome\n\n Jika gagal ulangi lagi dengan scale yang lebih rendah`);
-  }
+      console.log(e);
+      throw e;
+    }
 }
 
 handler.help = ['remini2 <scale>'];
@@ -31,4 +31,4 @@ handler.premium = false;
 handler.limit = false;
 handler.group = true;
 
-module.exports = handler;
+export default handler;

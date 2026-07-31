@@ -33,7 +33,7 @@ handler.command = handler.help = ['listafk'];
 handler.tags = ['main'];
 handler.group = true
 
-module.exports = handler;
+export default handler;
 
 function formatTime(ms) {
   let days = Math.floor(ms / (1000 * 60 * 60 * 24));

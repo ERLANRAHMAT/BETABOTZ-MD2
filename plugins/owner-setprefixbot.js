@@ -10,4 +10,4 @@ handler.command = /^(setprefix)$/i
 
 handler.rowner = true
 
-module.exports = handler
+export default handler

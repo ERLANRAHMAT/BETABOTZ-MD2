@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, command, args }) => {
   let text = args[0];
@@ -22,9 +22,10 @@ let handler = async (m, { conn, command, args }) => {
       },
       { quoted: m },
     );
-  } catch (e) {
-    throw eror
-  }
+  }  catch (e) {
+        console.log(e);
+        throw e;
+    }
 };
 
 handler.help = ['google'].map(v => v + ' <pencarian>');
@@ -32,4 +33,4 @@ handler.tags = ['internet'];
 handler.command = /^google$/i;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

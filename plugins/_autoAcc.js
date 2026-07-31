@@ -1,4 +1,4 @@
-exports.before = async function(m, { isBotAdmin }) {
+export const before = async function(m, { isBotAdmin }) {
     if (!m.isGroup) return;
     if ( !isBotAdmin) {
           // Jika bot bukan admin, tidak melakukan apa-apa

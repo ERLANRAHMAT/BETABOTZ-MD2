@@ -1,5 +1,5 @@
-// let moment = require('moment-timezone');
-// let schedule = require('node-schedule');
+// let moment = import 'moment-timezone';
+// let schedule = import 'node-schedule';
 
 // const timeZone = 'Asia/Jakarta';
 
@@ -26,7 +26,7 @@
 // handler.admin = true;
 // handler.group = true;
 
-// module.exports = handler;
+// export default handler;
 
 // const checkGroupsStatus = async (conn) => {
 //     const currentTime = moment().tz(timeZone).format('HH:mm');

@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { conn }) => {
 try {
   let res = await fetch(`https://api.betabotz.eu.org/api/random/motivasi?&apikey=${lann}`);
@@ -12,4 +12,4 @@ handler.help = ['motivasi']
 handler.tags = ['quotes']
 handler.command = /^(motivasi)$/i
 
-module.exports = handler
+export default handler

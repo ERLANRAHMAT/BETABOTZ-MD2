@@ -1,5 +1,4 @@
-const JavaScriptObfuscator = require('javascript-obfuscator')
-
+import JavaScriptObfuscator from 'javascript-obfuscator';
 let handler = async (m, { conn, text }) => {
 if (!text) throw `[!] Masukan textnya`
 let res = JavaScriptObfuscator.obfuscate(text)
@@ -9,4 +8,4 @@ handler.help = ['enc']
 handler.tags = ['tools']
 handler.command = /^enc$/i
 
-module.exports = handler
+export default handler

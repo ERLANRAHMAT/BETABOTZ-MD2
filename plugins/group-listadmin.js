@@ -12,7 +12,7 @@ handler.tags = ['group']
 handler.command = /^(adminlist|listadmin)$/i
 handler.group = true
 handler.register = false
-module.exports = handler
+export default handler
 
 const getAdmin = (participants) => {
         getAdminAll = []

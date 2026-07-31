@@ -85,7 +85,7 @@ handler.register = true
 handler.group = true
 handler.level = 10
 handler.rpg = true
-module.exports = handler
+export default handler
 
     function clockString(ms) {
         let h = Math.floor(ms / 3600000)

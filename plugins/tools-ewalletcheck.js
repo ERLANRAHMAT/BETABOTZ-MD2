@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, usedPrefix, command }) => {
     const ewalletList = ["gopay", "ovo", "shopeepay", "dana"];
@@ -48,8 +48,8 @@ let handler = async (m, { text, usedPrefix, command }) => {
 
         await m.reply(caption);
     } catch (e) {
-        console.error(e);
-        throw eror;
+      console.log(e);
+      throw e;
     }
 };
 
@@ -58,4 +58,4 @@ handler.tags = ['tools'];
 handler.command = /^(cekewallet|cekwallet|saldoewallet)$/i;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

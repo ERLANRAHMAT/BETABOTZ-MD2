@@ -12,4 +12,4 @@ handler.command = /^(totag|tag)$/i
 handler.admin = true
 handler.group = true
 
-module.exports = handler
+export default handler

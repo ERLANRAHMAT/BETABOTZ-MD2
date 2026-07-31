@@ -9,4 +9,4 @@ let handler = async (m, { conn }) => {
 }
 handler.command = /^tete$/i
 handler.limit = true
-module.exports = handler
+export default handler

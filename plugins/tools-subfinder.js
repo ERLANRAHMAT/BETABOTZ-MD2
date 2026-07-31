@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+import fetch from 'node-fetch';
 let handler = async (m, { text, usedPrefix, command }) => {
   if (!text) throw `Masukkan Domain!\n\n*Contoh:* botcahx.eu.org`;
   if (text.includes('https://') || text.includes('http://')) throw `Tolong masukkan tanpa domain *https/http!*. Contoh: botcahx.eu.org`;  
@@ -20,9 +20,10 @@ let handler = async (m, { text, usedPrefix, command }) => {
     .catch(error => {
       m.reply('Terjadi error saat mencari informasi Subdomain, silakan coba lagi nanti');
     });
-  } catch (error) {
-    m.reply('Terjadi error saat mencari informasi Subdomain, silakan coba lagi nanti');
-  }
+  } catch (e) {
+      console.log(e);
+      throw e;
+    }
 };
 
 handler.command = ['subdomainfinder', 'subfinder'];
@@ -30,4 +31,4 @@ handler.help = ['subdomainfinder', 'subfinder'];
 handler.tags = ['tools'];
 handler.premium = false;
 handler.limit = true;
-module.exports = handler;
+export default handler;

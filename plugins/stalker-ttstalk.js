@@ -1,5 +1,4 @@
-let fetch = require('node-fetch')
-
+import fetch from 'node-fetch';
 let handler = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `*Example:* ${usedPrefix + command} chenggu_4`;
     await m.reply(wait);  
@@ -21,8 +20,9 @@ let handler = async (m, { text, usedPrefix, command }) => {
                 },
                 { quoted: m },
             );
-    } catch (e) {     
-        throw `Error: ${eror}`
+    }  catch (e) {
+        console.log(e);
+        throw e;
     }
 }
 handler.help = ['ttstalk <username>']
@@ -30,4 +30,4 @@ handler.tags = ['stalk']
 handler.command = /^(ttstalk|tiktokstalk)$/i
 handler.limit = true
 
-module.exports = handler
+export default handler

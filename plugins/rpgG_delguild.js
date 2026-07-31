@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 const dbPath = './database.json'; // Path ke database file
 
 let handler = async (m, { conn, args }) => {
@@ -46,4 +46,4 @@ handler.tags = ['rpgG'];
 handler.command = /^(delguild)$/i;
 handler.owner = false;
 handler.rpg = true
-module.exports = handler;
+export default handler;

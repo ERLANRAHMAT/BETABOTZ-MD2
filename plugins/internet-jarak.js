@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 let handler = async (m, { 
  conn,
  text,
@@ -29,11 +29,12 @@ let handler = async (m, {
 			`*Rute:*\n${rute}`;
 
 		await conn.sendFile(m.chat, petaStatis, 'peta.png', message, m);
-	} catch (error) {
-		throw `🚩 *Jarak Tidak Ditemukan*`
-	}
+	}  catch (e) {
+        console.log(e);
+        throw e;
+    }
 }
 handler.command = handler.help = ['jarak']
 handler.tags = ['internet']
 handler.limit = true
-module.exports = handler
+export default handler

@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 const modes = {
   noob: { bonus: 10, time: 20000, money: 500 },
@@ -13,34 +13,49 @@ const modes = {
 };
 
 let handler = async (m, { conn, args, usedPrefix }) => {
-
-  conn.math = conn.math ? conn.math : {};
-  
-  const modeList = Object.keys(modes);
-  if (args.length < 1) {
-    throw `
+  try {
+    conn.math = conn.math ? conn.math : {};
+    
+    const modeList = Object.keys(modes);
+    if (args.length < 1) {
+      throw `
 Silakan pilih tingkat kesulitan.
 ${modeList.join(" | ")}
 
 Contoh penggunaan: ${usedPrefix}math medium
 `.trim();
-  }
+    }
 
-  let mode = args[0].toLowerCase();
-  if (!(mode in modes)) {
-    throw `Mode tidak ditemukan!\n${modeList.join(' | ')}`;
-  }
+    let mode = args[0].toLowerCase();
+    if (!(mode in modes)) {
+      throw `Mode tidak ditemukan!\n${modeList.join(' | ')}`;
+    }
 
-  let id = m.chat;
-  if (id in conn.math) {
-    return conn.reply(m.chat, 'Masih ada soal yang belum terjawab di chat ini.', conn.math[id][0]);
-  }
+    let id = m.chat;
+    if (id in conn.math) {
+      await conn.reply(m.chat, 'Masih ada soal yang belum terjawab di chat ini.', conn.math[id][0]);
+      return;
+    }
 
-  try {
-    const url = `https://api.betabotz.eu.org/api/game/math?apikey=${lann}`;
-    const res = await fetch(url);
-    const json = await res.json();
+    let json;
+    try {
+      const url = `https://api.betabotz.eu.org/api/game/math?apikey=${lann}`;
+      const res = await fetch(url);
+      json = await res.json();
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+
+    if (!Array.isArray(json)) {
+      throw new Error('Format data math tidak valid dari API.');
+    }
+
     const soalDitemukan = json.filter(q => q.level && q.level.toLowerCase() === mode);
+    if (soalDitemukan.length === 0) {
+      throw new Error('Soal untuk level tersebut tidak ditemukan.');
+    }
+
     const data = soalDitemukan[Math.floor(Math.random() * soalDitemukan.length)];
 
     if (!data || !data.soal || !data.jawaban || !data.jawabanGanda) {
@@ -91,8 +106,10 @@ ${options}
     ];
 
   } catch (e) {
-    console.error(e);
-    m.reply('Error ambil soal.');
+    if (e !== false) {
+      console.error(e);
+      throw e;
+    }
   }
 };
 
@@ -100,4 +117,4 @@ handler.help = ['math <mode>'];
 handler.tags = ['game'];
 handler.command = /^math/i;
 
-module.exports = handler;
+export default handler;

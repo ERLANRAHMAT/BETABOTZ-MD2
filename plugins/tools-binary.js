@@ -1,4 +1,4 @@
-let axios = require("axios");
+import axios from 'axios';
 
 let handler = async(m, { conn, text }) => {
 
@@ -26,4 +26,4 @@ handler.fail = null
 handler.exp = 0
 handler.limit = false
 
-module.exports = handler
+export default handler

@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
-const moment = require('moment'); // Menggunakan moment untuk membandingkan tanggal
+import fetch from 'node-fetch';
+import moment from 'moment'; // Menggunakan moment untuk membandingkan tanggal
 
 let handler = async (m, { text, usedPrefix, command }) => {
   if (!text) {
@@ -48,4 +48,4 @@ handler.help = ['hitungmundur'];
 handler.tags = ['tools'];
 handler.command = /^(hitungmundur)$/i;
 
-module.exports = handler;
+export default handler;

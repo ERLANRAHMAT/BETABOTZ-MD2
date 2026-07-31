@@ -87,7 +87,7 @@
 //   return !0
 // }
 // handler.exp = 0
-// module.exports = handler
+// export default handler
 
 // function random(arr) {
 //   return arr[Math.floor(Math.random() * arr.length)]

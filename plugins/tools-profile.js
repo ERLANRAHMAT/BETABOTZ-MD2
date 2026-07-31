@@ -1,6 +1,6 @@
-let PhoneNumber = require("awesome-phonenumber");
-let levelling = require("../lib/levelling");
-const { createHash } = require("crypto");
+import PhoneNumber from 'awesome-phonenumber';
+import levelling from '../lib/levelling.js';
+import { createHash } from 'crypto';
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
   let who = m.sender;
@@ -262,7 +262,7 @@ handler.help = ["profile", "profil [@user]"];
 handler.tags = ["info"];
 handler.command = /^profile?|profil$/i;
 
-module.exports = handler;
+export default handler;
 
 function msToDate(ms) {
   if (!ms || ms < 0) return "Permanent";

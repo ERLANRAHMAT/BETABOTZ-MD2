@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { text }) => {
 if (!text) throw `Masukan Username Di Website Api!`
   try {
@@ -15,4 +15,4 @@ handler.tags = ['main'];
 handler.private = true;
 handler.owner = true;
 handler.rowner = true;
-module.exports = handler;
+export default handler;

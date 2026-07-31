@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 const dbPath = './database.json';
 
 let handler = async (m, { conn }) => {
@@ -89,4 +89,4 @@ handler.help = ['attackguild'];
 handler.tags = ['rpgG'];
 handler.command = /^attackguild$/i;
 handler.rpg = true
-module.exports = handler;
+export default handler;

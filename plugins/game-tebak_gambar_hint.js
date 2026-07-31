@@ -9,4 +9,4 @@ handler.command = /^hint$/i
 
 handler.limit = true
 
-module.exports = handler
+export default handler

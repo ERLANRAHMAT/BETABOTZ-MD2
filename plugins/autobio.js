@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 before: async function(m) {
     // let setting = global.db.data.settings[conn.user.jid]
     let chat = global.db.data.chats[m.chat]

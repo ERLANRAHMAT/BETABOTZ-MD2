@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     before: async function (m) {
         this.automakan= this.automakan || {}
         let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? this.user.jid : m.sender
@@ -48,7 +48,7 @@ module.exports = {
 
 
 
-// module.exports = {
+// export default {
 //     before: async function (m) {
 //         this.automakan= this.automakan || {}
 //         let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? this.user.jid : m.sender

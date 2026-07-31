@@ -1,7 +1,7 @@
 // Thanks To Kasan
 
-let didyoumean = require("didyoumean");
-let similarity = require("similarity");
+import didyoumean from 'didyoumean';
+import similarity from 'similarity';
 
 let handler = (m) => m;
 
@@ -22,4 +22,4 @@ handler.before = function (m, { match, usedPrefix, text, args }) {
   }
 };
 
-module.exports = handler;
+export default handler;

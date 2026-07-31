@@ -1,4 +1,4 @@
-var fetch = require("node-fetch");
+import fetch from 'node-fetch';
 var handler = async (m, { conn, args, usedPrefix, command }) => {
 if (!args[0]) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://www.facebook.com/100084756252836/videos/3391018171153874/?idorvanity=2765173437119338&mibextid=rS40aB7S9Ucbxw6v`;
   try {
@@ -8,10 +8,8 @@ const get = await fetch(`https://api.betabotz.eu.org/api/download/fbdown?url=${u
 var js = await get.json()   
 conn.sendFile(m.chat, js.result[0]._url, 'fb.mp4', '', m);
   } catch (e) {
-    console.log(e);
-    if (m.sender) {
-      conn.reply(m.chat, `_*Terjadi kesalahan!*_`, m);
-    }
+      console.log(e);
+      throw e;
   }
 };
 handler.help = ['facebook'];
@@ -25,4 +23,4 @@ handler.admin = false;
 handler.botAdmin = false;
 handler.fail = null;
 handler.private = false;
-module.exports = handler;
+export default handler;

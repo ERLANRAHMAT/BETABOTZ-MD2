@@ -1,7 +1,9 @@
-let fs = require('fs')
-let path = require('path')
-let assert = require('assert')
-let { spawn } = require('child_process')
+const __dirname = import.meta.dirname;
+const __filename = import.meta.filename;
+import fs from 'fs'
+import path from 'path'
+import assert from 'assert'
+import { spawn } from 'child_process'
 
 const RESET = '\x1b[0m'
 const BRIGHT = '\x1b[1m'
@@ -10,7 +12,8 @@ const RED = '\x1b[31m'
 const GREEN = '\x1b[32m'
 const BLUE = '\x1b[34m'
 
-let folders = ['.', ...Object.keys(require('./package.json').directories)]
+import pkg from './package.json' with { type: 'json' };
+let folders = ['.', ...Object.keys(pkg.directories)]
 let files = []
 
 for (let folder of folders) {

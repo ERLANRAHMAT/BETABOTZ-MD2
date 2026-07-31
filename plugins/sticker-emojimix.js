@@ -1,9 +1,8 @@
-const fetch = require('node-fetch')
-let fs = require("fs")
-const { loadBaileys } = require('../baileys-loader.mjs')
+import fetch from 'node-fetch';
+import fs from 'fs';
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys
-const { sticker5 } = require('../lib/sticker')
-
+import { sticker5 } from '../lib/sticker.js';
 let handler = async (m, { conn, text, args }) => {
   if (!baileys) baileys = await loadBaileys();
   const { MessageType } = baileys;
@@ -15,7 +14,9 @@ let handler = async (m, { conn, text, args }) => {
     let stiker = await sticker5(res.result.results[0].media_formats.png_transparent.url, false, packname, author)
     await conn.sendFile(m.chat, stiker, 'sticker.webp', '', m)
   } catch (e) {
-    m.reply('*🚩 Emoji tidak support!*');
+    // m.reply('*🚩 Emoji tidak support!*');
+    console.log(e);
+    throw e;
   }
 }
 
@@ -23,4 +24,4 @@ handler.help = ['emojimix']
 handler.tags = ['sticker']
 handler.command = /^(emojimix)$/i
 handler.limit = true
-module.exports = handler
+export default handler

@@ -1,4 +1,4 @@
-let fs = require('fs')
+import fs from 'fs';
 let handler = async (m, { conn, text }) => {
     m.reply('Tunggu Sebentar, Proses Getting File creds.json')
     let sesi = await fs.readFileSync('./sessions/creds.json')
@@ -10,4 +10,4 @@ handler.command = /^(getsesi)$/i
 
 handler.rowner = true
 
-module.exports = handler
+export default handler

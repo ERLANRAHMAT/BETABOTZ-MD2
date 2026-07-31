@@ -6,9 +6,9 @@ donate nya Om: https://saweria.co/ShinaStumugi
 Please Don't Delete Wm*/
 //Hapus Teros Wm Ny 🤮🤮🤮🤮🤮
  
-const fetch = require('node-fetch');
-const search = require('yt-search');
-const axios = require('axios');
+import fetch from 'node-fetch';
+import search from 'yt-search';
+import axios from 'axios';
  
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     conn.betaai = conn.betaai || {};
@@ -123,5 +123,5 @@ handler.command = ['betaai'];
 handler.tags = ['ai'];
 handler.help = ['betaai [on/off]'];
  
-module.exports = handler;
+export default handler;
 //Hapus Teros Wm ny, Kek Bocah Aja🤮🤮🤮

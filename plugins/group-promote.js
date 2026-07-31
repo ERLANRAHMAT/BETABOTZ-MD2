@@ -38,7 +38,7 @@ let handler = async (m, { teks, conn, isOwner, isAdmin, args, command }) => {
   handler.admin = true;
   handler.fail = null;
   
-  module.exports = handler;
+  export default handler;
   
   //fix bagian ketika comamnd berjalan mreplay tidak mau terkirim
   //m.reply('Sukses promote @${usr.split('@')[0]}!', null, {

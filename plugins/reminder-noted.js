@@ -1,5 +1,4 @@
-const fetch = require('node-fetch')
-
+import fetch from 'node-fetch';
 const API_URL = "https://api.betabotz.eu.org";
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
@@ -147,4 +146,4 @@ handler.tags = ['group']
 handler.command = /^reminder$/i
 handler.group = true
 
-module.exports = handler
+export default handler

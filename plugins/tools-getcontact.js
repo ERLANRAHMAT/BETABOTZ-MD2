@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, usedPrefix, command }) => {
   if (!text) throw `*Example:* ${usedPrefix + command} 081324323543`;
@@ -28,12 +28,13 @@ let handler = async (m, { text, usedPrefix, command }) => {
             console.log(json);
             await m.reply("Nomor yang kamu input tidak ditemukan!");
         }
-    } catch (error) {
-        console.error(error);
+    } catch (e) {
+      console.log(e);
+      throw e;
     }
 };
 
 handler.command = handler.help = ["getcontact", "getco"];
 handler.tags = ['tools'];
 handler.limit = true;
-module.exports = handler;
+export default handler;

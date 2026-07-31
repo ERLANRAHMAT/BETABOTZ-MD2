@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn }) => {
   let ip = await fetch(`https://api.betabotz.eu.org/ip`).then(response => response.text());
@@ -10,4 +10,4 @@ handler.help = ['getip']
 handler.tags = ['inownerfo']
 handler.command = /^(getip)$/i;
 
-module.exports = handler;
+export default handler;

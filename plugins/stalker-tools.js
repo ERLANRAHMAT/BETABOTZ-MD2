@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, {
   conn,
@@ -35,55 +35,57 @@ let handler = async (m, {
     m.reply(wait);
     let [id, server] = text.split('|');
     try {
-      let ml = await fetch(`https://api.betabotz.eu.org/api/stalk/ml-v2?id=${id}&server=${server}&apikey=${lann}`).then(res => res.json());
-      if (!ml.status) throw 'Failed to fetch Mobile Legends data';
+      let ml = await fetch(
+        `https://api.betabotz.eu.org/api/stalk/ml-v2?id=${id}&server=${server}&apikey=${lann}`,
+      ).then((res) => res.json());
+      if (!ml.status) throw "Failed to fetch Mobile Legends data";
       let result = ml.result.data.stalk_info;
       let shopData = ml.result.data.categorized_shop;
       let caption = `*M O B I L E  L E G E N D S  (V2)*\n\n`;
       caption += `*User ID:* ${result.user_id}\n`;
       caption += `*Server:* ${result.region}\n`;
-      caption += `*Nickname:* ${result.stalk_data.split('\n')[2].split(': ')[1]}\n`;
-      caption += `*Country:* ${result.stalk_data.split('\n')[3].split(': ')[1]}\n\n`;
+      caption += `*Nickname:* ${result.stalk_data.split("\n")[2].split(": ")[1]}\n`;
+      caption += `*Country:* ${result.stalk_data.split("\n")[3].split(": ")[1]}\n\n`;
       caption += `*Diamond Packs:*\n`;
-      result.shop_data.diamond.goods.forEach(good => {
-        caption += `- ${good.title}: ${good.limits.reached ? 'Reached' : 'Available'}, Inventory: ${good.limits.inventory}\n`;
+      result.shop_data.diamond.goods.forEach((good) => {
+        caption += `- ${good.title}: ${good.limits.reached ? "Reached" : "Available"}, Inventory: ${good.limits.inventory}\n`;
       });
       caption += `\n*Event Packs:*\n`;
-      result.shop_data.event.goods.forEach(good => {
-        caption += `- ${good.title}: ${good.limits.reached ? 'Reached' : 'Available'}, Inventory: ${good.limits.inventory}\n`;
+      result.shop_data.event.goods.forEach((good) => {
+        caption += `- ${good.title}: ${good.limits.reached ? "Reached" : "Available"}, Inventory: ${good.limits.inventory}\n`;
       });
       caption += `\n*Weekly Pass:*\n`;
-      shopData.weeklyPass.items.forEach(item => {
-        caption += `- ${item.title}: ${item.limits.reached_limit ? 'Reached' : 'Available'}\n`;
+      shopData.weeklyPass.items.forEach((item) => {
+        caption += `- ${item.title}: ${item.limits.reached_limit ? "Reached" : "Available"}\n`;
       });
       caption += `\n*Diamond Packs (Categorized):*\n`;
-      shopData.diamondPacks.items.forEach(item => {
-        caption += `- ${item.title}: ${item.limits.reached_limit ? 'Reached' : 'Available'}\n`;
+      shopData.diamondPacks.items.forEach((item) => {
+        caption += `- ${item.title}: ${item.limits.reached_limit ? "Reached" : "Available"}\n`;
       });
       caption += `\n*First Charge Bonus:*\n`;
-      shopData.firstCharge.items.forEach(item => {
-        caption += `- ${item.title}: ${item.limits.reached_limit ? 'Reached' : 'Available'}\n`;
+      shopData.firstCharge.items.forEach((item) => {
+        caption += `- ${item.title}: ${item.limits.reached_limit ? "Reached" : "Available"}\n`;
       });
       caption += `\n*Special Offers:*\n`;
       if (shopData.specialOffers.items.length === 0) {
         caption += `- No special offers available\n`;
       } else {
-        shopData.specialOffers.items.forEach(item => {
-          caption += `- ${item.title}: ${item.limits.reached_limit ? 'Reached' : 'Available'}\n`;
+        shopData.specialOffers.items.forEach((item) => {
+          caption += `- ${item.title}: ${item.limits.reached_limit ? "Reached" : "Available"}\n`;
         });
       }
       caption += `\n*Other Items:*\n`;
       if (shopData.other.items.length === 0) {
         caption += `- No other items available\n`;
       } else {
-        shopData.other.items.forEach(item => {
-          caption += `- ${item.title}: ${item.limits.reached_limit ? 'Reached' : 'Available'}\n`;
+        shopData.other.items.forEach((item) => {
+          caption += `- ${item.title}: ${item.limits.reached_limit ? "Reached" : "Available"}\n`;
         });
       }
       await conn.reply(m.chat, caption, m);
     } catch (e) {
       console.log(e);
-      throw eror;
+      throw e;
     }
   }
   if (command == 'supersusstalk') {
@@ -219,4 +221,4 @@ handler.command = handler.help = ['ffstalk', 'mlstalk', 'mlstalk2', 'supersussta
 handler.tags = ['stalk'];
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

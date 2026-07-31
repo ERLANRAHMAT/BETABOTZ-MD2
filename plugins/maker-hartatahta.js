@@ -1,4 +1,4 @@
-let fs = require('fs')
+import fs from 'fs';
 let handler = async (m, { conn, text }) => {
   conn.hartatahta = conn.hartatahta ? conn.hartatahta : {}
   if (m.chat in conn.hartatahta) throw 'Masih ada yang sedang membuat\nTeks Harta Tahta\ndi chat ini... tunggu sampai selesai'
@@ -19,10 +19,13 @@ handler.tags = ['tools']
 handler.command = /^((harta)?tahta)$/i
 handler.limit = false
 
-module.exports = handler
+export default handler
 
-let { spawn } = require('child_process')
-let path = require('path')
+import { spawn } from 'child_process';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 let src = path.join(__dirname, '../src/')
 let tmp = path.join(__dirname, '../tmp/')
 let _font = path.join(src, 'font')

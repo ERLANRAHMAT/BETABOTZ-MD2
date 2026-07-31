@@ -1,7 +1,7 @@
-const similarity = require('similarity')
+import similarity from 'similarity';
 const threshold = 0.72
 
-module.exports = {
+export default {
     async before(m) {
         this.game = this.game ? this.game : {}
 

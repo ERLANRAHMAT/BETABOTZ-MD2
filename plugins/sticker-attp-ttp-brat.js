@@ -1,9 +1,8 @@
-let { 
+import { 
     sticker5 
-} = require('../lib/sticker')
-let fs = require('fs')
-let fetch = require('node-fetch')
-
+} from '../lib/sticker.js';
+import fs from 'fs';
+import fetch from 'node-fetch';
 let handler = async (m, {
     conn, 
     args, 
@@ -80,9 +79,9 @@ let handler = async (m, {
             await conn.sendVideoAsSticker(m.chat, res, m, { packname: packname, author: author })
         }
         
-    } catch (e) {
-        console.error('Error:', e)
-        await conn.sendFile(m.chat, error, 'error.webp', '', m)
+    }  catch (e) {
+        console.log(e);
+        throw e;
     }
 }
 
@@ -91,4 +90,4 @@ handler.tags = ['sticker']
 handler.limit = true
 handler.group = false
 
-module.exports = handler
+export default handler

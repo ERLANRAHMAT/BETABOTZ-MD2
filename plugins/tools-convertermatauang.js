@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, usedPrefix, command }) => {
   if (!text) throw `*Contoh:* ${usedPrefix + command} cny|to|idr|10000`;
@@ -33,13 +33,13 @@ let handler = async (m, { text, usedPrefix, command }) => {
 
     m.reply(msg);
   } catch (e) {
-    console.log(e);
-    throw 'Terjadi kesalahan saat mengonversi.';
-  }
+      console.log(e);
+      throw e;
+    }
 };
 
 handler.command = handler.help = ['matauang', 'convertuang', 'konversiuang'];
 handler.tags = ['tools'];
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

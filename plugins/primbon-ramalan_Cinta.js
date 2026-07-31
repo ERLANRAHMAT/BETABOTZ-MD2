@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Masukkan Nama dan Tanggal Lahir!\n\ncontoh: ${usedPrefix + command} dani,14,05,2006|dini,12,09,2008`;
@@ -22,8 +22,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             conn.reply(m.chat, `Maaf, terjadi kesalahan: ${json.message}`, m);
         }
     } catch (e) {
-    throw e
-        //throw `Internal server error!\n\nUlangi lagi perintah.`;
+        console.log(e);
+        throw e;
     }
 }
 
@@ -32,7 +32,7 @@ handler.tags = ['fun']
 handler.command = /^(ramalancinta)$/i
 handler.group = true
 
-module.exports = handler;
+export default handler;
 
 //danaputra133
 //di bantu erlan aka

@@ -1,5 +1,4 @@
-let fetch = require('node-fetch')
-
+import fetch from 'node-fetch';
 let handler = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `*Example:* ${usedPrefix + command} ERLANRAHMAT`   
     try {     
@@ -27,8 +26,9 @@ let handler = async (m, { text, usedPrefix, command }) => {
                  },
                  { quoted: m },
                );
-    } catch (e) {     
-        throw `Error: ${eror}`
+    }  catch (e) {
+        console.log(e);
+        throw e;
     }
 }
 handler.help = ['ghstalk <username>']
@@ -36,4 +36,4 @@ handler.tags = ['stalk']
 handler.command = /^(ghstalk|githubstalk)$/i
 handler.limit = true
 
-module.exports = handler
+export default handler

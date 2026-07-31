@@ -1,5 +1,5 @@
-let axios = require('axios');
-let cheerio = require('cheerio');
+import axios from 'axios';
+import { load } from 'cheerio';
 
 let handler = async (m, { conn, command, usedPrefix }) => {
     conn.sessionsMail = conn.sessionsMail || {};
@@ -29,8 +29,8 @@ let handler = async (m, { conn, command, usedPrefix }) => {
 
             m.reply(`✅ *Temp Mail Anda:*\n📩 *Email:* ${email}\n⏳ *Tunggu sekitar 5-10 menit sebelum cek.*`);
         } catch (e) {
-            console.error(e);
-            m.reply("❌ Terjadi kesalahan saat membuat email sementara!");
+            console.log(e);
+            throw e;
         }
     } else if (command === "cekmail" || command === "checkmail") {
         if (!conn.sessionsMail[m.sender]) {
@@ -57,8 +57,8 @@ let handler = async (m, { conn, command, usedPrefix }) => {
 
             m.reply(pesan);
         } catch (e) {
-            console.error(e);
-            m.reply("❌ Terjadi kesalahan saat mengecek email!");
+            console.log(e);
+            throw e;
         }
     }
 };
@@ -68,7 +68,7 @@ handler.tags = ['tools'];
 handler.help = ['tempmail', 'cekmail', 'checkmail'];
 handler.limit = true;
 
-module.exports = handler;
+export default handler;
 
 function extractText(html) {
     let $ = cheerio.load(html);

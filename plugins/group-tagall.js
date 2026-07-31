@@ -14,4 +14,4 @@ handler.command = /^(tagall)$/i
 handler.group = true
 handler.admin = true
 
-module.exports = handler
+export default handler

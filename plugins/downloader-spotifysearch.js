@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, conn, usedPrefix, command }) => {
   if (!text) throw `*🚩 Contoh:* ${usedPrefix + command} Lathi`;  
@@ -19,7 +19,8 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
                 mentions: [m.sender]
     }}, {})
   } catch (e) {
-    throw `🚩 *Gagal Memuat Data!*`;
+     console.log(e);
+     throw e;
   }
 };
 
@@ -29,4 +30,4 @@ handler.premium = false;
 handler.group = false;
 handler.limit = true
 
-module.exports = handler;
+export default handler;

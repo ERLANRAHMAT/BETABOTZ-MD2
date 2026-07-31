@@ -3,7 +3,7 @@
 * NANDA
 * JOIN SL COMMUNITY 
 */
-const { drawBoard } = require('../lib/ular_tangga.js');
+import { drawBoard } from '../lib/ular_tangga.js';
 
 const getRandom = function (array) {
 			return array[Math.floor(Math.random() * array.length)]
@@ -105,7 +105,7 @@ handler.before = async function (m, { conn, text, command }) {
 	await kocok(m, ut, conn) 
 	}
 
-module.exports = handler;
+export default handler;
 
 async function kocok(m, ut, conn) {
         if(!ut[m.chat]) return;

@@ -1,6 +1,5 @@
-const moment = require('moment-timezone')
-const PhoneNum = require('awesome-phonenumber')
-
+import moment from 'moment-timezone';
+import PhoneNum from 'awesome-phonenumber';
 let regionNames = new Intl.DisplayNames(['en'], {
     type: 'region'
 })
@@ -37,4 +36,4 @@ handler.help = ['wastalk']
 handler.tags = ['tools']
 handler.command = /^(wa|whatsapp)stalk$/i
 
-module.exports = handler
+export default handler

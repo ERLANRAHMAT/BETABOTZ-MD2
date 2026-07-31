@@ -1,6 +1,6 @@
-var { 
+import { 
 sticker5 
-} = require('../lib/sticker')
+} from '../lib/sticker.js';
 var handler = async (m, {
  conn, 
  command
@@ -33,12 +33,12 @@ var handler = async (m, {
             await conn.sendFile(m.chat, stiker, 'emror.webp', '', m)
         }
     } catch (e) {
-        console.log(e)
-        await conn.sendFile(m.chat, error, 'error.webp', '', m)
+      console.log(e);
+      throw e;
     }
 }
 
 handler.command = handler.help = ['dinokuning', 'patrick', 'spongebob', 'doge', 'manusialidi', 'sdino', 'spatrick', 'sspongebob', 'sdoge', 'smanusialidi']
 handler.tags = ['sticker']
 handler.limit = true
-module.exports = handler
+export default handler

@@ -9,6 +9,6 @@ handler.command = /^hemo$/i
 
 handler.limit = true
 
-module.exports = handler
+export default handler
 
 //danaputra133

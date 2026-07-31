@@ -1,9 +1,9 @@
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://youtu.be/4rDOsvzTicY?si=3Ps-SJyRGzMa83QT`;    
-   
-        if (!text) throw 'masukan link youtube';   
+   try {
+    if (!text) throw 'masukan link youtube';   
         m.reply(wait);      
         const response = await axios.get(`https://api.betabotz.eu.org/api/download/ytmp3?url=${text}&apikey=${lann}`);        
         const res = response.data.result;      
@@ -16,6 +16,11 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             fileName: `${title}.mp3`,
             caption: caption
         }, { quoted: m });
+   } catch (e) {
+      console.log(e);
+      throw e;
+   }
+        
 };
 handler.help = ['ytmp3'];
 handler.command = /^(ytmp3)$/i
@@ -29,5 +34,5 @@ handler.botAdmin = false;
 handler.fail = null;
 handler.private = false;
 
-module.exports = handler;
+export default handler;
 

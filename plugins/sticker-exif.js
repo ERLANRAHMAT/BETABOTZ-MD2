@@ -1,9 +1,6 @@
-var {
-	format
-} = require("util");
-var {
-	Image
-} = require("node-webpmux");
+import { format } from 'util';
+import WebP from 'node-webpmux';
+const { Image } = WebP;
 
 var handler = async (m) => {
 	if (!m.quoted) return m.reply('Tag stiker nya!')
@@ -15,4 +12,4 @@ var handler = async (m) => {
 };
 handler.command = handler.help = ['getexif'];
 handler.tags = ['sticker'];
-module.exports = handler;
+export default handler;

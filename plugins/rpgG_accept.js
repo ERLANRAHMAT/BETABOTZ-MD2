@@ -26,7 +26,7 @@ handler.help = ['guildaccept @user'];
 handler.tags = ['rpgG'];
 handler.command = /^(guildaccept)$/i;
 handler.rpg = true;
-module.exports = handler;
+export default handler;
 
 
 // Fungsi untuk mengecek apakah pengguna adalah pemilik guild

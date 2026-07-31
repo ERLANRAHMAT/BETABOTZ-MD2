@@ -1,11 +1,13 @@
 
-## Harap Dipahami Sebelum Instal
+## Harap Dipahami Sebelum Install
 
 ### Pembaruan:
 
 * Menggunakan **baileys versi terbaru** (original, bukan mod)
+* Menggunakan **ESM** (sebelum ny Cjs)
 * Support **pairing code only** sesuai ketentuan
 * Wajib menggunakan **panel dengan Node.js 22+** (sesuai ketentuan baileys terbaru)
+* Dapat menggunakan **Bun 1.3.1**
 * Fitur 90% implementasi dari **website API**
 * Penambahan output URL `express.js` agar bisa dijalankan di Render, dsb.
 * Informasi API: [WhatsApp](https://whatsapp.com/channel/0029VbCQLA43AzNYDInpyO2v)

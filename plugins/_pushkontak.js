@@ -1,4 +1,4 @@
-const { loadBaileys } = require('../baileys-loader.mjs')
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys    
 
 let handler = async (m, {
@@ -8,28 +8,30 @@ let handler = async (m, {
     text,
     command
 }) => {
-    if (!text && !m.quoted) return m.reply("Input text\nReply pesan");
-    
-    let get = await groupMetadata.participants.filter(v => v.phoneNumber.endsWith('.net')).map(v => v.phoneNumber);
-    let count = get.length;
-    let sentCount = 0;
-    m.reply(wait);
+    try {
+        if (!text && !m.quoted) return m.reply("Input text\nReply pesan");
+        
+        let get = await groupMetadata.participants.filter(v => v.phoneNumber.endsWith('.net')).map(v => v.phoneNumber);
+        let count = get.length;
+        let sentCount = 0;
+        m.reply(wait);
 
-    for (let i = 0; i < get.length; i++) {
-        setTimeout(async function() {
-            if (text) {
-                await conn.sendMessage(get[i], {
-                    text: text
-                });
-            } else if (m.quoted) {
-                await conn.copyNForward(get[i], m.getQuotedObj(), false);
-            } else if (text && m.quoted) {
-                await conn.sendMessage(get[i], {
-                    text: text + "\n" + m.quoted.text
-                });
-            }
+        for (let i = 0; i < get.length; i++) {
+            setTimeout(async function() {
+                try {
+                    if (text) {
+                        await conn.sendMessage(get[i], {
+                            text: text
+                        });
+                    } else if (m.quoted) {
+                        await conn.copyNForward(get[i], m.getQuotedObj(), false);
+                    } else if (text && m.quoted) {
+                        await conn.sendMessage(get[i], {
+                            text: text + "\n" + m.quoted.text
+                        });
+                    }
 
-            const vcard = `BEGIN:VCARD
+                    const vcard = `BEGIN:VCARD
 VERSION:3.0
 FN: ${nameowner}
 item.ORG: Contact
@@ -41,22 +43,29 @@ item3.ADR:;;Indonesia;;;;
 item3.X-ABADR:ac
 END:VCARD`;
 
-            const sentMsg = await conn.sendMessage(
-                get[i],
-                { 
-                    contacts: { 
-                        displayName: 'ID', 
-                        contacts: [{ vcard }] 
-                    }
-                }
-            );
+                    const sentMsg = await conn.sendMessage(
+                        get[i],
+                        { 
+                            contacts: { 
+                                displayName: 'ID', 
+                                contacts: [{ vcard }] 
+                            }
+                        }
+                    );
 
-            count--;
-            sentCount++;
-            if (count === 0) {
-                m.reply(`Berhasil Push Kontak:\nJumlah Pesan Terkirim: *${sentCount}*`);
-            }
-        }, i * 10000);
+                    count--;
+                    sentCount++;
+                    if (count === 0) {
+                        m.reply(`Berhasil Push Kontak:\nJumlah Pesan Terkirim: *${sentCount}*`);
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
+            }, i * 10000);
+        }
+    } catch (e) {
+        console.log(e);
+        throw e;
     }
 }
 
@@ -65,4 +74,4 @@ handler.tags = ['owner'];
 handler.owner = true;
 handler.group = true;
 
-module.exports = handler;   
+export default handler;

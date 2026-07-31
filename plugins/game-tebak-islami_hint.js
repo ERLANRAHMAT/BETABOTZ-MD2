@@ -10,4 +10,4 @@ let handler = async (m, { conn }) => {
 }
 handler.command = /^tsa/i
 handler.limit = true
-module.exports = handler
+export default handler

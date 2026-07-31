@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 const handler = async (m, { text, usedPrefix, command }) => {
   if (!text) {
     throw `Masukkan Domain/Sub Domain!\n\n*Contoh:* botcahx.eu.org`;
@@ -16,11 +16,12 @@ const handler = async (m, { text, usedPrefix, command }) => {
     const response = await fetch(`https://whoisjson.com/api/v1/whois?domain=${text}`, options);
     const data = await response.json();
     m.reply(JSON.stringify(data));
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (e) {
+            console.log(e);
+            throw e;
+    }
 };
 handler.command = ['whois2'];
 handler.tags = ['internet'];
 handler.premium = false;
-module.exports = handler;
+export default handler;

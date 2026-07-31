@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 let handler = async (m, { conn }) => {
   try {
     conn.reply(m.chat, wait, m)
@@ -6,7 +6,8 @@ let handler = async (m, { conn }) => {
     let json = await res.json();
       conn.sendFile(m.chat, json.result.url, 'anime_story.mp4', "*STORY ANIME*", m);
   } catch (e) {
-    throw `*Error:* ${eror}`;
+    console.log(e);
+    throw e;
   }
 };
 
@@ -14,4 +15,4 @@ handler.help = ['storyanime'];
 handler.tags = ['downloader'];
 handler.command = /^(storyanime)$/i;
 handler.limir = true 
-module.exports = handler;
+export default handler;

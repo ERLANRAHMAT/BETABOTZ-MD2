@@ -15,6 +15,6 @@ handler.command = /^(setppgc|setppgrup|setppgroup)$/i
 handler.group = true
 handler.admin = true
 handler.botAdmin = true
-module.exports = handler
+export default handler
 
 //jangan lupa install $ npm install @adiwajshing/baileys@Akkun3704/Baileys#profile-picture

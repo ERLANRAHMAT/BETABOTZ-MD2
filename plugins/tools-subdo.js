@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, usedPrefix, command }) => {
   if (command === 'checksub') {
@@ -12,23 +12,25 @@ let handler = async (m, { text, usedPrefix, command }) => {
     try {
       m.reply(wait);
       const checkData = await whois(subdomain, domain);
-      
+
       if (checkData?.result?.exists) {
         const record = checkData.result.record;
         let capt = `乂 *INFORMASI SUBDOMAIN*\n\n`;
         capt += `◦  Nama: ${record.name}\n`;
         capt += `◦  Tipe: ${record.type}\n`;
         capt += `◦  Content: ${record.content}\n`;
-        capt += `◦  Proxied: ${record.proxied ? 'Ya' : 'Tidak'}\n`;
+        capt += `◦  Proxied: ${record.proxied ? "Ya" : "Tidak"}\n`;
         capt += `◦  TTL: ${record.ttl}\n`;
         capt += `◦  Dibuat Pada: ${new Date(record.created_on).toLocaleString()}\n`;
         return m.reply(capt);
       } else {
-        return m.reply(`*Subdomain ${subdomain}.${domain} tersedia dan dapat digunakan!*`);
+        return m.reply(
+          `*Subdomain ${subdomain}.${domain} tersedia dan dapat digunakan!*`,
+        );
       }
-    } catch (error) {
-      console.error(error);
-      return m.reply('*Terjadi kesalahan!');
+    } catch (e) {
+      console.log(e);
+      throw e;
     }
   }
 
@@ -73,9 +75,9 @@ let handler = async (m, { text, usedPrefix, command }) => {
         const errmsg_ = response?.result?.errors?.[0]?.message || 'Terjadi kesalahan yang tidak diketahui.';
         m.reply(`*Gagal membuat subdomain!*\n\n*Error:* ${errmsg_}`);
       }
-    } catch (error) {
-      console.error(error);
-      m.reply('*Terjadi kesalahan!*');
+    } catch (e) {
+        console.log(e);
+        throw e;
     }
   }
 };
@@ -86,7 +88,7 @@ handler.tags = ['tools'];
 handler.premium = false;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;
 
 async function whois(subdomain, domain) {
   const url = `https://api.betabotz.eu.org/api/tools/whois-subdo?subdomain=${encodeURIComponent(subdomain)}&domain=${encodeURIComponent(domain)}&apikey=${lann}`;

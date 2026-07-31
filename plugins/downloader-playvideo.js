@@ -1,5 +1,5 @@
-let search = require("yt-search");
-let axios = require("axios");
+import search from 'yt-search';
+import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix }) => {
     if (!text) throw 'Enter Title / Link From YouTube!';
@@ -59,21 +59,22 @@ handler.tags = ['downloader'];
 handler.limit = true;
 handler.premium = false;
 
-module.exports = handler;
+export default handler;
 
 async function youtube(url) {
    try {
    const { data } = await axios.get("https://api.betabotz.eu.org/api/download/ytmp4?url="+url+"&apikey="+lann)
    return data;
    } catch (e) {
-   return e;
+   console.log(e);
+      throw e;
    }
 }
 
 //Jika mau pake module ytdl pake ini hilangin tag  /* */
-/*let ytdl = require('ytdl-core');
-let fs = require('fs');
-let ffmpeg = require('fluent-ffmpeg');
+/*let ytdl = import 'ytdl-core';
+import fs from 'fs';
+import ffmpeg from 'fluent-ffmpeg';
 let search = require ('yt-search');
 
 let handler = async (m, { conn, text }) => {
@@ -137,7 +138,7 @@ handler.tags = ['downloader'];
 handler.premium = false;
 handler.limit = false;
 
-module.exports = handler
+export default handler
 
 function formatViews(views) {
   if (views >= 1000000) {

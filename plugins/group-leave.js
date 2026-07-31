@@ -9,7 +9,7 @@ handler.tags = ['group']
 
 handler.owner = true
 
-module.exports = handler
+export default handler
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));

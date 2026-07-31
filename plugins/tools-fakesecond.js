@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
-const uploadImage = require('../lib/uploadImage.js');
+import fetch from 'node-fetch';
+import uploadImage from '../lib/uploadImage.js';
 
 async function handler(m, { conn, usedPrefix, command, args, text }) {
 	if (!text) return m.reply('kirim video/audio dengan caption .fakesecond <angka>');
@@ -33,4 +33,4 @@ handler.command = ['fakesecond'];
 handler.premium = false;
 handler.limit = false;
 
-module.exports = handler;
+export default handler;

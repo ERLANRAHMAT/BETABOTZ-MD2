@@ -1,5 +1,4 @@
-const fetch = require('node-fetch')
-
+import fetch from 'node-fetch';
 let handler = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `uhm.. cari apa?\n\ncontoh:\n${usedPrefix + command} mabar`    
     try {
@@ -9,10 +8,10 @@ let handler = async (m, { text, usedPrefix, command }) => {
         if (!data.result || data.result.length === 0) throw 'Group tidak ditemukan ¯\\_(ツ)_/¯'       
         const teks = data.result.map(group => group.title + '\n' + group.link).join('\n\n')
         m.reply(teks)      
-    } catch (error) {
-        console.error(error)
-        throw eror
-    }
+    } catch (e) {
+    console.log(e);
+    throw e;
+  }
 }
 
 handler.help = ['carigrup <pencarian>']
@@ -20,4 +19,4 @@ handler.tags = ['tools']
 handler.command = /^carig(ro?up|c)/i
 handler.limit = true
 
-module.exports = handler
+export default handler

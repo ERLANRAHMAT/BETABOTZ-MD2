@@ -1,4 +1,4 @@
-const similarity = require('similarity')
+import similarity from 'similarity';
 const threshold = 0.72
 let poin = 10000
 
@@ -34,4 +34,4 @@ handler.before = async function (m) {
 }
 
 handler.exp = 0
-module.exports = handler
+export default handler

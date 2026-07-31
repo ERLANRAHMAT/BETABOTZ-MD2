@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `*Contoh Penggunaan:*\n${usedPrefix + command} 172720204487`;
@@ -6,7 +6,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
     await m.reply(wait);
     
     try {
-        let res = await fetch(`https://api.betabotz.eu.org/api/tools/cekbillpln?id=${text}&apikey=${global.lann}`);
+        let res = await fetch(`https://api.betabotz.eu.org/api/tools/cekbillpln?id=${text}&apikey=${lann}`);
         let json = await res.json();
         
         if (json.status && json.result) {
@@ -24,20 +24,20 @@ let handler = async (m, { text, usedPrefix, command }) => {
 ▢ *Jumlah Tagihan:* ${r['Jumlah Tagihan'] || '-'}
 └──────────────
 `.trim();
-
             await m.reply(content);
         } else {
             throw '❌ Data tagihan tidak ditemukan atau ID pelanggan salah.';
         }
-    } catch (error) {
-        if (error !== false) {
-            console.log(error);
-            throw error;
+    } catch (e) {
+        if (e !== false) {
+            console.log(e);
+            throw e;
         }
     }
 };
 
-handler.command = handler.help = ['cekbillpln','tagihanpln','pln'];
+handler.command = handler.help = ['cekbillpln', 'tagihanpln', 'pln'];
 handler.tags = ['tools'];
 handler.limit = true;
-module.exports = handler;
+
+export default handler;
