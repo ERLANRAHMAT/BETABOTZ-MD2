@@ -1,26 +1,33 @@
 import fetch from 'node-fetch';
 
-let handler = async (m, {
- text, 
- usedPrefix, 
- command
- }) => {
-    if (!text) throw `*Example:* ${usedPrefix + command} 172720204487`
-    m.reply(wait)
+let handler = async (m, { text, usedPrefix, command }) => {
+    if (!text) throw `*Contoh Penggunaan:*\n${usedPrefix + command} 172720204487`;
+    
+    await m.reply(wait);
+    
     try {
-        let res = await (await fetch(`https://api.betabotz.eu.org/api/tools/cekbillpln?id=${text}&apikey=${lann}`)).json();
-        let content = `*T A G I H A N  P L N*\n\n`;
+        let res = await fetch(`https://api.betabotz.eu.org/api/tools/cekbillpln?id=${text}&apikey=${global.lann}`);
+        let json = await res.json();
+        
+        if (json.status && json.result) {
+            let r = json.result;
+            
+            let content = `
+┌─⊷ *TAGIHAN PLN*
+▢ *Nama:* ${r['Nama Pelanggan'] || '-'}
+▢ *ID Pelanggan:* ${r['Nomor ID Pelanggan'] || '-'}
+▢ *Tarif / Daya:* ${r['Tarif / Daya'] || '-'}
+▢ *Periode:* ${r['Periode'] || '-'}
+▢ *Stand Meter:* ${r['Stand Meter'] || '-'}
+▢ *Denda:* ${r['Denda'] || '-'}
+▢ *Biaya Admin:* ${r['Biaya Admin'] || '-'}
+▢ *Jumlah Tagihan:* ${r['Jumlah Tagihan'] || '-'}
+└──────────────
+`.trim();
 
-        if (res.status && res.result) {
-            content += `  ◦ *ID Pelanggan:* ${res.result.id_pelanggan}\n`;
-            content += `  ◦ *Nama:* ${res.result.nama_pelanggan}\n`;
-            content += `  ◦ *Jumlah Tagihan:* ${res.result.jumlah_tagihan}\n`;
-            content += `  ◦ *Periode:* ${res.result.periode}\n`;
-            content += `  ◦ *Stand Meter:* ${res.result.stand_meter}\n`;
-            content += `  ◦ *Tarif/Daya:* ${res.result.tarif_daya}\n`;
-            content += `  ◦ *Total Bulan:* ${res.result.total_bulan}\n`;
+            await m.reply(content);
         } else {
-            content += 'Data tagihan tidak ditemukan.';
+            throw '❌ Data tagihan tidak ditemukan atau ID pelanggan salah.';
         }
         await m.reply(content);
     } catch (e) {
