@@ -12,7 +12,7 @@ let handler = async (m, { conn }) => {
     console.log(e);
     throw e;
   }
-};
+}
 
 handler.tags = ['image', 'internet'];
 handler.help = ['wallpaper']; 
