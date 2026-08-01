@@ -15,7 +15,9 @@
         "start": "node index.js --autocleartmp",
         "test": "node test.js",
         "test2": "nodemon index.js --autocleartmp",
-        "startqr": "node index.js --qr"
+        "startqr": "node index.js --qr",
+        "pairing": "rm -rf sessions && node index.js --autocleartmp",
+        "pairingqr": "rm -rf sessions && node index.js --autocleartmp --qr"
     },
     "keywords": [
         "whatsapp-bot-md",
