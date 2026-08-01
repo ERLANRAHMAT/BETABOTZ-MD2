@@ -1,17 +1,18 @@
 import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+    if (!text) {
+        throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://vt.tiktok.com/ZSY8XguF2/`;
+    }
+     
+
+    if (!text.match(/tiktok|douyin/gi)) {
+        throw `URL Tidak Ditemukan!`;
+    }
+
     try {
         let capt, urlApi;
         
-        if (!text) {
-            throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://vt.tiktok.com/ZSY8XguF2/`;
-        }
-
-        if (!text.match(/tiktok|douyin/gi)) {
-            throw `URL Tidak Ditemukan!`;
-        }
-
         if (command === 'tiktok' || command === 'tt' || command === 'ttdl' || command === 'ttnowm' || command === 'tiktokdl' || command === 'tiktoknowm') {
             capt = `乂 *T I K T O K*`;
             urlApi = `https://api.betabotz.eu.org/api/download/tiktok?url=${text}&apikey=${lann}`;
@@ -40,7 +41,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     } catch (e) {
         if (e !== false) {
             console.error(e);
-            throw `🚩 Terjadi kesalahan, coba lagi nanti.`;
+            throw e;
         }
     }
 };
