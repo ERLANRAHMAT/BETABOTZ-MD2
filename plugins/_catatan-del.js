@@ -1,6 +1,5 @@
 let handler = async (m, { conn, command, usedPrefix, text }) => {
-  try {
-    let user = global.db.data.users[m.sender];
+  let user = global.db.data.users[m.sender];
     user.catatan = user.catatan || [];
 
     if (user.catatan.length === 0) return m.reply('Kamu belum punya catatan!');
@@ -12,6 +11,8 @@ let handler = async (m, { conn, command, usedPrefix, text }) => {
       txt += `\nPenggunaan: ${usedPrefix}hapuscatatan 1`;
       return m.reply(txt);
     }
+  try {
+    
     let n = Number(text.split('|')[0]) - 1;
     if (isNaN(n) || n < 0 || n >= user.catatan.length) {
       return m.reply('❌ Catatan tidak ditemukan!');

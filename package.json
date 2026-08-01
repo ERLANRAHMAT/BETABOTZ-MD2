@@ -14,7 +14,9 @@
         "preinstall": "node script/node/check-version.js",
         "start": "node index.js --autocleartmp",
         "test": "node test.js",
-        "test2": "nodemon index.js --autocleartmp"
+        "test2": "nodemon index.js --autocleartmp",
+        "pairing": "rm -rf sessions && node index.js --autocleartmp",
+        "pairingqr": "rm -rf sessions && node index.js --autocleartmp --qr"
     },
     "keywords": [
         "whatsapp-bot-md",

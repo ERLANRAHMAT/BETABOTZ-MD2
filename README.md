@@ -22,6 +22,7 @@
 * Kamu **wajib mengisi ApiKey** agar bot berfungsi dengan baik.
 * **Tidak disarankan menginstal** di Termux atau panel tanpa `express`, `ffmpeg`, `imagemagick`, dan `webp`.
 * Bot ini menggunakan 80% fitur dari [`RestApi`](https://api.betabotz.eu.org) sebagai media downloader dan fitur lainnya.
+* Untuk **PANEL** minimum CPU 75 untuk dapat pairing.
 
 ---
 
