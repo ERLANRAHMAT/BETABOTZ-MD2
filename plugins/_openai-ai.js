@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+       if (!text) throw `*Example:* ${usedPrefix + command} hai`;
     try {
-        if (!text) throw `*Example:* ${usedPrefix + command} hai`;
+     
         
         conn.beta = conn.beta ? conn.beta : {};
         if (!conn.beta[m.sender]) {

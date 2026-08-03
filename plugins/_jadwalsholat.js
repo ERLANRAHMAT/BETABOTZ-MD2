@@ -17,9 +17,9 @@ function getPrayerTimes(jsonData) {
 }
 
 let handler = async (m, { text, usedPrefix, command }) => {
+     if (!text) throw `Gunakan contoh: ${usedPrefix}${command} semarang`;
     try {
-        if (!text) throw `Gunakan contoh: ${usedPrefix}${command} semarang`;
-
+       
         const res = await (await fetch(`https://api.betabotz.eu.org/api/tools/jadwalshalat?kota=${text}&apikey=${global.lann}`)).json();
         
         if (!res.status || res.result.code !== 200) {
