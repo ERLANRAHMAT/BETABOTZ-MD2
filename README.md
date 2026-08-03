@@ -67,10 +67,9 @@
 ---
 **Informasi Pembaruan:**  
 ----  
-- ✅ **Update  Lid resolver **  Penanganan lid jadi terbaru
 - ✅ **Update  Lid resolver**  Penanganan lid jadi terbaru
+- ✅ **Update  ESM**  Menggunakan ESM 
 - ✅ **Menggunakan Baileys Latest**  [Baileys](https://github.com/WhiskeySockets/Baileys)
-- ✅ **Delete QR Code** Jadi Alternatif Nya Memakai Pairing Code
 - ✅ **Wajib Menggunakan Node.js 22+**
 ---
 
@@ -140,6 +139,24 @@ cd BETABOTZ-MD2
 npm install
 npm start
 ```
+---
+
+## Command Baru ketika Startup
+### Jalankan (Pairing Code):
+```bash
+npm start
+```
+- Running node index.js --autocleartmp
+
+```bash
+npm run pairing
+```
+- Running khusus langsung pairing dengan kode
+
+```bash
+npm run pairingqr
+```
+- Running khusus langsung pairing dengan Qr
 ---
 
 ## Website ANIQU-task
