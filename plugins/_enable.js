@@ -416,8 +416,10 @@ ${usedPrefix}disable welcome
 *${type}* berhasil di *${isEnable ? 'nyala' : 'mati'}kan* ${isAll ? 'untuk bot ini' : isUser ? '' : 'untuk chat ini'}
 `.trim());
   } catch (e) {
+    if (e !== false) {
     console.log(e);
     throw e;
+    }
   }
 }
 handler.help = ['en', 'dis'].map(v => v + 'able <option>')
