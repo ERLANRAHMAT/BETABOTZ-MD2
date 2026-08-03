@@ -1,6 +1,6 @@
 {
     "name": "BETABOTZ-MD2",
-    "version": "2.434.124",
+    "version": "2.434.124-EOS",
     "description": "Lightweight WhatsApp Bot",
     "depecrated": false,
     "main": "index.js",
