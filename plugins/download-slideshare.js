@@ -1,13 +1,13 @@
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    try {
-        if (!text) throw `*Contoh:*\n${usedPrefix + command} https://www.slideshare.net/slideshow/advanced-machine-learning-introduction-to-machine-learning/273225055`;
+      if (!text) throw `*Contoh:*\n${usedPrefix + command} https://www.slideshare.net/slideshow/advanced-machine-learning-introduction-to-machine-learning/273225055`;
 
         if (!text.includes('slideshare.net')) throw 'Link harus dari Slideshare!';
 
+       
+    try {
         m.reply(wait);
-
         let res = await (await fetch(`https://api.betabotz.eu.org/api/download/slideshare?url=${encodeURIComponent(text)}&apikey=${lann}`)).json();
 
         if (!res.status || !res.result?.success || !res.result.download) {

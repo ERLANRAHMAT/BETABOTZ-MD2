@@ -1,12 +1,13 @@
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    try {
-        if (!text) throw `*Contoh:*\n${usedPrefix + command} https://www.scribd.com/document/806367834/Pengembangan-Meta-AI`;
+       if (!text) throw `*Contoh:*\n${usedPrefix + command} https://www.scribd.com/document/806367834/Pengembangan-Meta-AI`;
 
         if (!text.includes('scribd.com')) throw 'Link harus dari Scribd!';
 
-        m.reply(wait);
+      
+    try {
+       m.reply(wait)
 
         let res = await (await fetch(`https://api.betabotz.eu.org/api/download/scribd?url=${encodeURIComponent(text)}&apikey=${lann}`)).json();
 
@@ -24,10 +25,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         }, { quoted: m });
 
     } catch (e) {
-        if (e !== false) {
             console.log(e);
             throw eror;
-        }
     }
 };
 

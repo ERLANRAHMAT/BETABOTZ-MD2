@@ -1,8 +1,9 @@
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    try {
         if (!text) throw `*🚩 Example:* ${usedPrefix}${command} https://krakenfiles.com/view/HG9WxZaL08/file.html`
+    try {
+    
         
         let data = await (await fetch(`https://api.betabotz.eu.org/api/download/kraken?url=${text}&apikey=${lann}`)).json()
         

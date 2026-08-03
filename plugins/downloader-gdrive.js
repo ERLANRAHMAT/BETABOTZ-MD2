@@ -1,9 +1,8 @@
 import fetch from 'node-fetch';
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+      if (!text) throw `*Example:* ${usedPrefix + command} https://drive.google.com/file/d/1thDYWcS5p5FFhzTpTev7RUv0VFnNQyZ4/view?usp=drivesdk`
     try {
-        if (!text) throw `*Example:* ${usedPrefix + command} https://drive.google.com/file/d/1thDYWcS5p5FFhzTpTev7RUv0VFnNQyZ4/view?usp=drivesdk`
-        m.reply(wait)   
-        
+        m.reply(wait);   
         let json = await fetch(`https://api.betabotz.eu.org/api/download/gdrive?url=${text}&apikey=${lann}`).then(res => res.json());                  
         conn.sendMessage(m.chat, { document: { url: json.result.data }, fileName: json.result.fileName, mimetype: json.result.mimetype }, { quoted: m })
     } catch (e) {     

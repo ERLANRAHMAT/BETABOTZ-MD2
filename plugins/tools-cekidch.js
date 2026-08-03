@@ -1,5 +1,4 @@
 let handler = async (m, { conn, text, command, usedPrefix }) => {
-  try {
     if (!text) throw `Silakan masukkan link channel WhatsApp.\nContoh:\n${usedPrefix + command} https://whatsapp.com/channel/0029VbAI9JCBKfi5qXq9yJ01`
   try {
     let channelId;
@@ -34,9 +33,6 @@ let handler = async (m, { conn, text, command, usedPrefix }) => {
     } catch (err) {
       return m.reply(`*Error*: ID channel tidak valid atau channel tidak ditemukan.\n\nID yang digunakan: ${channelId}`);
     }
-  } catch (err) {
-    return m.reply(`*Error*: ${err.message || 'Terjadi kesalahan saat memeriksa channel'}`);
-  }
   } catch (e) {
     console.log(e);
     throw e;

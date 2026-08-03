@@ -2,8 +2,8 @@ import yts from 'yt-search';
 import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+    if (!text) throw `[❗] *Penggunaan:* ${usedPrefix + command} <search>`;   
     try {
-        if (!text) throw `[❗] *Penggunaan:* ${usedPrefix + command} <search>`;   
         conn.sendMessage(m.chat, { react: { text: '🎧', key: m.key }})
         let anu = (await yts(text)).all
         let video = anu.filter(v => v.type === 'video') 

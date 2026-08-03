@@ -1,7 +1,7 @@
 import youtube from 'yt-search';
 let handler = async (m, { conn, text }) => {
+  if (!text) throw "Url nya mana?";
   try {
-    if (!text) throw "Url nya mana?";
     m.reply("_Proses..._");
     var search = await youtube(text);
     var convert = search.videos[0];

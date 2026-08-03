@@ -4,8 +4,8 @@ import path from 'path';
 const user = (a) => '@' + a.split('@')[0];
 
 function handler(m, { groupMetadata, command, conn, text, usedPrefix }) {
-  try {
     if (!text) throw `Contoh penggunaan:\n.top *teks*`;
+  try {
 
   const ps = groupMetadata.participants.map((v) => v.id);
 

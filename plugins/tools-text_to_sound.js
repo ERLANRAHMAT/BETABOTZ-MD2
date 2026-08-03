@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+  if (!text) throw `Masukan Text!\n\ncontoh:\n${usedPrefix + command} texttorusia Halo, apa kabar?`;    
   try {
-    if (!text) throw `Masukan Text!\n\ncontoh:\n${usedPrefix + command} YHAHAH WAHYU`;    
         m.reply(wait);      
         if (command == 'texttorusia' )  {
         const response = await axios.get(`https://api.betabotz.eu.org/api/sound/texttosound?text1=${text}&lang=ru-RU&apikey=${lann}`);        

@@ -1,7 +1,7 @@
 import yts from 'yt-search';
 let handler = async (m, { text }) => {
-  try {
     if (!text) throw "Cari apa?";
+  try {
     let results = await yts(text);
     let teks = results.all
       .map((v) => {

@@ -7,7 +7,7 @@ async function handler(m, { conn, usedPrefix, command, text }) {
     const q = m.quoted ? m.quoted : m;
     const mime = (q.msg || q).mimetype || q.mediaType || '';
     if (/^image/.test(mime) && !/webp/.test(mime)) {
-      if (!text) throw `Masukan Text!\n\ncontoh:\n${usedPrefix + command} YHAHAH WAHYU`;
+      if (!text) throw `Masukan Text!\n\ncontoh:\n${usedPrefix + command} 2`;
       m.reply(`Tunggu ya kak :) *semakin tinggi scale yang di input semakin lama proses nya.*`);
       const img = await q.download();
       const out = await uploadImage(img);

@@ -3,7 +3,6 @@ import axios from 'axios';
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://youtu.be/4rDOsvzTicY?si=3Ps-SJyRGzMa83QT`;    
   try {
-    if (!text) throw "masukan link youtube";
     m.reply(wait);
     const response = await axios.get(
       `https://api.betabotz.eu.org/api/download/ytmp4?url=${text}&apikey=${lann}`,

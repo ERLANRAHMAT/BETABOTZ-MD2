@@ -1,9 +1,8 @@
 import moment from 'moment-timezone';
 
 let handler = async (m, { text, conn, usedPrefix, command }) => {
-    try {
-        if (!text) {
-            return m.reply(`╭═══❯ *DREAM EXPLORER* ❮═══
+    if (!text) {
+      return m.reply(`╭═══❯ *DREAM EXPLORER* ❮═══
 │
 │ 🌙 Jelajahi Dunia Mimpimu!
 │ 
@@ -15,7 +14,8 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
 │ ${usedPrefix}${command} Laut
 │
 ╰═════════════════════`);
-        }
+    }
+    try {
 
         await m.reply("🌙 *Memasuki alam mimpi...*");
         await new Promise(resolve => setTimeout(resolve, 1500));
