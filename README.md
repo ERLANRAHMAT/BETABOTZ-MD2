@@ -19,7 +19,7 @@
 | Ikon | Link                               | Deskripsi Singkat                                                                                                |
 | :--: | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 |  ▶️  | **https://www.youtube.com/playlist?list=PLuQT2lE0wOYTMf1X4OqlVFeavLsLKa-0t** | **Video tutorial** |
-|  ▶️  | **https://www.youtube.com/playlist?list=PLuQT2lE0wOYTMf1X4OqlVFeavLsLKa-0t** | **Penjelasan Update** |
+|  ▶️  | **https://www.youtube.com/playlist?list=PLfTmZufvRy8Y** | **Penjelasan Update** |
 
 ---
 
