@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     let quoteText = text || (m.quoted ? m.quoted.text : '');
@@ -13,9 +13,9 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             responseType: 'arraybuffer'
         });
         conn.sendFile(m.chat, response.data,  m);
-    } catch (error) {
-        console.error('Error pada fitur iqc:', error);
-        m.reply('Gagal membuat gambar quote. Silakan coba lagi nanti.');
+    } catch (e) {
+      console.log(e);
+      throw e;
     }
 };
 
@@ -23,4 +23,4 @@ handler.help = ['iqc <teks>'];
 handler.tags = ['maker', 'tools'];
 handler.command = /^(iqc|imagequote)$/i;
 
-module.exports = handler;
+export default handler;

@@ -1,15 +1,25 @@
 
-## Harap Dipahami Sebelum Instal
+## Harap Dipahami Sebelum Install
 
 ### Pembaruan:
 
 * Menggunakan **baileys versi terbaru** (original, bukan mod)
+* Menggunakan **ESM** (sebelum ny Cjs)
 * Support **pairing code only** sesuai ketentuan
 * Wajib menggunakan **panel dengan Node.js 22+** (sesuai ketentuan baileys terbaru)
+* Dapat menggunakan **Bun 1.3.1**
 * Fitur 90% implementasi dari **website API**
 * Penambahan output URL `express.js` agar bisa dijalankan di Render, dsb.
 * Informasi API: [WhatsApp](https://whatsapp.com/channel/0029VbCQLA43AzNYDInpyO2v)
 * Informasi Bot: [WhatsApp](https://whatsapp.com/channel/0029VaiIG3UJpe8n3Y2MZ51z)
+
+---
+## ✨ Link Seputar Bot
+
+| Ikon | Link                               | Deskripsi Singkat                                                                                                |
+| :--: | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+|  ▶️  | **https://www.youtube.com/playlist?list=PLuQT2lE0wOYTMf1X4OqlVFeavLsLKa-0t** | **Video tutorial** |
+|  ▶️  | **https://www.youtube.com/playlist?list=PLfTmZufvRy8Y** | **Penjelasan Update** |
 
 ---
 
@@ -20,6 +30,7 @@
 * Kamu **wajib mengisi ApiKey** agar bot berfungsi dengan baik.
 * **Tidak disarankan menginstal** di Termux atau panel tanpa `express`, `ffmpeg`, `imagemagick`, dan `webp`.
 * Bot ini menggunakan 80% fitur dari [`RestApi`](https://api.betabotz.eu.org) sebagai media downloader dan fitur lainnya.
+* Untuk **PANEL** minimum CPU 75 untuk dapat pairing.
 
 ---
 
@@ -64,10 +75,9 @@
 ---
 **Informasi Pembaruan:**  
 ----  
-- ✅ **Update  Lid resolver **  Penanganan lid jadi terbaru
 - ✅ **Update  Lid resolver**  Penanganan lid jadi terbaru
+- ✅ **Update  ESM**  Menggunakan ESM 
 - ✅ **Menggunakan Baileys Latest**  [Baileys](https://github.com/WhiskeySockets/Baileys)
-- ✅ **Delete QR Code** Jadi Alternatif Nya Memakai Pairing Code
 - ✅ **Wajib Menggunakan Node.js 22+**
 ---
 
@@ -137,6 +147,24 @@ cd BETABOTZ-MD2
 npm install
 npm start
 ```
+---
+
+## Command Baru ketika Startup
+### Jalankan (Pairing Code):
+```bash
+npm start
+```
+- Running node index.js --autocleartmp
+
+```bash
+npm run pairing
+```
+- Running khusus langsung pairing dengan kode
+
+```bash
+npm run pairingqr
+```
+- Running khusus langsung pairing dengan Qr
 ---
 
 ## Website ANIQU-task

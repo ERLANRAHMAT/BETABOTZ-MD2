@@ -14,4 +14,4 @@ handler.help = ['guildlist'];
 handler.tags = ['rpgG'];
 handler.command = /^(guildlist)$/i;
 handler.rpg = true;
-module.exports = handler;
+export default handler;

@@ -1,5 +1,6 @@
 let handler = async(m, {conn, command, usedPrefix, text}) => {
-  let fail = 'format salah, example: ' +usedPrefix+command+ ' Bot|1. Masak'
+  try {
+    let fail = 'format salah, example: ' +usedPrefix+command+ ' Bot|1. Masak'
   global.db.data.users[m.sender].catatan = global.db.data.users[m.sender].catatan || []
   let catatan = global.db.data.users[m.sender].catatan
   let split = text.split('|')
@@ -17,10 +18,14 @@ let handler = async(m, {conn, command, usedPrefix, text}) => {
       mentionedJid: conn.parseMention(text)
     }
   })
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
 }
 
 handler.help = ['buatcatatan <title|isi>']
 handler.tags = ['internet']
 handler.command = /^buatcatatan$/i
 
-module.exports = handler
+export default handler

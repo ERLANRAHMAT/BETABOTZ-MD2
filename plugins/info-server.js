@@ -1,5 +1,5 @@
-const os = require('os');
-const fetch = require('node-fetch');
+import os from 'os';
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn }) => {
   try {
@@ -41,7 +41,7 @@ handler.command = handler.help = ['server'];
 handler.tags = ['info'];
 handler.owner = true;
 
-module.exports = handler;
+export default handler;
 
 function deleteMessage() {
   //chaunima😁

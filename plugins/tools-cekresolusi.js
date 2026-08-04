@@ -1,7 +1,6 @@
-const jimp = require("jimp")
-const uploadImage = require("../lib/uploadImage.js")
-const uploadFile = require("../lib/uploadFile.js")
-
+import jimp from 'jimp';
+import uploadImage from '../lib/uploadImage.js';
+import uploadFile from '../lib/uploadFile.js';
 let handler = async (m, { conn, usedPrefix }) => {
 	
 let q = m.quoted ? m.quoted : m
@@ -27,4 +26,4 @@ handler.help = ['cekresolution *<foto>*', 'cekreso *<foto>*']
 handler.tags = ['tools']
 handler.command = /^(cekreso(lution)?)$/i
 
-module.exports = handler
+export default handler

@@ -1,7 +1,7 @@
-const { loadBaileys } = require('../baileys-loader.mjs')
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys
-let fetch = require('node-fetch')
-const axios = require('axios');
+import fetch from 'node-fetch';
+import axios from 'axios';
 
 
 let handler = m => m
@@ -37,9 +37,10 @@ async function _tiktok(link, m) {
         } else {
             conn.reply(m.chat, "limit kamu habis!", m);
         }
-    } catch (error) {
-        console.error(error);
-    }
+    } catch (e) {
+    	console.log(e);
+    	throw e;
+  }
 }
 
 // DOWNLOADER REDNOTE
@@ -85,18 +86,18 @@ async function _xiaohongshu(url, m) {
                             { quoted: m }
                         );
                     } catch (e) {
-                        console.error(`Failed to send image: ${imageUrl}`, e);
-                        conn.reply(m.chat, `Gagal mengirim gambar: ${imageUrl}`, m);
-                    }
+    					console.log(e);
+    					throw e;
+  					}
                 }
             }
         } else {
             conn.reply(m.chat, "Limit kamu habis!", m);
         }
     } catch (e) {
-        console.error(`Error in _xiaohongshu: ${e.message}`, e);
-        conn.reply(m.chat, `Gagal mengambil data: ${e.message}`, m);
-    }
+    	console.log(e);
+    	throw e;
+  }
 }
 
 // DOWNLOADER TIKTOD
@@ -123,9 +124,10 @@ async function downloadTikTok(link, m) {
 			conn.reply(m.chat, 'limit kamu habis!', m);
 		}
 		return;
-	} catch (error) {
-		console.error(error);
-	}
+	} catch (e) {
+    console.log(e);
+    throw e;
+  	}
 }
 
 // DOWNLOADER DOUYIN
@@ -151,97 +153,11 @@ async function downloadDouyin(link, m) {
 			conn.reply(m.chat, 'limit kamu habis!', m);
 		}
 		return;
-	} catch (error) {
-		console.error(error);
+	} catch (e) {
+		console.log(e);
+		throw e;
 	}
 }
-
-//terabox downloader
-// async function downloadtera(link, m) {
-// 	try {
-//         if (global.db.data.users[m.sender].limit > 0) {
-// 	    const response = await fetch(`https://api.botcahx.eu.org/api/download/terabox?url=${link}&apikey=${btc}`);        
-// 		 if (!response.result || response.result.length === 0) {
-//             throw 'No files found in the response'
-//         }
-
-//         let msg = `乂 *T E R A B O X   D O W N L O A D E R*\n\n`
-//         msg += `Found ${response.result.length} file(s):\n\n`
-
-//         for (let file of response.result) {
-//             if (!file.files || !file.files[0]) continue
-//             let fdata = file.files[0]
-//             msg += ` ◦ *Name :* ${file.name}\n`
-//             msg += ` ◦ *Size :* ${formatSize(fdata.size)}\n`
-//             msg += ` ◦ *Created :* ${formatDate(file.created)}\n\n`
-//         }
-
-//         await conn.sendMessage(m.chat, {
-//             text: msg,
-//             contextInfo: {
-//                 externalAdReply: {
-//                     title: 'Terabox Downloader',
-//                     body: `Processing ${data.result.length} file(s)`,
-//                     thumbnailUrl: 'https://pomf2.lain.la/f/ihnv9wct.jpg',
-//                     sourceUrl: null,
-//                     mediaType: 1,
-//                     renderLargerThumbnail: true
-//                 }
-//             }
-//         })
-
-//         const total = data.result.length
-//         for (let i = 0; i < data.result.length; i++) {
-//             const file = data.result[i]
-//             if (!file.files || !file.files[0]) continue
-
-//             let fdata = file.files[0]
-//                 let response = await fetch(fdata.url)
-//                 let buffer = await response.buffer()
-
-//                 let queue = `*Antrian:* ${i + 1}-${total}\n`               
-//                 await conn.sendFile(m.sender, buffer, file.name, queue, m)
-
-//                 if (i === data.result.length - 1) {
-//                     await conn.reply(m.sender, '*DONE*', m)
-//                 }
-
-//                 if (i < data.result.length - 1) {
-//                     await new Promise(resolve => setTimeout(resolve, 5000))
-//                 }
-// 			}
-
-// function formatSize(size) {
-//     const units = ['B', 'KB', 'MB', 'GB', 'TB']
-//     let i = 0
-//     while (size >= 1024 && i < units.length - 1) {
-//         size /= 1024
-//         i++
-//     }
-//     return `${size.toFixed(2)} ${units[i]}`
-// }
-
-// function formatDate(dateString) {
-//     const date = new Date(dateString)
-//     return date.toLocaleDateString('en-US', {
-//         year: 'numeric',
-//         month: 'long',
-//         day: 'numeric',
-//         hour: '2-digit',
-//         minute: '2-digit'
-//     })
-// }
-// 		}
-
-//     else {
-//         conn.reply(m.chat, 'limit kamu habis!', m);
-//     } 
-// 		return;
-// 	} catch (error) {
-// 		console.error(error);
-// 	}
-// }
-
 
 //pinterest downloader
 async function downloadpin(link, m) {
@@ -268,8 +184,9 @@ async function downloadpin(link, m) {
 			conn.reply(m.chat, 'limit kamu habis!', m);
 		}
 		return;
-	} catch (error) {
-		console.error(error);
+	} catch (e) {
+		console.log(e);
+		throw e;
 	}
 }
 
@@ -299,9 +216,10 @@ async function downloadyt(link, m) {
 			conn.reply(m.chat, 'limit kamu habis!', m);
 		}
 		return;
-	} catch (error) {
-		console.error(error);
-	}
+	} catch (e) {
+    	console.log(e);
+    	throw e;
+  	}
 }
 
 // DOWNLOADER INSTAGRAM
@@ -477,14 +395,9 @@ async function downloadInstagram(link, m) {
 			await _sleep(3000)
 		}
 
-	} catch (err) {
-		console.error(err)
-
-		m.reply(
-			typeof err === 'string'
-				? err
-				: err.message || 'Terjadi kesalahan'
-		)
+	} catch (e) {
+		console.error(e);
+		throw e;
 	}
 }
 
@@ -500,9 +413,10 @@ async function downloadFacebook(link, m) {
 		else {
 			conn.reply(m.chat, 'limit kamu habis!', m);
 		}
-	} catch (error) {
-		console.error(error);
-	}
+	} catch (e) {
+    	console.log(e);
+    	throw e;
+  	}
 }
 // DOWNLOADER SPOTIFY
 async function _spotify(link, m) {
@@ -539,9 +453,10 @@ async function _spotify(link, m) {
 				m);
 		}
 	}
-	catch (error) {
-		console.error(error);
-	}
+	catch (e) {
+    	console.log(e);
+    	throw e;
+  	}
 }
 // DOWNLOADER TWITTER
 async function _twitter(link, m) {
@@ -573,9 +488,10 @@ async function _twitter(link, m) {
 				m);
 		}
 	}
-	catch (error) {
-		console.error(error);
-	}
+	catch (e) {
+    	console.log(e);
+    	throw e;
+  	}
 }
 // DOWNLOADER THREADS
 async function _threads(link, m) {
@@ -612,9 +528,10 @@ async function _threads(link, m) {
 				m);
 		}
 	}
-	catch (error) {
-		console.error(error);
-	}
+	catch (e) {
+    	console.log(e);
+    	throw e;
+  	}
 }
 // DOWNLOADER CAPCUT
 async function _capcut(link, m) {
@@ -644,8 +561,9 @@ async function _capcut(link, m) {
 		}
 	}
 	catch (e) {
-		console.error(e);
-	}
+    	console.log(e);
+    	throw e;
+  	}
 }
 // DOWNLOADER SNACKVIDEO
 async function _snackvideo(url, m) {
@@ -661,8 +579,9 @@ async function _snackvideo(url, m) {
 		}
 	}
 	catch (e) {
-		console.log(e);
-	}
+    	console.log(e);
+    	throw e;
+  	}
 }
 
 /**=========================================**/
@@ -852,4 +771,4 @@ handler.before = async function (m, { conn, isPrems }) {
 }
 
 
-module.exports = handler
+export default handler

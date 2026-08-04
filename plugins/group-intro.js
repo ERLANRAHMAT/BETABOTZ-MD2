@@ -15,4 +15,4 @@ m.reply(intro)
 }
 handler.command = /^(intro)$/i
 
-module.exports = handler
+export default handler

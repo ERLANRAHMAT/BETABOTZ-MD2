@@ -1,5 +1,8 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const storeDatabaseFilePath = path.join(__dirname, 'store-database.json');
 
@@ -68,7 +71,7 @@ handler.help = ['editsetlist'];
 handler.tags = ['store'];
 handler.command = /^editsetlist$/i;
 handler.owner = true;
-module.exports = handler;
+export default handler;
 
 
 // no copas code dari luar, logic pakai kepala

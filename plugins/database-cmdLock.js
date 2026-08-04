@@ -1,17 +1,38 @@
-module.exports = Object.assign(async function handler(m, { isOwner, isPremium, command }) {
-    if (!(isOwner || isPremium)) {
-        global.dfail('premium', m, conn)
-        throw false
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+    try {
+        db.data.sticker = db.data.sticker || {}
+
+        if (!m.quoted) throw `Balas stiker dengan perintah *${usedPrefix + command} ${usedPrefix}afk*`
+        if (!m.quoted.fileSha256) throw 'SHA256 Hash Missing'
+        if (!text) throw `Penggunaan:\n${usedPrefix + command} <teks>\n\nContoh:\n*${usedPrefix + command} ${usedPrefix}afk*`
+
+        let sticker = db.data.sticker
+        let hash = m.quoted.fileSha256.toString('hex')
+
+        if (sticker[hash] && sticker[hash].locked) 
+            throw 'Kamu tidak memiliki izin untuk mengubah perintah stiker ini'
+
+        sticker[hash] = {
+            text,
+            mentionedJid: m.mentionedJid,
+            creator: m.sender,
+            at: +new Date(),
+            locked: false,
+        }
+
+        m.reply(`✅ Berhasil mengaitkan perintah *${text}* ke stiker ini!`)
+    } catch (e) {
+        if (e !== false) {
+            console.log(e);
+            throw e;
+        }
     }
-    if (!m.quoted) throw 'Reply Pesan!'
-    if (!m.quoted.fileSha256) throw 'SHA256 Hash Missing'
-    let sticker = global.db.data.sticker
-    let hash = m.quoted.fileSha256.toString('hex')
-    if (!(hash in sticker)) throw 'Hash not found in database'
-    sticker[hash].locked = !/^un/i.test(command)
-    m.reply('Done!')
-}, {
-    help: ['un', ''].map(v => v + 'lockcmd'),
-    tags: ['database'],
-    command: /^(un)?lockcmd$/i
-})
+}
+
+handler.help = ['cmd'].map(v => 'set' + v + ' <teks>')
+handler.tags = ['database', 'premium']
+handler.command = ['setcmd']
+handler.premium = true
+handler.fail = null
+
+export default handler;

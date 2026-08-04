@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `*🚩 Example:* ${usedPrefix}${command} https://terabox.com/s/1aD9T7_Xe0oroBwlfzyWXUA`
     await m.reply(wait)
@@ -48,8 +48,9 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
                 await conn.reply(m.chat, `Failed to process file: ${file.name}`, m)
             }
         }
-    } catch (error) {
-        throw eror
+    } catch (e) {
+      console.log(e);
+      throw e;
     }
 }
 
@@ -59,7 +60,7 @@ handler.command = /^(teraboxdl|terabox)$/i
 handler.limit = true
 handler.premium = false
 
-module.exports = handler
+export default handler
 
 function formatSize(size) {
     const units = ['B', 'KB', 'MB', 'GB', 'TB']

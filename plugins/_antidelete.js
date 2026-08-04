@@ -63,4 +63,4 @@ function extractText(content, type) {
   return content.text || content.caption || '[Tidak diketahui isi pesan]'
 }
 
-module.exports = handler;
+export default handler;

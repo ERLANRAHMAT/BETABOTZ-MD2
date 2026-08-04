@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 let handler = async (m, { conn, args, usedPrefix, command }) => {
  if (!args[0]) throw `🚩 *Example:* ${usedPrefix + command} anime`
   try {
@@ -33,8 +33,9 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     capt += `  ◦ *Nickname*: ${video.author.nickname}\n`;
     capt += `\n`;
     conn.sendFile(m.chat, video.play, null, capt, m);
-  } catch (error) {
-    throw `🚩 *Video Tidak Ditemukan!*`
+  } catch (e) {
+      console.log(e);
+      throw e;
   }
 }
 handler.help = ['ttsearch'].map(v => v + ' <username>');
@@ -42,4 +43,4 @@ handler.tags = ['internet'];
 handler.command = /^(tiktoksearch|ttsearch)$/i;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

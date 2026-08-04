@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, usedPrefix, command }) => {
   if (!text) throw(`Masukkan prompt lirik!\nContoh: ${usedPrefix + command} salahkah aku`);    
@@ -11,7 +11,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
     const json = await res.json();
 
     if (!json.status || !json.result || !Array.isArray(json.result)) {
-      throw new Error('Gagal mendapatkan lirik.');
+      throw new Error("Gagal mendapatkan lirik.");
     }
 
     const jumlahLirik = json.result.length;
@@ -20,10 +20,9 @@ let handler = async (m, { text, usedPrefix, command }) => {
       const lirik = json.result[i].text;
       await m.reply(lirik);
     }
-
   } catch (e) {
-    console.error(e);
-    m.reply('❌ Terjadi kesalahan saat membuat lirik.');
+    console.log(e);
+    throw e;
   }
 };
 
@@ -34,4 +33,4 @@ handler.limit = true;
 handler.group = false;
 handler.private = false;
 
-module.exports = handler;
+export default handler;

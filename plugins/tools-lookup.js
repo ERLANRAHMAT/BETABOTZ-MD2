@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 const handler = async (m, { text, usedPrefix, command }) => {
   if (!text) throw `Masukkan Domain/Sub Domain!\n\n*Contoh:* botcahx.eu.org`;
 
@@ -28,10 +28,10 @@ const handler = async (m, { text, usedPrefix, command }) => {
     m.reply(`*Ini Adalah Hasil Dns Lookup Untuk ${text}:*\n${res1}`);
     console.log(res1);
 
-  } catch (error) {
-    console.log(error);
-    m.reply('*Invalid data!*');
-  }
+  } catch (e) {
+      console.log(e);
+      throw e;
+    }
 };
 
 handler.command = ['dnslookup', 'hackertarget', 'lookup','dns'];
@@ -39,4 +39,4 @@ handler.help = ['dnslookup', 'hackertarget', 'lookup','dns'];
 handler.tags = ['tools'];
 handler.premium = false;
 
-module.exports = handler;
+export default handler;

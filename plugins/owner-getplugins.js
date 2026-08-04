@@ -1,5 +1,5 @@
-const fs = require('fs')
-const path = require('path')
+import fs from 'fs';
+import path from 'path';
 let handler = async (m, { usedPrefix, command, text }) => {
     if (!text) throw `where is the text?\n\nexempel: ${usedPrefix + command} menu`
     const filename = path.join(__dirname, `./${text}${!/\.js$/i.test(text) ? '.js' : ''}`)
@@ -16,4 +16,4 @@ handler.command = /^(getplugin|get ?plugin|gp)$/i
 
 handler.rowner = true
 
-module.exports = handler
+export default handler

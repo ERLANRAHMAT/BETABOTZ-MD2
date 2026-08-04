@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, {
     text,
@@ -17,12 +17,13 @@ let handler = async (m, {
             content += 'Token gagal didapatkan!.';
         }
         await m.reply(content);
-    } catch (error) {
-        throw eror
-    }
+    } catch (e) {
+        console.log(e);
+        throw e;
+  }
 };
 
 handler.command = handler.help = ['2fa', 'authenticator', 'autentikator'];
 handler.tags = ['tools'];
 handler.limit = true;
-module.exports = handler;
+export default handler;

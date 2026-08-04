@@ -1,7 +1,7 @@
 var name = global.nameowner
 var numberowner = global.numberowner
 var gmail = global.mail
-const { loadBaileys } = require('../baileys-loader.mjs')
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys
 var handler = async (m, {
 conn
@@ -51,4 +51,4 @@ await conn.reply(m.chat, "Itu Adalah nomor owner Bot", sentMsg)}
 handler.command = handler.help = ['owner', 'creator'];
 handler.tags = ['info'];
 handler.limit = true;
-module.exports = handler;
+export default handler;

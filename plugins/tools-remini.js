@@ -1,8 +1,9 @@
-const fetch = require('node-fetch');
-const uploadImage = require('../lib/uploadImage.js');
+import fetch from 'node-fetch';
+import uploadImage from '../lib/uploadImage.js';
 
 async function handler(m, { conn, usedPrefix, command }) {
   try {
+    m.reply(`Tunggu sebentar, sedang memproses...`);
     const q = m.quoted ? m.quoted : m;
     const mime = (q.msg || q).mimetype || q.mediaType || '';
     if (/^image/.test(mime) && !/webp/.test(mime)) {
@@ -16,9 +17,9 @@ async function handler(m, { conn, usedPrefix, command }) {
       m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim.`);
     }
   } catch (e) {
-    console.error(e);
-    m.reply(`Identifikasi gagal. Silakan coba lagi.`);
-  }
+      console.log(e);
+      throw e;
+    }
 }
 
 handler.help = ['remini'];
@@ -27,4 +28,4 @@ handler.command = ['remini'];
 handler.premium = false;
 handler.limit = false;
 
-module.exports = handler;
+export default handler;

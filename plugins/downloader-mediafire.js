@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!args[0]) throw `*Example:* ${usedPrefix}${command} https://www.mediafire.com/file/941xczxhn27qbby/GBWA_V12.25FF-By.SamMods-.apk/file`;
@@ -22,7 +22,8 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         conn.sendMessage(m.chat, { document: { url: url }, mimetype: ext, fileName: filename }, { quoted: m });
         
     } catch (e) {
-        throw eror
+            console.log(e);
+            throw e;
     }
 };
 
@@ -32,4 +33,4 @@ handler.command = /^(mediafire|mf)$/i;
 
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

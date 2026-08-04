@@ -1,4 +1,4 @@
-const {
+import {
     emoji_role,
     sesi,
     playerOnGame,
@@ -36,8 +36,7 @@ const {
     run_vote,
     run_malam,
     run_pagi
-} = require('../lib/werewolf.js')
-
+} from '../lib/werewolf.js';
 let handler = async (m, { conn, command, usedPrefix, args }) => {
     let { sender, chat } = m
     conn.werewolf = conn.werewolf ? conn.werewolf : {}
@@ -101,4 +100,4 @@ let handler = async (m, { conn, command, usedPrefix, args }) => {
 }
 handler.command = /^((ww|werewolf)pc)$/i
 handler.private = true
-module.exports = handler
+export default handler

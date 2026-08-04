@@ -12,4 +12,4 @@ handler.command = /^tagme$/i
 
 handler.group = true
 
-module.exports = handler
+export default handler

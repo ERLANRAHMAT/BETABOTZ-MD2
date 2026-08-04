@@ -1,9 +1,14 @@
 process.env.TZ = 'Asia/Jakarta'
-let fs = require('fs')
-let path = require('path')
-let fetch = require('node-fetch')
-let moment = require('moment-timezone')
-let levelling = require('../lib/levelling')
+import fs from 'fs';
+import path from 'path';
+import fetch from 'node-fetch';
+import moment from 'moment-timezone';
+import levelling from '../lib/levelling.js';
+import { fileURLToPath } from 'url'; 
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 let arrayMenu = [
   'all', 
   'ai', 
@@ -37,7 +42,6 @@ let arrayMenu = [
   'anonymous',
   ''
   ];
-
 
 const allTags = {
     'all': 'SEMUA MENU',
@@ -94,7 +98,7 @@ I am an automated system (WhatsApp Bot) that can help to do something, search an
 
 let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
     try {
-        let package = JSON.parse(await fs.promises.readFile(path.join(__dirname, '../package.json')).catch(_ => '{}'))
+        let pkg = JSON.parse(await fs.promises.readFile(path.join(__dirname, '../package.json')).catch(_ => '{}'))
         let { exp, limit, level, role } = global.db.data.users[m.sender]
         let { min, xp, max } = levelling.xpRange(level, global.multiplier)
         let name = `@${m.sender.split`@`[0]}`
@@ -128,48 +132,48 @@ let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
             }
         })
 
-                if (!teks) {
-                        let menuList = `${defaultMenu.before}\n\n┌  ◦ *DAFTAR MENU*\n`
-                        for (let tag of arrayMenu) {
-                                if (tag && allTags[tag]) {
-                                        menuList += `│  ◦ ${_p}menu ${tag}\n`
-                                }
-                        }
-                        menuList += `└  \n\n${defaultMenu.after}`
-
-                        let replace = {
-                                '%': '%',
-                                p: _p, 
-                                uptime,
-                                name, 
-                                date,
-                                time
-                        }
-
-                        let text = menuList.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), 
-                                (_, name) => '' + replace[name])
-                        let musicPath = path.join(__dirname, "music.mp3");
-                        await conn.sendMessage(
-                            m.chat,
-                            {
-                                image: {
-                                    url: global.thumb || "https://telegra.ph/file/3a34bfa58714bdef500d9.jpg",
-                                },
-                                caption: text,
-                                mentions: [m.sender],
-                            },
-                            { quoted: m },
-                        );
-                        await conn.sendMessage(
-                            m.chat,
-                            {
-                                audio: { url: musicPath },
-                                mimetype: "audio/mpeg",
-                            },
-                            { quoted: m },
-                        );
-                        return
+        if (!teks) {
+            let menuList = `${defaultMenu.before}\n\n┌  ◦ *DAFTAR MENU*\n`
+            for (let tag of arrayMenu) {
+                if (tag && allTags[tag]) {
+                    menuList += `│  ◦ ${_p}menu ${tag}\n`
                 }
+            }
+            menuList += `└  \n\n${defaultMenu.after}`
+
+            let replace = {
+                '%': '%',
+                p: _p, 
+                uptime,
+                name, 
+                date,
+                time
+            }
+
+            let text = menuList.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), 
+                (_, name) => '' + replace[name])
+            let musicPath = path.join(__dirname, "music.mp3");
+            await conn.sendMessage(
+                m.chat,
+                {
+                    image: {
+                        url: global.thumb || "https://telegra.ph/file/3a34bfa58714bdef500d9.jpg",
+                    },
+                    caption: text,
+                    mentions: [m.sender],
+                },
+                { quoted: m },
+            );
+            await conn.sendMessage(
+                m.chat,
+                {
+                    audio: { url: musicPath },
+                    mimetype: "audio/mpeg",
+                },
+                { quoted: m },
+            );
+            return
+        }
 
         if (!allTags[teks]) {
             return m.reply(`Menu "${teks}" tidak tersedia.\nSilakan ketik ${_p}menu untuk melihat daftar menu.`)
@@ -178,7 +182,6 @@ let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
         let menuCategory = defaultMenu.before + '\n\n'
         
         if (teks === 'all') {
-            // category all
             for (let tag of arrayMenu) {
                 if (tag !== 'all' && allTags[tag]) {
                     menuCategory += defaultMenu.header.replace(/%category/g, allTags[tag]) + '\n'
@@ -224,18 +227,18 @@ let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
         let text = menuCategory.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), 
             (_, name) => '' + replace[name])
 
-                await conn.sendMessage(
-                    m.chat,
-                    {
-                        image: { url: global.thumb || "https://telegra.ph/file/3a34bfa58714bdef500d9.jpg" },
-                        caption: text,
-                        mentions: [m.sender],
-                    },
-                    { quoted: m },
-                );
+        await conn.sendMessage(
+            m.chat,
+            {
+                image: { url: global.thumb || "https://telegra.ph/file/3a34bfa58714bdef500d9.jpg" },
+                caption: text,
+                mentions: [m.sender],
+            },
+            { quoted: m },
+        );
     } catch (e) {
-        conn.reply(m.chat, 'Maaf, menu sedang error', m)
-        console.error(e)
+    console.log(e);
+    throw e;
     }
 }
 
@@ -244,7 +247,7 @@ handler.tags = ['main']
 handler.command = /^(menu|help)$/i
 handler.exp = 3
 
-module.exports = handler
+export default handler
 
 function clockString(ms) {
     if (isNaN(ms)) return '--'

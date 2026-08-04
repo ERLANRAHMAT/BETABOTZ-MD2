@@ -1,5 +1,5 @@
-const uploadImage = require('../lib/uploadImage');
-const fetch = require('node-fetch');
+import uploadImage from '../lib/uploadImage.js';
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, usedPrefix, command }) => {
     var q = m.quoted ? m.quoted : m;
@@ -17,10 +17,10 @@ let handler = async (m, { conn, usedPrefix, command }) => {
                 image: img_url_api, 
                 caption: `🍟 *Fetching:* ${((new Date() - old) * 1)} ms` 
             }, { quoted: m });
-        } catch (e) {
-            console.error(e);
-            m.reply("[ ! ] Terjadi kesalahan saat memproses gambar.");
-        }
+        }  catch (e) {
+        console.log(e);
+        throw e;
+    }
     } else {
         m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim.`);
     }
@@ -32,4 +32,4 @@ handler.tags = ['maker'];
 handler.premium = false;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

@@ -1,5 +1,5 @@
-const { readdirSync, statSync, unlinkSync } = require('fs');
-const { join } = require('path');
+import { readdirSync, statSync, unlinkSync } from 'fs';
+import { join } from 'path';
 
 let handler = async (m, { conn, usedPrefix, args }) => {
 
@@ -42,4 +42,4 @@ handler.tags = ['owner'];
 handler.command = /^(cleartmp)$/i;
 handler.rowner = true;
 
-module.exports = handler;
+export default handler;

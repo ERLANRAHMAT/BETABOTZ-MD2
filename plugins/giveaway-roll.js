@@ -31,7 +31,7 @@ handler.help = ['rollgiveaway']
 handler.tags = ['adminry', 'group']
 handler.command = /^(rolling|rollgiveaway|rollinggiveaway)$/i
 handler.admin = true
-module.exports = handler
+export default handler
 
 const sleep = (ms) => {
 return new Promise(resolve => setTimeout(resolve, ms));

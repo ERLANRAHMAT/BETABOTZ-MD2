@@ -149,7 +149,7 @@ handler.tags = ['rpg'];
 handler.command = /^(gunshop|buygun|sellgun)$/i;
 handler.cooldown = cooldown;
 handler.rpg = true;
-module.exports = handler;
+export default handler;
 
 function isNumber(number) {
     if (!number) return number;

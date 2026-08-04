@@ -21,4 +21,4 @@ handler.help = ['balance']
 handler.tags = ['econ']
 handler.command = ['bal', 'balance'] 
 handler.rpg = true
-module.exports = handler;
+export default handler;

@@ -9,4 +9,4 @@ let handler = async (m, { conn }) => {
 }
 handler.command = /^tpc/i
 handler.limit = true
-module.exports = handler
+export default handler

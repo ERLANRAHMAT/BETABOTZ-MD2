@@ -1,17 +1,19 @@
-var axios = require('axios');
+import axios from 'axios';
 var handler = async (m, { conn }) => {
   try {
-    var response = await axios.get(`https://api.betabotz.eu.org/api/search/gempa?apikey=${lann}`);
+    var response = await axios.get(
+      `https://api.betabotz.eu.org/api/search/gempa?apikey=${lann}`,
+    );
     var dataGempa = response.data.result.result;
     var caption = `Waktu : ${dataGempa.waktu}\nLintang : ${dataGempa.Lintang}\nBujur : ${dataGempa.Bujur}\nMagnitude : ${dataGempa.Magnitudo}\nKedalaman : ${dataGempa.Kedalaman}\nWilayah : ${dataGempa.Wilayah}`;
-    conn.sendFile(m.chat, dataGempa.image, 'map.png', caption, m);
+    conn.sendFile(m.chat, dataGempa.image, "map.png", caption, m);
   } catch (e) {
     console.log(e);
-    conn.reply(m.chat, 'Terjadi kesalahan saat mengambil data gempa', m);
+    throw e;
   }
 };
 handler.command = handler.help = ['infogempa', 'gempa'];
 handler.tags = ['info'];
 handler.premium = false;
 handler.limit = true;
-module.exports = handler;
+export default handler;

@@ -9,4 +9,4 @@ m.reply(`
 }
 handler.command = /^(web)$/i
 
-module.exports = handler
+export default handler

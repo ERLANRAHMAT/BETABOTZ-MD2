@@ -9,4 +9,4 @@ handler.command = /^pra$/i
 
 handler.limit = true
 
-module.exports = handler
+export default handler

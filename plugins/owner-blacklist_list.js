@@ -35,4 +35,4 @@ handler.tags = ["owner"];
 handler.command = /^(listblacklist|listbl)$/i;
 handler.owner = true;
 
-module.exports = handler;
+export default handler;

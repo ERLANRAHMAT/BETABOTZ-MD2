@@ -1,6 +1,5 @@
-const fetch = require('node-fetch');
-const uploadImage = require('../lib/uploadImage')
-
+import fetch from 'node-fetch';
+import uploadImage from '../lib/uploadImage.js';
 let handler = async (m, { conn, usedPrefix, command }) => {
   try {
     const q = m.quoted ? m.quoted : m;
@@ -27,8 +26,9 @@ let handler = async (m, { conn, usedPrefix, command }) => {
           }
           const { url } = image;
           conn.sendFile(m.chat, url, null, wm, m);
-        } catch (error) {
-          throw error;
+        } catch (e) {
+            console.log(e);
+            throw e;
         }
       } else if (command === 'hd3') {
         const api = await fetch(`https://api.betabotz.eu.org/api/tools/remini-v3?url=${out}&resolusi=4&apikey=${lann}`);
@@ -45,9 +45,9 @@ let handler = async (m, { conn, usedPrefix, command }) => {
       m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim.`);
     }
   } catch (e) {
-    console.error(e);
-    throw `🚩 *Server Error*`
-  }
+      console.log(e);
+      throw e;
+    }
 }
 
 handler.command = handler.help = ['hd', 'hd2', 'hd3','removebg','nobg'];
@@ -55,4 +55,4 @@ handler.tags = ['tools'];
 handler.premium = false;
 handler.limit = false;
 
-module.exports = handler;
+export default handler;

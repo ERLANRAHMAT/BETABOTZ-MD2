@@ -1,10 +1,11 @@
-const util = require('util');
-const path = require('path');
+import util from 'util';
+import path from 'path';
 
 const user = (a) => '@' + a.split('@')[0];
 
 function handler(m, { groupMetadata, command, conn, text, usedPrefix }) {
-  if (!text) throw `Contoh penggunaan:\n.top *teks*`;
+    if (!text) throw `Contoh penggunaan:\n.top *teks*`;
+  try {
 
   const ps = groupMetadata.participants.map((v) => v.id);
 
@@ -22,6 +23,11 @@ function handler(m, { groupMetadata, command, conn, text, usedPrefix }) {
   const top = `*${x} Top 5 ${text} ${x}*\n\n1. ${user(a)}\n2. ${user(b)}\n3. ${user(c)}\n4. ${user(d)}\n5. ${user(e)}`;
 
   m.reply(top, null, { mentions: [a, b, c, d, e] });
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+  
 }
 
 handler.help = handler.command = ['top'];
@@ -29,7 +35,7 @@ handler.tags = ['fun'];
 handler.group = true;
 handler.limit = 2;
 
-module.exports = handler;
+export default handler;
 
 function pickRandom(list) {
   return list[Math.floor(Math.random() * list.length)];

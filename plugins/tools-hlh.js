@@ -7,4 +7,4 @@ handler.help = [...'aiueo'].map(v => `h${v}l${v}h <teks>`)
 handler.tags = ['tools']
 handler.command = /^h([aiueo])l\1h/i
 
-module.exports = handler
+export default handler

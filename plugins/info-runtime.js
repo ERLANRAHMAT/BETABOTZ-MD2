@@ -1,20 +1,19 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
     let _uptime = process.uptime() * 1000
-    let tio = clockString(_uptime)
-    let time = require('moment-timezone').tz('Asia/Jakarta').format('HH:mm:ss')
+    let lann = clockString(_uptime)
 
 var ct = `
 *───「 RUNTIME BOT 」───*
 
-Runtime : ${tio}
-    `
+Runtime : ${lann}
+    `;
 m.reply(ct)
 }
 handler.help = ['runtime']
 handler.tags = ['info']
 handler.command = /^(uptime|runtime)$/i
 
-module.exports = handler
+export default handler
 
 function clockString(ms) {
     let days = Math.floor(ms / (24 * 60 * 60 * 1000));

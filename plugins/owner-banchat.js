@@ -25,7 +25,7 @@ handler.tags = ['owner'];
 handler.command = ['mute', 'unmute'];
 handler.owner = true;
 
-module.exports = handler;
+export default handler;
 
 // let handler = async (m, { conn, participants }) => {
   // // if (participants.map(v=>v.jid).includes(global.conn.user.jid)) {
@@ -38,4 +38,4 @@ module.exports = handler;
 // handler.command = ['mute']
 // handler.owner = true
 
-// module.exports = handler
+// export default handler

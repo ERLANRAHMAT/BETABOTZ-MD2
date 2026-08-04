@@ -1,5 +1,5 @@
-let { performance } = require('perf_hooks')
-let osu = require('node-os-utils')
+import { performance } from 'perf_hooks';
+import osu from 'node-os-utils';
 let handler = async(m, { conn, command, usedPrefix, DevMode }) => {
     try {
         let NotDetect = 'Not Detect'
@@ -85,7 +85,7 @@ handler.help = ['', 'bot'].map(v => 'status' + v)
 handler.tags = ['info']
 handler.command = /^(bot)?stat(us)?(bot)?$/i
 
-module.exports = handler
+export default handler
 
 function clockString(ms) {
     let h = Math.floor(ms / 3600000)

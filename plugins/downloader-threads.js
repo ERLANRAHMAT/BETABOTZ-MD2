@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) {
     throw `Masukkan URL!\n\ncontoh:\n${usedPrefix + command} https://www.threads.net/@diiemofc/post/Cujx6ryoYx6?igshid=NTc4MTIwNjQ2YQ%3D%3D`;
@@ -27,8 +27,8 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       throw `Konten tidak ditemukan!`;
     }
   } catch (e) {
-    console.log(e);
-    throw `✖️ *Server down*` 
+      console.log(e);
+      throw e;
   }
 };
 handler.command = handler.help = ['threads', 'threadsdl'];
@@ -37,4 +37,4 @@ handler.limit = true;
 handler.group = false;
 handler.premium = false;
 
-module.exports = handler;
+export default handler;

@@ -1,9 +1,11 @@
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://l.likee.video/v/tmj1oh`;    
-    try {
+        if (!text) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://l.likee.video/v/tmj1oh`;    
+        
         if (!text.match(/likee/gi)) throw `URL Tidak Ditemukan!`;        
+    try {
+      
         m.reply(wait);      
         const response = await axios.get(`https://api.betabotz.eu.org/api/download/likee?url=${text}&apikey=${lann}`);        
         const res = response.data.result;      
@@ -17,11 +19,14 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         capt += `\n`;        
         await conn.sendFile(m.chat, nowm, null, capt, m);
     } catch (e) {
-        throw eror
+        if (e !== false) {
+            console.log(e);
+            throw e;
+        }
     }
 };
 handler.command = handler.help = ['likee'];
 handler.tags = ['downloader'];
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

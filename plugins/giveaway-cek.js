@@ -29,4 +29,4 @@ handler.help = ['cekgiveaway']
 handler.tags = ['adminry', 'group']
 handler.command = /^cekgiveaway$/i
 handler.admin = true
-module.exports = handler
+export default handler

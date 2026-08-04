@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 let handler = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `Masukkan URL Pastebin!\n\n*Contoh:* ${usedPrefix + command} https://pastebin.com/eQLV4GfE`;
@@ -12,8 +12,8 @@ let handler = async (m, { text, usedPrefix, command }) => {
 
         await m.reply(`📄 *Hasil Pastebin:*\n\n${json.result}`);
     } catch (e) {
-        console.error(e);
-        throw "❌ Terjadi kesalahan saat mengambil data dari Pastebin!";
+          console.log(e);
+          throw e;
     }
 };
 
@@ -22,4 +22,4 @@ handler.tags = ['downloader'];
 handler.help = ['pastebindl', 'pastebin'].map(a => a + ' <url>');
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

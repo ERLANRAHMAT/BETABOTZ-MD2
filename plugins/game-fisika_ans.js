@@ -30,6 +30,6 @@ handler.before = async function (m) {
 }
 
 handler.exp = 0
-module.exports = handler
+export default handler
 
 // readyRC

@@ -1,9 +1,8 @@
-const moment = require('moment-timezone');
+import moment from 'moment-timezone';
 
 let handler = async (m, { text, conn, usedPrefix, command }) => {
-    try {
-        if (!text) {
-            return m.reply(`╭═══❯ *DREAM EXPLORER* ❮═══
+    if (!text) {
+      return m.reply(`╭═══❯ *DREAM EXPLORER* ❮═══
 │
 │ 🌙 Jelajahi Dunia Mimpimu!
 │ 
@@ -15,7 +14,8 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
 │ ${usedPrefix}${command} Laut
 │
 ╰═════════════════════`);
-        }
+    }
+    try {
 
         await m.reply("🌙 *Memasuki alam mimpi...*");
         await new Promise(resolve => setTimeout(resolve, 1500));
@@ -51,12 +51,9 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
 
         return m.reply(caption);
 
-    } catch (error) {
+    } catch (e) {
         console.error('Error in dreamworld command:', error);
-        return m.reply(`╭══════════════════════
-│ ❌ *Terjadi Kesalahan*
-│ Mohon coba beberapa saat lagi
-╰══════════════════════`);
+        throw e;
     }
 };
 
@@ -192,7 +189,7 @@ handler.command = /^dreamworld|dream|mimpi$/i;
 handler.group = true;
 handler.limit = 1;
 
-module.exports = handler;
+export default handler;
 
 //base by DEVOLUTION-MD1
 //recode by danaputra133

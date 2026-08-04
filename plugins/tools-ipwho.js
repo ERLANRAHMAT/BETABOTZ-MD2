@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 let handler = async (m, { text, usedPrefix, command }) => {
   if (!text) throw `*Example:* ${usedPrefix + command} 112.90.150.204`;
   try {
@@ -14,7 +14,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
 handler.command = handler.help = ['ip','ipwho'];
 handler.tags = ['tools'];
 handler.premium = false;
-module.exports = handler;
+export default handler;
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));

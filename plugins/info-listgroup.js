@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 let handler = async (m, { conn, participants }) => {
 	let now = new Date() * 1;
@@ -49,7 +49,7 @@ handler.help = ['grouplist'];
 handler.tags = ['group'];
 handler.command = /^(group(s|list)|(s|list)group)$/i;
 
-module.exports = handler;
+export default handler;
 
 function msToDate(ms) {
   temp = ms

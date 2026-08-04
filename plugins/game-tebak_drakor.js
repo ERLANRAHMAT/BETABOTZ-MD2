@@ -1,17 +1,29 @@
-let timeout = 100000
-let poin = 10000
-let fetch = require("node-fetch");
+import fetch from 'node-fetch';
+
+let timeout = 100000;
+let poin = 10000;
+
 let handler = async (m, { conn, usedPrefix }) => {
-  conn.tebakdrakor = conn.tebakdrakor ? conn.tebakdrakor : {}
-  let id = m.chat
-  if (id in conn.tebakdrakor) {
-    conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebakdrakor[id][0])
-    throw false
-  }
-  let src = await (await fetch(`https://api.betabotz.eu.org/api/game/tebakdrakor?apikey=${lann}`)).json()
-  let json = src
-  if (!json) throw "Terjadi kesalahan, ulangi lagi perintah!"
-  let caption = `
+  try {
+    conn.tebakdrakor = conn.tebakdrakor ? conn.tebakdrakor : {};
+    let id = m.chat;
+    if (id in conn.tebakdrakor) {
+      await conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebakdrakor[id][0]);
+      return;
+    }
+
+    let json;
+    try {
+      let src = await (await fetch(`https://api.betabotz.eu.org/api/game/tebakdrakor?apikey=${lann}`)).json();
+      json = src;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+
+    if (!json || !json.jawaban) throw new Error('Format data tebakdrakor tidak valid dari API.');
+
+    let caption = `
 ≡ _GAME TEBAK DRAKOR_
 
 ┌─⊷ *SOAL*
@@ -21,22 +33,31 @@ let handler = async (m, { conn, usedPrefix }) => {
 ▢ Ketik ${usedPrefix}tdkt untuk clue jawaban
 ▢ *REPLAY* pesan ini untuk\nmenjawab
 └──────────────
+`.trim();
 
-    `.trim()
-  conn.tebakdrakor[id] = [
-    await conn.sendMessage(m.chat, { image: { url: json.img }, caption: caption}, { quoted: m }),
-    json, poin,
-    setTimeout(() => {
-      if (conn.tebakdrakor[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.tebakdrakor[id][0])
-      delete conn.tebakdrakor[id]
-    }, timeout)
-  ]
-}
+    conn.tebakdrakor[id] = [
+      await conn.sendMessage(m.chat, { image: { url: json.img }, caption: caption }, { quoted: m }),
+      json, 
+      poin,
+      setTimeout(() => {
+        if (conn.tebakdrakor[id]) {
+          conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.tebakdrakor[id][0]);
+          delete conn.tebakdrakor[id];
+        }
+      }, timeout)
+    ];
+  } catch (e) {
+    if (e !== false) {
+      console.log(e);
+      throw e;
+    }
+  }
+};
 
-handler.help = ['tebakdrakor']
-handler.tags = ['game']
-handler.command = /^tebakdrakor/i
-handler.limit = false
-handler.group = true
+handler.help = ['tebakdrakor'];
+handler.tags = ['game'];
+handler.command = /^tebakdrakor/i;
+handler.limit = false;
+handler.group = true;
 
-module.exports = handler
+export default handler;

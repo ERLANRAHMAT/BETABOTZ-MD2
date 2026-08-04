@@ -15,4 +15,4 @@ handler.premium = false
 handler.register = false
 handler.fail = null
 
-module.exports = handler
+export default handler

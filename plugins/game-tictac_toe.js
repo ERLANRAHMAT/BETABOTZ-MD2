@@ -1,3 +1,5 @@
+import util from 'util';
+
 let handler = m => m
 let debugMode = !1
 
@@ -18,7 +20,7 @@ handler.before = function (m) {
         if (m.sender !== room.game.currentTurn) { // nek wayahku
             if (!isSurrender) return !0
         }
-        if (debugMode) m.reply('[DEBUG]\n' + require('util').format({
+        if (debugMode) m.reply('[DEBUG]\n' + util.format({
             isSurrender,
             text: m.text
         }))
@@ -81,11 +83,11 @@ Room ID: ${room.id}
             users[room.game.playerX].exp += playScore
             users[room.game.playerO].exp += playScore
             if (isWin) users[winner].exp += winScore - playScore
-            if (debugMode) m.reply('[DEBUG]\n' + require('util').format(room))
+            if (debugMode) m.reply('[DEBUG]\n' + util.format(room))
             delete this.game[room.id]
         }
     }
     return !0
 }
 
-module.exports = handler
+export default handler

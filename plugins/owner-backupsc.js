@@ -1,7 +1,7 @@
-const fs = require("fs");
-const { exec } = require("child_process");
-const cp = require("child_process");
-const { promisify } = require("util");
+import fs from 'fs';
+import { exec } from 'child_process';
+import cp from 'child_process';
+import { promisify } from 'util';
 let exec_ = promisify(exec).bind(cp);
 
 let handler = async (m, { conn, isROwner }) => {
@@ -54,4 +54,4 @@ handler.tags = ["owner"];
 handler.command = ["backupsc"];
 handler.owner = true;
 
-module.exports = handler;
+export default handler;

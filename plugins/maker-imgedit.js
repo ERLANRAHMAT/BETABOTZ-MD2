@@ -1,6 +1,6 @@
-const uploadImage = require('../lib/uploadImage');
-const fetch = require('node-fetch');
-const axios = require('axios');
+import uploadImage from '../lib/uploadImage.js';
+import fetch from 'node-fetch';
+import axios from 'axios';
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
     if (['imageedit', 'imgedit', 'img2img', 'editimg'].includes(command) && !text) {
@@ -111,7 +111,7 @@ handler.tags = ['maker'];
 handler.premium = false;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;
 
 /*
  * @ CJS Image Edit Ai Use BetaBotz Api

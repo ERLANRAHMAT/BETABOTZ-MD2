@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
-const uploader = require('../lib/uploadImage');
+import fetch from 'node-fetch';
+import uploader from '../lib/uploadImage.js';
 
 let handler = async (m, { conn, command, usedPrefix }) => {
   let q = m.quoted ? m.quoted : m
@@ -35,4 +35,4 @@ handler.command = /^(nsfwdetector|nsfwdetecd)$/i
 handler.limit = 1
 handler.group = true
 
-module.exports = handler
+export default handler

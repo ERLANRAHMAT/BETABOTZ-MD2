@@ -94,9 +94,9 @@ let handler = async (m, { conn, command, args }) => {
 
         conn.reply(m.chat, result.trim(), m);
 
-    } catch (err) {
-        console.error(err);
-        conn.reply(m.chat, `Terjadi kesalahan: ${err.message}`, m);
+    } catch (e) {
+        console.log(e);
+        throw e;
     }
 };
 
@@ -104,4 +104,4 @@ handler.help = ['rekaptugas', 'rekaptugas semua'];
 handler.tags = ['tools'];
 handler.command = ["rekaptugas", "rekaptugas semua"];
 
-module.exports = handler;
+export default handler;

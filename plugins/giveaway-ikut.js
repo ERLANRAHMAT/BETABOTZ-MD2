@@ -20,4 +20,4 @@ handler.help = ['ikutgiveaway']
 handler.tags = ['group']
 handler.command = /^(ikut|ikutgiveaway)$/i
 handler.group = true
-module.exports = handler
+export default handler

@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 let handler = async (m, { conn, args }) => {
     let userId = m.sender;
     let user = global.db.data.users[userId];
@@ -40,4 +40,4 @@ handler.help = ['guildstaff <tambah/hapus> <@user>'];
 handler.tags = ['rpgG'];
 handler.command = /^(guildstaff)$/i;
 handler.rpg = true;   
-module.exports = handler;
+export default handler;

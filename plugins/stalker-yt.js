@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `contoh:\n${usedPrefix + command} deaafrizal`
     try {
@@ -21,8 +21,9 @@ let handler = async (m, { text, usedPrefix, command }) => {
         } else {
             throw 'Sistem Sedang Bermasalah!'
         }
-    } catch (e) {
-        m.reply('Sistem Sedang Bermasalah!')
+    }  catch (e) {
+        console.log(e);
+        throw e;
     }
 }
 
@@ -31,4 +32,4 @@ handler.tags = ['stalk']
 handler.command = /^(ytstalk)$/i
 handler.limit = true
 
-module.exports = handler
+export default handler

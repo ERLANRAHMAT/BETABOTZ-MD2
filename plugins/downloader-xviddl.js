@@ -1,4 +1,4 @@
-var fetch = require("node-fetch")
+import fetch from 'node-fetch';
 var handler = async (m, {
  text, 
  usedPrefix, 
@@ -11,9 +11,10 @@ let hasil = await anu.json()
 
 conn.sendMessage(m.chat, { video: { url: hasil.result.url }, fileName: 'xnxx.mp4', mimetype: 'video/mp4' }, { quoted: m })
 } catch (e) {
-throw `*Server Error!*`
+      console.log(e);
+      throw e;
 }
   }                                                    
 handler.command = handler.help = ['xvideosdown','xdown'];
 handler.tags = ['internet'];
-module.exports = handler;
+export default handler;

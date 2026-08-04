@@ -1,6 +1,6 @@
-// const fs = require('fs');
-// const path = require('path');
-// const schedule = require('node-schedule');
+// const fs = import 'fs';
+// const path = import 'path';
+// const schedule = import 'node-schedule';
 
 
 // const sendDatabaseToGroup = async (conn, groupJid) => {
@@ -46,4 +46,4 @@
 //     console.error('Koneksi ke grup belum ada!');
 // }
 
-// module.exports = {};
+// export default {};

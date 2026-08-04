@@ -39,7 +39,7 @@ handler.tags = ['rpg']
 handler.command = /^(nambang)$/i
 handler.register = true
 handler.rpg = true
-module.exports = handler
+export default handler
 
 function clockString(ms) {
   let h = Math.floor(ms / 3600000)

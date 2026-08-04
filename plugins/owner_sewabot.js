@@ -102,7 +102,7 @@ let handler = async (m, { conn, command, usedPrefix, text, participants }) => {
      
   handler.owner = true
      
-  module.exports = handler
+  export default handler
   
   function msToDate(ms) {
       let temp = ms;

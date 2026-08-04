@@ -1,4 +1,4 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 let handler = async (m, {
  text, 
  usedPrefix, 
@@ -9,13 +9,13 @@ try {
   await m.reply(wait)
   let res = await (await fetch(`https://api.betabotz.eu.org/api/search/lepton-ai?apikey=${lann}&text=${text}`)).json()
   await m.reply(res.result.result)
-} catch (err) {
-  console.error(err)
-  throw eror
- }
+} catch (e) {
+    console.log(e);
+    throw e;
+  }
 }
 handler.command = handler.help = ['lepton'];
 handler.tags = ['ai'];
 handler.premium = false
 handler.limit = true;
-module.exports = handler;
+export default handler;

@@ -1,5 +1,5 @@
-const axios = require('axios');
-const { setInterval } = require('timers');
+import axios from 'axios';
+import { setInterval } from 'timers';
 
 let lastGempaData = null; 
 

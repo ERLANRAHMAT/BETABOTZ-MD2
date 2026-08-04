@@ -1,6 +1,6 @@
-const uploadImage = require('../lib/uploadImage')
-const ocrapi = require("ocr-space-api-wrapper")
-const { loadBaileys } = require('../baileys-loader.mjs')
+import uploadImage from '../lib/uploadImage.js';
+import ocrapi from 'ocr-space-api-wrapper';
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys
 let handler = async (m, { conn, text }) => {
   if (!baileys) baileys = await loadBaileys();
@@ -20,4 +20,4 @@ handler.tags = ['tools']
 handler.command = /^(ocr|totext)$/i
 handler.limit = true
 
-module.exports = handler
+export default handler

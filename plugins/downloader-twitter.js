@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+import fetch from 'node-fetch';
 
 const handler = async (m, {
     conn,
@@ -23,7 +23,8 @@ const handler = async (m, {
             conn.sendFile(m.chat, buffer, null, capt, m);           
         }
     } catch (e) {
-        throw '*Server Down!*';
+      console.log(e);
+      throw e;
     }
 };
 
@@ -38,7 +39,7 @@ handler.botAdmin = false;
 handler.fail = null;
 handler.private = false;
 
-module.exports = handler;
+export default handler;
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));

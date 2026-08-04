@@ -1,6 +1,5 @@
-let PhoneNumber = require('awesome-phonenumber')
-const { createHash } = require('crypto')
-
+import PhoneNumber from 'awesome-phonenumber';
+import { createHash } from 'crypto';
 let handler = async (m, { conn, text }) => {
   function getRandomElement(arr) {
     return arr[Math.floor(Math.random() * arr.length)]
@@ -68,4 +67,4 @@ handler.tags = ['fun']
 handler.command = /^fitnah$/i
 handler.group = true
 
-module.exports = handler
+export default handler

@@ -1,7 +1,7 @@
-// const { Image } = require("node-webpmux");
-// const fs = require("fs");
-// const path = require("path");
-// const fetch = require("node-fetch");
+// const { Image } = import 'node-webpmux';
+// const fs = import 'fs';
+// const path = import 'path';
+// const fetch = import 'node-fetch';
 
 // let handler = (m) => m;
 
@@ -94,11 +94,11 @@
 //   return !0;
 // };
 
-// module.exports = handler;
+// export default handler;
 
 // async function uploadKeBotcahx(buffer) {
-//   const FormData = require("form-data");
-//   const { fromBuffer } = require("file-type");
+//   const FormData = import 'form-data';
+//   const { fromBuffer } = import 'file-type';
 //   try {
 //     let { ext } = await fromBuffer(buffer);
 //     let bodyForm = new FormData();

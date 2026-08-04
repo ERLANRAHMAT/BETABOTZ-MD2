@@ -16,4 +16,4 @@ handler.tags = ['rpg']
 handler.command = /^(buah|listbuah)$/i
 handler.rpg = true
 
-module.exports = handler
+export default handler

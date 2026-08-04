@@ -22,4 +22,4 @@ handler.command = /^(hidetag)$/i
 handler.group = true
 handler.admin = true
 
-module.exports = handler
+export default handler

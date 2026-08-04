@@ -20,7 +20,7 @@ handler.before = async (m, { conn, isBotAdmin, isAdmin }) => {
     }
 }
 
-module.exports = handler
+export default handler
 
 // kode di bawah jika mau user nya di kick.
 /*
@@ -67,4 +67,4 @@ handler.before = async (m, { conn, isBotAdmin, isAdmin }) => {
    }
 }
 
-module.exports = handler */
+export default handler */

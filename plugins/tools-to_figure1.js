@@ -1,5 +1,5 @@
-const uploadImage = require('../lib/uploadImage');
-const fetch = require('node-fetch');
+import uploadImage from '../lib/uploadImage.js';
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, usedPrefix, command }) => {
     let q = m.quoted ? m.quoted : m;
@@ -29,13 +29,13 @@ let handler = async (m, { conn, usedPrefix, command }) => {
         await conn.sendFile(m.chat, imageBuffer, 'figure.jpg', 'Ini hasilnya!', m);
 
     } catch (e) {
-        console.error(e);
-        m.reply(`Terjadi kesalahan: ${e.message}`);
-    }
+    console.log(e);
+    throw e;
+  }
 };
 
 handler.help = ['tofigure'];
 handler.tags = ['maker', 'tools'];
 handler.command = /^(tofigure)$/i;
 
-module.exports = handler;
+export default handler;

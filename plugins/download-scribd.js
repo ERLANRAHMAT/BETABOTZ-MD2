@@ -1,13 +1,14 @@
-let fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
-let handler = async (m, { text, usedPrefix, command }) => {
-    if (!text) throw `*Contoh:*\n${usedPrefix + command} https://www.scribd.com/document/806367834/Pengembangan-Meta-AI`;
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+       if (!text) throw `*Contoh:*\n${usedPrefix + command} https://www.scribd.com/document/806367834/Pengembangan-Meta-AI`;
 
-    if (!text.includes('scribd.com')) throw 'Link harus dari Scribd!';
+        if (!text.includes('scribd.com')) throw 'Link harus dari Scribd!';
 
-    m.reply(wait);
-
+      
     try {
+       m.reply(wait)
+
         let res = await (await fetch(`https://api.betabotz.eu.org/api/download/scribd?url=${encodeURIComponent(text)}&apikey=${lann}`)).json();
 
         if (!res.status || !res.result?.download) throw 'Gagal mengambil file.';
@@ -24,7 +25,8 @@ let handler = async (m, { text, usedPrefix, command }) => {
         }, { quoted: m });
 
     } catch (e) {
-        throw eror;
+            console.log(e);
+            throw eror;
     }
 };
 
@@ -33,4 +35,4 @@ handler.tags = ['downloader'];
 handler.command = /^(scribd|scribddl|dlscribd)$/i;
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 // if (!text) throw `Masukkan Nama!\n\ncontoh: ${usedPrefix + command} "dana"`;
 if (!text) throw `Masukkan Mimpi kamu!\n\ncontoh: ${usedPrefix + command} mandi `;
@@ -10,9 +10,10 @@ try {
        `―-ARTI MIMPI-―\n\nMimpi: ${json.result.message.mimpi}\n\nArti: ${json.result.message.arti}\n\nSolusi: ${json.result.message.solusi}`, 
     ]
 conn.reply(m.chat,`${(anu)}`);;
-} catch (e) {
-throw `Internal server eror!\n\nulangi lagi perintah`
-  }
+}  catch (e) {
+        console.log(e);
+        throw e;
+    }
 }
   
     handler.help = ['artimimpi']
@@ -20,7 +21,7 @@ throw `Internal server eror!\n\nulangi lagi perintah`
     handler.command = /^(artimimpi)$/i
     handler.group = true
     
-    module.exports = handler
+    export default handler
     
 
   //   {

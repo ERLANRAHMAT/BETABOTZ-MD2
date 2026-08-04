@@ -56,7 +56,7 @@ handler.tags = ['owner']
 handler.command = /^(addprem|prem|tambahprem)$/i
 handler.owner = true
 
-module.exports = handler
+export default handler
 
 function msToDate(ms) {
   let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)

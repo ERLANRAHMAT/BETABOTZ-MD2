@@ -1,5 +1,5 @@
-let fetch = require('node-fetch');
-let fs = require('fs');
+import fetch from 'node-fetch';
+import fs from 'fs';
 
 let timeout = 3600000 // 1 jam dalam milidetik
 
@@ -51,7 +51,7 @@ handler.tags = ['rpg'];
 handler.command = /^(airdrop)$/i;
 handler.group = true;
 handler.rpg = true
-module.exports = handler;
+export default handler;
 
 function pickRandom(list) {
   return list[Math.floor(Math.random() * list.length)];

@@ -1,7 +1,8 @@
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) throw `Masukan Text!\n\ncontoh:\n${usedPrefix + command} YHAHAH WAHYU`;    
+  if (!text) throw `Masukan Text!\n\ncontoh:\n${usedPrefix + command} texttorusia Halo, apa kabar?`;    
+  try {
         m.reply(wait);      
         if (command == 'texttorusia' )  {
         const response = await axios.get(`https://api.betabotz.eu.org/api/sound/texttosound?text1=${text}&lang=ru-RU&apikey=${lann}`);        
@@ -105,6 +106,10 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         //     fileName: `.mp3`,
         //     // caption: caption
         // }, { quoted: m });
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
 };
 handler.command = handler.help = ['texttorusia', 'texttoindo', 'texttoeng', 'texttojp', 'texttofr', 'texttopny', 'texttomy', 'texttojrmn', 'texttoitly', 'texttokr', 'texttothai', 'texttoindia'];
 // handler.help = ['texttorusia'];
@@ -115,4 +120,4 @@ handler.group = true;
 handler.fail = null;
 handler.private = false;
 
-module.exports = handler;
+export default handler;

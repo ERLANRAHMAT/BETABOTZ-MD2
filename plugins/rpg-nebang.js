@@ -27,7 +27,7 @@ handler.limit = true
 handler.exp = 0
 handler.money = 0
 
-module.exports = handler
+export default handler
 
 function msToTime(duration) {
   var milliseconds = parseInt((duration % 1000) / 100),

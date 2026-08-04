@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
-const uploader = require('../lib/uploadFile');
+import fetch from 'node-fetch';
+import uploader from '../lib/uploadFile.js';
 
 let handler = async (m, { conn, usedPrefix, command }) => {
 	let q = m.quoted ? m.quoted : m
@@ -16,9 +16,10 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 				json = await (await fetch(`https://api.betabotz.eu.org/api/tools/webp2png?url=${media}&apikey=${lann}`)).json();
 			}
 			await conn.sendFile(m.chat, json.result, null, "*DONE*", m)
-		} catch (err) {
-			throw err
-		}
+		} catch (e) {
+      		console.log(e);
+      		throw e;
+    }
 	} else {
 		throw `Reply sticker with command ${usedPrefix + command}`
 	}
@@ -29,4 +30,4 @@ handler.tags = ['tools']
 handler.command = /^(toimg|togif)$/i
 handler.limit = true;
 
-module.exports = handler;
+export default handler;

@@ -1505,4 +1505,4 @@ handler.command = /^(shop|toko|buy|beli|sell|jual)$/i
 handler.limit = true
 handler.group = true
 handler.rpg = true
-module.exports = handler
+export default handler

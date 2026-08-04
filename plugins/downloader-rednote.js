@@ -1,11 +1,10 @@
-const axios = require('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Masukkan URL!\n\nContoh:\n${usedPrefix + command} http://xhslink.com/a/1N9OyfeL9EFab`;
     if (!text.match(/xhslink|xiaohongshu/gi)) throw `URL Tidak Valid!`;
-
-    m.reply(wait);
     try {
+        m.reply(wait);
         const res = await axios.get(`https://api.betabotz.eu.org/api/download/rednote?url=${text}&apikey=${btc}`);
         const result = res.data?.result;
         if (!result || !result.media) throw `Gagal mengambil data!`;
@@ -40,8 +39,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         }
 
     } catch (e) {
-        console.error(e);
-        throw `Terjadi kesalahan saat memproses permintaan!`;
+       console.log(e);
+      throw e;
     }
 };
 
@@ -51,7 +50,7 @@ handler.tags = ['downloader'];
 handler.limit = true;
 handler.premium = false;
 
-module.exports = handler;
+export default handler;
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));

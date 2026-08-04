@@ -30,6 +30,6 @@ handler.help = ['listpremium']
 handler.tags = ['info']
 handler.command = /^(listpremium|premiumlist|listprem|premlist)$/i
 handler.limit = true
-module.exports = handler
+export default handler
 
 

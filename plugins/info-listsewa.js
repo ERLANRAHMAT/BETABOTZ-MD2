@@ -1,4 +1,4 @@
-const { loadBaileys } = require('../baileys-loader.mjs')
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys
 
 function msToDate(ms) {
@@ -64,4 +64,4 @@ handler.help = ['listsewa', 'ceksewa <nomor urut>'];
 handler.tags = ['info'];
 handler.command = /^(listsewa|ceksewa|csewa)$/i;
 
-module.exports = handler;
+export default handler;

@@ -1,5 +1,4 @@
-const { sKata, cKata } = require('../lib/sambung-kata')
-
+import { sKata, cKata } from '../lib/sambung-kata.js';
 let handler = m => m
 
 handler.before = async function (m, { conn }) {
@@ -120,7 +119,7 @@ Jawaban tidak valid atau sudah digunakan!`)
     return true
 }
 
-module.exports = handler
+export default handler
 
 async function genKata() {
     let json = await sKata()

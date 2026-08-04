@@ -1,8 +1,8 @@
-const similarity = require('similarity')
+import similarity from 'similarity';
 const threshold = 0.72 
 let rewardAmount = 1000 //ganti ini buat jumlah money nya
 
-module.exports = {
+export default {
     async before(m) {
         this.family = this.family ? this.family : {}
         let id = m.chat

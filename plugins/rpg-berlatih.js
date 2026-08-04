@@ -71,4 +71,4 @@ handler.group = true;
 handler.rpg = true
 handler.fail = null;
 
-module.exports = handler;
+export default handler;

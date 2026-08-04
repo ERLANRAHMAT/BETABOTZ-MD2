@@ -26,7 +26,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 handler.help = ['lapor', 'laporowner'].map(v => v + ' <teks>');
 handler.tags = ['main'];
 handler.command = /^(lapor|laporowner)$/i;
-module.exports = handler;
+export default handler;
 
 
 // let handler = async (m, { conn, text, usedPrefix, command }) => {
@@ -60,5 +60,5 @@ module.exports = handler;
 // handler.tags = ['main'];
 // handler.command = /^(pay|payapi)$/i;
 // handler.private = true;
-// module.exports = handler;
+// export default handler;
 

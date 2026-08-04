@@ -163,4 +163,4 @@ handler.group = true;
 handler.command = ["dokter"];
 handler.rpg = true
 
-module.exports = handler;
+export default handler;

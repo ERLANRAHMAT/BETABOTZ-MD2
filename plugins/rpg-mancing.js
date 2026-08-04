@@ -1,4 +1,4 @@
-const { loadBaileys } = require('../baileys-loader.mjs')
+import { loadBaileys } from '../baileys-loader.mjs';
 let baileys
 
 let wm = global.wm;
@@ -72,7 +72,7 @@ handler.help = ['mancing'];
 handler.tags = ['rpg'];
 handler.command = /^(mancing|memancing)$/i;
 handler.rpg = true
-module.exports = handler;
+export default handler;
 
 function formatTime(ms) {
 	let seconds = Math.floor(ms / 1000);

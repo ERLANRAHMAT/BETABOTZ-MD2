@@ -27,7 +27,7 @@ await conn.sendMessage(
 
 handler.command = handler.help = ['dashboard','totalhits']
 handler.tags = ['info']
-module.exports = handler;
+export default handler;
 
 function formatTime(time) {
   const date = new Date(time);

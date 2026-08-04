@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 let handler = m => m;
 
@@ -53,4 +53,4 @@ handler.all = async function(m, { isAdmin, isBotAdmin }) {
     return !0;
 }
 
-module.exports = handler;
+export default handler;

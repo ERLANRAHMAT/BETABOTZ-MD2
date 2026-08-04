@@ -6,8 +6,7 @@
    Dont Delete This Watermark and Sell This Code !!!!
 */
 
-const fetch = require('node-fetch')
-
+import fetch from 'node-fetch';
 //mulai
 
 let handler = async (m, {conn, command}) => {
@@ -93,16 +92,10 @@ let handler = async (m, {conn, command}) => {
 
     m.reply(anu)
     try {
-      } catch (e) {
-        console.log(e);
-        m.reply('Maaf, cerpen tidak di temukan');
-        await conn.sendMessage(m.chat, {
-          react: {
-              text: '😞',
-              key: m.key,
-          }
-      })
-      }
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
 
 };
 
@@ -112,6 +105,6 @@ handler.help = handler.command = ['remaja', 'anak', 'budaya', 'misteri', 'romant
 handler.tags = ['cerpen']
 handler.group = false;
 handler.limit = true;
-module.exports = handler;
+export default handler;
 
 //dana_putra13

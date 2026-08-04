@@ -54,4 +54,4 @@ handler.command = /^(upch)$/i;
 handler.owner = true; 
 handler.group = true;
 
-module.exports = handler;
+export default handler;

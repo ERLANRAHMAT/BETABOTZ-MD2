@@ -1,5 +1,4 @@
-let qrcode = require("qrcode")
-
+import qrcode from 'qrcode';
 let handler = async (m, { conn, text }) => {
   if (!text) throw 'teksnya mana?'
   conn.sendFile(m.chat, await qrcode.toDataURL(text.slice(0, 2048), { scale: 8 }), 'qrcode.png', '', m)
@@ -12,4 +11,4 @@ handler.botAdmin = false
 
 handler.fail = null
 
-module.exports = handler
+export default handler

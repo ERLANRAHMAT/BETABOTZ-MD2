@@ -1,19 +1,30 @@
-let fetch = require('node-fetch')
+import fetch from 'node-fetch';
 
-let timeout = 100000
-let poin = 10000
+let timeout = 100000;
+let poin = 10000;
+
 let handler = async (m, { conn, usedPrefix }) => {
-    conn.merdeka = conn.merdeka ? conn.merdeka : {}
-    let id = m.chat
-    if (id in conn.merdeka) {
-        conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.merdeka[id][0])
-        throw false
-    }
-    // di sini dia ngambil data dari api
-    let src = await (await fetch(`https://api.betabotz.eu.org/api/game/kuismerdeka?apikey=${lann}`)).json()
-    let json = src
-    // buat caption buat di tampilin di wa
-    let caption = `
+    try {
+        conn.merdeka = conn.merdeka ? conn.merdeka : {};
+        let id = m.chat;
+        
+        if (id in conn.merdeka) {
+            await conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.merdeka[id][0]);
+            return;
+        }
+
+        let json;
+        try {
+            let src = await (await fetch(`https://api.betabotz.eu.org/api/game/kuismerdeka?apikey=${lann}`)).json();
+            json = src;
+        } catch (e) {
+            console.log(e);
+            throw e;
+        }
+
+        if (!json || !json.jawaban) throw new Error('Format data kuismerdeka tidak valid dari API.');
+
+        let caption = `
 ${json.soal}
 
 ┌─⊷ *SOAL*
@@ -22,23 +33,31 @@ ${json.soal}
 ▢ Bonus: ${poin} money
 ▢ *Balas/ replay soal ini untuk menjawab*
 └──────────────
-`.trim()
-    conn.merdeka[id] = [
-        await conn.reply(m.chat, caption, m),
-        json, poin,
-        setTimeout(() => {
-            if (conn.merdeka[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.merdeka[id][0])
-            delete conn.merdeka[id]
-        }, timeout)
-    ]
-}
-handler.help = ['kuismerdeka']
-handler.tags = ['game']
-handler.command = /^kuismerdeka/i
-handler.register = false
-handler.group = true
+`.trim();
 
-module.exports = handler
+        conn.merdeka[id] = [
+            await conn.reply(m.chat, caption, m),
+            json, 
+            poin,
+            setTimeout(() => {
+                if (conn.merdeka[id]) {
+                    conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.merdeka[id][0]);
+                    delete conn.merdeka[id];
+                }
+            }, timeout)
+        ];
+    } catch (e) {
+        if (e !== false) {
+            console.log(e);
+            throw e;
+        }
+    }
+};
 
-// tested di bileys versi 6.7.9 dan sharp versi 0.30.5
-// danaputra133
+handler.help = ['kuismerdeka'];
+handler.tags = ['game'];
+handler.command = /^kuismerdeka/i;
+handler.register = false;
+handler.group = true;
+
+export default handler;

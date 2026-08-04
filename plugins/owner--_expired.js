@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     async all(m) {
         if (!m.isGroup) return 
         let chats = global.db.data.chats[m.chat]

@@ -12,7 +12,7 @@ handler.tags = ['rpg']
 handler.command = /^(gaji|gajian)/i
 handler.register = true
 handler.rpg = true
-module.exports = handler
+export default handler
 
 function msToTime(duration) {
   var milliseconds = parseInt((duration % 1000) / 100),
