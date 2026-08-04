@@ -18,7 +18,7 @@ let handler = async (m, {conn, text, isPrems}) => {
 cek .balance jumlah xp mu!
 🆙 *XP* : +${isPrems ? prem : free}`);
 
-    // Update waktu klaim terakhir
+
     global.db.data.users[m.sender].lastclaim = currentTime;
 }
 
