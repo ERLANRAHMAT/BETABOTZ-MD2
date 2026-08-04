@@ -1,6 +1,6 @@
 {
     "name": "BETABOTZ-MD2",
-    "version": "2.4xx.1xx-esm",
+    "version": "3.x.x",
     "description": "Lightweight WhatsApp Bot",
     "depecrated": false,
     "type": "module",
