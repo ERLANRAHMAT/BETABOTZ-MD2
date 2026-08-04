@@ -14,6 +14,14 @@
 * Informasi Bot: [WhatsApp](https://whatsapp.com/channel/0029VaiIG3UJpe8n3Y2MZ51z)
 
 ---
+## ✨ Link Seputar Bot
+
+| Ikon | Link                               | Deskripsi Singkat                                                                                                |
+| :--: | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+|  ▶️  | **https://www.youtube.com/playlist?list=PLuQT2lE0wOYTMf1X4OqlVFeavLsLKa-0t** | **Video tutorial** |
+|  ▶️  | **https://www.youtube.com/playlist?list=PLuQT2lE0wOYTMf1X4OqlVFeavLsLKa-0t** | **Penjelasan Update** |
+
+---
 
 ## Note!
 
