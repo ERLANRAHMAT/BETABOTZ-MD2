@@ -3,7 +3,7 @@ import uploadImage from '../lib/uploadImage.js';
 
 async function handler(m, { conn, usedPrefix, command, text }) {
   try {   
-   
+    m.reply(`Tunggu sebentar, sedang memproses...`)
     const q = m.quoted ? m.quoted : m;
     const mime = (q.msg || q).mimetype || q.mediaType || '';
     if (/^image/.test(mime) && !/webp/.test(mime)) {
