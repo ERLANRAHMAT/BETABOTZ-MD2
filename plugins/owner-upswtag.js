@@ -1,12 +1,10 @@
 import crypto from 'crypto';
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys
+
 
 const handler = async (
   m,
   { conn, text, command, prefix, isOwner, isSewa, isBotAdmin },
 ) => {
-  if (!baileys) baileys = await loadBaileys();
   const { generateWAMessageContent, generateWAMessageFromContent } = baileys;
 
   async function groupStatus(jid, content) {

@@ -1,9 +1,8 @@
 import uploadImage from '../lib/uploadImage.js';
 import ocrapi from 'ocr-space-api-wrapper';
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys
+import * as baileys from "@whiskeysockets/baileys";
+
 let handler = async (m, { conn, text }) => {
-  if (!baileys) baileys = await loadBaileys();
   const { MessageType } = baileys;
       let q = m.quoted ? m.quoted : m
     let mime = (q.msg || q).mimetype || ''

@@ -1,10 +1,8 @@
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys
+
 
 const qrisUrl = global.qris || 'https://cdn.filn.pp.ua/uploads/betabotzapi/41616.jpg'; 
 
 const handler = async (message, { conn }) => {
-  if (!baileys) baileys = await loadBaileys();
   const { generateWAMessageContent, generateWAMessageFromContent, proto } = baileys;
     const replyMessage = `Metode Pembayaran:\n\nDana: 081289694906\n\nSilakan lakukan pembayaran dan kirim bukti pembayaran dengan caption ID Transaksi.`;
     await message.reply(replyMessage);

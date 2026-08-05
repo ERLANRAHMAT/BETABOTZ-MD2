@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 let handler = async (m, { conn, text }) => {
-  try {
     if (!text) throw `*• Example:* .Kujou *[on/off]*`;
+  try {
+  
 
     conn.Kujou = conn.Kujou ? conn.Kujou : {};
 

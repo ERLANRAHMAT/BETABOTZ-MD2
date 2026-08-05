@@ -17,8 +17,8 @@ let handler = async (m, { text, usedPrefix, command }) => {
     let caption = result.map(v => `${v.title}\n${v.teks}`).join('\n────────\n')
     m.reply(caption)
 } catch (e) {
-    console.error(e)
-    throw 'Terjadi kesalahan saat mencari ayat Alkitab'
+        console.log(e);
+        throw e;
 }
 }
 handler.help = ['alkitab'].map(v => v + ' <pencarian>')

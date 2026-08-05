@@ -18,7 +18,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             }
         });
 
-        m.reply(`Pesan terkirim ke owner!\n\n mohon tunggu ya :D`);
+        m.reply(`Pesan terkirim ke owner!\n\nMohon tunggu sampai fitur diperbaiki atau coba lagi nanti :)ss`);
     } else {
         m.reply(`*Reply atau Kirim gambar screenshot error nya dengan caption* \`${usedPrefix}fitur, error nya apa\``);
     }

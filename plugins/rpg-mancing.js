@@ -1,5 +1,4 @@
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys
+
 
 let wm = global.wm;
 let handler = async (m, {

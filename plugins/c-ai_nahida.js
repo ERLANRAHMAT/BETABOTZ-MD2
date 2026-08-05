@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 let handler = async (m, { conn, text }) => {
+   if (!text) throw `*• Example:* .nahida *[on/off]*`;
   try {
-    if (!text) throw `*• Example:* .nahida *[on/off]*`;
+   
 
     conn.nahida = conn.nahida ? conn.nahida : {};
 

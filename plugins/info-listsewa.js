@@ -1,5 +1,4 @@
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys
+
 
 function msToDate(ms) {
     let temp = ms;
@@ -14,7 +13,6 @@ function msToDate(ms) {
 }
 
 let handler = async (m, { conn, text, command, usedPrefix }) => {
-  if (!baileys) baileys = await loadBaileys();
   const { proto } = baileys;
     let who = text;
     switch (command) {

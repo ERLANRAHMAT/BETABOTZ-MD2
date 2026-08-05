@@ -1,7 +1,8 @@
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn }) => {
-const res = await fetch(`https://api.betabotz.eu.org/api/random/bijak?apikey=${lann}`).then(result => result.json())
+  try {
+    const res = await fetch(`https://api.betabotz.eu.org/api/random/bijak?apikey=${lann}`).then(result => result.json());
 
 
 let anu =`─────〔 *Kata Bijak* 〕─────
@@ -9,6 +10,10 @@ let anu =`─────〔 *Kata Bijak* 〕─────
 ${res.result}
 `
 m.reply(anu) 
+   } catch (e) {
+        console.log(e);
+        throw e;
+    }
 }
 handler.help = ['katabijak']
 handler.tags = ['quotes']

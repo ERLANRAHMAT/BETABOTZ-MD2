@@ -1,5 +1,4 @@
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys
+
 import fetch from 'node-fetch';
 import axios from 'axios';
 

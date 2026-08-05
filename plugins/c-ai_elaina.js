@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 let handler = async (m, { conn, text }) => {
+     if (!text) throw `*• Example:* .elaina *[on/off]*`;
   try {
-    if (!text) throw `*• Example:* .elaina *[on/off]*`;
+ 
 
     conn.elaina = conn.elaina ? conn.elaina : {};
 

@@ -5,8 +5,9 @@ try {
   let json = await res.json()
   conn.reply(m.chat, `―MOTIVASI―\n\n"${json.result}"`,);
 } catch (e) {
-throw `Internal server eror!`
-  }
+        console.log(e);
+        throw e;
+    }
 }
 handler.help = ['motivasi']
 handler.tags = ['quotes']

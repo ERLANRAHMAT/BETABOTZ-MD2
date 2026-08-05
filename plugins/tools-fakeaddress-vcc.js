@@ -16,7 +16,7 @@ let handler = async (m, {
       await conn.reply(m.chat, vcc.result, m);
     } catch (e) {
       console.log(e);
-      throw eror
+      throw e
     }
   }
   

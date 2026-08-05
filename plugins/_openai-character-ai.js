@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 let handler = async (m, { text, usedPrefix, command }) => {
+  if (!text) throw(`Input Text Dan Karakter!\nExample: ${usedPrefix + command} hai Kirito|Kirito`)    
   try {
-    if (!text) throw(`Input Text Dan Karakter!\nExample: ${usedPrefix + command} hai Kirito|Kirito`)    
     let [ prompt, logic ] = text.split('|')
     m.reply(`Tunggu sebentar...`)
     let res = await fetch(`https://api.betabotz.eu.org/api/search/c-ai?prompt=${prompt}?&char=${logic}&apikey=${lann}`)

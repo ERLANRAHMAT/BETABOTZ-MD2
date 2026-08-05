@@ -15,7 +15,7 @@ let handler = async (m, {
       await conn.reply(m.chat, ff.result.userNameGame, m);
     } catch (e) {
       console.log(e);
-      throw eror;
+      throw e;
     }
   }
   if (command == 'mlstalk') {
@@ -27,7 +27,7 @@ let handler = async (m, {
       await conn.reply(m.chat, `*ID:* ${ml.result.user_id}\n*Server:* ${ml.result.server_id}\n*Username:* ${ml.result.userName}\n*Region:* ${ml.result.country}`, m);
     } catch (e) {
       console.log(e);
-      throw eror;
+      throw e;
     }
   }
   if (command == 'mlstalk2') {
@@ -109,7 +109,7 @@ let handler = async (m, {
       await conn.reply(m.chat, caption, m);
     } catch (e) {
       console.log(e);
-      throw eror;
+      throw e;
     }
   }
   if (command == 'npmstalk') {
@@ -141,7 +141,8 @@ let handler = async (m, {
       }
       await conn.reply(m.chat, caption, m);
     } catch (e) {
-      throw eror;
+      console.log(e);
+      throw e;
     }
   }
   if (command == 'repostalk') {
@@ -178,8 +179,9 @@ let handler = async (m, {
       caption += `*Author Type:* ${repo.result.items[0].author.type}\n`;
       caption += `*Is Site Admin:* ${repo.result.items[0].author.isSiteAdmin}\n`;
       await conn.reply(m.chat, caption, m);
-    } catch (error) {
-      throw eror;
+    } catch (e) {
+      console.log(e);
+      throw e;
     }
   }
   if (command == 'genshinstalk' || command == 'stalkgenshin' || command == 'gistalk') {
@@ -201,7 +203,7 @@ let handler = async (m, {
       await conn.reply(m.chat, caption, m);
     } catch (e) {
       console.log(e);
-      throw eror;
+      throw e;
     }
   }
   if (command == 'hokstalk') {
@@ -212,7 +214,8 @@ let handler = async (m, {
       if (!result.ok) throw 'Player not found!';
       conn.reply(m.chat, result.name, m);
     } catch (e) {
-      throw eror;
+      console.log(e);
+      throw e;
     }
   }
 }

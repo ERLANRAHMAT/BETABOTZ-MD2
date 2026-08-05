@@ -1,8 +1,7 @@
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys
+import * as baileys from '@whiskeysockets/baileys';
+
 
 let handler = async (m, { conn, text }) => {
-  if (!baileys) baileys = await loadBaileys();
   const { MessageType } = baileys;
   if (!text) {
     throw 'Masukkan jumlah xp yang ingin ditambahkan pada pengguna. Contoh: .addxp @user 10';

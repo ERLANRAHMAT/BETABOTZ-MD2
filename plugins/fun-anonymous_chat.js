@@ -2,8 +2,7 @@
 // let baileys
 // async function handler(m, { command }) {
 //     try {
-//         if (!baileys) baileys = await loadBaileys();
-//   const { MessageType } = baileys;
+//       //   const { MessageType } = baileys;
 //     command = command.toLowerCase()
 //     this.anonymous = this.anonymous ? this.anonymous : {}
 //     switch (command) {

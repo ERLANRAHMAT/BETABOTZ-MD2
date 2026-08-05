@@ -3,8 +3,7 @@
 // const fetch = import 'node-fetch'
 
 // let handler = async (m, { conn, text, participants, usedPrefix, command }) => {
-//   if (!baileys) baileys = await loadBaileys();
-//   const { getBinaryNodeChild, getBinaryNodeChildren } = baileys;
+// //   const { getBinaryNodeChild, getBinaryNodeChildren } = baileys;
 // 	if (!text) throw `_Masukan nomor!_\nContoh:\n\n${usedPrefix + command} ${global.owner[0]}`
 // 	m.reply('_Sedang di proses..._')
 //     let _participants = participants.map(user => user.id)
