@@ -1,3 +1,4 @@
+import * as baileys from '@whiskeysockets/baileys';
 
 const Skepiting = 7000
 const Slobster = 7000

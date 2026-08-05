@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import fs from 'fs';
+import * as baileys from "@whiskeysockets/baileys";
 
 import { sticker5 } from '../lib/sticker.js';
 let handler = async (m, { conn, text, args }) => {

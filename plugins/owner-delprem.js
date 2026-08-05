@@ -1,3 +1,4 @@
+import * as baileys from '@whiskeysockets/baileys';
 
 
 let handler = async (m, { conn, text, usedPrefix }) => {

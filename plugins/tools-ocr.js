@@ -1,5 +1,6 @@
 import uploadImage from '../lib/uploadImage.js';
 import ocrapi from 'ocr-space-api-wrapper';
+import * as baileys from "@whiskeysockets/baileys";
 
 let handler = async (m, { conn, text }) => {
   const { MessageType } = baileys;

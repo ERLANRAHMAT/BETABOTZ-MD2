@@ -1,3 +1,4 @@
+import * as baileys from '@whiskeysockets/baileys';
 
 const Hab = 20000
 const Hag = 15000
