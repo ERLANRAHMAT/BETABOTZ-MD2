@@ -136,8 +136,8 @@ _Contoh:_ ${usedPrefix}${command} noted 13:20|2026-04-30|Meeting project baru`)
                 showHelp()
         }
     } catch (e) {
-        console.error(e)
-        m.reply('Terjadi kesalahan pada sistem/API.')
+        console.log(e);
+        throw e;
     }
 }
 

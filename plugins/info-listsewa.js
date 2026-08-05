@@ -1,5 +1,4 @@
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys
+
 
 function msToDate(ms) {
     let temp = ms;

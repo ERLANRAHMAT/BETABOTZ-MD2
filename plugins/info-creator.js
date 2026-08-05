@@ -1,8 +1,7 @@
 var name = global.nameowner
 var numberowner = global.numberowner
 var gmail = global.mail
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys
+
 var handler = async (m, {
 conn
 }) => {

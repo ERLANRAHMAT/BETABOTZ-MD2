@@ -4,8 +4,8 @@ var handler = async (m, {
  usedPrefix, 
  command
  }) => {
+  if (!text) throw `Masukkan pertanyaan!\n\n*Contoh:* buatkan saya code express.js`
   try {
-    if (!text) throw `Masukkan pertanyaan!\n\n*Contoh:* buatkan saya code express.js`
     await m.reply(wait)
     var apii = await fetch(`https://api.betabotz.eu.org/api/search/blackbox-chat?text=${text}&apikey=${lann}`)
     var res = await apii.json()

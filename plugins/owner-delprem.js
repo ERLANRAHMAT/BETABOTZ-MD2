@@ -1,5 +1,4 @@
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys
+
 
 let handler = async (m, { conn, text, usedPrefix }) => {
   if (!baileys) baileys = await loadBaileys();

@@ -1,7 +1,6 @@
 /* 
 
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys
+
 export default {
 before: async function before(m) {
   if (!baileys) baileys = await loadBaileys();

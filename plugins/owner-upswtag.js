@@ -1,6 +1,5 @@
 import crypto from 'crypto';
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys
+
 
 const handler = async (
   m,

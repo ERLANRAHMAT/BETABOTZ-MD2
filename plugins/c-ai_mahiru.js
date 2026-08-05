@@ -1,9 +1,10 @@
 import axios from 'axios';
 
 let handler = async (m, { conn, text }) => {
-  try {
-    if (!text) throw `*• Example:* .mahiru *[on/off]*`;
+   if (!text) throw `*• Example:* .mahiru *[on/off]*`;
 
+  try {
+   
     conn.mahiru = conn.mahiru ? conn.mahiru : {};
 
     if (text === "on") {

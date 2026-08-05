@@ -1,5 +1,4 @@
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys
+
 export default {
     async all(m, chatUpdate) {
       if (!baileys) baileys = await loadBaileys();

@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, command }) => {
+    try {
     let anu = `─────〔 *${command}* 〕─────\n`;
 
     if (command === 'bucin') {
@@ -47,6 +48,10 @@ let handler = async (m, { conn, command }) => {
         anu += res.hasl;
     }
     m.reply(anu);
+    } catch (e) {
+        console.log(e);
+        throw e;
+    }
 };
 
 handler.help = ['bucin', 'katailham', 'katadilan', 'fiersa', 'fakta', 'nyindir', 'ngawur', 'jawa', 'quotes','sunda','batak', 'aceh', 'cina', 'minangkabau'];

@@ -1,7 +1,6 @@
 import fetch from 'node-fetch';
 import fs from 'fs';
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys
+
 import { sticker5 } from '../lib/sticker.js';
 let handler = async (m, { conn, text, args }) => {
   if (!baileys) baileys = await loadBaileys();

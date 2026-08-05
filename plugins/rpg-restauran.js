@@ -1,5 +1,4 @@
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys
+
 const Hab = 20000
 const Hag = 15000
 const Hr = 15000

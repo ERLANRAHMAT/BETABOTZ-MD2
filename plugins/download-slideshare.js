@@ -51,7 +51,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     } catch (e) {
         if (e !== false) {
             console.error(e);
-            throw eror;
+            throw e;
         }
     }
 };

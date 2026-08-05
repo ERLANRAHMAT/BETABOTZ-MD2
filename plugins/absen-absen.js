@@ -1,20 +1,25 @@
 let handler = async (m, { conn, usedPrefix }) => {
-    try {
-        let id = m.chat
-        conn.absen = conn.absen ? conn.absen : {}
-        if (!(id in conn.absen)) throw `_*Mohon maaf, Tidak ada absen hari ini !*_\n\n*${usedPrefix}ᴍᴜʟᴀɪᴀʙꜱᴇɴ* - ᴜɴᴛᴜᴋ ᴍᴇᴍᴜʟᴀɪ ᴀʙꜱᴇɴ`
+    let id = m.chat
+    conn.absen = conn.absen ? conn.absen : {}
+    
+    if (!(id in conn.absen)) throw `_*Mohon maaf, Tidak ada absen hari ini !*_\n\n*${usedPrefix}ᴍᴜʟᴀɪᴀʙꜱᴇɴ* - ᴜɴᴛᴜᴋ ᴍᴇᴍᴜʟᴀɪ ᴀʙꜱᴇɴ`
 
-        let absen = conn.absen[id][1]
-        const wasVote = absen.includes(m.sender)
-        if (wasVote) throw '*Kamu sudah absen bang！🙄*'
+    let absen = conn.absen[id][1]
+    const wasVote = absen.includes(m.sender)
+    
+    if (wasVote) throw '*Kamu sudah absen bang！🙄*'
+
+    try {
         absen.push(m.sender)
-        m.reply(`Done!`)
+        await m.reply(`Done!`)
+        
         let d = new Date
         let date = d.toLocaleDateString('id', {
             day: 'numeric',
             month: 'long',
             year: 'numeric'
         })
+        
         let list = absen.map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')
         let caption = `
 Tanggal: ${date}
@@ -25,12 +30,14 @@ ${list}
 └────
 _Silahkan Ketik ${usedPrefix}absen Untuk Absen_
 _Ketik ${usedPrefix}cekabsen Untuk Cek Absen_`.trim()
+        
         await conn.reply(m.chat, caption, m, { contextInfo: { mentionedJid: absen } })
     } catch (e) {
         console.log(e);
         throw e;
     }
 }
+
 handler.help = ['absen']
 handler.tags = ['group']
 handler.command = /^(absen|hadir)$/i

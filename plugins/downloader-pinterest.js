@@ -1,6 +1,5 @@
 import fetch from 'node-fetch';
-import { loadBaileys } from '../baileys-loader.mjs';
-let baileys;
+;
 
 const MAX_IMAGE_SEND = 20;
 const STOP_COMMANDS = ['stop', 'berhenti', 'cancel', 'batal'];
