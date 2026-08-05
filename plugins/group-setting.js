@@ -1,6 +1,5 @@
 
 let handler = async (m, { isAdmin, isOwner, isBotAdmin, conn, args, usedPrefix, command }) => {
-  if (!baileys) baileys = await loadBaileys();
   const { groupsSettingUpdate } = baileys;
 	if (!(isAdmin || isOwner)) {
 		global.dfail('admin', m, conn)

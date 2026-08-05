@@ -3,7 +3,6 @@ import fs from 'fs';
 
 import { sticker5 } from '../lib/sticker.js';
 let handler = async (m, { conn, text, args }) => {
-  if (!baileys) baileys = await loadBaileys();
   const { MessageType } = baileys;
   if (!args[0]) throw 'Contoh penggunaan:\n\n*.emojimix 🤨+😣*'
   try {

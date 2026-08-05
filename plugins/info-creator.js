@@ -5,7 +5,6 @@ var gmail = global.mail
 var handler = async (m, {
 conn
 }) => {
-  if (!baileys) baileys = await loadBaileys();
   const {
     default: makeWASocket,
     BufferJSON,

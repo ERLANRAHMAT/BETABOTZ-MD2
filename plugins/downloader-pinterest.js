@@ -23,8 +23,7 @@ async function sendImages(conn, chat, urls, count, quoted, isCancelled) {
 
 let handler = async (m, { conn, usedPrefix, command, args }) => {
   try {
-    if (!baileys) baileys = await loadBaileys();
-    if (!args[0]) throw `*🚩 Example:* ${usedPrefix}${command} minato aqua`;
+      if (!args[0]) throw `*🚩 Example:* ${usedPrefix}${command} minato aqua`;
     await m.reply('Sedang mencari...');
 
     const q = encodeURIComponent(args.join(' '));
