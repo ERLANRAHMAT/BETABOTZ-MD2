@@ -1,3 +1,5 @@
+import * as baileys from "@whiskeysockets/baileys";
+
 var name = global.nameowner
 var numberowner = global.numberowner
 var gmail = global.mail

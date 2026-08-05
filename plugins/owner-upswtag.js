@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import * as baileys from "@whiskeysockets/baileys";
 
 
 const handler = async (

@@ -1,3 +1,4 @@
+import * as baileys from "@whiskeysockets/baileys";
 
 let handler = async (m, { isAdmin, isOwner, isBotAdmin, conn, args, usedPrefix, command }) => {
   const { groupsSettingUpdate } = baileys;
