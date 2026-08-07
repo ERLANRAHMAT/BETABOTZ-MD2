@@ -8,7 +8,7 @@ let handler = async (m, { conn, args, participants, isOwner, isAdmin }) => {
 
   // ini jeda setiap user yang akan di kick, jika kamu isi 60 detik maka 1 user akan di kick setiap 60 detik
   // jangan restart bot saat kick all sedang dijalankan
-  const JEDA_KICK = 60; // <- dalam detik ini arti nya 60 second
+  const JEDA_KICK = 3; // <- dalam detik ini arti nya 60 second
 
 
   let ownerGroup = m.chat.split`-`[0] + "@s.whatsapp.net";
