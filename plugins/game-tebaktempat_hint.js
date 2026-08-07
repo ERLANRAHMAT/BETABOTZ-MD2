@@ -1,7 +1,7 @@
 let handler = async (m, { conn }) => {
     conn.tebaktempat = conn.tebaktempat ? conn.tebaktempat : {}
     let id = m.chat
-    if (!(id in conn.tebaktempat)) throw false
+    if (!(id in conn.tebaktempat)) throw "Belum ada soal di chat ini!";
     let json = conn.tebaktempat[id][1]
     let ans = json.jawaban
     let clue = ans.replace(/[bcdfghjklmnpqrstvwxyz123456789]/gi, '_')

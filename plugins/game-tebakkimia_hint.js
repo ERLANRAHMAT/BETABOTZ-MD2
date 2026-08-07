@@ -1,7 +1,7 @@
 let handler = async (m, { conn }) => {
     conn.kimia = conn.kimia ? conn.kimia : {}
     let id = m.chat
-    if (!(id in conn.kimia)) throw false
+    if (!(id in conn.kimia)) throw "Belum ada soal di chat ini!";
     let json = conn.kimia[id][1]
     let ans = json.lambang
     // kalau ini error clue nya ak mau ada tanda (_) nya ganti string dalam function di bawah ini jadi huruf kecil

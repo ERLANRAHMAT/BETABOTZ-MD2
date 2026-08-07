@@ -1,4 +1,6 @@
 let handler = async (m, { teks, conn, isOwner, isAdmin, args, command }) => {
+    try {
+    
     if (m.isBaileys) return;
     if (!(isAdmin || isOwner)) {
         global.dfail('admin', m, conn);
@@ -26,6 +28,12 @@ let handler = async (m, { teks, conn, isOwner, isAdmin, args, command }) => {
             await conn.groupParticipantsUpdate(m.chat, [user], "promote");
             m.reply(`Sukses ${command} @${user.split('@')[0]}!`, null, { mentions: [user] });
         }
+    }
+    } catch (e) {
+      if (e !== false) {
+        console.log(e);
+        throw e;
+      }
     }
   };
   

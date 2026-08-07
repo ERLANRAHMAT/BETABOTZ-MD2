@@ -3,7 +3,7 @@ let handler = async (m, { conn, args, participants, isOwner, isAdmin }) => {
 
   if (!(isAdmin || isOwner)) {
     global.dfail("admin", m, conn);
-    throw false;
+    return; 
   }
 
   // ini jeda setiap user yang akan di kick, jika kamu isi 60 detik maka 1 user akan di kick setiap 60 detik

@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-let handler = async (m, { text, usedPrefix, command }) => {
+let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `*Example:* ${usedPrefix + command} ERLANRAHMAT`   
     try {     
         let json = await fetch(`https://api.betabotz.eu.org/api/stalk/github?username=${text}&apikey=${lann}`).then(res => res.json());

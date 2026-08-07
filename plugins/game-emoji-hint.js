@@ -1,7 +1,7 @@
 let handler = async (m, { conn }) => {
     conn.tebakemoji = conn.tebakemoji ? conn.tebakemoji : {}
     let id = m.chat
-    if (!(id in conn.tebakemoji)) throw false
+    if (!(id in conn.tebakemoji)) throw "Belum ada soal di chat ini!";
     let json = conn.tebakemoji[id][1]
     conn.reply(m.chat, '```' + json.jawaban.replace(/[AIUEOaiueo]/ig, '_') + '```', m)
 }

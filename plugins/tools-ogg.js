@@ -1,24 +1,27 @@
-import fetch from 'node-fetch';
-import uploader from '../lib/uploadFile.js';
+import { toAudio, toPTT } from '../lib/converter.js'
 
 let handler = async (m, { conn, usedPrefix, command }) => {
-	let q = m.quoted ? m.quoted : m
-	let mime = (q.msg || q).mimetype || q.mediaType || ''
-	if (/video/.test(mime)) {
-		let buffer = await q.download()
-		await m.reply(wait)
-		try {
-		let media = await uploader(buffer)
-		let json = await (await fetch(`https://api.betabotz.eu.org/api/tools/video2audio?url=${media}&apikey=${lann}`)).json()		
-        await conn.sendFile(m.chat, json.result, "audio.mp3", "*DONE*", m)
-        } catch (e) {
-      console.log(e);
-      throw e;
-    }
- } else throw `Reply video with command ${usedPrefix + command}`
+  let q = m.quoted ? m.quoted : m
+  let mime = (m.quoted ? m.quoted : m.msg).mimetype || ''
+  if (/mp3|a(udio)?$/i.test(command)) {
+    if (!/video|audio/.test(mime)) throw `Balas video/audio dengan perintah *${usedPrefix + command}*`
+    let media = await q.download()
+    if (!media) throw 'Media tidak dapat diunduh'
+    let audio = await toAudio(media, 'mp4')
+    if (!audio.data) throw 'Gagal melakukan konversi.'
+    conn.sendMessage(m.chat, { audio: { url: audio.filename }, mimetype: 'audio/mpeg' }, { quoted: m })
+  }
+  if (/vn|ptt$/i.test(command)) {
+    if (!/video|audio/.test(mime)) throw `Balas video/audio dengan perintah *${usedPrefix + command}*`
+    let media = await q.download()
+    if (!media) throw 'Media tidak dapat diunduh'
+    let audio = await toPTT(media, 'mp4')
+    if (!audio.data) throw 'Gagal melakukan konversi.'
+    conn.sendMessage(m.chat, { audio: { url: audio.filename }, mimetype: 'audio/ogg; codecs=opus', ptt: true }, { quoted: m })
+  }
 }
-handler.help = handler.command = ['video2audio', 'tomp3', 'toaudio']
-handler.tags = ['tools']
-handler.limit = true;
+handler.help = ['tomp3', 'tovn']
+handler.tags = ['voice']
+handler.command = /^to(mp3|vn|ptt)$/i
 
 export default handler

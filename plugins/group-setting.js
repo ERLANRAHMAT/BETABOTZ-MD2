@@ -1,13 +1,14 @@
 
 let handler = async (m, { isAdmin, isOwner, isBotAdmin, conn, args, usedPrefix, command }) => {
+	try {
   const { groupsSettingUpdate } = baileys;
 	if (!(isAdmin || isOwner)) {
 		global.dfail('admin', m, conn)
-		throw false
+		return;
 	}
 	if (!isBotAdmin) {
 		global.dfail('botAdmin', m, conn)
-		throw false
+		return;
 	}
 let prefix = usedPrefix
 let bu = `Group telah di buka oleh @${m.sender.split`@`[0]} dan sekarang  semua member dapat mengirim pesan
@@ -31,7 +32,7 @@ ${usedPrefix + command} buka
 	`
 m.reply(text5)
 
-		throw false
+		return;
 	} else if (isClose === 'announcement') {
 	await conn.groupSettingUpdate(m.chat, isClose)
 	let teks = `Group telah di tutup oleh @${m.sender.split`@`[0]} dan sekarang hanya admin yang dapat mengirim pesan
@@ -51,6 +52,12 @@ ${usedPrefix + command} buka`
 m.reply(te)
 
 	}
+	} catch (e) {
+      if (e !== false) {
+        console.log(e);
+        throw e;
+      }
+    }
 }
 
 handler.help = ['grup <open/close>']
