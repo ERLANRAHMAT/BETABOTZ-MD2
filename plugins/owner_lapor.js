@@ -26,6 +26,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 handler.help = ['lapor', 'laporowner'].map(v => v + ' <teks>');
 handler.tags = ['main'];
 handler.command = /^(lapor|laporowner)$/i;
+handler.group = true;
+
 export default handler;
 
 
