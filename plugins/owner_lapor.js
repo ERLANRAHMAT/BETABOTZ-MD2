@@ -1,5 +1,5 @@
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) return m.reply(`*CARA KIRIM BUKTI*\n\n- Screenshot error fitur nya, harus jelas!\n\n- Kirim/Reply gambar screenshotannya dengan caption *${usedPrefix}${command} error fitur nya minn*\n\n`)
+    if (!text) return m.reply(`*CARA KIRIM BUKTI*\n\n- Screenshot perintah kamu dan gambar(jika ada) atau reply ke bot(jika ada), harus jelas!\n\n- Kirim/Reply gambar screenshotannya dengan caption *${usedPrefix}${command} error fitur nya minn*\n\n`)
     let q = m.quoted ? m.quoted : m;
     let mime = (q.msg || q).mimetype || q.mediaType || '';
     if (/^image/.test(mime) && !/webp/.test(mime)) {
