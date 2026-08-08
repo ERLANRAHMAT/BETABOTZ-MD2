@@ -15,7 +15,7 @@ handler.register = false
 export default handler
 
 const getAdmin = (participants) => {
-        getAdminAll = []
+       let getAdminAll = []
         for (let b of participants) {
                 b.admin === "admin" ? getAdminAll.push(b.id) : ''
                 b.admin === "superadmin" ? getAdminAll.push(b.id) : ''
