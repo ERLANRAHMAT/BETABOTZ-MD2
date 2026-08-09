@@ -99,7 +99,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
 
         } catch (e) {
             console.error(e);
-            m.reply("[ ! ] Terjadi kesalahan saat memproses gambar.");
+            throw e;
         }
     } else {
         m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim.`);

@@ -2,7 +2,7 @@ let handler = async (m, { conn, command, isAdmin, isOwner }) => {
   let chat = global.db.data.chats[m.chat] || (global.db.data.chats[m.chat] = { isBanned: false });
   if (!(isAdmin || isOwner)) {
       global.dfail('admin', m, conn)
-      throw false
+      return;
     }
   // Jika grup sedang di-mute, bot tidak merespon
   if (chat.isBanned && command !== 'unmute') return;

@@ -9,7 +9,7 @@ let handler = async (m, { conn }) => {
     conn.misi = conn.misi ? conn.misi : {}
     if (id in conn.misi) {
         conn.reply(m.chat, `Selesaikan Misi ${conn.misi[id][0]} Terlebih Dahulu`, m)
-        throw false
+        return;
     }
     if (new Date - global.db.data.users[m.sender].kerjaempat > 3600000) {
         let randomaku4 = Math.floor(Math.random() * 10)

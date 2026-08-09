@@ -1,7 +1,7 @@
 let handler = async (m, { conn }) => {
     conn.tebaklagu = conn.tebaklagu ? conn.tebaklagu : {}
     let id = m.chat
-    if (!(id in conn.tebaklagu)) throw false
+    if (!(id in conn.tebaklagu)) throw "Belum ada soal di chat ini!";
     let json = conn.tebaklagu[id][1]
     conn.reply(m.chat, '```' + json.judul.replace(/[AIUEOaiueo]/ig, '_') + '```', m)
 }

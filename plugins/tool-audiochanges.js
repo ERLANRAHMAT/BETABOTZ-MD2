@@ -1,6 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import { exec } from 'child_process';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 let handler = async (m, { conn, args, usedPrefix, command }) => {
     try {
         let q = m.quoted ? m.quoted : m
@@ -22,22 +27,32 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         if (/smooth/.test(command)) set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
         if (/tupai|squirrel|chipmunk/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"'
         if (/vibra/.test(command)) set = '-filter_complex "vibrato=f=15"'
+        
         let ran = (new Date * 1) + '.mp3'
-        let media = path.join(__dirname, '../tmp/' + ran)
+        
+        // Memastikan folder tmp ada
+        let tmpDir = path.join(__dirname, '../tmp/');
+        if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
+        
+        let media = path.join(tmpDir, ran)
         let filename = media + '.mp3'
+        
         await fs.promises.writeFile(media, audio)
+        
         exec(`ffmpeg -i ${media} ${set} ${filename}`, async (err) => {
             await fs.promises.unlink(media)
-            if (err) return Promise.reject( `_*Error!*_`)
+            if (err) return m.reply(`_*Error saat memproses audio!*_`)
+            
             let buff = await fs.promises.readFile(filename)
             conn.sendFile(m.chat, buff, ran, null, m, /vn/.test(args[0]), { quoted: m, mimetype: 'audio/mp4' })
             await fs.promises.unlink(filename)
         })
     } catch (e) {
-    console.log(e);
-    throw e;
-  }
+        console.log(e);
+        throw e;
+    }
 }
+
 handler.help = ['bass', 'blown', 'deep', 'earrape', 'fast', 'fat', 'nightcore', 'reverse', 'robot', 'slow', 'smooth', 'tupai', 'vibra'].map(v => v + ' [vn]')
 handler.tags = ['voice']
 handler.command = /^(bass|blown|deep|earrape|fas?t|nightcore|reverse|robot|slow|smooth|tupai|squirrel|chipmunk|vibra)$/i

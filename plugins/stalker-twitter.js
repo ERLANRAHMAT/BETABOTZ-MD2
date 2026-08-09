@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-let handler = async (m, { text, usedPrefix, command }) => {
+let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `contoh:\n${usedPrefix + command} jokowi`
     try {
         let api = await fetch(`https://api.betabotz.eu.org/api/stalk/twitter?username=${text}&apikey=${lann}`)

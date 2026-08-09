@@ -1,5 +1,5 @@
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) return m.reply(`*CARA KIRIM BUKTI*\n\n- Screenshot error fitur nya, harus jelas!\n\n- Kirim/Reply gambar screenshotannya dengan caption *${usedPrefix}${command} error fitur nya minn*\n\n`)
+    if (!text) return m.reply(`*CARA KIRIM BUKTI*\n\n- Screenshot perintah kamu dan gambar(jika ada) atau reply ke bot(jika ada), harus jelas!\n\n- Kirim/Reply gambar screenshotannya dengan caption *${usedPrefix}${command} error fitur nya minn*\n\n`)
     let q = m.quoted ? m.quoted : m;
     let mime = (q.msg || q).mimetype || q.mediaType || '';
     if (/^image/.test(mime) && !/webp/.test(mime)) {
@@ -18,7 +18,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             }
         });
 
-        m.reply(`Pesan terkirim ke owner!\n\nMohon tunggu sampai fitur diperbaiki atau coba lagi nanti :)ss`);
+        m.reply(`Pesan terkirim ke owner!\n\nMohon tunggu sampai fitur diperbaiki atau coba lagi nanti :)`);
     } else {
         m.reply(`*Reply atau Kirim gambar screenshot error nya dengan caption* \`${usedPrefix}fitur, error nya apa\``);
     }
@@ -26,6 +26,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 handler.help = ['lapor', 'laporowner'].map(v => v + ' <teks>');
 handler.tags = ['main'];
 handler.command = /^(lapor|laporowner)$/i;
+handler.group = true;
+
 export default handler;
 
 
