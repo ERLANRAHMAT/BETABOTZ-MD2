@@ -1230,6 +1230,22 @@ export default {
                       console.error("Handler Error:", e);
 
                       try {
+                        let errorString =
+                          typeof e === "string"
+                            ? e
+                            : e?.stack || util.format(e);
+                        if (
+                          errorString.includes("<html") ||
+                          errorString.includes("Cloudflare") ||
+                          errorString.match(
+                            /(502|503|504|520|521|522|523|524)/,
+                          )
+                        ) {
+                          await m.reply(
+                            "⚠️ *Gagal memproses permintaan!*\nServer API sedang sibuk atau mengalami gangguan (Timeout/Error 524). Silakan coba beberapa saat lagi.",
+                          );
+                          return;
+                        }
                         if (typeof e === "string") return await m.reply(e);
 
                         let text = e?.stack || util.format(e);
