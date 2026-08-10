@@ -51,25 +51,7 @@ function listenOnPort(port) {
 
 listenOnPort(Number(process.env.PORT) || 0);
 
-if (!process.stdin.isTTY && process.argv.includes('--qr')) {
-  console.warn('\x1b[33m%s\x1b[0m', '⚠️ TTY not detected. Disabling interactive QR mode to avoid readline/TTY errors.');
-  process.argv = process.argv.filter((arg) => arg !== '--qr');
-  process.env.CI = process.env.CI || '1';
-  process.env.TERM = process.env.TERM || 'dumb';
-}
-
 let isRunning = false;
-let restartScheduled = false;
-
-function scheduleRestart(reason) {
-  if (restartScheduled) return;
-  restartScheduled = true;
-  console.warn(`\x1b[33m%s\x1b[0m`, `⚠️ Restart scheduled after: ${reason}`);
-  setTimeout(() => {
-    restartScheduled = false;
-    start('main.js');
-  }, 1000);
-}
 
 function start(file) {
   if (isRunning) return;
@@ -77,17 +59,11 @@ function start(file) {
 
   const resolvedFile = path.resolve(__dirname, path.basename(file));
   if (!resolvedFile.startsWith(path.resolve(__dirname) + path.sep)) {
-    throw new Error("Invalid file path");
+    throw new Error('Invalid file path');
   }
   const args = [resolvedFile, ...process.argv.slice(2)];
   const p = spawn(process.argv[0], args, {
-    stdio: ['pipe', 'inherit', 'inherit', 'ipc'],
-    env: {
-      ...process.env,
-      FORCE_COLOR: process.env.FORCE_COLOR || '1',
-      CI: process.env.CI || '1',
-      TERM: process.env.TERM || 'dumb'
-    }
+    stdio: ["inherit", "inherit", "inherit", "ipc"],
   });
 
   p.on("message", (data) => {
@@ -106,18 +82,15 @@ function start(file) {
 
   p.on("exit", (code) => {
     isRunning = false;
-    if (code === 0) {
-      console.log('\x1b[32m%s\x1b[0m', `✅ Child process exited normally with code ${code}`);
-      return;
-    }
-
     console.error('\x1b[31m%s\x1b[0m', `Exited with code: ${code}`);
-    scheduleRestart(`crash (code ${code})`);
+    start('main.js');
+
+    if (code === 0) return;
 
     fs.watchFile(args[0], () => {
       fs.unwatchFile(args[0]);
-      console.error('\x1b[31m%s\x1b[0m', `File ${args[0]} has been modified. Script will restart...`);
-      scheduleRestart(`file change: ${args[0]}`);
+	  console.error('\x1b[31m%s\x1b[0m', `File ${args[0]} has been modified. Script will restart...`);
+      start("main.js");
     });
   });
 
@@ -126,7 +99,7 @@ function start(file) {
     p.kill();
     isRunning = false;
     console.error('\x1b[31m%s\x1b[0m', `Error occurred. Script will restart...`);
-    scheduleRestart(`spawn error`);
+    start("main.js");
   });
 
   const pluginsFolder = path.join(__dirname, "plugins");
@@ -150,8 +123,7 @@ function start(file) {
   console.log(`💾 \x1b[33mTotal RAM: ${ramInGB.toFixed(2)} GB\x1b[0m`);
   const freeRamInGB = os.freemem() / (1024 * 1024 * 1024);
   console.log(`💽 \x1b[33mFree RAM: ${freeRamInGB.toFixed(2)} GB\x1b[0m`);
-  console.log('\x1b[33m%s\x1b[0m', `📃 Script by BETABOTZ`);
-
+  console.log("\x1b[33m%s\x1b[0m", `📃 Script by BETABOTZ`);
   setInterval(() => {}, 1000);
 }
 
@@ -166,5 +138,11 @@ const tmpDir = './tmp';
 process.on('unhandledRejection', (reason) => {
   console.error('\x1b[31m%s\x1b[0m', `Unhandled promise rejection: ${reason}`);
   console.error('\x1b[31m%s\x1b[0m', 'Unhandled promise rejection. Script will restart...');
-  scheduleRestart('unhandled rejection');
+  start('main.js');
+});
+
+process.on('exit', (code) => {
+  console.error(`Exited with code: ${code}`);
+  console.error('Script will restart...');
+  start('main.js');
 });
