@@ -34,18 +34,18 @@ const server = http.createServer((req, res) => {
 function listenOnPort(port) {
   server.once('error', (e) => {
     if (e.code === 'EADDRINUSE' && port !== 0) {
-      console.warn(`Port ${port} iport sudah dipakai, mencoba port random lain`);
+      console.warn(`Port ${port} is already in use. Using a random available port instead...`);
       listenOnPort(0);
       return;
     }
 
-    console.error('gagal:', e);
+    console.error('Failed to bind HTTP server:', e);
     process.exit(1);
   });
 
   server.listen(port, '0.0.0.0', () => {
     const actualPort = server.address().port;
-    console.log('\x1b[33m%s\x1b[0m', `Port ${actualPort} is open`);
+    console.log('\x1b[33m%s\x1b[0m', `🌐 Port ${actualPort} is open`);
   });
 }
 
