@@ -1,5 +1,5 @@
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    let guide = `Format salah!\n\n*Cara penggunaan:*\n${usedPrefix + command} username|lobby\n\n*Pilihan Lobby:*\nAngka 1 sampai 30\n\n*Contoh:*\n${usedPrefix + command} ProPlayer123|6`;
+    let guide = `Format salah!\n\n*Cara penggunaan:*\n${usedPrefix + command} username|lobby\n\n*Pilihan Lobby:*\nAngka 1 sampai 45\n\n*Contoh:*\n${usedPrefix + command} ProPlayer123|6`;
 
     if (!text) throw guide;
     let [username, lobby] = text.split('|');
@@ -7,8 +7,8 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         throw guide;
     }
     let lobbyNum = parseInt(lobby.trim());
-    if (isNaN(lobbyNum) || lobbyNum < 1 || lobbyNum > 30) {
-        throw `*❌ Lobby tidak valid!*\n\nMasukkan angka dari 1 sampai 30.`;
+    if (isNaN(lobbyNum) || lobbyNum < 1 || lobbyNum > 45) {
+        throw `*❌ Lobby tidak valid!*\n\nMasukkan angka dari 1 sampai 45.`;
     }
     try {
         await m.reply('⏳ _Sedang memproses gambar..._');
