@@ -51,7 +51,25 @@ function listenOnPort(port) {
 
 listenOnPort(Number(process.env.PORT) || 0);
 
+if (!process.stdin.isTTY && process.argv.includes('--qr')) {
+  console.warn('\x1b[33m%s\x1b[0m', '⚠️ TTY not detected. Disabling interactive QR mode to avoid readline/TTY errors.');
+  process.argv = process.argv.filter((arg) => arg !== '--qr');
+  process.env.CI = process.env.CI || '1';
+  process.env.TERM = process.env.TERM || 'dumb';
+}
+
 let isRunning = false;
+let restartScheduled = false;
+
+function scheduleRestart(reason) {
+  if (restartScheduled) return;
+  restartScheduled = true;
+  console.warn(`\x1b[33m%s\x1b[0m`, `⚠️ Restart scheduled after: ${reason}`);
+  setTimeout(() => {
+    restartScheduled = false;
+    start('main.js');
+  }, 1000);
+}
 
 function start(file) {
   if (isRunning) return;
@@ -63,10 +81,12 @@ function start(file) {
   }
   const args = [resolvedFile, ...process.argv.slice(2)];
   const p = spawn(process.argv[0], args, {
-    stdio: ["ignore", "inherit", "inherit", "ipc"],
+    stdio: ['pipe', 'inherit', 'inherit', 'ipc'],
     env: {
       ...process.env,
-      FORCE_COLOR: process.env.FORCE_COLOR || '1'
+      FORCE_COLOR: process.env.FORCE_COLOR || '1',
+      CI: process.env.CI || '1',
+      TERM: process.env.TERM || 'dumb'
     }
   });
 
@@ -86,15 +106,18 @@ function start(file) {
 
   p.on("exit", (code) => {
     isRunning = false;
-    console.error('\x1b[31m%s\x1b[0m', `Exited with code: ${code}`);
-    start('main.js');
+    if (code === 0) {
+      console.log('\x1b[32m%s\x1b[0m', `✅ Child process exited normally with code ${code}`);
+      return;
+    }
 
-    if (code === 0) return;
+    console.error('\x1b[31m%s\x1b[0m', `Exited with code: ${code}`);
+    scheduleRestart(`crash (code ${code})`);
 
     fs.watchFile(args[0], () => {
       fs.unwatchFile(args[0]);
-	  console.error('\x1b[31m%s\x1b[0m', `File ${args[0]} has been modified. Script will restart...`);
-      start("main.js");
+      console.error('\x1b[31m%s\x1b[0m', `File ${args[0]} has been modified. Script will restart...`);
+      scheduleRestart(`file change: ${args[0]}`);
     });
   });
 
@@ -103,7 +126,7 @@ function start(file) {
     p.kill();
     isRunning = false;
     console.error('\x1b[31m%s\x1b[0m', `Error occurred. Script will restart...`);
-    start("main.js");
+    scheduleRestart(`spawn error`);
   });
 
   const pluginsFolder = path.join(__dirname, "plugins");
@@ -143,11 +166,5 @@ const tmpDir = './tmp';
 process.on('unhandledRejection', (reason) => {
   console.error('\x1b[31m%s\x1b[0m', `Unhandled promise rejection: ${reason}`);
   console.error('\x1b[31m%s\x1b[0m', 'Unhandled promise rejection. Script will restart...');
-  start('main.js');
-});
-
-process.on('exit', (code) => {
-  if (code !== 0) {
-    console.error(`Exited with code: ${code}`);
-  }
+  scheduleRestart('unhandled rejection');
 });
