@@ -8,7 +8,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     try {
         await m.reply('⏳ _Sedang mencari data program studi di database PDDIKTI, tunggu sebentar..._');
 
-        let apiUrl = `https://api.betabotz.eu.org/api/tools/pddikti-prodi?aksesKey=${lann}&query=${encodeURIComponent(text.trim())}`;
+        let apiUrl = `https://api.betabotz.eu.org/api/tools/pddikti-prodi?aksesKey=${aksesKey}&query=${encodeURIComponent(text.trim())}`;
         
         let res = await fetch(apiUrl);
         let json = await res.json();
