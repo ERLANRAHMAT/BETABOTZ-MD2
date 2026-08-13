@@ -18,7 +18,8 @@ let handler = async (m, { conn, args }) => {
     let res = await tts(text, lang);
     conn.sendFile(m.chat, res, 'tts.opus', null, m, true);
   } catch (e) {
-    m.reply('*Contoh:* .tts hello world');
+    console.log(e);
+    throw e;
   }
 };
 handler.help = ['tts <teks>'];
