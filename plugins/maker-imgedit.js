@@ -58,11 +58,6 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
         case 'toghibili':
             endpoint = 'jadighibili';
             break;
-        case 'jadisdmtinggi':
-        case 'tosdmtinggi':
-        case 'tosdm':
-            endpoint = 'jadisdmtinggi';
-            break;
         case 'jadifigure':
         case 'tofigure':
             endpoint = 'tofigure'
@@ -137,13 +132,13 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
 
         } catch (e) {
             console.error(e);
-            throw e;
+            m.reply(`[ ! ] Gagal memproses gambar: ${e.message}`);
         }
     } else {
         m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim.`);
     }
 };
-handler.help = handler.command = ['jadidisney', 'todisney', 'jadipixar', 'topixar', 'jadicartoon', 'tocartoon', 'jadicyberpunk', 'tocyberpunk', 'jadivangogh', 'tovangogh', 'jadipixelart', 'topixelart', 'jadicomicbook', 'tocomicbook', 'jadihijab', 'tohijab', 'jadihitam', 'hitamkan', 'tohitam', 'jadiputih', 'toputih', 'jadighibili', 'toghibili', 'jadifigure', 'tofigure', 'jadifigure2', 'tofigure2', 'jadifigure3', 'tofigure3', 'tosdm' ,'tosdmtinggi', 'jadisdmtinggi', 'imageedit', 'imgedit', 'img2img', 'editimg'];
+handler.help = handler.command = ['jadidisney', 'todisney', 'jadipixar', 'topixar', 'jadicartoon', 'tocartoon', 'jadicyberpunk', 'tocyberpunk', 'jadivangogh', 'tovangogh', 'jadipixelart', 'topixelart', 'jadicomicbook', 'tocomicbook', 'jadihijab', 'tohijab', 'jadihitam', 'hitamkan', 'tohitam', 'jadiputih', 'toputih', 'jadighibili', 'toghibili', 'jadifigure', 'tofigure', 'jadifigure2', 'tofigure2', 'jadifigure3', 'tofigure3', 'imageedit', 'imgedit', 'img2img', 'editimg'];
 handler.tags = ['maker'];
 handler.premium = false;
 handler.limit = true;
@@ -163,7 +158,7 @@ export default handler;
  */
 async function pollJobResult(type, jobId, opts = {}) {
     const intervalMs = opts.intervalMs || 3000;
-    const timeoutMs = opts.timeoutMs || 240000; // 2 minutes
+    const timeoutMs = opts.timeoutMs || 120000; // 2 minutes
     const isJsonResult = !!opts.isJsonResult;
     const startedAt = Date.now();
     const statusUrl = 'https://api.betabotz.eu.org/api/maker/status/editing-image';
@@ -222,4 +217,4 @@ async function pollJobResult(type, jobId, opts = {}) {
         // Bukan JSON -> berarti ini sudah buffer gambar final (khusus non-imgedit)
         return Buffer.from(res.data);
     }
-            }
+}

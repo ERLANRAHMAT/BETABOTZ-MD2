@@ -274,5 +274,5 @@ handler.help = [
 handler.tags = ['tools']
 handler.command = /^(ammagiclink|ampremium|amverify)$/i
 handler.limit = true
-
+handler.owner = true
 export default handler
