@@ -1,3 +1,4 @@
+import * as baileys from "@whiskeysockets/baileys";
 
 
 function msToDate(ms) {
