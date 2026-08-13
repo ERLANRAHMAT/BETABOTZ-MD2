@@ -1,3 +1,4 @@
+import * as baileys from "@whiskeysockets/baileys";
 
 
 const qrisUrl = global.qris || 'https://cdn.filn.pp.ua/uploads/betabotzapi/41616.jpg'; 
