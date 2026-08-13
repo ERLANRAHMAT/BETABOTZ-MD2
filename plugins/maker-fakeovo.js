@@ -21,5 +21,6 @@ handler.help = ['fakeovo <nominal>'];
 handler.tags = ['maker'];
 handler.command = /^(fakeovo)$/i;
 handler.limit = true;
+handler.group = true;
 
 export default handler;
