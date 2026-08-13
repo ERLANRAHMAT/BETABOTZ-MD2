@@ -1,3 +1,4 @@
+const __dirname = import.meta.dirname;
 import gtts from 'node-gtts';
 import fs from 'fs';
 import path from 'path';
