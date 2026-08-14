@@ -1,1 +1,1 @@
-worker: node index.js --autocleartmp
+worker: node index.ts --autocleartmp

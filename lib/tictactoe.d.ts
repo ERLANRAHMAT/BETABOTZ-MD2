@@ -1,3 +1,4 @@
+
 export declare class TicTacToe {
     /* X PlayerName */
     playerX: string;

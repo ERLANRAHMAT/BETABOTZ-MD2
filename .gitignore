@@ -1,11 +1,21 @@
-node_modules
+# Dependencies
+/node_modules/
+
+# Lock files
 package-lock.json
+
+# Local / Session data
+/sessions/
+*.log
+
+# Database
+/database/
 database.json
-sessions
-.env
-tmp
-.DS_Store
-src/.DS_Store
-*.DS_Store
-bun.lock
-plugins/info-listgroup.json
+database.sqlite*
+.auth/
+
+# ESLint cache
+.eslintcache
+
+# Temp media
+/tmp/

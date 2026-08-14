@@ -16,4 +16,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["node", "index.js", "--autocleartmp"]
+CMD ["node", "index.ts", "--autocleartmp"]
