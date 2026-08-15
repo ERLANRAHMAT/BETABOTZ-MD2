@@ -1,7 +1,7 @@
 
 ## UNTESTED
 
-<h1 align="center">BETABITZ MD2-TS</h1>
+<h1 align="center">BETABOTZ MD2-TS</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Node.js-22%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node">
