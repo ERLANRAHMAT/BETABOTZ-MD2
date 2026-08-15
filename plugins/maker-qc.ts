@@ -7,32 +7,39 @@ import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command, isOwner }) => {
     try {
-        let q = m.quoted ? m.quoted : m;
-        let mime = (q.msg || q).mimetype || q.mediaType || '';
-        let txt = text ? text : typeof q.text == 'string' ? q.text : '';
-        let name = await (typeof q.name === 'string' ? q.name : conn.getName(q.sender));
-        let avatar;
+        let q: any = m.quoted ? m.quoted : m;
+        let mime: string = (q.msg || q).mimetype || q.mediaType || '';
+        let txt: string = text ? text : typeof q.text == 'string' ? q.text : '';
+        let name: string = await (typeof q.name === 'string' ? q.name : conn.getName(q.sender));
+        let avatar: string;
+        
         try {
-            avatar = await conn.profilePictureUrl(q.sender, 'image').catch(_ => 'https://telegra.ph/file/320b066dc81928b782c7b.png');
-            if (!/tele/.test(avatar)) avatar = await uploadImage((await conn.getFile(avatar)).data);
+            avatar = await conn.profilePictureUrl(q.sender, 'image').catch((_: any) => 'https://telegra.ph/file/320b066dc81928b782c7b.png');
+            if (!/tele/.test(avatar)) {
+                let fileData = await conn.getFile(avatar);
+                avatar = await uploadImage(fileData.data);
+            }
         } catch {
             avatar = 'https://telegra.ph/file/320b066dc81928b782c7b.png';
         }
+        
         if (!avatar) avatar = 'https://telegra.ph/file/320b066dc81928b782c7b.png';
 
         if (!/image\/(jpe?g|png|webp)/.test(mime)) {
             let req = await ___qctext(txt, name, avatar);
             let stiker = await createWebp(req, false, global.packname, global.author);
-            conn.sendFile(m.chat, stiker, 'sticker.webp', '', m);
+            await conn.sendFile(m.chat, stiker, 'sticker.webp', '', m);
         } else {
-            let img = await q.download();
-            let decodedBuffer = await sharp(img).toFormat('png').toBuffer();
-            let url = await uploadImage(decodedBuffer);
+            let img: Buffer = await q.download();
+            // Sharp di sini aman karena membaca gambar dari WA, lalu diubah ke PNG
+            let decodedBuffer: Buffer = await sharp(img).toFormat('png').toBuffer();
+            let url: string = await uploadImage(decodedBuffer);
             let req = await ___qcimg(url, txt, name, avatar);
             let stiker = await createWebp(req, false, global.packname, global.author);
-            conn.sendFile(m.chat, stiker, 'sticker.webp', '', m);
+            await conn.sendFile(m.chat, stiker, 'sticker.webp', '', m);
         }
     } catch (e) {
+        console.error("Quotely Error:", e);
         throw e;
     }
 };
@@ -45,10 +52,11 @@ handler.limit = true;
 
 export default handler;
 
-async function ___qctext(text, name, url) {
+// Definisi fungsi helpers
+async function ___qctext(text: string, name: string, url: string): Promise<Buffer> {
     let body = {
         "type": "quote",
-        "format": "webp",
+        "format": "png", // <-- SUDAH DIUBAH KE PNG AGAR SHARP TIDAK CRASH
         "backgroundColor": "#FFFFFF",
         "width": 512,
         "height": 512,
@@ -71,7 +79,7 @@ async function ___qctext(text, name, url) {
     return Buffer.from(res.data.result.image, "base64");
 }
 
-async function ___qcimg(url, text, name, avatar) {
+async function ___qcimg(url: string, text: string, name: string, avatar: string): Promise<Buffer> {
     let body = {
         "type": "quote",
         "format": "png",
@@ -100,25 +108,32 @@ async function ___qcimg(url, text, name, avatar) {
     return Buffer.from(res.data.result.image, "base64");
 }
 
-async function createWebp(req, url, packName, authorName, quality = 80) {
+async function createWebp(req: Buffer | string, url: boolean | string, packName: string, authorName: string, quality = 80): Promise<Buffer> {
     let metadata_sticker = {
         type: 'full',
-        pack: global.packname,
-        author: global.author,
+        pack: packName,
+        author: authorName,
         quality
     };
-    return (new Sticker(req ? req : url, metadata_sticker)).toBuffer();
+    const media = req ? req : (url as unknown as string);
+    
+    return (new Sticker(media, metadata_sticker)).toBuffer();
 }
 
-async function uploadImage(buffer) { 
-  let { ext } = await fromBuffer(buffer);
-  let bodyForm = new FormData();
-  bodyForm.append("file", buffer, "file." + ext);
-  let res = await fetch("https://file.botcahx.eu.org/api/upload.php", {
-    method: "post",
-    body: bodyForm,
-  });
-  let data = await res.json();
-  let resultUrl = data.result ? data.result.url : '';
-  return resultUrl;
+async function uploadImage(buffer: Buffer): Promise<string> { 
+    let fileTypeRes = await fromBuffer(buffer);
+    // Safety check: jika fileType gagal membaca buffer, default ke png
+    let ext = fileTypeRes ? fileTypeRes.ext : 'png'; 
+    
+    let bodyForm = new FormData();
+    bodyForm.append("file", buffer, "file." + ext);
+    
+    let res = await fetch("https://file.botcahx.eu.org/api/upload.php", {
+        method: "post",
+        body: bodyForm,
+    });
+    
+    let data: any = await res.json();
+    let resultUrl: string = data.result ? data.result.url : '';
+    return resultUrl;
 }
