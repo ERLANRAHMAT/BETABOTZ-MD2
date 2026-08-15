@@ -21,7 +21,6 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     let res: string = '';
     const textEncoded = encodeURIComponent(text.substring(0, 151));
 
-    // 1. Tentukan URL API berdasarkan command
     if (command === 'attp') {
         res = `https://api.betabotz.eu.org/api/maker/attp?text=${textEncoded}&apikey=${lann}`;
     } else if (command === 'ttp') {
