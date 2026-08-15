@@ -9,3 +9,5 @@ src/.DS_Store
 *.DS_Store
 bun.lock
 plugins/info-listgroup.json
+/database
+/plugins2
