@@ -12,7 +12,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
             let out = await uploadImage(img);
             let old = Date.now();
             
-            let res = await fetch(`https://api.botcahx.eu.org/api/maker/jadianime?url=${out}&apikey=${btc}`);
+            let res = await fetch(`https://api.botcahx.eu.org/api/maker/jadianime?url=${out}&apikey=${lann}`);
             let convert = await res.json();
 
             if (!convert.result || !convert.result.img_1 || !convert.result.img_2) {

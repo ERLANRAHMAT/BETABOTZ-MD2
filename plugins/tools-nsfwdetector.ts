@@ -9,7 +9,7 @@ let handler: WaPlugin = async (m, { conn, command, usedPrefix }) => {
     await m.reply(wait)    
     try {
       let media = await uploader(buffer)
-      let res = await (await fetch(`https://api.botcahx.eu.org/api/tools/nsfw-detect?url=${media}&apikey=${btc}`)).json()
+      let res = await (await fetch(`https://api.botcahx.eu.org/api/tools/nsfw-detect?url=${media}&apikey=${lann}`)).json()
       if (res.status) {
         let { labelName, labelId, confidence } = res.result;
         let capt;

@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `*Example:* ${usedPrefix + command} botcahx`   
     try {     
-        let json = await fetch(`https://api.botcahx.eu.org/api/stalk/github?username=${text}&apikey=${btc}`).then(res => res.json());
+        let json = await fetch(`https://api.botcahx.eu.org/api/stalk/github?username=${text}&apikey=${lann}`).then(res => res.json());
         let caption = `⦿  *G H - S T A L K*\n\n`
         caption += `	◦  *Name* : ${json.result.user.username}\n`
         caption += `	◦  *ID* : ${json.result.user.idUser}\n`

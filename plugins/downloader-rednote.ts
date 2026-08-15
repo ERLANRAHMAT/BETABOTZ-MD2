@@ -6,7 +6,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 
     m.reply(wait);
     try {
-        const res = await axios.get(`https://api.botcahx.eu.org/api/download/rednote?url=${text}&apikey=${btc}`);
+        const res = await axios.get(`https://api.botcahx.eu.org/api/download/rednote?url=${text}&apikey=${lann}`);
         const result = res.data?.result;
         if (!result || !result.media) throw `Gagal mengambil data!`;
 

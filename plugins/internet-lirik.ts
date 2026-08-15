@@ -8,7 +8,7 @@ let handler: WaPlugin = async (m, {
     if (!text) throw `Ex: ${usedPrefix}${command} Jiwa yang bersedih`
     await m.reply(wait)
     try {
-        let data = await (await fetch(`https://api.botcahx.eu.org/api/search/lirik?lirik=${text}&apikey=${btc}`)).json()
+        let data = await (await fetch(`https://api.botcahx.eu.org/api/search/lirik?lirik=${text}&apikey=${lann}`)).json()
         let caption = `
 ${data.result.lyrics}
 

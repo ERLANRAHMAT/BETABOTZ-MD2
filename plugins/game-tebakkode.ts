@@ -11,7 +11,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix }) => {
         throw false
     }
     // Fetch question data from the API
-    let src = await (await fetch(`https://api.botcahx.eu.org/api/game/tebakkode?apikey=${btc}`)).json()
+    let src = await (await fetch(`https://api.botcahx.eu.org/api/game/tebakkode?apikey=${lann}`)).json()
     let json = src
     let options = json.pilihan.map((opt, i) => `${String.fromCharCode(65 + i)}. ${opt}`).join('\n')
     let caption = `

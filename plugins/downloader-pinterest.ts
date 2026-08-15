@@ -3,7 +3,7 @@ let handler: WaPlugin = async (m, { usedPrefix, command, conn, text }) => {
   if (!text) throw `*🚩 Example:* ${usedPrefix}${command} Zhao Lusi`;
   m.reply(wait)
   try {
-    let response = await fetch(`https://api.botcahx.eu.org/api/search/pinterest?text1=${text}&apikey=${btc}`);
+    let response = await fetch(`https://api.botcahx.eu.org/api/search/pinterest?text1=${text}&apikey=${lann}`);
     let data = await response.json();   
     let old = Date.now()
     let limit = Math.min(5, data.result.length);

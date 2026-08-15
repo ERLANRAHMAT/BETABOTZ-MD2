@@ -5,7 +5,7 @@ const handler: WaPlugin = async (m, { conn, command, text }) => {
 
   try {
     await m.reply(wait)
-    const response = await fetch(`https://api.botcahx.eu.org/api/search/google?text1=${encodeURIComponent(text)}&apikey=${btc}`);
+    const response = await fetch(`https://api.botcahx.eu.org/api/search/google?text1=${encodeURIComponent(text)}&apikey=${lann}`);
     const data = await response.json();
 
     if (!data.status || !data.result?.length) throw new Error('Pencarian gagal atau tidak ada hasil');

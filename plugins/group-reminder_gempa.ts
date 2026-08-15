@@ -5,7 +5,7 @@ let lastGempaData = null;
 
 async function getGempaInfo() {
     try {
-        const url = `https://api.botcahx.eu.org/api/search/gempa?apikey=${btc}`;
+        const url = `https://api.botcahx.eu.org/api/search/gempa?apikey=${lann}`;
         const response = await axios.get(url);
         const res = response.data.result.result;
 

@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn }) => {
-const res = await fetch(`https://api.botcahx.eu.org/api/random/bijak?apikey=${btc}`).then(result => result.json())
+const res = await fetch(`https://api.botcahx.eu.org/api/random/bijak?apikey=${lann}`).then(result => result.json())
 
 
 let anu =`─────〔 *Kata Bijak* 〕─────

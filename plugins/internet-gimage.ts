@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Use example ${usedPrefix}${command} Minecraft`;  
     try {
-    const res = await (await fetch(`https://api.botcahx.eu.org/api/search/googleimage?text1=${encodeURIComponent(text)}&apikey=${btc}`)).json();
+    const res = await (await fetch(`https://api.botcahx.eu.org/api/search/googleimage?text1=${encodeURIComponent(text)}&apikey=${lann}`)).json();
     if (!res.status) throw eror
     let image = pickRandom(res.result).url;
     conn.sendFile(m.chat, image, 'google.jpg', `*G O O G L E*\n*Result:* ${text}\n*Source:* https://google.com`, m);

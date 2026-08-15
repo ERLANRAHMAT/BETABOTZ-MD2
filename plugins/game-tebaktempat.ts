@@ -13,7 +13,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix }) => {
 
     let json
     try {
-        let res = await fetch(`https://api.botcahx.eu.org/api/game/tebaktempat?apikey=${btc}`)
+        let res = await fetch(`https://api.botcahx.eu.org/api/game/tebaktempat?apikey=${lann}`)
         if (!res.ok) throw new Error('Gagal mengambil data dari API')
         let result = await res.json()
         json = result

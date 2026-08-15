@@ -4,7 +4,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Contoh:\n${usedPrefix + command} jokowi`
     await m.reply(wait)
     try {
-        let res = await (await fetch(`https://api.botcahx.eu.org/api/stalk/snackvideo?username=${text}&apikey=${btc}`)).json()
+        let res = await (await fetch(`https://api.botcahx.eu.org/api/stalk/snackvideo?username=${text}&apikey=${lann}`)).json()
         
         if (res.status && res.result) {
             let { name, username, id, likes, followers, posts, profile_picture, profile_url } = res.result;

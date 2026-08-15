@@ -9,7 +9,7 @@ let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
             throw `URL Tidak Ditemukan!`;
         }
         m.reply('*Mohon tunggu..*');
-        const response = await axios.get(`https://api.botcahx.eu.org/api/dowloader/capcut?url=${args[0]}&apikey=${btc}`);
+        const response = await axios.get(`https://api.botcahx.eu.org/api/dowloader/capcut?url=${args[0]}&apikey=${lann}`);
         const res = response.data;
         const { 
             owner, 

@@ -9,7 +9,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
         try {
             const img = await q.download();
             const out = await uploadImage(img);
-            const api = await fetch(`https://api.botcahx.eu.org/api/tools/hdvideo?url=${out}&apikey=${btc}`);
+            const api = await fetch(`https://api.botcahx.eu.org/api/tools/hdvideo?url=${out}&apikey=${lann}`);
             const video = await api.json();
             const { url } = video;
             conn.sendFile(m.chat, url, null, wm, m);

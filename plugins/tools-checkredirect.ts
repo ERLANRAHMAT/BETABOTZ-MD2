@@ -5,7 +5,7 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
 
   try {
     await m.reply(wait);
-    let res = await (await fetch(`https://api.botcahx.eu.org/api/tools/cekredirect?url=${text}&apikey=${btc}`)).json();
+    let res = await (await fetch(`https://api.botcahx.eu.org/api/tools/cekredirect?url=${text}&apikey=${lann}`)).json();
 
     if (!res.status || !res.result) throw 'Gagal mendapatkan data!';
 

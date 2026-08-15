@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `Penggunaan:\n${usedPrefix + command} <teks>\n\nContoh:\n${usedPrefix + command} Jakarta`;
     try {
-        let res = await fetch(`https://api.botcahx.eu.org/api/tools/cuaca?query=${encodeURIComponent(text)}&apikey=${btc}`);
+        let res = await fetch(`https://api.botcahx.eu.org/api/tools/cuaca?query=${encodeURIComponent(text)}&apikey=${lann}`);
         if (!res.ok) throw 'Lokasi tidak ditemukan';
         let json = await res.json();
         if (!json.status || json.code !== 200) throw eror;

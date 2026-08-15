@@ -5,7 +5,7 @@ let handler: WaPlugin = async (m, { text, conn, usedPrefix, command }) => {
   await m.reply(wait)
   let teks = '';
     try {
-        const api = await fetch(`https://api.botcahx.eu.org/api/webzone/gsmarena?query=${text}&apikey=${btc}`);
+        const api = await fetch(`https://api.botcahx.eu.org/api/webzone/gsmarena?query=${text}&apikey=${lann}`);
         let json = await api.json();
         let spec = json.result.specifications;
         

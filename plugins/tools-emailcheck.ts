@@ -9,14 +9,14 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     try {
         await m.reply(wait);
         
-        let response = await fetch(`https://api.botcahx.eu.org/api/tools/email-check`, {
+        let response = await fetch(`https://api.betabotz.eu.org/api/tools/email-check`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                apikey: btc,
+                apikey: lann,
                 email: JSON.stringify(emails)
             })
         });

@@ -10,7 +10,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebakwallet[id][0])
         throw false
     }
-    let src = await (await fetch(`https://api.botcahx.eu.org/api/game/tebakwallet?apikey=${btc}`)).json()
+    let src = await (await fetch(`https://api.botcahx.eu.org/api/game/tebakwallet?apikey=${lann}`)).json()
     let json = src
     let caption = `
 ${json.soal}

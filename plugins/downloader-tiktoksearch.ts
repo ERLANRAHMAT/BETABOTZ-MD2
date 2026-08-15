@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
  if (!text) throw `🚩 *Example:* ${usedPrefix + command} anime`
   try {
-    const res = await fetch(`https://api.botcahx.eu.org/api/search/tiktoks?query=${text}&apikey=${btc}`);
+    const res = await fetch(`https://api.botcahx.eu.org/api/search/tiktoks?query=${text}&apikey=${lann}`);
     const api = await res.json(); 
     const randomIndex = Math.floor(Math.random() * api.result.data.length);
     let video = api.result.data[randomIndex];

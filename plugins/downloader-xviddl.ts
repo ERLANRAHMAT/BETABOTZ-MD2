@@ -6,7 +6,7 @@ var handler: WaPlugin = async (m, {
  }) => {
 if (!text) throw 'Masukkan Query Link!'
  try {
-let anu = await fetch(`https://api.botcahx.eu.org/api/download/xvideosdl?url=${text}&apikey=${btc}`)
+let anu = await fetch(`https://api.botcahx.eu.org/api/download/xvideosdl?url=${text}&apikey=${lann}`)
 let hasil = await anu.json() 
 
 conn.sendMessage(m.chat, { video: { url: hasil.result.url }, fileName: 'xnxx.mp4', mimetype: 'video/mp4' }, { quoted: m })

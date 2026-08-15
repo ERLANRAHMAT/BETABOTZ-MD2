@@ -74,15 +74,15 @@ let handler: WaPlugin = async (m, {
       let submitData;
 
       if (isImgEdit) {
-        const { data } = await axios.post("https://api.botcahx.eu.org/api/maker/imgedit", {
+        const { data } = await axios.post("https://api.betabotz.eu.org/api/maker/imgedit", {
           text: promptText,
           url: out,
-          apikey: btc
+          apikey: lann
         });
         submitData = data;
       } else {
-        const { data } = await axios.get(`https://api.botcahx.eu.org/api/maker/${endpoint}`, {
-          params: { url: out, apikey: btc }
+        const { data } = await axios.get(`https://api.betabotz.eu.org/api/maker/${endpoint}`, {
+          params: { url: out, apikey: lann }
         });
         submitData = data;
       }
@@ -142,7 +142,7 @@ async function pollJobResult(type, jobId, opts: { intervalMs?: number; timeoutMs
   const timeoutMs = opts.timeoutMs || 240000; // 4 minutes
   const isJsonResult = !!opts.isJsonResult;
   const startedAt = Date.now();
-  const statusUrl = 'https://api.botcahx.eu.org/api/maker/status/editing-image';
+  const statusUrl = 'https://api.betabotz.eu.org/api/maker/status/editing-image';
 
   while (true) {
     if (Date.now() - startedAt > timeoutMs) {

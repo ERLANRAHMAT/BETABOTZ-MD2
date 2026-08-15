@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 let handler: WaPlugin = async (m, { conn }) => {
   try { 
     m.reply(wait)
-    let res = await (await fetch(`https://api.botcahx.eu.org/api/webzone/gore?apikey=${btc}`)).json()
+    let res = await (await fetch(`https://api.botcahx.eu.org/api/webzone/gore?apikey=${lann}`)).json()
     let capt = `*R A N D O M   G O R E*\n\n`
     capt += `  ◦  *Title*: ${res.result.title}\n`;
     capt += `  ◦  *Author*: ${res.result.author}\n`;;

@@ -10,7 +10,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
         
         await m.reply(wait);
 
-        let res = await fetch(`https://api.botcahx.eu.org/api/primbon/cekpenyakit?tanggal=${tanggal1}&bulan=${bulan1}&tahun=${tahun1}&apikey=${btc}`);
+        let res = await fetch(`https://api.botcahx.eu.org/api/primbon/cekpenyakit?tanggal=${tanggal1}&bulan=${bulan1}&tahun=${tahun1}&apikey=${lann}`);
         let json = await res.json();
         let anu = [
           `―-CEK POTENSI PENYAKIT-―\n\nAnalisa: ${json.result.message.analisa}\n\nSektor: ${json.result.message.sektor}\n\nElemen: ${json.result.message.elemen}\n\nCatatan: ${json.result.message.catatan}`, 

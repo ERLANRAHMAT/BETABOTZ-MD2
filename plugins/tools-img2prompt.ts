@@ -12,7 +12,7 @@ command
 		try {
 			const img = await q.download?.()
 			let out = await uploadImage(img)
-			let data = await (await fetch(`https://api.botcahx.eu.org/api/tools/img2prompt?url=${out}&apikey=${btc}`)).json()
+			let data = await (await fetch(`https://api.botcahx.eu.org/api/tools/img2prompt?url=${out}&apikey=${lann}`)).json()
 			await m.reply(data.result)
 		} catch (e) {
 			console.log(e)

@@ -5,7 +5,7 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
 
     try {
         await m.reply(wait);
-        let res = await fetch(`https://api.botcahx.eu.org/api/download/pastebin?url=${text}&apikey=${btc}`);
+        let res = await fetch(`https://api.botcahx.eu.org/api/download/pastebin?url=${text}&apikey=${lann}`);
         let json = await res.json();
 
         if (!json.status) throw "❌ Gagal mengambil data dari Pastebin!";

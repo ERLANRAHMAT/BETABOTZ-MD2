@@ -8,7 +8,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     
     try {
         await m.reply(wait);
-        let json = await fetch(`https://api.botcahx.eu.org/api/tools/compare-phone?hp1=${encodeURIComponent(phone1)}&hp2=${encodeURIComponent(phone2)}&apikey=${btc}`).then(res => res.json());
+        let json = await fetch(`https://api.botcahx.eu.org/api/tools/compare-phone?hp1=${encodeURIComponent(phone1)}&hp2=${encodeURIComponent(phone2)}&apikey=${lann}`).then(res => res.json());
         let res = json.result;
         
         let caption = `⦿  *C O M P A R E - P H O N E*\n\n`;

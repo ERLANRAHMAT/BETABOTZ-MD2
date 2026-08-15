@@ -5,7 +5,7 @@ let handler: WaPlugin = async (m, { conn, command }) => {
     await m.reply(wait)
 
     if (command == 'checkapi' || command == 'api') {
-      let api = await fetch(`https://api.botcahx.eu.org/api/checkkey?apikey=${btc}`);
+      let api = await fetch(`https://api.botcahx.eu.org/api/checkkey?apikey=${lann}`);
       let body = await api.json();
       let { 
         limit, 

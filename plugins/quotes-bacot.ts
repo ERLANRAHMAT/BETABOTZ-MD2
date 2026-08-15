@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 let handler: WaPlugin = async (m, { conn } ) => {   
-let res = await fetch(`https://api.botcahx.eu.org/api/random/bacot?apikey=${btc}`).then(result => result.json())
+let res = await fetch(`https://api.botcahx.eu.org/api/random/bacot?apikey=${lann}`).then(result => result.json())
 let anu =`
 ─────〔 *Bacot* 〕─────
 

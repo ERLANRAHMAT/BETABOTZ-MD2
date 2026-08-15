@@ -8,7 +8,7 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
     m.reply(wait);
 
     try {
-        let res = await (await fetch(`https://api.botcahx.eu.org/api/download/slideshare?url=${encodeURIComponent(text)}&apikey=${btc}`)).json();
+        let res = await (await fetch(`https://api.botcahx.eu.org/api/download/slideshare?url=${encodeURIComponent(text)}&apikey=${lann}`)).json();
 
         if (!res.status || !res.result?.success || !res.result.download) {
             throw 'Gagal mengambil data dari Slideshare.';

@@ -8,7 +8,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 
     try {
         await m.reply('⏳ _Sedang membuat gambar saldo DANA..._');
-        let apiUrl = `https://api.botcahx.eu.org/api/maker/canvas-fakeSaldoDana?apikey=${btc}&saldo=${encodeURIComponent(text.trim())}`;
+        let apiUrl = `https://api.botcahx.eu.org/api/maker/canvas-fakeSaldoDana?apikey=${lann}&saldo=${encodeURIComponent(text.trim())}`;
         await conn.sendFile(m.chat, apiUrl, 'fakedana.jpg', 'Done!', m);
         
     } catch (e) {

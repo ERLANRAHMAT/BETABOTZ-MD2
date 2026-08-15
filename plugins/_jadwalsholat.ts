@@ -20,7 +20,7 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `Gunakan contoh: ${usedPrefix}${command} semarang`;
 
     try {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/tools/jadwalshalat?kota=${text}&apikey=${btc}`)).json();
+        const res = await (await fetch(`https://api.botcahx.eu.org/api/tools/jadwalshalat?kota=${text}&apikey=${lann}`)).json();
         
         if (!res.status || res.result.code !== 200) {
             throw 'Error: API response tidak valid';

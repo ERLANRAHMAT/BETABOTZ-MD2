@@ -10,7 +10,7 @@ let handler: WaPlugin = async (m, { conn, command, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebaklagu[id][0])
         throw false
     }
-    let data = await (await fetch(`https://api.botcahx.eu.org/api/game/tebaklagu?apikey=${btc}`)).json()
+    let data = await (await fetch(`https://api.botcahx.eu.org/api/game/tebaklagu?apikey=${lann}`)).json()
     let json = data
     let caption = `*${command.toUpperCase()}*
 Penyanyi: ${json.artis}

@@ -8,7 +8,7 @@ let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
    }
    await m.reply(wait)
    try {
-       const api = await fetch(`https://api.botcahx.eu.org/api/dowloader/igdowloader?url=${args[0]}&apikey=${btc}`)
+       const api = await fetch(`https://api.botcahx.eu.org/api/dowloader/igdowloader?url=${args[0]}&apikey=${lann}`)
        const res = await api.json()
        
        const limitnya = 3

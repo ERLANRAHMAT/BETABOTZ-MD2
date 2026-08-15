@@ -3,7 +3,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Contoh:\n${usedPrefix + command} deaafrizal`
     await m.reply(wait)
     try {
-        let res = await (await fetch(`https://api.botcahx.eu.org/api/stalk/yt?username=${text}&apikey=${btc}`)).json()
+        let res = await (await fetch(`https://api.botcahx.eu.org/api/stalk/yt?username=${text}&apikey=${lann}`)).json()
         
         if (res.status && res.result && res.result.data && res.result.data.length > 0) {
             let data = res.result.data[0];

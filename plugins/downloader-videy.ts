@@ -5,7 +5,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     try {
         if (!text.match(/videy/gi)) throw `URL Tidak Ditemukan!`;        
         m.reply(wait);      
-        let res = await axios.get(`https://api.botcahx.eu.org/api/dowloader/videy?url=${text}&apikey=${btc}`)
+        let res = await axios.get(`https://api.botcahx.eu.org/api/dowloader/videy?url=${text}&apikey=${lann}`)
         let data = res.data.result
         await conn.sendFile(m.chat, data, 'videy.mp4', "*DONE*", m);      
     } catch (e) {

@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { conn }) => {
   try {
-    let res = await fetch(`https://api.botcahx.eu.org/api/random/quotesanime?apikey=${btc}`);
+    let res = await fetch(`https://api.botcahx.eu.org/api/random/quotesanime?apikey=${lann}`);
     let json = await res.json();
 
     // Check if the API response is valid

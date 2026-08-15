@@ -9,7 +9,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
 		await m.reply(wait)
 		try {
 		let media = await uploader(buffer)
-		let json = await (await fetch(`https://api.botcahx.eu.org/api/tools/whatmusic?url=${media}&apikey=${btc}`)).json()		
+		let json = await (await fetch(`https://api.botcahx.eu.org/api/tools/whatmusic?url=${media}&apikey=${lann}`)).json()		
         conn.sendMessage(m.chat, { text: json.result }, { quoted: m })
         } catch (err) {
       throw `${eror}`

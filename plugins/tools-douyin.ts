@@ -5,7 +5,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     
     try {
         await m.reply(wait);
-        let json = await fetch(`https://api.botcahx.eu.org/api/search/douyin?query=${encodeURIComponent(text)}&apikey=${btc}`).then(res => res.json());
+        let json = await fetch(`https://api.botcahx.eu.org/api/search/douyin?query=${encodeURIComponent(text)}&apikey=${lann}`).then(res => res.json());
         let res = json.result;
         
         if (!res.videos || res.videos.length === 0) throw 'No videos found';

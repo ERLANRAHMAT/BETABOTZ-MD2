@@ -8,7 +8,7 @@ let handler: WaPlugin = async (m, { usedPrefix, command, text }) => {
         }
         m.reply(wait);
         if (text.toLowerCase() === 'stock') {
-            let res = await (await fetch(`https://api.botcahx.eu.org/api/webzone/grow-and-garden-stock?apikey=${btc}`)).json();
+            let res = await (await fetch(`https://api.botcahx.eu.org/api/webzone/grow-and-garden-stock?apikey=${lann}`)).json();
             let content = `*🌱 G R O W  &  G A R D E N  S T O C K S 🌱*\n\n`;
 
             if (res.status && res.result) {
@@ -52,7 +52,7 @@ let handler: WaPlugin = async (m, { usedPrefix, command, text }) => {
             }
             await m.reply(content);
         } else if (text.toLowerCase() === 'weather') {
-            let res = await (await fetch(`https://api.botcahx.eu.org/api/webzone/grow-and-garden-weather?apikey=${btc}`)).json();
+            let res = await (await fetch(`https://api.botcahx.eu.org/api/webzone/grow-and-garden-weather?apikey=${lann}`)).json();
             let content = `*🌦️ G R O W  &  G A R D E N  W E A T H E R 🌦️*\n\n`;
 
             if (res.status && res.result) {

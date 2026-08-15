@@ -22,7 +22,7 @@ handler.before = async function(m, { conn }) {
         let media = await target.download();
         let url = await uploader(media);
 
-        const response = await fetch(`https://api.botcahx.eu.org/api/tools/nsfw-detect?url=${url}&apikey=${btc}`);
+        const response = await fetch(`https://api.botcahx.eu.org/api/tools/nsfw-detect?url=${url}&apikey=${lann}`);
         const res = await response.json();
 
         if (res.result.labelName === 'Porn') {

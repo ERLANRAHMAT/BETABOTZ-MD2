@@ -10,14 +10,14 @@ let handler: WaPlugin = async (m, {
     if (!text) throw `Example : ${usedPrefix + command} siapa presiden Indonesia?`;
     try {
       m.reply(wait)
-      let response = await fetch('https://api.botcahx.eu.org/api/search/bing-chat', {
+      let response = await fetch('https://api.betabotz.eu.org/api/search/bing-chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             text: text,
-            apikey: btc
+            apikey: lann
           })
         })
         .then(res => res.json());
@@ -32,14 +32,14 @@ let handler: WaPlugin = async (m, {
     if (!text) throw `Contoh: ${usedPrefix + command} anak berlari menggunakan pakaian merah 3d animation`;
     try {
       m.reply(wait)
-      let response = await fetch('https://api.botcahx.eu.org/api/search/bing-img', {
+      let response = await fetch('https://api.betabotz.eu.org/api/search/bing-img', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             text: text,
-            apikey: btc
+            apikey: lann
           })
         })
         .then(res => res.json());

@@ -13,18 +13,18 @@ let handler: WaPlugin = async (m, { conn, text, command, usedPrefix }) => {
     if (/image/.test(mime) && !/webp/.test(mime)) {
       let buffer = await q.download();
       media = await uploader(buffer);
-      baseUrl = `https://api.botcahx.eu.org/api/search/bard-img?url=${media}&text=${text}&apikey=${btc}`;
+      baseUrl = `https://api.botcahx.eu.org/api/search/bard-img?url=${media}&text=${text}&apikey=${lann}`;
     } 
     else if (/video/.test(mime)) {
       if (q.seconds > 60) throw 'Maximum video duration is 60 seconds!';
       let buffer = await q.download();
       media = await uploadFile(buffer);
-      baseUrl = `https://api.botcahx.eu.org/api/search/bard-video?url=${media}&text=${text}&apikey=${btc}`;
+      baseUrl = `https://api.botcahx.eu.org/api/search/bard-video?url=${media}&text=${text}&apikey=${lann}`;
     }
     else if (/audio/.test(mime)) {
       let buffer = await q.download();
       media = await uploadFile(buffer);
-      baseUrl = `https://api.botcahx.eu.org/api/search/bard-audio?url=${media}&text=${text}&apikey=${btc}`;
+      baseUrl = `https://api.botcahx.eu.org/api/search/bard-audio?url=${media}&text=${text}&apikey=${lann}`;
     }
     else {
       throw `Kirim media dengan caption *${usedPrefix + command} pertanyaan* atau tag media yang sudah dikirim.`;

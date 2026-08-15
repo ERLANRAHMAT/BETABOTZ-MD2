@@ -1,17 +1,17 @@
 let handler: WaPlugin = async(m, { conn }) => {
   const asupan = [
-    `https://api.botcahx.eu.org/api/asupan/rikagusriani?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/asupan/santuy?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/asupan/ukhty?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/asupan/bocil?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/asupan/gheayubi?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/asupan/natajadeh?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/asupan/euni?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/asupan/douyin?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/api/asupan/cecan?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/api/asupan/hijaber?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/api/asupan/asupan?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/api/asupan/anony?apikey=${btc}`   
+    `https://api.botcahx.eu.org/api/asupan/rikagusriani?apikey=${lann}`,
+    `https://api.botcahx.eu.org/api/asupan/santuy?apikey=${lann}`,
+    `https://api.botcahx.eu.org/api/asupan/ukhty?apikey=${lann}`,
+    `https://api.botcahx.eu.org/api/asupan/bocil?apikey=${lann}`,
+    `https://api.botcahx.eu.org/api/asupan/gheayubi?apikey=${lann}`,
+    `https://api.botcahx.eu.org/api/asupan/natajadeh?apikey=${lann}`,
+    `https://api.botcahx.eu.org/api/asupan/euni?apikey=${lann}`,
+    `https://api.botcahx.eu.org/api/asupan/douyin?apikey=${lann}`,
+    `https://api.botcahx.eu.org/api/api/asupan/cecan?apikey=${lann}`,
+    `https://api.botcahx.eu.org/api/api/asupan/hijaber?apikey=${lann}`,
+    `https://api.botcahx.eu.org/api/api/asupan/asupan?apikey=${lann}`,
+    `https://api.botcahx.eu.org/api/api/asupan/anony?apikey=${lann}`   
   ]
   try {
     const url = pickRandom(asupan);

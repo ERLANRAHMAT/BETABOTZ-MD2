@@ -5,7 +5,7 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
   try {
     const waiting = `_Sedang mencari informasi WHOIS untuk ${text}..._`;
     m.reply(waiting);    
-    let data = fetch(`https://api.botcahx.eu.org/api/webzone/whois?query=${text}&apikey=${btc}`)
+    let data = fetch(`https://api.botcahx.eu.org/api/webzone/whois?query=${text}&apikey=${lann}`)
     .then(result => result.json())
     .then(response => {
       m.reply(response.result);

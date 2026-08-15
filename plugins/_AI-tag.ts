@@ -39,7 +39,7 @@ handler.before = async (m, { conn }) => {
 
                     try {
                         await conn.sendPresenceUpdate('composing', m.chat);
-                        const response = await axios.get(`https://api.botcahx.eu.org/api/search/openai-image?apikey=${global.btc}&text=${encodeURIComponent(imagePrompt)}`, {
+                        const response = await axios.get(`https://api.betabotz.eu.org/api/search/openai-image?apikey=${global.lann}&text=${encodeURIComponent(imagePrompt)}`, {
                             responseType: 'arraybuffer'
                         });
                         
@@ -80,8 +80,8 @@ handler.before = async (m, { conn }) => {
                 Custom Prompt section
                 **/
                 const messages = [
-                    { role: "system", content: "kamu adalah BTCH, Seorang Asisten pribadi yang di buat oleh BOTCAHX yang siap membantu kapan pun!" },
-                    { role: "assistant", content: `Saya BTCH, asisten pribadi yang siap membantu kamu kapan pun! Apa yang bisa saya bantu hari ini?` },
+                    { role: "system", content: "kamu adalah lannH, Seorang Asisten pribadi yang di buat oleh BOTCAHX yang siap membantu kapan pun!" },
+                    { role: "assistant", content: `Saya lannH, asisten pribadi yang siap membantu kamu kapan pun! Apa yang bisa saya bantu hari ini?` },
                     ...previousMessages.map((msg, i) => ({ role: i % 2 === 0 ? 'user' : 'assistant', content: msg })),
                     { role: "user", content: filter }
                 ];
@@ -92,9 +92,9 @@ handler.before = async (m, { conn }) => {
                             try {
                                 const params = {
                                     message: message,
-                                    apikey: global.btc
+                                    apikey: global.lann
                                 };
-                                const { data } = await axios.post('https://api.botcahx.eu.org/api/search/openai-custom-v2', params);
+                                const { data } = await axios.post('https://api.betabotz.eu.org/api/search/openai-custom-v2', params);
                                 resolve(data);
                             } catch (error) {
                                 reject(error);

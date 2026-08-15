@@ -4,7 +4,7 @@ let handler: WaPlugin = async (m, { conn, text, command, usedPrefix }) => {
   if (!text) throw `*Example: ${usedPrefix + command} halo*`; 
   await m.reply(wait);
   try {
-    const res = await fetch(`https://api.botcahx.eu.org/api/maker/iqc?text=${encodeURIComponent(text)}&apikey=${btc}`);
+    const res = await fetch(`https://api.botcahx.eu.org/api/maker/iqc?text=${encodeURIComponent(text)}&apikey=${lann}`);
     const data = await res.json();
     const img_rs = await fetch(data.result);
     const buffer = await img_rs.buffer();

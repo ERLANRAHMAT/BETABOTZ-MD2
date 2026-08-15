@@ -13,7 +13,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
                 throw 'Ukuran media tidak boleh melebihi 5MB';
             }
             let media = await uploader(buffer);
-            let response = await fetch(`https://api.botcahx.eu.org/api/tools/voiceremover?url=${media}&apikey=${btc}`);
+            let response = await fetch(`https://api.botcahx.eu.org/api/tools/voiceremover?url=${media}&apikey=${lann}`);
             let res = await response.json();
             if (!res.status) {
                 throw null
