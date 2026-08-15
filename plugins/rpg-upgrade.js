@@ -230,7 +230,7 @@ ${usedPrefix}uptool _sword_
                 );
         }
     } catch (e) {
-        console.error(e);
+        console.log(e);
         throw e;
     }
 };
