@@ -1,4 +1,4 @@
-let handler: WaPlugin = async (m, { conn }) => {
+ let handler: WaPlugin = async (m, { conn }) => {
 	let q = m.quoted ? m.quoted : m
 	try {
 	let media = await q.download?.()
@@ -15,4 +15,4 @@ handler.premium = false
 handler.register = false
 handler.fail = null
 
-export default handler;
+export default handler

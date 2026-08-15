@@ -91,7 +91,7 @@ handler.tags = ['rpg']
 handler.command = /^(berburu|hunt)$/i
 handler.rpg = true
 
-
+export default handler
 
 function clockString(ms) {
     let h = Math.floor(ms / 3600000)
@@ -100,5 +100,3 @@ function clockString(ms) {
     console.log({ ms, h, m, s })
     return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
 }
-
-export default handler;

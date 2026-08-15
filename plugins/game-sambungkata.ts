@@ -103,7 +103,7 @@ handler.command = /^s(ambung)?kata(debug)?$/i;
 handler.limit = true;
 handler.group = true;
 
-
+export default handler;
 
 async function genKata() {
     let json = await sKata();
@@ -157,5 +157,3 @@ function filter(text: string) {
         return resu + misah[misah.length - 1];
     }
 }
-
-export default handler;

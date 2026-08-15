@@ -47,4 +47,4 @@ handler.before = async function (m) {
   return !0
 }
 
-export default handler;
+export default handler

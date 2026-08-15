@@ -102,7 +102,7 @@ handler.command = /^(taxi)$/i
 handler.register = true
 handler.group = true
 handler.rpg = true
-
+export default handler;
 
 
 function clockString(ms) {
@@ -111,5 +111,3 @@ function clockString(ms) {
     let s = Math.floor(ms / 1000) % 60
     return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
 }
-
-export default handler;

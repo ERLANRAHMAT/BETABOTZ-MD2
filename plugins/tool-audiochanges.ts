@@ -8,7 +8,7 @@ let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
         let q = m.quoted ? m.quoted : m
         let mime = (q.msg || q).mimetype || ''
         if (!/audio/.test(mime)) throw `Balas vn/audio yang ingin diubah dengan caption *${usedPrefix + command}*`
-        let audio = (await q.download()) as Buffer;
+        let audio = await q.download()
         if (!audio) throw 'Can\'t download audio!'
         let set
         if (/bass/.test(command)) set = '-af equalizer=f=94:width_type=o:width=2:g=30'
@@ -43,4 +43,4 @@ handler.help = ['bass', 'blown', 'deep', 'earrape', 'fast', 'fat', 'nightcore', 
 handler.tags = ['voice']
 handler.command = /^(bass|blown|deep|earrape|fas?t|nightcore|reverse|robot|slow|smooth|tupai|squirrel|chipmunk|vibra)$/i
 
-export default handler;
+export default handler

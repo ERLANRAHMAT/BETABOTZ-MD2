@@ -9,7 +9,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     try {
         await m.reply(wait);
         
-        let response = await fetch(`https://api.betabotz.eu.org/api/tools/email-check`, {
+        let response = await fetch(`https://api.botcahx.eu.org/api/tools/email-check`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
         
     } catch (e) {
         console.log(e);
-        throw e;
+        throw eror;
     }
 };
 

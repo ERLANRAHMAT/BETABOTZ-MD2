@@ -10,4 +10,4 @@ handler.help = ['device']
 handler.tags = ['tools']
 handler.command = /^(device)$/i
 
-export default handler;
+export default handler

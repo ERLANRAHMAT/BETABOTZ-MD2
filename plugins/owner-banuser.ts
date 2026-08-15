@@ -25,5 +25,4 @@ handler.tags = ['owner']
 handler.command = /^ban(chat)?$/i
 
 handler.owner = true
-
-export default handler;
+export default handler

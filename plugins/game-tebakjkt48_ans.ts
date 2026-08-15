@@ -31,5 +31,4 @@ const threshold = 0.72
     }
 
     handler.exp = 0
-
-export default handler;
+    export default handler

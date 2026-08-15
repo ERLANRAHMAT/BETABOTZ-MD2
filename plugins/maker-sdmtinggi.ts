@@ -8,11 +8,11 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
     if (/image/g.test(mime) && !/webp/g.test(mime)) {
         await conn.reply(m.chat, "⏳ Sedang diproses...", m);
         try {
-            const img = (await q.download?.()) as Buffer;
+            const img = await q.download?.();
             let out = await uploadImage(img);
             let old = Date.now();
             
-            let img_url_api = await (await fetch(`https://api.betabotz.eu.org/api/maker/jadisdmtinggi?url=${out}&apikey=${btc}`)).buffer()
+            let img_url_api = await (await fetch(`https://api.botcahx.eu.org/api/maker/jadisdmtinggi?url=${out}&apikey=${btc}`)).buffer()
             await conn.sendMessage(m.chat, { 
                 image: img_url_api, 
                 caption: `🍟 *Fetching:* ${((Date.now() - old) * 1)} ms` 

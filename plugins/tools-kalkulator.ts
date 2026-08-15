@@ -35,5 +35,4 @@ handler.tags = ['tools']
 handler.command = /^(calc(ulat(e|or))?|kalk(ulator)?)$/i
 handler.exp = 5
 handler.register = false
-
-export default handler;
+export default handler

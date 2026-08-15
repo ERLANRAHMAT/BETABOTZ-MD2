@@ -19,7 +19,7 @@ await conn.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/cf4f28ed
 
 handler.command = handler.help = ['dashboard','totalhits']
 handler.tags = ['info']
-
+export default handler;
 
 function formatTime(time) {
   const date = new Date(time);
@@ -54,5 +54,3 @@ function parseMs(ms) {
 		nanoseconds: Math.trunc(ms * 1e6) % 1000
 	}
 }
-
-export default handler;

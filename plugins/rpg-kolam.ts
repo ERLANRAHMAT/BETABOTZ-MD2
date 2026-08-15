@@ -37,5 +37,4 @@ handler.tags = ['rpg']
 handler.command = /^(kolam)$/i
 handler.group = true
 handler.rpg = true
-
-export default handler;
+export default handler

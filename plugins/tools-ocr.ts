@@ -8,7 +8,7 @@ let handler: WaPlugin = async (m, { conn, text }) => {
     let mime = (q.msg || q).mimetype || ''
     if (!mime) throw `balas gambar dengan perintah .ocr`
     if (!/image\/(jpe?g|png)/.test(mime)) throw `_*jenis ${mime} tidak didukung!*_`
-    let img = (await q.download()) as Buffer;
+    let img = await q.download()
     let url = await uploader(img)
     let hasil = await ocrapi.ocrSpace(url)
     await m.reply(hasil.ParsedResults[0].ParsedText)    
@@ -26,7 +26,7 @@ async function uploader(buffer) {
   let bodyForm = new FormData(); 
   bodyForm.append("file", buffer, "file." + ext);
 
-  let res = await fetch("https://api.betabotz.eu.org/api/upload.php", {
+  let res = await fetch("https://file.botcahx.eu.org/api/upload.php", {
     method: "post",
     body: bodyForm,
   });

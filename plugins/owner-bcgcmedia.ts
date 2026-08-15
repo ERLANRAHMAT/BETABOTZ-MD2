@@ -13,11 +13,9 @@ handler.command = /^(broadcast|bc)(group|grup|gc)$/i
 
 handler.owner = true
 
-
+export default handler
 
 const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
 
 const randomID = length => crypto.randomBytes(Math.ceil(length * .5)).toString('hex').slice(0, length)
-
-export default handler;

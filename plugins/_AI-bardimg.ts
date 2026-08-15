@@ -11,20 +11,20 @@ let handler: WaPlugin = async (m, { conn, text, command, usedPrefix }) => {
   
   try {
     if (/image/.test(mime) && !/webp/.test(mime)) {
-      let buffer = (await q.download()) as Buffer;
+      let buffer = await q.download();
       media = await uploader(buffer);
-      baseUrl = `https://api.betabotz.eu.org/api/search/bard-img?url=${media}&text=${text}&apikey=${btc}`;
+      baseUrl = `https://api.botcahx.eu.org/api/search/bard-img?url=${media}&text=${text}&apikey=${btc}`;
     } 
     else if (/video/.test(mime)) {
       if (q.seconds > 60) throw 'Maximum video duration is 60 seconds!';
-      let buffer = (await q.download()) as Buffer;
+      let buffer = await q.download();
       media = await uploadFile(buffer);
-      baseUrl = `https://api.betabotz.eu.org/api/search/bard-video?url=${media}&text=${text}&apikey=${btc}`;
+      baseUrl = `https://api.botcahx.eu.org/api/search/bard-video?url=${media}&text=${text}&apikey=${btc}`;
     }
     else if (/audio/.test(mime)) {
-      let buffer = (await q.download()) as Buffer;
+      let buffer = await q.download();
       media = await uploadFile(buffer);
-      baseUrl = `https://api.betabotz.eu.org/api/search/bard-audio?url=${media}&text=${text}&apikey=${btc}`;
+      baseUrl = `https://api.botcahx.eu.org/api/search/bard-audio?url=${media}&text=${text}&apikey=${btc}`;
     }
     else {
       throw `Kirim media dengan caption *${usedPrefix + command} pertanyaan* atau tag media yang sudah dikirim.`;

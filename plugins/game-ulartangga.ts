@@ -100,7 +100,7 @@ handler.before = async function (m, { conn, text, command }) {
 	await kocok(m, ut, conn) 
 	}
 
-
+export default handler;
 
 async function kocok(m, ut, conn) {
         if(!ut[m.chat]) return;
@@ -165,5 +165,3 @@ function timeToFixed(milliseconds) {
         var remainingSeconds = seconds % 60;
         return hours + ' Jam ' + minutes + ' Menit ' + remainingSeconds + ' Detik';
     }
-
-export default handler;

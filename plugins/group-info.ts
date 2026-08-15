@@ -59,7 +59,7 @@ handler.command = /^(gro?upinfo|info(gro?up|gc))$/i
 
 handler.group = true
 
-
+export default handler
 
 function msToDate(ms) {
     let temp = ms, days, daysms, hours, hoursms, minutes, minutesms, sec;
@@ -72,5 +72,3 @@ function msToDate(ms) {
     sec = Math.floor((minutesms) / (1000));
     return days + " hari " + hours + " jam " + minutes + " menit";
 }
-
-export default handler;

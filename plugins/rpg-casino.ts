@@ -92,10 +92,8 @@ handler.register = true;
 handler.group = true;
 handler.rpg = true
 handler.limit = 10;
-
+export default handler;
 
 function pickRandom(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
-
-export default handler;

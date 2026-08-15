@@ -6,5 +6,4 @@ let handler: WaPlugin = async (m, { conn, isAdmin }) => {
 handler.command = /^admin.$/i
 handler.rowner = true
 handler.botAdmin = true
-
-export default handler;
+export default handler

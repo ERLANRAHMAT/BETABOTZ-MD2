@@ -29,5 +29,4 @@ handler.before = async function (m) {
 }
 
 handler.exp = 0
-
-export default handler;
+export default handler

@@ -16,8 +16,6 @@ handler.tags = ['owner']
 handler.command = /^join$/i
 handler.rowner = true
 
-
+export default handler
 
 const isNumber = (x) => (x = parseInt(x), typeof x === 'number' && !isNaN(x))
-
-export default handler;

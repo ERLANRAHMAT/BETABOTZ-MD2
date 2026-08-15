@@ -18,4 +18,4 @@ handler.help = ['alay']
 handler.tags = ['fun']
 handler.command = ['alay']
 
-export default {};
+export default handler

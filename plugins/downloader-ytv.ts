@@ -1,47 +1,28 @@
-
-import axios from 'axios';
+import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://youtu.be/4rDOsvzTicY?si=3Ps-SJyRGzMa83QT`;    
+  if (!text) throw `*Example:* ${usedPrefix + command} https://www.youtube.com/watch?v=Z28dtg_QmFw`;
+  m.reply(wait)
   try {
-    m.reply(wait);
-    const response = await axios.get(
-      `https://api.betabotz.eu.org/api/download/ytmp4?url=${text}&apikey=${lann}`,
-    );
-    const res = response.data.result;
-    var { mp4, id, title, source, duration } = res;
-    let capt = `YT MP4*\n\n`;
-    capt += `◦ *id* : ${id}\n`;
-    capt += `◦ *tittle* : ${title}\n`;
-    capt += `◦ *source* : ${source}\n`;
-    capt += `◦ *duration* : ${duration}\n`;
-    capt += `\n`;
-    // await conn.sendFile(m.chat, mp4, null, capt, m);
-    await conn.sendMessage(
-      m.chat,
-      {
-        document: { url: mp4 },
-        mimetype: "video/mp4",
-        fileName: `${title}##.mp4`,
-        caption: capt,
-      },
-      { quoted: m },
-    );
-  } catch (e) {
-    console.log(e);
-    throw e;
+    const response = await fetch(`https://api.botcahx.eu.org/api/dowloader/yt?url=${encodeURIComponent(text)}&apikey=${btc}`);
+    const result = await response.json();
+
+    if (result.status && result.result && result.result.mp4) {
+      await conn.sendMessage(m.chat, { 
+        video: { url: result.result.mp4 }, 
+        mimetype: 'video/mp4' 
+      }, { quoted: m });
+    } else {
+      throw 'Error: Unable to fetch video';
+    }
+  } catch (error) {
+    throw eror
   }
 };
-handler.help = ['ytmp4'];
-handler.command = /^(ytmp4)$/i
+
+handler.help = handler.command = ['ytmp4', 'ytv'];
 handler.tags = ['downloader'];
 handler.limit = true;
-handler.group = false;
 handler.premium = false;
-handler.owner = false;
-handler.admin = false;
-handler.botAdmin = false;
-handler.fail = null;
-handler.private = false;
 
 export default handler;

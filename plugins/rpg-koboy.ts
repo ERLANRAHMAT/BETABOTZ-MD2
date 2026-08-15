@@ -130,7 +130,7 @@ handler.command = /^(koboy)$/i;
 handler.group = true;
 handler.rpg = true;
 
-
+export default handler;
 
 function randomMoney(max, min) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -145,5 +145,3 @@ function formatRupiah(number) {
 
     return formatter.format(number);
 }
-
-export default handler;

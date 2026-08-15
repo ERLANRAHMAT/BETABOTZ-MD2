@@ -156,7 +156,7 @@ conn.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/ec8cf04e3a2890
 handler.help = ['ping', 'speed'];
 handler.tags = ['info'];
 handler.command = /^(ping|speed|pong|ingfo)$/i
-
+export default handler;
 
 function clockString(ms) {
   var d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
@@ -165,5 +165,3 @@ function clockString(ms) {
   var s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [d, 'D ', h, 'H ', m, 'M ', s, 'S '].map(v => v.toString().padStart(2, '0')).join('')
 }
-
-export default handler;

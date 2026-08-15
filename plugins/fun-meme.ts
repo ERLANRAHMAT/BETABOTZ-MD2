@@ -1,17 +1,14 @@
-
-import fetch from 'node-fetch';
+import fetch from 'node-fetch'
 let handler: WaPlugin = async (m, { conn, text }) => {
 try { 
-let img = await fetch(`https://api.betabotz.eu.org/api/wallpaper/meme?apikey=${lann}`).then(result => result.buffer())
+let img = await fetch(`https://api.botcahx.eu.org/api/random/meme?apikey=${btc}`).then(result => result.buffer())
 await conn.sendFile(m.chat, img, 'file.jpg', wm, m)
 } catch (e) {
-      console.log(e);
-      throw e;
-    }
+throw `Error ${eror}`
+ }
 }
 handler.command = /^(meme)$/i
 handler.tags = ['fun']
 handler.help = ['meme']
 handler.limit = true
-
-export default handler;
+export default handler

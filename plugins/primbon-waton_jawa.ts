@@ -1,4 +1,3 @@
-
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
@@ -11,7 +10,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
         
         await m.reply(wait);
 
-        let res = await fetch(`https://api.betabotz.eu.org/api/primbon/wetonjawa?tanggal=${tanggal1}&bulan=${bulan1}&tahun=${tahun1}&apikey=${lann}`);
+        let res = await fetch(`https://api.botcahx.eu.org/api/primbon/wetonjawa?tanggal=${tanggal1}&bulan=${bulan1}&tahun=${tahun1}&apikey=${btc}`);
         let json = await res.json();
         let anu = [
           `―-WETON JAWA-―\n\nTanggal: ${json.result.message.tanggal}\n\nJumlah neptu: ${json.result.message.jumlah_neptu}\n\nWatak hari: ${json.result.message.watak_hari}\n\nNaga hari: ${json.result.message.naga_hari}\n\nJam balik: ${json.result.message.jam_baik}\n\nWatak kelahiran: ${json.result.message.watak_kelahiran}`, 
@@ -19,22 +18,17 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
         if (json.status) {
          conn.reply(m.chat,`${(anu)}`);;
         } else {
-            conn.reply(m.chat, `Maaf, terjadi kesalahan: ${json.message}`, m);
+            conn.reply(m.chat, `Maaf, terjadi kesalahan`, m);
         }
-    }  catch (e) {
-        console.log(e);
-        throw e;
+    } catch (e) {
+    throw eror
     }
 }
 
 handler.help = ['wetonjawa']
 handler.tags = ['fun']
 handler.command = /^(wetonjawa)$/i
-handler.group = true
-
-
-
-//danaputra133
-//di bantu erlan aka
+handler.group = false;
+handler.limit = true; 
 
 export default handler;

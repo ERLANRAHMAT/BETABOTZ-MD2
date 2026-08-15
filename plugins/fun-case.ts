@@ -20,4 +20,4 @@ handler.tags = ['fun']
 handler.command = ['case']
 handler.limit = true
 
-export default {};
+export default handler

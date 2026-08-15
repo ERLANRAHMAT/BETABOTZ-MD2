@@ -24,4 +24,4 @@ handler.before = async function (m, { conn }) {
   init(conn)
 }
 
-export default handler;
+export default handler

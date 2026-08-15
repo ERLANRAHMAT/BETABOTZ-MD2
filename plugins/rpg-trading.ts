@@ -83,7 +83,7 @@ handler.command = /^(trading)$/i;
 handler.cooldown = cooldown;
 handler.disabled = false;
 handler.rpg = true
-
+export default handler;
 
 function reward(user = {}, count, ewallet) {
     let rewards = {
@@ -114,5 +114,3 @@ function toSimple(number) {
     const formatter = Intl.NumberFormat('en', { maximumFractionDigits: 1 });
     return formatter.format(simplified) + suffix;
 }
-
-export default handler;

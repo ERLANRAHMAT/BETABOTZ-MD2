@@ -8,4 +8,4 @@ handler.tags = ['owner']
 handler.command = /^(resetprefix)$/i
 handler.rowner = true
 
-export default handler;
+export default handler

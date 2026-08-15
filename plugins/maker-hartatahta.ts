@@ -21,7 +21,7 @@ handler.tags = ['tools']
 handler.command = /^((harta)?tahta)$/i
 handler.limit = false
 
-
+export default handler
 
 import { spawn } from 'child_process'
 import path from 'path'
@@ -108,4 +108,3 @@ function rand(min, max, q = 0.001) {
   return Math.floor((Math.random() * (max - min)) / q) * q
 }
 
-export default handler;

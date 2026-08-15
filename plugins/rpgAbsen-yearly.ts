@@ -21,7 +21,7 @@ handler.limit = true
 handler.rpg = true
 handler.fail = null
 
-
+export default handler
 
 function msToTime(duration) {
   var milliseconds = parseInt(String((duration % 1000) / 100)),
@@ -36,5 +36,3 @@ function msToTime(duration) {
 
   return monthly + " hari " +  hours + " jam " + minutes + " menit"
 }
-
-export default handler;

@@ -49,10 +49,8 @@ handler.group = true
 handler.admin = true
 handler.botAdmin = true
 
-
+export default handler
 
 const time = async (ms) => {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
-
-export default handler;

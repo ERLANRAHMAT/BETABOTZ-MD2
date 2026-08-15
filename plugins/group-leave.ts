@@ -9,10 +9,8 @@ handler.tags = ['group']
 
 handler.owner = true
 
-
+export default handler
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-export default handler;

@@ -1,9 +1,9 @@
+import fetch from 'node-fetch'
 
-import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) throw `*Example:* ${usedPrefix + command} ERLANRAHMAT`   
+    if (!text) throw `*Example:* ${usedPrefix + command} botcahx`   
     try {     
-        let json = await fetch(`https://api.betabotz.eu.org/api/stalk/github?username=${text}&apikey=${lann}`).then(res => res.json());
+        let json = await fetch(`https://api.botcahx.eu.org/api/stalk/github?username=${text}&apikey=${btc}`).then(res => res.json());
         let caption = `⦿  *G H - S T A L K*\n\n`
         caption += `	◦  *Name* : ${json.result.user.username}\n`
         caption += `	◦  *ID* : ${json.result.user.idUser}\n`
@@ -18,18 +18,9 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
         caption += `	◦  *Create At* : ${json.result.user.createdAt}\n`
         caption += `	◦  *Update At* : ${json.result.user.updatedAt}\n`
         caption += `	◦  *Url* : ${json.result.user.githubUrl}\n`    
-               conn.sendMessage(
-                 m.chat,
-                 {
-                   image: { url: json.result.user.avatarUrl },
-                   caption: caption,
-                   mentions: [m.sender],
-                 },
-                 { quoted: m },
-               );
-    }  catch (e) {
-        console.log(e);
-        throw e;
+        conn.sendMessage(m.chat, { image: { url: json.result.user.avatarUrl }, caption: caption, mentions: [m.sender] }, { quoted: m });
+    } catch (e) {     
+        throw `Error: ${eror}`
     }
 }
 handler.help = ['ghstalk <username>']
@@ -37,4 +28,4 @@ handler.tags = ['stalk']
 handler.command = /^(ghstalk|githubstalk)$/i
 handler.limit = true
 
-export default handler;
+export default handler

@@ -73,10 +73,8 @@ handler.command = /^(fight|bertarung)$/i
 handler.group = true
 handler.rpg = true
 
-
+export default handler
 
 function pickRandom(list) {
   return list[Math.floor(Math.random() * list.length)]
 }
-
-export default handler;

@@ -9,4 +9,4 @@ handler.command = /^cekpoin$/i
 handler.register = true
 handler.rpg = true
 
-export default handler;
+export default handler

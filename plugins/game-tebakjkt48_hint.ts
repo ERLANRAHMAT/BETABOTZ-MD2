@@ -9,4 +9,4 @@ handler.command = /^jkcu$/i
 
 handler.limit = true
 
-export default handler;
+export default handler

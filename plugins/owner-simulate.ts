@@ -42,5 +42,4 @@ handler.tags = ["owner"];
 
 handler.command = /^(simulate|simulasi)$/i;
 handler.owner = false;
-
 export default handler;

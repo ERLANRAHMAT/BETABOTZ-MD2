@@ -9,4 +9,4 @@ handler.command = /^tebma$/i
 
 handler.limit = true
 
-export default handler;
+export default handler

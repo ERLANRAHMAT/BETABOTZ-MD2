@@ -8,7 +8,7 @@ let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || ''
 if (!mime) throw "where the media?"
 
-let media = (await q.download()) as Buffer;
+let media = await q.download()
 let isMedia = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
 let link = await (isMedia ? uploadImage : uploadImage)(media)
 
@@ -27,4 +27,4 @@ handler.help = ['cekresolution *<foto>*', 'cekreso *<foto>*']
 handler.tags = ['tools']
 handler.command = /^(cekreso(lution)?)$/i
 
-export default handler;
+export default handler

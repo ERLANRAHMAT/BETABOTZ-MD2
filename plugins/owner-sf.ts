@@ -12,4 +12,4 @@ handler.command = /^sf$/i
 
 handler.rowner = true
 
-export default handler;
+export default handler

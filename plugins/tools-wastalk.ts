@@ -40,4 +40,4 @@ handler.tags = ['tools']
 handler.command = /^(wa|whatsapp)stalk$/i
 handler.limit = true
 
-export default handler;
+export default handler

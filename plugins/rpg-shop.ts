@@ -1,3 +1,4 @@
+
 const Bcoal = 1500
 const Scoal = 1000
 const potion = 20000
@@ -1456,5 +1457,4 @@ handler.command = /^(shop|toko|buy|beli|sell|jual)$/i
 handler.limit = true
 handler.group = true
 handler.rpg = true
-
-export default handler;
+export default handler

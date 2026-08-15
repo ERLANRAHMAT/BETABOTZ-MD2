@@ -1,3 +1,4 @@
+
 import moment from 'moment-timezone'
 
 let handler: WaPlugin = async (m, { conn }) => {
@@ -44,10 +45,8 @@ handler.limit = true
 handler.command = /^dailymisi$/i
 handler.rpg = true
 
-
+export default handler
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
-
-export default handler;

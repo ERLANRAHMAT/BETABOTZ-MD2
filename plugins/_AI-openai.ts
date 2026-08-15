@@ -41,7 +41,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
                         message: message,
                         apikey: btc
                     };
-                    const { data } = await axios.post('https://api.betabotz.eu.org/api/search/openai-custom-v2', params);
+                    const { data } = await axios.post('https://api.botcahx.eu.org/api/search/openai-custom-v2', params);
                     resolve(data);
                 } catch (error) {
                     reject(error);

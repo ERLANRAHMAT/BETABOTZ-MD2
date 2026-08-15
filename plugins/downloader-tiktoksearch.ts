@@ -1,10 +1,9 @@
-
 import fetch from 'node-fetch';
-let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
- if (!args[0]) throw `🚩 *Example:* ${usedPrefix + command} anime`
+let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
+ if (!text) throw `🚩 *Example:* ${usedPrefix + command} anime`
   try {
-    const res = await fetch(`https://api.betabotz.eu.org/api/search/tiktoks?query=${args[0]}&apikey=${lann}`);
-    const api = await res.json();
+    const res = await fetch(`https://api.botcahx.eu.org/api/search/tiktoks?query=${text}&apikey=${btc}`);
+    const api = await res.json(); 
     const randomIndex = Math.floor(Math.random() * api.result.data.length);
     let video = api.result.data[randomIndex];
     let capt = `乂 *T I K T O K  S E A R C H*\n\n`;
@@ -34,13 +33,12 @@ let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
     capt += `  ◦ *Nickname*: ${video.author.nickname}\n`;
     capt += `\n`;
     conn.sendFile(m.chat, video.play, null, capt, m);
-  } catch (e) {
-      console.log(e);
-      throw e;
+  } catch (error) {
+    throw `🚩 *Video Tidak Ditemukan!*`
   }
 }
 handler.help = ['ttsearch'].map(v => v + ' <username>');
-handler.tags = ['internet'];
+handler.tags = ['downloader'];
 handler.command = /^(tiktoksearch|ttsearch)$/i;
 handler.limit = true;
 

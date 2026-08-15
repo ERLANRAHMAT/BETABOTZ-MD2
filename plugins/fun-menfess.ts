@@ -29,4 +29,4 @@ handler.help = ['menfess']
 handler.command = /^(menfess|menfes)$/i
 handler.private = true
 
-export default handler;
+export default handler

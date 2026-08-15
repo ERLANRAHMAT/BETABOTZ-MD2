@@ -23,5 +23,4 @@ handler.tags = ['rpg'];
 handler.command = /^(sawer|nyawer)$/i;
 handler.group = true;
 handler.rpg = true;
-
 export default handler;

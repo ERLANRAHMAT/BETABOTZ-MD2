@@ -57,4 +57,4 @@ handler.command = /^(g(ro?up|c?)?)$/i
 handler.group = true
 handler.botAdmin = false
 
-export default handler;
+export default handler

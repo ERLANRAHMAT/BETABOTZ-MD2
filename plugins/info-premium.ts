@@ -36,7 +36,7 @@ handler.help = ['cekprem', 'cekpremium', 'premium']
 handler.tags = ['info']
 handler.command = /^(cekprem(ium)?|premium)$/i
 
-
+export default handler
 
 function msToDate(ms) {
   if (ms <= 0) return 'Sudah habis'
@@ -47,5 +47,3 @@ function msToDate(ms) {
   return [d ? `${d} hari` : '', h ? `${h} jam` : '', m ? `${m} menit` : '', s ? `${s} detik` : '']
     .filter(v => v).join(' ')
 }
-
-export default handler;

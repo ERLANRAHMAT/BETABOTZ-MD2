@@ -43,7 +43,7 @@ handler.tags = ['rpg']
 handler.command = /^(openbo)$/i
 handler.group = true
 handler.rpg = true
-
+export default handler
 
 function clockString(ms) {
   let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
@@ -52,5 +52,3 @@ function clockString(ms) {
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return ['\n' + d, ' *Hari*\n ', h, ' *Jam*\n ', m, ' *Menit*\n ', s, ' *Detik* '].map(v => v.toString().padStart(2, '0')).join('')
 }
-
-export default handler;

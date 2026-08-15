@@ -119,7 +119,7 @@ handler.register = true;
 handler.group = true;
 handler.level = 70;
 handler.rpg = true;
-
+export default handler;
 
 function clockString(ms) {
   let h = Math.floor(ms / 3600000);
@@ -127,5 +127,3 @@ function clockString(ms) {
   let s = Math.floor(ms / 1000) % 60;
   return [h, m, s].map((v) => v.toString().padStart(2, '0')).join(":");
 }
-
-export default handler;

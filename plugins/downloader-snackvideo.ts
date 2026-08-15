@@ -5,7 +5,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     try {
         if (!text.match(/snackvideo/gi)) throw `URL Tidak Ditemukan!`;        
         m.reply(wait);      
-        const response = await axios.get(`https://api.betabotz.eu.org/api/download/snackvideo?url=${text}&apikey=${btc}`);        
+        const response = await axios.get(`https://api.botcahx.eu.org/api/download/snackvideo?url=${text}&apikey=${btc}`);        
         const res = response.data.result;      
         var { 
           media, 

@@ -24,7 +24,7 @@ handler.help = handler.command = ['daily'];
 handler.tags = ['rpg'];
 handler.rpg = true
 
-
+export default handler;
 
 function msToTime(duration) {
     var milliseconds = parseInt(String((duration % 1000) / 100)),
@@ -38,5 +38,3 @@ function msToTime(duration) {
 
     return hours + " Jam " + minutes + " Menit";
 }
-
-export default handler;

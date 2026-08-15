@@ -20,4 +20,4 @@ handler.owner = false
 handler.admin = false
 handler.rpg = true
 
-export default handler;
+export default handler

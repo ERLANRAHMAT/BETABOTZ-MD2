@@ -1,4 +1,3 @@
-
 import uploadImage from '../lib/uploadImage.ts';
 import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { 
@@ -13,16 +12,16 @@ command
 		try {
 			const img = await q.download?.()
 			let out = await uploadImage(img)
-			let old = new Date()
-			let res = await fetch(`https://api.betabotz.eu.org/api/maker/jadigta?url=${out}&apikey=${lann}`)
+			let old = Date.now()
+			let res = await fetch(`https://api.botcahx.eu.org/api/maker/jadigta?url=${out}&apikey=${btc}`)
 			let convert = await res.json()
 			let buff = await fetch(convert.result)
   .then(result => result.buffer())
-			await conn.sendMessage(m.chat, { image: buff, caption: `🍟 *Fetching* : ${((new Date - old) * 1)} ms` }, { quoted: m })
-		}  catch (e) {
-        console.log(e);
-        throw e;
-    }
+			await conn.sendMessage(m.chat, { image: buff, caption: `🍟 *Fetching* : ${((Date.now() - old) * 1)} ms` }, { quoted: m })
+		} catch (e) {
+			console.log(e)
+			m.reply(`[ ! ] Identifikasi Gagal.`)
+		}
 	} else {
 		m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim`)
 	}
@@ -31,5 +30,4 @@ handler.help = handler.command = ['jadigta','togta'];
 handler.tags = ['maker'];
 handler.premium = false;
 handler.limit = true;
-
 export default handler;

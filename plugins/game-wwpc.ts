@@ -99,5 +99,4 @@ let handler: WaPlugin = async (m, { conn, command, usedPrefix, args }) => {
 }
 handler.command = /^((ww|werewolf)pc)$/i
 handler.private = true
-
-export default handler;
+export default handler

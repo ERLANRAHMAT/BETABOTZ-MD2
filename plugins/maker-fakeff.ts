@@ -1,4 +1,3 @@
-
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     let guide = `Format salah!\n\n*Cara penggunaan:*\n${usedPrefix + command} username|lobby\n\n*Pilihan Lobby:*\nAngka 1 sampai 45\n\n*Contoh:*\n${usedPrefix + command} ProPlayer123|6`;
 
@@ -14,13 +13,13 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     try {
         await m.reply('⏳ _Sedang memproses gambar..._');
 
-        let apiUrl = `https://api.betabotz.eu.org/api/maker/canvas-fakeFf?apikey=${lann}&lobby=${lobbyNum}&username=${encodeURIComponent(username.trim())}`;
+        let apiUrl = `https://api.botcahx.eu.org/api/maker/canvas-fakeFf?apikey=${btc}&lobby=${lobbyNum}&username=${encodeURIComponent(username.trim())}`;
 
         await conn.sendFile(m.chat, apiUrl, 'fakeff.jpg', 'Done!', m);
 
     } catch (e) {
         console.log(e);
-        throw e;
+        throw eror;
     }
 }
 

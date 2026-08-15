@@ -14,10 +14,8 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 handler.command = handler.help = ['ip','ipwho'];
 handler.tags = ['tools'];
 handler.premium = false;
-
+export default handler;
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-export default handler;

@@ -1,7 +1,6 @@
-
 import fetch from 'node-fetch';
 
-const handler: WaPlugin = async (m, {
+let handler: WaPlugin = async (m, {
     conn,
     args,
     usedPrefix,
@@ -11,7 +10,7 @@ const handler: WaPlugin = async (m, {
     if (!args[0].match(/https?:\/\/(www\.)?(twitter\.com|x\.com)/gi)) throw "URL Tidak Ditemukan!";
     m.reply(wait);
     try {
-        const api = await fetch(`https://api.betabotz.eu.org/api/download/twitter2?url=${args[0]}&apikey=${lann}`);
+        const api = await fetch(`https://api.botcahx.eu.org/api/download/twitter2?url=${args[0]}&apikey=${btc}`);
         const res = await api.json();
         const mediaURLs = res.result.mediaURLs;
         
@@ -19,13 +18,12 @@ const handler: WaPlugin = async (m, {
         
         for (const url of mediaURLs) {
             const response = await fetch(url);
-            const buffer = Buffer.from(await response.buffer());  
-            await delay(3000)//3 detik jeda agar tidak spam        
+            const buffer = await response.buffer();  
+            await delay(3000)        
             conn.sendFile(m.chat, buffer, null, capt, m);           
         }
     } catch (e) {
-      console.log(e);
-      throw e;
+        throw '*Server Down!*';
     }
 };
 
@@ -40,10 +38,8 @@ handler.botAdmin = false;
 handler.fail = null;
 handler.private = false;
 
-
+export default handler;
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
-	}
-
-export default handler;
+}

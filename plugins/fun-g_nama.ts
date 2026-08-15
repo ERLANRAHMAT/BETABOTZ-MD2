@@ -35,4 +35,4 @@ handler.help = ['namaninja <teks>']
 handler.tags = ['fun']
 handler.command =  /^(namaninja|namae)$/i
 
-export default {};
+export default handler

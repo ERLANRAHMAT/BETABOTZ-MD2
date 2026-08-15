@@ -19,4 +19,4 @@ handler.command = /^((broadcastgc|bcgc)bot)$/i
 
 handler.owner = true
 
-export default handler;
+export default handler

@@ -434,5 +434,4 @@ handler.tags = ['rpg']
     
 handler.command = /^(pasar|jual)$/i
 handler.rpg = true
-
-export default handler;
+export default handler

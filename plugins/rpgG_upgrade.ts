@@ -62,5 +62,4 @@ handler.help = ['guildupgrade <level/eliksir/harta/guardian/attack>'];
 handler.tags = ['rpgG'];
 handler.command = /^(guildupgrade)$/i;
 handler.rpg = true;
-
 export default handler;

@@ -1,46 +1,21 @@
+import fetch from 'node-fetch'
 
-import fetch from 'node-fetch';
-
-let handler: WaPlugin = async (m, { conn }) => {   
-    try {
-        let res = await fetch(`https://api.betabotz.eu.org/api/webzone/gore?apikey=${lann}`).then(result => result.json());
-        
-        let anu = `
-─────> *GORE* <─────
-
-*JUDUL*:
-${res.result.title}\n
-*AUTHOR*: ${res.result.author}
-*VIEW*: ${res.result.views}
-*COMMENT*: ${res.result.comments}
-*LINK*: ${res.result.url}\n
-\`gunakan vpn jika ingin menonton\`
-`;
-
-        conn.sendMessage(m.chat, {
-            text: anu,
-            mentions: [m.sender]
-        }, {});
-    } catch (e) {
-        if (e !== false) {
-            console.log(e);
-            throw e;
-        }
-    }
+let handler: WaPlugin = async (m, { conn }) => {
+  try { 
+    m.reply(wait)
+    let res = await (await fetch(`https://api.botcahx.eu.org/api/webzone/gore?apikey=${btc}`)).json()
+    let capt = `*R A N D O M   G O R E*\n\n`
+    capt += `  ◦  *Title*: ${res.result.title}\n`;
+    capt += `  ◦  *Author*: ${res.result.author}\n`;;
+    capt += `  ◦  *Views*: ${res.result.views}\n`;
+    capt += `  ◦  *Comment*: ${res.result.comments}\n`;
+    conn.sendFile(m.chat, res.result.url, null, capt, m)
+} catch (error) {
+  throw eror
+  }
 }
+handler.command = handler.help = ['randomgore','gore'];
+handler.tags = ['downloader'];
+handler.limit = true;
 
-handler.help = ['gore']
-handler.tags = ['internet', 'downloader'];
-handler.command = /^(gore)$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = true
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-
-export default handler;
+export default handler

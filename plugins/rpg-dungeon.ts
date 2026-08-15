@@ -635,7 +635,7 @@ handler.command = /^(dungeon)$/i
 handler.rpg = true
 handler.mods = false
 
-
+export default handler
 
 /**
 * pickRandom from array
@@ -703,5 +703,3 @@ DATA.forEach(player => {
 })
 return msg
 }
-
-export default {};

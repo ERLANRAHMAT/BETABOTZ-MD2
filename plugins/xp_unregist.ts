@@ -13,4 +13,4 @@ handler.tags = ['xp']
 handler.command = ['unreg'] 
 handler.register = true
 
-export default handler;
+export default handler

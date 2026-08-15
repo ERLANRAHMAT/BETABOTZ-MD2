@@ -1,20 +1,12 @@
-
-import fetch from 'node-fetch';
+import fetch from 'node-fetch'
 let handler: WaPlugin = async (m, { conn } ) => {   
-    try {
-      let res = await fetch(
-        `https://api.betabotz.eu.org/api/random/bacot?apikey=${lann}`,
-      ).then((result) => result.json());
-      let anu = `
+let res = await fetch(`https://api.botcahx.eu.org/api/random/bacot?apikey=${btc}`).then(result => result.json())
+let anu =`
 ─────〔 *Bacot* 〕─────
 
 ${res.hasl}
-`;
-      conn.reply(m.chat, anu, m);
-    } catch (e) {
-      console.log(e);
-      throw e;
-    }
+`
+conn.reply(m.chat, anu, m) 
 }
 handler.help = ['bacot']
 handler.tags = ['quotes']
@@ -30,4 +22,4 @@ handler.botAdmin = false
 
 handler.fail = null
 
-export default handler;
+export default handler

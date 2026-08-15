@@ -73,7 +73,7 @@ handler.help = ['mancing'];
 handler.tags = ['rpg'];
 handler.command = /^(mancing|memancing)$/i;
 handler.rpg = true
-
+export default handler;
 
 function formatTime(ms) {
 	let seconds = Math.floor(ms / 1000);
@@ -90,5 +90,3 @@ function formatTime(ms) {
 
 	return `${hStr}:${mStr}:${sStr}`;
 }
-
-export default handler;

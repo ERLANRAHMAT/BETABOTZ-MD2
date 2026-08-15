@@ -85,5 +85,4 @@ handler.help = ['attackguild'];
 handler.tags = ['rpgG'];
 handler.command = /^attackguild$/i;
 handler.rpg = true
-
 export default handler;

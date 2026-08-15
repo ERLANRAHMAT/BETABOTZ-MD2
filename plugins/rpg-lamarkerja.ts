@@ -79,7 +79,7 @@ handler.help = ['lamarkerja'];
 handler.tags = ['rpg'];
 handler.command = /^lamarkerja$/i;
 handler.rpg = true
-
+export default handler;
 
 function capitalizeFirstLetter(str) {
     let words = str.split(" ");
@@ -88,5 +88,3 @@ function capitalizeFirstLetter(str) {
     }
     return words.join(" ");
 }
-
-export default handler;

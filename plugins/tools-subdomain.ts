@@ -89,7 +89,7 @@ handler.limit = true;
 export default handler;
 
 async function whois(subdomain, domain) {
-  const url = `https://api.betabotz.eu.org/api/tools/whois-subdo?subdomain=${encodeURIComponent(subdomain)}&domain=${encodeURIComponent(domain)}&apikey=${btc}`;
+  const url = `https://api.botcahx.eu.org/api/tools/whois-subdo?subdomain=${encodeURIComponent(subdomain)}&domain=${encodeURIComponent(domain)}&apikey=${btc}`;
   try {
     const response = await fetch(url, { method: 'GET' });
     return await response.json();
@@ -99,7 +99,7 @@ async function whois(subdomain, domain) {
 }
 
 async function create(subdomain, domain, type, content, proxied) {
-  const url = `https://api.betabotz.eu.org/api/tools/create-subdo?subdomain=${encodeURIComponent(subdomain)}&domain=${encodeURIComponent(domain)}&type=${encodeURIComponent(type)}&content=${encodeURIComponent(content)}&proxied=${proxied}&apikey=${btc}`;
+  const url = `https://api.botcahx.eu.org/api/tools/create-subdo?subdomain=${encodeURIComponent(subdomain)}&domain=${encodeURIComponent(domain)}&type=${encodeURIComponent(type)}&content=${encodeURIComponent(content)}&proxied=${proxied}&apikey=${btc}`;
   try {
     const response = await fetch(url, { method: 'GET' });
     return await response.json();

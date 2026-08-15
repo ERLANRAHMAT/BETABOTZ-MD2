@@ -12,7 +12,7 @@ handler.tags = ['group']
 handler.command = /^(adminlist|listadmin)$/i
 handler.group = true
 handler.register = false
-
+export default handler
 
 const getAdmin = (participants) => {
        let getAdminAll = []
@@ -22,5 +22,3 @@ const getAdmin = (participants) => {
         }
         return getAdminAll
 }
-
-export default handler;

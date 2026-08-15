@@ -34,4 +34,4 @@ handler.before = async function (m, { conn, isBotAdmin, isAdmin }) {
   return true
 }
 
-export default handler;
+export default handler

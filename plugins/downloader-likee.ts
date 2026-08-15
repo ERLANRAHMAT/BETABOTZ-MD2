@@ -1,14 +1,11 @@
-
 import axios from 'axios';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
-        if (!text) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://l.likee.video/v/tmj1oh`;    
-        
-        if (!text.match(/likee/gi)) throw `URL Tidak Ditemukan!`;        
+    if (!text) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://l.likee.video/v/tmj1oh`;    
     try {
-      
+        if (!text.match(/likee/gi)) throw `URL Tidak Ditemukan!`;        
         m.reply(wait);      
-        const response = await axios.get(`https://api.betabotz.eu.org/api/download/likee?url=${text}&apikey=${lann}`);        
+        const response = await axios.get(`https://api.botcahx.eu.org/api/download/likee?url=${text}&apikey=${btc}`);        
         const res = response.data.result;      
         var { 
           title,
@@ -20,10 +17,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
         capt += `\n`;        
         await conn.sendFile(m.chat, nowm, null, capt, m);
     } catch (e) {
-        if (e !== false) {
-            console.log(e);
-            throw e;
-        }
+        throw eror
     }
 };
 handler.command = handler.help = ['likee'];

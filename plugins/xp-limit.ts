@@ -19,5 +19,4 @@ m.reply(`${global.db.data.users[who].limit} Limit Tersisaಥ_ಥ`)
 handler.help = ['limit [@user]']
 handler.tags = ['xp']
 handler.command = /^(limit)$/i
-
-export default handler;
+export default handler

@@ -16,4 +16,4 @@ key: {
 handler.tags = ['tools']
 handler.command = /^(react)$/i
 
-export default handler;
+export default handler

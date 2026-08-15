@@ -56,7 +56,7 @@ handler.tags = ['owner']
 handler.command = /^(addprem|prem|tambahprem)$/i
 handler.owner = true
 
-
+export default handler
 
 function msToDate(ms) {
   let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
@@ -64,5 +64,3 @@ function msToDate(ms) {
   let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
   return [d, ' hari ', h, ' jam ', m, ' menit'].map(v => v.toString().padStart(2, '0')).join('')
 }
-
-export default handler;

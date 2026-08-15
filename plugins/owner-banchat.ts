@@ -7,4 +7,4 @@ handler.tags = ['owner']
 handler.command = ['mute']
 handler.owner = true
 
-export default handler;
+export default handler

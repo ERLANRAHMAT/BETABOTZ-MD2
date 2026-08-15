@@ -1,4 +1,4 @@
-import similarity from 'similarity'
+    import similarity from 'similarity'
     const threshold = 0.72
 
     let handler: WaPlugin = m => m
@@ -31,5 +31,4 @@ import similarity from 'similarity'
     }
 
     handler.exp = 0
-
-export default handler;
+    export default handler

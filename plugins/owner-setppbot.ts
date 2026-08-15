@@ -9,7 +9,7 @@ let handler: WaPlugin = async (m, { conn, command, usedPrefix }) => {
     let mime = (q.msg || q).mimetype || q.mediaType || '';
     if (/image/g.test(mime) && !/webp/g.test(mime)) {
         try {
-            let media = (await q.download()) as Buffer;
+            let media = await q.download();
             let botNumber = await conn.user.jid;
             let { img } = await pepe(media);
             await conn.query({
@@ -44,7 +44,7 @@ handler.command = /^(set(botpp|ppbot))$/i;
 
 handler.owner = true;
 
-
+export default handler;
 
 async function pepe(media) {
     const image = await jimp.read(media);
@@ -56,5 +56,3 @@ async function pepe(media) {
         preview: await cropped.normalize().getBufferAsync(jimp.MIME_JPEG)
     };
 }
-
-export default handler;

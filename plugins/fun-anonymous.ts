@@ -20,4 +20,4 @@ handler.before = async function (m, { match }) {
     return !0
 }
 
-export default handler;
+export default handler

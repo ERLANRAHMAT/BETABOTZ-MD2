@@ -1,4 +1,3 @@
-
 import uploadImage from '../lib/uploadImage.ts';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
@@ -18,19 +17,19 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 
         await m.reply('⏳ _Sedang mengunggah gambar dan membuat Fake Telegram..._');
 
-        let media = (await q.download?.()) as Buffer;
+        let media = await q.download?.();
         if (!media) throw 'Gagal mengunduh gambar. Pastikan kamu membalas gambar.';
         
         let link = await uploadImage(media);
         if (!link) throw 'Gagal mengunggah gambar ke server.';
 
-        let apiUrl = `https://api.betabotz.eu.org/api/maker/canvas-fakeTele?apikey=${lann}&bio=${encodeURIComponent(bio.trim())}&nama=${encodeURIComponent(nama.trim())}&ponsel=${encodeURIComponent(ponsel.trim())}&url=${encodeURIComponent(link)}&username=${encodeURIComponent(username.trim())}`;
+        let apiUrl = `https://api.botcahx.eu.org/api/maker/canvas-fakeTele?apikey=${btc}&bio=${encodeURIComponent(bio.trim())}&nama=${encodeURIComponent(nama.trim())}&ponsel=${encodeURIComponent(ponsel.trim())}&url=${encodeURIComponent(link)}&username=${encodeURIComponent(username.trim())}`;
 
         await conn.sendFile(m.chat, apiUrl, 'faketele.jpg', 'Done!', m);
 
     } catch (e) {
         console.log(e);
-        throw typeof e === 'string' ? e : 'Terjadi kesalahan sistem saat memproses gambar.';
+        throw eror
     }
 }
 

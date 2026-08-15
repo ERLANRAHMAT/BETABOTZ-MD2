@@ -47,7 +47,7 @@ handler.tags = ['rpg'];
 handler.command = /^(airdrop)$/i;
 handler.group = true;
 handler.rpg = true
-
+export default handler;
 
 function pickRandom(list) {
   return list[Math.floor(Math.random() * list.length)];
@@ -60,5 +60,3 @@ function clockString(ms) {
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60;
   return ['\n*' + d + '* _Hari_ ☀️\n ', '*' + h + '* _Jam_ 🕐\n ', '*' + m + '* _Menit_ ⏰\n ', '*' + s + '* _Detik_ ⏱️ '].map(v => v.toString().padStart(2, '0')).join('');
 }
-
-export default handler;

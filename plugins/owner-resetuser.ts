@@ -61,4 +61,4 @@ handler.owner = true
 handler.group = false
 handler.botAdmin = false
 
-export default handler;
+export default handler

@@ -16,4 +16,4 @@ handler.owner = true
 
 handler.command = /^(self|public)/i
 
-export default handler;
+export default handler

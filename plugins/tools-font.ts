@@ -1,10 +1,9 @@
-
-import fetch from 'node-fetch';
+import fetch from 'node-fetch'
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
-    if (!text) throw `contoh:\n${usedPrefix + command} betabotz`
+    if (!text) throw `contoh:\n${usedPrefix + command} botcahx`
     
     try {
-        let json = await fetch(`https://api.betabotz.eu.org/api/tools/styletext?text=${text}&apikey=${lann}`)
+        let json = await fetch(`https://api.botcahx.eu.org/api/tools/styletext?text=${text}&apikey=${btc}`)
         let data = await json.json()
         let caption = ""
         for (let x of data.result) {
@@ -33,4 +32,4 @@ handler.botAdmin = false
 handler.fail = null
 handler.limit = true
 
-export default handler;
+export default handler

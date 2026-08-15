@@ -29,4 +29,4 @@ handler.tags = ['rpg']
 handler.command = /^bank$/
 handler.rpg = true
 
-export default handler;
+export default handler

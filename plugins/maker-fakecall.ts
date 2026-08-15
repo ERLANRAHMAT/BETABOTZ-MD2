@@ -1,4 +1,3 @@
-
 import uploadImage from '../lib/uploadImage.ts';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
@@ -23,19 +22,19 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 
         await m.reply('⏳ _Sedang memproses gambar..._');
 
-        let media = (await q.download?.()) as Buffer;
+        let media = await q.download?.();
         if (!media) throw 'Gagal mengunduh gambar.';
         
         let link = await uploadImage(media);
         if (!link) throw 'Gagal mengunggah gambar ke server.';
 
-        let apiUrl = `https://api.betabotz.eu.org/api/maker/canvas-fakeCallIos?apikey=${lann}&durasi=${encodeURIComponent(durasi.trim())}&nama=${encodeURIComponent(nama.trim())}&url=${encodeURIComponent(link)}`;
+        let apiUrl = `https://api.botcahx.eu.org/api/maker/canvas-fakeCallIos?apikey=${btc}&durasi=${encodeURIComponent(durasi.trim())}&nama=${encodeURIComponent(nama.trim())}&url=${encodeURIComponent(link)}`;
 
         await conn.sendFile(m.chat, apiUrl, 'fakecall.jpg', 'Done!', m);
 
     } catch (e) {
         console.log(e);
-        throw e;
+        throw eror;
     }
 }
 

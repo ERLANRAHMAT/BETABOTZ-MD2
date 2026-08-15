@@ -249,5 +249,4 @@ handler.tags = ['rpg']
 handler.register = true
 handler.command = /^(eat|makan)$/i
 handler.rpg = true
-
-export default handler;
+export default handler

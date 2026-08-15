@@ -14,4 +14,4 @@ Jika berminat hubungi: @${global.owner[0]} untuk order:)
     }
 }
 
-export default handler;
+export default handler

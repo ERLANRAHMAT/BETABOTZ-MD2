@@ -9,4 +9,4 @@ handler.command = /^tdkt$/i
 
 handler.limit = true
 
-export default handler;
+export default handler

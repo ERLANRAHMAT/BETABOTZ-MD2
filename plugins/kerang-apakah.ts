@@ -14,10 +14,8 @@ handler.owner = false
 
 handler.fail = null
 
-
+export default handler
 
 function pickRandom(list) {
   return list[Math.floor(Math.random() * list.length)]
 }
-
-export default handler;

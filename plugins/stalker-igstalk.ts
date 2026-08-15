@@ -1,9 +1,9 @@
-
-import fetch from 'node-fetch';
+import fetch from 'node-fetch'
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) throw `contoh:\n${usedPrefix + command} erlanrahmat_14`
+    if (!text) throw `contoh:\n${usedPrefix + command} prm2.0`
     try {
-        let api = await fetch(`https://api.betabotz.eu.org/api/stalk/ig?username=${text}&apikey=${lann}`)
+        await m.reply(wait)
+        let api = await fetch(`https://api.botcahx.eu.org/api/stalk/ig?username=${text}&apikey=${btc}`)
         let response = await api.json()
         if (response.status) {
             let { photoUrl, postsCount, followers, following, bio, fullName, username } = response.result;
@@ -20,9 +20,8 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
         } else {
             throw 'Sistem Sedang Bermasalah!'
         }
-    }  catch (e) {
-        console.log(e);
-        throw e;
+    } catch (e) {
+        m.reply('Sistem Sedang Bermasalah!')
     }
 }
 
@@ -31,4 +30,4 @@ handler.tags = ['stalk']
 handler.command = /^(igstalk)$/i
 handler.limit = true
 
-export default handler;
+export default handler

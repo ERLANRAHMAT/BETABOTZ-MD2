@@ -11,11 +11,9 @@ handler.command = /^(resetlimit|risetlimit)$/i
 
 handler.owner = true
 
-
+export default handler
 
 function isNumber(x = 0) {
   x = parseInt(String(x))
   return !isNaN(x) && typeof x == 'number'
 }
-
-export default handler;

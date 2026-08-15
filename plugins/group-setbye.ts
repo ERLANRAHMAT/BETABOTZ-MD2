@@ -13,4 +13,4 @@ handler.command = /^setbye$/i
 
 handler.botAdmin = true
 
-export default handler;
+export default handler

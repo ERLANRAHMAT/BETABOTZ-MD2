@@ -28,5 +28,4 @@ handler.command = /^moneytopoin$/i
 handler.register = true
 handler.limit = true
 handler.rpg = true
-
-export default handler;
+export default handler

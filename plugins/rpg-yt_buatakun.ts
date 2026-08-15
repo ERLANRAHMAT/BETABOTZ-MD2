@@ -38,5 +38,4 @@ handler.command = /^(createakunyt|deleteakun)$/i;
 handler.register = true;
 handler.group = true;
 handler.rpg = true;
-
 export default handler;

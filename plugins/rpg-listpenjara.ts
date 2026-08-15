@@ -17,5 +17,4 @@ handler.help = ['listpenjara']
 handler.tags = ['rpg']
 handler.command = /^penjaralist|listpenjara$/i
 handler.rpg = true
-
-export default handler;
+export default handler

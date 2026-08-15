@@ -25,7 +25,7 @@ handler.help = ['guildaccept @user'];
 handler.tags = ['rpgG'];
 handler.command = /^(guildaccept)$/i;
 handler.rpg = true;
-
+export default handler;
 
 
 function isGuildOwner(user) {
@@ -35,5 +35,3 @@ function isGuildOwner(user) {
 function isGuildStaff(user) {
     return user.role === 'staff'; // The 'staff' role marks a guild staff member
 }
-
-export default handler;

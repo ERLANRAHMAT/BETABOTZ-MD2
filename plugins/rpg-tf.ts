@@ -289,4 +289,5 @@ handler.botAdmin = false
 handler.fail = null
 handler.money = 0
 
-export default handler;
+export default handler
+

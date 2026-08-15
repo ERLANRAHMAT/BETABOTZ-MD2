@@ -88,4 +88,4 @@ Room ID: ${room.id}
     return !0
 }
 
-export default handler;
+export default handler

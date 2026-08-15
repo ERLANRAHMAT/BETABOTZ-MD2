@@ -10,5 +10,4 @@ let handler: WaPlugin = async (m, { conn }) => {
 }
 handler.command = /^liga/i
 handler.limit = true
-
-export default handler;
+export default handler

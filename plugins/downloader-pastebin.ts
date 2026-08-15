@@ -1,20 +1,19 @@
-
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
-    if (!text) throw `Masukkan URL Pastebin!\n\n*Contoh:* ${usedPrefix + command} https://pastebin.com/eQLV4GfE`;
+    if (!text) throw `Masukkan URL Pastebin!\n\n*Contoh:* ${usedPrefix + command} https://pastebin.com/z77zNeZb`;
 
     try {
         await m.reply(wait);
-        let res = await fetch(`https://api.betabotz.eu.org/api/download/pastebin?url=${text}&apikey=${lann}`);
+        let res = await fetch(`https://api.botcahx.eu.org/api/download/pastebin?url=${text}&apikey=${btc}`);
         let json = await res.json();
 
         if (!json.status) throw "❌ Gagal mengambil data dari Pastebin!";
 
         await m.reply(`📄 *Hasil Pastebin:*\n\n${json.result}`);
     } catch (e) {
-          console.log(e);
-          throw e;
+        console.error(e);
+        throw "❌ Terjadi kesalahan saat mengambil data dari Pastebin!";
     }
 };
 

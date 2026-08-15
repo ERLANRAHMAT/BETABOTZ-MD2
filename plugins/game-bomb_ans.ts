@@ -1,3 +1,4 @@
+
 import util from 'util';
 
 let handler: WaPlugin = m => m
@@ -87,4 +88,4 @@ function formatNumber(number) {
 return number.toLocaleString();
 }
 
-export default handler;
+export default handler

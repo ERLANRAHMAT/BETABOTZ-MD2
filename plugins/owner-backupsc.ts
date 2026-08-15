@@ -21,7 +21,7 @@ let handler: WaPlugin = async (m, { conn, isROwner }) => {
 
             setTimeout(() => {
                if (fs.existsSync(zipFileName)) {
-                  const file = fs.readFileSync(zipFileName) as Buffer;
+                  const file = fs.readFileSync(zipFileName);
                   conn.sendMessage(
                      m.chat,
                      {

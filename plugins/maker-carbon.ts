@@ -1,4 +1,3 @@
-
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn, args }) => {
@@ -10,14 +9,11 @@ let handler: WaPlugin = async (m, { conn, args }) => {
     } else throw "Input teks atau reply teks yang ingin di jadikan carbon!"
    if (!text) return m.reply('masukan text') 
    try {
-     m.reply(wait);
-     let img = await fetch(
-       `https://api.betabotz.eu.org/api/maker/carbon?text=${text}&apikey=${lann}`,
-     ).then((res) => res.json());
-     await conn.sendFile(m.chat, img.result, "img.jpeg", "", m);
+   m.reply(wait)
+   let img = await fetch(`https://api.botcahx.eu.org/api/maker/carbon?text=${text}&apikey=${btc}`).then(res => res.json());
+   await conn.sendFile(m.chat, img.result, 'img.jpeg', '', m)
    } catch (e) {
-     console.log(e);
-     throw e;
+   throw `${eror}`
    }
 }
 
@@ -25,5 +21,4 @@ handler.help = ['carbon']
 handler.tags = ['maker']
 handler.command = /^(carbon|carbonara)$/i
 handler.limit = true
-
-export default handler;
+export default handler

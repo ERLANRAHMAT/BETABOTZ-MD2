@@ -17,4 +17,4 @@ handler.command = /^(getplugin|get ?plugin|gp)$/i
 
 handler.rowner = true
 
-export default handler;
+export default handler

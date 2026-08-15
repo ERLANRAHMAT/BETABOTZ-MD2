@@ -24,10 +24,8 @@ handler.botAdmin = false
 
 handler.fail = null
 
-
+export default handler
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-export default handler;

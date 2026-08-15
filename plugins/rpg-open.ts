@@ -453,10 +453,8 @@ handler.register = true
 handler.rpg = true
 handler.fail = null
 
-
+export default handler
 
 function pickRandom(list) {
   return list[Math.floor(list.length * Math.random())]
 }
-
-export default handler;

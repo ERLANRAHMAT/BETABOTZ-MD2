@@ -13,4 +13,4 @@ handler.command = /^(srvrestart|restart)$/i
 
 handler.rowner = true
 
-export default handler;
+export default handler

@@ -21,5 +21,4 @@ handler.help = ['joinguild <nomor_guild>'];
 handler.tags = ['rpgG'];
 handler.command = /^(joinguild)$/i;
 handler.rpg = true;
-
 export default handler;

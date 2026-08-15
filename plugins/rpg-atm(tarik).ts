@@ -25,4 +25,4 @@ handler.rpg = true
 handler.fail = null
 handler.exp = 0
 
-export default handler;
+export default handler

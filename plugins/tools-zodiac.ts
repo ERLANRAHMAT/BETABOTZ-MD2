@@ -28,7 +28,7 @@ handler.tags = ['tools', 'internet', 'fun']
 
 handler.command = /^zodia[kc]$/i
 
-
+export default handler
 
 const zodiak = [
     ["Capricorn", new Date(1970, 0, 1)],
@@ -50,5 +50,3 @@ function getZodiac(month, day) {
     let d = new Date(1970, month - 1, day)
     return zodiak.find(([_,_d]) => d >= _d)[0]
 }
-
-export default handler;

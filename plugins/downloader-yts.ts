@@ -24,4 +24,4 @@ handler.tags = ['tools', 'internet', 'downloader']
 handler.command = /^yts(earch)?$/i
 handler.limit = true;
 
-export default handler;
+export default handler

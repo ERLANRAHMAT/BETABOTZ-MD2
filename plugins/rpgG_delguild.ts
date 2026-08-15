@@ -45,5 +45,4 @@ handler.tags = ['rpgG'];
 handler.command = /^(delguild)$/i;
 handler.owner = false;
 handler.rpg = true
-
 export default handler;

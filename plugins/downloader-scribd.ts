@@ -8,7 +8,7 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
     m.reply(wait);
 
     try {
-        let res = await (await fetch(`https://api.betabotz.eu.org/api/download/scribd?url=${encodeURIComponent(text)}&apikey=${btc}`)).json();
+        let res = await (await fetch(`https://api.botcahx.eu.org/api/download/scribd?url=${encodeURIComponent(text)}&apikey=${btc}`)).json();
 
         if (!res.status || !res.result?.download) throw 'Gagal mengambil file.';
 

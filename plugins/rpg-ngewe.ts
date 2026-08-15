@@ -63,7 +63,7 @@ handler.command = /^(ngewe|anu)$/i
 handler.register = true
 handler.premium = false
 handler.rpg = true
-
+export default handler
 
 
 function clockString(ms) {
@@ -73,5 +73,3 @@ function clockString(ms) {
   console.log({ms,h,m,s})
   return [h, m, s].map(v => v.toString().padStart(2, '0') ).join(':')
 }
-
-export default handler;

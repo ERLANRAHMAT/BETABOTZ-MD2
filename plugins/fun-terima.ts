@@ -27,5 +27,4 @@ handler.help = ['terima @tag']
 handler.tags = ['fun']
 handler.command = /^(terima)$/i
 handler.group = true
-
-export default handler;
+export default handler

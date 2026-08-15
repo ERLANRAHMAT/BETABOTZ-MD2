@@ -23,4 +23,4 @@ handler.botAdmin = false
 
 handler.fail = null
 
-export default handler;
+export default handler

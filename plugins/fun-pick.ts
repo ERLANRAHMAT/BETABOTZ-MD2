@@ -12,4 +12,4 @@ handler.help = ['pick <jumlah> <teks>']
 handler.tags = ['fun']
 handler.command = /^pick/i
 
-export default handler;
+export default handler

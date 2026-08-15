@@ -20,5 +20,4 @@ var handler: WaPlugin = async (m) => {
 };
 handler.command = handler.help = ['getexif'];
 handler.tags = ['sticker'];
-
 export default handler;

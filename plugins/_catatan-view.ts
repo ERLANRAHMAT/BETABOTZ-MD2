@@ -26,4 +26,4 @@ handler.help = ['lihatcatatan <title>']
 handler.tags = ['internet']
 handler.command = /^lihatcatatan$/i
 
-export default handler;
+export default handler

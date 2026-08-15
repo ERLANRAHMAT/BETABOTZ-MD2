@@ -9,5 +9,4 @@ let handler: WaPlugin = async (m, { conn }) => {
 }
 handler.command = /^tpc/i
 handler.limit = true
-
-export default handler;
+export default handler

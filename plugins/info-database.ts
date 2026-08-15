@@ -6,5 +6,4 @@ let handler: WaPlugin = async (m) => {
 handler.help = ['database', 'user']
 handler.tags = ['info']
 handler.command = /^(database|jumlahdatabase|user)$/i
-
-export default handler;
+export default handler

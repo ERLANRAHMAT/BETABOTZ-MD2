@@ -58,7 +58,7 @@ handler.help = ["coinflip"];
 handler.tags = ["rpg"];
 handler.command = /^(coinflip|putarkoin)$/i;
 handler.rpg = true
-
+export default handler;
 
 async function createSticker(img, url, wm, author, quality) {
     let stickerMetadata = {
@@ -69,5 +69,3 @@ async function createSticker(img, url, wm, author, quality) {
     };
     return (new Sticker(img ? img : url, stickerMetadata)).toBuffer();
 }
-
-export default handler;

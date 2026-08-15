@@ -1,43 +1,30 @@
-
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) {
-    throw `Masukkan URL!\n\nContoh:\n${usedPrefix}${command} https://pin.it/4CVodSq`;
+    throw `Masukkan URL!\n\ncontoh:\n${usedPrefix}${command} https://pin.it/4CVodSq`;
   }
   if (!args[0].startsWith('https://')) {
-    throw `Harus memasukkan URL yang valid dengan format *https://*\n\nContoh: https://pin.it/4CVodSq`;
+    throw `Harus memasukkan URL yang valid dengan format *https://*\n\nEx: https://pin.it/4CVodSq`;
   }
-
   try {
-    m.reply('Mohon tunggu, sedang memproses...');
-
-    const api = await fetch(`https://api.betabotz.eu.org/api/download/pinterest?url=${args[0]}&apikey=${lann}`);
+    m.reply(wait);
+    const api = await fetch(`https://api.botcahx.eu.org/api/download/pinterest?url=${args[0]}&apikey=${btc}`);
     const res = await api.json();
-
-    if (!res.result || !res.result.success) throw `Gagal mengambil data dari API!`;
-
-    let { media_type, image, title, pin_url, video } = res.result.data;
-
+    let { media_type, image, title, video } = res.result.data;
     if (media_type === 'video/mp4') {
-      await conn.sendMessage(m.chat, {
-        video: { url: video },
-        caption: `*Title:* ${title || 'Tidak tersedia'}\n*Mediatype:* ${media_type}\n*Source Url:* ${pin_url}`
-      });
+      await conn.sendMessage(m.chat, { video: { url: video } });
     } else {
-      await conn.sendMessage(m.chat, {
-        image: { url: image },
-        caption: `*Title:* ${title || 'Tidak tersedia'}\n*Mediatype:* ${media_type}\n*Source Url:* ${pin_url}`
-      });
+      conn.sendFile(m.chat, image, 'pindl.jpeg', `*Title:* ${title}\n*Mediatype:* ${media_type}\n*Source Url*: ${image}\n`, m);
     }
   } catch (e) {
-      console.log(e);
-      throw e;
+    console.log(e);
+    throw `Terjadi kesalahan!`;
   }
 };
 
 handler.help = ['pindl'];
-handler.command = /^(pindl|pindownload)$/i;
+handler.command = /^(pindl|pin)$/i;
 handler.tags = ['downloader'];
 handler.limit = true;
 handler.premium = false;

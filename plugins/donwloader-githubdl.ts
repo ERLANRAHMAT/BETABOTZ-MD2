@@ -14,4 +14,4 @@ handler.command = /githubdl/i
 
 handler.limit = true
 
-export default handler;
+export default handler

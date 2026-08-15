@@ -25,4 +25,4 @@ handler.tags = ['xp']
 
 handler.command = /^level(|up)$/i
 
-export default handler;
+export default handler

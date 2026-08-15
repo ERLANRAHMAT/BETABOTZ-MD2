@@ -25,5 +25,4 @@ handler.help = ['guilddemote <@user>'];
 handler.tags = ['rpgG'];
 handler.command = /^(guilddemote)$/i;
 handler.rpg = true
-
 export default handler;

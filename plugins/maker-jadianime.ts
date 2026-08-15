@@ -1,4 +1,3 @@
-
 import uploadImage from '../lib/uploadImage.ts';
 import fetch from 'node-fetch';
 
@@ -7,13 +6,13 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
     var mime = (q.msg || q).mimetype || q.mediaType || '';
     
     if (/image/g.test(mime) && !/webp/g.test(mime)) {
-        await conn.reply(m.chat, wait, m);
+        await conn.reply(m.chat, "⏳ Sedang diproses...", m);
         try {
-            const img = (await q.download?.()) as Buffer;
+            const img = await q.download?.();
             let out = await uploadImage(img);
-            let old = new Date();
+            let old = Date.now();
             
-            let res = await fetch(`https://api.betabotz.eu.org/api/maker/jadianime?url=${out}&apikey=${lann}`);
+            let res = await fetch(`https://api.botcahx.eu.org/api/maker/jadianime?url=${out}&apikey=${btc}`);
             let convert = await res.json();
 
             if (!convert.result || !convert.result.img_1 || !convert.result.img_2) {
@@ -25,18 +24,18 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
 
             await conn.sendMessage(m.chat, { 
                 image: img1, 
-                caption: `🍟 *Fetching:* ${((new Date() - old) * 1)} ms\n*Style:* Anime 2D` 
+                caption: `🍟 *Fetching:* ${((Date.now() - old) * 1)} ms\n*Style:* Anime 2D` 
             }, { quoted: m });
 
             await conn.sendMessage(m.chat, { 
                 image: img2, 
-                caption: `🍟 *Fetching:* ${((new Date() - old) * 1)} ms\n*Style:* Anime 3D` 
+                caption: `🍟 *Fetching:* ${((Date.now() - old) * 1)} ms\n*Style:* Anime 3D` 
             }, { quoted: m });
 
-        }  catch (e) {
-        console.log(e);
-        throw e;
-    }
+        } catch (e) {
+            console.error(e);
+            m.reply("[ ! ] Terjadi kesalahan saat memproses gambar.");
+        }
     } else {
         m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim.`);
     }

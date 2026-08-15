@@ -89,5 +89,4 @@ handler.help = ['inventory *@user*']
 handler.tags = ['rpg']
 handler.command = /^inv|inventory$/i
 handler.rpg = true
-
-export default handler;
+export default handler

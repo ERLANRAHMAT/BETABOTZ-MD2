@@ -1,4 +1,3 @@
-
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
@@ -6,7 +5,7 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
 
   try {
     await m.reply(wait);
-    let res = await (await fetch(`https://api.betabotz.eu.org/api/tools/cekredirect?url=${text}&apikey=${lann}`)).json();
+    let res = await (await fetch(`https://api.botcahx.eu.org/api/tools/cekredirect?url=${text}&apikey=${btc}`)).json();
 
     if (!res.status || !res.result) throw 'Gagal mendapatkan data!';
 
@@ -16,9 +15,9 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
 
     await m.reply(message);
   } catch (e) {
-      console.log(e);
-      throw e;
-    }
+    console.error(e);
+    throw 'Terjadi kesalahan saat memproses permintaan!';
+  }
 };
 
 handler.command = handler.help = ['checkredirect', 'cekredirect'];

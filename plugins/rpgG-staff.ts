@@ -40,6 +40,5 @@ let handler: WaPlugin = async (m, { conn, args }) => {
 handler.help = ['guildstaff <tambah/hapus> <@user>'];
 handler.tags = ['rpgG'];
 handler.command = /^(guildstaff)$/i;
-handler.rpg = true;
-
+handler.rpg = true;   
 export default handler;

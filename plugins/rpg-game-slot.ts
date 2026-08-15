@@ -76,7 +76,7 @@ handler.command = ['slot']
 handler.group = true
 handler.rpg = true
 
-
+export default handler
 
 function msToTime(duration) {
     var milliseconds = parseInt(String((duration % 1000) / 100)),
@@ -89,5 +89,3 @@ function msToTime(duration) {
 
     return seconds + " detik"
 }
-
-export default handler;

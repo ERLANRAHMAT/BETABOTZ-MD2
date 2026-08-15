@@ -25,7 +25,7 @@ handler.tags = ['tools']
 
 handler.command = /^g(ithub|h)search$/i
 
-
+export default handler
 
 function formatDate(n, locale = 'id') {
     let d = new Date(n)
@@ -39,5 +39,3 @@ function formatDate(n, locale = 'id') {
       second: 'numeric'
     })
   }
-
-export default handler;

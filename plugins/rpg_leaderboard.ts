@@ -80,7 +80,7 @@ handler.rpg = true
 handler.fail = null
 handler.exp = 0
 
-
+export default handler
 
 type Sorted = { jid: string } & Record<string, number>
 type SortCb = (a: Sorted, i?: number, b?: Sorted[]) => Sorted
@@ -95,5 +95,3 @@ function toNumber(property: string, _default = 0): SortCb {
   }
   else return (a: Sorted): Sorted => (a === undefined ? { jid: '' } as Sorted : a)
 }
-
-export default handler;

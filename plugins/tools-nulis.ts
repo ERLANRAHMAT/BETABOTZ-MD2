@@ -1,4 +1,4 @@
-import { format } from 'util'
+ import { format } from 'util'
 import { spawn } from 'child_process'
 
 // Font by MFarelS
@@ -63,9 +63,7 @@ handler.tags = ['tools']
 handler.command = /^nulis$/i
 
 
-
+export default handler
 
 // By MFarelS
 // https://GitHub.com/MFarelS/
-
-export default handler;

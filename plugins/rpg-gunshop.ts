@@ -149,7 +149,7 @@ handler.tags = ['rpg'];
 handler.command = /^(gunshop|buygun|sellgun)$/i;
 handler.cooldown = cooldown;
 handler.rpg = true;
-
+export default handler;
 
 function isNumber(number) {
     if (!number) return number;
@@ -209,5 +209,3 @@ function capitalizeFirstLetter(str) {
     }
     return words.join(" ");
 }
-
-export default handler;

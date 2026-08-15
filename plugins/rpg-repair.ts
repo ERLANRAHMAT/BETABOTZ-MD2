@@ -159,5 +159,4 @@ handler.tags = ['rpg']
 handler.group = true
 handler.command = /^(repair|perbaiki)/i
 handler.rpg = true
-
-export default handler;
+export default handler

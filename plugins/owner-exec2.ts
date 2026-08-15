@@ -18,8 +18,6 @@ let handler: WaPlugin = async (m, { conn, isOwner, command, text }) => {
 handler.help = ['$']
 handler.tags = ['advanced']
 handler.customPrefix = /^[$] /
-handler.command = new RegExp('')
-
+handler.command = new RegExp('')
 handler.rowner = true
-
-export default handler;
+export default handler

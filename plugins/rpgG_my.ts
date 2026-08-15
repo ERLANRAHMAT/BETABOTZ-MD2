@@ -30,6 +30,5 @@ Dibuat Pada: ${guild.createdAt}`;
 handler.help = ['myguild'];
 handler.tags = ['rpgG'];
 handler.command = /^(myguild)$/i;
-handler.rpg = true;
-
+handler.rpg = true;  
 export default handler;

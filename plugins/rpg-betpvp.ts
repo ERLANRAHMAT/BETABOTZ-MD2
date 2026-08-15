@@ -34,11 +34,9 @@ handler.command = /^(judipvp)$/i
 handler.register = true
 handler.group = true
 handler.rpg = true
-
+export default handler
 
 function number(x = 0) {
     x = parseInt(String(x))
     return !isNaN(x) && typeof x == 'number'
 }
-
-export default handler;

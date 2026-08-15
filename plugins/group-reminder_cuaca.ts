@@ -1,29 +1,28 @@
-
 import axios from 'axios';
 import { setInterval } from 'timers';
+import type { WaApiJson } from '../types/api.js';
 
 let location = 'Jakarta'; 
 
 async function getWeatherInfo() {
     try {
-        const url = `https://api.betabotz.eu.org/api/tools/cuaca?query=${encodeURIComponent(location)}&apikey=${lann}`;
+        const url = `https://api.botcahx.eu.org/api/tools/cuaca?query=${encodeURIComponent(location)}&apikey=${btc}`;
         const response = await axios.get(url);
-        const res = response.data.result;
+        const res = response.result as WaApiJson | undefined;
 
         if (!res) {
             console.log('Data cuaca tidak tersedia');
             return;
         }
-
         const weatherInfo = {
             location: res.location,
             country: res.country,
-            weather: res.weather,
+            weather: res.kondisi,
             currentTemp: res.currentTemp,
             maxTemp: res.maxTemp,
-            minTemp: res.minTemp,
+            minTemp: res.minTemp, 
             humidity: res.humidity,
-            windSpeed: res.windSpeed,
+            windSpeed: res.angin,
         };
         
 
@@ -54,7 +53,7 @@ async function sendWeatherReminderToGroups(weatherInfo) {
 }
 
 async function sendReminderToGroup(chatId, text) {
-    await conn.sendMessage(chatId, { text }); // Kirim pesan langsung ke grup
+    await conn.sendMessage(chatId, { text });
 }
 
 function checkTimeAndSendWeather() {
@@ -62,8 +61,7 @@ function checkTimeAndSendWeather() {
     const hours = now.getHours();
     const minutes = now.getMinutes();
 
-    // if ((hours === 7 || hours === 12 || hours === 18) && minutes === 0) 
-    // ini bisa di ganti ganti waktu nya kalian sesuai aja waktu yang kalian mau 
+    // Adjust the hours below to change when the reminder runs
     if ((hours === 7 || hours === 12 || hours === 18) && minutes === 0) { 
         console.log('Mengambil data cuaca terbaru...');
         getWeatherInfo(); 
@@ -73,9 +71,7 @@ function checkTimeAndSendWeather() {
 function startDailyWeatherReminder() {
     setInterval(() => {
         checkTimeAndSendWeather(); 
-    }, 60 * 1000); // Cek setiap menit
+    }, 60 * 1000); // Check every 60 seconds
 }
 
 startDailyWeatherReminder();
-
-export default {};

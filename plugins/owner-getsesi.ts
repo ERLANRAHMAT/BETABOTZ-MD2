@@ -37,4 +37,4 @@ handler.command = /^(getsesi)$/i
 
 handler.rowner = true
 
-export default handler;
+export default handler

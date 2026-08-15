@@ -12,4 +12,4 @@ handler.command = /^link(g(c)?ro?up)?$/i
 handler.group = true
 handler.admin = true
 
-export default handler;
+export default handler

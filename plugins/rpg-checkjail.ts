@@ -33,4 +33,4 @@ handler.tags = ['rpg']
 handler.command = /^(checkjail|cj|statuspenjara|jailstatus)$/i
 handler.rpg = true
 
-export default handler;
+export default handler

@@ -1,4 +1,3 @@
-
 import uploadImage from '../lib/uploadImage.ts';
 
 let handler: WaPlugin = async (m, { conn }) => {
@@ -27,7 +26,7 @@ handler.before = async (m, { conn }) => {
     let id = m.chat;
 
     if (!(id in conn.beautifulMeme)) return;
-    if (m.fromMe) return;
+    if (m.isZapo) return;
 
     let q = m.quoted ? m.quoted : m;
     let mime = (q.msg || q).mimetype || '';
@@ -35,7 +34,7 @@ handler.before = async (m, { conn }) => {
     if (!/image\/(png|jpe?g)/.test(mime)) return;
 
     try {
-        let media = (await q.download()) as Buffer;
+        let media = await q.download();
         let link = await uploadImage(media);
         
         conn.beautifulMeme[id].images.push(link);
@@ -47,7 +46,7 @@ handler.before = async (m, { conn }) => {
             let img2 = conn.beautifulMeme[id].images[1];
             delete conn.beautifulMeme[id];
             
-            let apiUrl = `https://api.betabotz.eu.org/api/maker/canvas-beautifulMeme?apikey=${lann}&image1=${encodeURIComponent(img1)}&image2=${encodeURIComponent(img2)}`;
+            let apiUrl = `https://api.botcahx.eu.org/api/maker/canvas-beautifulMeme?apikey=${btc}&image1=${encodeURIComponent(img1)}&image2=${encodeURIComponent(img2)}`;
             
             await conn.sendFile(m.chat, apiUrl, 'meme.jpg', 'Done!', m);
         } else {
@@ -55,7 +54,7 @@ handler.before = async (m, { conn }) => {
         }
     } catch (e) {
         console.log(e);
-        throw e;
+        throw eror;
     }
 };
 

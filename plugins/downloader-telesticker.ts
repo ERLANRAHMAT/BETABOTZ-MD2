@@ -1,44 +1,34 @@
-
 import fetch from 'node-fetch';
 
-let handler: WaPlugin = async (m, {
-  conn,
-  args,
-  usedPrefix,
-  command
-}) => {
-  try {
-    await conn.sendMessage(m.chat, { react: { text: `❌`, key: m.key }});
-    if (!args[0]) throw `uhm.. url nya mana?\n\ncontoh:\n${usedPrefix + command} https://t.me/addstickers/namapack`;
-    if (!args[0].match(/(https:\/\/t.me\/addstickers\/)/gi)) throw `url salah`;
-    await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
-    var apis = await fetch(`https://api.betabotz.eu.org/api/download/telesticker?url=${args[0]}&apikey=${lann}`);
-    if (!apis.ok) throw await apis.text();
-    var jsons = await apis.json();
-    if (!jsons.status) throw jsons;
-    var { result } = jsons;
-
-    var totalStickers = result.length;
-    var estimatedTime = totalStickers * 0.5;
-
-    await conn.reply(m.chat, `Sedang memproses ${totalStickers} stiker`, m);
-    
-    for (var i = 0; i < result.length; i++) {
-      var url = result[i].url;
-      await conn.sendImageAsSticker(m.chat, url, null, { packname: global.packname, author: global.author });
+let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
+    if (!text) throw `🚩 *Example:* ${usedPrefix + command} https://t.me/addstickers/fuwayonimaa_by_fStikBot`;
+    if (!text.match(/(https:\/\/t.me\/addstickers\/)/gi)) throw `🚩 *Example:* ${usedPrefix + command} https://t.me/addstickers/fuwayonimaa_by_fStikBot`;
+    m.reply(wait)
+    try {
+        let res = await (await fetch(`https://api.botcahx.eu.org/api/download/telesticker?url=${text}&apikey=${btc}`)).json()
+        let { result } = res;
+        let total = result.length;
+        let est = total * 0.5;
+        m.reply(`Processing ${total} stickers`);   
+        for (var i = 0; i < result.length; i++) {
+            var url = result[i].url;
+            await sleep(10000)
+            await conn.sendImageAsSticker(m.chat, url, null, { packname: global.packname, author: global.author });
+        }  
+        await conn.reply(m.chat, `Total ${total} stickers successfully sent`, m);
+    } catch (e) {
+        throw `🚩 ${eror}`
     }
-    
-    await conn.reply(m.chat, `Total ${totalStickers} stiker telah berhasil dikirim`, m);
-  } catch (e) {
-      console.log(e);
-      throw e;
-  }
 };
 
 handler.help = ['telesticker'];
-handler.command = /^(telestick|stele)$/i;
-handler.tags = ['downloader'];
-handler.limit = 100;
-handler.fail = null;
+handler.command = /^(telesticker|stele)$/i;
+handler.tags = ['sticker'];
+handler.premium = true;
+handler.limit = true;
 
 export default handler;
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}

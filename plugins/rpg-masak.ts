@@ -194,5 +194,4 @@ handler.tags = ['rpg']
 handler.group = true
 handler.command = /^(masak|cook)$/i
 handler.rpg = true
-
-export default handler;
+export default handler

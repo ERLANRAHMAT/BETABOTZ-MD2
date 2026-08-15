@@ -159,5 +159,4 @@ handler.tags = ["rpg"];
 handler.group = true;
 handler.command = ["polisi"];
 handler.rpg = true
-
 export default handler;

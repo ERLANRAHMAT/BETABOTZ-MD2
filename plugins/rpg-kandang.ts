@@ -27,4 +27,4 @@ handler.tags = ['rpg']
 handler.command = /^(kandang)$/i
 handler.rpg = true
 
-export default handler;
+export default handler

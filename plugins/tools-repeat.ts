@@ -1020,4 +1020,4 @@ handler.botAdmin = false
 handler.fail = null
 handler.limit = true
 
-export default handler;
+export default handler

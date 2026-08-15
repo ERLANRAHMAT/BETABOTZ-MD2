@@ -374,5 +374,4 @@ handler.tags = ['rpg']
 
 handler.command = /^(resto|beli)$/i
 handler.rpg = true
-
-export default handler;
+export default handler

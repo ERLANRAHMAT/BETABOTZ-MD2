@@ -5,7 +5,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     try {
         await m.reply(wait);      
         let old = Date.now();
-        const response = await axios.get(`https://api.betabotz.eu.org/api/download/allin?url=${text}&apikey=${btc}`);        
+        const response = await axios.get(`https://api.botcahx.eu.org/api/download/allin?url=${text}&apikey=${btc}`);        
         let res = response.data.result.result.medias.map(({url}) => url);
         let capt = `乂 *A I O  D L*\n\n`;
         capt += `◦ *Judul* : ${response.data.result.result.title || 'Tidak tersedia'}\n`;

@@ -12,4 +12,4 @@ handler.tags = ['owner', 'group']
 handler.command = /^setwelcome$/i
 handler.botAdmin = true
 
-export default handler;
+export default handler

@@ -1,4 +1,3 @@
-
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn, usedPrefix, text, command }) => {
@@ -6,7 +5,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, text, command }) => {
 
     try {
         m.reply(wait);
-        const res = await (await fetch(`https://api.betabotz.eu.org/api/search/heroml?hero=${encodeURIComponent(text)}&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.botcahx.eu.org/api/search/heroml?hero=${encodeURIComponent(text)}&apikey=${btc}`)).json();
         const hero = res.result;
         let content = `*🎮 Mobile Legends Hero: ${hero.name || text} 🎮*\n\n`;
 
@@ -92,9 +91,8 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, text, command }) => {
         const imageUrl = hero.image || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLClzmCZRv9Ly5D-xaVy16Ph4VvI0-fP-hAWGSlcB2q5PzSLcwav9TBZc&s=10';
         await conn.sendFile(m.chat, imageUrl, 'heroml.jpg', content, m);
 
-    }  catch (e) {
-        console.log(e);
-        throw e;
+    } catch (error) {
+      throw eror
     }
 };
 

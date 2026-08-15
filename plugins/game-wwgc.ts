@@ -335,5 +335,4 @@ handler.help = ['werewolf'];
 handler.tags = ['game'];
 handler.command = ['ww','werewolf'];
 handler.group = true;
-
-export default handler;
+export default handler

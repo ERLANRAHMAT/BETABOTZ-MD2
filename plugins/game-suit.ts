@@ -43,4 +43,4 @@ handler.help = ['suit']
 handler.tags = ['game']
 handler.command = /^(suit)$/i
 
-export default handler;
+export default handler

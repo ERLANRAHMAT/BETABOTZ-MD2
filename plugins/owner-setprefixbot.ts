@@ -9,4 +9,4 @@ handler.command = /^(setprefix)$/i
 
 handler.rowner = true
 
-export default handler;
+export default handler

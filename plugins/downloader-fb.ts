@@ -1,28 +1,39 @@
-
 import fetch from 'node-fetch';
-let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
-if (!args[0]) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://www.facebook.com/100084756252836/videos/3391018171153874/?idorvanity=2765173437119338&mibextid=rS40aB7S9Ucbxw6v`;
-  try {
-    m.reply('*Please wait..*');
-const url = args[0];
-const get = await fetch(`https://api.betabotz.eu.org/api/download/fbdown?url=${url}&apikey=${lann}`);
-var js = await get.json()   
-conn.sendFile(m.chat, js.result[0]._url, 'fb.mp4', '', m);
-  } catch (e) {
-      console.log(e);
-      throw e;
-  }
-};
-handler.help = ['facebook'];
+
+let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {  
+    if (!args[0]) throw `Gunakan contoh ${usedPrefix}${command} https://www.facebook.com/watch/?v=1393572814172251`;
+    try {
+        await m.reply(wait)
+        const res = await fetch(`https://api.botcahx.eu.org/api/dowloader/fbdown3?url=${args[0]}&apikey=${btc}`);
+        const json = await res.json();
+        let urls = json.result.url.urls;
+        if (!Array.isArray(urls)) {
+            throw `Tidak dapat mendapatkan URL video dari tautan yang diberikan`;
+        }
+        for (let url of urls) {
+            if (url.sd) {
+                conn.sendFile(m.chat, url.sd, 'fb.mp4', `*Facebook Downloader*`, m);
+                return;
+            } else if (url.hd) {
+                conn.sendFile(m.chat, url.hd, 'fb.mp4', `*Facebook Downloader*`, m);
+                return;
+            }
+        }
+        throw `Tidak ditemukan URL video SD atau HD`;
+    } catch (error) {
+        console.log(error);
+        throw 'Terjadi kesalahan pada saat melakukan proses download';
+    }
+}
+handler.help = ['facebook'].map(v => v + ' <url>');
 handler.command = /^(fb|facebook|facebookdl|fbdl|fbdown|dlfb)$/i;
 handler.tags = ['downloader'];
 handler.limit = true;
-handler.group = true;
+handler.group = false;
 handler.premium = false;
 handler.owner = false;
 handler.admin = false;
 handler.botAdmin = false;
 handler.fail = null;
 handler.private = false;
-
 export default handler;

@@ -31,5 +31,4 @@ handler.help = handler.command = ['kulkas']
 handler.tags = ['rpg']
 handler.register = true
 handler.rpg = true
-
-export default handler;
+export default handler

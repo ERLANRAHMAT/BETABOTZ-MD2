@@ -8,7 +8,7 @@ async function handler(this: WaConnection, m, { conn, usedPrefix, command, args,
     const q = m.quoted ? m.quoted : m;
     const mime = (q.msg || q).mimetype || q.mediaType || '';
     if (!mime) throw 'Reply video/audio'
-      const img = (await q.download()) as Buffer;
+      const img = await q.download();
       const out = await uploadImage(img);
 	let fileSizeLimit = 15 * 1024 * 1024 // 15MB
   if (img.length > fileSizeLimit) {
@@ -34,4 +34,4 @@ handler.command = ['fakesecond'];
 handler.premium = false;
 handler.limit = false;
 
-export default {};
+export default handler;

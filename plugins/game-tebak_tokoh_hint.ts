@@ -9,4 +9,4 @@ handler.command = /^tbok$/i
 
 handler.limit = true
 
-export default handler;
+export default handler

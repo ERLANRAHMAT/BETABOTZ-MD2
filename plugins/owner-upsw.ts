@@ -32,7 +32,7 @@ const handler: WaPlugin = async (m, { conn, command, args, usedPrefix }) => {
         const quoted = m.quoted;
 
         if (quoted && quoted.mtype) {
-            const buffer = (await quoted.download()) as Buffer;
+            const buffer = await quoted.download();
             if (!buffer) return m.reply("❌ Gagal mengunduh media.");
             const mtype = quoted.mtype;
             const mimetype = quoted.msg?.mimetype || quoted.mimetype;
