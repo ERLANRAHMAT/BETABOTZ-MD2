@@ -32,7 +32,7 @@ const handler = async (m, {
 
 乂 *H O W - U P G R A D E*
 • _Example_ :
-.uptool _sword_
+${usedPrefix}uptool _sword_
 `.trim();
 
         switch (type) {
@@ -80,7 +80,7 @@ const handler = async (m, {
                     }
                 }
                 break;
-                case 'axe':
+            case 'axe':
                 if (axe == 0) {
                     m.reply(`anda belum memiliki *🪓 Axe*\nuntuk memilikinya ketik *${usedPrefix}craft axe*`);
                 } else if (axe > 9) {
@@ -102,7 +102,7 @@ const handler = async (m, {
                     }
                 }
                 break;
-                case 'bow':
+            case 'bow':
                 if (bow == 0) {
                     m.reply(`anda belum memiliki *🏹 Bow*\nuntuk memilikinya ketik *${usedPrefix}craft bow*`);
                 } else if (bow > 9) {
@@ -146,7 +146,7 @@ const handler = async (m, {
                     }
                 }
                 break;
-                case 'pisau':
+            case 'pisau':
                 if (pisau == 0) {
                     m.reply(`anda belum memiliki *🔪Pisau*\nuntuk memilikinya ketik *${usedPrefix}craft pisau*`);
                 } else if (pisau > 9) {
@@ -170,7 +170,7 @@ const handler = async (m, {
                 break;
             case 'katana':
                 if (katana == 0) {
-                    m.reply(`anda belum memiliki *🦯Katana*\nuntuk memilikinya ketik *${usedPrefix}craft katana`);
+                    m.reply(`anda belum memiliki *🦯Katana*\nuntuk memilikinya ketik *${usedPrefix}craft katana*`);
                 } else if (katana > 9) {
                     m.reply(`*🦯Katana* kamu sudah level max`);
                 } else {
@@ -223,8 +223,8 @@ const handler = async (m, {
                     image: {
                       url: "https://telegra.ph/file/97dba25a7bd8084913166.jpg",
                     },
-                    caption: text,
-                    lmao1: [m.sender],
+                    caption: lmao1,
+                    mentions: [m.sender],
                   },
                   { quoted: m },
                 );
@@ -240,6 +240,6 @@ handler.tags = ['rpg'];
 handler.command = /^(up(tool)?)$/i;
 handler.fail = null;
 handler.group = true;
-handler.rpg = true
+handler.rpg = true;
 
 export default handler;
