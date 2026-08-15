@@ -80,6 +80,6 @@ import { pathToFileURL } from 'url';
 let file = import.meta.filename;
 fs.watchFile(file, async () => {
   fs.unwatchFile(file);
-  console.log(chalk.redBright("Update 'config.js, harap bot di restart!'"));
+  console.log(chalk.redBright("Update 'config.ts, harap bot di restart!'"));
   await import(pathToFileURL(file).href + '?update=' + Date.now());
 });
