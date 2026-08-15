@@ -1,18 +1,16 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 
 import fetch from 'node-fetch';
 import axios from 'axios';
 
 
-let handler = m => m
-
+let handler: WaPlugin = (m) => m
 let old = new Date();
 const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 async function _tiktok(link, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            const response = await fetch(`https://api.botcahx.eu.org/api/download/tiktok?url=${link}&apikey=${btc}`);
+            const response = await fetch(`https://api.betabotz.eu.org/api/download/tiktok?url=${link}&apikey=${btc}`);
             const data = await response.json();
             if (!data.result.video) return;
             if (data.result.video.length > 1) {
@@ -48,7 +46,7 @@ async function _tiktok(link, m) {
 async function _xiaohongshu(url, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            let res = await axios.get(`https://api.botcahx.eu.org/api/download/rednote?url=${url}&apikey=${btc}`);
+            let res = await axios.get(`https://api.betabotz.eu.org/api/download/rednote?url=${url}&apikey=${btc}`);
             let result = res.data.result;
 
             if (!result || !result.media) throw `Gagal mengambil data!`;

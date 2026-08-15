@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
@@ -6,7 +5,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     
     try {
         await m.reply(wait);
-        let json = await fetch(`https://api.botcahx.eu.org/api/dowloader/sfilemobi?url=${text}&apikey=${btc}`).then(res => res.json());
+        let json = await fetch(`https://api.betabotz.eu.org/api/dowloader/sfilemobi?url=${text}&apikey=${btc}`).then(res => res.json());
         let res = json.result;
         
         let downloadUrl = res.direct || res.result || res.cdnDirect;

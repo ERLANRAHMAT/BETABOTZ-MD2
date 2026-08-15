@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { isAdmin, isOwner, conn, command }) => {
   if (!(isAdmin || isOwner)) {
                 global.dfail('admin', m, conn)

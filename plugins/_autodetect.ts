@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 /* 
 
 

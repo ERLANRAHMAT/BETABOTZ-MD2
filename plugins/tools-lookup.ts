@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fetch from 'node-fetch';
 const handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
   if (!text) throw `Masukkan Domain/Sub Domain!\n\n*Contoh:* botcahx.eu.org`;

@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = m => m
 handler.before = m => {
   let user = global.db.data.users[m.sender]

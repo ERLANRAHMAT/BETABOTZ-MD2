@@ -1,9 +1,8 @@
-// @ts-nocheck
 import fetch from 'node-fetch'
 let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
 try {
     await m.reply(wait)
-  let res = await fetch(`https://api.botcahx.eu.org/api/muslim/wirid?apikey=${btc}`);
+  let res = await fetch(`https://api.betabotz.eu.org/api/muslim/wirid?apikey=${btc}`);
   let json = await res.json()
   var wrd = [
     `―-WIRID-―\n\nId: ${json.result.data[0].id}\n\nWaktu: ${json.result.data[0].times}\n\nArabic: ${json.result.data[0].arabic}`, 

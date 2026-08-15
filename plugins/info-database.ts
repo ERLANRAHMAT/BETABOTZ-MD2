@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m) => {
     let totalreg = Object.keys(global.db.data.users).length
     let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length

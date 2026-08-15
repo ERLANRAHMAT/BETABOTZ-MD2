@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 // let handler: WaPlugin = async (m, { conn, text }) => {
 
 //     conn.sendMessage(m.chat, {

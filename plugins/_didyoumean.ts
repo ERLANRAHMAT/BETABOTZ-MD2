@@ -1,4 +1,3 @@
-// @ts-nocheck
 import didyoumean from 'didyoumean'
 import similarity from 'similarity'
 

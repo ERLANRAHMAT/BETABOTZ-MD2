@@ -1,11 +1,10 @@
-// @ts-nocheck
 import fetch from 'node-fetch'
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Contoh:\n${usedPrefix + command} jokowi`
     await m.reply(wait)
     try {
-        let res = await (await fetch(`https://api.botcahx.eu.org/api/stalk/snackvideo?username=${text}&apikey=${btc}`)).json()
+        let res = await (await fetch(`https://api.betabotz.eu.org/api/stalk/snackvideo?username=${text}&apikey=${btc}`)).json()
         
         if (res.status && res.result) {
             let { name, username, id, likes, followers, posts, profile_picture, profile_url } = res.result;

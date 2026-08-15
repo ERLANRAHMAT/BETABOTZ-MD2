@@ -1,4 +1,3 @@
-// @ts-nocheck
 export default {
 before: async function (m) {
     this.autosholat = this.autosholat || {}

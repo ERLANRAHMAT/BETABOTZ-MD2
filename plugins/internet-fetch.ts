@@ -1,4 +1,3 @@
-// @ts-nocheck
 import axios from 'axios';
 let handler: WaPlugin = async (m, { text, args }) => {
   if (!/^https?:\/\//.test(text)) throw 'Awali *URL* dengan http:// atau https://';

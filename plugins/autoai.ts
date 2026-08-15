@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import axios from 'axios';
 
 let handler: WaPlugin = async (m, { conn, text }) => {
@@ -26,7 +25,7 @@ let handler: WaPlugin = async (m, { conn, text }) => {
 handler.before = async (m, { conn }) => {
     try {
         conn.egvuaxrl = conn.egvuaxrl ? conn.egvuaxrl : {};
-        if (m.isBaileys && m.fromMe) return;
+        if (m.fromMe && m.fromMe) return;
         if (!m.text) return;
         if (!conn.egvuaxrl[m.sender]) return;
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async(m, { conn, text }) => {
   if (!text) throw `No Prefix detected...`
   global.prefix = new RegExp('^[' + (text || global.opts['prefix'] || '‎xzXZ/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')

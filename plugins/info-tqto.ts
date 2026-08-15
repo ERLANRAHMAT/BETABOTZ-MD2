@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
 * Don't replace this - it's just to keep my credit :)
 * Don't remove, you may add to it 🐦

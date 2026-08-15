@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 // ANIQU REMINDER WORKER, Aktifkan ini jika kammu ingin fitur reminder terintegrasi dengan bot whatsapp
 // jangan lupa token kelas kamu di .env atau config.js
 

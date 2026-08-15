@@ -1,4 +1,3 @@
-// @ts-nocheck
 import PhoneNumberNS from 'awesome-phonenumber'
 const PhoneNumber = ((PhoneNumberNS as unknown as { default: (n: string) => { getNumber: (f: string) => string } }).default)
 import levelling from '../lib/levelling.ts'

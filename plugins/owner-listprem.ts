@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin  = async (m, { conn, text, usedPrefix }) => {
   function msToDate(ms) {
 		let temp = ms, daysms, hoursms, minutes, minutesms, sec;

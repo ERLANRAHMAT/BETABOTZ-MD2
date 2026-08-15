@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
     let currentTime = new Date().getTime();
     let lastClaimTime = global.db.data.users[m.sender].lastclaim || 0;

@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin  = async (m, { conn, usedPrefix: _p }) => {
   conn.reply(m.chat, `
 QUR'AN BOT:

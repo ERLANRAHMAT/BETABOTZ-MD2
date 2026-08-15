@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) {
         throw `Masukkan nominal saldo yang diinginkan!\n\n*Contoh:*\n${usedPrefix + command} 1000000`;

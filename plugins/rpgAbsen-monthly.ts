@@ -1,4 +1,3 @@
-// @ts-nocheck
 const free = 20000
 const prem = 40000
 const limitfree = 20

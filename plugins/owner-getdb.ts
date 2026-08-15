@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import fs from 'fs';
 let handler: WaPlugin = async (m, { conn, text }) => {
     m.reply('Tunggu Sebentar, Sedang mengambil file Database')

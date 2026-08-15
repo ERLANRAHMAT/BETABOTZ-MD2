@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { emoji_role,
     sesi,
     playerOnGame,

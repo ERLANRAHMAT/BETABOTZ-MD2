@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
 
 let orang = (await conn.groupMetadata(m.chat)).participants.map(u => u.jid)

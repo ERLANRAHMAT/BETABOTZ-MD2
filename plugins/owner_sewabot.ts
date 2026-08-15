@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler: WaPlugin = async (m, { conn, command, usedPrefix, text, participants }) => {
     const groups = Object.keys(conn.chats)
     .filter(key => key.endsWith('@g.us'))

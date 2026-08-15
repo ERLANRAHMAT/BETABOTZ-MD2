@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, usedPrefix, text }) => {
   let who
   if (m.quoted) who = m.quoted.sender

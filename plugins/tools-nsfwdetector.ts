@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fetch from 'node-fetch';
 import uploader from '../lib/uploadImage.ts';
 
@@ -6,11 +5,11 @@ let handler: WaPlugin = async (m, { conn, command, usedPrefix }) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || q.mediaType || '' 
    if (/image/g.test(mime) && !/webp/g.test(mime)) {
-    let buffer = await q.download()
+    let buffer = (await q.download()) as Buffer;
     await m.reply(wait)    
     try {
       let media = await uploader(buffer)
-      let res = await (await fetch(`https://api.botcahx.eu.org/api/tools/nsfw-detect?url=${media}&apikey=${btc}`)).json()
+      let res = await (await fetch(`https://api.betabotz.eu.org/api/tools/nsfw-detect?url=${media}&apikey=${btc}`)).json()
       if (res.status) {
         let { labelName, labelId, confidence } = res.result;
         let capt;

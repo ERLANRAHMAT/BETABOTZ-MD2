@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { drawBoard } from '../lib/ular_tangga.ts';
 
 const getRandom = function (array) {

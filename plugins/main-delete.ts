@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler: WaPlugin = async (m, { conn, command }) => {
     if (!m.quoted) throw 'Reply pesan yang ingin dihapus';
     
@@ -9,7 +8,7 @@ let handler: WaPlugin = async (m, { conn, command }) => {
             id: m.quoted.id,
             participant: m.quoted.sender
         };
-        if (m.quoted.isBaileys || m.quoted.sender === conn.user.jid) {
+        if (m.quoted.fromMe || m.quoted.sender === conn.user.jid) {
             key.fromMe = true;
         } else {
             key.fromMe = false;

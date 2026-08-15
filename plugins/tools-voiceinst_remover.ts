@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import fetch from 'node-fetch';
 import uploader from '../lib/uploadFile.ts';
 
@@ -8,7 +7,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
         let q = m.quoted ? m.quoted : m;
     let mime = (q.msg || q).mimetype || q.mediaType || '';
     if (/audio/.test(mime)) {
-        let buffer = await q.download();
+        let buffer = (await q.download()) as Buffer;
         await m.reply(wait);
         try {
             let fileSizeLimit = 5 * 1024 * 1024;

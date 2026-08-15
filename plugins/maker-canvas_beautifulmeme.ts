@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import uploadImage from '../lib/uploadImage.ts';
 
 let handler: WaPlugin = async (m, { conn }) => {
@@ -28,7 +27,7 @@ handler.before = async (m, { conn }) => {
     let id = m.chat;
 
     if (!(id in conn.beautifulMeme)) return;
-    if (m.isBaileys) return;
+    if (m.fromMe) return;
 
     let q = m.quoted ? m.quoted : m;
     let mime = (q.msg || q).mimetype || '';
@@ -36,7 +35,7 @@ handler.before = async (m, { conn }) => {
     if (!/image\/(png|jpe?g)/.test(mime)) return;
 
     try {
-        let media = await q.download();
+        let media = (await q.download()) as Buffer;
         let link = await uploadImage(media);
         
         conn.beautifulMeme[id].images.push(link);

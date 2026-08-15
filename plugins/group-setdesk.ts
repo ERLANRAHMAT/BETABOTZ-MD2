@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, command, usedPrefix, text }) => {
  if (!text) throw `*Example:* ${usedPrefix + command} teks`
  await conn.groupUpdateDescription(m.chat, text);

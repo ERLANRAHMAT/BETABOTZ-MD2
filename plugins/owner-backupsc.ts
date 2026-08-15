@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fs from 'fs';
 import { exec } from 'child_process';
 import cp from 'child_process';
@@ -22,7 +21,7 @@ let handler: WaPlugin = async (m, { conn, isROwner }) => {
 
             setTimeout(() => {
                if (fs.existsSync(zipFileName)) {
-                  const file = fs.readFileSync(zipFileName);
+                  const file = fs.readFileSync(zipFileName) as Buffer;
                   conn.sendMessage(
                      m.chat,
                      {

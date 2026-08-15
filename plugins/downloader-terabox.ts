@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `*🚩 Example:* ${usedPrefix}${command} https://terabox.com/s/1aD9T7_Xe0oroBwlfzyWXUA`

@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, command }) => {
     let user = global.db.data.users[m.sender]
     let randomaku = Math.floor(Math.random() * 150)

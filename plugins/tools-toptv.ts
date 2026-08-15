@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, command, usedPrefix }) => {
   try {
     if (m.message.extendedTextMessage) {

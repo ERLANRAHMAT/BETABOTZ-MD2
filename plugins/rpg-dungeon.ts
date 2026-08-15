@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { WaConnection } from '../types/connection.js';
 async function handler(this: WaConnection, m, { conn, usedPrefix, command, text }) {
   let user = global.db.data.users[m.sender]

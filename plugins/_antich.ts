@@ -1,11 +1,9 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 
 let maxWarnLink = 3;
-let handler = m => m
-
+let handler: WaPlugin = (m) => m
 handler.before = async function (m, { isAdmin, isBotAdmin, conn }) {
-  if (m.isBaileys || m.fromMe || !m.isGroup || isAdmin) return true
+  if (m.fromMe || m.fromMe || !m.isGroup || isAdmin) return true
   let chat = global.db.data.chats[m.chat]
   let user = global.db.data.users[m.sender]
   if (!user) return true

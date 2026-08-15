@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { text }) => {
 let user = global.db.data.users[m.sender]
 user.afk = + new Date

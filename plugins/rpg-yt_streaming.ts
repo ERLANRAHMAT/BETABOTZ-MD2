@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, command, args }) => {
     let user = global.db.data.users[m.sender];
     const tag = `@${m.sender.replace(/@.+/, '')}`;

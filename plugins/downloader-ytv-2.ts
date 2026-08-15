@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import youtube from 'yt-search';
 let handler: WaPlugin = async (m, { conn, text }) => {
   if (!text) throw "Url nya mana?";

@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
   let monsters = [
     { area: 1, name: "Goblin" },

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fs from 'fs';
 import { join } from 'path';
 

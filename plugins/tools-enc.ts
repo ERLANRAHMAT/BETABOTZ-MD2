@@ -1,4 +1,3 @@
-// @ts-nocheck
 import JavaScriptObfuscator from 'javascript-obfuscator'
 
 let handler: WaPlugin = async (m, { conn, text }) => {

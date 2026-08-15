@@ -1,4 +1,3 @@
-// @ts-nocheck
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {

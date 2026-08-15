@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, usedPrefix, command, text }) => { 
 let memek = 'https://telegra.ph/file/1aa347ff346c2bf5ee181.jpg'
 let anu =`

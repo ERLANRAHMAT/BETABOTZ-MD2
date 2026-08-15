@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 export default {
     before: async function (m) {
         this.automakan= this.automakan || {}

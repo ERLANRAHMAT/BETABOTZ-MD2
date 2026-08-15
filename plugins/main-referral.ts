@@ -1,4 +1,3 @@
-// @ts-nocheck
 import crypto from 'crypto'
 
 const xp_first_time = 2500

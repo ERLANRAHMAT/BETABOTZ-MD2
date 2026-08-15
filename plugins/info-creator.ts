@@ -1,4 +1,3 @@
-// @ts-nocheck
 var name = global.nameowner
 var numberowner = global.numberowner
 var gmail = global.mail

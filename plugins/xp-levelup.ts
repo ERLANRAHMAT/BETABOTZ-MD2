@@ -1,4 +1,3 @@
-// @ts-nocheck
 import levelling from '../lib/levelling.ts'
 
 let handler: WaPlugin = m => {

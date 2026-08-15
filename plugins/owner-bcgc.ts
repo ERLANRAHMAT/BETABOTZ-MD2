@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, isROwner, text }) => {
     const delay = time => new Promise(res => setTimeout(res, time))
     let getGroups = await conn.groupFetchAllParticipating()

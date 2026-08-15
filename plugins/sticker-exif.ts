@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { format } from 'util';
 import pkg from 'node-webpmux';
 const { Image } = pkg;

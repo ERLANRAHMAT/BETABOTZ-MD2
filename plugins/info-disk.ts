@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import cp from 'child_process';
 import { promisify } from 'util';
 

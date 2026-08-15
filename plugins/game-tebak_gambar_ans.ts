@@ -1,10 +1,8 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import similarity from 'similarity';
 const threshold = 0.72
 
-let handler = m => m
-
+let handler: WaPlugin = (m) => m
 handler.before = async function (m) {
     let id = m.chat
     if (!m.quoted) return !0

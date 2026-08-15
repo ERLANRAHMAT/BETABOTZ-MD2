@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m) => {
     let userId = m.sender;
     let user = global.db.data.users[userId];

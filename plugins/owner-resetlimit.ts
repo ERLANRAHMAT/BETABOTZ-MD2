@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args }) => {
 	let list = Object.entries(global.db.data.users)
 	let lim = !args || !args[0] ? 100 : isNumber(args[0]) ? parseInt(args[0]) : 10

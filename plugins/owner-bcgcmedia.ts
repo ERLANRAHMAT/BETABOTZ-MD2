@@ -1,4 +1,3 @@
-// @ts-nocheck
 import crypto from 'crypto'
 let handler: WaPlugin = async (m, { conn, text }) => {
   let groups = Object.entries(conn.chats).filter(([jid, chat]) => jid.endsWith('@g.us') && chat.isChats && !chat.metadata?.read_only && !chat.metadata?.announce).map(v => v[0])

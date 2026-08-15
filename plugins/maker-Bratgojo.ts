@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) {
     throw `Masukkan teks yang ingin dijadikan gambar!\n\n*Contoh:*\n${usedPrefix + command} Gojo Comeback`;

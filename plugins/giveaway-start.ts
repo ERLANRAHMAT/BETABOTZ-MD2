@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler: WaPlugin = async (m, { usedPrefix, text, command, participants  }) => {
     conn.giveway = conn.giveway ? conn.giveway : {}
     let id = m.chat

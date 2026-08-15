@@ -1,4 +1,3 @@
-// @ts-nocheck
 import axios from 'axios';
 
 let handler: WaPlugin = async (m, { conn, text, args, usedPrefix, command }) => {
@@ -51,14 +50,14 @@ async function generateMusic(prompt, duration) {
         aksesKey: global.aksesKey
     };
 
-    const { data } = await axios.post('https://api.botcahx.eu.org/api/maker/aimusicv2', payload);
+    const { data } = await axios.post('https://api.betabotz.eu.org/api/maker/aimusicv2', payload);
 
     let status = 'pending';
     let result = null;
 
     while (status === 'pending') {
         await new Promise(r => setTimeout(r, 10000));
-        const { data: statusData } = await axios.get('https://api.botcahx.eu.org/api/maker/aimusicv2/status', {
+        const { data: statusData } = await axios.get('https://api.betabotz.eu.org/api/maker/aimusicv2/status', {
             params: { jobId: data.jobId }
         });
 

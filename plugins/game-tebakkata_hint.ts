@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
     conn.tbkata = conn.tbkata ? conn.tbkata : {}
     let id = m.chat

@@ -1,10 +1,9 @@
-// @ts-nocheck
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn }) => {
     try {
         await m.reply(wait);
-        let img = await (await fetch(`https://api.botcahx.eu.org/api/wallpaper/wallhp?apikey=${btc}`)).buffer();
+        const img = await (await fetch(`https://api.betabotz.eu.org/api/wallpaper/wallhp?apikey=${lann}`)).buffer();
         await conn.sendMessage(m.chat, {
             image: img,
             caption: 'Berikut adalah wallpaper random untuk Anda!'

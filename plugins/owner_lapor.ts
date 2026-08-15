@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) return m.reply(`*CARA KIRIM BUKTI*\n\n- Screenshot perintah kamu dan gambar(jika ada) atau reply ke bot(jika ada), harus jelas!\n\n- Kirim/Reply gambar screenshotannya dengan caption *${usedPrefix}${command} error fitur nya minn*\n\n`)
     let q = m.quoted ? m.quoted : m;
@@ -7,7 +6,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     if (/^image/.test(mime) && !/webp/.test(mime)) {
         if (text.length < 5) throw `teks terlalu pendek. kirim yang benar!`
         if (text.length > 100) throw `teks terlalu panjang, maksimal 100 karakter!`
-        let img = await q.download();
+        let img = (await q.download()) as Buffer;
         let teks = `*PESAN ERROR!*\n\nDari : *@${m.sender.split`@`[0]}*\n\nPESAN : ${text}\n`;
         conn.sendMessage(global.groupLapor,{
             image: img,
@@ -38,7 +37,7 @@ handler.group = true;
 //     let q = m.quoted ? m.quoted : m;
 //     let mime = (q.msg || q).mimetype || q.mediaType || '';
 //     if (/^image/.test(mime) && !/webp/.test(mime)) {
-//         let img = await q.download();
+//         let img = (await q.download()) as Buffer;
 //         let teks = `*PEMBELIAN API!*\n\nDari : *@${m.sender.split`@`[0]}*\n\nPAKET & USERNAME : ${text}\n`;
 //
 //         // Mendapatkan data grup

@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args, usedPrefix }) => {
 	let info = `
 乂 List Pet:

@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import search from 'yt-search';
 import axios from 'axios';
 
@@ -137,7 +136,7 @@ let handler: WaPlugin = async (m, { conn, text }) => {
       ffmpeg(inputFilePath)
         .toFormat('mp3')
         .on('end', async () => {
-          let buffer = fs.readFileSync(outputFilePath);                    
+          let buffer = fs.readFileSync(outputFilePath) as Buffer;                    
           conn.sendMessage(m.chat, {
                 audio: buffer,
                 mimetype: 'audio/mpeg'

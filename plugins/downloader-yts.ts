@@ -1,4 +1,3 @@
-// @ts-nocheck
 import yts from 'yt-search'
 let handler: WaPlugin = async (m, { text }) => {
   if (!text) throw 'Cari apa?'

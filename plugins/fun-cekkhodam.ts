@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
   try {

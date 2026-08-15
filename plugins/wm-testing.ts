@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 // const { Image } = import 'node-webpmux';
 // const fs = import 'fs';
 // const path = import 'path';
@@ -12,7 +11,7 @@
 //   let user = global.db.data.users[m.sender];
 
 //   if (!chat || !chat.autowm) return;
-//   if (chat.isBanned || user.banned || m.isBaileys) return;
+//   if (chat.isBanned || user.banned || m.fromMe) return;
 
 //   let q = m;
 //   let mime = (q.msg || q).mimetype || "";
@@ -20,7 +19,7 @@
 
 //   if (/webp|sticker/.test(mime) || mtype === "stickerMessage") {
 //     try {
-//       let stickerBuffer = await q.download();
+//       let stickerBuffer = (await q.download()) as Buffer;
 //       if (!stickerBuffer) return;
 
 //       let img = new Image();
@@ -105,7 +104,7 @@
 //     let { ext } = await fromBuffer(buffer);
 //     let bodyForm = new FormData();
 //     bodyForm.append("file", buffer, "file." + ext);
-//     let res = await fetch("https://file.botcahx.eu.org/api/upload.php", {
+//     let res = await fetch("https://api.betabotz.eu.org/api/upload.php", {
 //       method: "post",
 //       body: bodyForm,
 //     });

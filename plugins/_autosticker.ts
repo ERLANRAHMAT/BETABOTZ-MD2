@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fs from 'fs';
 
 let handler: WaPlugin = m => m;
@@ -17,7 +16,7 @@ handler.all = async function(m, { isAdmin, isBotAdmin }) {
         if (/image/.test(mime)) {
             try {
                 let imgPath = './tmp/temp_image.jpg';
-                let img = await q.download();
+                let img = (await q.download()) as Buffer;
                 if (!img) return;              
                 fs.writeFileSync(imgPath, img);
                 await conn.sendImageAsSticker(m.chat, imgPath, m, { packname: global.packname, author: global.author });
@@ -35,7 +34,7 @@ handler.all = async function(m, { isAdmin, isBotAdmin }) {
 
             try {
                 let videoPath = './tmp/temp_video.mp4';
-                let video = await q.download();
+                let video = (await q.download()) as Buffer;
                 if (!video) return;              
                 fs.writeFileSync(videoPath, video);
                 await conn.sendVideoAsSticker(m.chat, videoPath, m, { packname: global.packname, author: global.author });

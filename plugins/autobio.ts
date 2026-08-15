@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 export default {
 before: async function(m) {
     // let setting = global.db.data.settings[conn.user.jid]

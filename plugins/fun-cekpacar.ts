@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
   function no(number){
     return number.replace(/\s/g,'').replace(/([@+-])/g,'')

@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import uploadImage from '../lib/uploadImage.ts';
 import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { 

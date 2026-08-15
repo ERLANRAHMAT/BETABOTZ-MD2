@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import WebP from 'node-webpmux';
 import fs from 'fs';
 import path from 'path';
@@ -18,7 +17,7 @@ handler.all = async function(m) {
     let user = global.db.data.users[m.sender];
     
     if (!chat || !chat.autowm) return; 
-    if (chat.isBanned || user.banned || m.isBaileys) return;
+    if (chat.isBanned || user.banned || m.fromMe) return;
 
     let q = m;
     let mime = (q.msg || q).mimetype || '';
@@ -26,7 +25,7 @@ handler.all = async function(m) {
 
     if (/webp|sticker/.test(mime) || mtype === 'stickerMessage') {
         try {
-            let stickerBuffer = await q.download();
+            let stickerBuffer = (await q.download()) as Buffer;
             if (!stickerBuffer) return;
             let img = new Image();
             await img.load(stickerBuffer);

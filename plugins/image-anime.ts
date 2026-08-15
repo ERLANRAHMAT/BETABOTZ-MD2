@@ -1,7 +1,6 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import axios from 'axios';
-var handler = async (m, { conn, args, usedPrefix, command }) => {
+let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
     m.reply(wait);
     try {
       let url = `https://api.betabotz.eu.org/api/anime/${command}?apikey=${lann}`;

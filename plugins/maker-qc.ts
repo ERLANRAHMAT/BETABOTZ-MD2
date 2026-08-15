@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import { sticker5 } from '../lib/sticker.ts';
 import axios from 'axios';
 import FormData from 'form-data';
@@ -40,7 +39,7 @@ let handler: WaPlugin = async (m, { conn, text, args }) => {
         if (!/image\/(jpe?g|png|webp)/.test(mime)) {
             bufferqc = await ___qctext(txt || '', name, avatar, apiColor)
         } else {
-            let img = await q.download()
+            let img = (await q.download()) as Buffer;
             let decodedBuffer = await sharp(img).toFormat('png').toBuffer()
             let mediaUrl = await uploadImage(decodedBuffer)
             bufferqc = await ___qcimg(mediaUrl, txt || '', name, avatar, apiColor)
@@ -123,7 +122,7 @@ async function uploadImage(buffer) {
   let { ext } = await fromBuffer(buffer)
   let bodyForm = new FormData()
   bodyForm.append("file", buffer, "file." + ext)
-  let res = await fetch("https://file.botcahx.eu.org/api/upload.php", {
+  let res = await fetch("https://api.betabotz.eu.org/api/upload.php", {
     method: "post",
     body: bodyForm,
   })

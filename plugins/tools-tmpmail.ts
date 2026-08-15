@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import axios from 'axios';
 import { load } from 'cheerio';
 
@@ -72,8 +71,8 @@ handler.limit = true;
 
 
 
-function extractText(html) {
-    let $ = cheerio.load(html);
+function extractText(html: string): string {
+    const $ = load(html);
     return $.text().trim();
 }
 

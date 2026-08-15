@@ -1,4 +1,3 @@
-// @ts-nocheck
 const Bcoal = 1500
 const Scoal = 1000
 const potion = 20000

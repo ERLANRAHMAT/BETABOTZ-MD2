@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args, isAdmin, isOwner }) => {
     if (!m.isGroup) return m.reply("Fitur ini hanya dapat digunakan dalam grup.")
     if (!(isAdmin || isOwner)) return m.reply("Maaf, fitur ini hanya dapat digunakan oleh admin grup.")

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { WaMessage, WaGameRoom } from '../types/connection.js';
 let handler: WaPlugin = async (m, { conn }) => {
     let __timers = (Date.now() - global.db.data.users[m.sender].kerjaempat)

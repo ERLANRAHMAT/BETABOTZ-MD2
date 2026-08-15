@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import yts from 'yt-search';
 import axios from 'axios';
 
@@ -29,7 +28,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 handler.before = async (m, { conn }) => {
     try {
         conn.ytsvideo = conn.ytsvideo ? conn.ytsvideo : {};
-        if (m.isBaileys || !(m.sender in conn.ytsvideo)) return;
+        if (m.fromMe || !(m.sender in conn.ytsvideo)) return;
         const { anu, key, title } = conn.ytsvideo[m.sender];
         if (!m.quoted || m.quoted.id !== key.id || !m.text) return;
         const choice = m.text.trim();

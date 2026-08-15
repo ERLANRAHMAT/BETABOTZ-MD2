@@ -1,13 +1,12 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
-let handler = async m => {
 
-let krtu = `web`
-m.reply(`
+let handler: WaPlugin = async (m) => {
+
+const krtu = `web`
+await m.reply(`
 > https://api.betabotz.eu.org
 > https://tools.betabotz.eu.org
 
-`.trim()) 
+`.trim())
 }
 handler.command = /^(web)$/i
 

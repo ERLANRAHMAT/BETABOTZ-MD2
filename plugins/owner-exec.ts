@@ -1,4 +1,3 @@
-// @ts-nocheck
 import syntaxerror from 'syntax-error'
 import util from 'util'
 import { createRequire } from 'module'

@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { args, usedPrefix }) => {
     let user = global.db.data.users[m.sender]
     if (user.healt >= 10000) return m.reply(`

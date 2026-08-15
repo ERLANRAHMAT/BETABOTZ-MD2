@@ -1,10 +1,9 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import fetch from 'node-fetch';
 import uploader from '../lib/uploadImage.ts';
 
 
-let handler = m => m;
+let handler: WaPlugin = (m) => m;
 
 handler.before = async function(m, { conn }) {
     let q = m.quoted ? m.quoted : m;
@@ -14,7 +13,7 @@ handler.before = async function(m, { conn }) {
     if (!/image/.test(mime)) return;
     
     try {
-        let media = await q.download();
+        let media = (await q.download()) as Buffer;
         let url = await uploader(media);
         
         const response = await fetch(`https://api.betabotz.eu.org/api/tools/nsfw-detect?url=${url}&apikey=${lann}`);

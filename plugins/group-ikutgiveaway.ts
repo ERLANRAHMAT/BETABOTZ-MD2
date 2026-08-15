@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { usedPrefix }) => {
     let id = m.chat
     conn.giveway = conn.giveway ? conn.giveway : {}

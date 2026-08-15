@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { translate } from '@vitalets/google-translate-api';
 const defaultLang = 'id'
 let handler: WaPlugin = async (m, { args, usedPrefix, command }) => {

@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler: WaPlugin = async (m, { conn, participants, text, usedPrefix, command }) => {
 
   db.data.redeem = db.data.redeem || { 

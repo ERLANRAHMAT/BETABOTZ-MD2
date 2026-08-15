@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, isAdmin }) => {
   if (m.fromMe) throw 'Nggk'
   if (isAdmin) throw 'Padahal udah jadi admin'

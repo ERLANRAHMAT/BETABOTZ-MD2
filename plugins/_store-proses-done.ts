@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { WaGameRoom } from '../types/connection.js';
 import type { WaProtoWebMessageInfoClass } from '../types/proto.js';
 import * as zapo from '../lib/simple.ts';

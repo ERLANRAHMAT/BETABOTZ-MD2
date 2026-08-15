@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 const handler: WaPlugin = async (m, { conn, text, command }) => {
   let who;
 
@@ -194,7 +193,7 @@ const handler: WaPlugin = async (m, { conn, text, command }) => {
 };
 
 handler.before = async function (m, { conn, isBotAdmin }) {
-  if (!m.isGroup || m.fromMe || m.isBaileys) return;
+  if (!m.isGroup || m.fromMe || m.fromMe) return;
 
   let globalBlacklist = global.db.data.globalBlacklist || [];
   if (globalBlacklist.length === 0) return;

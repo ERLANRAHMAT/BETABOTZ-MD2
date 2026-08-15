@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
@@ -6,7 +5,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     
     try {
         await m.reply(wait);
-        let response = await fetch(`https://api.botcahx.eu.org/api/search/wikipedia?text=${encodeURIComponent(text)}&apikey=${btc}`);
+        let response = await fetch(`https://api.betabotz.eu.org/api/search/wikipedia?text=${encodeURIComponent(text)}&apikey=${btc}`);
         let data = await response.json();
         
         if (!data.result) throw 'Tidak ada hasil ditemukan';

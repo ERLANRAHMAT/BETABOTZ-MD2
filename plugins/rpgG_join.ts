@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args }) => {
     let user = global.db.data.users[m.sender];
     let guildIndex = parseInt(args[0]) - 1;

@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 /*
  Jangan delete wm ini,kalo mau recode silahkan tapi sertain juga credits saya Lann
  Dibuat pada 22 February 2025

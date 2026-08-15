@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
     let wm = global.wm
     let _uptime = process.uptime() * 1000

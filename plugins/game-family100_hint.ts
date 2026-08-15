@@ -1,4 +1,3 @@
-// @ts-nocheck
 import similarity from 'similarity'
 const threshold = 0.72 
 let rewardAmount = 1000

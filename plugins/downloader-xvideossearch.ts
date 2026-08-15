@@ -1,8 +1,7 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import axios from 'axios';
 
-var handler = async (m, { text, usedPrefix, command }) => {
+let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
   if (!text) {
     throw `Contoh:\n${usedPrefix + command} boobs`;
   }

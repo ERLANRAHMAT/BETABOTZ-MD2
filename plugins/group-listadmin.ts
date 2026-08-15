@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args, participants }) => {
         let grup = await conn.getName(m.key.remoteJid)
         let mimin = m.isGroup ? getAdmin(participants) : ''

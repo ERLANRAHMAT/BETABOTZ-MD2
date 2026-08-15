@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { sKata, cKata } from '../lib/sambung-kata.ts'
 
 let handler: WaPlugin = m => m

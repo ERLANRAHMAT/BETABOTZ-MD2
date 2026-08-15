@@ -1,4 +1,3 @@
-// @ts-nocheck
 const handler: WaPlugin = async (m, { conn }) => {
     conn.koboy = conn.koboy || {};
     const user = global.db.data.users[m.sender];

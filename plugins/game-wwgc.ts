@@ -1,4 +1,3 @@
-// @ts-nocheck
 import jimp from 'jimp'
 import type { WaGameRoom } from '../types/connection.js';
 import type { WaWerewolfPlayer } from '../types/connection.js';

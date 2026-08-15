@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import { sKata, cKata } from '../lib/sambung-kata.ts';
 
 const game = `• *S A M B U N G - K A T A*

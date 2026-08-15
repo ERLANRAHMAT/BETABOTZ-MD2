@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     db.data.sticker = db.data.sticker || {}
 

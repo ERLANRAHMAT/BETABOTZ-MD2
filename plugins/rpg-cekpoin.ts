@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m) => {
   let poin = global.db.data.users[m.sender].poin || 0
   m.reply(`Poin kamu: ${poin}`)

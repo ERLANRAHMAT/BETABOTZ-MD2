@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler: WaPlugin = async (m, { conn, groupMetadata }) => {
   try {
     const participants = groupMetadata ? groupMetadata.participants : await conn.groupMetadata(m.chat).then(metadata => metadata.participants);

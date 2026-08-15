@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
@@ -7,7 +6,7 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
   try {
     m.reply(`⏳ Tunggu sebentar, sedang membuat lirik...`);
 
-    const url = `https://api.botcahx.eu.org/api/maker/generateLirik?prompt=${encodeURIComponent(text)}&aksesKey=${aksesKey}`;
+    const url = `https://api.betabotz.eu.org/api/maker/generateLirik?prompt=${encodeURIComponent(text)}&aksesKey=${aksesKey}`;
     const res = await fetch(url);
     const json = await res.json();
 

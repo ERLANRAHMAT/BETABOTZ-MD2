@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import PhoneNumber from 'awesome-phonenumber';
 import { createHash } from 'crypto';
 let handler: WaPlugin = async (m, { conn, text }) => {

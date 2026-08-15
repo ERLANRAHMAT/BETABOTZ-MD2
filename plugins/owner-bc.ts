@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin  = async (m, { conn, text }) => {
   
 let chats = Object.keys(await conn.chats)

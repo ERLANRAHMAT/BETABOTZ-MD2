@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler = async m => {
 
 let intro = `╭─── *「 Kartu Intro 」*

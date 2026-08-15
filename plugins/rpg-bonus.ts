@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, usedPrefix, text }) => {
     let user = global.db.data.users[m.sender]
 	let time = user.lastclaimb1 + 86400000

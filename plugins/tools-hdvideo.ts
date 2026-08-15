@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fetch from 'node-fetch';
 import uploadImage from '../lib/uploadImage.ts';
 
@@ -8,9 +7,9 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
     if (/^video/.test(mime)) {
         await conn.reply(m.chat, wait, m);
         try {
-            const img = await q.download();
+            const img = (await q.download()) as Buffer;
             const out = await uploadImage(img);
-            const api = await fetch(`https://api.botcahx.eu.org/api/tools/hdvideo?url=${out}&apikey=${btc}`);
+            const api = await fetch(`https://api.betabotz.eu.org/api/tools/hdvideo?url=${out}&apikey=${btc}`);
             const video = await api.json();
             const { url } = video;
             conn.sendFile(m.chat, url, null, wm, m);

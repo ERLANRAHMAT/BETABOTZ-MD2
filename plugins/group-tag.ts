@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text, isAdmin, participants}) => {
 	
     let users = participants.map(u => u.id).filter(v => v !== conn.user.jid)

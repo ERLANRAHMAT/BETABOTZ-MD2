@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
   let user = global.db.data.users[m.sender]
         let role = (user.level <= 2) ? 'Newbie ㋡'

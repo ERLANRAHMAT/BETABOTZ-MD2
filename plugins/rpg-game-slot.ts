@@ -1,4 +1,3 @@
-// @ts-nocheck
 let reg = 100
 let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
     let fa = `

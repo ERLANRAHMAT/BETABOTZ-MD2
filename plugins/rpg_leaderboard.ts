@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args, participants }) => {
   const cleanJid = (jid) => {
     if (!jid) return null

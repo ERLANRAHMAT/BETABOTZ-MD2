@@ -1,7 +1,6 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 export const before = async function(m) {
-    if (m.isBaileys && m.fromMe) return;
+    if (m.fromMe && m.fromMe) return;
     let chat = db.data.chats[m.chat];
     if (chat.viewonce && m.isGroup && m.mtype === 'viewOnceMessageV2') {
         let val = { ...m };

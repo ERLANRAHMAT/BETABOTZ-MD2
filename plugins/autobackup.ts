@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 // const fs = import 'fs';
 // const path = import 'path';
 // const schedule = import 'node-schedule';
@@ -13,7 +12,7 @@
 //             return;
 //         }
 
-//         const fileBuffer = fs.readFileSync(filePath); 
+//         const fileBuffer = fs.readFileSync(filePath) as Buffer; 
 //         await conn.sendMessage(
 //             groupJid,
 //             {

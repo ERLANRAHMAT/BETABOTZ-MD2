@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { performance } from 'perf_hooks'
 
 let handler: WaPlugin = async (m, { conn }) => {

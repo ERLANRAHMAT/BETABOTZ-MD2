@@ -1,4 +1,3 @@
-// @ts-nocheck
 const moneyplus = 1
 let handler: WaPlugin = async (m, { conn, command, args }) => {
   let count = command.replace(/^atm/i, '')

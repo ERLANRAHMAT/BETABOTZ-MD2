@@ -1,7 +1,5 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
-let handler = m => m
 
+let handler: WaPlugin = (m) => m
 handler.before = async (m, { conn, isBotAdmin, isAdmin }) => {
     if(!m.isGroup) return
     let chat = global.db.data.chats[m.chat]
@@ -28,8 +26,7 @@ handler.before = async (m, { conn, isBotAdmin, isAdmin }) => {
 /*
 
 
-let handler = m => m
-
+let handler: WaPlugin = (m) => m
 handler.before = async (m, { conn, isBotAdmin, isAdmin }) => {
     if(!m.isGroup) return
     let chat = global.db.data.chats[m.chat]

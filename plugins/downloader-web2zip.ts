@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
@@ -7,7 +6,7 @@ let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
     await m.reply('⏳ Mohon tunggu, sedang membuat ZIP dari website...');
 
     try {
-        const response = await fetch(`https://api.botcahx.eu.org/api/tools/web2zip?url=${args[0]}&apikey=${global.btc}`);
+        const response = await fetch(`https://api.betabotz.eu.org/api/tools/web2zip?url=${args[0]}&apikey=${global.btc}`);
         const json = await response.json();
 
         if (!json.status || !json.result) throw '❌ Gagal membuat ZIP dari website!';

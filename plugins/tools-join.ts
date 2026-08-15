@@ -1,4 +1,3 @@
-// @ts-nocheck
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})( [0-9]{1,3})?/i
 
 let handler: WaPlugin = async (m, { conn, text, isOwner }) => {

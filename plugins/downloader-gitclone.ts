@@ -1,4 +1,3 @@
-// @ts-nocheck
 let regex = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i
 import fetch from 'node-fetch'
 let handler: WaPlugin = async (m, { args, usedPrefix, command }) => {

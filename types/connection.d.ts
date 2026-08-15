@@ -93,7 +93,7 @@ export interface WaMessage {
     listResponseMessage?: { singleSelectReply?: { selectedRowId?: string; [key: string]: unknown }; [key: string]: unknown };
     templateButtonReplyMessage?: { selectedId?: string; [key: string]: unknown };
     groupStatusMentionMessage?: Record<string, unknown>;
-    protocolMessage?: { type?: number; [key: string]: unknown };
+    protocolMessage?: { type?: number; key?: { remoteJid?: string; id?: string; [key: string]: unknown }; [key: string]: unknown };
     senderKeyDistributionMessage?: { groupId?: string; [key: string]: unknown };
     [key: string]: unknown;
   } | null;
@@ -150,6 +150,7 @@ export interface WaMessage {
   plugin?: string;
   error?: unknown;
   limit?: boolean | number;
+  hasMedia?: boolean;
   download?: (saveToFile?: boolean) => Promise<Buffer | string | null>;
   reply?: (text: string, chatId?: string | Record<string, unknown>, options?: unknown) => Promise<unknown>;
   getQuotedObj?: () => Promise<WaMessage | null>;
@@ -172,6 +173,7 @@ export interface WaGroupMetadata {
   ephemeral?: number;
   size?: number;
   creation?: number;
+  joinApprovalMode?: boolean;
   participants?: Array<{ id?: string; jid?: string; isAdmin?: boolean; isSuperAdmin?: boolean; admin?: string | null; phoneNumber?: string; [key: string]: unknown }>;
 }
 
@@ -515,6 +517,9 @@ export interface WaConnection {
   sessionAI?: Record<string, WaAiSession>;
   sessionsMail?: Record<string, WaMailSession>;
   btch?: Record<string, WaAiSession>;
+  beta?: Record<string, WaAiSession>;
+  msgStore?: Map<string, any>;
+  betaai?: Record<string, WaAiSession>;
 
   // --- connection ---
   connect(): Promise<unknown>;

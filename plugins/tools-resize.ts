@@ -1,4 +1,3 @@
-// @ts-nocheck
 import jimp from 'jimp'
 import uploadImage from '../lib/uploadImage.ts'
 import uploadFile from '../lib/uploadFile.ts'

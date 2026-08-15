@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = (m, { usedPrefix, command, text }) => {
     if (!text) throw `contoh:\n${usedPrefix + command} 2002 02 25`
 

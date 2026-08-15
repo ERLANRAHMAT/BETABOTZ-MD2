@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fetch from 'node-fetch';
 import uploader from '../lib/uploadFile.ts';
 
@@ -6,11 +5,11 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
 	let q = m.quoted ? m.quoted : m
 	let mime = (q.msg || q).mimetype || q.mediaType || ''
 	if (/audio/.test(mime)) {
-		let buffer = await q.download()
+		let buffer = (await q.download()) as Buffer;
 		await m.reply(wait)
 		try {
 		let media = await uploader(buffer)
-		let json = await (await fetch(`https://api.botcahx.eu.org/api/tools/audio2video?url=${media}&apikey=${btc}`)).json()		
+		let json = await (await fetch(`https://api.betabotz.eu.org/api/tools/audio2video?url=${media}&apikey=${btc}`)).json()		
         await conn.sendFile(m.chat, json.result, "video.mp4", "*DONE*", m)
         } catch (err) {
       throw eror

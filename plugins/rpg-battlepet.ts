@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { WaGameRoom } from '../types/connection.js';
 const pets = ['kucing', 'anjing', 'serigala', 'phonix', 'rubah']
 

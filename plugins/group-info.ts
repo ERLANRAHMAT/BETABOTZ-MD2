@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, participants, groupMetadata, text }) => {
 
     const getGroupAdmins = (participants) => {

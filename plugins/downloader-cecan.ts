@@ -1,11 +1,10 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn, command }) => {
     try {
         let api1 = `https://api.betabotz.eu.org/api/cecan/${command}?apikey=${lann}`;
-        let api2 = `https://api.botcahx.eu.org/api/cecan/${command}?apikey=${btc}`;
+        let api2 = `https://api.betabotz.eu.org/api/cecan/${command}?apikey=${btc}`;
         
         let buffer = await fetch(api1)
             .then(res => {

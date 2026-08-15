@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
@@ -29,7 +28,7 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
     m.reply(wait);
 
     try {
-        let res = await (await fetch(`https://api.botcahx.eu.org/api/tools/cek-ewallet?wallet=${wallet}&nomer=${nomor}&apikey=${btc}`)).json();
+        let res = await (await fetch(`https://api.betabotz.eu.org/api/tools/cek-ewallet?wallet=${wallet}&nomer=${nomor}&apikey=${btc}`)).json();
 
         let caption = `*CEK E-WALLET ${wallet.toUpperCase()}*\n\n`;
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) throw `*Example:* ${usedPrefix + command} 112.90.150.204`;

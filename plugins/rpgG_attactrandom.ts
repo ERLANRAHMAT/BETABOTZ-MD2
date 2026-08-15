@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fs from 'fs';
 const dbPath = './database.json';
 

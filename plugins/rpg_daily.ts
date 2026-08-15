@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fs from 'fs';
 
 const prem = 1000; // XP awarded to premium users

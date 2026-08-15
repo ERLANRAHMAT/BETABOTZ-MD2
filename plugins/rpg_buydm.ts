@@ -1,4 +1,3 @@
-// @ts-nocheck
 const xpperdiamond = 1000000 
 let handler: WaPlugin = async (m, { conn, command, args }) => {
   let count = command.replace(/^buydm/i, '')

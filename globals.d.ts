@@ -30,15 +30,16 @@ declare global {
   var wait: BotConfig['wait'];
   var eror: BotConfig['eror'];
   var stiker_wait: BotConfig['stiker_wait'];
+  var qris: BotConfig['qris'];
   var thumb: BotConfig['thumb'];
   var packname: BotConfig['packname'];
   var author: BotConfig['author'];
   var maxwarn: BotConfig['maxwarn'];
   var btc: BotConfig['btc'];
-  var lann : BotConfig['lann'];
+  var lann: BotConfig['lann'];
   var aksesKey: BotConfig['aksesKey'];
   var dana: BotConfig['dana'];
-  var taskToken  : BotConfig['taskToken'];
+  var taskToken: BotConfig['taskToken'];
   
   var APIs: BotApis;
   var APIKeys: BotApiKeys;
@@ -56,6 +57,8 @@ declare global {
   var plugins: Record<string, WaPlugin>;
   var reload: (ev: unknown, filename: string) => Promise<boolean | void>;
   var reloadHandler: (restatConn?: boolean) => Promise<boolean>;
+  var sleep: (ms: number) => Promise<void>;
+  var _sleep: (ms: number) => Promise<void>;
   var useQR: boolean;
   var support: {
     ffmpeg: boolean;

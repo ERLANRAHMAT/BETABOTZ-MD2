@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
 	if (!text) throw `gunakan *${usedPrefix}liststore* untuk melihat daftar pesan yg tersimpan.`;
 	let msgs = db.data.chats[m.chat].listStr;

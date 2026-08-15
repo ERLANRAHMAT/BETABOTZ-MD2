@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async(m, { conn, command }) => {
   let isPublic = command === "public";
   let self = global.opts["self"]

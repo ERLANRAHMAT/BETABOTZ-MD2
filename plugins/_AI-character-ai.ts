@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fetch from 'node-fetch'
 
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
@@ -6,7 +5,7 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
   try {
     let [ logic, prompt ] = text.split('|')
     m.reply(`Tunggu sebentar...`)
-    let res = await fetch(`https://api.botcahx.eu.org/api/search/c-ai?apikey=${btc}&char=${logic}&prompt=${prompt}`)
+    let res = await fetch(`https://api.betabotz.eu.org/api/search/c-ai?apikey=${btc}&char=${logic}&prompt=${prompt}`)
     let json = await res.json()
     m.reply(json.message)
   } catch (e) {

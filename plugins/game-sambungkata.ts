@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { sKata, cKata } from '.././lib/sambung-kata.ts';
 
 const game = `• *S A M B U N G - K A T A*

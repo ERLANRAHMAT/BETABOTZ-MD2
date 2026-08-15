@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
     let guilds = Object.values(global.db.data.guilds);
 

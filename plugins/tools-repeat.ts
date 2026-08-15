@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
 	
     if (!text) return conn.reply(m.chat, 'Harap Masukan Teks yang akan direpeat!', m)

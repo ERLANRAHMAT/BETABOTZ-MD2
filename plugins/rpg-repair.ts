@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
   let type = (args[0] || '').toLowerCase()
   let _type = (args[0] || '').toLowerCase()

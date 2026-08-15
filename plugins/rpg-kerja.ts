@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, command, args, usedPrefix }) => {
     let type = (args[0] || '').toLowerCase()
     let users = global.db.data.users[m.sender]

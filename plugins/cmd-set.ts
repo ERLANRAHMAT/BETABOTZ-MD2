@@ -1,4 +1,3 @@
-// @ts-nocheck
 import pkg from 'node-webpmux';
 const { Image } = pkg;
 
@@ -18,7 +17,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     // Extract sticker-pack-id from quoted sticker's WEBP EXIF
     let packId = null;
     try {
-        const buffer = await m.quoted.download();
+        const buffer = (await m.quoted.download()) as Buffer;
         if (buffer) {
             const img = new Image();
             await img.load(buffer);

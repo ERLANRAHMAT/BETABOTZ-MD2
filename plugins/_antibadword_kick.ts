@@ -1,9 +1,8 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 // let badwordRegex = /anj|asw|kont|ToIol|gblk|T0lol|Bgsd|ajn|anjingk|bajingan|bangsat|kontol|memek|pepekq|meki|titit|peler|tetek|toket|ngewe|goblok|tolol|idiot|ngentotd|jembut|bego|dajjal|jancuk|pantek|pukimak|kimak|kampang|lonte|colimek|pelacur|henceut|nigga|fuck|dick|bitch|tits|bastard|asshole/i; // tambahin sendiri
 
 // async function before(m, { isBotAdmin }) {
-//     if (m.isBaileys && m.fromMe) return;
+//     if (m.fromMe && m.fromMe) return;
 //     let chat = global.db.data.chats[m.chat];
 //     let user = global.db.data.users[m.sender];
 //     let isBadword = badwordRegex.exec(m.text);

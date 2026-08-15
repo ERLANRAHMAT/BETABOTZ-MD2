@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
   let __timers = (Date.now() - global.db.data.users[m.sender].lastngojek)
   let _timers = (300000 - __timers)

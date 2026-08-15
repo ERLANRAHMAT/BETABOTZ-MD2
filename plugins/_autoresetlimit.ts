@@ -1,4 +1,3 @@
-// @ts-nocheck
 export default {
   before: async function all(m) {
     const jakarta = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });

@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 async function handler(m, { conn }) {
   let afkUsers = Object.entries(global.db.data.users).filter(
     ([_, user]) => user.afk > -1,

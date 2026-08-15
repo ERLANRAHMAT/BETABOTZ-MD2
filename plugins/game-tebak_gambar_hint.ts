@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler: WaPlugin = async (m, { conn }) => {
     conn.tebakgambar = conn.tebakgambar ? conn.tebakgambar : {}
     let id = m.chat

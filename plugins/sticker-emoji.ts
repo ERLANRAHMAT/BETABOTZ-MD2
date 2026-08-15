@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import { 
 sticker5 
 } from '../lib/sticker.ts';

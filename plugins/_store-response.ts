@@ -1,4 +1,3 @@
-// @ts-nocheck
 async function all(m) {
     let chat = global.db.data.chats[m.chat];
     let user = global.db.data.users[m.sender];

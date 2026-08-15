@@ -1,4 +1,3 @@
-// @ts-nocheck
 import * as zapo from '../lib/simple.ts';
 
 import jimp from 'jimp';
@@ -10,7 +9,7 @@ let handler: WaPlugin = async (m, { conn, command, usedPrefix }) => {
     let mime = (q.msg || q).mimetype || q.mediaType || '';
     if (/image/g.test(mime) && !/webp/g.test(mime)) {
         try {
-            let media = await q.download();
+            let media = (await q.download()) as Buffer;
             let botNumber = await conn.user.jid;
             let { img } = await pepe(media);
             await conn.query({

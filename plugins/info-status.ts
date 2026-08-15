@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { performance } from 'perf_hooks'
 import osu from 'node-os-utils'
 let handler: WaPlugin = async(m, { conn, command, usedPrefix, DevMode }) => {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import axios from 'axios';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
@@ -6,7 +5,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     try {
         if (!text.match(/douyin/gi)) throw `URL Tidak Ditemukan!`;        
         m.reply(wait);      
-        const response = await axios.get(`https://api.botcahx.eu.org/api/dowloader/douyin?url=${text}&apikey=${btc}`);        
+        const response = await axios.get(`https://api.betabotz.eu.org/api/dowloader/douyin?url=${text}&apikey=${btc}`);        
         const res = response.data.result;      
         var { video, title, title_audio, audio } = res;
         let capt = `乂 *D O U Y I N*\n\n`;

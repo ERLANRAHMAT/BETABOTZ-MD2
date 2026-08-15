@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 //free source code store by betabotz di buat oleh danapura133
 //silahkan di ganti ganti sesuka hati kalian
 
@@ -14,7 +13,7 @@ const storeDatabaseFilePath = path.join(__dirname, 'store-database.json');
 
 const loadStoreDatabase = () => {
     if (fs.existsSync(storeDatabaseFilePath)) {
-        const data = fs.readFileSync(storeDatabaseFilePath);
+        const data = fs.readFileSync(storeDatabaseFilePath, 'utf8');
         return JSON.parse(data);
     }
     return { store: {}, transactions: {}, setlist: {}, addlist: {} };

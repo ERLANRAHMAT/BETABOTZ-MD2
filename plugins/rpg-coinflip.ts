@@ -1,4 +1,3 @@
-// @ts-nocheck
 import axios from 'axios';
 import { Sticker, StickerTypes } from 'wa-sticker-formatter';
 

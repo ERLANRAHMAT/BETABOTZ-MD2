@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import fetch from 'node-fetch';
 import uploadImage from '../lib/uploadImage.ts';
 
@@ -9,7 +8,7 @@ async function handler(m, { conn, usedPrefix, command }) {
     const q = m.quoted ? m.quoted : m;
     const mime = (q.msg || q).mimetype || q.mediaType || '';
     if (/^image/.test(mime) && !/webp/.test(mime)) {
-      const img = await q.download();
+      const img = (await q.download()) as Buffer;
       const out = await uploadImage(img);
       const api = await fetch(`https://api.betabotz.eu.org/api/tools/remini?url=${out}&apikey=${lann}`);
       const image = await api.json();

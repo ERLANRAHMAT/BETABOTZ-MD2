@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { args }) => {
   if (args.length !== 1) {
     return conn.reply(m.chat, 'Silakan masukkan jumlah uang yang ingin diubah menjadi poin! Contoh: .moneytopoin 1000', m)

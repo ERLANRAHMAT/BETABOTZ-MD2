@@ -64,13 +64,11 @@ global.taskToken = "YOUR_TOKEN_HERE";
 
 global.APIs = {
   lann: "https://api.betabotz.eu.org",
-  btc: "https://api.botcahx.eu.org",
   dana: "https://api.danafxc.my.id",
   taskToken: "https://task.aniqu.biz.id/",
 };
 global.APIKeys = {
   "https://api.betabotz.eu.org": global.lann,
-  "https://api.botcahx.eu.org": global.btc, //OPSIONAL
   "https://api.danafxc.my.id": global.dana, //OPSIONAL
   "https://task.aniqu.biz.id/": global.taskToken, //OPSIONAL
 };

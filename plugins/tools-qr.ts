@@ -1,4 +1,3 @@
-// @ts-nocheck
 import qrcode from 'qrcode'
 
 let handler: WaPlugin = async (m, { conn, text }) => {

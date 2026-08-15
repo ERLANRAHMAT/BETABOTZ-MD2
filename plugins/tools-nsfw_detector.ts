@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import fetch from 'node-fetch';
 import uploader from '../lib/uploadImage.ts';
 
@@ -7,7 +6,7 @@ let handler: WaPlugin = async (m, { conn, command, usedPrefix }) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || q.mediaType || '' 
   if (/image/g.test(mime) && !/webp/g.test(mime)) {
-    let buffer = await q.download()
+    let buffer = (await q.download()) as Buffer;
     await m.reply(wait)    
     try {
       let media = await uploader(buffer)

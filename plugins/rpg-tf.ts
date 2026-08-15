@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args, usedPrefix, DevMode }) => {
     if (args.length < 3) {
         return conn.reply(m.chat, `Gunakan format .tf <type> <jumlah> <@tag>\n📍contoh penggunaan: *.tf money 100 @tag*\n\n*List yang bisa di transfer :*\n💹Money\n🏷 Limit\n💳 Tabungan\n🥤Potion\n🗑️Sampah\n💎Diamond\n📦Common\n🛍️Uncommon\n🎁Mythic\n🧰Legendary\n🕸️string\n🪵kayu\n🪨batu\n⛓iron`.trim(), m)

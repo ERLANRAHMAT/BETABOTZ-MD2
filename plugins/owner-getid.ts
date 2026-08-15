@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler: WaPlugin = async (m, { conn }) => {
     if (!m.quoted) return conn.reply(m.chat, '[❗] Reply undangan admin channel!', m)
     

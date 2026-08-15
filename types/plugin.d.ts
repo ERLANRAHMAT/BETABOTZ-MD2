@@ -43,6 +43,8 @@ export interface WaPlugin {
   command?: RegExp | string | Array<RegExp | string>;
   /** Command names (help). */
   help?: string[];
+  /** Command info/descriptions. */
+  info?: string[];
   /** Command categories (tags). */
   tags?: string[];
   /** Per-plugin custom prefix. */

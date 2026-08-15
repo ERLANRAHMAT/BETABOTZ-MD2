@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler: WaPlugin = async (m, { args, conn }) => {
     if (!args.length) return conn.reply(m.chat, "Masukkan sesuatu untuk dirate!\nContoh: *.rate seberapa cocok aku dan dia*", m);
 

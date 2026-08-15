@@ -1,4 +1,3 @@
-// @ts-nocheck
 import uploadImage from '../lib/uploadImage.ts';
 import fetch from 'node-fetch';
 
@@ -9,12 +8,12 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
     if (/image/g.test(mime) && !/webp/g.test(mime)) {
         await conn.reply(m.chat, "⏳ Sedang diproses...", m);
         try {
-            const img = await q.download?.();
+            const img = (await q.download?.()) as Buffer;
             let out = await uploadImage(img);
             let old = Date.now();
             
             if (command == 'tofigure') {
-                let apiUrl = `https://api.botcahx.eu.org/api/maker/tofigurev3?url=${out}&apikey=${btc}`;
+                let apiUrl = `https://api.betabotz.eu.org/api/maker/tofigurev3?url=${out}&apikey=${btc}`;
                 let res = await fetch(apiUrl);
                 let convert = await res.buffer();
                 await conn.sendMessage(m.chat, { 
@@ -24,7 +23,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
             }
             
             if (command == 'tofigure2') {
-                let apiUrl = `https://api.botcahx.eu.org/api/maker/tofigurev2?url=${out}&apikey=${btc}`;
+                let apiUrl = `https://api.betabotz.eu.org/api/maker/tofigurev2?url=${out}&apikey=${btc}`;
                 let res = await fetch(apiUrl);
                 let convert = await res.buffer();
                 await conn.sendMessage(m.chat, { 
@@ -34,7 +33,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
             }
             
             if (command == 'tofigure3') {
-                let apiUrl = `https://api.botcahx.eu.org/api/maker/tofigure?url=${out}&apikey=${btc}`;
+                let apiUrl = `https://api.betabotz.eu.org/api/maker/tofigure?url=${out}&apikey=${btc}`;
                 let res = await fetch(apiUrl);
                 let convert = await res.buffer();
                 await conn.sendMessage(m.chat, { 

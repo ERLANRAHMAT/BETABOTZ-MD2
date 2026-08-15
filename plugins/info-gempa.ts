@@ -1,7 +1,6 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import axios from 'axios';
-var handler = async (m, { conn }) => {
+let handler: WaPlugin = async (m, { conn }) => {
   try {
     var response = await axios.get(
       `https://api.betabotz.eu.org/api/search/gempa?apikey=${lann}`,

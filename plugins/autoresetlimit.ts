@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 /*
 *reset limit auto on/off*
 di buat oleh dana putra | Betabotz | aqua bot

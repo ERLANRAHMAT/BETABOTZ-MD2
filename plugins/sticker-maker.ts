@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fs from 'fs';
 import fetch from 'node-fetch';
 
@@ -19,18 +18,18 @@ const handler: WaPlugin = async (m, { conn, args, text, usedPrefix, command }) =
 
     let res;
     if (command === 'brat') {
-        res = `https://api.botcahx.eu.org/api/maker/brat?text=${encodeURIComponent(text.substring(0, 151))}&apikey=${btc}`;
+        res = `https://api.betabotz.eu.org/api/maker/brat?text=${encodeURIComponent(text.substring(0, 151))}&apikey=${btc}`;
     } else if (command === 'brat2' || command === 'bratgif') {
-        res = `https://api.botcahx.eu.org/api/maker/brat-video?text=${encodeURIComponent(text.substring(0, 151))}&apikey=${btc}`;
+        res = `https://api.betabotz.eu.org/api/maker/brat-video?text=${encodeURIComponent(text.substring(0, 151))}&apikey=${btc}`;
     } else if (command === 'bratvid') {
-        res = `https://api.botcahx.eu.org/api/maker/brat-video?text=${encodeURIComponent(text.substring(0, 151))}&apikey=${btc}`;
+        res = `https://api.betabotz.eu.org/api/maker/brat-video?text=${encodeURIComponent(text.substring(0, 151))}&apikey=${btc}`;
     } else if (command === 'ttp') {
-        res = `https://api.botcahx.eu.org/api/maker/ttp?text=${encodeURIComponent(text.substring(0, 151))}&apikey=${btc}`;
+        res = `https://api.betabotz.eu.org/api/maker/ttp?text=${encodeURIComponent(text.substring(0, 151))}&apikey=${btc}`;
     } else if (command === 'attp') {
-        res = `https://api.botcahx.eu.org/api/maker/attp?text=${encodeURIComponent(text.substring(0, 151))}&apikey=${btc}`;
+        res = `https://api.betabotz.eu.org/api/maker/attp?text=${encodeURIComponent(text.substring(0, 151))}&apikey=${btc}`;
     }
 
-    const err = fs.readFileSync(`./media/sticker/emror.webp`);
+    const err = fs.readFileSync(`./media/sticker/emror.webp`) as Buffer;
 
     try {
         const response = await fetch(res);

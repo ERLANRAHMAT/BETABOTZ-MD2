@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { totalmem,
 freemem } from 'os'
 import os from 'os';

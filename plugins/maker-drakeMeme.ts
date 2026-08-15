@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     let guide = `Format salah!\n\n*Cara penggunaan:*\n${usedPrefix + command} teks atas|teks bawah\n\n*Contoh:*\n${usedPrefix + command} Belajar|Main Game`;
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
@@ -9,7 +8,7 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
     m.reply(wait);
 
     try {
-        let res = await (await fetch(`https://api.botcahx.eu.org/api/download/slideshare?url=${encodeURIComponent(text)}&apikey=${btc}`)).json();
+        let res = await (await fetch(`https://api.betabotz.eu.org/api/download/slideshare?url=${encodeURIComponent(text)}&apikey=${btc}`)).json();
 
         if (!res.status || !res.result?.success || !res.result.download) {
             throw 'Gagal mengambil data dari Slideshare.';

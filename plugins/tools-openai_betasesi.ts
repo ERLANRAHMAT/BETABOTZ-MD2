@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 /* Auto-AI Sesi X Pinterest (Foto) X YouTube Mp3/Mp4 (Lagu/Video) 
 Creator: Shina Arthenon (ALC) 
 MY Ch  : https://whatsapp.com/channel/0029VaNImZtKbYMRX8M08D08

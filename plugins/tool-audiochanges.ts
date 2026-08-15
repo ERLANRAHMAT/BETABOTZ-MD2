@@ -1,4 +1,3 @@
-// @ts-nocheck
 const __dirname = import.meta.dirname;
 import fs from 'fs'
 import path from 'path'
@@ -9,7 +8,7 @@ let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
         let q = m.quoted ? m.quoted : m
         let mime = (q.msg || q).mimetype || ''
         if (!/audio/.test(mime)) throw `Balas vn/audio yang ingin diubah dengan caption *${usedPrefix + command}*`
-        let audio = await q.download()
+        let audio = (await q.download()) as Buffer;
         if (!audio) throw 'Can\'t download audio!'
         let set
         if (/bass/.test(command)) set = '-af equalizer=f=94:width_type=o:width=2:g=30'

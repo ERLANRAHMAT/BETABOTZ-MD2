@@ -1,7 +1,6 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 async function before(m, { isAdmin, isBotAdmin }) {
-    if (m.isBaileys && m.fromMe) return;
+    if (m.fromMe && m.fromMe) return;
     let chat = global.db.data.chats[m.chat];
     if (!chat || !chat.antiSticker) return;
     const isNormalSticker = m.mtype === "stickerMessage";

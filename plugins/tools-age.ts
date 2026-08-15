@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import uploadImage from '../lib/uploadImage.ts';
 import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { 
@@ -14,7 +13,7 @@ let handler: WaPlugin = async (m, {
     await conn.reply(m.chat, wait, m);
     
     try {
-      const img = await q.download?.();
+      const img = (await q.download?.()) as Buffer;
       let out = await uploadImage(img);
       let old = new Date();
       let res = await fetch(`https://api.betabotz.eu.org/api/search/agedetect?url=${out}&apikey=${lann}`);

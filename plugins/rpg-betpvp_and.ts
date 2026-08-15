@@ -1,4 +1,3 @@
-// @ts-nocheck
 const exports: WaPlugin = {} as WaPlugin;
 const delay = (time) => new Promise((res) => setTimeout(res, time));
 

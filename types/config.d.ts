@@ -26,6 +26,8 @@ export interface BotConfig {
   eror: string;
   /** Sticker loading message. */
   stiker_wait: string;
+  /** QRIS image URL. */
+  qris: string;
   /** Thumbnail URL. */
   thumb: string;
   /** Sticker pack name. */
@@ -34,10 +36,16 @@ export interface BotConfig {
   author: string;
   /** Maximum warnings (string in config, used numerically). */
   maxwarn: string | number;
-  /** Main API key. */
+  /** Main Betabotz API key. */
+  lann: string;
+  /** Legacy fallback Botcahx API key. */
   btc: string;
   /** Premium access key. */
   aksesKey: string;
+  /** Dana API key. */
+  dana: string;
+  /** Task token. */
+  taskToken: string;
 }
 
 /** API endpoint list. */

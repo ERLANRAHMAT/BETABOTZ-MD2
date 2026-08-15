@@ -1,10 +1,9 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import fs from 'fs';
 import path from 'path';
 import fetch from 'node-fetch';
 
-var handler = async (m, { conn, command, args }) => {
+let handler: WaPlugin = async (m, { conn, command, args }) => {
   if (!args[0]) return conn.reply(m.chat, 'Input URL!', m as any);
   if (args[0].match(/xnxx\.com|hamster\.com|nekopoi\.care/i)) {
     return conn.reply(m.chat, 'Link tersebut dilarang!', m as any);

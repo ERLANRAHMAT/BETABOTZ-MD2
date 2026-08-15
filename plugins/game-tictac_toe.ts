@@ -1,4 +1,3 @@
-// @ts-nocheck
 import util from 'util'
 let handler: WaPlugin = m => m
 let debugMode = !1

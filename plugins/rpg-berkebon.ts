@@ -1,4 +1,3 @@
-// @ts-nocheck
 const timeout = 1800000
                                      let handler: WaPlugin = async (m, { conn, usedPrefix, text }) => {
 	                                 let apelu = global.db.data.users[m.sender].bibitapel

@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler: WaPlugin = async (m, {conn, text, usedPrefix}) => {
   if (!text) throw 'Berikan URL dari YouTube!'
   try {   

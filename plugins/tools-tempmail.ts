@@ -1,4 +1,3 @@
-// @ts-nocheck
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
@@ -18,7 +17,7 @@ let handler: WaPlugin = async (m, { conn, command, usedPrefix }) => {
         }
 
         try {
-            let res = await axios.get(`https://api.botcahx.eu.org/api/tools/create-temp-mail?apikey=${btc}`);
+            let res = await axios.get(`https://api.betabotz.eu.org/api/tools/create-temp-mail?apikey=${btc}`);
             if (!res.data.status) throw "❌ Gagal membuat email sementara!";
 
             let email = res.data.result;
@@ -43,7 +42,7 @@ let handler: WaPlugin = async (m, { conn, command, usedPrefix }) => {
         conn.sessionsMail[m.sender].lastCheckedAt = Date.now();
 
         try {
-            let res = await axios.get(`https://api.botcahx.eu.org/api/tools/cek-msg-tmp-mail?email=${email}&apikey=${btc}`);
+            let res = await axios.get(`https://api.betabotz.eu.org/api/tools/cek-msg-tmp-mail?email=${email}&apikey=${btc}`);
             if (!res.data.status) throw "❌ Gagal mengambil pesan email!";
             
             let messages = res.data.result;

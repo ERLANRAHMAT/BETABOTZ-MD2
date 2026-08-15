@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import axios from 'axios';
 
 let handler: WaPlugin = async (m, {conn, text, usedPrefix, command}) => {

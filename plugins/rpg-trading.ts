@@ -1,4 +1,3 @@
-// @ts-nocheck
 const cooldown = 0;
 
 let handler: WaPlugin = async (m, { conn, usedPrefix, args, text }) => {

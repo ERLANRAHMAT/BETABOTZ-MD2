@@ -1,4 +1,3 @@
-// @ts-nocheck
 const timeout = 28800000
 
 let handler: WaPlugin = async (m, { conn, usedPrefix, text }) => {

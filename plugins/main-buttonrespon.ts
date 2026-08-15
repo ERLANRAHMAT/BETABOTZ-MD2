@@ -1,4 +1,3 @@
-// @ts-nocheck
 import * as zapo from '../lib/simple.ts';
 const loadZapo = async () => zapo;
 

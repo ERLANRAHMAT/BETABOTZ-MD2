@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import moment from 'moment-timezone';
 import fs from 'fs';
 import path from 'path';
@@ -11,7 +10,7 @@ const storeDatabaseFilePath = path.join(__dirname, 'store-database.json');
 
 const loadStoreDatabase = () => {
     if (fs.existsSync(storeDatabaseFilePath)) {
-        const data = fs.readFileSync(storeDatabaseFilePath);
+        const data = fs.readFileSync(storeDatabaseFilePath, "utf8");
         return JSON.parse(data);
     }
     return { store: {}, transactions: {}, setlist: {}, addlist: {} };

@@ -1,7 +1,6 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import { createHash } from 'crypto';
-let handler = async function (m, { text, usedPrefix }) { 
+let handler: WaPlugin = async function (m, { text, usedPrefix }) { 
 
     let sn = createHash('md5').update(m.sender).digest('hex')
     m.reply(`

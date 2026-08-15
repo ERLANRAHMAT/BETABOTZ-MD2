@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { createHash } from 'crypto'
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
 let handler: WaPlugin = async function (m, { text, usedPrefix }) {

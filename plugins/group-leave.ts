@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args, command }) => {
 	let group = m.chat
         await m.reply('Bot akan keluar dari group', m.chat) 

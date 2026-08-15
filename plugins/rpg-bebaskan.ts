@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
     if (!text) throw '• *Contoh :* .bebaskan 62×××'
     let who

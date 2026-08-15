@@ -1,4 +1,3 @@
-// @ts-nocheck
 let war = global.maxwarn
 let handler: WaPlugin = async (m, { conn, text, args, groupMetadata, usedPrefix, command }) => {      
         let who

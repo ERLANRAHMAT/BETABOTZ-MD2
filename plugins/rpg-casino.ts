@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { WaGameRoom } from '../types/connection.js';
 let buatall = 1;
 let handler: WaPlugin = async (m, { conn, args, usedPrefix, DevMode }) => {

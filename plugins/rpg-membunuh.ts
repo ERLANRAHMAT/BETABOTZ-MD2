@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 let dapat = (Math.floor(Math.random() * 100000))
 let healtu = (Math.floor(Math.random() * 100))

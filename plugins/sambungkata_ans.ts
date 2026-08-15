@@ -1,8 +1,6 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
-import { sKata, cKata } from '../lib/sambung-kata.ts';
-let handler = m => m
 
+import { sKata, cKata } from '../lib/sambung-kata.ts';
+let handler: WaPlugin = (m) => m
 handler.before = async function (m, { conn }) {
     this.skata = this.skata || {}
     let id = m.chat

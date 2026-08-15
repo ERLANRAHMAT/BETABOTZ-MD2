@@ -1,4 +1,3 @@
-// @ts-nocheck
 import fetch from 'node-fetch';
 var handler: WaPlugin = async (m, {
  conn 

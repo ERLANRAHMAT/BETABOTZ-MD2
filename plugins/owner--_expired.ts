@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 export default {
     async all(m) {
         if (!m.isGroup) return 

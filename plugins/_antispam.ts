@@ -1,4 +1,3 @@
-// @ts-nocheck
 const exports: WaPlugin = {} as WaPlugin;
 
 const SPAM_THRESHOLD = 5; // Number of messages that count as spam

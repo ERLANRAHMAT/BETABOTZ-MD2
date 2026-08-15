@@ -1,7 +1,5 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
-let handler = m => m
 
+let handler: WaPlugin = (m) => m
 handler.before = async function(m, { conn }) {
   if (!conn.msgStore) conn.msgStore = new Map()
 

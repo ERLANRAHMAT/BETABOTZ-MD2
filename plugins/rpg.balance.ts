@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, {conn, usedPrefix}) => {
 	
     let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender

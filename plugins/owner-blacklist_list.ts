@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler: WaPlugin = async (m, { conn }) => {
   if (!global.db.data.globalBlacklist) global.db.data.globalBlacklist = [];
   let globalBlacklist = global.db.data.globalBlacklist;

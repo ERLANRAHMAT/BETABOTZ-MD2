@@ -55,7 +55,6 @@
   },
   "dependencies": {
     "@vitalets/google-translate-api": "^9.0.0",
-    "@whiskeysockets/baileys": "^7.0.0-rc14",
     "@zapo-js/mcp-server": "^1.1.0",
     "@zapo-js/media-utils": "^1.0.0",
     "@zapo-js/store-sqlite": "^1.1.0",

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import jimp from 'jimp'
 import uploadImage from '../lib/uploadImage.ts'
 import uploadFile from '../lib/uploadFile.ts'
@@ -9,7 +8,7 @@ let q = m.quoted ? m.quoted : m
 let mime = (q.msg || q).mimetype || ''
 if (!mime) throw "where the media?"
 
-let media = await q.download()
+let media = (await q.download()) as Buffer;
 let isMedia = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
 let link = await (isMedia ? uploadImage : uploadImage)(media)
 

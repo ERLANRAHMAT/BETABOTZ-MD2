@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
 let dapat = (Math.floor(Math.random() * 5000))
   let who

@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, command, text }) => {
   if (!text) throw `Siapa Yang *${command.replace('how', '').toUpperCase()}*`
 

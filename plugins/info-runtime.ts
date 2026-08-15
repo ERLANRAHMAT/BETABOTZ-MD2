@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
     let _uptime = process.uptime() * 1000
     let tio = clockString(_uptime)

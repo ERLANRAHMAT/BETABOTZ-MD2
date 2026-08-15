@@ -1,4 +1,3 @@
-// @ts-nocheck
 const handler: WaPlugin = async (m, { conn, text, command, usedPrefix, isOwner }) => {
     if (!m.isGroup) return m.reply("❌ Hanya bisa digunakan di grup.");
 
@@ -38,7 +37,7 @@ const handler: WaPlugin = async (m, { conn, text, command, usedPrefix, isOwner }
         const quoted = m.quoted;
 
         if (quoted && quoted.mtype) {
-            const buffer = await quoted.download();
+            const buffer = (await quoted.download()) as Buffer;
             if (!buffer) return m.reply("❌ Gagal mengunduh media.");
             const mtype = quoted.mtype;
             const mimetype = quoted.msg?.mimetype || quoted.mimetype;

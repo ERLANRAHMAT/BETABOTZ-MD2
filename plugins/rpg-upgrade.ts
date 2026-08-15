@@ -1,4 +1,3 @@
-// @ts-nocheck
 const handler: WaPlugin = async (m, {
     conn,
     command,

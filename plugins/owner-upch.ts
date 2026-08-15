@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     try {
         if (!global.idchannel || !Array.isArray(global.idchannel) || global.idchannel.length === 0) {

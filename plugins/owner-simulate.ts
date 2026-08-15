@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args: [event], text }) => {
   if (!event) throw `List Event: welcome, bye, delete, promote, demote`;
   let mentions = text.replace(event, "").trimStart();

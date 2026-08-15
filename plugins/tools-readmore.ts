@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
   let [ l, r ] = text.split('|')
   if (!l) l = ''

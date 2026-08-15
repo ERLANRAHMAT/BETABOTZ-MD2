@@ -1,4 +1,3 @@
-// @ts-nocheck
 const items = [ 'money', 'diamond', 'emas', 'berlian' ]
 let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
     conn.judipvp = conn.judipvp ? conn.judipvp : {}

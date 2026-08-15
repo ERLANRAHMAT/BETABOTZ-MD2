@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import uploadImage from '../lib/uploadImage.ts';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
@@ -31,7 +30,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 
         await m.reply('⏳ _Sedang memproses gambar..._');
 
-        let media = await q.download?.();
+        let media = (await q.download?.()) as Buffer;
         if (!media) throw 'Gagal mengunduh gambar.';
         
         let link = await uploadImage(media);

@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import uploadImage from '../lib/uploadImage.ts';
 import fetch from 'node-fetch';
 import axios from 'axios';
@@ -86,7 +85,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command, text }) => {
     if (/image/g.test(mime) && !/webp/g.test(mime)) {
         await conn.reply(m.chat, wait, m);
         try {
-            const img = await q.download?.();
+            const img = (await q.download?.()) as Buffer;
             let out = await uploadImage(img);
             let startTime = new Date();
 

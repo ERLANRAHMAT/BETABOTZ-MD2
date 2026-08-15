@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 export const before = async function(m, { isBotAdmin }) {
     if (!m.isGroup) return;
     if ( !isBotAdmin) {

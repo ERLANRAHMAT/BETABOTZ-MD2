@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { WaConnection } from '../types/connection.js';
 import * as zapo from '../lib/simple.ts';
 

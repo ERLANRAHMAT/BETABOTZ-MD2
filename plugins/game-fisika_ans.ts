@@ -1,4 +1,3 @@
-// @ts-nocheck
 let poin = 10000
 let handler: WaPlugin = m => m
 

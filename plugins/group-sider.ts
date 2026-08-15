@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text, args, groupMetadata }) => {
 
     const lama = 86400000 * 7

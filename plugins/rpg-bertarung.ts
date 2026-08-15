@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
   let user = global.db.data.users[m.sender]
   let opponent = m.mentionedJid[0]

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import moment from 'moment-timezone';
 
 let handler: WaPlugin = async (m, { conn, noPrefix, command, groupMetadata }) => {

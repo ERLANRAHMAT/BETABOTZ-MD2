@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, command, usedPrefix, text, participants }) => {
     const groups = Object.keys(conn.chats)
     .filter(key => key.endsWith('@g.us'))

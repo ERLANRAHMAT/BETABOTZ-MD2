@@ -1,4 +1,3 @@
-// @ts-nocheck
 const cooldown = 30000;
 
 

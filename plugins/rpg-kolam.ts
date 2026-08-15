@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, usedPrefix }) => {
          let paus = global.db.data.users[m.sender].paus 
          let kepiting = global.db.data.users[m.sender].kepiting

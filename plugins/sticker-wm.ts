@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import uploadFile from '../lib/uploadFile.ts';
 import fetch from 'node-fetch';
 
@@ -12,7 +11,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
   if (/video/g.test(mime) && (q.msg || q).seconds > 11) return m.reply('Maksimal 10 detik!');
   await m.reply(wait);
   try {
-    let img = await q.download?.();
+    let img = (await q.download?.()) as Buffer;
     if (!img) throw `Gagal mengunduh media, pastikan kamu membalas gambar/video/stiker.`;
 
     let media = await uploadFile(img);

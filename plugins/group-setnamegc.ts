@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
     if (!args.length) {
         return m.reply(`Mana nama grub nya? Contoh: *${usedPrefix + command}* grub himpunan ngawi`);

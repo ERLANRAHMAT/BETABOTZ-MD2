@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 const handler: WaPlugin = async (m, { conn, args }) => {
     const command = args[0];
     const user = global.db.data.users[m.sender];

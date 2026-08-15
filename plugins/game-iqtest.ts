@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin  = async (m, { conn }) => {
   conn.reply(m.chat,`${pickRandom(global.iq)}`, m)
 }

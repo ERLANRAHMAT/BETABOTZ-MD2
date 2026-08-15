@@ -1,9 +1,8 @@
-// @ts-nocheck
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn }) => {
   try {
-    let res = await fetch(`https://api.botcahx.eu.org/api/news/kumparan?apikey=${btc}`);
+    let res = await fetch(`https://api.betabotz.eu.org/api/news/kumparan?apikey=${btc}`);
     let json = await res.json();
     let items = json.result.filter(item => item.berita && item.berita_url);
     let choice = pickRandom(items);

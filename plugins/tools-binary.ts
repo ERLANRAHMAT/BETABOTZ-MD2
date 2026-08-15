@@ -1,4 +1,3 @@
-// @ts-nocheck
 import axios from 'axios';
 
 let handler: WaPlugin = async(m, { conn, text }) => {

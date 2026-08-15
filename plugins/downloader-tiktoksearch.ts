@@ -1,5 +1,4 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
+
 import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
  if (!args[0]) throw `🚩 *Example:* ${usedPrefix + command} anime`

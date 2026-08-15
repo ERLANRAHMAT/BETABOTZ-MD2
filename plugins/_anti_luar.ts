@@ -1,7 +1,5 @@
-// @ts-nocheck
-// Converted from plugins-esm - automated
-let handler = m => m
 
+let handler: WaPlugin = (m) => m
 handler.before = async function (m) {
    if (m.sender.startsWith('212' || '212')) {
    	global.db.data.users[m.sender].banned = true

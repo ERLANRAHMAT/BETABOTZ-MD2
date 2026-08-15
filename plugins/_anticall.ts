@@ -1,4 +1,3 @@
-// @ts-nocheck
 global.anticall = global.anticall ?? false
 let initialized = false
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async(m, { conn, text, participants }) => {
   let teks = `⋙ *PESAN DARI ADMIN GROUP* ⋘
 \n *${text ? text : 'Nothing'}*\n\n`

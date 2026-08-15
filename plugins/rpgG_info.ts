@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args }) => {
     let target = m.mentionedJid[0] || m.sender;
 

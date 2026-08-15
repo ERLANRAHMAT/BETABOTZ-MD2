@@ -1,4 +1,3 @@
-// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
 	let q = m.quoted ? m.quoted : m
 	try {

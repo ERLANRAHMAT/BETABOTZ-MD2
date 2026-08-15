@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { WaRoomGame } from '../types/connection.js';
 import TicTacToe from '../lib/tictactoe.ts'
 
