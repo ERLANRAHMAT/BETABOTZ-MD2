@@ -69,7 +69,7 @@ global.APIs = {
 };
 global.APIKeys = {
   "https://api.betabotz.eu.org": global.lann,
-  "https://api.betabotz.eu.org": global.btc, //OPSIONAL
+  "https://api.botcahx.eu.org": global.btc, //OPSIONAL
   "https://api.danafxc.my.id": global.dana, //OPSIONAL
   "https://task.aniqu.biz.id/": global.taskToken, //OPSIONAL
 };
