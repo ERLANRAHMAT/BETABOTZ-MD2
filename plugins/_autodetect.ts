@@ -42,5 +42,3 @@ before: async function before(m) {
   }
 }
 */
-
-export default handler;

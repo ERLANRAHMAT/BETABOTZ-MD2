@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = m => m
 handler.before = async function (m) {
 

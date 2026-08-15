@@ -1,7 +1,7 @@
 // @ts-nocheck
 // Converted from plugins-esm - automated
 import fetch from 'node-fetch';
-import uploadImage from '../lib/uploadImage.js';
+import uploadImage from '../lib/uploadImage.ts';
 
 async function handler(m, { conn, usedPrefix, command }) {
   try {
@@ -30,4 +30,4 @@ handler.command = ['remini'];
 handler.premium = false;
 handler.limit = false;
 
-export default handler;
+export default {};

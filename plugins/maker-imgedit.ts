@@ -1,6 +1,6 @@
 // @ts-nocheck
 // Converted from plugins-esm - automated
-import uploadImage from '../lib/uploadImage.js';
+import uploadImage from '../lib/uploadImage.ts';
 import fetch from 'node-fetch';
 import axios from 'axios';
 

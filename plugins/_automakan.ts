@@ -105,5 +105,3 @@ export default {
 //     },
 //     disabled: false
 //     }
-
-export default handler;

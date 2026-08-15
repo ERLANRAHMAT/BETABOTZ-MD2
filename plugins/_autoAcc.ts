@@ -23,4 +23,4 @@ export const before = async function(m, { isBotAdmin }) {
     }
 }}
 
-export default handler;
+export default {};

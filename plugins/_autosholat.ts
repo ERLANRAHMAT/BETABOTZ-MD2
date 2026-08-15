@@ -46,5 +46,3 @@ before: async function (m) {
 },
 disabled: false
 }
-
-export default handler;

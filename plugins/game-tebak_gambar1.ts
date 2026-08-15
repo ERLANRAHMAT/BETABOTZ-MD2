@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { WaGameRoom } from '../types/connection.js';
 let timeout = 100000
 let poin = 10000

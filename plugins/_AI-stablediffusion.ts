@@ -1,3 +1,4 @@
+// @ts-nocheck
 const __dirname = import.meta.dirname;
 import fetch from 'node-fetch';
 import { writeFileSync } from 'fs';

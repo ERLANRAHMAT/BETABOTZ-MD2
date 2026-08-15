@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fetch from 'node-fetch';
-import uploadImage from '../lib/uploadImage.js'; 
+import uploadImage from '../lib/uploadImage.ts'; 
 
 const { Image } = WebP;
 const __filename = fileURLToPath(import.meta.url);

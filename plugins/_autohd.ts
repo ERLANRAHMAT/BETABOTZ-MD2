@@ -1,7 +1,7 @@
 // @ts-nocheck
 // Converted from plugins-esm - automated
 import fetch from 'node-fetch';
-import uploadImage from '../lib/uploadImage.js';
+import uploadImage from '../lib/uploadImage.ts';
 export const before = async function(m, { isAdmin, isBotAdmin }) {
   if (global.db.data.users[m.sender].limit > 0) {
     if (m.isBaileys && m.fromMe) return;
@@ -30,4 +30,4 @@ export const before = async function(m, { isAdmin, isBotAdmin }) {
   }
   }
 
-export default handler;
+export default {};

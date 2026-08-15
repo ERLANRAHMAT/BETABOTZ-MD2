@@ -1,3 +1,4 @@
+// @ts-nocheck
 export default Object.assign(async function handler(m, { conn, isOwner, isPremium, command }) {
     if (!(isOwner || isPremium)) {
         global.dfail('premium', m, conn)

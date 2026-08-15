@@ -1,6 +1,6 @@
 // @ts-nocheck
 // Converted from plugins-esm - automated
-import { sKata, cKata } from '../lib/sambung-kata.js';
+import { sKata, cKata } from '../lib/sambung-kata.ts';
 let handler = m => m
 
 handler.before = async function (m, { conn }) {

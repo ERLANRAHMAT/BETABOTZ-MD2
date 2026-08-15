@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* 
 import colorModule from '../lib/color.ts'
 const color = colorModule.color

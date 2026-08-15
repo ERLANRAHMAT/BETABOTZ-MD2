@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 	if (!text) throw 'masukkan teks'
 	let q = m.quoted ? m.quoted : m

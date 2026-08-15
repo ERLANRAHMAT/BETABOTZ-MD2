@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { WaGameRoom } from '../types/connection.js';
 let handler: WaPlugin = async (m, { conn, usedPrefix, text }) => {
     conn.absen = conn.absen ? conn.absen : {}

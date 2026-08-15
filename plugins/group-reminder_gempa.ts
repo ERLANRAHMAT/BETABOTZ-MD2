@@ -71,4 +71,4 @@ function startGempaReminder() {
 
 startGempaReminder();
 
-export default handler;
+export default {};

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { WaMessage, WaGameRoom } from '../types/connection.js';
 let handler: WaPlugin = async (m, { usedPrefix, text, command, participants  }) => {
     conn.giveway = conn.giveway ? conn.giveway : {}

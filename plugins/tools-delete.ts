@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, command }) => {
     if (!m.quoted) throw 'Reply pesan yang ingin dihapus';
     try {

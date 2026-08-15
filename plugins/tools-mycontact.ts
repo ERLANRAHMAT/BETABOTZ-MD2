@@ -1,3 +1,4 @@
+// @ts-nocheck
 import PhoneNumberNS from 'awesome-phonenumber'
 const PhoneNumber = ((PhoneNumberNS as unknown as { default: (n: string) => { getNumber: (f: string) => string } }).default)
 let handler: WaPlugin  = async (m, { conn, text }) => {

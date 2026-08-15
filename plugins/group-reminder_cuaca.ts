@@ -79,4 +79,4 @@ function startDailyWeatherReminder() {
 
 startDailyWeatherReminder();
 
-export default handler;
+export default {};

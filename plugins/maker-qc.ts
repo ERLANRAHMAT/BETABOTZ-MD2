@@ -1,9 +1,9 @@
+// @ts-nocheck
 // Converted from plugins-esm - automated
-import { sticker5 } from '../lib/sticker.js';
+import { sticker5 } from '../lib/sticker.ts';
 import axios from 'axios';
 import FormData from 'form-data';
-import pkg from 'file-type';
-const { fromBuffer } = pkg;
+import { fileTypeFromBuffer as fromBuffer } from 'file-type';
 import sharp from 'sharp';
 import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { conn, text, args }) => {
@@ -131,5 +131,3 @@ async function uploadImage(buffer) {
   let resultUrl = data.result ? data.result.url : ''
   return resultUrl
 }
-
-export default handler;

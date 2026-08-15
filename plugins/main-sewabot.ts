@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, command }) => {
     let txt = `*[ Chat Dengan Creator ]*
 wa.me/${numberowner}

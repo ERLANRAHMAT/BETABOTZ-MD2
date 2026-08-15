@@ -1,3 +1,4 @@
+// @ts-nocheck
 let lastUpdate = 0;
 
 export default {

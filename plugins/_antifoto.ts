@@ -17,5 +17,3 @@ exports.before = async function(m, { isAdmin, isBotAdmin }) {
 }
 
 export default exports;
-
-export default handler;

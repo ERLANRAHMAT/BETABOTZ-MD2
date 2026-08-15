@@ -31,5 +31,3 @@ ${sticker.mentionedJid.map((v, i) => `No. *${i + 1}*:\n*Mention Name:* ${conn.ge
 function splitM(jid) {
     return jid.split('@')[0]
 }
-
-export default handler;

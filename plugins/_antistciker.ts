@@ -19,5 +19,3 @@ async function before(m, { isAdmin, isBotAdmin }) {
 }
 
 export default { before };
-
-export default handler;

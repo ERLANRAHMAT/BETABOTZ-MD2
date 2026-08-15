@@ -1,7 +1,7 @@
 // @ts-nocheck
 // Converted from plugins-esm - automated
 import fetch from 'node-fetch';
-import uploader from '../lib/uploadFile.js';
+import uploader from '../lib/uploadFile.ts';
 
 let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
 	let q = m.quoted ? m.quoted : m

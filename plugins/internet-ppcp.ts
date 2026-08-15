@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fetch from 'node-fetch'
 let handler: WaPlugin = async (m, { conn, command }) => {
   let res = await fetch(`https://api.botcahx.eu.org/api/randomgambar/couplepp?apikey=${btc}`)

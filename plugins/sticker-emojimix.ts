@@ -1,7 +1,7 @@
 // @ts-nocheck
 // Converted from plugins-esm - automated
 import fetch from 'node-fetch';
-import { sticker5 } from '../lib/sticker.js';
+import { sticker5 } from '../lib/sticker.ts';
 
 let handler: WaPlugin = async (m, { conn, text, args }) => {
     if (!args[0] || !text.includes('+')) {

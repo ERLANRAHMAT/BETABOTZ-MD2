@@ -2,7 +2,7 @@
 // Converted from plugins-esm - automated
 import { 
     sticker5 
-} from '../lib/sticker.js';
+} from '../lib/sticker.ts';
 import fs from 'fs';
 import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, {

@@ -286,4 +286,4 @@ setInterval(async () => {
 
 */
 
-export default handler;
+export default {};

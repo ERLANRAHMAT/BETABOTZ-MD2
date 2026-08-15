@@ -20,4 +20,4 @@
 //      return list[Math.floor(Math.random() * list.length)]
 //   }
 
-export default handler;
+export default {};

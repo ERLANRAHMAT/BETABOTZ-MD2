@@ -66,5 +66,3 @@ ${Array.from(room.jawaban, (jawaban, index) => {
         return !0
     }
 }
-
-export default handler;

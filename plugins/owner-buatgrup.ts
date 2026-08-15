@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text, command, usedPrefix }) => {
   if (!text) throw `Format salah!\n\nContoh:\n${usedPrefix + command} NamaGrup|@user1 @user2\n\natau bisa juga:\n${usedPrefix + command} NamaGrup`
   let [namagc, partText] = text.split('|').map(s => s.trim())

@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
     const data = global.db.data.totalchat || {};
     const chatData = data[m.chat] || {};

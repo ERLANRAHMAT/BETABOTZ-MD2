@@ -50,4 +50,4 @@
 
 // export default {};
 
-export default handler;
+export default {};

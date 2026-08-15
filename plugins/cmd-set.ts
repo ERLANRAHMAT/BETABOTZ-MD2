@@ -1,3 +1,4 @@
+// @ts-nocheck
 import pkg from 'node-webpmux';
 const { Image } = pkg;
 

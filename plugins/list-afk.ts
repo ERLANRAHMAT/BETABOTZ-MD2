@@ -52,4 +52,4 @@ function formatTime(ms) {
   return timeString.trim();
 }
 
-export default handler;
+export default {};

@@ -66,5 +66,3 @@ ${mentionedInfo}
     tags: ['database'],
     command: ['infocmd']
 })
-
-export default handler;

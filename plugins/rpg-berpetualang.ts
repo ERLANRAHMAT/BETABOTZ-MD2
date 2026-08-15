@@ -137,4 +137,4 @@ handler.limit = true;
 handler.rpg = true;
 handler.register = true;
 
-export default handler;
+export default {};

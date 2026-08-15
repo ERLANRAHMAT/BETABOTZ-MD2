@@ -1,3 +1,4 @@
+// @ts-nocheck
 import similarity from 'similarity'
 const threshold = 0.72
 

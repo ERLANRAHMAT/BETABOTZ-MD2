@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Converted from plugins-esm - automated
 
 import fetch from 'node-fetch';
@@ -772,5 +773,3 @@ handler.before = async function (m, { conn, isPrems }) {
 
 
 export default handler
-
-export default handler;

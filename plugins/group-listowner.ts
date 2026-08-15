@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fs from 'fs'
 let handler: WaPlugin = async (m, { conn, isOwner }) => {
   let prem = global.owner.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').filter(v => v != conn.user.jid)

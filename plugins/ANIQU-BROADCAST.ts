@@ -118,4 +118,4 @@ try {
 
 */
 
-export default handler;
+export default {};

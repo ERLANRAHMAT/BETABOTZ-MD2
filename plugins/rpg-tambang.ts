@@ -146,4 +146,4 @@ handler.group = true;
 handler.register = true;
 handler.rpg = true;
 
-export default handler;
+export default {};

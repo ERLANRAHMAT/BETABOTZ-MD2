@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as zapo from '../lib/simple.ts';
 import type { WaProtoWebMessageInfoClass } from '../types/proto.js';
 

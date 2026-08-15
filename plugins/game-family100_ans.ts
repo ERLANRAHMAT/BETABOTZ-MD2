@@ -88,5 +88,3 @@ ${room.jawaban.map((j, i) => {
         return !0
     }
 }
-
-export default handler;

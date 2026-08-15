@@ -1,8 +1,8 @@
 // @ts-nocheck
 // Converted from plugins-esm - automated
 import fetch from 'node-fetch';
-import uploader from '../lib/uploadImage.js';
-import uploadFile from '../lib/uploadFile.js';
+import uploader from '../lib/uploadImage.ts';
+import uploadFile from '../lib/uploadFile.ts';
 
 let handler: WaPlugin = async (m, { conn, text, command, usedPrefix }) => {
   try {

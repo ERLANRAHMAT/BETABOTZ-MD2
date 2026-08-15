@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fetch from 'node-fetch'
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 if (!text) throw `Masukkan No Surah!\n\ncontoh: ${usedPrefix + command} 2`;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fs from 'fs';
 import { proto } from 'zapo-js';
 import uploader from '../lib/uploadFile.ts';

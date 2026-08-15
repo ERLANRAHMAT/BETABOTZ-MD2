@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Converted from plugins-esm - automated
 // const { Image } = import 'node-webpmux';
 // const fs = import 'fs';

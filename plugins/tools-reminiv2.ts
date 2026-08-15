@@ -1,7 +1,7 @@
 // @ts-nocheck
 // Converted from plugins-esm - automated
 import fetch from 'node-fetch';
-import uploadImage from '../lib/uploadImage.js';
+import uploadImage from '../lib/uploadImage.ts';
 
 async function handler(m, { conn, usedPrefix, command, text }) {
   try {   
@@ -33,4 +33,4 @@ handler.premium = false;
 handler.limit = false;
 handler.group = true;
 
-export default handler;
+export default {};

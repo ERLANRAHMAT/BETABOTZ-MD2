@@ -2,7 +2,7 @@
 // Converted from plugins-esm - automated
 import { 
 sticker5 
-} from '../lib/sticker.js';
+} from '../lib/sticker.ts';
 let handler: WaPlugin = async (m, { conn, command, text, usedPrefix }) => {
   if (!text) throw `🚩 *Contoh:* ${usedPrefix + command} 🗿`
      await conn.reply(m.chat, wait, m)

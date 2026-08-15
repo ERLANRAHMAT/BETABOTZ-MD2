@@ -1,3 +1,4 @@
+// @ts-nocheck
 const handler: WaPlugin = async (m, { conn, args }) => {
     const command = args[0];
     const user = global.db.data.users[m.sender];

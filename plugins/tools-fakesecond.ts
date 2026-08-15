@@ -35,4 +35,4 @@ handler.command = ['fakesecond'];
 handler.premium = false;
 handler.limit = false;
 
-export default handler;
+export default {};

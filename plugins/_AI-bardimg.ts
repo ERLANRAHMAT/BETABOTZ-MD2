@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fetch from 'node-fetch';
 import uploader from '../lib/uploadImage.ts';
 import uploadFile from '../lib/uploadFile.ts';

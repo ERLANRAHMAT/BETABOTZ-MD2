@@ -156,4 +156,4 @@ setInterval(async () => {
 
 // DIMATIKAN JIKA INGIN DI GUNAKAN HAPUS TANDA KOMENTAR
 
-export default handler;
+export default {};

@@ -13,4 +13,4 @@ export const before = async function(m) {
     return;
 };
 
-export default handler;
+export default {};

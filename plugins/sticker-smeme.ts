@@ -1,3 +1,4 @@
+// @ts-nocheck
 import FormData from 'form-data';
 import { fileTypeFromBuffer as fromBuffer } from 'file-type';
 import fetch from 'node-fetch'

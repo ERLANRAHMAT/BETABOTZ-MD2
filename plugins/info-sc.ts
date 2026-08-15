@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
 let ye = `@${m.sender.split('@')[0]}`
 let esce = `

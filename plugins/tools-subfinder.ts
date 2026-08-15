@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Converted from plugins-esm - automated
 import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {

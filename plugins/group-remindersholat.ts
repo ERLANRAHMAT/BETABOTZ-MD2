@@ -110,4 +110,4 @@ function startDailyPrayerReminder() {
 
 startDailyPrayerReminder();
 
-export default handler;
+export default {};

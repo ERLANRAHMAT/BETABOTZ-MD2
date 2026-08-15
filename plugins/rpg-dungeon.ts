@@ -705,4 +705,4 @@ DATA.forEach(player => {
 return msg
 }
 
-export default handler;
+export default {};

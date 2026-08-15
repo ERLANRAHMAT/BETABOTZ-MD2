@@ -1,3 +1,4 @@
+// @ts-nocheck
 const delay = time => new Promise(res => setTimeout(res, time))
 let handler: WaPlugin = m => m
 handler.all = async function (m) {

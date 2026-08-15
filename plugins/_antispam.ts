@@ -111,5 +111,3 @@ exports.before = async function (m) {
 };
 
 export default exports;
-
-export default handler;

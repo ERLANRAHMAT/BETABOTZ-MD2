@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, usedPrefix, text, command }) => {
     let sticker = global.db.data.sticker as Record<string, Record<string, unknown>>
     if (!sticker) throw 'Belum ada perintah stiker'

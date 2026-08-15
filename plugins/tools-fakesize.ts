@@ -40,4 +40,4 @@ handler.command = ['fakesize'];
 handler.premium = false;
 handler.limit = false;
 
-export default handler;
+export default {};

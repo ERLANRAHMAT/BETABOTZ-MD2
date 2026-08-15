@@ -153,5 +153,3 @@ async function emitCommand(m, chatUpdate, text, mentionedJid) {
         console.error('Error Media:', e);
     }
 }
-
-export default handler;

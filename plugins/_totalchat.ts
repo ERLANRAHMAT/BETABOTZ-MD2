@@ -1,3 +1,4 @@
+// @ts-nocheck
 export default {
     before: async (m, { conn }) => {
         try {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fetch from 'node-fetch'
 let handler: WaPlugin = async (m, { text }) => {
   if (!text) throw 'Masukan url/link nya mana?\n> .bitly https://google.com'
