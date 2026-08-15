@@ -30,7 +30,7 @@ const api = async (buffer, tmp: boolean | string = false, originalName = 'file')
   }
 };
 
-export default async function (buffer, flag: boolean | string = false) {
+export default async (buffer, flag: boolean | string = false) => {
   if (!buffer || buffer.length === 0) throw new Error('Buffer kosong');
 
   return api(buffer, flag, 'file');

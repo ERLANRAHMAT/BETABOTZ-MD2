@@ -30,6 +30,6 @@ const api = async (buffer, tmp: boolean | string = false, originalName = 'file')
   }
 };
 
-export default async function (buffer, tmp = false) {
+export default async (buffer, tmp: boolean | string = false) => {
   return api(buffer, tmp, 'file');
 };
