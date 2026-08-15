@@ -33,7 +33,7 @@ const handler: WaPlugin = async (m, { conn, args, text, usedPrefix, command }) =
 
     try {
         const response = await fetch(res);
-        const buffer = await response.buffer();
+        const buffer = Buffer.from(await response.buffer());
 
         if (command === 'attp') {
             await conn.sendFile(m.chat, buffer, 'sticker.webp', '', m);

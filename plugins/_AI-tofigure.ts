@@ -15,7 +15,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
             if (command == 'tofigure') {
                 let apiUrl = `https://api.betabotz.eu.org/api/maker/tofigurev3?url=${out}&apikey=${btc}`;
                 let res = await fetch(apiUrl);
-                let convert = await res.buffer();
+                let convert = Buffer.from(await res.buffer());
                 await conn.sendMessage(m.chat, { 
                     image: convert, 
                     caption: `🍟 *Fetching:* ${((Date.now() - old) * 1)} ms`
@@ -25,7 +25,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
             if (command == 'tofigure2') {
                 let apiUrl = `https://api.betabotz.eu.org/api/maker/tofigurev2?url=${out}&apikey=${btc}`;
                 let res = await fetch(apiUrl);
-                let convert = await res.buffer();
+                let convert = Buffer.from(await res.buffer());
                 await conn.sendMessage(m.chat, { 
                     image: convert, 
                     caption: `🍟 *Fetching:* ${((Date.now() - old) * 1)} ms`
@@ -35,7 +35,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
             if (command == 'tofigure3') {
                 let apiUrl = `https://api.betabotz.eu.org/api/maker/tofigure?url=${out}&apikey=${btc}`;
                 let res = await fetch(apiUrl);
-                let convert = await res.buffer();
+                let convert = Buffer.from(await res.buffer());
                 await conn.sendMessage(m.chat, { 
                     image: convert, 
                     caption: `🍟 *Fetching:* ${((Date.now() - old) * 1)} ms`

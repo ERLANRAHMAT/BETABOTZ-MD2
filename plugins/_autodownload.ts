@@ -472,7 +472,7 @@ async function _twitter(link, m) {
 
 			for (const url of mediaURLs) {
 				const response = await fetch(url);
-				const buffer = await response.buffer();
+				const buffer = Buffer.from(await response.buffer());
 				await delay(3000)//3 detik jeda agar tidak spam
 				conn.sendFile(m.chat, buffer, null, capt, m);
 			}

@@ -33,7 +33,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
             let fdata = file.files[0]
             try {
                 let response = await fetch(fdata.url)
-                let buffer = await response.buffer()
+                let buffer = Buffer.from(await response.buffer())
                
                 let queue = `*Antrian:* ${i + 1}-${total}\n`               
                 await conn.sendFile(m.sender, buffer, file.name, queue, m)

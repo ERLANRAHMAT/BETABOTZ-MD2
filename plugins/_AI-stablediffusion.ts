@@ -8,7 +8,7 @@ let handler: WaPlugin = async (m, { text, conn, usedPrefix, command }) => {
   if (!text.includes(',')) throw `Tolong gunakan prompt dengan benar. Gunakan koma *[ , ]* untuk memisahkan argumen.\n*Contoh:* ${usedPrefix}${command} 1girl, blush, looking to viewer, warm smile`;  
   const prompt = text.split(',').join(', ');
   const response = await fetch(`https://api.betabotz.eu.org/api/search/stablediffusion?apikey=${btc}&text=${prompt}`);
-  const buffer = await response.buffer();
+  const buffer = Buffer.from(await response.buffer());
   const saveFilename = path.join(__dirname, '../tmp/stablediffusion.jpg');
   writeFileSync(saveFilename, buffer);
   conn.sendFile(m.chat, saveFilename, null, `*Result For:* _${prompt}_`, m);

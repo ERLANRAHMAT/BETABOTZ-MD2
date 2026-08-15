@@ -18,13 +18,12 @@ let handler: WaPlugin = async (m, {
     if (!text) throw `Example : ${usedPrefix + command} Lagi Ruwet`
     
     let res;
-    var error = fs.readFileSync(`./media/sticker/emror.webp`)
     
     try {
         if (command === 'attp') {
             res = `https://api.betabotz.eu.org/api/maker/attp?text=${encodeURIComponent(text.substring(0, 151))}&apikey=${lann}`;
             let fetchResult = await fetch(res)
-            let imageBuffer = await fetchResult.buffer()
+            let imageBuffer = Buffer.from(await fetchResult.buffer())
             
             let stiker = await sticker5(
                 imageBuffer,
@@ -42,7 +41,7 @@ let handler: WaPlugin = async (m, {
         } else if (command === 'ttp') {
             res = `https://api.betabotz.eu.org/api/maker/ttp?text=${encodeURIComponent(text.substring(0, 151))}&apikey=${lann}`;
             let fetchResult = await fetch(res)
-            let imageBuffer = await fetchResult.buffer()
+            let imageBuffer = Buffer.from(await fetchResult.buffer())
             
             let stiker = await sticker5(
                 imageBuffer,
@@ -60,7 +59,7 @@ let handler: WaPlugin = async (m, {
         } else if (command === 'brat') {
             res = `https://api.betabotz.eu.org/api/maker/brat?text=${encodeURIComponent(text.substring(0, 151))}&apikey=${lann}`;
             let fetchResult = await fetch(res)
-            let imageBuffer = await fetchResult.buffer()
+            let imageBuffer = Buffer.from(await fetchResult.buffer())
             
             let stiker = await sticker5(
                 imageBuffer,

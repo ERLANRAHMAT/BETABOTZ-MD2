@@ -8,7 +8,7 @@ let handler: WaPlugin = async (m, { conn, command, usedPrefix, text }) => {
     let apiUrl = `https://api.betabotz.eu.org/api/search/openai-image?text=${text}&apikey=${lann}`;
     let res = await fetch(apiUrl);
     if (!res.ok) throw 'Gagal mengambil gambar dari API';
-    let buffer = await res.buffer();
+    let buffer = Buffer.from(await res.buffer());
     
     let filePath = './tmp/tmp-sticker.png';
     fs.writeFileSync(filePath, buffer);
