@@ -1,15 +1,26 @@
 import axios from 'axios';
-import { Sticker } from 'wa-sticker-formatter';
 import FormData from 'form-data';
-import { fileTypeFromBuffer as fromBuffer } from 'file-type';
+import { fileTypeFromBuffer as fromBuffer, type FileTypeResult } from 'file-type';
 import sharp from 'sharp';
 import fetch from 'node-fetch';
 
-let handler: WaPlugin = async (m, { conn, text, usedPrefix, command, isOwner }) => {
+let handler: WaPlugin = async (m, { conn, text, args }) => {
     try {
         let q: any = m.quoted ? m.quoted : m;
         let mime: string = (q.msg || q).mimetype || q.mediaType || '';
-        let txt: string = text ? text : typeof q.text == 'string' ? q.text : '';
+        
+        let txt: string = '';
+        if (args && args.length >= 1) {
+            txt = args.slice(0).join(" ");
+        } else if (m.quoted && m.quoted.text) {
+            txt = m.quoted.text;
+        }
+        
+        if (!txt && !/image\/(jpe?g|png|webp)/.test(mime)) {
+            throw "Input teks atau reply teks/gambar yang ingin dijadikan quote!";
+        }
+        if (txt && txt.length > 100) return m.reply('Maksimal 100 Teks!');
+
         let name: string = await (typeof q.name === 'string' ? q.name : conn.getName(q.sender));
         let avatar: string;
         
@@ -25,47 +36,50 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command, isOwner }) 
         
         if (!avatar) avatar = 'https://telegra.ph/file/320b066dc81928b782c7b.png';
 
+        const randomColor: string[] = ['#ef1a11', '#89cff0', '#660000', '#87a96b', '#e9f6ff', '#ffe7f7', '#ca86b0', '#83a3ee', '#abcc88', '#80bd76', '#6a84bd', '#5d8d7f', '#530101', '#863434', '#013337', '#133700', '#2f3641', '#cc4291', '#7c4848', '#8a496b', '#722f37', '#0fc163', '#2f3641', '#e7a6cb', '#64c987', '#e6e6fa', '#ffa500'];
+        const apiColor: string = randomColor[Math.floor(Math.random() * randomColor.length)];
+
+        let bufferqc: Buffer;
         if (!/image\/(jpe?g|png|webp)/.test(mime)) {
-            let req = await ___qctext(txt, name, avatar);
-            let stiker = await createWebp(req, false, global.packname, global.author);
-            await conn.sendFile(m.chat, stiker, 'sticker.webp', '', m);
+            // Proses teks biasa
+            bufferqc = await ___qctext(txt || '', name, avatar, apiColor);
         } else {
+            // Proses gambar (didownload, diubah ke PNG via sharp, diupload, lalu diproses)
             let img: Buffer = await q.download();
-            // Sharp di sini aman karena membaca gambar dari WA, lalu diubah ke PNG
             let decodedBuffer: Buffer = await sharp(img).toFormat('png').toBuffer();
-            let url: string = await uploadImage(decodedBuffer);
-            let req = await ___qcimg(url, txt, name, avatar);
-            let stiker = await createWebp(req, false, global.packname, global.author);
-            await conn.sendFile(m.chat, stiker, 'sticker.webp', '', m);
+            let mediaUrl: string = await uploadImage(decodedBuffer);
+            bufferqc = await ___qcimg(mediaUrl, txt || '', name, avatar, apiColor);
         }
+
+        // PERBAIKAN: Buang sticker5, gunakan sendImageAsSticker bawaan conn untuk menghindari invalid pointer memory crash
+        await conn.sendImageAsSticker(m.chat, bufferqc, m, { packname: global.packname, author: global.author });
+
     } catch (e) {
-        console.error("Quotely Error:", e);
+        console.error(e);
         throw e;
     }
-};
+}
 
-handler.help = ['qc'].map(v => v + ' <text & reply>');
+handler.help = ['qc'];
 handler.tags = ['sticker'];
 handler.command = /^(qc|quotely)$/i;
-handler.premium = false;
-handler.limit = true;
 
 export default handler;
 
-// Definisi fungsi helpers
-async function ___qctext(text: string, name: string, url: string): Promise<Buffer> {
+// -- FUNGSI HELPER --
+
+async function ___qctext(text: string, name: string, url: string, color: string): Promise<Buffer> {
     let body = {
         "type": "quote",
-        "format": "png", // <-- SUDAH DIUBAH KE PNG AGAR SHARP TIDAK CRASH
-        "backgroundColor": "#FFFFFF",
+        "format": "png", // Tetap pertahankan PNG agar aman saat diolah sendImageAsSticker
+        "backgroundColor": color,
         "width": 512,
         "height": 512,
         "scale": 2,
         "messages": [{
             "avatar": true,
             "from": {
-                "first_name": name,
-                "language_code": "en",
+                "id": 1,
                 "name": name,
                 "photo": {
                     "url": url
@@ -75,15 +89,17 @@ async function ___qctext(text: string, name: string, url: string): Promise<Buffe
             "replyMessage": {}
         }]
     };
-    let res = await axios.post('https://qc.botcahx.eu.org/generate', body);
+    let res = await axios.post('https://btzqc.betabotz.eu.org/generate', body, {
+        headers: { 'Content-Type': 'application/json' }
+    });
     return Buffer.from(res.data.result.image, "base64");
 }
 
-async function ___qcimg(url: string, text: string, name: string, avatar: string): Promise<Buffer> {
+async function ___qcimg(url: string, text: string, name: string, avatar: string, color: string): Promise<Buffer> {
     let body = {
         "type": "quote",
         "format": "png",
-        "backgroundColor": "#FFFFFF",
+        "backgroundColor": color,
         "width": 512,
         "height": 768,
         "scale": 2,
@@ -104,26 +120,15 @@ async function ___qcimg(url: string, text: string, name: string, avatar: string)
             "replyMessage": {}
         }]
     };
-    let res = await axios.post('https://qc.botcahx.eu.org/generate', body);
+    let res = await axios.post('https://btzqc.betabotz.eu.org/generate', body, {
+        headers: { 'Content-Type': 'application/json' }
+    });
     return Buffer.from(res.data.result.image, "base64");
 }
 
-async function createWebp(req: Buffer | string, url: boolean | string, packName: string, authorName: string, quality = 80): Promise<Buffer> {
-    let metadata_sticker = {
-        type: 'full',
-        pack: packName,
-        author: authorName,
-        quality
-    };
-    const media = req ? req : (url as unknown as string);
-    
-    return (new Sticker(media, metadata_sticker)).toBuffer();
-}
-
 async function uploadImage(buffer: Buffer): Promise<string> { 
-    let fileTypeRes = await fromBuffer(buffer);
-    // Safety check: jika fileType gagal membaca buffer, default ke png
-    let ext = fileTypeRes ? fileTypeRes.ext : 'png'; 
+    let fileTypeRes: FileTypeResult | undefined = await fromBuffer(buffer);
+    let ext: string = fileTypeRes ? fileTypeRes.ext : 'png'; 
     
     let bodyForm = new FormData();
     bodyForm.append("file", buffer, "file." + ext);
@@ -133,7 +138,11 @@ async function uploadImage(buffer: Buffer): Promise<string> {
         body: bodyForm,
     });
     
-    let data: any = await res.json();
+    interface UploadResponse {
+        result?: { url: string };
+    }
+    
+    let data = (await res.json()) as UploadResponse;
     let resultUrl: string = data.result ? data.result.url : '';
     return resultUrl;
 }
