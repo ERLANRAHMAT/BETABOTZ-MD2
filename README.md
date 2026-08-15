@@ -1,15 +1,6 @@
 
-## UNTESTED
+## UNTESTED / BELUM DI UJI COBA
 
-<h1 align="center">BETABOTZ MD2-TS</h1>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Node.js-22%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node">
-  <img src="https://img.shields.io/badge/zapo--js-Latest-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" alt="zapo-js">
-  <img src="https://img.shields.io/badge/Lisensi-MIT-yellow?style=for-the-badge" alt="License">
-</p>
-
----
 
 ## Pembaruan Terbaru
 
