@@ -2,7 +2,7 @@ const __filename = import.meta.filename;
 import dotenv from "dotenv";
 dotenv.config();
 // Timezone
-process.env.TZ = 'Asia/Jakarta';
+process.env.TZ = "Asia/Jakarta";
 
 // Pengaturan Bot disini Semua
 global.owner = ["6281289694906"]; // wajib di isi tidak boleh kosong
@@ -11,7 +11,7 @@ global.prems = ["6281289694906"]; // wajib di isi tidak boleh kosong
 global.nameowner = "DANA"; // wajib di isi tidak boleh kosong
 global.numberowner = "6281289694906"; // wajib di isi tidak boleh kosong
 global.mail = "danaputra10012@gmail.com"; // wajib di isi tidak boleh kosong
-Object.assign(globalThis, { gc: "https://chat.whatsapp.com/I5RpePh2b5u37OyFjZCNTr" }); // wajib di isi tidak boleh kosong
+Object.assign(globalThis, { gc: "https://chat.whatsapp.com/I5RpePh2b5u37OyFjZCNTr" }); // wajib di isi tidak boleh kosong  // wajib di isi tidak boleh kosong
 global.instagram = "https://www.instagram.com/dana_putra13/"; // wajib di isi tidak boleh kosong
 global.wm = "© Aquabot"; // isi nama bot atau nama kalian
 global.wait = "_*Tunggu sedang di proses...*_"; // ini pesan simulasi loading
@@ -22,7 +22,7 @@ global.thumb = "https://telegra.ph/file/3a34bfa58714bdef500d9.jpg"; // thumb unt
 global.packname = "Made With"; // watermark stikcker packname
 global.author = "Bot WhatsApp"; // watermark stikcker author
 global.maxwarn = "3"; // Peringatan maksimum Warn
-global.lapor = false  // set true agar bot mengirim return json error ke grub lapor, jika false tidak ada
+global.lapor = false; // set true agar bot mengirim return json error ke grub lapor, jika false tidak ada
 global.groupLapor = "120363216901617825@g.us"; // grub dimana bot mengirim laporan error dari user
 global.idchannel = ["123123412341234@newsletter"]; // channel untuk pengumuman bot max 3
 global.autobio = false; // Set true/false untuk mengaktifkan atau mematikan autobio (default: false)
@@ -31,8 +31,7 @@ global.spam = false; // Set true/false untuk anti spam (default: false)
 global.gcspam = false; // Set true/false untuk menutup grup ketika spam (default: false)
 // APIKEY INI WAJIB UNTUK DI ISI! //
 // Prefix dari bot
-Object.assign(globalThis, { prefix: './#' });
-
+Object.assign(globalThis, { prefix: "./#" });
 
 // APIKEY INI WAJIB DI ISI! //
 global.lann = "YOUR_APIKEY_HERE";
@@ -64,20 +63,22 @@ global.taskToken = "YOUR_TOKEN_HERE";
 
 global.APIs = {
   lann: "https://api.betabotz.eu.org",
+  btc: "https://api.botcahx.eu.org",
   dana: "https://api.danafxc.my.id",
   taskToken: "https://task.aniqu.biz.id/",
 };
 global.APIKeys = {
   "https://api.betabotz.eu.org": global.lann,
+  "https://api.botcahx.eu.org": global.btc, //OPSIONAL
   "https://api.danafxc.my.id": global.dana, //OPSIONAL
   "https://task.aniqu.biz.id/": global.taskToken, //OPSIONAL
 };
-import fs from 'fs';
-import chalk from 'chalk';
-import { pathToFileURL } from 'url';
+import fs from "fs";
+import chalk from "chalk";
+import { pathToFileURL } from "url";
 let file = import.meta.filename;
 fs.watchFile(file, async () => {
   fs.unwatchFile(file);
   console.log(chalk.redBright("Update 'config.ts, harap bot di restart!'"));
-  await import(pathToFileURL(file).href + '?update=' + Date.now());
+  await import(pathToFileURL(file).href + "?update=" + Date.now());
 });
