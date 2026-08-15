@@ -12,7 +12,7 @@ command
 	       await conn.reply(m.chat, wait, m)
 			const img = await q.download?.()
 			let out = await uploadImage(img)
-			let res = await fetch(`https://api.botcahx.eu.org/api/tools/ss2code?url=${out}&apikey=${lann}`)
+			let res = await fetch(`https://api.betabotz.eu.org/api/tools/ss2code?url=${out}&apikey=${lann}`)
 			let json = await res.json()
 		    await m.reply(json.result)
 		} catch (e) {

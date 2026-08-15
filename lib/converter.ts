@@ -2,30 +2,10 @@ const __dirname = import.meta.dirname;
 import fs from 'fs'
 import path from 'path'
 import { spawn } from 'child_process'
-import { fileTypeFromBuffer as fromBuffer } from 'file-type';
-
-async function validateMediaBuffer(buffer: Buffer, label = 'Buffer media') {
-  if (!Buffer.isBuffer(buffer) || buffer.length === 0) {
-    throw new Error(`${label} kosong atau bukan Buffer`)
-  }
-
-  const info = await fromBuffer(buffer)
-  if (!info) {
-    throw new Error(`${label} tidak dikenali sebagai file media yang valid`)
-  }
-
-  if (!['image', 'video', 'audio'].some(type => info.mime.startsWith(type))) {
-    throw new Error(`${label} memiliki MIME tidak valid: ${info.mime}`)
-  }
-
-  return info
-}
 
 function ffmpeg(buffer: Buffer, args: string[] = [], ext = '', ext2 = ''): Promise<{ data: Buffer; filename: string }> {
   return new Promise<{ data: Buffer; filename: string }>(async (resolve, reject) => {
     try {
-      await validateMediaBuffer(buffer, 'Buffer input ffmpeg')
-
       let tmp = path.join(__dirname, '../tmp', + new Date + '.' + ext)
       let out = tmp + '.' + ext2
       await fs.promises.writeFile(tmp, buffer)
@@ -39,7 +19,7 @@ function ffmpeg(buffer: Buffer, args: string[] = [], ext = '', ext2 = ''): Promi
         .on('close', async (code) => {
           try {
             await fs.promises.unlink(tmp)
-            if (code !== 0) return reject(new Error(`ffmpeg exited with code ${code}`))
+            if (code !== 0) return reject(code)
             resolve({ data: await fs.promises.readFile(out), filename: out })
           } catch (e) {
             reject(e)

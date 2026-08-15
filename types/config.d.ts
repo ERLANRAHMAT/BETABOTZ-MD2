@@ -39,7 +39,7 @@ export interface BotConfig {
   /** Main Betabotz API key. */
   lann: string;
   /** Legacy fallback Botcahx API key. */
-  lann: string;
+  btc: string;
   /** Premium access key. */
   aksesKey: string;
   /** Dana API key. */

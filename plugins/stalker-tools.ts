@@ -11,7 +11,7 @@ let handler: WaPlugin = async (m, {
     if (!text) throw `Example : ${usedPrefix + command} 919044185`;
     m.reply(wait);
     try {
-      let ff = await fetch(`https://api.botcahx.eu.org/api/stalk/ff?id=${text}&apikey=${lann}`).then(res => res.json());
+      let ff = await fetch(`https://api.betabotz.eu.org/api/stalk/ff?id=${text}&apikey=${lann}`).then(res => res.json());
       await conn.reply(m.chat, ff.result.userNameGame, m);
     } catch (e) {
       console.log(e);
@@ -23,7 +23,7 @@ let handler: WaPlugin = async (m, {
     m.reply(wait);
     let [id, server] = text.split('|');
     try {
-      let ml = await fetch(`https://api.botcahx.eu.org/api/stalk/ml?id=${id}&server=${server}&apikey=${lann}`).then(res => res.json());
+      let ml = await fetch(`https://api.betabotz.eu.org/api/stalk/ml?id=${id}&server=${server}&apikey=${lann}`).then(res => res.json());
       await conn.reply(m.chat, `*ID:* ${ml.result.user_id}\n*Server:* ${ml.result.server_id}\n*Username:* ${ml.result.userName}\n*Region:* ${ml.result.country}`, m);
     } catch (e) {
       console.log(e);
@@ -35,7 +35,7 @@ let handler: WaPlugin = async (m, {
     m.reply(wait);
     let [id, server] = text.split('|');
     try {
-      let ml = await fetch(`https://api.botcahx.eu.org/api/stalk/ml-v2?id=${id}&server=${server}&apikey=${lann}`).then(res => res.json());
+      let ml = await fetch(`https://api.betabotz.eu.org/api/stalk/ml-v2?id=${id}&server=${server}&apikey=${lann}`).then(res => res.json());
       if (!ml.status) throw 'Failed to fetch Mobile Legends data';
       let result = ml.result.data.stalk_info;
       let shopData = ml.result.data.categorized_shop;
@@ -90,7 +90,7 @@ let handler: WaPlugin = async (m, {
     if (!text) throw `Example : ${usedPrefix + command} 20431364`;
     m.reply(wait);
     try {
-      let sus = await fetch(`https://api.botcahx.eu.org/api/stalk/supersus?id=${text}&apikey=${lann}`).then(res => res.json());
+      let sus = await fetch(`https://api.betabotz.eu.org/api/stalk/supersus?id=${text}&apikey=${lann}`).then(res => res.json());
       let results = sus.result;
       let caption = `*S U P E R S U S*\n\n`;
       caption += `*ID:* ${results.id}\n`;
@@ -114,7 +114,7 @@ let handler: WaPlugin = async (m, {
     if (!text) throw `Example : ${usedPrefix + command} tiktokdl`;
     m.reply(wait);
     try {
-      let npm = await fetch(`https://api.botcahx.eu.org/api/stalk/npm?name=${text}&apikey=${lann}`).then(res => res.json());
+      let npm = await fetch(`https://api.betabotz.eu.org/api/stalk/npm?name=${text}&apikey=${lann}`).then(res => res.json());
       let caption = `*N P M S T A L K*\n\n`;
       caption += `*ID:* ${npm.result._id}\n`;
       caption += `*Name:* ${npm.result.name}\n`;
@@ -146,7 +146,7 @@ let handler: WaPlugin = async (m, {
     if (!text) throw `Example : ${usedPrefix + command} RTXZY-MD`;
     m.reply(wait);
     try {
-      let repo = await fetch(`https://api.botcahx.eu.org/api/stalk/repo?repo=${text}&apikey=${lann}`).then(res => res.json());
+      let repo = await fetch(`https://api.betabotz.eu.org/api/stalk/repo?repo=${text}&apikey=${lann}`).then(res => res.json());
       let caption = `*R E P O S T A L K*\n\n`;
       caption += `*ID:* ${repo.result.items[0].id}\n`;
       caption += `*Node ID:* ${repo.result.items[0].nodeId}\n`;
@@ -184,7 +184,7 @@ let handler: WaPlugin = async (m, {
     if (!text) throw `Example : ${usedPrefix + command} 843829161`;
     m.reply(wait);
     try {
-      let genshin = await fetch(`https://api.botcahx.eu.org/api/stalk/genshin?id=${text}&apikey=${lann}`).then(res => res.json());
+      let genshin = await fetch(`https://api.betabotz.eu.org/api/stalk/genshin?id=${text}&apikey=${lann}`).then(res => res.json());
       if (!genshin.status) throw 'Failed to fetch Genshin Impact data';
       let result = genshin.result[0];
       let caption = `*G E N S H I N  I M P A C T*\n\n`;
@@ -206,7 +206,7 @@ let handler: WaPlugin = async (m, {
     if (!text) throw `Example: ${usedPrefix + command} 6467015277108375938`;
     m.reply(wait);
     try {
-      let { result } = await fetch(`https://api.botcahx.eu.org/api/stalk/hok?id=${text}&apikey=${lann}`).then(res => res.json());
+      let { result } = await fetch(`https://api.betabotz.eu.org/api/stalk/hok?id=${text}&apikey=${lann}`).then(res => res.json());
       if (!result.ok) throw 'Player not found!';
       conn.reply(m.chat, result.name, m);
     } catch (e) {
@@ -217,7 +217,7 @@ let handler: WaPlugin = async (m, {
     if (!text) throw `Example: ${usedPrefix + command} betabotzz`;
     m.reply(wait);
     try {
-      let roblox = await fetch(`https://api.botcahx.eu.org/api/stalk/roblox?username=${text}&apikey=${lann}`).then(res => res.json());
+      let roblox = await fetch(`https://api.betabotz.eu.org/api/stalk/roblox?username=${text}&apikey=${lann}`).then(res => res.json());
       if (!roblox.result) throw 'Failed to fetch Roblox data';
       let result = roblox.result;
       let caption = `*R O B L O X  S T A L K*\n\n`;

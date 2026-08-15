@@ -2,7 +2,7 @@ import axios from 'axios';
 var handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
     m.reply(wait);
     try {
-    let url = `https://api.botcahx.eu.org/api/anime/${command}?apikey=${lann}`;
+    let url = `https://api.betabotz.eu.org/api/anime/${command}?apikey=${lann}`;
     let response = await axios.get(url, { responseType: 'arraybuffer' });
     conn.sendFile(m.chat, response.data, "", "", m);
     } catch (e) {

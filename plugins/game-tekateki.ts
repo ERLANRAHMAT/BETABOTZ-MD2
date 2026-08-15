@@ -13,7 +13,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix }) => {
         throw false
     }
     conn.tekateki[id] = [] as unknown as WaGameRoom
-    let src = await (await fetch(`https://api.botcahx.eu.org/api/game/tekateki?apikey=${lann}`)).json()
+    let src = await (await fetch(`https://api.betabotz.eu.org/api/game/tekateki?apikey=${lann}`)).json()
     let json = src
 
     let caption = `

@@ -48,7 +48,7 @@ global.aksesKey = "YOUR_AKSESKEY_HERE";
 //INI OPTIONAL BOLEH DI ISI BOLEH JUGA ENGGA//
 global.btc = "YOUR_APIKEY_HERE";
 // global.btc = process.env.API_KEY_BTC;
-//Daftar https://api.botcahx.eu.org
+//Daftar https://api.betabotz.eu.org
 
 //INI OPTIONAL BOLEH DI ISI BOLEH JUGA ENGGA//
 global.dana = "YOUR_APIKEY_HERE";
@@ -63,13 +63,13 @@ global.taskToken = "YOUR_TOKEN_HERE";
 
 global.APIs = {
   lann: "https://api.betabotz.eu.org",
-  btc: "https://api.botcahx.eu.org",
+  btc: "https://api.betabotz.eu.org",
   dana: "https://api.danafxc.my.id",
   taskToken: "https://task.aniqu.biz.id/",
 };
 global.APIKeys = {
   "https://api.betabotz.eu.org": global.lann,
-  "https://api.botcahx.eu.org": global.btc, //OPSIONAL
+  "https://api.betabotz.eu.org": global.btc, //OPSIONAL
   "https://api.danafxc.my.id": global.dana, //OPSIONAL
   "https://task.aniqu.biz.id/": global.taskToken, //OPSIONAL
 };

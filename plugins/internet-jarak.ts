@@ -10,7 +10,7 @@ let handler: WaPlugin = async (m, {
     if (!(from && to)) throw `Ex: ${usedPrefix + command} jakarta|bandung`
 
     try {
-        let data = await fetch(`https://api.botcahx.eu.org/api/search/jarak?from=${from}&to=${to}&apikey=${lann}`);
+        let data = await fetch(`https://api.betabotz.eu.org/api/search/jarak?from=${from}&to=${to}&apikey=${lann}`);
         let json = await data.json();
 
         if (json.status) {

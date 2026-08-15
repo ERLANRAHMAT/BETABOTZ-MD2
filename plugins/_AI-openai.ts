@@ -2,24 +2,24 @@ import axios from 'axios';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `*Example:* ${usedPrefix + command} hai`;
-    conn.lannh = conn.lannh ? conn.lannh : {};
-    if (!conn.lannh[m.sender]) {
-        conn.lannh[m.sender] = {
+    conn.btch = conn.btch ? conn.btch : {};
+    if (!conn.btch[m.sender]) {
+        conn.btch[m.sender] = {
             pesan: []
         };
-        conn.lannh[m.sender].timeout = setTimeout(() => {
-            delete conn.lannh[m.sender];
+        conn.btch[m.sender].timeout = setTimeout(() => {
+            delete conn.btch[m.sender];
         }, 300000);
 
         m.reply(`Halo \`${m.name}\`👋, Saya siap membantu anda!`);
     } else {
-        clearTimeout(conn.lannh[m.sender].timeout);
-        conn.lannh[m.sender].timeout = setTimeout(() => {
-            delete conn.lannh[m.sender];
+        clearTimeout(conn.btch[m.sender].timeout);
+        conn.btch[m.sender].timeout = setTimeout(() => {
+            delete conn.btch[m.sender];
         }, 300000);
     }
 
-    const previousMessages = conn.lannh[m.sender].pesan;
+    const previousMessages = conn.btch[m.sender].pesan;
   
   
   /**
@@ -28,8 +28,8 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
  */
 
     const messages = [
-        { role: "system", content: "kamu adalah lannH, Seorang Asisten pribadi yang di buat oleh BOTCAHX yang siap membantu kapan pun!" },
-        { role: "assistant", content: `Saya lannH, asisten pribadi yang siap membantu kamu kapan pun! Apa yang bisa saya bantu hari ini?` },
+        { role: "system", content: "kamu adalah BTCH, Seorang Asisten pribadi yang di buat oleh BOTCAHX yang siap membantu kapan pun!" },
+        { role: "assistant", content: `Saya BTCH, asisten pribadi yang siap membantu kamu kapan pun! Apa yang bisa saya bantu hari ini?` },
         ...previousMessages.map((msg, i) => ({ role: i % 2 === 0 ? 'user' : 'assistant', content: msg })),
         { role: "user", content: text }
     ];
@@ -39,7 +39,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
                 try {
                     const params = {
                         message: message,
-                        apikey: lann
+                        apikey: btc
                     };
                     const { data } = await axios.post('https://api.betabotz.eu.org/api/search/openai-custom-v2', params);
                     resolve(data);
@@ -52,8 +52,8 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
         let res = await chat(messages);
         if (res && res.result) {
             await m.reply(res.result);
-            conn.lannh[m.sender].pesan = [
-                ...conn.lannh[m.sender].pesan,
+            conn.btch[m.sender].pesan = [
+                ...conn.btch[m.sender].pesan,
                 text,
                 res.result
             ];

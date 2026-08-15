@@ -17,7 +17,7 @@ handler.all = async function(m) {
                 if (!img) return;              
                 let out = await uploadImage(img);
                 
-                const api = await fetch(`https://api.betabotz.eu.org/api/tools/remini?url=${out}&apikey=${global.lann}`);
+                const api = await fetch(`https://api.betabotz.eu.org/api/tools/remini?url=${out}&apikey=${global.btc}`);
                 const image = await api.json();
                 const url = image.url;
                 

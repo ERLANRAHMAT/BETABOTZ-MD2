@@ -15,7 +15,7 @@ let handler: WaPlugin = async (m, {
       const img = await q.download?.();
       let out = await uploadImage(img);
       let old = Date.now();
-      let res = await fetch(`https://api.botcahx.eu.org/api/search/agedetect?url=${out}&apikey=${lann}`);
+      let res = await fetch(`https://api.betabotz.eu.org/api/search/agedetect?url=${out}&apikey=${lann}`);
       let convert = await res.json();   
       let txt = `*乂 A G E   D E T E C T I O N*\n\n`;
         txt += `◦ *Score:* ${convert.result.score} \n`;

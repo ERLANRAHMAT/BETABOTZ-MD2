@@ -6,7 +6,7 @@ var handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
   }
   try {
   const search = await fetch(
-    `https://api.botcahx.eu.org/api/search/xnxx?query=${text}&apikey=${lann}`
+    `https://api.betabotz.eu.org/api/search/xnxx?query=${text}&apikey=${lann}`
   );
   const hasil = await search.json();
   

@@ -17,7 +17,7 @@ let handler: WaPlugin = async (m, {
           },
           body: JSON.stringify({
             text: text,
-            apikey: lann
+            apikey: btc
           })
         })
         .then(res => res.json());
@@ -39,7 +39,7 @@ let handler: WaPlugin = async (m, {
           },
           body: JSON.stringify({
             text: text,
-            apikey: lann
+            apikey: btc
           })
         })
         .then(res => res.json());

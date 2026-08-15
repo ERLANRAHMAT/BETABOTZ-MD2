@@ -16,7 +16,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                apikey: lann,
+                apikey: btc,
                 email: JSON.stringify(emails)
             })
         });

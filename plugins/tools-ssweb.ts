@@ -10,10 +10,10 @@ var handler: WaPlugin = async (m, { conn, command, args }) => {
   await m.reply('_Ｌｏａｄｉｎｇ．．._');
   var url = args[0].startsWith('http') ? args[0] : 'https://' + args[0]
   try {
-    var img = await fetch(`https://api.botcahx.eu.org/api/tools/ssweb?url=${url}&apikey=${lann}`);
+    var img = await fetch(`https://api.betabotz.eu.org/api/tools/ssweb?url=${url}&apikey=${lann}`);
     if (!img) {
       await m.reply('Gagal saat percobaan pertama. Memulai percobaan kedua...');
-      img = await fetch(`https://api.botcahx.eu.org/api/tools/ssweb?url=${url}&apikey=${lann}`);
+      img = await fetch(`https://api.betabotz.eu.org/api/tools/ssweb?url=${url}&apikey=${lann}`);
       if (!img) return conn.reply(m.chat, 'Gambar tidak tersedia', m);
     }
     var filepath = path.join(__dirname, '../tmp/') + (+new Date) + '.jpeg';

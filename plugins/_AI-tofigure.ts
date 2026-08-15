@@ -13,7 +13,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
             let old = Date.now();
             
             if (command == 'tofigure') {
-                let apiUrl = `https://api.botcahx.eu.org/api/maker/tofigurev3?url=${out}&apikey=${lann}`;
+                let apiUrl = `https://api.betabotz.eu.org/api/maker/tofigurev3?url=${out}&apikey=${lann}`;
                 let res = await fetch(apiUrl);
                 let convert = await res.buffer();
                 await conn.sendMessage(m.chat, { 
@@ -23,7 +23,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
             }
             
             if (command == 'tofigure2') {
-                let apiUrl = `https://api.botcahx.eu.org/api/maker/tofigurev2?url=${out}&apikey=${lann}`;
+                let apiUrl = `https://api.betabotz.eu.org/api/maker/tofigurev2?url=${out}&apikey=${lann}`;
                 let res = await fetch(apiUrl);
                 let convert = await res.buffer();
                 await conn.sendMessage(m.chat, { 
@@ -33,7 +33,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
             }
             
             if (command == 'tofigure3') {
-                let apiUrl = `https://api.botcahx.eu.org/api/maker/tofigure?url=${out}&apikey=${lann}`;
+                let apiUrl = `https://api.betabotz.eu.org/api/maker/tofigure?url=${out}&apikey=${lann}`;
                 let res = await fetch(apiUrl);
                 let convert = await res.buffer();
                 await conn.sendMessage(m.chat, { 

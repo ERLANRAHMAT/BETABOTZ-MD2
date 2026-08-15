@@ -6,7 +6,7 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
   try {
     const waiting = `_Sedang mencari informasi Subdomain untuk ${text}..._`;
     m.reply(waiting);    
-    let data = await fetch(`https://api.botcahx.eu.org/api/tools/subdomain-finder?query=${text}&apikey=${lann}`)
+    let data = await fetch(`https://api.betabotz.eu.org/api/tools/subdomain-finder?query=${text}&apikey=${lann}`)
     .then(result => result.json())
     .then(response => {
       if (response.status && response.code === 200) {

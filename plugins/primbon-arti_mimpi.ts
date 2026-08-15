@@ -3,7 +3,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 if (!text) throw `Masukkan Mimpi kamu!\n\ncontoh: ${usedPrefix + command} mandi`;
 try {
   await m.reply(wait)
-  let res = await fetch(`https://api.botcahx.eu.org/api/primbon/artimimpi?mimpi=${text}&apikey=${lann}`);
+  let res = await fetch(`https://api.betabotz.eu.org/api/primbon/artimimpi?mimpi=${text}&apikey=${lann}`);
   let json = await res.json()
   let anu = [
        `―-ARTI MIMPI-―\n\nMimpi: ${json.result.message.mimpi}\n\nArti: ${json.result.message.arti}\n\nSolusi: ${json.result.message.solusi}`, 

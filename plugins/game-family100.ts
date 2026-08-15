@@ -13,7 +13,7 @@ async function handler(this: WaConnection, m) {
         throw false
     }
     conn.family[id] = {}
-    let src = await (await fetch(`https://api.botcahx.eu.org/api/game/family100-2?apikey=${lann}`)).json()
+    let src = await (await fetch(`https://api.betabotz.eu.org/api/game/family100-2?apikey=${lann}`)).json()
     let json = src
 
     let caption = `

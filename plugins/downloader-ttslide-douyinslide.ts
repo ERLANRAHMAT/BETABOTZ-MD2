@@ -9,7 +9,7 @@ let handler: WaPlugin = async (m, {
   if (command == 'tiktokslide' || command == 'ttslide') {
     if (!text) throw `Masukkan URL!\n\ncontoh: ${usedPrefix + command} https://vt.tiktok.com/ZSHGno9d2L4w1-thgJL/`;
     try {
-      const api = await fetch(`https://api.botcahx.eu.org/api/download/tiktokslide?url=${text}&apikey=${lann}`);
+      const api = await fetch(`https://api.betabotz.eu.org/api/download/tiktokslide?url=${text}&apikey=${lann}`);
       const res = await api.json();
       for (let i of res.result.images) {
         await sleep(3000);
@@ -24,7 +24,7 @@ let handler: WaPlugin = async (m, {
   if (command == 'douyinslide' || command == 'douyinfoto') { 
     if (!text) throw `Masukkan URL!\n\ncontoh: ${usedPrefix + command} https://v.douyin.com/i2bPkLLo/`;
     try {
-      const api = await fetch(`https://api.botcahx.eu.org/api/download/douyinslide?url=${text}&apikey=${lann}`);
+      const api = await fetch(`https://api.betabotz.eu.org/api/download/douyinslide?url=${text}&apikey=${lann}`);
       const res = await api.json();
       for (let i of res.result.images) {
         await sleep(3000);

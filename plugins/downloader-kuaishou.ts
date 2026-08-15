@@ -6,7 +6,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     try {
         await m.reply(wait);
         let old = Date.now();
-        const response = await axios.get(`https://api.botcahx.eu.org/api/dowloader/kuaishou?url=${text}&apikey=${lann}`);
+        const response = await axios.get(`https://api.betabotz.eu.org/api/dowloader/kuaishou?url=${text}&apikey=${lann}`);
         let res = response.data.result;
         
         let capt = `乂 *K U A I S H O U*\n\n`;

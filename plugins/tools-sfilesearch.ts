@@ -5,7 +5,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     
     try {
         await m.reply(wait);
-        let json = await fetch(`https://api.botcahx.eu.org/api/search/sfilemobi?text1=${encodeURIComponent(text)}&apikey=${lann}`).then(res => res.json());
+        let json = await fetch(`https://api.betabotz.eu.org/api/search/sfilemobi?text1=${encodeURIComponent(text)}&apikey=${lann}`).then(res => res.json());
         let res = json.result;
         
         if (!res.result || res.result.length === 0) throw 'No files found';

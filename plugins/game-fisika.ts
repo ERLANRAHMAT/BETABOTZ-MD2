@@ -10,7 +10,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.fisika[id][0])
         throw false
     }
-    let src = await (await fetch(`https://api.botcahx.eu.org/api/game/fisika?apikey=${lann}`)).json()
+    let src = await (await fetch(`https://api.betabotz.eu.org/api/game/fisika?apikey=${lann}`)).json()
     let json = src
     let options = json.pilihan.map((opt, i) => `${String.fromCharCode(65 + i)}. ${opt}`).join('\n')
     let caption = `

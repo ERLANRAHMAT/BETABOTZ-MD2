@@ -4,7 +4,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `*Example:* ${usedPrefix + command} chikaku`
     await m.reply(wait)
     try {     
-        let json = await fetch(`https://api.botcahx.eu.org/api/stalk/tt-v2?username=${text}&apikey=${lann}`).then(res => res.json());
+        let json = await fetch(`https://api.betabotz.eu.org/api/stalk/tt-v2?username=${text}&apikey=${lann}`).then(res => res.json());
         let res = json.result;
         
         let caption = `⦿  *T I K T O K - S T A L K*\n\n`

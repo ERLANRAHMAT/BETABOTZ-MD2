@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
 try {
   await m.reply(wait)
-  let res = await fetch(`https://api.botcahx.eu.org/api/muslim/doaharian?&apikey=${lann}`);
+  let res = await fetch(`https://api.betabotz.eu.org/api/muslim/doaharian?&apikey=${lann}`);
   let json = await res.json()
   var dh = [
        `―-DOA HARIAN-―\n\nTitle: ${json.result.data[0].title}\n\nArabic: ${json.result.data[0].arabic}\n\nLatin: ${json.result.data[0].latin}\n\nArti: ${json.result.data[0].translation}`, 

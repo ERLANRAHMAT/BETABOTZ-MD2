@@ -10,7 +10,7 @@ let handler: WaPlugin = async (m, {
     if (!args[0].match(/https?:\/\/(www\.)?(twitter\.com|x\.com)/gi)) throw "URL Tidak Ditemukan!";
     m.reply(wait);
     try {
-        const api = await fetch(`https://api.botcahx.eu.org/api/download/twitter2?url=${args[0]}&apikey=${lann}`);
+        const api = await fetch(`https://api.betabotz.eu.org/api/download/twitter2?url=${args[0]}&apikey=${lann}`);
         const res = await api.json();
         const mediaURLs = res.result.mediaURLs;
         

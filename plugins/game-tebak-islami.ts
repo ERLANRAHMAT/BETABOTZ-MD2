@@ -12,7 +12,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix }) => {
         throw false
     }
     // Fetch data from JSON file
-    let data = await (await fetch(`https://api.botcahx.eu.org/api/game/kuisislami?apikey=${lann}`)).json()
+    let data = await (await fetch(`https://api.betabotz.eu.org/api/game/kuisislami?apikey=${lann}`)).json()
     let json = data
     let options = json.pilihan.map((opt, i) => `${String.fromCharCode(65 + i)}. ${opt}`).join('\n')
     let caption = `

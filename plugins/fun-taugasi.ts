@@ -1,7 +1,7 @@
  import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn }) => {
-  let res = await fetch(`https://api.botcahx.eu.org/api/random/taugasih?apikey=${lann}`).then(result => result.json());
+  let res = await fetch(`https://api.betabotz.eu.org/api/random/taugasih?apikey=${lann}`).then(result => result.json());
   conn.reply(m.chat, `“${res.taugasih}”`, m);
 };
 

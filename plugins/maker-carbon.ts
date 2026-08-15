@@ -10,7 +10,7 @@ let handler: WaPlugin = async (m, { conn, args }) => {
    if (!text) return m.reply('masukan text') 
    try {
    m.reply(wait)
-   let img = await fetch(`https://api.botcahx.eu.org/api/maker/carbon?text=${text}&apikey=${lann}`).then(res => res.json());
+   let img = await fetch(`https://api.betabotz.eu.org/api/maker/carbon?text=${text}&apikey=${lann}`).then(res => res.json());
    await conn.sendFile(m.chat, img.result, 'img.jpeg', '', m)
    } catch (e) {
    throw `${eror}`

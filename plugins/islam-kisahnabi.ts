@@ -16,7 +16,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 
   try {
     await m.reply(wait);  
-    let res = await fetch(`https://api.botcahx.eu.org/api/muslim/kisahnabi?nabi=${text}&apikey=${lann}`);
+    let res = await fetch(`https://api.betabotz.eu.org/api/muslim/kisahnabi?nabi=${text}&apikey=${lann}`);
     let json = await res.json();
 
     let restext = `―-KISAH NABI-―\n\n` +

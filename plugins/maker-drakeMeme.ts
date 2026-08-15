@@ -12,7 +12,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     try {
         await m.reply('⏳ _Sedang memproses gambar..._');
 
-        let apiUrl = `https://api.botcahx.eu.org/api/maker/canvas-drakeMeme?apikey=${lann}&teks1=${encodeURIComponent(teks1.trim())}&teks2=${encodeURIComponent(teks2.trim())}`;
+        let apiUrl = `https://api.betabotz.eu.org/api/maker/canvas-drakeMeme?apikey=${lann}&teks1=${encodeURIComponent(teks1.trim())}&teks2=${encodeURIComponent(teks2.trim())}`;
 
         await conn.sendFile(m.chat, apiUrl, 'drakememe.jpg', 'Done!', m);
 

@@ -3,7 +3,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command, text }) => {
 if (!text) throw `*Example:* ${usedPrefix + command} adam`
 try {
   await m.reply(wait)
-  let res = await fetch(`https://api.botcahx.eu.org/api/islamic/tafsirsurah?text=${text}&apikey=${lann}`);
+  let res = await fetch(`https://api.betabotz.eu.org/api/islamic/tafsirsurah?text=${text}&apikey=${lann}`);
   let json = await res.json()
   var srh = [
        `―-TAFSIR-―\n\nSurah: ${json.result[0].surah}\n\nTafsir: ${json.result[0].tafsir}\n\nTipe: ${json.result[0].type}\n\nSource: ${json.result[0].source}`, 

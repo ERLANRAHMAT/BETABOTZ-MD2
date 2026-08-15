@@ -181,8 +181,8 @@ Bot bisa di-clone via `git clone` langsung dari terminal panel, atau diupload se
 
 Bot ini menggunakan **97% fitur dari Rest API**, jadi kamu **wajib mengisi Apikey**.
 
-1. Daftar di [`BOTCAHX API`](https://api.botcahx.eu.org)
-2. Pilih paket yang sesuai: [`Lihat Paket`](https://api.botcahx.eu.org/price)
+1. Daftar di [`BOTCAHX API`](https://api.betabotz.eu.org)
+2. Pilih paket yang sesuai: [`Lihat Paket`](https://api.betabotz.eu.org/price)
 3. Copy Apikey kamu
 4. Paste di `config.ts` pada bagian **`global.btc`**
 

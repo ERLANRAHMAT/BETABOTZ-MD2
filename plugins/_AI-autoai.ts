@@ -28,8 +28,8 @@ handler.before = async (m, { conn }) => {
  * @note Keep the logic reasonable and easy to understand!
  */
         const messages = [
-            { role: "system", content: "kamu adalah lannH, Seorang Asisten pribadi yang di buat oleh BOTCAHX yang siap membantu kapan pun!" },
-            { role: "assistant", content: `Saya lannH, asisten pribadi yang siap membantu kamu kapan pun! Apa yang bisa saya bantu hari ini?` },
+            { role: "system", content: "kamu adalah BTCH, Seorang Asisten pribadi yang di buat oleh BOTCAHX yang siap membantu kapan pun!" },
+            { role: "assistant", content: `Saya BTCH, asisten pribadi yang siap membantu kamu kapan pun! Apa yang bisa saya bantu hari ini?` },
             ...previousMessages.map((msg, i) => ({ role: i % 2 === 0 ? 'user' : 'assistant', content: msg })),
             { role: "user", content: m.text }
         ];
@@ -40,7 +40,7 @@ handler.before = async (m, { conn }) => {
                     try {
                         const params = {
                             message: message,
-                            apikey: lann
+                            apikey: btc
                         };
                         const { data } = await axios.post('https://api.betabotz.eu.org/api/search/openai-custom-v2', params);
                         resolve(data);

@@ -5,7 +5,7 @@ let handler: WaPlugin = async (m, { conn, command }) => {
     await m.reply(wait)
 
     if (command == 'checkapi' || command == 'api') {
-      let api = await fetch(`https://api.botcahx.eu.org/api/checkkey?apikey=${lann}`);
+      let api = await fetch(`https://api.betabotz.eu.org/api/checkkey?apikey=${lann}`);
       let body = await api.json();
       let { 
         limit, 
@@ -25,7 +25,7 @@ let handler: WaPlugin = async (m, { conn, command }) => {
     }
 
     if (command == 'cekakseskey' || command == 'akseskey') {
-      let api = await fetch(`https://api.botcahx.eu.org/api/cek-aksesKey?aksesKey=${aksesKey}`);
+      let api = await fetch(`https://api.betabotz.eu.org/api/cek-aksesKey?aksesKey=${aksesKey}`);
       let body = await api.json();
       let { 
         limit,

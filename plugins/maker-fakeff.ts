@@ -13,7 +13,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     try {
         await m.reply('⏳ _Sedang memproses gambar..._');
 
-        let apiUrl = `https://api.botcahx.eu.org/api/maker/canvas-fakeFf?apikey=${lann}&lobby=${lobbyNum}&username=${encodeURIComponent(username.trim())}`;
+        let apiUrl = `https://api.betabotz.eu.org/api/maker/canvas-fakeFf?apikey=${lann}&lobby=${lobbyNum}&username=${encodeURIComponent(username.trim())}`;
 
         await conn.sendFile(m.chat, apiUrl, 'fakeff.jpg', 'Done!', m);
 

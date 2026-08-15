@@ -10,7 +10,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
         
         await m.reply(wait);
 
-        let res = await fetch(`https://api.botcahx.eu.org/api/primbon/harinaas?tanggal=${tanggal1}&bulan=${bulan1}&tahun=${tahun1}&apikey=${lann}`);
+        let res = await fetch(`https://api.betabotz.eu.org/api/primbon/harinaas?tanggal=${tanggal1}&bulan=${bulan1}&tahun=${tahun1}&apikey=${lann}`);
         let json = await res.json();
         let anu = [
           `―-HARI NAAS-―\n\nHari lahir: ${json.result.message.hari_lahir}\n\nTanggal lahir: ${json.result.message.tgl_lahir}\n\nHari naas: ${json.result.message.hari_naas}\n\nCatatan: ${json.result.message.catatan}\n\nInfo: ${json.result.message.info}`, 

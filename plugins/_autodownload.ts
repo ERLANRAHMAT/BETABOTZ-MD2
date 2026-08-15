@@ -164,7 +164,7 @@ const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 async function _tiktok(link, m, conn) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            const response = await fetch(`https://api.botcahx.eu.org/api/download/tiktok?url=${link}&apikey=${lann}`);
+            const response = await fetch(`https://api.betabotz.eu.org/api/download/tiktok?url=${link}&apikey=${lann}`);
             const data = await response.json();
             if (!data.result.video) return;
             if (data.result.video.length > 1) {
@@ -197,10 +197,10 @@ async function _tiktok(link, m, conn) {
 async function _douyin(link, m, conn) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            let response = await fetch(`https://api.botcahx.eu.org/api/download/douyin?url=${link}&apikey=${lann}`);
+            let response = await fetch(`https://api.betabotz.eu.org/api/download/douyin?url=${link}&apikey=${lann}`);
             let data = await response.json();
             if (!data.result.video || data.result.video.length === 0) {
-                response = await fetch(`https://api.botcahx.eu.org/api/download/douyinslide?url=${link}&apikey=${lann}`);
+                response = await fetch(`https://api.betabotz.eu.org/api/download/douyinslide?url=${link}&apikey=${lann}`);
                 data = await response.json();
                 if (data.result.images && data.result.images.length > 0) {
                     global.db.data.users[m.sender].limit -= 1;
@@ -245,7 +245,7 @@ async function _douyin(link, m, conn) {
 async function _instagram(link, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            const response = await fetch(`https://api.botcahx.eu.org/api/dowloader/igdowloader?url=${link}&apikey=${lann}`);
+            const response = await fetch(`https://api.betabotz.eu.org/api/dowloader/igdowloader?url=${link}&apikey=${lann}`);
             const res = await response.json();
             const limitnya = 3;
             for (let i = 0; i < Math.min(limitnya, res.result.length); i++) {
@@ -264,7 +264,7 @@ async function _instagram(link, m) {
 async function _facebook(link, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            const response = await fetch(`https://api.botcahx.eu.org/api/dowloader/fbdown3?url=${link}&apikey=${lann}`);
+            const response = await fetch(`https://api.betabotz.eu.org/api/dowloader/fbdown3?url=${link}&apikey=${lann}`);
             let json = await response.json();
             let urls = json.result.url.urls;
             if (Array.isArray(urls)) {
@@ -288,7 +288,7 @@ async function _facebook(link, m) {
 async function _youtube(link, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            const response = await fetch(`https://api.botcahx.eu.org/api/dowloader/yt?url=${link}&apikey=${lann}`);
+            const response = await fetch(`https://api.betabotz.eu.org/api/dowloader/yt?url=${link}&apikey=${lann}`);
             const result = await response.json();
             if (result.status && result.result && result.result.mp4) {
                 global.db.data.users[m.sender].limit -= 1;
@@ -330,7 +330,7 @@ async function _youtube(link, m) {
 async function _spotify(url, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            const res = await fetch(`https://api.botcahx.eu.org/api/download/spotify?url=${url}&apikey=${lann}`);
+            const res = await fetch(`https://api.betabotz.eu.org/api/download/spotify?url=${url}&apikey=${lann}`);
             const jsons = await res.json();
             if (jsons.result && jsons.result.data) {
                 global.db.data.users[m.sender].limit -= 1;
@@ -360,7 +360,7 @@ async function _spotify(url, m) {
 async function _twitter(url, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            const api = await fetch(`https://api.botcahx.eu.org/api/download/twitter2?url=${url}&apikey=${lann}`);
+            const api = await fetch(`https://api.betabotz.eu.org/api/download/twitter2?url=${url}&apikey=${lann}`);
             const res = await api.json();
             if (res.result && res.result.mediaURLs) {
                 global.db.data.users[m.sender].limit -= 1;
@@ -384,7 +384,7 @@ async function _twitter(url, m) {
 async function _threads(url, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            const apiResponse = await fetch(`https://api.botcahx.eu.org/api/download/threads?url=${url}&apikey=${lann}`);
+            const apiResponse = await fetch(`https://api.betabotz.eu.org/api/download/threads?url=${url}&apikey=${lann}`);
             const api = await apiResponse.json();
             const foto = api.result.image_urls[0] || null;
             const video = api.result.video_urls[0] || null;
@@ -414,7 +414,7 @@ async function _threads(url, m) {
 async function _capcut(url, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            const response = await fetch(`https://api.botcahx.eu.org/api/dowloader/capcut?url=${url}&apikey=${lann}`);
+            const response = await fetch(`https://api.betabotz.eu.org/api/dowloader/capcut?url=${url}&apikey=${lann}`);
             const res = await response.json();
             const { video } = res.result;
             global.db.data.users[m.sender].limit -= 1;
@@ -429,7 +429,7 @@ async function _capcut(url, m) {
 async function _snackvideo(url, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            const api = await fetch(`https://api.botcahx.eu.org/api/download/snackvideo?url=${url}&apikey=${lann}`);
+            const api = await fetch(`https://api.betabotz.eu.org/api/download/snackvideo?url=${url}&apikey=${lann}`);
             const res = await api.json();
             const { media } = res.result;
             await conn.sendFile(m.chat, media, null, `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`, m);
@@ -445,7 +445,7 @@ async function _snackvideo(url, m) {
 async function _pindl(link, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            const api = await fetch(`https://api.botcahx.eu.org/api/download/pinterest?url=${link}&apikey=${lann}`);
+            const api = await fetch(`https://api.betabotz.eu.org/api/download/pinterest?url=${link}&apikey=${lann}`);
             const res = await api.json();
             if (res.result && res.result.data) {
                 let { media_type, image, title, video } = res.result.data;
@@ -474,7 +474,7 @@ async function _pindl(link, m) {
 async function _xiaohongshu(url, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            let res = await axios.get(`https://api.botcahx.eu.org/api/download/rednote?url=${url}&apikey=${lann}`);
+            let res = await axios.get(`https://api.betabotz.eu.org/api/download/rednote?url=${url}&apikey=${lann}`);
             let result = res.data.result;
 
             if (!result || !result.media) throw `Gagal mengambil data!`;
@@ -522,7 +522,7 @@ async function _xiaohongshu(url, m) {
 async function _soundcloud(url, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            const res = await fetch(`https://api.botcahx.eu.org/api/download/soundcloud?url=${url}&apikey=${lann}`);
+            const res = await fetch(`https://api.betabotz.eu.org/api/download/soundcloud?url=${url}&apikey=${lann}`);
             let anu = await res.json();
             await conn.sendMessage(
                     m.chat,
@@ -548,7 +548,7 @@ async function _soundcloud(url, m) {
 async function _cocofun(url, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            const res = await fetch(`https://api.botcahx.eu.org/api/download/cocofun?url=${encodeURIComponent(url)}&apikey=${lann}`);
+            const res = await fetch(`https://api.betabotz.eu.org/api/download/cocofun?url=${encodeURIComponent(url)}&apikey=${lann}`);
            const json = await res.json();
            const videoUrl = json.result.no_watermark || json.result.watermark;
             await conn.sendMessage(
@@ -575,7 +575,7 @@ async function _cocofun(url, m) {
 async function _kuaishou(link, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            const response = await axios.get(`https://api.botcahx.eu.org/api/dowloader/kuaishou?url=${link}&apikey=${lann}`);
+            const response = await axios.get(`https://api.betabotz.eu.org/api/dowloader/kuaishou?url=${link}&apikey=${lann}`);
             const res = response.data.result;
             let capt = `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`;
             if (res.videoUrl) {
@@ -595,7 +595,7 @@ async function _kuaishou(link, m) {
 async function _sfile(link, m, conn) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
-            const json = await fetch(`https://api.botcahx.eu.org/api/dowloader/sfilemobi?url=${link}&apikey=${lann}`).then(res => res.json());
+            const json = await fetch(`https://api.betabotz.eu.org/api/dowloader/sfilemobi?url=${link}&apikey=${lann}`).then(res => res.json());
             const res = json.result;
             const downloadUrl = res.direct || res.result || res.cdnDirect;
             const fileName = res.name || 'file';

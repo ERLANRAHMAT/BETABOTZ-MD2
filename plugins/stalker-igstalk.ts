@@ -3,7 +3,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `contoh:\n${usedPrefix + command} prm2.0`
     try {
         await m.reply(wait)
-        let api = await fetch(`https://api.botcahx.eu.org/api/stalk/ig?username=${text}&apikey=${lann}`)
+        let api = await fetch(`https://api.betabotz.eu.org/api/stalk/ig?username=${text}&apikey=${lann}`)
         let response = await api.json()
         if (response.status) {
             let { photoUrl, postsCount, followers, following, bio, fullName, username } = response.result;

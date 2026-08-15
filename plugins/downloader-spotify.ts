@@ -5,7 +5,7 @@ let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
   if (args[0].match(/https:\/\/open.spotify.com/gi)) {
     m.reply(wait);
     try {
-      const res = await fetch(`https://api.botcahx.eu.org/api/download/spotify?url=${args[0]}&apikey=${lann}`);
+      const res = await fetch(`https://api.betabotz.eu.org/api/download/spotify?url=${args[0]}&apikey=${lann}`);
       let jsons = await res.json();
       const {
         thumbnail,
@@ -24,7 +24,7 @@ let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
     m.reply(wait);
     const text = args.join(" ");
     try {
-      const api = await fetch(`https://api.botcahx.eu.org/api/search/spotify?query=${text}&apikey=${lann}`);
+      const api = await fetch(`https://api.betabotz.eu.org/api/search/spotify?query=${text}&apikey=${lann}`);
       let json = await api.json();
       let res = json.result.data;
       let teks = "";

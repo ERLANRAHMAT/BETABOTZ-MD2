@@ -75,9 +75,9 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
             const media = await uploader(buffer);
             let json;
             if (command === 'togif' || command === 'tomp4') {
-                json = await (await fetch(`https://api.botcahx.eu.org/api/tools/webp2mp4?url=${media}&apikey=${lann}`)).json();
+                json = await (await fetch(`https://api.betabotz.eu.org/api/tools/webp2mp4?url=${media}&apikey=${lann}`)).json();
             } else if (command === 'toimg') {
-                json = await (await fetch(`https://api.botcahx.eu.org/api/tools/webp2png?url=${media}&apikey=${lann}`)).json();
+                json = await (await fetch(`https://api.betabotz.eu.org/api/tools/webp2png?url=${media}&apikey=${lann}`)).json();
             }
             if (json && json.result) {
                 await conn.sendFile(m.chat, json.result, null, '*DONE*', m);

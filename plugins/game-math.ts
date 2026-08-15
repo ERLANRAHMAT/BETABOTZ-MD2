@@ -38,7 +38,7 @@ Contoh penggunaan: ${usedPrefix}math medium
   }
 
   try {
-    const url = `https://api.botcahx.eu.org/api/game/math?apikey=${lann}`;
+    const url = `https://api.betabotz.eu.org/api/game/math?apikey=${lann}`;
     const res = await fetch(url);
     const json = await res.json();
     const soalDitemukan = json.filter(q => q.level && q.level.toLowerCase() === mode);

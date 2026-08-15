@@ -7,7 +7,7 @@ let handler: WaPlugin = async (m, {
 if (!text) throw `Masukkan pertanyaan!\n\n*Contoh:* Siapa presiden Indonesia? `
 try {
   await m.reply(wait)
-  let res = await (await fetch(`https://api.botcahx.eu.org/api/search/bard-ai?apikey=${lann}&text=${text}`)).json()
+  let res = await (await fetch(`https://api.betabotz.eu.org/api/search/bard-ai?apikey=${lann}&text=${text}`)).json()
   await m.reply(res.message)
 } catch (err) {
   console.error(err)

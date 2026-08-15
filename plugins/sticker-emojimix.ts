@@ -11,7 +11,7 @@ let handler: WaPlugin = async (m, { conn, text, args }) => {
   if (!args[0]) throw 'Contoh penggunaan:\n\n*.emojimix 🤨+😣*'
   try {
     let [emoji1, emoji2] = text.split('+')
-    let anu = await fetch(`https://api.botcahx.eu.org/api/emoji/emojimix?emoji1=${emoji1}&emoji2=${emoji2}&apikey=${lann}`)
+    let anu = await fetch(`https://api.betabotz.eu.org/api/emoji/emojimix?emoji1=${emoji1}&emoji2=${emoji2}&apikey=${lann}`)
     let res = await anu.json()
     let stiker = await sticker5(res.result.results[0].media_formats.png_transparent.url, false, packname, author)
     await conn.sendFile(m.chat, stiker, 'sticker.webp', '', m)

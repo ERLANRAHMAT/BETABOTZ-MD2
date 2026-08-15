@@ -6,79 +6,79 @@ let handler: WaPlugin = async (m, {conn, command}) => {
     let cerdn = `----( *${command.toUpperCase()}* )----\n\n`;
 
     if (command === 'cerpenremaja') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=remaja&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=remaja&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpenanak') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=anak&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=anak&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpenmisteri') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=misteri&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=misteri&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpenbudaya') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=budaya&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=budaya&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpenromantis') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=romantis&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=romantis&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpengalau') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=galau&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=galau&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpengokil') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=gokil&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=gokil&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpeninspiratif') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=inspiratif&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=inspiratif&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpenkehidupan') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=kehidupan&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=kehidupan&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpensastra') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=sastra&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=sastra&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpenjepang') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=jepang&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=jepang&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpenkorea') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=korea&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=korea&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpenkeluarga') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=keluarga&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=keluarga&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpenpersahabatan') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=persahabatan&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=persahabatan&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpenkristen') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=kristen&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=kristen&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpenramadhan') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=ramadhan&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=ramadhan&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpenliburan') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=liburan&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=liburan&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpenlingkungan') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=lingkungan&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=lingkungan&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
     else if(command === 'cerpenmengharukan') {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/story/cerpen?type=mengharukan&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/story/cerpen?type=mengharukan&apikey=${lann}`)).json();
         cerdn += `Judul: *${res.result.title}*\nAuthor: *${res.result.author}*\nKategori: *${res.result.kategori}*\nLolos: *${res.result.lolos}*\n\n*Cerita:* ${res.result.cerita}\n `
     }
 

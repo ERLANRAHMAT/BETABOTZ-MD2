@@ -46,7 +46,7 @@ handler.before = async (m, { conn }) => {
             let img2 = conn.beautifulMeme[id].images[1];
             delete conn.beautifulMeme[id];
             
-            let apiUrl = `https://api.botcahx.eu.org/api/maker/canvas-beautifulMeme?apikey=${lann}&image1=${encodeURIComponent(img1)}&image2=${encodeURIComponent(img2)}`;
+            let apiUrl = `https://api.betabotz.eu.org/api/maker/canvas-beautifulMeme?apikey=${lann}&image1=${encodeURIComponent(img1)}&image2=${encodeURIComponent(img2)}`;
             
             await conn.sendFile(m.chat, apiUrl, 'meme.jpg', 'Done!', m);
         } else {

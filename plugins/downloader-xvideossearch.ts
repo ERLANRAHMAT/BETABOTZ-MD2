@@ -6,7 +6,7 @@ var handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
   }
   try {
   const search = await axios.get(
-    `https://api.botcahx.eu.org/api/search/xvideos?query=${text}&apikey=${lann}`)
+    `https://api.betabotz.eu.org/api/search/xvideos?query=${text}&apikey=${lann}`)
 
   const hasil = search.data.result;
   

@@ -5,7 +5,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, text, command }) => {
 
     try {
         m.reply(wait);
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/search/heroml?hero=${encodeURIComponent(text)}&apikey=${lann}`)).json();
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/search/heroml?hero=${encodeURIComponent(text)}&apikey=${lann}`)).json();
         const hero = res.result;
         let content = `*🎮 Mobile Legends Hero: ${hero.name || text} 🎮*\n\n`;
 

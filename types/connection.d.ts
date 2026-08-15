@@ -516,7 +516,7 @@ export interface WaConnection {
   selfai?: Record<string, WaAiSession>;
   sessionAI?: Record<string, WaAiSession>;
   sessionsMail?: Record<string, WaMailSession>;
-  lannh?: Record<string, WaAiSession>;
+  btch?: Record<string, WaAiSession>;
   beta?: Record<string, WaAiSession>;
   msgStore?: Map<string, any>;
   betaai?: Record<string, WaAiSession>;

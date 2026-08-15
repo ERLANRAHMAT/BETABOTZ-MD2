@@ -77,12 +77,12 @@ let handler: WaPlugin = async (m, {
         const { data } = await axios.post("https://api.betabotz.eu.org/api/maker/imgedit", {
           text: promptText,
           url: out,
-          apikey: lann
+          apikey: btc
         });
         submitData = data;
       } else {
         const { data } = await axios.get(`https://api.betabotz.eu.org/api/maker/${endpoint}`, {
-          params: { url: out, apikey: lann }
+          params: { url: out, apikey: btc }
         });
         submitData = data;
       }

@@ -9,7 +9,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 
     try {
         await m.reply('⏳ _Sedang membuat gambar saldo OVO..._');
-        let apiUrl = `https://api.botcahx.eu.org/api/maker/canvas-fakeOvo?amount=${encodeURIComponent(text.trim())}&apikey=${lann}`;
+        let apiUrl = `https://api.betabotz.eu.org/api/maker/canvas-fakeOvo?amount=${encodeURIComponent(text.trim())}&apikey=${lann}`;
         await conn.sendFile(m.chat, apiUrl, 'fakeovo.jpg', 'Done!', m);
     } catch (e) {
         console.log(e);

@@ -6,7 +6,7 @@ const timeZone = 'Asia/Jakarta';
 async function getPrayerTimesAndSetReminders() {
     try {
         let city = 'jakarta';
-        let url = `https://api.botcahx.eu.org/api/tools/jadwalshalat?kota=${city}&apikey=${lann}`;
+        let url = `https://api.betabotz.eu.org/api/tools/jadwalshalat?kota=${city}&apikey=${lann}`;
         let response = await axios.get(url);
 
         let data = response.data;

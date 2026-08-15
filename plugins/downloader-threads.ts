@@ -8,7 +8,7 @@ let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
   }
   m.reply(wait);
   try {
-    const api = await fetch(`https://api.botcahx.eu.org/api/download/threads?url=${args[0]}&apikey=${lann}`).then(results => results.json());
+    const api = await fetch(`https://api.betabotz.eu.org/api/download/threads?url=${args[0]}&apikey=${lann}`).then(results => results.json());
     const foto = api.result.image_urls[0] || null;
     const video = api.result.video_urls[0] || null;   
     if (video) {

@@ -14,7 +14,7 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
 
   m.reply(wait);
   try {
-    let res = await fetch(`https://api.botcahx.eu.org/api/tools/cvuang?from=${from.toUpperCase()}&to=${to.toUpperCase()}&jumlah=${jumlah}&apikey=${lann}`);
+    let res = await fetch(`https://api.betabotz.eu.org/api/tools/cvuang?from=${from.toUpperCase()}&to=${to.toUpperCase()}&jumlah=${jumlah}&apikey=${lann}`);
     let json = await res.json();
 
     if (!json.status || json.result.status !== 'SUCCESS') throw 'Gagal melakukan konversi.';

@@ -13,7 +13,7 @@ command
 			const img = await q.download?.()
 			let out = await uploadImage(img)
 			let old = Date.now()
-			let res = await fetch(`https://api.botcahx.eu.org/api/tools/recolor?url=${out}&apikey=${lann}`)
+			let res = await fetch(`https://api.betabotz.eu.org/api/tools/recolor?url=${out}&apikey=${lann}`)
 			let convert = await res.json()
 			let buff = await fetch(convert.result)
   .then(res => res.buffer())

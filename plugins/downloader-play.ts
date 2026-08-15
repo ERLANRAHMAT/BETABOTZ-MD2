@@ -13,7 +13,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix }) => {
         } else {
             let audioUrl;
             try {
-                const res = await fetch(`https://api.botcahx.eu.org/api/dowloader/yt?url=${convert.url}&apikey=${lann}`);
+                const res = await fetch(`https://api.betabotz.eu.org/api/dowloader/yt?url=${convert.url}&apikey=${lann}`);
                 try {
                     audioUrl = await res.json();
                 } catch (e) {

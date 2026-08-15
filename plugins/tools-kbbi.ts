@@ -4,7 +4,7 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `*Example:* ${usedPrefix + command} pohon`
     m.reply(wait)
     try {
-        let res = await (await fetch(`https://api.botcahx.eu.org/api/search/kbbi?text=${encodeURIComponent(text)}&apikey=${lann}`)).json();
+        let res = await (await fetch(`https://api.betabotz.eu.org/api/search/kbbi?text=${encodeURIComponent(text)}&apikey=${lann}`)).json();
         let content = `*K A M U S  B E S A R  B A H A S A  I N D O N E S I A*\n\n`;
 
         if (res.status && res.result) {

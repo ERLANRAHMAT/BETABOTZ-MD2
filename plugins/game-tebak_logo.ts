@@ -9,7 +9,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix }) => {
     conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebaklogo[id][0])
     throw false
   }
-  let src = await (await fetch(`https://api.botcahx.eu.org/api/game/tebaklogo?apikey=${lann}`)).json()
+  let src = await (await fetch(`https://api.betabotz.eu.org/api/game/tebaklogo?apikey=${lann}`)).json()
   let json = src
   if (!json) throw "Terjadi kesalahan, ulangi lagi perintah!"
   let caption = `

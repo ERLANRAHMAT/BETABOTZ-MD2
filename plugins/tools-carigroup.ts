@@ -4,7 +4,7 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `uhm.. cari apa?\n\ncontoh:\n${usedPrefix + command} mabar`    
     try {
     await m.reply(wait)
-        const response = await fetch(`https://api.botcahx.eu.org/api/search/linkgroupwa?text1=${encodeURIComponent(text)}&apikey=${lann}`)
+        const response = await fetch(`https://api.betabotz.eu.org/api/search/linkgroupwa?text1=${encodeURIComponent(text)}&apikey=${lann}`)
         const data = await response.json()    
         if (!data.result || data.result.length === 0) throw 'Group tidak ditemukan ¯\\_(ツ)_/¯'       
         const teks = data.result.map(group => group.title + '\n' + group.link).join('\n\n')

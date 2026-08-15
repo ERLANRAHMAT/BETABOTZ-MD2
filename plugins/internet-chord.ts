@@ -4,7 +4,7 @@ let handler: WaPlugin = async (m, { text, command, usedPrefix }) => {
 if (!text) throw `Example: ${usedPrefix + command} Janji Suci Yovie Nuno`
 m.reply(wait)
 try {
-    let response = await fetch(`https://api.botcahx.eu.org/api/search/chord?song=${text}&apikey=${lann}`);
+    let response = await fetch(`https://api.betabotz.eu.org/api/search/chord?song=${text}&apikey=${lann}`);
     let data = await response.json();
 
     if (data.status && data.result) {

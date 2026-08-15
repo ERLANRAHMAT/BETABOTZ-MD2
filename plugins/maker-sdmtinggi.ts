@@ -12,7 +12,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
             let out = await uploadImage(img);
             let old = Date.now();
             
-            let img_url_api = await (await fetch(`https://api.botcahx.eu.org/api/maker/jadisdmtinggi?url=${out}&apikey=${lann}`)).buffer()
+            let img_url_api = await (await fetch(`https://api.betabotz.eu.org/api/maker/jadisdmtinggi?url=${out}&apikey=${lann}`)).buffer()
             await conn.sendMessage(m.chat, { 
                 image: img_url_api, 
                 caption: `🍟 *Fetching:* ${((Date.now() - old) * 1)} ms` 

@@ -8,7 +8,7 @@ let handler: WaPlugin = async (m, {
     if (!text) throw `*Example:* ${usedPrefix + command} 172720204487`
     m.reply(wait)
     try {
-        let res = await (await fetch(`https://api.botcahx.eu.org/api/tools/cekbillpln?id=${text}&apikey=${lann}`)).json();
+        let res = await (await fetch(`https://api.betabotz.eu.org/api/tools/cekbillpln?id=${text}&apikey=${lann}`)).json();
         let content = `*T A G I H A N  P L N*\n\n`;
 
         if (res.status && res.result) {

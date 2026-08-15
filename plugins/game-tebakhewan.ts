@@ -12,7 +12,7 @@ let handler: WaPlugin = async (m, { conn, usedPrefix }) => {
 
   let json
   try {
-    json = await (await fetch(`https://api.botcahx.eu.org/api/game/tebakhewan?apikey=${lann}`)).json()
+    json = await (await fetch(`https://api.betabotz.eu.org/api/game/tebakhewan?apikey=${lann}`)).json()
   } catch (e) {
     console.error(e)
     throw "Gagal mengambil data dari API, coba lagi nanti."

@@ -4,7 +4,7 @@ let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
     if (!args[0]) throw `Gunakan contoh ${usedPrefix}${command} https://www.facebook.com/watch/?v=1393572814172251`;
     try {
         await m.reply(wait)
-        const res = await fetch(`https://api.botcahx.eu.org/api/dowloader/fbdown3?url=${args[0]}&apikey=${lann}`);
+        const res = await fetch(`https://api.betabotz.eu.org/api/dowloader/fbdown3?url=${args[0]}&apikey=${lann}`);
         const json = await res.json();
         let urls = json.result.url.urls;
         if (!Array.isArray(urls)) {

@@ -10,7 +10,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
         
         await m.reply(wait);
 
-        let res = await fetch(`https://api.botcahx.eu.org/api/primbon/suamiistri?nama1=${nama1}&tanggal1=${tanggal1}&bulan1=${bulan1}&tahun1=${tahun1}&nama2=${nama2}&tanggal2=${tanggal2}&bulan2=${bulan2}&tahun2=${tahun2}&apikey=${lann}`);
+        let res = await fetch(`https://api.betabotz.eu.org/api/primbon/suamiistri?nama1=${nama1}&tanggal1=${tanggal1}&bulan1=${bulan1}&tahun1=${tahun1}&nama2=${nama2}&tanggal2=${tanggal2}&bulan2=${bulan2}&tahun2=${tahun2}&apikey=${lann}`);
         let json = await res.json();
         let anu = [
           `―-RAMALAN SUAMI ISTRI-―\n\nNama kamu: ${json.result.message.suami.nama}\n\nTanggal lahir kamu:${json.result.message.suami.tgl_lahir}\n\nPasangan kamu:${json.result.message.istri.nama}\n\nTanggal lahir pasangan kamu:${json.result.message.istri.tgl_lahir}\n\nPenjelasan:${json.result.message.result}`, 

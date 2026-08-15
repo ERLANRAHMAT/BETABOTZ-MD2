@@ -28,7 +28,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
         let link = await uploadImage(media);
         if (!link) throw 'Gagal mengunggah gambar ke server.';
 
-        let apiUrl = `https://api.botcahx.eu.org/api/maker/canvas-fakeCallIos?apikey=${lann}&durasi=${encodeURIComponent(durasi.trim())}&nama=${encodeURIComponent(nama.trim())}&url=${encodeURIComponent(link)}`;
+        let apiUrl = `https://api.betabotz.eu.org/api/maker/canvas-fakeCallIos?apikey=${lann}&durasi=${encodeURIComponent(durasi.trim())}&nama=${encodeURIComponent(nama.trim())}&url=${encodeURIComponent(link)}`;
 
         await conn.sendFile(m.chat, apiUrl, 'fakecall.jpg', 'Done!', m);
 

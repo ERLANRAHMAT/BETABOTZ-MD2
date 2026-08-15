@@ -6,7 +6,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 	
 	await m.reply(wait)
 	try {
-		let res = await fetch(`https://api.botcahx.eu.org/api/download/soundcloud?url=${text}&apikey=${lann}`)
+		let res = await fetch(`https://api.betabotz.eu.org/api/download/soundcloud?url=${text}&apikey=${lann}`)
 		let anu = await res.json()
 		anu = anu.result
 		let ini_txt = `*${anu.title}*\n\n`

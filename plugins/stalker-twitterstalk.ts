@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `contoh:\n${usedPrefix + command} tiopermana_2`
     try {
-        let api = await fetch(`https://api.botcahx.eu.org/api/stalk/twitter?username=${text}&apikey=${lann}`)
+        let api = await fetch(`https://api.betabotz.eu.org/api/stalk/twitter?username=${text}&apikey=${lann}`)
         let response = await api.json()
         if (response.status) {
             let { profileImage, bio, id, username, fullName, follower, following, totalPosts, favoritCount, createdAt, location } = response.result;
