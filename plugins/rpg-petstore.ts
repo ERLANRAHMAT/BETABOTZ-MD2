@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 let handler: WaPlugin  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
   let type = (args[0] || '').toLowerCase()
   let _type = (args[0] || '').toLowerCase()
@@ -139,4 +139,5 @@ handler.tags = ['rpg']
 handler.command = /^(pet(shop|store)?|adopt)/i
 handler.register = true
 handler.rpg = true
-export default handler
+
+export default handler;

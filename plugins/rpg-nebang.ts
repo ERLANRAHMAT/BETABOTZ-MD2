@@ -1,3 +1,4 @@
+// @ts-nocheck
 const timeout = 28800000
 
 let handler: WaPlugin = async (m, { conn, usedPrefix, text }) => {
@@ -18,7 +19,7 @@ handler.limit = true
 handler.exp = 0
 handler.money = 0
 
-export default handler
+
 
 function msToTime(duration) {
   var milliseconds = parseInt(String((duration % 1000) / 100)),
@@ -32,3 +33,5 @@ function msToTime(duration) {
 
   return hours + " jam " + minutes + " menit " + seconds + " detik"
 }
+
+export default handler;

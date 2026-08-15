@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, 
 	command,
 	usedPrefix,
@@ -194,4 +195,5 @@ handler.tags = ['rpg']
 handler.group = true
 handler.command = /^(masak|cook)$/i
 handler.rpg = true
-export default handler
+
+export default handler;

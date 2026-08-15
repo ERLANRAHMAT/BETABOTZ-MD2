@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async(m, { conn, text, participants }) => {
   let teks = `⋙ *PESAN DARI ADMIN GROUP* ⋘
 \n *${text ? text : 'Nothing'}*\n\n`
@@ -14,4 +15,4 @@ handler.command = /^(tagall)$/i
 handler.group = true
 handler.admin = true
 
-export default handler
+export default handler;

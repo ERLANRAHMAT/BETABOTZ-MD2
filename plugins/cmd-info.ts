@@ -1,3 +1,4 @@
+// @ts-nocheck
 export default Object.assign(async function handler(m, { conn, text }) {
     let hash = text
     if (m.quoted && m.quoted.fileSha256) {
@@ -65,3 +66,5 @@ ${mentionedInfo}
     tags: ['database'],
     command: ['infocmd']
 })
+
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import uploadFile from '../lib/uploadFile.ts'
 import uploadImage from '../lib/uploadImage.ts'
 
@@ -21,4 +22,5 @@ handler.help = ['tourl <reply image>']
 handler.tags = ['tools']
 handler.command = /^(upload|tourl)$/i
 handler.limit = true
-export default handler
+
+export default handler;

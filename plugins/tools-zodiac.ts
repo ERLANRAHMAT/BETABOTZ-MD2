@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = (m, { usedPrefix, command, text }) => {
     if (!text) throw `contoh:\n${usedPrefix + command} 2002 02 25`
 
@@ -28,7 +29,7 @@ handler.tags = ['tools', 'internet', 'fun']
 
 handler.command = /^zodia[kc]$/i
 
-export default handler
+
 
 const zodiak = [
     ["Capricorn", new Date(1970, 0, 1)],
@@ -50,3 +51,5 @@ function getZodiac(month, day) {
     let d = new Date(1970, month - 1, day)
     return zodiak.find(([_,_d]) => d >= _d)[0]
 }
+
+export default handler;

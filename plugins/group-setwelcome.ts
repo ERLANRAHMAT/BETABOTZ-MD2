@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text, isROwner, isOwner }) => {
   if (text) {
     if (isROwner) global.conn.welcome = text
@@ -12,4 +13,4 @@ handler.tags = ['owner', 'group']
 handler.command = /^setwelcome$/i
 handler.botAdmin = true
 
-export default handler
+export default handler;

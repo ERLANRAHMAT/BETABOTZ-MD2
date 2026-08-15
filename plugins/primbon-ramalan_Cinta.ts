@@ -1,3 +1,5 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
@@ -10,25 +12,31 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
         
         await m.reply(wait);
 
-        let res = await fetch(`https://api.botcahx.eu.org/api/primbon/ramalancinta?nama1=${nama1}&tanggal1=${tanggal1}&bulan1=${bulan1}&tahun1=${tahun1}&nama2=${nama2}&tanggal2=${tanggal2}&bulan2=${bulan2}&tahun2=${tahun2}&apikey=${btc}`);
+        let res = await fetch(`https://api.betabotz.eu.org/api/primbon/ramalancinta?nama1=${nama1}&tanggal1=${tanggal1}&bulan1=${bulan1}&tahun1=${tahun1}&nama2=${nama2}&tanggal2=${tanggal2}&bulan2=${bulan2}&tahun2=${tahun2}&apikey=${lann}`);
         let json = await res.json();
         let anu = [
           `―-RAMALAN CINTA-―\n\nNama kamu: ${json.result.message.nama_anda.nama}\n\nTanggal lahir kamu:${json.result.message.nama_anda.tgl_lahir}\n\nPasangan kamu:${json.result.message.nama_pasangan.nama}\n\nTanggal lahir pasangan kamu:${json.result.message.nama_pasangan.tgl_lahir}\n\nSisi positif:${json.result.message.sisi_positif}\n\nCatatan:${json.result.message.catatan}`, 
        ]
+       //thorw data when this buffer end
         if (json.status) {
          conn.reply(m.chat,`${(anu)}`);;
         } else {
-            conn.reply(m.chat, `Maaf, terjadi kesalahan!`, m);
+            conn.reply(m.chat, `Maaf, terjadi kesalahan: ${json.message}`, m);
         }
     } catch (e) {
-    throw eror
+        console.log(e);
+        throw e;
     }
 }
 
 handler.help = ['ramalancinta']
 handler.tags = ['fun']
 handler.command = /^(ramalancinta)$/i
-handler.group = false;
-handler.limit = true; 
+handler.group = true
+
+
+
+//danaputra133
+//di bantu erlan aka
 
 export default handler;

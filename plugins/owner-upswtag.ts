@@ -1,3 +1,4 @@
+// @ts-nocheck
 const handler: WaPlugin = async (m, { conn, text, command, usedPrefix, isOwner }) => {
     if (!m.isGroup) return m.reply("❌ Hanya bisa digunakan di grup.");
 

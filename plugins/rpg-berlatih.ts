@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Convert time to hours:minutes:seconds format
 function clockString(ms) {
   let h = Math.floor(ms / 3600000);

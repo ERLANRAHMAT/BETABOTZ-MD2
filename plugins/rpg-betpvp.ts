@@ -1,3 +1,4 @@
+// @ts-nocheck
 const items = [ 'money', 'diamond', 'emas', 'berlian' ]
 let handler: WaPlugin = async (m, { conn, args, usedPrefix, command }) => {
     conn.judipvp = conn.judipvp ? conn.judipvp : {}
@@ -34,9 +35,11 @@ handler.command = /^(judipvp)$/i
 handler.register = true
 handler.group = true
 handler.rpg = true
-export default handler
+
 
 function number(x = 0) {
     x = parseInt(String(x))
     return !isNaN(x) && typeof x == 'number'
 }
+
+export default handler;

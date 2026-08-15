@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
 let dapat = (Math.floor(Math.random() * 5000))
   let who
@@ -50,7 +51,7 @@ handler.register = true
 handler.group = true
 handler.rpg = true
 
-export default handler
+
 
 function pickRandom(list) {
     return list[Math.floor(Math.random() * list.length)]
@@ -62,3 +63,5 @@ function clockString(ms) {
   console.log({ms,h,m,s})
   return [h, m, s].map(v => v.toString().padStart(2, '0') ).join(':')
 }
+
+export default handler;

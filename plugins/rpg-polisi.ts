@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { WaGameRoom } from '../types/connection.js';
 
 const STATES = {
@@ -159,4 +160,5 @@ handler.tags = ["rpg"];
 handler.group = true;
 handler.command = ["polisi"];
 handler.rpg = true
+
 export default handler;

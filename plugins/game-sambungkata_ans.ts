@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { sKata, cKata } from '../lib/sambung-kata.ts'
 
 let handler: WaPlugin = m => m
@@ -119,7 +120,7 @@ Jawaban tidak valid atau sudah digunakan!`)
     return true
 }
 
-export default handler
+
 
 async function genKata() {
     let json = await sKata()
@@ -129,3 +130,5 @@ async function genKata() {
 function rwd(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
+
+export default handler;

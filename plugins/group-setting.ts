@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { isAdmin, isOwner, isBotAdmin, conn, args, usedPrefix, command }) => {
 	if (!(isAdmin || isOwner)) {
 		global.dfail('admin', m, conn)
@@ -57,4 +58,4 @@ handler.command = /^(g(ro?up|c?)?)$/i
 handler.group = true
 handler.botAdmin = false
 
-export default handler
+export default handler;

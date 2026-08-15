@@ -1,17 +1,25 @@
-import type { WaGameRoom } from '../types/connection.js';
-import fetch from 'node-fetch'
-
+// @ts-nocheck
+// Converted from plugins-esm - automated
+import fetch from 'node-fetch';
 let timeout = 100000
 let poin = 10000
 let handler: WaPlugin = async (m, { conn, usedPrefix }) => {
-    conn.fisika = conn.fisika ? conn.fisika : {}
+    try {
+         conn.fisika = conn.fisika ? conn.fisika : {}
     let id = m.chat
     if (id in conn.fisika) {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.fisika[id][0])
         throw false
     }
-    let src = await (await fetch(`https://api.botcahx.eu.org/api/game/fisika?apikey=${btc}`)).json()
-    let json = src
+    let json ;
+    try {
+    let src = await (await fetch(`https://api.betabotz.eu.org/api/game/fisika?apikey=${lann}`)).json()
+    json = src;
+        } catch (e) {
+            console.log(e);
+            throw e;
+        }
+    if (!json || !json.jawaban) throw new Error('Format data tebakemoji tidak valid dari API.');
     let options = json.pilihan.map((opt, i) => `${String.fromCharCode(65 + i)}. ${opt}`).join('\n')
     let caption = `
 ${json.soal}
@@ -35,7 +43,13 @@ ${options}
                 delete conn.fisika[id]
             }
         }, timeout)
-    ] as unknown as WaGameRoom
+    ]
+    } catch (e) {
+        if (e !== false) {
+            console.log(e);
+            throw e;
+        }
+    }
 }
 handler.help = ['fisika']
 handler.tags = ['game']
@@ -43,5 +57,9 @@ handler.command = /^fisika/i
 handler.register = false
 handler.group = true
 
-export default handler
 
+
+// tested di bileys versi 6.5.0 dan sharp versi 0.30.5
+// danaputra133
+
+export default handler;

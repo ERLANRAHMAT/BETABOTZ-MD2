@@ -1,3 +1,5 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
 
 function getPrayerTimes(jsonData) {
@@ -17,10 +19,10 @@ function getPrayerTimes(jsonData) {
 }
 
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
-    if (!text) throw `Gunakan contoh: ${usedPrefix}${command} semarang`;
-
+     if (!text) throw `Gunakan contoh: ${usedPrefix}${command} semarang`;
     try {
-        const res = await (await fetch(`https://api.botcahx.eu.org/api/tools/jadwalshalat?kota=${text}&apikey=${btc}`)).json();
+       
+        const res = await (await fetch(`https://api.betabotz.eu.org/api/tools/jadwalshalat?kota=${text}&apikey=${global.lann}`)).json();
         
         if (!res.status || res.result.code !== 200) {
             throw 'Error: API response tidak valid';
@@ -43,8 +45,9 @@ ${jadwalSholat}
         } else {
             throw 'Error: Tidak ada data untuk tanggal hari ini';
         }
-    } catch (error) {
-        m.reply('Terjadi kesalahan: ' + error);
+    } catch (e) {
+        console.log(e);
+        throw e;
     }
 };
 

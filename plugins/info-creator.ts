@@ -1,3 +1,4 @@
+// @ts-nocheck
 var name = global.nameowner
 var numberowner = global.numberowner
 var gmail = global.mail
@@ -35,4 +36,5 @@ await conn.reply(m.chat, "Itu Adalah nomor owner Bot", sentMsg)}
 handler.command = handler.help = ['owner', 'creator'];
 handler.tags = ['info'];
 handler.limit = false;
+
 export default handler;

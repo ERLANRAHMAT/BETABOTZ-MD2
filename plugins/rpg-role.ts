@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
   let user = global.db.data.users[m.sender]
         let role = (user.level <= 2) ? 'Newbie ㋡'
@@ -68,4 +69,5 @@ handler.tags = ['info']
 handler.command = /^(role|levelrole)$/i
 handler.register = true
 handler.rpg = true
-export default handler
+
+export default handler;

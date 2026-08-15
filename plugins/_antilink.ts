@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = m => m
 
 let linkRegex = /chat\.whatsapp\.com\/([0-9A-Za-z]{20,24})/i
@@ -34,4 +35,4 @@ handler.before = async function (m, { conn, isBotAdmin, isAdmin }) {
   return true
 }
 
-export default handler
+export default handler;

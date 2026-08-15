@@ -1,3 +1,5 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import axios from 'axios';
 import { setInterval } from 'timers';
 
@@ -5,18 +7,16 @@ let lastGempaData = null;
 
 async function getGempaInfo() {
     try {
-        const url = `https://api.botcahx.eu.org/api/search/gempa?apikey=${btc}`;
+        const url = `https://api.betabotz.eu.org/api/search/gempa?apikey=${lann}`;
         const response = await axios.get(url);
         const res = response.data.result.result;
 
         if (!res) {
-            console.log('Data gempa tidak tersedia');
             return;
         }
 
 
         if (lastGempaData && lastGempaData.waktu === res.waktu) {
-            console.log('Data gempa belum berubah, tidak ada pengingat.');
             return;
         }
 
@@ -70,3 +70,5 @@ function startGempaReminder() {
 }
 
 startGempaReminder();
+
+export default handler;

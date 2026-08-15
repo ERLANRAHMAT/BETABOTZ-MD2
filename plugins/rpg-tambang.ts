@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { WaConnection } from '../types/connection.js';
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 

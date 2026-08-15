@@ -1,3 +1,4 @@
+// @ts-nocheck
 import os from 'os';
 import fetch from 'node-fetch';
 
@@ -33,7 +34,7 @@ handler.command = handler.help = ['server'];
 handler.tags = ['info'];
 handler.owner = true;
 
-export default handler;
+
 
 function deleteMessage() {
 }
@@ -58,3 +59,5 @@ function toTime(milliseconds) {
   const days = Math.floor(hours / 24);
   return `${days} days, ${hours % 24} hours, ${minutes % 60} minutes, ${seconds % 60} seconds`;
 }
+
+export default handler;

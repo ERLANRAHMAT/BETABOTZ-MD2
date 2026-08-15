@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
   conn.reply(m.chat, `Kayaknya ${Math.floor(Math.random() * 100)} ${pickRandom(['detik', 'menit', 'jam', 'hari', 'minggu', 'bulan', 'tahun', 'abad'])} lagi ...
 `.trim(), m, m.mentionedJid ? {
@@ -21,9 +22,10 @@ handler.botAdmin = false
 
 handler.fail = null
 
-export default handler
+
 
 function pickRandom(list) {
   return list[Math.floor(Math.random() * list.length)]
 }
 
+export default handler;

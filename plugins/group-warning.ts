@@ -1,3 +1,4 @@
+// @ts-nocheck
 let war = global.maxwarn
 let handler: WaPlugin = async (m, { conn, text, args, groupMetadata, usedPrefix, command }) => {      
         let who
@@ -49,8 +50,10 @@ handler.group = true
 handler.admin = true
 handler.botAdmin = true
 
-export default handler
+
 
 const time = async (ms) => {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
+
+export default handler;

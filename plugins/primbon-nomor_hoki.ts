@@ -1,10 +1,12 @@
-import fetch from 'node-fetch'
+// @ts-nocheck
+// Converted from plugins-esm - automated
+import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
-
+// if (!text) throw `Masukkan Nama!\n\ncontoh: ${usedPrefix + command} "dana"`;
 if (!text) throw `Masukkan Nomor nya!\n\ncontoh: ${usedPrefix + command} 6281289694906\n\n*Gunakan 62!*`;
 try {
   await m.reply(wait)
-  let res = await fetch(`https://api.botcahx.eu.org/api/primbon/nomerhoki?nomer=${text}&apikey=${btc}`);
+  let res = await fetch(`https://api.betabotz.eu.org/api/primbon/nomerhoki?nomer=${text}&apikey=${lann}`);
   let json = await res.json()
   let anu = [
        `―-NOMOR HOKI-―\n\nNomor hp: ${json.result.message.nomer_hp}\n\nAngka shuzi: ${json.result.message.angka_shuzi}\n\n
@@ -13,15 +15,22 @@ try {
 --Catatan: ${json.result.message.catatan}`, 
     ]
 conn.reply(m.chat,`${(anu)}`);;
-} catch (e) {
-throw eror
-  }
+}  catch (e) {
+        console.log(e);
+        throw e;
+    }
 }
   
     handler.help = ['nomerhoki nomor?']
     handler.tags = ['fun']
     handler.command = /^(nomerhoki)$/i
-    handler.group = false;
-    handler.limit = true; 
+    handler.group = true
     
-    export default handler
+    
+    
+
+
+
+//danaputra133
+
+export default handler;

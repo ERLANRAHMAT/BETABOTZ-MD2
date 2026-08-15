@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
   let user = global.db.data.users[m.sender]
   let opponent = m.mentionedJid[0]
@@ -73,8 +74,10 @@ handler.command = /^(fight|bertarung)$/i
 handler.group = true
 handler.rpg = true
 
-export default handler
+
 
 function pickRandom(list) {
   return list[Math.floor(Math.random() * list.length)]
 }
+
+export default handler;

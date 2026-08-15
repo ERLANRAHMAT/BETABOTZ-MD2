@@ -1,3 +1,5 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
@@ -10,7 +12,7 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
         
         await m.reply(wait);
 
-        let res = await fetch(`https://api.botcahx.eu.org/api/primbon/nagahari?tanggal=${tanggal1}&bulan=${bulan1}&tahun=${tahun1}&apikey=${btc}`);
+        let res = await fetch(`https://api.betabotz.eu.org/api/primbon/nagahari?tanggal=${tanggal1}&bulan=${bulan1}&tahun=${tahun1}&apikey=${lann}`);
         let json = await res.json();
         let anu = [
           `―-RAHASIA NAGA HARI-―\n\nTanggal lahir: ${json.result.message.tgl_lahir}\n\nArah naga hari: ${json.result.message.arah_naga_hari}\n\nCatatan: ${json.result.message.catatan}`, 
@@ -18,17 +20,22 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
         if (json.status) {
          conn.reply(m.chat,`${(anu)}`);;
         } else {
-            conn.reply(m.chat, `Maaf, terjadi kesalahan`, m);
+            conn.reply(m.chat, `Maaf, terjadi kesalahan: ${json.message}`, m);
         }
     } catch (e) {
-    throw eror
+        console.log(e);
+        throw e;
     }
 }
 
 handler.help = ['nagahari']
 handler.tags = ['fun']
 handler.command = /^(nagahari)$/i
-handler.group = false;
-handler.limit = true; 
+handler.group = true
+
+
+
+//danaputra133
+//di bantu erlan aka
 
 export default handler;

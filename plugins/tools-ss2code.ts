@@ -1,5 +1,7 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
-import uploadImage from '../lib/uploadImage.ts'
+import uploadImage from '../lib/uploadImage.js';
 let handler: WaPlugin = async (m, { 
 conn, 
 usedPrefix, 
@@ -12,13 +14,13 @@ command
 	       await conn.reply(m.chat, wait, m)
 			const img = await q.download?.()
 			let out = await uploadImage(img)
-			let res = await fetch(`https://api.botcahx.eu.org/api/tools/ss2code?url=${out}&apikey=${btc}`)
+			let res = await fetch(`https://api.betabotz.eu.org/api/tools/ss2code?url=${out}&apikey=${lann}`)
 			let json = await res.json()
 		    await m.reply(json.result)
 		} catch (e) {
-			console.log(e)
-			m.reply(`[ ! ] Identifikasi Code gagal.`)
-		}
+      		 console.log(e);
+      		 throw e;
+    	}
 	} else {
 		m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim`)
 	}

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const __dirname = import.meta.dirname;
 import fs from 'fs'
 import path from 'path'
@@ -43,4 +44,4 @@ handler.help = ['bass', 'blown', 'deep', 'earrape', 'fast', 'fat', 'nightcore', 
 handler.tags = ['voice']
 handler.command = /^(bass|blown|deep|earrape|fas?t|nightcore|reverse|robot|slow|smooth|tupai|squirrel|chipmunk|vibra)$/i
 
-export default handler
+export default handler;

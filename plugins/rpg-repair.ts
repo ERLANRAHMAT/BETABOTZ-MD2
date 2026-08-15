@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
   let type = (args[0] || '').toLowerCase()
   let _type = (args[0] || '').toLowerCase()
@@ -159,4 +160,5 @@ handler.tags = ['rpg']
 handler.group = true
 handler.command = /^(repair|perbaiki)/i
 handler.rpg = true
-export default handler
+
+export default handler;

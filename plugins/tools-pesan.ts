@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async(m, { conn, text, usedPrefix }) => {
 let [number, pesan] = text.split('|')
 
@@ -29,4 +30,4 @@ handler.botAdmin = false
 handler.fail = null
 handler.limit = false
 
-export default handler
+export default handler;

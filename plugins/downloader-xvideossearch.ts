@@ -1,12 +1,14 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import axios from 'axios';
 
-var handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
+var handler = async (m, { text, usedPrefix, command }) => {
   if (!text) {
     throw `Contoh:\n${usedPrefix + command} boobs`;
   }
   try {
   const search = await axios.get(
-    `https://api.botcahx.eu.org/api/search/xvideos?query=${text}&apikey=${btc}`)
+    `https://api.betabotz.eu.org/api/search/xvideos?query=${text}&apikey=${lann}`)
 
   const hasil = search.data.result;
   
@@ -20,13 +22,12 @@ var handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
   await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
   await conn.sendMessage(m.chat, { image: { url: hasil[0].thumb }, caption: teks }, { quoted: m });
   } catch (e) {
-  throw `*Server error*`
+      console.log(e);
+      throw e;
   }
  };
 
-handler.help = handler.command = ['xvideossearch','xsearch'];
+handler.command = ['xvideossearch','xsearch'];
 handler.tags = ['internet'];
-handler.limit = true;
-handler.premium = true;
 
 export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
     let who
     if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text
@@ -18,4 +19,4 @@ handler.command = /^(add|tambah|\+)owner$/i
 
 handler.owner = true
 
-export default handler
+export default handler;

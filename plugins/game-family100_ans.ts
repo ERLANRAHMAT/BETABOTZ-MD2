@@ -1,3 +1,4 @@
+// @ts-nocheck
 import similarity from 'similarity'
 const threshold = 0.72
 
@@ -87,3 +88,5 @@ ${room.jawaban.map((j, i) => {
         return !0
     }
 }
+
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const __dirname = import.meta.dirname;
 import gtts from 'node-gtts';
 import fs from 'fs';
@@ -24,7 +25,7 @@ let handler: WaPlugin = async (m, { conn, args }) => {
 handler.help = ['tts <teks>'];
 handler.tags = ['tools'];
 handler.command = /^tts$/i;
-export default handler;
+
 
 function tts(text, lang = 'id'): Promise<Buffer> {
   console.log(lang, text);
@@ -47,3 +48,5 @@ function tts(text, lang = 'id'): Promise<Buffer> {
     });
   });
 }
+
+export default handler;

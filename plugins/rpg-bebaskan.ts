@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
     if (!text) throw '• *Contoh :* .bebaskan 62×××'
     let who
@@ -20,4 +21,4 @@ handler.owner = false
 handler.admin = false
 handler.rpg = true
 
-export default handler
+export default handler;

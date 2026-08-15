@@ -1,13 +1,23 @@
-import fetch from 'node-fetch'
-let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
-  if (!text) throw `Masukan url/link!\n ${usedPrefix + command} https://google.com`
-  let res = await fetch(`https://api.botcahx.eu.org/api/linkshort/tinyurl?link=${text}&apikey=${btc}`)
-  let json = await res.json()
-  if (json.status) m.reply(json.result)
-  else throw 'Link Invalid!\nPeriksa url anda'
+// @ts-nocheck
+// Converted from plugins-esm - automated
+import fetch from 'node-fetch';
+let handler: WaPlugin = async (m, { text }) => {
+  try {
+    if (!text)
+      throw "Masukan url/link nya mana?\n> .tinyurl https://google.com";
+    let res = await fetch(
+      `https://api.betabotz.eu.org/api/tools/tinyurl?link=${text}&apikey=${lann}`,
+    );
+    let json = await res.json();
+    if (json.status) m.reply(json.result);
+    else throw "Link Invalid!\nPeriksa url anda";
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
 }
 handler.help = ['tinyurl'].map(v => v + ' <link>')
 handler.tags = ['shortlink']
 handler.command = /^tinyurl$/i
 
-export default handler
+export default handler;

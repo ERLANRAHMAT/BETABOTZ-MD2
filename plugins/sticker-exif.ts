@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { format } from 'util';
 import pkg from 'node-webpmux';
 const { Image } = pkg;
@@ -20,4 +21,5 @@ var handler: WaPlugin = async (m) => {
 };
 handler.command = handler.help = ['getexif'];
 handler.tags = ['sticker'];
+
 export default handler;

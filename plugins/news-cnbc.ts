@@ -1,33 +1,28 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
-
 let handler: WaPlugin = async (m, { conn }) => {
-  try {
-    let res = await fetch(`https://api.botcahx.eu.org/api/news/cnbc?apikey=${btc}`);
-    let json = await res.json();
-    let items = json.result.filter(item => item.berita && item.berita_url);
-    let choice = pickRandom(items);
-    let text = `―CNBC―\n\n*Judul*     : ${choice.berita}\n*URL*       : ${choice.berita_url}\n*Jenis*     : ${choice.berita_jenis || 'Tidak diketahui'}\n*Di upload* : ${choice.berita_diupload || 'Tidak diketahui'}`;
-    if (choice.berita_thumb) {
-      try {
-        await conn.sendMessage(m.chat, { image: { url: choice.berita_thumb }, caption: text }, { quoted: m });
-      } catch (e) {
-        conn.reply(m.chat, text, m);
-      }
-    } else {
-      conn.reply(m.chat, text, m);
-    }
-  } catch (e) {
-    throw eror
-  }
-};
+try {
+  let res = await fetch(
+    `https://api.betabotz.eu.org/api/news/cnbc?&apikey=${lann}`,
+  );
+  let json = await res.json();
+  //   array 1-> array terakhir
+  let anu = `―CNBC―\n\nBerita: ${json.result[0].berita}\n\nBeritaUrl: ${json.result[0].berita_url}\n\nBerita di upload: ${json.result[0].berita_diupload} `;
+  //   let anu1 = `―CNBC―\n\nBerita: ${json.result[1].berita}\n\nBeritaUrl: ${json.result[1].berita_url}\n\nBerita di upload: ${json.result[1].berita_diupload} `
 
-handler.help = ['cnbc'];
-handler.tags = ['news'];
-handler.command = /^(cnbc)$/i;
-handler.group = false;
-handler.limit = true;
-export default handler;
-
-function pickRandom(list) {
-  return list[Math.floor(list.length * Math.random())];
+  //   conn.reply(m.chat, `―CNBC―\n\n"${json.result[0].berita}"`,)
+  // variabel dapat di ganti jika diperlukan
+  conn.reply(m.chat, anu);
+} catch (e) {
+  console.log(e);
+  throw e;
 }
+}
+  
+    handler.help = ['cnbc']
+    handler.tags = ['news']
+    handler.command = /^(cnbc)$/i
+    handler.group = true
+
+export default handler;

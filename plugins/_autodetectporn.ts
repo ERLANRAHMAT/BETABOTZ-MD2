@@ -1,59 +1,35 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
-import uploader from '../lib/uploadImage.ts';
+import uploader from '../lib/uploadImage.js';
 
-let handler: WaPlugin = m => m;
+
+let handler = m => m;
 
 handler.before = async function(m, { conn }) {
-    if (!global.db.data.chats[m.chat]?.antiporn) return;
-    let target = m;
-    let mime = (m.msg || m).mimetype || '';
-
-    if (!/image|gif/.test(mime) && m.quoted) {
-        let qmime = (m.quoted.msg || m.quoted).mimetype || '';
-        if (/image|gif/.test(qmime)) {
-            target = m.quoted;
-            mime = qmime;
-        }
-    }
-
-    if (!/image|gif/.test(mime)) return;
-
+    let q = m.quoted ? m.quoted : m;
+    let mime = (q.msg || q).mimetype || '';
+    
+    if (!global.antiporn) return;
+    if (!/image/.test(mime)) return;
+    
     try {
-        let media = await target.download();
+        let media = await q.download();
         let url = await uploader(media);
-
-        const response = await fetch(`https://api.botcahx.eu.org/api/tools/nsfw-detect?url=${url}&apikey=${btc}`);
+        
+        const response = await fetch(`https://api.betabotz.eu.org/api/tools/nsfw-detect?url=${url}&apikey=${lann}`);
         const res = await response.json();
-
+        
         if (res.result.labelName === 'Porn') {
-            if (target === m.quoted) {
-                await conn.sendMessage(m.chat, {
-                    delete: {
-                        remoteJid: m.chat,
-                        fromMe: false,
-                        id: m.msg.contextInfo.stanzaId,
-                        participant: m.msg.contextInfo.participant
-                    }
-                });
-                await conn.sendMessage(m.chat, {
-                    delete: {
-                        remoteJid: m.chat,
-                        fromMe: false,
-                        id: m.key.id,
-                        participant: m.key.participant
-                    }
-                });
-            } else {
-                await conn.sendMessage(m.chat, {
-                    delete: {
-                        remoteJid: m.chat,
-                        fromMe: false,
-                        id: m.key.id,
-                        participant: m.key.participant
-                    }
-                });
-            }
-            this.reply(m.chat, '⚠️antiporn detected⚠️', null);
+            await conn.sendMessage(m.chat, {
+                delete: {
+                    remoteJid: m.chat,
+                    fromMe: false,
+                    id: m.key.id,
+                    participant: m.key.participant
+                }
+            });
+            m.reply('⚠️antiporn detected⚠️');
         }
     } catch (e) {
         console.log(e);

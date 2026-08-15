@@ -1,4 +1,6 @@
-import uploadImage from '../lib/uploadImage.ts';
+// @ts-nocheck
+// Converted from plugins-esm - automated
+import uploadImage from '../lib/uploadImage.js';
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
@@ -6,13 +8,13 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
     var mime = (q.msg || q).mimetype || q.mediaType || '';
     
     if (/image/g.test(mime) && !/webp/g.test(mime)) {
-        await conn.reply(m.chat, "⏳ Sedang diproses...", m);
+        await conn.reply(m.chat, wait, m);
         try {
             const img = await q.download?.();
             let out = await uploadImage(img);
-            let old = Date.now();
+            let old = new Date();
             
-            let res = await fetch(`https://api.botcahx.eu.org/api/maker/jadianime?url=${out}&apikey=${btc}`);
+            let res = await fetch(`https://api.betabotz.eu.org/api/maker/jadianime?url=${out}&apikey=${lann}`);
             let convert = await res.json();
 
             if (!convert.result || !convert.result.img_1 || !convert.result.img_2) {
@@ -24,18 +26,18 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
 
             await conn.sendMessage(m.chat, { 
                 image: img1, 
-                caption: `🍟 *Fetching:* ${((Date.now() - old) * 1)} ms\n*Style:* Anime 2D` 
+                caption: `🍟 *Fetching:* ${((new Date() - old) * 1)} ms\n*Style:* Anime 2D` 
             }, { quoted: m });
 
             await conn.sendMessage(m.chat, { 
                 image: img2, 
-                caption: `🍟 *Fetching:* ${((Date.now() - old) * 1)} ms\n*Style:* Anime 3D` 
+                caption: `🍟 *Fetching:* ${((new Date() - old) * 1)} ms\n*Style:* Anime 3D` 
             }, { quoted: m });
 
-        } catch (e) {
-            console.error(e);
-            m.reply("[ ! ] Terjadi kesalahan saat memproses gambar.");
-        }
+        }  catch (e) {
+        console.log(e);
+        throw e;
+    }
     } else {
         m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim.`);
     }

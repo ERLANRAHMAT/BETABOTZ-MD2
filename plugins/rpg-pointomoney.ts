@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args }) => {
   if (args.length !== 1) {
     return conn.reply(m.chat, '• *Example :* .pointomoney 1000', m)
@@ -33,4 +34,5 @@ handler.command = /^pointomoney$/i
 handler.register = true
 handler.limit = true
 handler.rpg = true
-export default handler
+
+export default handler;

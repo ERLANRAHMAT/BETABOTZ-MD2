@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { toPTT, toAudio } from '../lib/converter.ts'
 
 let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
@@ -14,4 +15,4 @@ handler.help = ['toaudio (reply)']
 handler.tags = ['tools']
 handler.command = /^to(a(udio)?)$/i
 
-export default handler
+export default handler;

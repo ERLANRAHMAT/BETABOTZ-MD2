@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
   try {
     conn.reply(m.chat, `*Link Group:* ${await conn.getName(m.chat)}\n\nhttps://chat.whatsapp.com/` + await conn.groupInviteCode(m.chat) + `\n\n${conn.user.name}`, m)
@@ -12,4 +13,4 @@ handler.command = /^link(g(c)?ro?up)?$/i
 handler.group = true
 handler.admin = true
 
-export default handler
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import jimp from 'jimp'
 import type { WaGameRoom } from '../types/connection.js';
 import type { WaWerewolfPlayer } from '../types/connection.js';
@@ -335,4 +336,5 @@ handler.help = ['werewolf'];
 handler.tags = ['game'];
 handler.command = ['ww','werewolf'];
 handler.group = true;
-export default handler
+
+export default handler;

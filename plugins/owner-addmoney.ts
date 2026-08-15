@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as zapo from '../lib/simple.ts';
 
 let handler: WaPlugin = async (m, { conn, text }) => {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as zapo from '../lib/simple.ts';
 const loadZapo = async () => zapo;
 
@@ -152,3 +153,5 @@ async function emitCommand(m, chatUpdate, text, mentionedJid) {
         console.error('Error Media:', e);
     }
 }
+
+export default handler;

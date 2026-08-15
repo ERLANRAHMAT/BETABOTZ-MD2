@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fetch from 'node-fetch'
 let handler: WaPlugin = async(m, { conn, command }) => {
   try {
@@ -17,4 +18,5 @@ handler.tags = ['group']
 handler.command = /^(avatar|ava)$/i
 handler.group = true
 handler.limit = true
-export default handler
+
+export default handler;

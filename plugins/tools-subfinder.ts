@@ -1,3 +1,4 @@
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
   if (!text) throw `Masukkan Domain!\n\n*Contoh:* botcahx.eu.org`;
@@ -6,17 +7,13 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
   try {
     const waiting = `_Sedang mencari informasi Subdomain untuk ${text}..._`;
     m.reply(waiting);    
-    let data = await fetch(`https://api.botcahx.eu.org/api/tools/subdomain-finder?query=${text}&apikey=${btc}`)
+    let data = await fetch(`https://api.betabotz.eu.org/api/tools/subdomain-finder?query=${text}&apikey=${lann}`)
     .then(result => result.json())
     .then(response => {
       if (response.status && response.code === 200) {
         let subdomains = response.result;
-        if (subdomains.length > 0) {
-          let message = `Subdomain untuk ${text}:\n\n` + subdomains.map((sub, i) => `${i + 1}. ${sub}`).join('\n');
-          m.reply(message);
-        } else {
-          m.reply('Tidak ditemukan subdomain untuk domain ini.');
-        }
+        let message = `Subdomain untuk ${text}:\n\n` + subdomains.map((sub, i) => `${i + 1}. ${sub}`).join('\n');
+        m.reply(message);
       } else {
         m.reply('Terjadi kesalahan saat mengambil data subdomain. Silakan coba lagi nanti.');
       }
@@ -24,9 +21,10 @@ let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
     .catch(error => {
       m.reply('Terjadi error saat mencari informasi Subdomain, silakan coba lagi nanti');
     });
-  } catch (error) {
-    m.reply('Terjadi error saat mencari informasi Subdomain, silakan coba lagi nanti');
-  }
+  } catch (e) {
+      console.log(e);
+      throw e;
+    }
 };
 
 handler.command = ['subdomainfinder', 'subfinder'];

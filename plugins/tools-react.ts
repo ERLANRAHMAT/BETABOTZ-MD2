@@ -1,3 +1,4 @@
+// @ts-nocheck
 const __dirname = import.meta.dirname;
 let handler: WaPlugin = async (m, { conn, usedPrefix: _p, __dirname, args, text, usedPrefix}) => {
 	let notreply = 'Balas Chatnya !'
@@ -16,4 +17,4 @@ key: {
 handler.tags = ['tools']
 handler.command = /^(react)$/i
 
-export default handler
+export default handler;

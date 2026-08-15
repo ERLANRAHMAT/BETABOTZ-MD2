@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = m => m
 handler.before = m => {
   let user = global.db.data.users[m.sender]
@@ -25,7 +26,7 @@ Selama ${clockString(Date.now() - afkTime)}
   return true
 }
 
-export default handler
+
 
 function clockString(ms) {
   let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
@@ -33,3 +34,5 @@ function clockString(ms) {
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0') ).join(':')
 }
+
+export default handler;

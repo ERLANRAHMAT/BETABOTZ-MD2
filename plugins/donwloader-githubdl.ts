@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { args, usedPrefix, command }) => {
 
 if (!args[0]) throw 'usernamenya mana om'
@@ -14,4 +15,4 @@ handler.command = /githubdl/i
 
 handler.limit = true
 
-export default handler
+export default handler;

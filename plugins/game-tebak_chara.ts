@@ -1,18 +1,31 @@
-import type { WaGameRoom } from '../types/connection.js';
-let timeout = 100000
-let poin = 10000
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
+
+let timeout = 100000;
+let poin = 10000;
+
 let handler: WaPlugin = async (m, { conn, usedPrefix }) => {
-  conn.tebakchara = conn.tebakchara ? conn.tebakchara : {};
-  let id = m.chat
-  if (id in conn.tebakchara) {
-    conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebakchara[id][0])
-    throw false
-  }
-  let src = await (await fetch(`https://api.botcahx.eu.org/api/game/tebakchara?apikey=${btc}`)).json()
-  let json = src
-  if (!json) throw "Terjadi kesalahan, ulangi lagi perintah!"
-  let caption = `
+  try {
+    conn.tebakchara = conn.tebakchara ? conn.tebakchara : {};
+    let id = m.chat;
+    if (id in conn.tebakchara) {
+      await conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebakchara[id][0]);
+      return;
+    }
+
+    let json;
+    try {
+      let src = await (await fetch(`https://api.betabotz.eu.org/api/game/tebakchara?apikey=${lann}`)).json();
+      json = src;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+
+    if (!json || !json.result || !json.result.name) throw new Error('Format data tebakchara tidak valid dari API.');
+
+    let caption = `
 ≡ _GAME TEBAK KARAKTER_
 
 ┌─⊷ *SOAL*
@@ -22,22 +35,31 @@ let handler: WaPlugin = async (m, { conn, usedPrefix }) => {
 ▢ Ketik ${usedPrefix}chrd untuk clue jawaban
 ▢ *REPLAY* pesan ini untuk\nmenjawab
 └──────────────
+`.trim();
 
-    `.trim();
-  conn.tebakchara[id] = [
-    await conn.sendMessage(m.chat, { image: { url: json.result.image }, caption: caption}, { quoted: m }),
-    json, poin,
-    setTimeout(() => {
-      if (conn.tebakchara[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.result.name}*`, conn.tebakchara[id][0])
-      delete conn.tebakchara[id]
-    }, timeout)
-  ] as unknown as WaGameRoom
-}
+    conn.tebakchara[id] = [
+      await conn.sendMessage(m.chat, { image: { url: json.result.image }, caption: caption }, { quoted: m }),
+      json, 
+      poin,
+      setTimeout(() => {
+        if (conn.tebakchara[id]) {
+          conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.result.name}*`, conn.tebakchara[id][0]);
+          delete conn.tebakchara[id];
+        }
+      }, timeout)
+    ];
+  } catch (e) {
+    if (e !== false) {
+      console.log(e);
+      throw e;
+    }
+  }
+};
 
-handler.help = ['tebakchara']
-handler.tags = ['game']
-handler.command = /^tebakchara/i
-handler.limit = false
-handler.group = true
+handler.help = ['tebakchara'];
+handler.tags = ['game'];
+handler.command = /^tebakchara/i;
+handler.limit = false;
+handler.group = true;
 
-export default handler
+export default handler;

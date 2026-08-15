@@ -1,3 +1,5 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, {
@@ -11,12 +13,12 @@ let handler: WaPlugin = async (m, {
     let jumlah = args[0] ? args[0] : "10";
     m.reply(wait);
     try {
-      let vcc = await fetch(`https://api.botcahx.eu.org/api/tools/vccgen?jumlah=${jumlah}&apikey=${btc}`).then(res => res.json());
+      let vcc = await fetch(`https://api.betabotz.eu.org/api/tools/vccgen?jumlah=${jumlah}&apikey=${btc}`).then(res => res.json());
       if (!vcc.status) throw 'Failed to generate VCC';
       await conn.reply(m.chat, vcc.result, m);
     } catch (e) {
       console.log(e);
-      throw eror
+      throw e
     }
   }
   
@@ -24,7 +26,7 @@ let handler: WaPlugin = async (m, {
     m.reply(wait);
     try {
       if (!text) {
-        let list_country = await fetch(`https://api.botcahx.eu.org/api/tools/random-address?country=&apikey=${btc}`).then(res => res.json());
+        let list_country = await fetch(`https://api.betabotz.eu.org/api/tools/random-address?country=&apikey=${btc}`).then(res => res.json());
         if (!list_country.status) throw 'Failed to fetch country list';
         
         let caption = `*Available Countries:*\n\n`;
@@ -38,7 +40,7 @@ let handler: WaPlugin = async (m, {
         
         await conn.reply(m.chat, caption, m);
       } else {
-        let address = await fetch(`https://api.botcahx.eu.org/api/tools/random-address?country=${text}&apikey=${btc}`).then(res => res.json());
+        let address = await fetch(`https://api.betabotz.eu.org/api/tools/random-address?country=${text}&apikey=${btc}`).then(res => res.json());
         if (!address.status) throw 'Failed to generate address or invalid country name';
         
         let result = address.result;
@@ -59,7 +61,7 @@ let handler: WaPlugin = async (m, {
       }
     } catch (e) {
       console.log(e);
-      throw eror
+      throw e;
     }
   }
 }
@@ -68,4 +70,4 @@ handler.command = handler.help = ['vccgenerator', 'vccgen', 'fakeaddress', 'addr
 handler.tags = ['tools']
 handler.limit = true
 
-export default handler
+export default handler;

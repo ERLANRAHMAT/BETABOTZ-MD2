@@ -1,3 +1,4 @@
+// @ts-nocheck
 const handler: WaPlugin = async (m, { conn }) => {
     conn.koboy = conn.koboy || {};
     const user = global.db.data.users[m.sender];
@@ -130,7 +131,7 @@ handler.command = /^(koboy)$/i;
 handler.group = true;
 handler.rpg = true;
 
-export default handler;
+
 
 function randomMoney(max, min) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -145,3 +146,5 @@ function formatRupiah(number) {
 
     return formatter.format(number);
 }
+
+export default handler;

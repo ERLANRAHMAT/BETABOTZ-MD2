@@ -1,3 +1,4 @@
+// @ts-nocheck
 import jimp from 'jimp'
 import uploadImage from '../lib/uploadImage.ts'
 import uploadFile from '../lib/uploadFile.ts'
@@ -46,4 +47,4 @@ handler.help = ['resize <width> <height> (reply|caption)']
 handler.tags = ['tools']
 handler.command = /^(resize)$/i
 
-export default handler
+export default handler;

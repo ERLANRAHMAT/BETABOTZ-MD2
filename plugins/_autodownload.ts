@@ -1,167 +1,14 @@
+// Converted from plugins-esm - automated
+
 import fetch from 'node-fetch';
 import axios from 'axios';
 
-let handler: WaPlugin = (m) => m;
-handler.before = async function (m, { conn, isPrems }) {
-    let chat = global.db.data.chats[m.chat];
-    if (!m.text) return;
-    if (m.text.startsWith("=>") || m.text.startsWith(">") || m.text.startsWith(".") || m.text.startsWith("#") || m.text.startsWith("!") || m.text.startsWith("/") || m.text.startsWith("\\")) return;
-    if (chat.isBanned) return;
-    if (!m.text.includes("http")) return;
-if (global.db.data.chats[m.chat].autodl === false) return true;
-    let text = m.text.replace(/\n+/g, " ");
-    const tiktokRegex = /^(?:https?:\/\/)?(?:www\.|vt\.|vm\.|t\.)?(?:tiktok\.com\/)(?:\S+)?$/i;
-    const douyinRegex = /^(?:https?:\/\/)?(?:www\.|vt\.|vm\.|t\.|v\.)?(?:douyin\.com\/)(?:\S+)?$/i;
-    const instagramRegex = /^(?:https?:\/\/)?(?:www\.)?(?:instagram\.com\/)(?:tv\/|p\/|reel\/)(?:\S+)?$/i;
-    const facebookRegex = /^(?:https?:\/\/(web\.|www\.|m\.)?(facebook|fb)\.(com|watch)\S+)?$/i;
-    const pinRegex = /^(?:https?:\/\/)?(?:www\.|id\.)?(?:pinterest\.(?:com|it|co\.[a-z]{2}|[a-z]{2})|pin\.it)\/(?:pin\/)?[^\/\s]+(?:\/)?$/i;
-    const youtubeRegex = /^(?:https?:\/\/)?(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]+)(?:\S+)?$/i;
-    const spotifyRegex = /^(?:https?:\/\/)?(?:open\.spotify\.com\/track\/)([a-zA-Z0-9]+)(?:\S+)?$/i;
-    const twitterRegex = /^(?:https?:\/\/)?(?:www\.)?(?:twitter\.com|x\.com)\/([A-Za-z0-9_]+)\/status\/(\d+)(?:\?[^#]*)?(?:#.*)?$/i;
-    const threadsRegex = /^(https?:\/\/)?(www\.)?(threads\.(net|com))(\/[^\s]*)?(\?[^\s]*)?$/;
-    const capcutRegex = /^https:\/\/www\.capcut\.com\/(t\/[A-Za-z0-9_-]+\/?|template-detail\/\d+\?(?:[^=]+=[^&]+&?)+)$/;
-    const snackvideoRegex = /^(https?:\/\/)?s\.snackvideo\.com\/p\/[a-zA-Z0-9]+$/i;
-    const xiaohongshuRegex = /^(https?:\/\/)?(www\.)?(xiaohongshu\.com\/discovery\/item\/[a-zA-Z0-9]+|xhslink\.com\/[a-zA-Z0-9/]+)(\?.*)?$/i;
-    const soundcloudRegex = /^(https?:\/\/)?(www\.|m\.)?soundcloud\.com\/[a-zA-Z0-9_-]+(\/[a-zA-Z0-9_-]+)*\/?(\?.*)?$/i;
-    const cocofunRegex = /^(https?:\/\/)?(www\.)?icocofun\.com\/share\/post\/\d+(\?.*)?$/i;
-    const kuaishouRegex = /(?:https?:\/\/)?(?:www\.|v\.)?kuaishou\.com\/?.*/i;
-    const sfileRegex = /(?:https?:\/\/)?(?:www\.)?sfile\.mobi\/?.*/i;
-    if (text.match(tiktokRegex)) {
-        conn.sendMessage(m.chat, {
-            react: {
-                text: "🕒",
-                key: m.key,
-            },
-        });
-        await _tiktok(text.match(tiktokRegex)[0], m, conn);
-    } else if (text.match(douyinRegex)) {
-        conn.sendMessage(m.chat, {
-            react: {
-                text: "🕒",
-                key: m.key,
-            },
-        });
-        await _douyin(text.match(douyinRegex)[0], m, conn);
-    } else if (text.match(instagramRegex)) {
-        conn.sendMessage(m.chat, {
-            react: {
-                text: "🕒",
-                key: m.key,
-            },
-        });
-        await _instagram(text.match(instagramRegex)[0], m);
-    } else if (text.match(facebookRegex)) {
-        conn.sendMessage(m.chat, {
-            react: {
-                text: "🕒",
-                key: m.key,
-            },
-        });
-        await _facebook(text.match(facebookRegex)[0], m);
-    } else if (text.match(pinRegex)) {
-        conn.sendMessage(m.chat, {
-            react: {
-                text: "🕒",
-                key: m.key,
-            },
-        });
-        await _pindl(text.match(pinRegex)[0], m);
-    } else if (text.match(youtubeRegex)) {
-        conn.sendMessage(m.chat, {
-            react: {
-                text: "🕒",
-                key: m.key,
-            },
-        });
-        await _youtube(text.match(youtubeRegex)[0], m);
-    } else if (text.match(spotifyRegex)) {
-        conn.sendMessage(m.chat, {
-            react: {
-                text: "🕒",
-                key: m.key,
-            },
-        });
-        await _spotify(text.match(spotifyRegex)[0], m);
-    } else if (text.match(twitterRegex)) {
-        conn.sendMessage(m.chat, {
-            react: {
-                text: "🕒",
-                key: m.key,
-            },
-        });
-        await _twitter(text.match(twitterRegex)[0], m);
-    } else if (text.match(threadsRegex)) {
-        conn.sendMessage(m.chat, {
-            react: {
-                text: "🕒",
-                key: m.key,
-            },
-        });
-        await _threads(text.match(threadsRegex)[0], m);
-    } else if (text.match(capcutRegex)) {
-        conn.sendMessage(m.chat, {
-            react: {
-                text: "🕒",
-                key: m.key,
-            },
-        });
-        await _capcut(text.match(capcutRegex)[0], m);
-    } else if (text.match(snackvideoRegex)) {
-        conn.sendMessage(m.chat, {
-            react: {
-                text: "🕒",
-                key: m.key,
-            },
-        });
-        await _snackvideo(text.match(snackvideoRegex)[0], m);
-    } else if (text.match(xiaohongshuRegex)) {
-    conn.sendMessage(m.chat, {
-        react: {
-            text: "🕒",
-            key: m.key,
-        },
-    });
-    await _xiaohongshu(text.match(xiaohongshuRegex)[0], m);
-   } else if (text.match(soundcloudRegex)) {
-    conn.sendMessage(m.chat, {
-        react: {
-            text: "🕒",
-            key: m.key,
-        },
-    });
-    await _soundcloud(text.match(soundcloudRegex)[0], m);
-  } else if (text.match(cocofunRegex)) {
-    conn.sendMessage(m.chat, {
-        react: {
-            text: "🕒",
-            key: m.key,
-        },
-    });
-    await _cocofun(text.match(cocofunRegex)[0], m);
-  } else if (text.match(kuaishouRegex)) {
-        conn.sendMessage(m.chat, {
-            react: {
-                text: "🕒",
-                key: m.key,
-            },
-        });
-        await _kuaishou(text.match(kuaishouRegex)[0], m);
-    } else if (text.match(sfileRegex)) {
-        conn.sendMessage(m.chat, {
-            react: {
-                text: "🕒",
-                key: m.key,
-            },
-        });
-        await _sfile(text.match(sfileRegex)[0], m, conn);
-    } 
-    return true;
-};
-export default handler;
 
-let old = Date.now();
+let handler = m => m
+
+let old = new Date();
 const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-async function _tiktok(link, m, conn) {
+async function _tiktok(link, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
             const response = await fetch(`https://api.botcahx.eu.org/api/download/tiktok?url=${link}&apikey=${btc}`);
@@ -170,7 +17,7 @@ async function _tiktok(link, m, conn) {
             if (data.result.video.length > 1) {
                 global.db.data.users[m.sender].limit -= 1;
                 for (let v of data.result.video) {
-                    await conn.sendFile(m.chat, v, null, `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`, m);
+                    await conn.sendFile(m.chat, v, null, `🍟 *Fetching* : ${(new Date() - old) * 1} ms`, m);
                     await _sleep(3000);
                 }
             } else {
@@ -180,7 +27,7 @@ async function _tiktok(link, m, conn) {
                         video: {
                             url: data.result.video[0],
                         },
-                        caption: `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`,
+                        caption: `🍟 *Fetching* : ${(new Date() - old) * 1} ms`,
                     },
                     {
                         mention: m,
@@ -190,287 +37,13 @@ async function _tiktok(link, m, conn) {
         } else {
             conn.reply(m.chat, "limit kamu habis!", m);
         }
-    } catch (error) {
-        console.error(error);
-    }
-}
-async function _douyin(link, m, conn) {
-    try {
-        if (global.db.data.users[m.sender].limit > 0) {
-            let response = await fetch(`https://api.botcahx.eu.org/api/download/douyin?url=${link}&apikey=${btc}`);
-            let data = await response.json();
-            if (!data.result.video || data.result.video.length === 0) {
-                response = await fetch(`https://api.botcahx.eu.org/api/download/douyinslide?url=${link}&apikey=${btc}`);
-                data = await response.json();
-                if (data.result.images && data.result.images.length > 0) {
-                    global.db.data.users[m.sender].limit -= 1;
-                    for (let img of data.result.images) {
-                        await conn.sendFile(m.chat, img, null, `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`, m);
-                        await _sleep(3000);
-                    }
-                    return;
-                }
-            }
-            if (data.result.video && data.result.video.length > 0) {
-                global.db.data.users[m.sender].limit -= 1;
-                if (data.result.video.length > 1) {
-                    for (let v of data.result.video) {
-                        await conn.sendFile(m.chat, v, null, `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`, m);
-                        await _sleep(3000);
-                    }
-                } else {
-                    await conn.sendMessage(
-                        m.chat,
-                        {
-                            video: {
-                                url: data.result.video[0],
-                            },
-                            caption: `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`,
-                        },
-                        {
-                            mention: m,
-                        }
-                    );
-                }
-            } else {
-                conn.reply(m.chat, "Maaf, tidak dapat mengunduh konten!", m);
-            }
-        } else {
-            conn.reply(m.chat, "limit kamu habis!", m);
-        }
-    } catch (error) {
-        console.error(error);
-    }
-}
-async function _instagram(link, m) {
-    try {
-        if (global.db.data.users[m.sender].limit > 0) {
-            const response = await fetch(`https://api.botcahx.eu.org/api/dowloader/igdowloader?url=${link}&apikey=${btc}`);
-            const res = await response.json();
-            const limitnya = 3;
-            for (let i = 0; i < Math.min(limitnya, res.result.length); i++) {
-                await _sleep(3000);
-                conn.sendFile(m.chat, res.result[i].url, null, `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`, m);
-            }
-            global.db.data.users[m.sender].limit -= 1;
-        } else {
-            conn.reply(m.chat, "Limit kamu habis!", m);
-        }
-    } catch (err) {
-        console.error(err);
-    }
-}
-
-async function _facebook(link, m) {
-    try {
-        if (global.db.data.users[m.sender].limit > 0) {
-            const response = await fetch(`https://api.botcahx.eu.org/api/dowloader/fbdown3?url=${link}&apikey=${btc}`);
-            let json = await response.json();
-            let urls = json.result.url.urls;
-            if (Array.isArray(urls)) {
-                let videoUrl = urls.find((url) => url.sd)?.sd || urls.find((url) => url.hd)?.hd;
-                if (videoUrl) {
-                    global.db.data.users[m.sender].limit -= 1;
-                    conn.sendFile(m.chat, videoUrl, "fb.mp4", `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`, m);
-                } else {
-                    conn.reply(m.chat, "Gagal mendapatkan video SD atau HD", m);
-                }
-            } else {
-                conn.reply(m.chat, "Gagal mendapatkan video", m);
-            }
-        } else {
-            conn.reply(m.chat, "Limit kamu habis!", m);
-        }
-    } catch (error) {
-        console.error(error);
-    }
-}
-async function _youtube(link, m) {
-    try {
-        if (global.db.data.users[m.sender].limit > 0) {
-            const response = await fetch(`https://api.botcahx.eu.org/api/dowloader/yt?url=${link}&apikey=${btc}`);
-            const result = await response.json();
-            if (result.status && result.result && result.result.mp4) {
-                global.db.data.users[m.sender].limit -= 1;
-                await conn.sendMessage(
-                    m.chat,
-                    {
-                        audio: {
-                            url: result.result.mp3,
-                        },
-                        mimetype: "audio/mpeg",
-                    },
-                    {
-                        quoted: m,
-                    }
-                );
-                await _sleep(1000);
-                await conn.sendMessage(
-                    m.chat,
-                    {
-                        video: {
-                            url: result.result.mp4,
-                        },
-                        caption: `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`,
-                    },
-                    {
-                        quoted: m,
-                    }
-                );
-            } else {
-                conn.reply(m.chat, "Gagal mendapatkan video", m);
-            }
-        } else {
-            conn.reply(m.chat, "limit kamu habis!", m);
-        }
-    } catch (error) {
-        console.error(error);
-    }
-}
-async function _spotify(url, m) {
-    try {
-        if (global.db.data.users[m.sender].limit > 0) {
-            const res = await fetch(`https://api.botcahx.eu.org/api/download/spotify?url=${url}&apikey=${btc}`);
-            const jsons = await res.json();
-            if (jsons.result && jsons.result.data) {
-                global.db.data.users[m.sender].limit -= 1;
-                const { url: downloadUrl } = jsons.result.data;
-                await conn.sendMessage(
-                    m.chat,
-                    {
-                        audio: {
-                            url: downloadUrl,
-                        },
-                        mimetype: "audio/mpeg",
-                    },
-                    {
-                        quoted: m,
-                    }
-                );
-            } else {
-                conn.reply(m.chat, "Gagal mendapatkan media dari Spotify!", m);
-            }
-        } else {
-            conn.reply(m.chat, "Limit kamu habis!", m);
-        }
-    } catch (error) {
-        console.error(error);
-    }
-}
-async function _twitter(url, m) {
-    try {
-        if (global.db.data.users[m.sender].limit > 0) {
-            const api = await fetch(`https://api.botcahx.eu.org/api/download/twitter2?url=${url}&apikey=${btc}`);
-            const res = await api.json();
-            if (res.result && res.result.mediaURLs) {
-                global.db.data.users[m.sender].limit -= 1;
-                const mediaURLs = res.result.mediaURLs;
-                for (const url of mediaURLs) {
-                    const response = await fetch(url);
-                    const buffer = await response.buffer();
-                    await _sleep(3000);
-                    conn.sendFile(m.chat, buffer, null, `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`, m);
-                }
-            } else {
-                conn.reply(m.chat, "Gagal mendapatkan media dari Twitter!", m);
-            }
-        } else {
-            conn.reply(m.chat, "Limit kamu habis!", m);
-        }
-    } catch (error) {
-        console.error(error);
-    }
-}
-async function _threads(url, m) {
-    try {
-        if (global.db.data.users[m.sender].limit > 0) {
-            const apiResponse = await fetch(`https://api.botcahx.eu.org/api/download/threads?url=${url}&apikey=${btc}`);
-            const api = await apiResponse.json();
-            const foto = api.result.image_urls[0] || null;
-            const video = api.result.video_urls[0] || null;
-            if (video) {
-                try {
-                    await conn.sendFile(m.chat, video.download_url, "threads.mp4", `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`, m);
-                } catch (e) {
-                    throw "Media video tidak ditemukan!";
-                }
-            } else if (foto) {
-                try {
-                    await conn.sendFile(m.chat, foto, "threads.jpeg", `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`, m);
-                } catch (e) {
-                    throw "Media foto tidak ditemukan!";
-                }
-            } else {
-                throw "Konten tidak ditemukan!";
-            }
-            global.db.data.users[m.sender].limit -= 1;
-        } else {
-            conn.reply(m.chat, "Limit kamu habis!", m);
-        }
-    } catch (error) {
-        console.error(error);
-    }
-}
-async function _capcut(url, m) {
-    try {
-        if (global.db.data.users[m.sender].limit > 0) {
-            const response = await fetch(`https://api.botcahx.eu.org/api/dowloader/capcut?url=${url}&apikey=${btc}`);
-            const res = await response.json();
-            const { video } = res.result;
-            global.db.data.users[m.sender].limit -= 1;
-            await conn.sendFile(m.chat, video, "capcut.mp4", `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`, m);
-        } else {
-            conn.reply(m.chat, "Limit kamu habis!", m);
-        }
     } catch (e) {
-        console.error(e);
-    }
-}
-async function _snackvideo(url, m) {
-    try {
-        if (global.db.data.users[m.sender].limit > 0) {
-            const api = await fetch(`https://api.botcahx.eu.org/api/download/snackvideo?url=${url}&apikey=${btc}`);
-            const res = await api.json();
-            const { media } = res.result;
-            await conn.sendFile(m.chat, media, null, `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`, m);
-            global.db.data.users[m.sender].limit -= 1;
-        } else {
-            conn.reply(m.chat, "Limit kamu habis!", m);
-        }
-    } catch (e) {
-        console.log(e);
-    }
+    	console.log(e);
+    	throw e;
+  }
 }
 
-async function _pindl(link, m) {
-    try {
-        if (global.db.data.users[m.sender].limit > 0) {
-            const api = await fetch(`https://api.botcahx.eu.org/api/download/pinterest?url=${link}&apikey=${btc}`);
-            const res = await api.json();
-            if (res.result && res.result.data) {
-                let { media_type, image, title, video } = res.result.data;
-                global.db.data.users[m.sender].limit -= 1;
-                if (media_type === "video/mp4") {
-                    await conn.sendMessage(m.chat, {
-                        video: {
-                            url: video,
-                        },
-                        caption: `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`,
-                    });
-                } else {
-                    await conn.sendFile(m.chat, image, "pindl.jpeg", `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`, m);
-                }
-            } else {
-                conn.reply(m.chat, "Gagal mendapatkan media!", m);
-            }
-        } else {
-            conn.reply(m.chat, "limit kamu habis!", m);
-        }
-    } catch (error) {
-        console.error(error);
-    }
-}
-
+// DOWNLOADER REDNOTE
 async function _xiaohongshu(url, m) {
     try {
         if (global.db.data.users[m.sender].limit > 0) {
@@ -486,13 +59,14 @@ async function _xiaohongshu(url, m) {
             const title = meta?.title || "No title";
 
             if (media.videoUrl) {
+                const videoUrl = media.videoUrl.startsWith('//') ? `https:${media.videoUrl}` : media.videoUrl;
                 await conn.sendMessage(
                     m.chat,
                     {
                         video: {
-                            url: media.videoUrl,
+                            url: videoUrl,
                         },
-                        caption: `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`,
+                        caption: `🍟 *Fetching* : ${(new Date() - old) * 1} ms`,
                     },
                     {
                         mention: m,
@@ -500,119 +74,703 @@ async function _xiaohongshu(url, m) {
                 );
             } else if (media.images && media.images.length > 0) {
                 for (let img of media.images) {
-                    await _sleep(3000);
-                    await conn.sendMessage(
-                        m.chat,
-                        {
-                            image: { url: img },
-                            caption: `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`,
-                        },
-                        { quoted: m }
-                    );               
+                    const imageUrl = img.startsWith('//') ? `https:${img}` : img;
+                    try {
+                        await _sleep(3000);
+                        await conn.sendMessage(
+                            m.chat,
+                            {
+                                image: { url: imageUrl },
+                                caption: `🍟 *Fetching* : ${(new Date() - old) * 1} ms`,
+                            },
+                            { quoted: m }
+                        );
+                    } catch (e) {
+    					console.log(e);
+    					throw e;
+  					}
                 }
             }
         } else {
             conn.reply(m.chat, "Limit kamu habis!", m);
         }
     } catch (e) {
-        console.log(e);
-    }
+    	console.log(e);
+    	throw e;
+  }
 }
 
-async function _soundcloud(url, m) {
-    try {
-        if (global.db.data.users[m.sender].limit > 0) {
-            const res = await fetch(`https://api.botcahx.eu.org/api/download/soundcloud?url=${url}&apikey=${btc}`);
-            let anu = await res.json();
-            await conn.sendMessage(
-                    m.chat,
-                    {
-                        audio: {
-                            url: anu.result.url,
-                        },
-                        mimetype: "audio/mpeg",
-                    },
-                    {
-                        quoted: m,
-                    }
-                );
-            global.db.data.users[m.sender].limit -= 1;
-        } else {
-            conn.reply(m.chat, "Limit kamu habis!", m);
-        }
-    } catch (e) {
-        console.log(e);
-    }
+// DOWNLOADER TIKTOD
+async function downloadTikTok(link, m) {
+	try {
+		if (global.db.data.users[m.sender].limit > 0) {
+			const response = await fetch(`https://api.betabotz.eu.org/api/download/tiktok?url=${link}&apikey=${lann}`);
+			global.db.data.users[m.sender].limit -= 1
+			const data = await response.json();
+			if (!data.result.video) {
+				return;
+			}
+			if (data.result.video.length > 1) {
+
+				for (let v of data.result.video) {
+					await conn.sendFile(m.chat, v, null, `*Tiktok Downloader*`, m);
+					await sleep(3000)
+				}
+			} else {
+				await conn.sendMessage(m.chat, { video: { url: data.result.video[0] }, caption: `*Tiktok Downloader*` }, { mention: m })
+			}
+		}
+		else {
+			conn.reply(m.chat, 'limit kamu habis!', m);
+		}
+		return;
+	} catch (e) {
+    console.log(e);
+    throw e;
+  	}
 }
 
-async function _cocofun(url, m) {
-    try {
-        if (global.db.data.users[m.sender].limit > 0) {
-            const res = await fetch(`https://api.botcahx.eu.org/api/download/cocofun?url=${encodeURIComponent(url)}&apikey=${btc}`);
-           const json = await res.json();
-           const videoUrl = json.result.no_watermark || json.result.watermark;
-            await conn.sendMessage(
-                    m.chat,
-                    {
-                        video: {
-                            url: videoUrl,
-                        },
-                        caption: `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`,
-                    },
-                    {
-                        mention: m,
-                    }
-                );
-            global.db.data.users[m.sender].limit -= 1;
-        } else {
-            conn.reply(m.chat, "Limit kamu habis!", m);
-        }
-    } catch (e) {
-        console.log(e);
-    }
+// DOWNLOADER DOUYIN
+async function downloadDouyin(link, m) {
+	try {
+		if (global.db.data.users[m.sender].limit > 0) {
+			const response = await fetch(`https://api.betabotz.eu.org/api/download/douyin?url=${link}&apikey=${lann}`);
+			const data = await response.json();
+			if (!data.result.video) {
+				return;
+			}
+			if (data.result.video.length > 1) {
+				global.db.data.users[m.sender].limit -= 1
+				for (let v of data.result.video) {
+					await conn.sendFile(m.chat, v, null, `*Douyin Downloader*`, m);
+					await sleep(3000)
+				}
+			} else {
+				await conn.sendMessage(m.chat, { video: { url: data.result.video[0] }, caption: `*Douyin Downloader*` }, { mention: m })
+			}
+		}
+		else {
+			conn.reply(m.chat, 'limit kamu habis!', m);
+		}
+		return;
+	} catch (e) {
+		console.log(e);
+		throw e;
+	}
 }
 
-async function _kuaishou(link, m) {
-    try {
-        if (global.db.data.users[m.sender].limit > 0) {
-            const response = await axios.get(`https://api.botcahx.eu.org/api/dowloader/kuaishou?url=${link}&apikey=${btc}`);
-            const res = response.data.result;
-            let capt = `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`;
-            if (res.videoUrl) {
-                await conn.sendFile(m.chat, res.videoUrl, null, capt, m);
-            } else {
-                throw 'Video not found';
-            }
-            global.db.data.users[m.sender].limit -= 1;
-        } else {
-            conn.reply(m.chat, "Limit kamu habis!", m);
-        }
-    } catch (e) {
-        console.error(e);
-    }
+//pinterest downloader
+async function downloadpin(link, m) {
+	try {
+		if (global.db.data.users[m.sender].limit > 0) {
+			const response = await fetch(`https://api.betabotz.eu.org/api/download/pinterest?url=${link}&apikey=${lann}`);
+			const res = await response.json();
+
+			let { media_type, image, title, pin_url, video } = res.result.data;
+			global.db.data.users[m.sender].limit -= 1
+			if (media_type === 'video/mp4') {
+				await conn.sendMessage(m.chat, {
+					video: { url: video },
+					caption: `*Title:* ${title || 'Tidak tersedia'}\n*Mediatype:* ${media_type}\n*Source Url:* ${pin_url}`
+				});
+			} else {
+				await conn.sendMessage(m.chat, {
+					image: { url: image },
+					caption: `*Title:* ${title || 'Tidak tersedia'}\n*Mediatype:* ${media_type}\n*Source Url:* ${pin_url}`
+				});
+			}
+		}
+		else {
+			conn.reply(m.chat, 'limit kamu habis!', m);
+		}
+		return;
+	} catch (e) {
+		console.log(e);
+		throw e;
+	}
 }
 
-async function _sfile(link, m, conn) {
-    try {
-        if (global.db.data.users[m.sender].limit > 0) {
-            const json = await fetch(`https://api.botcahx.eu.org/api/dowloader/sfilemobi?url=${link}&apikey=${btc}`).then(res => res.json());
-            const res = json.result;
-            const downloadUrl = res.direct || res.result || res.cdnDirect;
-            const fileName = res.name || 'file';
-            const mimeType = res.mime || 'application/octet-stream';
-            let caption = `🍟 *Fetching* : ${(Date.now() - old) * 1} ms`;
-            await conn.sendMessage(m.chat, {
-                document: { url: downloadUrl },
-                fileName: fileName,
-                mimetype: mimeType,
-                caption: caption
-            }, { quoted: m });
-            global.db.data.users[m.sender].limit -= 1;
-        } else {
-            conn.reply(m.chat, "Limit kamu habis!", m);
-        }
-    } catch (e) {
-        console.error(e);
-    }
+//youtube downloader
+async function downloadyt(link, m) {
+	try {
+		if (global.db.data.users[m.sender].limit > 0) {
+			const response = await axios.get(`https://api.betabotz.eu.org/api/download/ytmp4?url=${link}&apikey=${lann}`);
+			const res = response.data.result;
+			var { mp4, id, title, source, duration, mp3 } = res;
+			let capt = `YT MP4*\n\n`;
+			capt += `◦ *id* : ${id}\n`;
+			capt += `◦ *tittle* : ${title}\n`;
+			capt += `◦ *source* : ${source}\n`;
+			capt += `◦ *duration* : ${duration}\n`;
+			capt += `\n`;
+			global.db.data.users[m.sender].limit -= 1
+			await conn.sendMessage(m.chat, {
+				document: { url: mp3 },
+				mimetype: 'audio/mpeg',
+				fileName: `${title}.mp3`,
+			}, { quoted: m });
+			await conn.sendFile(m.chat, mp4, null, capt, m);
+
+		}
+		else {
+			conn.reply(m.chat, 'limit kamu habis!', m);
+		}
+		return;
+	} catch (e) {
+    	console.log(e);
+    	throw e;
+  	}
 }
 
+// DOWNLOADER INSTAGRAM
+async function downloadInstagram(link, m) {
+	try {
+		if (global.db.data.users[m.sender].limit <= 0) {
+			return conn.reply(m.chat, 'limit kamu habis!', m)
+		}
+
+		let message
+		let isV2 = false
+
+		try {
+			const res = await fetch(
+				`https://api.betabotz.eu.org/api/download/igdowloader?url=${encodeURIComponent(link)}&apikey=${lann}`
+			)
+
+			const text = await res.text()
+
+			try {
+				message = JSON.parse(text)
+			} catch {
+				throw new Error('API V1 bukan JSON')
+			}
+
+			if (
+				!message.message ||
+				!Array.isArray(message.message) ||
+				message.message.length === 0 ||
+				!message.message[0]._url
+			) {
+				throw new Error('Media tidak valid dari API V1')
+			}
+
+		} catch (e) {
+			console.log('Fallback ke API V2:', e.message)
+
+			isV2 = true
+
+			const res2 = await fetch(
+				`https://api.betabotz.eu.org/api/download/igdowloader-v2?url=${encodeURIComponent(link)}&apikey=${lann}`
+			)
+
+			const text2 = await res2.text()
+
+			try {
+				message = JSON.parse(text2)
+			} catch {
+				throw new Error('API V2 bukan JSON')
+			}
+		}
+
+		global.db.data.users[m.sender].limit -= 1
+		if (!isV2) {
+			const urls = []
+			const seen = new Set()
+			for (const media of message.message) {
+				if (!media || !media._url) continue
+				if (seen.has(media._url)) continue
+				seen.add(media._url)
+				urls.push(media._url)
+			}
+
+			if (urls.length === 0) {
+				throw 'Media tidak ditemukan!'
+			}
+
+			for (const url of urls) {
+				await conn.sendFile(
+					m.chat,
+					url,
+					null,
+					'*Instagram Downloader*',
+					m
+				)
+				await _sleep(3000)
+			}
+
+			return
+		}
+
+		if (
+			!message.result ||
+			!message.result.data ||
+			!message.result.data.xdt_shortcode_media
+		) {
+			throw 'Gagal mengambil media Instagram! (v2)'
+		}
+
+		const media = message.result.data.xdt_shortcode_media
+
+		let caption = ''
+
+		if (
+			media.edge_media_to_caption &&
+			media.edge_media_to_caption.edges &&
+			media.edge_media_to_caption.edges.length > 0
+		) {
+			caption = media.edge_media_to_caption.edges[0].node.text
+		}
+
+		const sendCaption = (index) =>
+			index === 0
+				? caption
+					? `*Instagram Downloader*\n\n${caption}`
+					: '*Instagram Downloader*'
+				: ''
+
+		const items = []
+		const seen = new Set()
+
+		if (
+			media.edge_sidecar_to_children &&
+			media.edge_sidecar_to_children.edges &&
+			media.edge_sidecar_to_children.edges.length > 0
+		) {
+			for (const edge of media.edge_sidecar_to_children.edges) {
+				const node = edge.node
+				if (!node) continue
+
+				let url = null
+				if (node.is_video && node.video_url) url = node.video_url
+				else
+					url =
+						node.display_url ||
+						node.thumbnail_src ||
+						(node.display_resources &&
+							node.display_resources[0] &&
+							node.display_resources[0].src)
+
+				if (!url || seen.has(url)) continue
+				seen.add(url)
+				items.push({ url, isVideo: !!node.is_video })
+			}
+		}
+
+		if (items.length === 0) {
+			if (typeof media.has_audio !== 'undefined' && media.has_audio === true && media.video_url) {
+				items.push({ url: media.video_url, isVideo: true })
+			} else {
+				const img =
+					media.display_url ||
+					media.thumbnail_src ||
+					(media.display_resources &&
+						media.display_resources[0] &&
+						media.display_resources[0].src)
+				if (!img) throw 'Media tidak ditemukan!'
+				items.push({ url: img, isVideo: false })
+			}
+		}
+
+		for (let i = 0; i < items.length; i++) {
+			const item = items[i]
+			if (item.isVideo) {
+				await conn.sendMessage(
+					m.chat,
+					{
+						video: { url: item.url },
+						caption: sendCaption(i)
+					},
+					{ quoted: m }
+				)
+			} else {
+				await conn.sendMessage(
+					m.chat,
+					{
+						image: { url: item.url },
+						caption: sendCaption(i)
+					},
+					{ quoted: m }
+				)
+			}
+			await _sleep(3000)
+		}
+
+	} catch (e) {
+		console.error(e);
+		throw e;
+	}
+}
+
+// DOWNLOADER FACEBOOK 
+async function downloadFacebook(link, m) {
+	try {
+		if (global.db.data.users[m.sender].limit > 0) {
+			const response = await fetch(`https://api.betabotz.eu.org/api/download/fbdown?url=${link}&apikey=${lann}`);
+			var js = await response.json()
+			global.db.data.users[m.sender].limit -= 1
+			conn.sendFile(m.chat, js.result[1]._url, 'fb.mp4', '', m);
+		}
+		else {
+			conn.reply(m.chat, 'limit kamu habis!', m);
+		}
+	} catch (e) {
+    	console.log(e);
+    	throw e;
+  	}
+}
+// DOWNLOADER SPOTIFY
+async function _spotify(link, m) {
+	try {
+		if (global.db.data.users[m
+			.sender].limit >
+			0) {
+			const res = await fetch(`https://api.betabotz.eu.org/api/download/spotify?url=${link}&apikey=${lann}`)
+			global.db.data.users[m.sender].limit -= 1
+			let jsons = await res.json()
+			const {
+				thumbnail,
+				title,
+				name,
+				duration,
+				url
+			} = jsons.result.data
+			const {
+				id,
+				type
+			} = jsons.result.data.artist
+			await conn.sendMessage(m.chat, {
+					audio: { url: url },
+					mimetype: 'audio/mpeg',
+						sourceUrl: url,
+						mediaType: 1,
+						showAdAttribution: false,
+						renderLargerThumbnail: true
+			}, { quoted: m });
+		}
+		else {
+			conn.reply(m.chat,
+				"Limit kamu habis!",
+				m);
+		}
+	}
+	catch (e) {
+    	console.log(e);
+    	throw e;
+  	}
+}
+// DOWNLOADER TWITTER
+async function _twitter(link, m) {
+	try {
+		if (global.db.data.users[m
+			.sender].limit >
+			0) {
+			const api = await fetch(`https://api.betabotz.eu.org/api/download/twitter2?url=${link}&apikey=${lann}`);
+			global.db.data.users[m.sender].limit -= 1
+			const res = await api.json();
+			const mediaURLs = res.result.mediaURLs;
+
+			const capt = `*Username: ${res.result.user_name} ${res.result.user_screen_name}*\n*Title: ${res.result.text}*\n*Replies: ${res.result.replies}*\n*Retweet: ${res.result.retweets}*`;
+
+			for (const url of mediaURLs) {
+				const response = await fetch(url);
+				const buffer = await response.buffer();
+				await delay(3000)//3 detik jeda agar tidak spam
+				conn.sendFile(m.chat, buffer, null, capt, m);
+			}
+			function delay(ms) {
+				return new Promise(resolve => setTimeout(resolve, ms));
+			}
+
+		}
+		else {
+			conn.reply(m.chat,
+				"Limit kamu habis!",
+				m);
+		}
+	}
+	catch (e) {
+    	console.log(e);
+    	throw e;
+  	}
+}
+// DOWNLOADER THREADS
+async function _threads(link, m) {
+	try {
+		if (global.db.data.users[m
+			.sender].limit >
+			0) {
+			const api = await fetch(`https://api.betabotz.eu.org/api/download/threads?url=${link}&apikey=${lann}`).then(results => results.json());
+			global.db.data.users[m
+				.sender]
+				.limit -= 1;
+			const foto = api.result.image_urls[0] || null;
+			const video = api.result.video_urls[0] || null;
+			if (video) {
+				try {
+					conn.sendFile(m.chat, video.download_url, 'threads.mp4', '*THREADS DOWNLOADER*', m);
+				} catch (e) {
+					throw `Media video tidak ditemukan!`;
+				}
+			} else if (foto) {
+				try {
+					conn.sendFile(m.chat, foto, 'threads.jpeg', '*THREADS DOWNLOADER*', m);
+				} catch (e) {
+					throw `Media foto tidak ditemukan!`;
+				}
+			} else {
+				throw `Konten tidak ditemukan!`;
+			}
+
+		}
+		else {
+			conn.reply(m.chat,
+				"Limit kamu habis!",
+				m);
+		}
+	}
+	catch (e) {
+    	console.log(e);
+    	throw e;
+  	}
+}
+// DOWNLOADER CAPCUT
+async function _capcut(link, m) {
+	try {
+		if (global.db.data.users[m
+			.sender].limit >
+			0) {
+			const response = await fetch(`https://api.betabotz.eu.org/api/download/capcut?url=${link}&apikey=${lann}`);
+			global.db.data.users[m.sender].limit -= 1
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			}
+
+			const res = await response.json();
+			const {
+				video,
+				title,
+				owner
+			} = res.result;
+
+			await conn.sendFile(m.chat, video, 'capcut.mp4', `Title: ${title}\n\nProfile: ${owner}`, m);
+		}
+		else {
+			conn.reply(m.chat,
+				"Limit kamu habis!",
+				m);
+		}
+	}
+	catch (e) {
+    	console.log(e);
+    	throw e;
+  	}
+}
+// DOWNLOADER SNACKVIDEO
+async function _snackvideo(url, m) {
+	try {
+		if (global.db.data.users[m
+			.sender].limit >
+			0) {
+		}
+		else {
+			conn.reply(m.chat,
+				"Limit kamu habis!",
+				m);
+		}
+	}
+	catch (e) {
+    	console.log(e);
+    	throw e;
+  	}
+}
+
+/**=========================================**/
+
+handler.before = async function (m, { conn, isPrems }) {
+	let chat = global.db.data.chats[m.chat];
+	if (!chat.autodl) return; 
+
+	if (!m.text) {
+		return;
+	}
+
+	if (m.text.startsWith('=>') || m.text.startsWith('>') || m.text.startsWith('.') || m.text.startsWith('#') || m.text.startsWith('!') || m.text.startsWith('/') || m.text.startsWith('\/')) {
+		return;
+	}
+
+	if (chat.isBanned) {
+		return;
+	}
+
+	if (!m.text.includes('http')) {
+		return;
+	}
+
+	let text = m.text.replace(/\n+/g, ' ');
+
+	const tiktokRegex = /^(?:https?:\/\/)?(?:www\.|vt\.|vm\.|t\.)?(?:tiktok\.com\/)(?:\S+)?$/i;
+	const douyinRegex = /^(?:https?:\/\/)?(?:www\.|vt\.|vm\.|t\.|v\.)?(?:douyin\.com\/)(?:\S+)?$/i;
+	const instagramRegex = /^(?:https?:\/\/)?(?:www\.)?(?:instagram\.com\/)(?:tv\/|p\/|reel\/)(?:\S+)?$/i;
+	const facebookRegex = /^(?:https?:\/\/(web\.|www\.|m\.)?(facebook|fb)\.(com|watch)\S+)?$/i;
+	const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([\w\-]{11})(?:\?[\S]*)?$/i;
+	// const pinterestRegex = /^(?:https?:\/\/)?(?:[a-z]{2}\.)?pinterest\.com\/pin\/(\d+)\/?$/i;
+	const pinterestRegex = /^(?:https?:\/\/)?(?:pin\.it)\/([a-zA-Z0-9]+)$/i;
+	const spotifyRegex = /^(?:https?:\/\/)?(?:open\.spotify\.com\/track\/)([a-zA-Z0-9]+)(?:\S+)?$/i;
+	const twitterRegex = /^(?:https?:\/\/)?(?:www\.)?(?:twitter\.com|x\.com)\/([A-Za-z0-9_]+)\/status\/(\d+)(?:\?[^#]*)?(?:#.*)?$/i;
+	const threadsRegex = /^(https?:\/\/)?(www\.)?threads\.net(\/[^\s]*)?(\?[^\s]*)?$/;
+	const capcutRegex = /^https:\/\/www\.capcut\.com\/(t\/[A-Za-z0-9_-]+\/?|template-detail\/\d+\?(?:[^=]+=[^&]+&?)+)$/;
+	const snackvideoRegex = /^(https?:\/\/)?s\.snackvideo\.com\/p\/[a-zA-Z0-9]+$/i;
+	const xiaohongshuRegex = /^(https?:\/\/)?(www\.)?(xiaohongshu\.com\/discovery\/item\/[a-zA-Z0-9]+|xhslink\.com\/[a-zA-Z0-9/]+)(\?.*)?$/i;
+	// const teraboxRegex = /^(?:https?:\/\/)?(?:www\.)?terabox\.com\/s\/([\w\-]+)(?:\?[\S]*)?$/i;
+
+	if (text.match(tiktokRegex)) {
+		conn.sendMessage(m.chat, {
+			react: {
+				text: '✅',
+				key: m.key,
+			}
+		})
+		await downloadTikTok(text.match(tiktokRegex)[0], m);
+	} else if (text.match(douyinRegex)) {
+		conn.sendMessage(m.chat, {
+			react: {
+				text: '✅',
+				key: m.key,
+			}
+		})
+		await downloadDouyin(text.match(douyinRegex)[0], m);
+	} else if (text.match(instagramRegex)) {
+		conn.sendMessage(m.chat, {
+			react: {
+				text: '✅',
+				key: m.key,
+			}
+		})
+		await downloadInstagram(text.match(instagramRegex)[0], m);
+	} else if (text.match(facebookRegex)) {
+		conn.sendMessage(m.chat, {
+			react: {
+				text: '✅',
+				key: m.key,
+			}
+		})
+		await downloadFacebook(text.match(facebookRegex)[0], m);
+	}
+	else if (text.match(youtubeRegex)) {
+		conn.sendMessage(m.chat, {
+			react: {
+				text: '✅',
+				key: m.key,
+			}
+		})
+		await downloadyt(text.match(youtubeRegex)[0], m);
+	}
+	else if (text.match(pinterestRegex)) {
+		conn.sendMessage(m.chat, {
+			react: {
+				text: '✅',
+				key: m.key,
+			}
+		})
+		await downloadpin(text.match(pinterestRegex)[0], m);
+	}
+	// else if (text.match(teraboxRegex)) {
+	// 	conn.sendMessage(m.chat, {
+	// 		react: {
+	// 			text: '✅',
+	// 			key: m.key,
+	// 		}
+	// 	})
+	// 	await downloadtera(text.match(teraboxRegex)[0], m);
+	// }
+	else if (text.match(
+		spotifyRegex)) {
+		conn.sendMessage(m
+			.chat, {
+			react: {
+				text: "✅",
+				key: m
+					.key,
+			},
+		});
+		await _spotify(text
+			.match(
+				spotifyRegex
+			)[0], m);
+	}
+	else if (text.match(
+		twitterRegex)) {
+		conn.sendMessage(m
+			.chat, {
+			react: {
+				text: "✅",
+				key: m
+					.key,
+			},
+		});
+		await _twitter(text
+			.match(
+				twitterRegex
+			)[0], m);
+	}
+	else if (text.match(
+		threadsRegex)) {
+		conn.sendMessage(m
+			.chat, {
+			react: {
+				text: "✅",
+				key: m
+					.key,
+			},
+		});
+		await _threads(text
+			.match(
+				threadsRegex
+			)[0], m);
+	}
+	else if (text.match(
+		capcutRegex)) {
+		conn.sendMessage(m
+			.chat, {
+			react: {
+				text: "✅",
+				key: m
+					.key,
+			},
+		});
+		await _capcut(text
+			.match(
+				capcutRegex
+			)[0], m);
+	} 
+	else if (text.match(xiaohongshuRegex)) {
+			conn.sendMessage(m.chat, {
+				react: {
+					text: "✅",
+					key: m.key,
+				},
+			});
+			await _xiaohongshu(text.match(xiaohongshuRegex)[0], m);
+	}
+	else if (text.match(
+		snackvideoRegex)) {
+		conn.sendMessage(m
+			.chat, {
+			react: {
+				text: "✅",
+				key: m
+					.key,
+			},
+		});
+		await _snackvideo(text
+			.match(
+				snackvideoRegex
+			)[0], m);
+	}
+	return !0;
+}
+
+
+export default handler
+
+export default handler;

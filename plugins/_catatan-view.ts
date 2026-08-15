@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async(m, {conn, command, usedPrefix, text}) => {
   global.db.data.users[m.sender].catatan = global.db.data.users[m.sender].catatan || []
   let i = 0
@@ -26,4 +27,4 @@ handler.help = ['lihatcatatan <title>']
 handler.tags = ['internet']
 handler.command = /^lihatcatatan$/i
 
-export default handler
+export default handler;

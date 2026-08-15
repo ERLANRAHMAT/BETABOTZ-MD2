@@ -1,8 +1,15 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
  import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn }) => {
-  let res = await fetch(`https://api.botcahx.eu.org/api/random/taugasih?apikey=${btc}`).then(result => result.json());
+  try {
+  let res = await fetch(`https://api.betabotz.eu.org/api/random/taugasih?apikey=${lann}`).then(result => result.json());
   conn.reply(m.chat, `“${res.taugasih}”`, m);
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
 };
 
 handler.help = ['taugasih'];

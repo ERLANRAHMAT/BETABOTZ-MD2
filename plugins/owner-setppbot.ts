@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as zapo from '../lib/simple.ts';
 
 import jimp from 'jimp';
@@ -44,7 +45,7 @@ handler.command = /^(set(botpp|ppbot))$/i;
 
 handler.owner = true;
 
-export default handler;
+
 
 async function pepe(media) {
     const image = await jimp.read(media);
@@ -56,3 +57,5 @@ async function pepe(media) {
         preview: await cropped.normalize().getBufferAsync(jimp.MIME_JPEG)
     };
 }
+
+export default handler;

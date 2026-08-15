@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args }) => {
     let user = global.db.data.users[m.sender];
     let guildIndex = parseInt(args[0]) - 1;
@@ -21,4 +22,5 @@ handler.help = ['joinguild <nomor_guild>'];
 handler.tags = ['rpgG'];
 handler.command = /^(joinguild)$/i;
 handler.rpg = true;
+
 export default handler;

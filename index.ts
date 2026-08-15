@@ -21,7 +21,7 @@ const server = http.createServer((req, res) => {
     const data = {
       status: 'true',
       message: 'Bot Successfully Activated!',
-      author: 'BOTCAHX'
+      author: 'BETABOTZ'
     };
     res.writeHead(200);
     res.end(JSON.stringify({ response: data }, null, 2));
@@ -127,9 +127,7 @@ function start(file) {
   console.log(`💾 \x1b[33mTotal RAM: ${ramInGB.toFixed(2)} GB\x1b[0m`);
   const freeRamInGB = os.freemem() / (1024 * 1024 * 1024);
   console.log(`💽 \x1b[33mFree RAM: ${freeRamInGB.toFixed(2)} GB\x1b[0m`);
-  console.log('\x1b[33m%s\x1b[0m', `📃 Script by BOTCAHX`);
-  console.log('\x1b[33m%s\x1b[0m', `🔗 Github: https://github.com/BOTCAHX/RTXZY-MD`);	
-
+  console.log("\x1b[33m%s\x1b[0m", `📃 Script by BETABOTZ`);  
   setInterval(() => {}, 1000);
 }
 

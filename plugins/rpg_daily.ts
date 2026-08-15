@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fs from 'fs';
 
 const prem = 1000; // XP awarded to premium users
@@ -24,7 +25,7 @@ handler.help = handler.command = ['daily'];
 handler.tags = ['rpg'];
 handler.rpg = true
 
-export default handler;
+
 
 function msToTime(duration) {
     var milliseconds = parseInt(String((duration % 1000) / 100)),
@@ -38,3 +39,5 @@ function msToTime(duration) {
 
     return hours + " Jam " + minutes + " Menit";
 }
+
+export default handler;

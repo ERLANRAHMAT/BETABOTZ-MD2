@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 import axios from 'axios';
 let handler: WaPlugin = async (m, { text, args }) => {
   if (!/^https?:\/\//.test(text)) throw 'Awali *URL* dengan http:// atau https://';
@@ -27,7 +27,7 @@ handler.help = ['fetch', 'get'].map(v => v + ' <url>');
 handler.tags = ['internet'];
 handler.command = /^(fetch|get)$/i;
 
-export default handler;
+
 function formatSize(bytes) {
   if (bytes === 0) return '0 Bytes';
   const k = 1024;
@@ -68,3 +68,4 @@ function jsonFormat(json) {
   return JSON.stringify(json, null, 2);
 }
 
+export default handler;

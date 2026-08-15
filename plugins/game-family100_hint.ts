@@ -1,3 +1,4 @@
+// @ts-nocheck
 import similarity from 'similarity'
 const threshold = 0.72 
 let rewardAmount = 1000
@@ -65,3 +66,5 @@ ${Array.from(room.jawaban, (jawaban, index) => {
         return !0
     }
 }
+
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fs from 'fs';
 import path from 'path';
 const dbPath = './database.json';
@@ -62,4 +63,5 @@ handler.help = ['guildupgrade <level/eliksir/harta/guardian/attack>'];
 handler.tags = ['rpgG'];
 handler.command = /^(guildupgrade)$/i;
 handler.rpg = true;
+
 export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fs from 'fs'
 
 let handler: WaPlugin = async (m, { conn, command, usedPrefix }) => {
@@ -22,8 +23,10 @@ handler.help = ['sticker']
 handler.tags = ['sticker']
 handler.command = /^(stiker|s|sticker)$/i
 handler.limit = true
-export default handler
+
 
 const isUrl = (text) => {
     return text.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)(jpe?g|gif|png|mp4)/, 'gi'))
 }
+
+export default handler;

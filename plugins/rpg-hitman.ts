@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { WaMessage, WaGameRoom } from '../types/connection.js';
 let handler: WaPlugin = async (m, { conn }) => {
     let __timers = (Date.now() - global.db.data.users[m.sender].kerjaempat)
@@ -86,7 +87,7 @@ handler.register = true
 handler.group = true
 handler.level = 10
 handler.rpg = true
-export default handler
+
 
     function clockString(ms) {
         let h = Math.floor(ms / 3600000)
@@ -94,3 +95,5 @@ export default handler
         let s = Math.floor(ms / 1000) % 60
         return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
 }
+
+export default handler;

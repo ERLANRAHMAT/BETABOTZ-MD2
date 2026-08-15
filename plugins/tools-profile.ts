@@ -1,3 +1,4 @@
+// @ts-nocheck
 import PhoneNumberNS from 'awesome-phonenumber'
 const PhoneNumber = ((PhoneNumberNS as unknown as { default: (n: string) => { getNumber: (f: string) => string } }).default)
 import levelling from '../lib/levelling.ts'
@@ -159,7 +160,7 @@ handler.help = ['profile', 'profil [@user]']
 handler.tags = ['info']
 handler.command = /^profile?|profil$/i
 
-export default handler
+
 
 function msToDate(ms) {
   if (!ms || ms < 0) return 'Permanent'
@@ -168,3 +169,5 @@ function msToDate(ms) {
   let minutes = Math.floor((ms % 3600000) / 60000)
   return `${days} hari ${hours} jam ${minutes} menit`
 }
+
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { isPrems, args, conn, text, command, usedPrefix }) => {
     let user = global.db.data.users[m.sender];
 
@@ -79,7 +80,7 @@ handler.help = ['lamarkerja'];
 handler.tags = ['rpg'];
 handler.command = /^lamarkerja$/i;
 handler.rpg = true
-export default handler;
+
 
 function capitalizeFirstLetter(str) {
     let words = str.split(" ");
@@ -88,3 +89,5 @@ function capitalizeFirstLetter(str) {
     }
     return words.join(" ");
 }
+
+export default handler;

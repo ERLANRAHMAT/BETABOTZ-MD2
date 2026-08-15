@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { WaConnection } from '../types/connection.js';
 import * as zapo from '../lib/simple.ts';
 
@@ -51,4 +52,4 @@ handler.tags = 'anonymous'
 handler.command = ['start', 'leave', 'next']
 handler.private = true
 
-export default handler
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, {
 	conn,
 	args

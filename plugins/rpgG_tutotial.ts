@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, usedPrefix }) => {
     let tutorial = `
 🏰 *Tutorial Guild*
@@ -61,5 +62,6 @@ let handler: WaPlugin = async (m, { conn, usedPrefix }) => {
 handler.help = ['tutorguild'];
 handler.tags = ['rpgG'];
 handler.command = /^tutorguild$/i;
-handler.rpg = true; 
+handler.rpg = true;
+
 export default handler;

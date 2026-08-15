@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
   let user = global.db.data.users[m.sender]
 
@@ -20,4 +21,5 @@ handler.help = ['putus']
 handler.tags = ['fun']
 handler.command = /^(putus)$/i
 handler.group = true
-export default handler
+
+export default handler;

@@ -1,4 +1,7 @@
-<h1 align="center">RTXZY-MD</h1>
+
+## UNTESTED
+
+<h1 align="center">BETABITZ MD2-TS</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Node.js-22%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node">
@@ -18,6 +21,67 @@
 - **Database SQLite** — Database bot (`users`, `chats`, `stats`, dll) kini tersimpan di `database/database.sqlite` (WAL, atomic) menggantikan `database.json`; auto-migrasi dari JSON lama saat boot pertama
 - **Koneksi Dual Mode** — Mendukung Pairing Code secara default, dan QR Code bisa diakses dengan argumen `--qr`
 - **Wajib Node.js 22++**
+
+---
+
+---
+## ✨ Link Seputar Bot
+
+| Ikon | Link                               | Deskripsi Singkat                                                                                                |
+| :--: | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+|  ▶️  | **https://www.youtube.com/playlist?list=PLuQT2lE0wOYTMf1X4OqlVFeavLsLKa-0t** | **Video tutorial** |
+|  ▶️  | **https://www.youtube.com/playlist?list=PLfTmZufvRy8Y** | **Penjelasan Update** |
+
+---
+
+## Note!
+
+### Important:
+
+* Kamu **wajib mengisi ApiKey** agar bot berfungsi dengan baik.
+* **Tidak disarankan menginstal** di Termux atau panel tanpa `express`, `ffmpeg`, `imagemagick`, dan `webp`.
+* Bot ini menggunakan 80% fitur dari [`RestApi`](https://api.betabotz.eu.org) sebagai media downloader dan fitur lainnya.
+* Untuk **PANEL** minimum CPU 75 untuk dapat pairing.
+
+---
+
+## ApiKey & Harga
+
+| No | Plan/Role | Limit          | Expired | Harga  |
+|----|-----------|----------------|---------|--------|
+| 1  | Free      | 30 Request/day | -       | Gratis |
+| 2  | Cheap1    | 3000 Request   | 1 bulan | 3.000  |
+| 3  | Cheap2    | 4000 Request   | 1 bulan | 4.000  |
+| 4  | PREMIUM   | 5000 Request   | 1 bulan | 5.000  |
+| 5  | VIP       | 8000 Request   | 2 bulan | 8.000  |
+| 6  | VVIP      | 12000 Request  | 3 bulan | 12.000 |
+| 7  | SUPREME   | 20000 Request  | 4 bulan | 20.000 |
+
+> Untuk membeli ApiKey silakan **register**, pilih paket, lalu tekan **Buy Now** [`Pilih`](https://api.betabotz.eu.org/price)
+
+---
+
+## Website API
+* **Lann (Wajib):** [`Register`](https://api.betabotz.eu.org)
+
+### ðŸ”§ Konfigurasi ApiKey
+
+1. Setelah mendapatkan ApiKey, masukkan ke `config.js`:
+
+   ```js
+   global.lann = 'API_KEY_LANN';
+   ```
+
+2. atau kamu bisa memasukan nya ke `.env` dari `.env.example`, setelah itu hapus komentar gunakan yang menggunakan .env di `config.js`:
+
+   ```js
+   API_KEY_BETABOTZ=
+   API_KEY_BETABOTZ_AKSESKEY=
+   ```
+
+3. Jalankan bot dan ketik `.getip`
+4. Buka [`Profile API`](https://api.betabotz.eu.org/profile), whitelist IP bot di:
+   `Settings -> Management IP`, lalu tempelkan IP dari hasil `.getip`.
 
 ---
 
@@ -243,6 +307,7 @@ https://github.com/clhuang/heroku-buildpack-webp-binaries.git
   <a href="https://github.com/ERLANRAHMAT"><img src="https://github.com/ERLANRAHMAT.png?size=100" width="100" height="100" alt="Erlan"></a>
   <a href="https://github.com/BochilGaming"><img src="https://github.com/BochilGaming.png?size=100" width="100" height="100" alt="Bochilgaming"></a>
   <a href="https://github.com/Nurutomo"><img src="https://github.com/Nurutomo.png?size=100" width="100" height="100" alt="Nurutomo"></a>
+  <a href="https://github.com/DanaPutra133"><img src="https://github.com/DanaPutra133.png?size=100" width="100" height="100" alt="Dana Putra"></a>
 </p>
 
 | [Tio](https://github.com/BOTCAHX) | [Erlan](https://github.com/ERLANRAHMAT) | [Bochilgaming](https://github.com/BochilGaming) | [Nurutomo](https://github.com/Nurutomo) |

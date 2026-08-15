@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args, usedPrefix }) => {
 	let info = `
 乂 List Pet:
@@ -169,7 +170,7 @@ handler.command = /^(feed(ing)?)$/i
 
 handler.register = true
 handler.rpg = true
-export default handler
+
 
 function clockString(ms) {
   let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
@@ -180,3 +181,5 @@ function clockString(ms) {
 function pickRandom(list) {
   return list[Math.floor(Math.random() * list.length)]
 }
+
+export default handler;

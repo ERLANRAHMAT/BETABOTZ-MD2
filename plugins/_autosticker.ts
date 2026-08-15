@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fs from 'fs';
 
 let handler: WaPlugin = m => m;

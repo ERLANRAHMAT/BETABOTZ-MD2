@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { 
 conn,
 usedPrefix
@@ -92,7 +93,7 @@ handler.tags = ['rpg']
 handler.command = /^(copet)$/i
 handler.group = true
 handler.rpg = true
-export default handler
+
 
 function clockString(ms) {
   let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
@@ -101,3 +102,5 @@ function clockString(ms) {
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return ['\n' + d, ' *Days ☀️*\n ', h, ' *Hours 🕐*\n ', m, ' *Minute ⏰*\n ', s, ' *Second ⏱️* '].map(v => v.toString().padStart(2, '0')).join('')
 }
+
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import JavaScriptObfuscator from 'javascript-obfuscator'
 
 let handler: WaPlugin = async (m, { conn, text }) => {
@@ -9,4 +10,4 @@ handler.help = ['enc']
 handler.tags = ['tools']
 handler.command = /^enc$/i
 
-export default handler
+export default handler;

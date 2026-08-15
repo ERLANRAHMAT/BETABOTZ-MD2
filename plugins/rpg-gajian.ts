@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, usedPrefix, text }) => {
     let user = global.db.data.users[m.sender]
 	let time = user.lastclaimb2 + 86400000
@@ -12,7 +13,7 @@ handler.tags = ['rpg']
 handler.command = /^(gaji|gajian)/i
 handler.register = true
 handler.rpg = true
-export default handler
+
 
 function msToTime(duration) {
   var milliseconds = parseInt(String((duration % 1000) / 100)),
@@ -26,3 +27,5 @@ function msToTime(duration) {
 
   return hours + " jam " + minutes + " menit " + seconds + " detik"
 }
+
+export default handler;

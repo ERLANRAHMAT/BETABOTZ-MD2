@@ -1,22 +1,23 @@
-import fetch from 'node-fetch'
-var handler: WaPlugin = async (m, {
+// @ts-nocheck
+// Converted from plugins-esm - automated
+import fetch from 'node-fetch';
+var handler = async (m, {
  text, 
  usedPrefix, 
  command
  }) => {
 if (!text) throw 'Masukkan Query Link!'
  try {
-let anu = await fetch(`https://api.botcahx.eu.org/api/download/xnxxdl?url=${text}&apikey=${btc}`)
+let anu = await fetch(`https://api.betabotz.eu.org/api/download/xnxxdl?url=${text}&apikey=${lann}`)
 let hasil = await anu.json() 
 
 conn.sendMessage(m.chat, { video: { url: hasil.result.url }, fileName: 'xnxx.mp4', mimetype: 'video/mp4' }, { quoted: m })
  } catch (e) {
- throw `*Server error!*`
+        console.log(e);
+        throw e;
  }
 }
 handler.command = handler.help = ['xnxxdown'];
 handler.tags = ['internet'];
-handler.limit = true;
-handler.premium = true;
 
 export default handler;

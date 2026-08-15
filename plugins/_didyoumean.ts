@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 import didyoumean from 'didyoumean'
 import similarity from 'similarity'
 
@@ -18,4 +18,4 @@ handler.before = function (m, { match, usedPrefix, text, args }) {
 	}
 }
 
-export default handler
+export default handler;

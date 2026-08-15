@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, isOwner, text }) => {
 	if (!text) throw 'Masukkan user/id group yang ingin di ban\n\nExample: .ban 6282361160044 atau .ban 2837372829@g.us'
   let who
@@ -25,4 +26,5 @@ handler.tags = ['owner']
 handler.command = /^ban(chat)?$/i
 
 handler.owner = true
-export default handler
+
+export default handler;

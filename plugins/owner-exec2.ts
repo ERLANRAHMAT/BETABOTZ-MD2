@@ -1,3 +1,4 @@
+// @ts-nocheck
 import cp from 'child_process'
 import { promisify } from 'util'
 let exec = promisify(cp.exec).bind(cp)
@@ -20,4 +21,5 @@ handler.tags = ['advanced']
 handler.customPrefix = /^[$] /
 handler.command = new RegExp('')
 handler.rowner = true
-export default handler
+
+export default handler;

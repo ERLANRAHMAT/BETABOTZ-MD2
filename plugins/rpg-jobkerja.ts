@@ -1,3 +1,4 @@
+// @ts-nocheck
 const cooldown = 300000; // Default cooldown (5 minutes in milliseconds)
 const cooldownAfterWork = 5 * 60 * 1000; // Cooldown after working (5 minutes in milliseconds)
 

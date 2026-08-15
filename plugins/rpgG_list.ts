@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
     let guilds = Object.values(global.db.data.guilds);
 
@@ -14,4 +15,5 @@ handler.help = ['guildlist'];
 handler.tags = ['rpgG'];
 handler.command = /^(guildlist)$/i;
 handler.rpg = true;
+
 export default handler;

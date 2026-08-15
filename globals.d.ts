@@ -35,8 +35,11 @@ declare global {
   var author: BotConfig['author'];
   var maxwarn: BotConfig['maxwarn'];
   var btc: BotConfig['btc'];
+  var lann : BotConfig['lann'];
   var aksesKey: BotConfig['aksesKey'];
-
+  var dana: BotConfig['dana'];
+  var taskToken  : BotConfig['taskToken'];
+  
   var APIs: BotApis;
   var APIKeys: BotApiKeys;
   var API: BotApiFn;

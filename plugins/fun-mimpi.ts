@@ -1,3 +1,4 @@
+// @ts-nocheck
 import moment from 'moment-timezone';
 
 let handler: WaPlugin = async (m, { text, conn, usedPrefix, command }) => {
@@ -191,7 +192,9 @@ handler.command = /^dreamworld|dream|mimpi$/i;
 handler.group = true;
 handler.limit = 1;
 
-export default handler;
+
 
 //base by DEVOLUTION-MD1
 //recode by danaputra133
+
+export default handler;

@@ -1,6 +1,8 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
 
-let handler: WaPlugin = async (m, {
+const handler: WaPlugin = async (m, {
     conn,
     args,
     usedPrefix,
@@ -10,7 +12,7 @@ let handler: WaPlugin = async (m, {
     if (!args[0].match(/https?:\/\/(www\.)?(twitter\.com|x\.com)/gi)) throw "URL Tidak Ditemukan!";
     m.reply(wait);
     try {
-        const api = await fetch(`https://api.botcahx.eu.org/api/download/twitter2?url=${args[0]}&apikey=${btc}`);
+        const api = await fetch(`https://api.betabotz.eu.org/api/download/twitter2?url=${args[0]}&apikey=${lann}`);
         const res = await api.json();
         const mediaURLs = res.result.mediaURLs;
         
@@ -19,11 +21,12 @@ let handler: WaPlugin = async (m, {
         for (const url of mediaURLs) {
             const response = await fetch(url);
             const buffer = await response.buffer();  
-            await delay(3000)        
+            await delay(3000)//3 detik jeda agar tidak spam        
             conn.sendFile(m.chat, buffer, null, capt, m);           
         }
     } catch (e) {
-        throw '*Server Down!*';
+      console.log(e);
+      throw e;
     }
 };
 
@@ -38,8 +41,10 @@ handler.botAdmin = false;
 handler.fail = null;
 handler.private = false;
 
-export default handler;
+
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
-}
+	}
+
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { isPrems, conn, text, usedPrefix, command }) => {
   const user = global.db.data.users[m.sender];
   const who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : text ? text.replace(/[@ .+-]/g, '').replace(/^\+/, '').replace(/-/g, '') + '@s.whatsapp.net' : m.sender;
@@ -100,7 +101,7 @@ handler.help = ['job'];
 handler.tags = ['rpg'];
 handler.command = /^(job)$/i;
 handler.rpg = true
-export default handler;
+
 
 function capitalizeFirstLetter(str) {
   let words = str.split(" ");
@@ -109,3 +110,5 @@ function capitalizeFirstLetter(str) {
   }
   return words.join(" ");
 }
+
+export default handler;

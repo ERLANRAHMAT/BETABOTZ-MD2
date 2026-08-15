@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
     let userId = m.sender;
     let user = global.db.data.users[userId];
@@ -30,5 +31,6 @@ Dibuat Pada: ${guild.createdAt}`;
 handler.help = ['myguild'];
 handler.tags = ['rpgG'];
 handler.command = /^(myguild)$/i;
-handler.rpg = true;  
+handler.rpg = true;
+
 export default handler;

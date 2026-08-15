@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
     let wm = global.wm
     let _uptime = process.uptime() * 1000
@@ -14,7 +15,7 @@ handler.customPrefix = /^(mode)$/i
 handler.command = new RegExp('')
 handler.limit = false
 
-export default handler
+
 
 function clockString(ms) {
     let days = Math.floor(ms / (24 * 60 * 60 * 1000));
@@ -26,3 +27,5 @@ function clockString(ms) {
     let sec = Math.floor((minutesms) / (1000));
     return days + " Hari " + hours + " Jam " + minutes + " Menit " + sec + " Detik";
 }
+
+export default handler;

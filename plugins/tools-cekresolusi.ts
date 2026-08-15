@@ -1,3 +1,4 @@
+// @ts-nocheck
 import jimp from 'jimp'
 import uploadImage from '../lib/uploadImage.ts'
 import uploadFile from '../lib/uploadFile.ts'
@@ -27,4 +28,4 @@ handler.help = ['cekresolution *<foto>*', 'cekreso *<foto>*']
 handler.tags = ['tools']
 handler.command = /^(cekreso(lution)?)$/i
 
-export default handler
+export default handler;

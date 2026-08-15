@@ -1,3 +1,4 @@
+// @ts-nocheck
 function handler(m, { text }) {
     let teks = text ? text : m.quoted && m.quoted.text ? m.quoted.text : m.text
     m.reply(teks.replace(/[a-z]/gi, v => {
@@ -35,4 +36,4 @@ handler.help = ['namaninja <teks>']
 handler.tags = ['fun']
 handler.command =  /^(namaninja|namae)$/i
 
-export default handler
+export default handler;

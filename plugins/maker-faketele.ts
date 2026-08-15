@@ -1,4 +1,6 @@
-import uploadImage from '../lib/uploadImage.ts';
+// @ts-nocheck
+// Converted from plugins-esm - automated
+import uploadImage from '../lib/uploadImage.js';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     try {
@@ -23,13 +25,13 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
         let link = await uploadImage(media);
         if (!link) throw 'Gagal mengunggah gambar ke server.';
 
-        let apiUrl = `https://api.botcahx.eu.org/api/maker/canvas-fakeTele?apikey=${btc}&bio=${encodeURIComponent(bio.trim())}&nama=${encodeURIComponent(nama.trim())}&ponsel=${encodeURIComponent(ponsel.trim())}&url=${encodeURIComponent(link)}&username=${encodeURIComponent(username.trim())}`;
+        let apiUrl = `https://api.betabotz.eu.org/api/maker/canvas-fakeTele?apikey=${lann}&bio=${encodeURIComponent(bio.trim())}&nama=${encodeURIComponent(nama.trim())}&ponsel=${encodeURIComponent(ponsel.trim())}&url=${encodeURIComponent(link)}&username=${encodeURIComponent(username.trim())}`;
 
         await conn.sendFile(m.chat, apiUrl, 'faketele.jpg', 'Done!', m);
 
     } catch (e) {
         console.log(e);
-        throw eror
+        throw typeof e === 'string' ? e : 'Terjadi kesalahan sistem saat memproses gambar.';
     }
 }
 

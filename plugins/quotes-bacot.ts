@@ -1,12 +1,21 @@
-import fetch from 'node-fetch'
+// @ts-nocheck
+// Converted from plugins-esm - automated
+import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { conn } ) => {   
-let res = await fetch(`https://api.botcahx.eu.org/api/random/bacot?apikey=${btc}`).then(result => result.json())
-let anu =`
+    try {
+      let res = await fetch(
+        `https://api.betabotz.eu.org/api/random/bacot?apikey=${lann}`,
+      ).then((result) => result.json());
+      let anu = `
 ─────〔 *Bacot* 〕─────
 
 ${res.hasl}
-`
-conn.reply(m.chat, anu, m) 
+`;
+      conn.reply(m.chat, anu, m);
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
 }
 handler.help = ['bacot']
 handler.tags = ['quotes']
@@ -22,4 +31,4 @@ handler.botAdmin = false
 
 handler.fail = null
 
-export default handler
+export default handler;

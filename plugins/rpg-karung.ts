@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, usedPrefix }) => {
 	let user = global.db.data.users[m.sender]
 	let cap = `*━ ❨ Karung Hasil Mulung ❩ ━*
@@ -19,4 +20,4 @@ handler.tags = ['rpg']
 handler.command = /^(karung)$/i
 handler.rpg = true
 
-export default handler
+export default handler;

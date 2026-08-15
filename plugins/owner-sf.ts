@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fs from 'fs'
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
     if (!text) throw `uhm.. teksnya mana?\n\npenggunaan:\n${usedPrefix + command} <teks>\n\ncontoh:\n${usedPrefix + command} plugins/menu.js`
@@ -12,4 +13,4 @@ handler.command = /^sf$/i
 
 handler.rowner = true
 
-export default handler
+export default handler;

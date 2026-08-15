@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin  = async (m, { conn, text }) => {
   
 let chats = Object.keys(await conn.chats)
@@ -24,8 +25,10 @@ handler.botAdmin = false
 
 handler.fail = null
 
-export default handler
+
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+export default handler;

@@ -1,12 +1,19 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { conn }) => {
-const res = await fetch(`https://api.botcahx.eu.org/api/random/katasenja?apikey=${btc}`).then(result => result.json())
+    try {
+const res = await fetch(`https://api.betabotz.eu.org/api/random/katasenja?apikey=${lann}`).then(result => result.json())
 let anu =`─────〔 *Galau* 〕─────
 
 ${res.senja}
 `
 m.reply(anu) 
+} catch (e) {
+        console.log(e);
+        throw e;
+}
 }
 handler.help = ['galau']
 handler.tags = ['quotes']
@@ -23,4 +30,4 @@ handler.botAdmin = false
 
 handler.fail = null
 
-export default handler
+export default handler;

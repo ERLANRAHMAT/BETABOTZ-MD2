@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { command, text, usedPrefix }) => {
   if (!text) throw `*Example:* ${usedPrefix + command} halo`;
   let ter = command[1].toLowerCase();

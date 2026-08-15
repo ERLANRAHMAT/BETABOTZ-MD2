@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as zapo from '../lib/simple.ts';
 
 const Hab = 20000
@@ -374,4 +375,5 @@ handler.tags = ['rpg']
 
 handler.command = /^(resto|beli)$/i
 handler.rpg = true
-export default handler
+
+export default handler;

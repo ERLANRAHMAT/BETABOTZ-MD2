@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, command, args, text, usedPrefix }) => {
   try {
     let bruh = `${usedPrefix}open <crate name> <  10 | 100 | 1000 >\n\nContoh penggunaan: *${usedPrefix}open common 10*\n\nlist crate:\n*common*\n*uncommon*\n*mythic*\n*legendary*`
@@ -453,8 +454,10 @@ handler.register = true
 handler.rpg = true
 handler.fail = null
 
-export default handler
+
 
 function pickRandom(list) {
   return list[Math.floor(list.length * Math.random())]
 }
+
+export default handler;

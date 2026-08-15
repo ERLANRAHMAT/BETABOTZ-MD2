@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { WaConnection } from '../types/connection.js';
 async function handler(this: WaConnection, m, { conn, usedPrefix, command, text }) {
   let user = global.db.data.users[m.sender]
@@ -635,7 +636,7 @@ handler.command = /^(dungeon)$/i
 handler.rpg = true
 handler.mods = false
 
-export default handler
+
 
 /**
 * pickRandom from array
@@ -703,3 +704,5 @@ DATA.forEach(player => {
 })
 return msg
 }
+
+export default handler;

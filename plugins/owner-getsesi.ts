@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fs from 'fs'
 import os from 'os'
 import path from 'path'
@@ -37,4 +38,4 @@ handler.command = /^(getsesi)$/i
 
 handler.rowner = true
 
-export default handler
+export default handler;

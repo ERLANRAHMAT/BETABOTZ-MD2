@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fetch from 'node-fetch'
 let handler: WaPlugin = async (m, { text }) => {
     if (!text) throw 'Cari apa?'
@@ -25,7 +26,7 @@ handler.tags = ['tools']
 
 handler.command = /^g(ithub|h)search$/i
 
-export default handler
+
 
 function formatDate(n, locale = 'id') {
     let d = new Date(n)
@@ -39,3 +40,5 @@ function formatDate(n, locale = 'id') {
       second: 'numeric'
     })
   }
+
+export default handler;

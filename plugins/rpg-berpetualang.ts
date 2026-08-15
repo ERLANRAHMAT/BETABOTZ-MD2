@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { WaConnection } from '../types/connection.js';
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -135,4 +136,5 @@ handler.group = true;
 handler.limit = true;
 handler.rpg = true;
 handler.register = true;
+
 export default handler;

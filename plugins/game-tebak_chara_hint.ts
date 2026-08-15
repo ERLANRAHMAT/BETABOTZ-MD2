@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
     conn.tebakchara = conn.tebakchara ? conn.tebakchara : {}
     let id = m.chat
@@ -9,4 +10,4 @@ handler.command = /^chrd$/i;
 
 handler.limit = true
 
-export default handler
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
     let __timers = (Date.now() - global.db.data.users[m.sender].lastngewe)
     let _timers = (300000 - __timers)
@@ -63,7 +64,7 @@ handler.command = /^(ngewe|anu)$/i
 handler.register = true
 handler.premium = false
 handler.rpg = true
-export default handler
+
 
 
 function clockString(ms) {
@@ -73,3 +74,5 @@ function clockString(ms) {
   console.log({ms,h,m,s})
   return [h, m, s].map(v => v.toString().padStart(2, '0') ).join(':')
 }
+
+export default handler;

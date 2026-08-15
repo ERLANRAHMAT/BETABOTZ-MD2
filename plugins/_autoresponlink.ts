@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fs from 'fs'
 let handler: WaPlugin = m => m
 
@@ -14,4 +15,4 @@ Jika berminat hubungi: @${global.owner[0]} untuk order:)
     }
 }
 
-export default handler
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
     let currentTime = new Date().getTime();
     let lastClaimTime = global.db.data.users[m.sender].lastclaim || 0;
@@ -20,7 +21,7 @@ handler.premium = false
 handler.rpg = true
 
 
-export default handler;
+
 
 function msToTime(duration) {
     var milliseconds = parseInt(String((duration % 1000) / 100)),
@@ -34,3 +35,5 @@ function msToTime(duration) {
 
     return hours + " Jam " + minutes + " Menit";
 }
+
+export default handler;

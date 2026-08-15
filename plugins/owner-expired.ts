@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, command, usedPrefix, text, participants }) => {
     const groups = Object.keys(conn.chats)
     .filter(key => key.endsWith('@g.us'))
@@ -87,7 +88,7 @@ let handler: WaPlugin = async (m, { conn, command, usedPrefix, text, participant
      
   handler.owner = true
      
-  export default handler
+  
   
   function msToDate(ms) {
       let temp = ms;
@@ -104,3 +105,5 @@ let handler: WaPlugin = async (m, { conn, command, usedPrefix, text, participant
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+export default handler;

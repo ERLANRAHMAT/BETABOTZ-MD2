@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) return m.reply(`Menggunakan perintah\n\n*${usedPrefix + command}* Halo apa? @${m.sender.split('@')[0]} tidak ada dan Anda`, null, { mentions: [m.sender] })
   let cm = copy(m)
@@ -20,8 +21,10 @@ handler.help = ['fake <text> @user <text2>']
 handler.tags = ['tools']
 handler.command = /^(fitnah|fakereply|fake)$/
 
-export default handler
+
 
 function copy(obj) {
   return JSON.parse(JSON.stringify(obj))
 }
+
+export default handler;

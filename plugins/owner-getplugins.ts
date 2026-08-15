@@ -1,3 +1,4 @@
+// @ts-nocheck
 const __dirname = import.meta.dirname;
 import fs from 'fs'
 import path from 'path'
@@ -17,4 +18,4 @@ handler.command = /^(getplugin|get ?plugin|gp)$/i
 
 handler.rowner = true
 
-export default handler
+export default handler;

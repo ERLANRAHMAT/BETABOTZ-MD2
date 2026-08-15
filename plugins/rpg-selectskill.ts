@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, usedPrefix, text, command }) => {
     let user = global.db.data.users[m.sender]
     let skill = {
@@ -57,4 +58,5 @@ handler.command = /^(selectskill)$/i
 handler.register = true
 handler.group = true
 handler.rpg = true
-export default handler
+
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
   let id = m.chat
   conn.math = conn.math ? conn.math : {}
@@ -35,4 +36,5 @@ handler.tags = ['tools']
 handler.command = /^(calc(ulat(e|or))?|kalk(ulator)?)$/i
 handler.exp = 5
 handler.register = false
-export default handler
+
+export default handler;

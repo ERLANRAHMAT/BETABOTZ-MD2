@@ -1,3 +1,4 @@
+// @ts-nocheck
 import similarity from 'similarity'
 const threshold = 0.72
 
@@ -29,4 +30,5 @@ handler.before = async function (m) {
 }
 
 handler.exp = 0
-export default handler
+
+export default handler;

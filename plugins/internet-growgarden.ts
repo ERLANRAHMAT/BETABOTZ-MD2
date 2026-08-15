@@ -1,3 +1,5 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, { usedPrefix, command, text }) => {
@@ -8,7 +10,7 @@ let handler: WaPlugin = async (m, { usedPrefix, command, text }) => {
         }
         m.reply(wait);
         if (text.toLowerCase() === 'stock') {
-            let res = await (await fetch(`https://api.botcahx.eu.org/api/webzone/grow-and-garden-stock?apikey=${btc}`)).json();
+            let res = await (await fetch(`https://api.betabotz.eu.org/api/webzone/grow-and-garden-stock?apikey=${lann}`)).json();
             let content = `*🌱 G R O W  &  G A R D E N  S T O C K S 🌱*\n\n`;
 
             if (res.status && res.result) {
@@ -52,7 +54,7 @@ let handler: WaPlugin = async (m, { usedPrefix, command, text }) => {
             }
             await m.reply(content);
         } else if (text.toLowerCase() === 'weather') {
-            let res = await (await fetch(`https://api.botcahx.eu.org/api/webzone/grow-and-garden-weather?apikey=${btc}`)).json();
+            let res = await (await fetch(`https://api.betabotz.eu.org/api/webzone/grow-and-garden-weather?apikey=${lann}`)).json();
             let content = `*🌦️ G R O W  &  G A R D E N  W E A T H E R 🌦️*\n\n`;
 
             if (res.status && res.result) {
@@ -74,12 +76,14 @@ let handler: WaPlugin = async (m, { usedPrefix, command, text }) => {
             m.reply(`Please specify a subcommand: \`stock\` or \`weather\`\nExample: \`${usedPrefix + command} stock\` or \`${usedPrefix + command} weather\``);
             return;
         }
-    } catch (error) {
-        throw eror
+    }  catch (e) {
+        console.log(e);
+        throw e;
     }
 };
 
 handler.command = ['growgarden'];
 handler.tags = ['internet'];
 handler.limit = true;
+
 export default handler;

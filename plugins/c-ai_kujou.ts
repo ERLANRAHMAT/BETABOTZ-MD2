@@ -1,0 +1,155 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
+import axios from 'axios';
+
+let handler: WaPlugin = async (m, { conn, text }) => {
+    if (!text) throw `*• Example:* .Kujou *[on/off]*`;
+  try {
+  
+
+    conn.Kujou = conn.Kujou ? conn.Kujou : {};
+
+    if (text === "on") {
+      if (!conn.Kujou[m.sender]) {
+        conn.Kujou[m.sender] = {
+          pesan: [],
+          timeout: setTimeout(() => {
+            delete conn.Kujou[m.sender];
+          }, 300000) // 5 minutes timeout
+        };
+        await conn.sendMessage(m.chat, {
+          image: { url: pickRandom(img) },
+          caption: "⬣───「 *KUJOU* 」───⬣" + "\n\n" + `Oh, tentu saja. Apa yang bisa kubantu?`,
+          mentions: [m.sender]
+        }, { quoted: m });
+      } else {
+        clearTimeout(conn.Kujou[m.sender].timeout);
+        conn.Kujou[m.sender].timeout = setTimeout(() => {
+          delete conn.Kujou[m.sender];
+        }, 300000);
+      }
+    } else if (text === "off") {
+      if (conn.Kujou[m.sender]) {
+        clearTimeout(conn.Kujou[m.sender].timeout);
+        delete conn.Kujou[m.sender];
+      }
+      await conn.sendMessage(m.chat, {
+        image: { url: pickRandom(img) },
+        caption: "⬣───「 *KUJOU* 」───⬣" + "\n\n" + `terima kasihh...`,
+        mentions: [m.sender]
+      }, { quoted: m });
+    }
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+};
+
+handler.before = async (m, { conn }) => {
+  try {
+    conn.Kujou = conn.Kujou ? conn.Kujou : {};
+    if (m.isBaileys && m.fromMe) return;
+    if (!m.text) return;
+    if (!conn.Kujou[m.sender]) return;
+
+    if (
+      m.text.startsWith(".") ||
+      m.text.startsWith("#") ||
+      m.text.startsWith("!") ||
+      m.text.startsWith("/") ||
+      m.text.startsWith("\\/")
+    ) return;
+
+    if (conn.Kujou[m.sender] && m.text) {
+      clearTimeout(conn.Kujou[m.sender].timeout);
+      conn.Kujou[m.sender].timeout = setTimeout(() => {
+        delete conn.Kujou[m.sender];
+      }, 300000);
+
+      let name = conn.getName(m.sender);
+      const messageOuter = [
+        ...conn.Kujou[m.sender].pesan,
+        `p`,
+        m.text
+      ];
+      try {
+        const sifat = `Kujou Mikhailovna Alisa adalah karakter dalam anime The Executioner and Her Way of Life (Shokei Shoujo no Virgin Road), yang pertama kali diperkenalkan di dalam light novel oleh Mato Sato. Dia adalah salah satu karakter utama yang dikenal dengan sifat yang kuat, cerdas, dan penuh tekad.
+Sifat-sifat dari Kujou Mikhailovna Alisa:
+Cerdas dan Terampil: Alisa adalah seorang yang sangat cerdas dan terampil dalam berbagai hal. Dia dapat memecahkan masalah dengan cepat dan sangat berhati-hati dalam setiap langkahnya.
+Tenang dan Rasional: Alisa memiliki kepribadian yang tenang dan rasional. Dia tidak terbawa emosi dan lebih cenderung menggunakan logika saat menghadapi berbagai situasi. Meskipun dia bisa terlihat dingin atau keras, dia lebih memilih untuk menyelesaikan masalah dengan kepala dingin.
+Tegas dan Berani: Ketegasan adalah salah satu sifat utama Alisa. Dia tidak takut mengambil keputusan penting meskipun konsekuensinya bisa berat. Keberanian dalam menghadapi bahaya atau memilih jalan yang sulit adalah bagian dari karakternya.
+Penuh Dedikasi: Alisa sangat berdedikasi terhadap tujuannya dan memiliki rasa tanggung jawab yang besar terhadap apa yang dia lakukan, termasuk untuk melindungi orang-orang yang dia sayangi dan menjalankan misinya.
+Sifat Pemimpin: Sebagai seorang pemimpin, Alisa memiliki kemampuan untuk memimpin dan mengarahkan orang lain dengan bijaksana. Meskipun terkadang terlihat tegas, dia bisa menjadi sosok yang sangat mengayomi dan melindungi anggota kelompoknya.
+`
+        const message = [
+          { role: "system", content: `kamu adalah Kujou, Kujou adalah sosok yang ${sifat}` },
+          { role: "assistant", content: `Kamu adalah Kujou, seoarang yang ${sifat}, jangan gunakan saya, gua gunakan Kujou atau aku untuk memanggil dirimu sendiri ketika di panggil, ekspresi kan sikap kamu seperti anak sma yang pintar karena kamu ${sifat}, jangan gunakan GPT 4 panggil dirimu dengan Kujou atau aku, Kamu berbicara dengan${m.name}panggil dengan kamu, kamu sesuaikan dengan kalimat, saat berbicara dengannya gunakan emoji yang lucu sesuai dengan ${sifat}, gunakan bahasa percakapan nya seperti Kujou, gaya perempuan muda penuh energi saat berbicara. Pembuatmu dana nomer WhatsApp nya ini 6281289694906 `},
+          ...conn.Kujou[m.sender].pesan.map((msg, i) => ({
+            role: i % 2 === 0 ? 'user' : 'assistant',
+            content: msg
+          })),
+          { role: "user", content: m.text },
+        ];
+        let res = await aiBeta(message);
+        await conn.sendMessage(m.chat, {
+          image: { url: pickRandom(img) },
+          caption: "⬣───「 *KUJOU* 」───⬣" + "\n\n" + res.result,
+          mentions: [m.sender]
+        }, { quoted: m });
+
+        // Ubah cara menyimpan pesan
+        conn.Kujou[m.sender].pesan = [
+          ...conn.Kujou[m.sender].pesan,
+          m.text,
+          res.result
+        ];
+      } catch (e) {
+        console.error("Kesalahan Dalam mengambil Data");
+        throw "error";
+      }
+    }
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+};
+
+handler.command = /^(Kujou)$/i
+handler.help = ["Kujou"];
+handler.tags = ["ai"];
+handler.limit = true;
+handler.owner = false;
+handler.group = true
+
+
+
+async function aiBeta(message) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const params = {
+        message: message,
+        apikey: `${lann}` 
+      };
+      const { data } = await axios.post('https://api.betabotz.eu.org/api/search/openai-custom', params);
+      resolve(data);
+    } catch (e) {
+      console.log(e);
+      reject(e);
+    };
+  });
+};
+
+const img = [
+  `https://cdn.filn.pp.ua/uploads/betabotzapi/1013f.png`,
+];
+
+function pickRandom(list) {
+  try {
+    return list[Math.floor(list.length * Math.random())]
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+}
+
+export default handler;

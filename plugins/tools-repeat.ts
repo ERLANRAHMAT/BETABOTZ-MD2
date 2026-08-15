@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
 	
     if (!text) return conn.reply(m.chat, 'Harap Masukan Teks yang akan direpeat!', m)
@@ -1020,4 +1021,4 @@ handler.botAdmin = false
 handler.fail = null
 handler.limit = true
 
-export default handler
+export default handler;

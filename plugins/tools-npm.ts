@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fetch from 'node-fetch' 
 
 let handler: WaPlugin = async (m, { text }) => {
@@ -13,4 +14,5 @@ let handler: WaPlugin = async (m, { text }) => {
 handler.help = ['npmsearch']
 handler.tags = ['tools']
 handler.command = /^npm(js|search)?$/i
-export default handler
+
+export default handler;

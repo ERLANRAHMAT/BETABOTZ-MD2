@@ -1,3 +1,5 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, {
  text, 
@@ -7,12 +9,12 @@ let handler: WaPlugin = async (m, {
 if (!text) throw `Masukkan pertanyaan!\n\n*Contoh:* Siapa presiden Indonesia? `
 try {
   await m.reply(wait)
-  let res = await (await fetch(`https://api.botcahx.eu.org/api/search/lepton-ai?apikey=${btc}&text=${text}`)).json()
+  let res = await (await fetch(`https://api.betabotz.eu.org/api/search/lepton-ai?apikey=${lann}&text=${text}`)).json()
   await m.reply(res.result.result)
-} catch (err) {
-  console.error(err)
-  throw eror
- }
+} catch (e) {
+    console.log(e);
+    throw e;
+  }
 }
 handler.command = handler.help = ['lepton'];
 handler.tags = ['ai'];

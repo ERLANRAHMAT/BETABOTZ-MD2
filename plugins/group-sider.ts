@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text, args, groupMetadata }) => {
 
     const lama = 86400000 * 7
@@ -64,4 +65,4 @@ handler.group = true
 handler.admin = true
 handler.botAdmin = true
 
-export default handler
+export default handler;

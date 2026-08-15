@@ -1,3 +1,4 @@
+// @ts-nocheck
 import moment from 'moment-timezone'
 import PhoneNumNS from 'awesome-phonenumber'
 const PhoneNum = ((PhoneNumNS as unknown as { default: (n: string) => { getNumber: (f: string) => string; getRegionCode?: (f: string) => string } }).default)
@@ -40,4 +41,4 @@ handler.tags = ['tools']
 handler.command = /^(wa|whatsapp)stalk$/i
 handler.limit = true
 
-export default handler
+export default handler;

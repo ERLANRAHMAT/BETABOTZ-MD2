@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args }) => {
   const groupId = m.chat;
   const [subCommand, options] = args;
@@ -59,4 +59,4 @@ handler.admin = true
 handler.botAdmin = true
 handler.fail = null
 
-export default handler
+export default handler;

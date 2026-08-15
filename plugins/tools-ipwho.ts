@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) throw `*Example:* ${usedPrefix + command} 112.90.150.204`;
@@ -14,8 +15,10 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 handler.command = handler.help = ['ip','ipwho'];
 handler.tags = ['tools'];
 handler.premium = false;
-export default handler;
+
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+export default handler;

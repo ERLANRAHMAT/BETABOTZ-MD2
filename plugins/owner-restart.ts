@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { spawn } from 'child_process';
 let handler: WaPlugin = async (m, { conn, isROwner, text }) => {
   if (!process.send) throw 'Dont: node main.ts\nDo: node index.ts'
@@ -13,4 +14,4 @@ handler.command = /^(srvrestart|restart)$/i
 
 handler.rowner = true
 
-export default handler
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const cooldown = 0;
 
 let handler: WaPlugin = async (m, { conn, usedPrefix, args, text }) => {
@@ -83,7 +84,7 @@ handler.command = /^(trading)$/i;
 handler.cooldown = cooldown;
 handler.disabled = false;
 handler.rpg = true
-export default handler;
+
 
 function reward(user = {}, count, ewallet) {
     let rewards = {
@@ -114,3 +115,5 @@ function toSimple(number) {
     const formatter = Intl.NumberFormat('en', { maximumFractionDigits: 1 });
     return formatter.format(simplified) + suffix;
 }
+
+export default handler;

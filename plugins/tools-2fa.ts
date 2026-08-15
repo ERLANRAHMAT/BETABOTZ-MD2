@@ -1,3 +1,5 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, {
@@ -8,7 +10,7 @@ let handler: WaPlugin = async (m, {
     if (!text) throw `*Example:* ${usedPrefix + command} <token>`;
     m.reply(wait)
     try {
-        let res = await (await fetch(`https://api.botcahx.eu.org/api/tools/2fa?token=${encodeURIComponent(text)}&apikey=${btc}`)).json();
+        let res = await (await fetch(`https://api.betabotz.eu.org/api/tools/2fa?token=${encodeURIComponent(text)}&apikey=${lann}`)).json();
         let content = `*2FA Verification Result*\n\n`;
 
         if (res.status && res.result) {
@@ -17,12 +19,14 @@ let handler: WaPlugin = async (m, {
             content += 'Token gagal didapatkan!.';
         }
         await m.reply(content);
-    } catch (error) {
-        throw eror
-    }
+    } catch (e) {
+        console.log(e);
+        throw e;
+  }
 };
 
 handler.command = handler.help = ['2fa', 'authenticator', 'autentikator'];
 handler.tags = ['tools'];
 handler.limit = true;
+
 export default handler;

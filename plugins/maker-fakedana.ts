@@ -1,3 +1,5 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) {
         throw `Masukkan nominal saldo yang diinginkan!\n\n*Contoh:*\n${usedPrefix + command} 5000000`;
@@ -8,12 +10,12 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
 
     try {
         await m.reply('⏳ _Sedang membuat gambar saldo DANA..._');
-        let apiUrl = `https://api.botcahx.eu.org/api/maker/canvas-fakeSaldoDana?apikey=${btc}&saldo=${encodeURIComponent(text.trim())}`;
+        let apiUrl = `https://api.betabotz.eu.org/api/maker/canvas-fakeSaldoDana?apikey=${lann}&saldo=${encodeURIComponent(text.trim())}`;
         await conn.sendFile(m.chat, apiUrl, 'fakedana.jpg', 'Done!', m);
         
     } catch (e) {
         console.log(e);
-        throw eror;
+        throw e;
     }
 };  
 
@@ -22,4 +24,5 @@ handler.tags = ['maker'];
 handler.command = /^(fakedana)$/i;
 handler.limit = true;
 handler.group = true;
+
 export default handler;

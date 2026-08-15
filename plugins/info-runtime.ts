@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
     let _uptime = process.uptime() * 1000
     let tio = clockString(_uptime)
@@ -13,7 +14,7 @@ handler.help = ['runtime']
 handler.tags = ['info']
 handler.command = /^(uptime|runtime)$/i
 
-export default handler
+
 
 function clockString(ms) {
     let days = Math.floor(ms / (24 * 60 * 60 * 1000));
@@ -25,3 +26,5 @@ function clockString(ms) {
     let sec = Math.floor((minutesms) / (1000));
     return days + " Day " + hours + " Hour " + minutes + " Minute " + sec + " Second ";
 }
+
+export default handler;

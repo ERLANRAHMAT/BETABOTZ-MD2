@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, }) => {
 
   global.prefix = new RegExp('^[' + (opts['prefix'] || '‎xzXZ/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
@@ -8,4 +9,4 @@ handler.tags = ['owner']
 handler.command = /^(resetprefix)$/i
 handler.rowner = true
 
-export default handler
+export default handler;

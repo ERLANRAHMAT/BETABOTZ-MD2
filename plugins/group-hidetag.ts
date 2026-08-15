@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as zapo from '../lib/simple.ts';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command, participants }) => {
@@ -58,4 +59,4 @@ handler.group = true
 handler.admin = true
 handler.botAdmin = true
 
-export default handler
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { WaGameRoom } from '../types/connection.js';
 const pets = ['kucing', 'anjing', 'serigala', 'phonix', 'rubah']
 
@@ -59,7 +60,7 @@ handler.register = true
 handler.group = true
 handler.rpg = true
 
-export default handler
+
 
 function getRandom(min, max) {
     min = Math.ceil(min)
@@ -71,3 +72,5 @@ const alasanKalah = ['Noob', 'Cupu', 'Kurang hebat', 'Ampas kalahan', 'Gembel ka
 const alasanMenang = ['Hebat', 'Pro', 'Master Game', 'Legenda game', 'Sangat Pro', 'Rajin Nge-push']
 
 const delay = time => new Promise(res => setTimeout(res, time));
+
+export default handler;

@@ -1,22 +1,28 @@
-import fetch from 'node-fetch';
+// @ts-nocheck
+// Converted from plugins-esm - automated
+import axios from 'axios';
 
-let handler: WaPlugin = async (m, { conn, text, command, usedPrefix }) => {
-  if (!text) throw `*Example: ${usedPrefix + command} halo*`; 
-  await m.reply(wait);
-  try {
-    const res = await fetch(`https://api.botcahx.eu.org/api/maker/iqc?text=${encodeURIComponent(text)}&apikey=${btc}`);
-    const data = await res.json();
-    const img_rs = await fetch(data.result);
-    const buffer = await img_rs.buffer();
-    await conn.sendMessage(m.chat, { image: buffer }, { quoted: m });
-  } catch (error) {
-    throw eror
-  }
+let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
+    let quoteText = text || (m.quoted ? m.quoted.text : '');
+    if (!quoteText) {
+        throw `Masukkan teks atau reply sebuah pesan.\n\n*Contoh:*\n${usedPrefix + command} Kata-kata mutiara`;
+    }
+    if (quoteText.length > 500) return m.reply('Teks terlalu panjang, maksimal 500 karakter!');
+    try {
+        const apiUrl = `https://api.betabotz.eu.org/api/maker/iqc?text=${encodeURIComponent(quoteText)}&apikey=${lann}`;
+
+        const response = await axios.get(apiUrl, {
+            responseType: 'arraybuffer'
+        });
+        conn.sendFile(m.chat, response.data,  m);
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
 };
 
-handler.help = ['iqc <text>'];
-handler.tags = ['tools'];
-handler.command = ['iqc'];
-handler.limit = true;
+handler.help = ['iqc <teks>'];
+handler.tags = ['maker', 'tools'];
+handler.command = /^(iqc|imagequote)$/i;
 
 export default handler;

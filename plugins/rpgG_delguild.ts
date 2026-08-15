@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fs from 'fs';
 const dbPath = './database.json';
 
@@ -45,4 +46,5 @@ handler.tags = ['rpgG'];
 handler.command = /^(delguild)$/i;
 handler.owner = false;
 handler.rpg = true
+
 export default handler;

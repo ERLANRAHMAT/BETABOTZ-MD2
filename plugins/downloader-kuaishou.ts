@@ -1,47 +1,52 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import axios from 'axios';
 
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) throw `Example: ${usedPrefix + command} https://v.kuaishou.com/KT2lZm23`;
-    
+    if (!text) {
+        throw `Masukkan URL Kuaishou yang ingin diunduh.\n\n*Contoh:*\n${usedPrefix + command} https://v.kuaishou.com/KT2lZm23`;
+    }
+    const urlMatch = text.match(/https?:\/\/[^\s]+/);
+    const url = urlMatch ? urlMatch[0] : text.trim();
+
     try {
-        await m.reply(wait);
-        let old = Date.now();
-        const response = await axios.get(`https://api.botcahx.eu.org/api/dowloader/kuaishou?url=${text}&apikey=${btc}`);
-        let res = response.data.result;
-        
-        let capt = `乂 *K U A I S H O U*\n\n`;
-        capt += `◦ *Title* : ${res.title || 'Not available'}\n`;
-        capt += `◦ *Author* : ${res.author || 'Not available'}\n`;
-        capt += `◦ *Username* : ${res.username || 'Not available'}\n`;
-        capt += `◦ *Likes* : ${res.likeCount || 0}\n`;
-        capt += `◦ *Comments* : ${res.commentCount || 0}\n`;
-        capt += `◦ *Views* : ${res.viewCount || 0}\n`;
-        capt += `◦ *Duration* : ${res.duration ? res.duration / 1000 + ' seconds' : 'Not available'}\n`;
-        capt += `◦ *🍟 Fetching* : ${((Date.now() - old) * 1)} ms\n`;
-        capt += `\n`;
-        
-        if (res.videoUrl) {
-            await conn.sendFile(m.chat, res.videoUrl, null, capt, m);
-        } else {
-            throw 'Video not found';
+        await m.reply(`⏳ Sedang memproses unduhan Kuaishou...`);
+
+        const apiUrl = `https://api.betabotz.eu.org/api/download/kuaishou?apikey=${lann}&url=${encodeURIComponent(url)}`;
+        const response = await axios.get(apiUrl);
+        const resData = response.data;
+
+        if (!resData || !resData.status || !resData.result || !resData.result.success) {
+            throw 'Gagal mengambil video. Pastikan URL valid atau coba lagi nanti.';
         }
+
+        const data = resData.result;
         
+        if (!data.videoUrl) {
+            throw 'Video URL tidak ditemukan dalam respon API.';
+        }
+
+        let caption = `🎥 *KUAISHOU DOWNLOADER* 🎥\n\n`;
+        caption += `👤 *Author:* ${data.author} (@${data.username})\n`;
+        caption += `📝 *Deskripsi:* ${data.title || '-'}\n`;
+        caption += `👍 *Suka:* ${data.likeCount}\n`;
+        caption += `💬 *Komentar:* ${data.commentCount}\n`;
+        caption += `👁️ *Ditonton:* ${data.viewCount}\n`;
+        caption += `🔗 *Sumber:* ${data.rawUrl}\n`;
+
+        await conn.sendFile(m.chat, data.videoUrl, 'kuaishou.mp4', caption.trim(), m);
+
     } catch (e) {
-        console.log(e);
-        throw eror;
+        if (e !== false) {
+            console.log(e);
+            throw e;
+        }
     }
 };
 
 handler.help = ['kuaishou <url>'];
 handler.tags = ['downloader'];
-handler.command = /^(kuaishou|ks)$/i;
+handler.command = /^(kuaishou|kuaishoudl|ksdl)$/i;
 handler.limit = true;
-handler.group = false;
-handler.premium = false;
-handler.owner = false;
-handler.admin = false;
-handler.botAdmin = false;
-handler.fail = null;
-handler.private = false;
 
 export default handler;

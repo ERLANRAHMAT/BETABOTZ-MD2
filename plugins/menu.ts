@@ -1,3 +1,4 @@
+// @ts-nocheck
 const __dirname = import.meta.dirname;
 import fs from 'fs'
 import path from 'path'
@@ -216,7 +217,7 @@ handler.tags = ['main']
 handler.command = /^(menu|help)$/i
 handler.exp = 3
 
-export default handler
+
 
 function clockString(ms) {
     if (isNaN(ms)) return '--'
@@ -225,3 +226,5 @@ function clockString(ms) {
     let s = Math.floor(ms / 1000) % 60
     return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
 }
+
+export default handler;

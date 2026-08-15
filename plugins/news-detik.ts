@@ -1,34 +1,47 @@
-import fetch from 'node-fetch'
+// @ts-nocheck
+// Converted from plugins-esm - automated
+import fetch from 'node-fetch';
 let handler: WaPlugin = async (m, { conn }) => {
 try {
-  let res = await fetch(`https://api.botcahx.eu.org/api/news/detik?&apikey=${btc}`);
-  let json = await res.json()
-    let items = json.result.filter(item => item.berita && item.berita_url);
-    let choice = pickRandom(items);
-    let text = `―DETIK―\n\n*Judul*     : ${choice.berita}\n*URL*       : ${choice.berita_url}\n*Di upload* : ${choice.berita_diupload || 'Tidak diketahui'}`;
-    if (choice.berita_thumb) {
-      try {
-        await conn.sendMessage(m.chat, { image: { url: choice.berita_thumb }, caption: text }, { quoted: m });
-      } catch (e) {
-        conn.reply(m.chat, text, m);
-      }
-    } else {
-      conn.reply(m.chat, text, m);
-    }
+  let res = await fetch(
+    `https://api.betabotz.eu.org/api/news/detik?&apikey=${lann}`,
+  );
+  let json = await res.json();
+  // array berisi result berita
+  global.anu = [
+    `―DETIK―\n\nBerita: ${json.result[0].berita}\n\nBeritaUrl: ${json.result[0].berita_url}\n\nBerita di upload: ${json.result[0].berita_diupload} `,
+    `―DETIK―\n\nBerita: ${json.result[1].berita}\n\nBeritaUrl: ${json.result[1].berita_url}\n\nBerita di upload: ${json.result[1].berita_diupload} `,
+    `―DETIK―\n\nBerita: ${json.result[2].berita}\n\nBeritaUrl: ${json.result[2].berita_url}\n\nBerita di upload: ${json.result[2].berita_diupload} `,
+    `―DETIK―\n\nBerita: ${json.result[3].berita}\n\nBeritaUrl: ${json.result[3].berita_url}\n\nBerita di upload: ${json.result[3].berita_diupload} `,
+    `―DETIK―\n\nBerita: ${json.result[4].berita}\n\nBeritaUrl: ${json.result[4].berita_url}\n\nBerita di upload: ${json.result[4].berita_diupload} `,
+    `―DETIK―\n\nBerita: ${json.result[5].berita}\n\nBeritaUrl: ${json.result[5].berita_url}\n\nBerita di upload: ${json.result[5].berita_diupload} `,
+    `―DETIK―\n\nBerita: ${json.result[6].berita}\n\nBeritaUrl: ${json.result[6].berita_url}\n\nBerita di upload: ${json.result[6].berita_diupload} `,
+    `―DETIK―\n\nBerita: ${json.result[7].berita}\n\nBeritaUrl: ${json.result[7].berita_url}\n\nBerita di upload: ${json.result[7].berita_diupload} `,
+    `―DETIK―\n\nBerita: ${json.result[8].berita}\n\nBeritaUrl: ${json.result[8].berita_url}\n\nBerita di upload: ${json.result[8].berita_diupload} `,
+  ];
+  //   conn.reply(m.chat, `―CNBC―\n\n"${json.result[0].berita}"`,)
+  // variabel dapat di ganti jika diperlukan
+  conn.reply(m.chat, `${pickRandom(global.anu)}`);
 } catch (e) {
-throw eror
-  }
+  console.log(e);
+  throw e;
+}
 }
   
     handler.help = ['detik']
     handler.tags = ['news']
     handler.command = /^(detik)$/i
-    handler.group = false;
-    handler.limit = true; 
+    handler.group = true
     
-    export default handler
+    
 
     function pickRandom(list) {
       return list[Math.floor(list.length * Math.random())]
     }
-   
+    
+
+
+
+    // let anu = `―CNNC―\n\nBerita: ${json.result[0].berita}\n\nBeritaUrl: ${json.result[0].berita_url}`
+
+export default handler;

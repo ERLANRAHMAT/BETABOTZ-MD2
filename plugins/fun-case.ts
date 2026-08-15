@@ -1,3 +1,4 @@
+// @ts-nocheck
 function handler(m, { text }) {
     let teks = text ? text : m.quoted && m.quoted.text ? m.quoted.text : m.text
     m.reply(teks.replace(/[a-z]/gi, v => Math.random() > .5 ? v[['toLowerCase', 'toUpperCase'][Math.floor(Math.random() * 2)]]() : v).replace(/[abegiors]/gi, v => {
@@ -20,4 +21,4 @@ handler.tags = ['fun']
 handler.command = ['case']
 handler.limit = true
 
-export default handler
+export default handler;

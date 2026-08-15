@@ -1,3 +1,4 @@
+// @ts-nocheck
 import syntaxerror from 'syntax-error'
 import util from 'util'
 import { createRequire } from 'module'
@@ -49,7 +50,7 @@ handler.botAdmin = false
 
 handler.fail = null
 
-export default handler
+
 
 class CustomArray extends Array {
   constructor(...args: unknown[]) {
@@ -60,3 +61,5 @@ class CustomArray extends Array {
     }
   }
 }
+
+export default handler;

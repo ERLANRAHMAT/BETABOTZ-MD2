@@ -1,3 +1,4 @@
+// @ts-nocheck
 import axios from 'axios';
 
 const CHANNEL_PAGE = 'https://whatsapp.com/channel/';

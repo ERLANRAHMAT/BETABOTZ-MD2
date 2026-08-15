@@ -1,56 +1,43 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
-
 let handler: WaPlugin = async (m, { 
-    conn,
-    text,
-    usedPrefix,
-    command
-}) => {
-    var [from, to] = text.split('|')
-    if (!(from && to)) throw `Ex: ${usedPrefix + command} jakarta|bandung`
+ conn,
+ text,
+ usedPrefix,
+ command
+ }) => {
+	var [from, to] = text.split`|`
+	if (!(from && to)) throw `Ex: ${usedPrefix + command} jakarta|bandung`
+	try {
+		let data = await fetch(`https://api.betabotz.eu.org/api/search/jarak?from=${from}&to=${to}&apikey=${lann}`)
+		let json = await data.json()
+		if (!json.status) throw `🚩 *Jarak Tidak Ditemukan*`
 
-    try {
-        let data = await fetch(`https://api.botcahx.eu.org/api/search/jarak?from=${from}&to=${to}&apikey=${btc}`);
-        let json = await data.json();
+		let detail = json.message.detail;
+		let asal = json.message.asal;
+		let tujuan = json.message.tujuan;
+		let estimasiBiaya = json.message.estimasi_biaya_bbm;
+		let arahPenunjukJalan = json.message.arah_penunjuk_jalan;
+		let petaStatis = json.message.peta_statis;
+		let rute = json.message.rute;
 
-        if (json.status) {
-            let message = json.message;
-            let detail = message.detail;
-            let asal = message.asal;
-            let tujuan = message.tujuan;
-            let estimasiBiayaBBM = message.estimasi_biaya_bbm;
-            let arahjalan = message.arah_penunjuk_jalan;
-            let petaStatis = message.peta_statis;
-            let rute = message.rute;
+		let message = `*Detail Perjalanan*\n\n${detail}\n\n` +
+			`*Asal:*\n- Nama: ${asal.nama}\n- Alamat: ${asal.alamat}\n- Koordinat: ${asal.koordinat.lat}, ${asal.koordinat.lon}\n\n` +
+			`*Tujuan:*\n- Nama: ${tujuan.nama}\n- Alamat: ${tujuan.alamat}\n- Koordinat: ${tujuan.koordinat.lat}, ${tujuan.koordinat.lon}\n\n` +
+			`*Estimasi Biaya BBM:*\n- Total Liter: ${estimasiBiaya.total_liter}\n- Total Biaya: ${estimasiBiaya.total_biaya}\n\n` +
+			`*Arah Penunjuk Jalan:*\n${arahPenunjukJalan.map(step => `- Langkah ${step.langkah}: ${step.instruksi} (${step.jarak})`).join('\n')}\n\n` +
+			`*Peta Statis:*\n${petaStatis}\n\n` +
+			`*Rute:*\n${rute}`;
 
-            let responseText = `🛣️ *Jarak*:\n\n` +
-                `*Detail Perjalanan:* ${detail}\n` +
-                `*Asal:* ${asal.nama}, ${asal.alamat}, ${asal.negara}\n` +
-                `*Tujuan:* ${tujuan.nama}, ${tujuan.alamat}, ${tujuan.negara}\n` +
-                `*Estimasi Biaya BBM:* ${estimasiBiayaBBM.total_biaya} (Liter: ${estimasiBiayaBBM.total_liter})\n\n` +
-                `🗺️ *Arah Penunjuk Jalan:*`;
-
-            arahjalan.forEach(step => {
-                responseText += `\n${step.langkah}. ${step.instruksi} - ${step.jarak}`;
-            });
-
-            responseText += `\n\n📍 *Peta Statis:* ${petaStatis}\n` +
-                `🛤️ *Rute:* ${rute}`;
-
-            let fetch_buff = await fetch(petaStatis);
-            let buff = await fetch_buff.buffer();
-
-            await conn.sendFile(m.chat, buff, 'jarak.png', responseText, m);
-        } else {
-            throw `🚩 *Jarak Tidak Ditemukan*`;
-        }
-    } catch (error) {
-        throw `🚩 *Jarak Tidak Ditemukan*`;
+		await conn.sendFile(m.chat, petaStatis, 'peta.png', message, m);
+	}  catch (e) {
+        console.log(e);
+        throw e;
     }
 }
-
-handler.command = handler.help = ['jarak'];
-handler.tags = ['internet'];
-handler.limit = true;
+handler.command = handler.help = ['jarak']
+handler.tags = ['internet']
+handler.limit = true
 
 export default handler;

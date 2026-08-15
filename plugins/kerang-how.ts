@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, command, text }) => {
   if (!text) throw `Siapa Yang *${command.replace('how', '').toUpperCase()}*`
 
@@ -42,4 +43,4 @@ handler.botAdmin = false
 
 handler.fail = null
 
-export default handler
+export default handler;

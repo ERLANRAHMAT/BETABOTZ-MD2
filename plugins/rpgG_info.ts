@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args }) => {
     let target = m.mentionedJid[0] || m.sender;
 
@@ -31,4 +32,5 @@ handler.help = ['guildinfo [@user]'];
 handler.tags = ['rpgG'];
 handler.command = /^(guildinfo)$/i;
 handler.rpg = true
+
 export default handler;

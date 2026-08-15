@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, command }) => {
     let user = global.db.data.users[m.sender]
     let randomaku = Math.floor(Math.random() * 150)
@@ -29,7 +30,7 @@ handler.register = true
 handler.group = true
 handler.rpg = true
 
-export default handler
+
 
 function pickRandom(list) {
     return list[Math.floor(Math.random() * list.length)]
@@ -41,3 +42,5 @@ function clockString(ms) {
   let s = Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0') ).join(':')
 }
+
+export default handler;

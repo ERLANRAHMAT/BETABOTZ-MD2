@@ -1,3 +1,5 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     let guide = `Format salah!\n\n*Cara penggunaan:*\n${usedPrefix + command} teks atas|teks bawah\n\n*Contoh:*\n${usedPrefix + command} Belajar|Main Game`;
 
@@ -12,13 +14,13 @@ let handler: WaPlugin = async (m, { conn, text, usedPrefix, command }) => {
     try {
         await m.reply('⏳ _Sedang memproses gambar..._');
 
-        let apiUrl = `https://api.botcahx.eu.org/api/maker/canvas-drakeMeme?apikey=${btc}&teks1=${encodeURIComponent(teks1.trim())}&teks2=${encodeURIComponent(teks2.trim())}`;
+        let apiUrl = `https://api.betabotz.eu.org/api/maker/canvas-drakeMeme?apikey=${lann}&teks1=${encodeURIComponent(teks1.trim())}&teks2=${encodeURIComponent(teks2.trim())}`;
 
         await conn.sendFile(m.chat, apiUrl, 'drakememe.jpg', 'Done!', m);
 
     } catch (e) {
         console.log(e);
-        throw eror;
+        throw e;
     }
 }
 

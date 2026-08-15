@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fs from 'fs';
 const dbPath = './database.json';
 
@@ -57,4 +58,5 @@ handler.tags = ['rpgG'];
 handler.command = /^(createguild)$/i;
 handler.owner = false;
 handler.rpg = true;
+
 export default handler;

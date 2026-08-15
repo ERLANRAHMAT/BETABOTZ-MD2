@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fetch from 'node-fetch';
 var handler: WaPlugin = async (m, {
  conn 
@@ -9,4 +10,5 @@ handler.help = ['blocklist'];
 handler.tags = ['info'];
 handler.command = /^listbloc?k|bloc?klist|daftarbloc?k|blocks$/i
 handler.owner = false;
+
 export default handler;

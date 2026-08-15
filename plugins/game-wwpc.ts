@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { emoji_role,
     sesi,
     playerOnGame,
@@ -99,4 +100,5 @@ let handler: WaPlugin = async (m, { conn, command, usedPrefix, args }) => {
 }
 handler.command = /^((ww|werewolf)pc)$/i
 handler.private = true
-export default handler
+
+export default handler;

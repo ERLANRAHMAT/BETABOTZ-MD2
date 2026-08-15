@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, {command, usedPrefix, args}) => {
 
 	let user = global.db.data.users[m.sender]
@@ -31,4 +32,5 @@ handler.help = handler.command = ['kulkas']
 handler.tags = ['rpg']
 handler.register = true
 handler.rpg = true
-export default handler
+
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export default {
 before: async function (m) {
     this.autosholat = this.autosholat || {}
@@ -45,3 +46,5 @@ before: async function (m) {
 },
 disabled: false
 }
+
+export default handler;

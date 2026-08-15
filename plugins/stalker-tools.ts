@@ -1,3 +1,5 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
 
 let handler: WaPlugin = async (m, {
@@ -11,11 +13,11 @@ let handler: WaPlugin = async (m, {
     if (!text) throw `Example : ${usedPrefix + command} 919044185`;
     m.reply(wait);
     try {
-      let ff = await fetch(`https://api.botcahx.eu.org/api/stalk/ff?id=${text}&apikey=${btc}`).then(res => res.json());
+      let ff = await fetch(`https://api.betabotz.eu.org/api/stalk/ff?id=${text}&apikey=${lann}`).then(res => res.json());
       await conn.reply(m.chat, ff.result.userNameGame, m);
     } catch (e) {
       console.log(e);
-      throw eror;
+      throw e;
     }
   }
   if (command == 'mlstalk') {
@@ -23,11 +25,11 @@ let handler: WaPlugin = async (m, {
     m.reply(wait);
     let [id, server] = text.split('|');
     try {
-      let ml = await fetch(`https://api.botcahx.eu.org/api/stalk/ml?id=${id}&server=${server}&apikey=${btc}`).then(res => res.json());
+      let ml = await fetch(`https://api.betabotz.eu.org/api/stalk/ml?id=${id}&server=${server}&apikey=${lann}`).then(res => res.json());
       await conn.reply(m.chat, `*ID:* ${ml.result.user_id}\n*Server:* ${ml.result.server_id}\n*Username:* ${ml.result.userName}\n*Region:* ${ml.result.country}`, m);
     } catch (e) {
       console.log(e);
-      throw eror;
+      throw e;
     }
   }
   if (command == 'mlstalk2') {
@@ -35,62 +37,64 @@ let handler: WaPlugin = async (m, {
     m.reply(wait);
     let [id, server] = text.split('|');
     try {
-      let ml = await fetch(`https://api.botcahx.eu.org/api/stalk/ml-v2?id=${id}&server=${server}&apikey=${btc}`).then(res => res.json());
-      if (!ml.status) throw 'Failed to fetch Mobile Legends data';
+      let ml = await fetch(
+        `https://api.betabotz.eu.org/api/stalk/ml-v2?id=${id}&server=${server}&apikey=${lann}`,
+      ).then((res) => res.json());
+      if (!ml.status) throw "Failed to fetch Mobile Legends data";
       let result = ml.result.data.stalk_info;
       let shopData = ml.result.data.categorized_shop;
       let caption = `*M O B I L E  L E G E N D S  (V2)*\n\n`;
       caption += `*User ID:* ${result.user_id}\n`;
       caption += `*Server:* ${result.region}\n`;
-      caption += `*Nickname:* ${result.stalk_data.split('\n')[2].split(': ')[1]}\n`;
-      caption += `*Country:* ${result.stalk_data.split('\n')[3].split(': ')[1]}\n\n`;
+      caption += `*Nickname:* ${result.stalk_data.split("\n")[2].split(": ")[1]}\n`;
+      caption += `*Country:* ${result.stalk_data.split("\n")[3].split(": ")[1]}\n\n`;
       caption += `*Diamond Packs:*\n`;
-      result.shop_data.diamond.goods.forEach(good => {
-        caption += `- ${good.title}: ${good.limits.reached ? 'Reached' : 'Available'}, Inventory: ${good.limits.inventory}\n`;
+      result.shop_data.diamond.goods.forEach((good) => {
+        caption += `- ${good.title}: ${good.limits.reached ? "Reached" : "Available"}, Inventory: ${good.limits.inventory}\n`;
       });
       caption += `\n*Event Packs:*\n`;
-      result.shop_data.event.goods.forEach(good => {
-        caption += `- ${good.title}: ${good.limits.reached ? 'Reached' : 'Available'}, Inventory: ${good.limits.inventory}\n`;
+      result.shop_data.event.goods.forEach((good) => {
+        caption += `- ${good.title}: ${good.limits.reached ? "Reached" : "Available"}, Inventory: ${good.limits.inventory}\n`;
       });
       caption += `\n*Weekly Pass:*\n`;
-      shopData.weeklyPass.items.forEach(item => {
-        caption += `- ${item.title}: ${item.limits.reached_limit ? 'Reached' : 'Available'}\n`;
+      shopData.weeklyPass.items.forEach((item) => {
+        caption += `- ${item.title}: ${item.limits.reached_limit ? "Reached" : "Available"}\n`;
       });
       caption += `\n*Diamond Packs (Categorized):*\n`;
-      shopData.diamondPacks.items.forEach(item => {
-        caption += `- ${item.title}: ${item.limits.reached_limit ? 'Reached' : 'Available'}\n`;
+      shopData.diamondPacks.items.forEach((item) => {
+        caption += `- ${item.title}: ${item.limits.reached_limit ? "Reached" : "Available"}\n`;
       });
       caption += `\n*First Charge Bonus:*\n`;
-      shopData.firstCharge.items.forEach(item => {
-        caption += `- ${item.title}: ${item.limits.reached_limit ? 'Reached' : 'Available'}\n`;
+      shopData.firstCharge.items.forEach((item) => {
+        caption += `- ${item.title}: ${item.limits.reached_limit ? "Reached" : "Available"}\n`;
       });
       caption += `\n*Special Offers:*\n`;
       if (shopData.specialOffers.items.length === 0) {
         caption += `- No special offers available\n`;
       } else {
-        shopData.specialOffers.items.forEach(item => {
-          caption += `- ${item.title}: ${item.limits.reached_limit ? 'Reached' : 'Available'}\n`;
+        shopData.specialOffers.items.forEach((item) => {
+          caption += `- ${item.title}: ${item.limits.reached_limit ? "Reached" : "Available"}\n`;
         });
       }
       caption += `\n*Other Items:*\n`;
       if (shopData.other.items.length === 0) {
         caption += `- No other items available\n`;
       } else {
-        shopData.other.items.forEach(item => {
-          caption += `- ${item.title}: ${item.limits.reached_limit ? 'Reached' : 'Available'}\n`;
+        shopData.other.items.forEach((item) => {
+          caption += `- ${item.title}: ${item.limits.reached_limit ? "Reached" : "Available"}\n`;
         });
       }
       await conn.reply(m.chat, caption, m);
     } catch (e) {
       console.log(e);
-      throw eror;
+      throw e;
     }
   }
   if (command == 'supersusstalk') {
     if (!text) throw `Example : ${usedPrefix + command} 20431364`;
     m.reply(wait);
     try {
-      let sus = await fetch(`https://api.botcahx.eu.org/api/stalk/supersus?id=${text}&apikey=${btc}`).then(res => res.json());
+      let sus = await fetch(`https://api.betabotz.eu.org/api/stalk/supersus?id=${text}&apikey=${lann}`).then(res => res.json());
       let results = sus.result;
       let caption = `*S U P E R S U S*\n\n`;
       caption += `*ID:* ${results.id}\n`;
@@ -107,14 +111,14 @@ let handler: WaPlugin = async (m, {
       await conn.reply(m.chat, caption, m);
     } catch (e) {
       console.log(e);
-      throw eror;
+      throw e;
     }
   }
   if (command == 'npmstalk') {
     if (!text) throw `Example : ${usedPrefix + command} tiktokdl`;
     m.reply(wait);
     try {
-      let npm = await fetch(`https://api.botcahx.eu.org/api/stalk/npm?name=${text}&apikey=${btc}`).then(res => res.json());
+      let npm = await fetch(`https://api.betabotz.eu.org/api/stalk/npm?name=${text}&apikey=${lann}`).then(res => res.json());
       let caption = `*N P M S T A L K*\n\n`;
       caption += `*ID:* ${npm.result._id}\n`;
       caption += `*Name:* ${npm.result.name}\n`;
@@ -139,14 +143,15 @@ let handler: WaPlugin = async (m, {
       }
       await conn.reply(m.chat, caption, m);
     } catch (e) {
-      throw eror;
+      console.log(e);
+      throw e;
     }
   }
   if (command == 'repostalk') {
     if (!text) throw `Example : ${usedPrefix + command} RTXZY-MD`;
     m.reply(wait);
     try {
-      let repo = await fetch(`https://api.botcahx.eu.org/api/stalk/repo?repo=${text}&apikey=${btc}`).then(res => res.json());
+      let repo = await fetch(`https://api.betabotz.eu.org/api/stalk/repo?repo=${text}&apikey=${lann}`).then(res => res.json());
       let caption = `*R E P O S T A L K*\n\n`;
       caption += `*ID:* ${repo.result.items[0].id}\n`;
       caption += `*Node ID:* ${repo.result.items[0].nodeId}\n`;
@@ -176,15 +181,16 @@ let handler: WaPlugin = async (m, {
       caption += `*Author Type:* ${repo.result.items[0].author.type}\n`;
       caption += `*Is Site Admin:* ${repo.result.items[0].author.isSiteAdmin}\n`;
       await conn.reply(m.chat, caption, m);
-    } catch (error) {
-      throw eror;
+    } catch (e) {
+      console.log(e);
+      throw e;
     }
   }
-  if (command == 'genshinstalk' || command == 'stalkgenshin') {
+  if (command == 'genshinstalk' || command == 'stalkgenshin' || command == 'gistalk') {
     if (!text) throw `Example : ${usedPrefix + command} 843829161`;
     m.reply(wait);
     try {
-      let genshin = await fetch(`https://api.botcahx.eu.org/api/stalk/genshin?id=${text}&apikey=${btc}`).then(res => res.json());
+      let genshin = await fetch(`https://api.betabotz.eu.org/api/stalk/genshin?id=${text}&apikey=${lann}`).then(res => res.json());
       if (!genshin.status) throw 'Failed to fetch Genshin Impact data';
       let result = genshin.result[0];
       let caption = `*G E N S H I N  I M P A C T*\n\n`;
@@ -199,67 +205,24 @@ let handler: WaPlugin = async (m, {
       await conn.reply(m.chat, caption, m);
     } catch (e) {
       console.log(e);
-      throw eror;
+      throw e;
     }
   }
   if (command == 'hokstalk') {
     if (!text) throw `Example: ${usedPrefix + command} 6467015277108375938`;
     m.reply(wait);
     try {
-      let { result } = await fetch(`https://api.botcahx.eu.org/api/stalk/hok?id=${text}&apikey=${btc}`).then(res => res.json());
+      let { result } = await fetch(`https://api.betabotz.eu.org/api/stalk/hok?id=${text}&apikey=${lann}`).then(res => res.json());
       if (!result.ok) throw 'Player not found!';
       conn.reply(m.chat, result.name, m);
     } catch (e) {
-      throw eror;
-    }
-  }
-  if (command == 'robloxstalk') {
-    if (!text) throw `Example: ${usedPrefix + command} betabotzz`;
-    m.reply(wait);
-    try {
-      let roblox = await fetch(`https://api.botcahx.eu.org/api/stalk/roblox?username=${text}&apikey=${btc}`).then(res => res.json());
-      if (!roblox.result) throw 'Failed to fetch Roblox data';
-      let result = roblox.result;
-      let caption = `*R O B L O X  S T A L K*\n\n`;
-      caption += `*Username:* ${result.account.username}\n`;
-      caption += `*Display Name:* ${result.account.displayName}\n`;
-      caption += `*Description:* ${result.account.description}\n`;
-      caption += `*Created:* ${result.account.created}\n`;
-      caption += `*Is Banned:* ${result.account.isBanned}\n`;
-      caption += `*Has Verified Badge:* ${result.account.hasVerifiedBadge}\n`;
-      caption += `*Presence:*\n`;
-      caption += `- Is Online: ${result.presence.isOnline}\n`;
-      caption += `- Last Online: ${result.presence.lastOnline}\n`;
-      caption += `- Recent Game: ${result.presence.recentGame}\n\n`;
-      caption += `*Stats:*\n`;
-      caption += `- Friend Count: ${result.stats.friendCount}\n`;
-      caption += `- Followers: ${result.stats.followers}\n`;
-      caption += `- Following: ${result.stats.following}\n\n`;
-      caption += `*Badges:*\n`;
-      if (result.badges.length === 0) {
-        caption += `- No badges available\n`;
-      } else {
-        result.badges.forEach(badge => {
-          caption += `- ${badge.name}: ${badge.description} (Icon ID: ${badge.iconImageId})\n`;
-        });
-      }
-      caption += `\n*Friend List:*\n`;
-      if (result.friendList.length === 0) {
-        caption += `- No friends available\n`;
-      } else {
-        result.friendList.forEach(friend => {
-          caption += `- ${friend.name} (${friend.displayName}): ID ${friend.id}\n`;
-        });
-      }
-      await conn.sendFile(m.chat, result.account.profilePicture, "profile.png", caption, m);
-    } catch (e) {
       console.log(e);
-      throw eror;
+      throw e;
     }
   }
 }
 
-handler.command = handler.help = ['ffstalk', 'mlstalk', 'mlstalk2', 'supersusstalk', 'npmstalk', 'repostalk', 'genshinstalk', 'stalkgenshin', 'hokstalk', 'robloxstalk'];
+handler.command = handler.help = ['ffstalk', 'mlstalk', 'mlstalk2', 'supersusstalk', 'npmstalk', 'repostalk', 'genshinstalk', 'gistalk', 'stalkgenshin', 'hokstalk'];
 handler.tags = ['stalk'];
 handler.limit = true;
 

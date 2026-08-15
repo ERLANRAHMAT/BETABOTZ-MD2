@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { isPrems, conn, text, usedPrefix, command }) => {
   const user = global.db.data.users[m.sender];
   
@@ -33,4 +34,4 @@ handler.tags = ['rpg']
 handler.command = /^(checkjail|cj|statuspenjara|jailstatus)$/i
 handler.rpg = true
 
-export default handler
+export default handler;

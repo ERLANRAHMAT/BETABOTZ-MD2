@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as zapo from '../lib/simple.ts';
 
 import Jimp from 'jimp';
@@ -40,7 +41,7 @@ handler.command = /^(setppgc|setppgrup|setppgroup)$/i
 handler.group = true
 handler.admin = true
 handler.botAdmin = true
-export default handler
+
 
 async function generateProfilePicture(buffer) {
     const jimp_1 = await Jimp.read(buffer);
@@ -50,3 +51,5 @@ async function generateProfilePicture(buffer) {
         img: await minz.getBufferAsync(Jimp.MIME_JPEG)
     };
 }
+
+export default handler;

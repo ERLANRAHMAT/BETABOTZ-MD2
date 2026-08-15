@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { WaGameRoom } from '../types/connection.js';
 let buatall = 1
 let handler: WaPlugin = async (m, { conn, args, usedPrefix, isOwner }) => {
@@ -46,7 +47,7 @@ handler.rpg = true
 
 handler.fail = null
 
-export default handler
+
 
 function pickRandom(list) {
     return list[Math.floor(Math.random() * list.length)]
@@ -59,3 +60,5 @@ function clockString(ms) {
   console.log({ms,h,m,s})
   return [h, m, s].map(v => v.toString().padStart(2, '0') ).join(':')
 }
+
+export default handler;

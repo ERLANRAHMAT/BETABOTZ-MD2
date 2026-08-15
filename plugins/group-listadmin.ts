@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args, participants }) => {
         let grup = await conn.getName(m.key.remoteJid)
         let mimin = m.isGroup ? getAdmin(participants) : ''
@@ -12,7 +13,7 @@ handler.tags = ['group']
 handler.command = /^(adminlist|listadmin)$/i
 handler.group = true
 handler.register = false
-export default handler
+
 
 const getAdmin = (participants) => {
        let getAdminAll = []
@@ -22,3 +23,5 @@ const getAdmin = (participants) => {
         }
         return getAdminAll
 }
+
+export default handler;

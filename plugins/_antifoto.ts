@@ -1,3 +1,4 @@
+// @ts-nocheck
 const exports: WaPlugin = {} as WaPlugin;
 exports.before = async function(m, { isAdmin, isBotAdmin }) {
   if (m.isZapo && m.fromMe) return;
@@ -16,3 +17,5 @@ exports.before = async function(m, { isAdmin, isBotAdmin }) {
 }
 
 export default exports;
+
+export default handler;

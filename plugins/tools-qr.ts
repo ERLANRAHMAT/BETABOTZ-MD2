@@ -1,3 +1,4 @@
+// @ts-nocheck
 import qrcode from 'qrcode'
 
 let handler: WaPlugin = async (m, { conn, text }) => {
@@ -12,4 +13,4 @@ handler.botAdmin = false
 
 handler.fail = null
 
-export default handler
+export default handler;

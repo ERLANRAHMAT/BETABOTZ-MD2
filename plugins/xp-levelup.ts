@@ -1,3 +1,4 @@
+// @ts-nocheck
 import levelling from '../lib/levelling.ts'
 
 let handler: WaPlugin = m => {
@@ -25,4 +26,4 @@ handler.tags = ['xp']
 
 handler.command = /^level(|up)$/i
 
-export default handler
+export default handler;

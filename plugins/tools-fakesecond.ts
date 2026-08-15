@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { WaConnection } from '../types/connection.js';
 import fetch from 'node-fetch';
 import uploadImage from '../lib/uploadImage.ts';

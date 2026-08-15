@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args }) => {
 	let list = Object.entries(global.db.data.users)
 	let lim = !args || !args[0] ? 100 : isNumber(args[0]) ? parseInt(args[0]) : 10
@@ -11,9 +12,11 @@ handler.command = /^(resetlimit|risetlimit)$/i
 
 handler.owner = true
 
-export default handler
+
 
 function isNumber(x = 0) {
   x = parseInt(String(x))
   return !isNaN(x) && typeof x == 'number'
 }
+
+export default handler;

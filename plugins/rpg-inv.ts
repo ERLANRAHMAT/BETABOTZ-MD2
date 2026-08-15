@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args }) => {
   let target = m.mentionedJid[0] || m.sender 
   let user = global.db.data.users[target]
@@ -89,4 +90,5 @@ handler.help = ['inventory *@user*']
 handler.tags = ['rpg']
 handler.command = /^inv|inventory$/i
 handler.rpg = true
-export default handler
+
+export default handler;

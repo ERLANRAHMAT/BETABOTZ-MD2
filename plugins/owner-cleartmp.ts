@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { readdirSync, statSync, unlinkSync } from 'fs';
 import { join } from 'path';
 

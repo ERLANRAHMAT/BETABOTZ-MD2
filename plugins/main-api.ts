@@ -1,54 +1,19 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
-
-let handler: WaPlugin = async (m, { conn, command }) => {
+let handler: WaPlugin = async (m, { text }) => {
+if (!text) throw `Masukan Apikey!`
   try {
-    await m.reply(wait)
-
-    if (command == 'checkapi' || command == 'api') {
-      let api = await fetch(`https://api.botcahx.eu.org/api/checkkey?apikey=${btc}`);
-      let body = await api.json();
-      let { 
-        limit, 
-        premium, 
-        expired, 
-        todayHit,
-        totalHit
-      } = body.result;
-      
-      let capt = `乂 *C H E C K   A P I K E Y*\n\n`;
-      capt += `◦ *Limit*: ${limit}\n`;
-      capt += `◦ *Premium*: ${premium}\n`;
-      capt += `◦ *Expired*: ${expired}\n`;
-      capt += `◦ *Today Hit*: ${todayHit}\n`;
-      capt += `◦ *Total Hit*: ${totalHit}\n\n`;
-      await conn.reply(m.chat, capt, m);
-    }
-
-    if (command == 'cekakseskey' || command == 'akseskey') {
-      let api = await fetch(`https://api.botcahx.eu.org/api/cek-aksesKey?aksesKey=${aksesKey}`);
-      let body = await api.json();
-      let { 
-        limit,
-        usageCount,
-        expired,
-        type
-      } = body.data;
-      
-      let capt = `乂 *C H E C K   A K S E S K E Y*\n\n`;
-      capt += `◦ *Type*: ${type}\n`;
-      capt += `◦ *Limit*: ${limit}\n`;
-      capt += `◦ *Usage Count*: ${usageCount}\n`;
-      capt += `◦ *Expired*: ${expired}\n\n`;
-      await conn.reply(m.chat, capt, m);
-    }
-
+    let api = await fetch(`https://api.betabotz.eu.org/api/checkkey?apikey=${text}`)
+    let body = await api.text()
+    m.reply(body)  
   } catch (e) {
-    throw eror
+    console.log(e) 
+    m.reply('Apikey tidak terdaftar!')
   }
-};
-
-handler.command = handler.help = ['checkapi', 'api', 'cekakseskey', 'akseskey'];
+}          
+handler.command = handler.help = ['checkapi','api'];
 handler.tags = ['main'];
-handler.owner = true;
+handler.private = true
 
 export default handler;

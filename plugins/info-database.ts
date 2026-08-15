@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m) => {
     let totalreg = Object.keys(global.db.data.users).length
     let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
@@ -6,4 +7,5 @@ let handler: WaPlugin = async (m) => {
 handler.help = ['database', 'user']
 handler.tags = ['info']
 handler.command = /^(database|jumlahdatabase|user)$/i
-export default handler
+
+export default handler;

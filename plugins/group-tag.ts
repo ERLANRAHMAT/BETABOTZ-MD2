@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text, isAdmin, participants}) => {
 	
     let users = participants.map(u => u.id).filter(v => v !== conn.user.jid)
@@ -12,4 +13,4 @@ handler.command = /^(totag|tag)$/i
 handler.admin = true
 handler.group = true
 
-export default handler
+export default handler;

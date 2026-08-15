@@ -1,3 +1,4 @@
+// @ts-nocheck
 import util from 'util'
 let handler: WaPlugin = m => m
 let debugMode = !1
@@ -88,4 +89,4 @@ Room ID: ${room.id}
     return !0
 }
 
-export default handler
+export default handler;

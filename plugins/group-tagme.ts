@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
 
 let orang = (await conn.groupMetadata(m.chat)).participants.map(u => u.jid)
@@ -12,4 +13,4 @@ handler.command = /^tagme$/i
 
 handler.group = true
 
-export default handler
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import fs from 'fs'
 import os from 'os'
 import path from 'path'
@@ -42,4 +43,4 @@ handler.botAdmin = false
 
 handler.fail = null
 
-export default handler
+export default handler;

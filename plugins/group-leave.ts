@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args, command }) => {
 	let group = m.chat
         await m.reply('Bot akan keluar dari group', m.chat) 
@@ -9,8 +10,10 @@ handler.tags = ['group']
 
 handler.owner = true
 
-export default handler
+
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, args, text, usedPrefix, command }) => {
  const JAIL_TIME = 60 * 60 * 1000
  let who = (m.mentionedJid && m.mentionedJid[0]) ? m.mentionedJid[0] : args[0] ? ((args.join('').replace(/[@ .+-]/g, '')).replace(/^\+/, '').replace(/-/g, '') + '@s.whatsapp.net') : '';
@@ -26,4 +27,4 @@ handler.command = /^penjara$/i
 handler.register = true
 handler.rpg = true
 
-export default handler
+export default handler;

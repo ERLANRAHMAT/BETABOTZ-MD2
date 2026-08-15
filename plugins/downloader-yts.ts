@@ -1,3 +1,4 @@
+// @ts-nocheck
 import yts from 'yt-search'
 let handler: WaPlugin = async (m, { text }) => {
   if (!text) throw 'Cari apa?'
@@ -24,4 +25,4 @@ handler.tags = ['tools', 'internet', 'downloader']
 handler.command = /^yts(earch)?$/i
 handler.limit = true;
 
-export default handler
+export default handler;

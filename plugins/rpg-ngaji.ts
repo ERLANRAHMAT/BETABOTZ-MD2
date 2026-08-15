@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn }) => {
     let lastngaji = global.db.data.users[m.sender]?.lastngaji || 0
     let timers = 300000 - (Date.now() - lastngaji)
@@ -78,7 +79,7 @@ handler.tags = ['rpg']
 handler.command = /^(mengajikeliling|mengaji|ngaji|ustad|ustadz|ustaz)$/i
 handler.register = true
 handler.rpg = true
-export default handler 
+ 
 
 function clockString(ms) {
     let h = Math.floor(ms / 3600000)
@@ -86,3 +87,5 @@ function clockString(ms) {
     let s = Math.floor(ms / 1000) % 60
     return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
 }
+
+export default handler;

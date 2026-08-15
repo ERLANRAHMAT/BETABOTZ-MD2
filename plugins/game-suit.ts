@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { text, usedPrefix }) => {
     let salah = `Pilihan yang tersedia\n\ngunting, kertas, batu\n\n${usedPrefix}suit gunting\n\nkasih spasi!`
     if (!text) throw salah
@@ -43,4 +44,4 @@ handler.help = ['suit']
 handler.tags = ['game']
 handler.command = /^(suit)$/i
 
-export default handler
+export default handler;

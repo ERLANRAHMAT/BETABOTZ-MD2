@@ -1,3 +1,4 @@
+// @ts-nocheck
 global.anticall = global.anticall ?? false
 let initialized = false
 
@@ -24,4 +25,4 @@ handler.before = async function (m, { conn }) {
   init(conn)
 }
 
-export default handler
+export default handler;

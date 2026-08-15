@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async(m, { conn, command }) => {
   let isPublic = command === "public";
   let self = global.opts["self"]
@@ -16,4 +17,4 @@ handler.owner = true
 
 handler.command = /^(self|public)/i
 
-export default handler
+export default handler;

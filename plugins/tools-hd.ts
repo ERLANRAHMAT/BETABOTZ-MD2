@@ -1,6 +1,7 @@
+// @ts-nocheck
+// Converted from plugins-esm - automated
 import fetch from 'node-fetch';
-import uploadImage from '../lib/uploadImage.ts'
-
+import uploadImage from '../lib/uploadImage.js';
 let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
   try {
     const q = m.quoted ? m.quoted : m;
@@ -10,13 +11,13 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
       const out = await uploadImage(img);
       m.reply(wait);
       if (command === 'hd') {
-        const api = await fetch(`https://api.botcahx.eu.org/api/tools/remini?url=${out}&apikey=${btc}`);
+        const api = await fetch(`https://api.betabotz.eu.org/api/tools/remini?url=${out}&apikey=${lann}`);
         const image = await api.json();
         const { url } = image;
         conn.sendFile(m.chat, url, null, wm, m);
       } else if (command === 'hd2') {       
         try {
-          const api = await fetch(`https://api.botcahx.eu.org/api/tools/remini-v2?url=${out}&apikey=${btc}`);
+          const api = await fetch(`https://api.betabotz.eu.org/api/tools/remini-v2?url=${out}&apikey=${lann}`);
           const response = await api.text();
           let image;
           try {
@@ -27,16 +28,17 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
           }
           const { url } = image;
           conn.sendFile(m.chat, url, null, wm, m);
-        } catch (error) {
-          throw error;
+        } catch (e) {
+            console.log(e);
+            throw e;
         }
       } else if (command === 'hd3') {
-        const api = await fetch(`https://api.botcahx.eu.org/api/tools/remini-v3?url=${out}&resolusi=4&apikey=${btc}`);
+        const api = await fetch(`https://api.betabotz.eu.org/api/tools/remini-v3?url=${out}&resolusi=4&apikey=${lann}`);
         const image = await api.json();
         const url = image.url;
         conn.sendFile(m.chat, url, null, wm, m);
        } else if (command === 'removebg' || command === 'nobg') {
-        const api = await fetch(`https://api.botcahx.eu.org/api/tools/removebg?url=${out}&apikey=${btc}`);
+        const api = await fetch(`https://api.betabotz.eu.org/api/tools/removebg?url=${out}&apikey=${lann}`);
         const image = await api.json();
         const url = image.url;
         conn.sendFile(m.chat, url, null, wm, m);
@@ -45,14 +47,14 @@ let handler: WaPlugin = async (m, { conn, usedPrefix, command }) => {
       m.reply(`Kirim gambar dengan caption *${usedPrefix + command}* atau tag gambar yang sudah dikirim.`);
     }
   } catch (e) {
-    console.error(e);
-    throw `🚩 *Server Error*`
-  }
+      console.log(e);
+      throw e;
+    }
 }
 
 handler.command = handler.help = ['hd', 'hd2', 'hd3','removebg','nobg'];
 handler.tags = ['tools'];
 handler.premium = false;
-handler.limit = true;
+handler.limit = false;
 
 export default handler;

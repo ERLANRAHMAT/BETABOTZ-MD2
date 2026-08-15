@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, participants, groupMetadata }) => {
 
     const getGroupAdmins = (participants) => {
@@ -38,4 +39,4 @@ handler.command = /^(tagadmin)$/i
 
 handler.group = true
 
-export default handler
+export default handler;

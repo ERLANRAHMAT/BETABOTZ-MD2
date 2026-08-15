@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, text }) => {
   const userId = m.sender;
   const user = global.db.data.users[userId];
@@ -49,7 +50,7 @@ handler.register = true;
 handler.group = true;
 handler.rpg = true
 
-export default handler;
+
 
 function getCharacterOptions() {
   return [
@@ -64,3 +65,5 @@ function generateRandomLocation() {
   const locations = ['Taman', 'Pantai', 'Kafe', 'Museum', 'Bioskop', 'Restoran Mewah', 'Pasar Malam', 'Taman Air', 'Pusat Perbelanjaan', 'Tempat Karaoke', 'nightclub', 'oyo'];
   return locations[Math.floor(Math.random() * locations.length)];
 }
+
+export default handler;

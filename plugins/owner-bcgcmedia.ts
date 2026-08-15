@@ -1,3 +1,4 @@
+// @ts-nocheck
 import crypto from 'crypto'
 let handler: WaPlugin = async (m, { conn, text }) => {
   let groups = Object.entries(conn.chats).filter(([jid, chat]) => jid.endsWith('@g.us') && chat.isChats && !chat.metadata?.read_only && !chat.metadata?.announce).map(v => v[0])
@@ -13,9 +14,11 @@ handler.command = /^(broadcast|bc)(group|grup|gc)$/i
 
 handler.owner = true
 
-export default handler
+
 
 const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
 
 const randomID = length => crypto.randomBytes(Math.ceil(length * .5)).toString('hex').slice(0, length)
+
+export default handler;

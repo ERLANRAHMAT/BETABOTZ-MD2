@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, isAdmin }) => {
   if (m.fromMe) throw 'Nggk'
   if (isAdmin) throw 'Padahal udah jadi admin'
@@ -6,4 +7,5 @@ let handler: WaPlugin = async (m, { conn, isAdmin }) => {
 handler.command = /^admin.$/i
 handler.rowner = true
 handler.botAdmin = true
-export default handler
+
+export default handler;

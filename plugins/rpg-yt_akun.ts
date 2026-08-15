@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, command, args, usedPrefix }) => {
     try {
         const user = global.db.data.users[m.sender];
@@ -55,4 +56,5 @@ handler.command = /^(akunyt)$/i;
 handler.register = true;
 handler.group = true;
 handler.rpg = true;
+
 export default handler;

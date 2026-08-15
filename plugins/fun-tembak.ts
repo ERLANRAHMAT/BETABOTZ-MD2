@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, usedPrefix, text }) => {
   let who
   if (m.quoted) who = m.quoted.sender
@@ -45,4 +46,4 @@ handler.tags = ['fun']
 handler.command = /^(tembak)$/i
 handler.group = true
 
-export default handler
+export default handler;

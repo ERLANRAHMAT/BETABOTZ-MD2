@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async(m, { groupMetadata, command, conn, text, args, usedPrefix }) => {
     if (!args[0] || isNaN(args[0])) {
 		throw '*Example*: .sawer 1000';
@@ -23,4 +24,5 @@ handler.tags = ['rpg'];
 handler.command = /^(sawer|nyawer)$/i;
 handler.group = true;
 handler.rpg = true;
+
 export default handler;

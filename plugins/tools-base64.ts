@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { command, text }) => {
   let txt = m.quoted ? m.quoted.text ? m.quoted.text : text ? text : m.text : m.text
   if (/^encrypt$/i.test(command)) {
@@ -11,4 +12,4 @@ handler.help = ['encrypt', 'decrypt']
 handler.tags = ['tools']
 handler.command = /^(encrypt|decrypt)$/i
 
-export default handler
+export default handler;

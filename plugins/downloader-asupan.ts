@@ -1,24 +1,26 @@
-let handler: WaPlugin = async(m, { conn }) => {
-  const asupan = [
-    `https://api.botcahx.eu.org/api/asupan/rikagusriani?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/asupan/santuy?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/asupan/ukhty?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/asupan/bocil?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/asupan/gheayubi?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/asupan/natajadeh?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/asupan/euni?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/asupan/douyin?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/api/asupan/cecan?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/api/asupan/hijaber?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/api/asupan/asupan?apikey=${btc}`,
-    `https://api.botcahx.eu.org/api/api/asupan/anony?apikey=${btc}`   
-  ]
+// @ts-nocheck
+// Converted from plugins-esm - automated
+let handler: WaPlugin = async (m, { conn }) => {
   try {
+    const asupan = [
+      `https://api.betabotz.eu.org/api/asupan/rikagusriani?apikey=${lann}`,
+      `https://api.betabotz.eu.org/api/asupan/santuy?apikey=${lann}`,
+      `https://api.betabotz.eu.org/api/asupan/ukhty?apikey=${lann}`,
+      `https://api.betabotz.eu.org/api/asupan/bocil?apikey=${lann}`,
+      `https://api.betabotz.eu.org/api/asupan/gheayubi?apikey=${lann}`,
+      `https://api.betabotz.eu.org/api/asupan/natajadeh?apikey=${lann}`,
+      `https://api.betabotz.eu.org/api/asupan/euni?apikey=${lann}`,
+      `https://api.betabotz.eu.org/api/asupan/douyin?apikey=${lann}`,
+      `https://api.betabotz.eu.org/api/api/asupan/cecan?apikey=${lann}`,
+      `https://api.betabotz.eu.org/api/api/asupan/hijaber?apikey=${lann}`,
+      `https://api.betabotz.eu.org/api/api/asupan/asupan?apikey=${lann}`,
+      `https://api.betabotz.eu.org/api/api/asupan/anony?apikey=${lann}`   
+    ]
     const url = pickRandom(asupan);
     await conn.sendFile(m.chat, url, null, '', m);
   } catch (e) {
     console.log(e);
-    m.reply('Maaf, video asupan tidak ditemukan');
+    throw e;
   }
 }
 
@@ -31,7 +33,12 @@ handler.group = false
 handler.private = false
 
 function pickRandom(list) {
-  return list[Math.floor(list.length * Math.random())]
+  try {
+    return list[Math.floor(list.length * Math.random())]
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
 }
 
-export default handler
+export default handler;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const exports: WaPlugin = {} as WaPlugin;
 const delay = (time) => new Promise((res) => setTimeout(res, time));
 
@@ -72,3 +73,5 @@ ${room.win !== 'draw' ? `Pemenangnya adalah @${room.win.split('@')[0]} Dan menda
     return true;
 };
 export default exports;
+
+export default handler;

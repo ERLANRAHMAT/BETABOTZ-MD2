@@ -1,3 +1,4 @@
+// @ts-nocheck
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 let handler: WaPlugin = async (m, { text, usedPrefix, command }) => {
@@ -20,4 +21,4 @@ handler.help = ['alkitab'].map(v => v + ' <pencarian>')
 handler.tags = ['internet']
 handler.command = /^(alkitab)$/i
 
-export default handler
+export default handler;

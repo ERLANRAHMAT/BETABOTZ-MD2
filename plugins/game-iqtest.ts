@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin  = async (m, { conn }) => {
   conn.reply(m.chat,`${pickRandom(global.iq)}`, m)
 }
@@ -15,7 +16,7 @@ handler.botAdmin = false
 
 handler.fail = null
 
-export default handler
+
 
 function pickRandom(list) {
   return list[Math.floor(list.length * Math.random())]
@@ -46,3 +47,5 @@ global.iq = [
 'IQ Anda Sebesar : 7500',
 'IQ Anda Sebesar : 10000',
 ]
+
+export default handler;

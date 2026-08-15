@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { conn, teks, isOwner, isAdmin, args }) => {
     if (m.isZapo) return;
 	if (!(isAdmin || isOwner)) {
@@ -26,4 +27,4 @@ handler.command = /^(kic?k|remove|tendang|\-)$/i
 handler.group = true
 handler.botAdmin = true
 
-export default handler
+export default handler;

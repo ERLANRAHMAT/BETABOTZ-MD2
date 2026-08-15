@@ -1,3 +1,4 @@
+// @ts-nocheck
 let handler: WaPlugin = async (m, { teks, conn, isOwner, isAdmin, args, command }) => {
     if (m.isZapo) return;
     

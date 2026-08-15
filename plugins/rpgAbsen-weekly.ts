@@ -1,3 +1,4 @@
+// @ts-nocheck
 const free = 10000
 const prem = 20000
 const limitfree = 10
@@ -21,7 +22,7 @@ handler.command = /^(weekly)$/i
 handler.limit = true
 handler.fail = null
 handler.rpg = true
-export default handler
+
 
 function msToTime(duration) {
   var milliseconds = parseInt(String((duration % 1000) / 100)),
@@ -36,3 +37,5 @@ function msToTime(duration) {
 
   return weeks + " hari " +  hours + " jam " + minutes + " menit"
 }
+
+export default handler;
