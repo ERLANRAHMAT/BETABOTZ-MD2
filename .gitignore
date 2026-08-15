@@ -19,3 +19,4 @@ database.sqlite*
 
 # Temp media
 /tmp/
+/plugins2
