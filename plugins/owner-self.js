@@ -1,17 +1,13 @@
-let handler = async (m, { conn, command }) => {
-  const isPublic = command === "public";
-  global.opts = global.opts || {};
+let handler = async(m, { conn, command }) => {
+  let isPublic = command === "public";
+  let self = global.opts["self"]
 
-  if (isPublic) {
-    if (!global.opts.self) return m.reply("Bot sudah dalam mode Public.");
-    global.opts.self = false;
-    return m.reply("Berhasil mengubah ke mode Public!");
-  } else {
-    if (global.opts.self) return m.reply("Bot sudah dalam mode Self.");
-    global.opts.self = true;
-    return m.reply("Berhasil mengubah ke mode Self!");
-  }
-};
+  if(self === !isPublic) return m.reply(`Dah ${!isPublic ? "Self" : "Public"} dari tadi ${m.sender.split("@")[0] === global.owner[1] ? "Mbak" : "Bang"} :v`)
+
+  global.opts["self"] = !isPublic
+
+  m.reply(`Berhasil ${!isPublic ? "Self" : "Public"} bot!`)
+}
 
 handler.help = ["self", "public"]
 handler.tags = ["owner"]

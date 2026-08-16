@@ -32,7 +32,7 @@ const handler = async (m, {
 
 乂 *H O W - U P G R A D E*
 • _Example_ :
-${usedPrefix}uptool _sword_
+.uptool _sword_
 `.trim();
 
         switch (type) {
@@ -119,7 +119,7 @@ ${usedPrefix}uptool _sword_
                         user.batu -= __batu;
                         user.money -= __money;
                         user.bowdurability = 0;
-                        user.bowdurability += axe * 50;
+                        user.bowdurability += bow * 50;
                         m.reply(`Succes mengupgrade *🏹 Bow*`);
                     }
                 }
@@ -217,17 +217,11 @@ ${usedPrefix}uptool _sword_
                 }
                 break;
             default:
-                await conn.sendMessage(
-                  m.chat,
-                  {
-                    image: {
-                      url: "https://telegra.ph/file/97dba25a7bd8084913166.jpg",
-                    },
-                    caption: lmao1,
-                    mentions: [m.sender],
-                  },
-                  { quoted: m },
-                );
+                await conn.sendMessage(m.chat, { 
+                    image: { url: 'https://telegra.ph/file/97dba25a7bd8084913166.jpg' }, 
+                    caption: lmao1 
+                }, { quoted: m });
+                break;
         }
     } catch (e) {
         console.log(e);

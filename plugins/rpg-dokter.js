@@ -50,11 +50,7 @@ const handler = async (m, { conn, usedPrefix, command, args }) => {
       };
       const thiefAction = thiefActions[level];
 
-      conn.reply(
-        m.chat,
-        `*🔍 Anda menemukan pasien level ${level}!* Untuk menyembuhkan pasien, lakukan tindakan: *.dokter ${thiefAction.toUpperCase()}*.`,
-        m,
-      );
+      conn.reply(m.chat, `*🔍 Anda menemukan pasien level ${level}!* Untuk menyembuhkan pasien, lakukan tindakan: *.dokter ${thiefAction.toUpperCase()}*.`, m);
 
       player.ThiefAction = thiefAction;
     } else if (subCommand === "status") {

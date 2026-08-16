@@ -2,14 +2,14 @@ let handler = async (m, { conn }) => {
     let __timers = (new Date() - (global.db.data.users[m.sender].lastngewe || 0))
     let _timers = (7200000 - __timers) // 2 jam dalam milidetik
     let timers = _timers >= 0 ? clockString(_timers) : "waktu sudah habis"
-    let name = await conn.getName(m.sender);
+    let name = await conn.getName(m.sender)
     let user = global.db.data.users[m.sender]
     let id = m.sender
     let kerja = 'ewe-paksa'
     conn.misi = conn.misi ? conn.misi : {}
     if (id in conn.misi) {
         conn.reply(m.chat, `Selesaikan Misi ${conn.misi[id][0]} Terlebih Dahulu`, m)
-        return;
+        throw false
     }
     if (new Date() - user.lastngewe > 7200000 || !user.lastngewe) { // Ubah kondisi cooldown
         let randomaku1 = Math.floor(Math.random() * 1000000)

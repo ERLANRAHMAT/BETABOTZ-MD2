@@ -1,83 +1,95 @@
 let handler = async (m, { conn, args, participants }) => {
-    let users = Object.entries(global.db.data.users).map(([key, value]) => {
-      return {...value, jid: key}
+  const cleanJid = (jid) => {
+    if (!jid) return null
+    const decoded = conn.decodeJid(String(jid))
+    return decoded && decoded.endsWith('@s.whatsapp.net') ? decoded : null
+  }
+
+  let users = Object.entries(global.db.data.users)
+    .map(([key, value]) => ({ ...value, jid: key }))
+    .filter((u) => cleanJid(u.jid))
+    .map((u) => ({ ...u, jid: cleanJid(u.jid) }))
+
+  if (!users.length) return conn.reply(m.chat, 'Belum ada user terdaftar.', m)
+
+  const sortedExp = users.map(toNumber('exp')).sort(sort('exp'))
+  const sortedLim = users.map(toNumber('limit')).sort(sort('limit'))
+  const sortedLevel = users.map(toNumber('level')).sort(sort('level'))
+  const sortedMoney = users.map(toNumber('money')).sort(sort('money'))
+  const sortedBank = users.map(toNumber('bank')).sort(sort('bank'))
+
+  const boards = [
+    ['XP', 'exp', 'Exp', sortedExp],
+    ['Limit', 'limit', 'Limit', sortedLim],
+    ['Level', 'level', 'Level', sortedLevel],
+    ['Money', 'money', 'Money', sortedMoney],
+    ['Bank', 'bank', 'Bank', sortedBank],
+  ]
+
+  let len = Math.min(10, sortedExp.length)
+  if (args[0] && /^\d+$/.test(args[0])) {
+    len = Math.min(10, Math.max(parseInt(args[0]), 10))
+    len = Math.min(len, sortedExp.length)
+  }
+
+  const rankOf = (sorted, jid) => {
+    const idx = sorted.findIndex((u) => u.jid === jid)
+    return idx === -1 ? 0 : idx + 1
+  }
+
+  const sender = conn.decodeJid(m.sender)
+  const mentionSet = new Set()
+  const participantSet = new Set((participants || []).map((p) => conn.toMentionJid(p.id)).filter(Boolean))
+
+  const boardText = async (title, prop, label, sorted) => {
+    const top = sorted.slice(0, len)
+    const names = await Promise.all(top.map(({ jid }) => conn.getName(jid)))
+    const lines = top.map(({ jid, [prop]: val }, i) => {
+      const safe = conn.toMentionJid(jid)
+      if (safe) mentionSet.add(safe)
+      const num = (safe || jid).split('@')[0]
+      const showName = !safe || participantSet.has(jid)
+      return `${i + 1}. ${showName ? `(${names[i]}) wa.me/${num}` : `@${num}`} *${val} ${label}*`
     })
-    let sortedExp = users.map(toNumber('exp')).sort(sort('exp'))
-    let sortedLim = users.map(toNumber('limit')).sort(sort('limit'))
-    let sortedLevel = users.map(toNumber('level')).sort(sort('level'))
-    let sortedMoney = users.map(toNumber('money')).sort(sort('money'))
-    let sortedDiamond = users.map(toNumber('diamond')).sort(sort('diamond'))
-    let sortedBank = users.map(toNumber('bank')).sort(sort('bank'))
-    let usersExp = sortedExp.map(enumGetKey)
-    let usersLim = sortedLim.map(enumGetKey)
-    let usersLevel = sortedLevel.map(enumGetKey)
-    let usersMoney = sortedMoney.map(enumGetKey)
-    let usersDiamond = sortedDiamond.map(enumGetKey)
-    let usersBank = sortedBank.map(enumGetKey)
-    console.log(participants)  
-    let len = args[0] && args[0].length > 0 ? Math.min(10, Math.max(parseInt(args[0]), 10)) : Math.min(10, sortedExp.length)
-    let text = `
-  • *XP Leaderboard Top ${len}* •
-  Kamu: *${usersExp.indexOf(m.name) + 1}* dari *${usersExp.length}*
-  
-  ${sortedExp.slice(0, len).map(({ jid, exp }, i) => `${i + 1}. ${participants.some(p => jid === p.jid) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} *${exp} Exp*`).join`\n`}
-  
-  • *Limit Leaderboard Top ${len}* •
-  Kamu: *${usersLim.indexOf(m.name) + 1}* dari *${usersLim.length}*
-  
-  ${sortedLim.slice(0, len).map(({ jid, limit }, i) => `${i + 1}. ${participants.some(p => jid === p.jid) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} *${limit} Limit*`).join`\n`}
-  
-  • *Level Leaderboard Top ${len}* •
-  Kamu: *${usersLevel.indexOf(m.name) + 1}* dari *${usersLevel.length}*
-  
-  ${sortedLevel.slice(0, len).map(({ jid, level }, i) => `${i + 1}. ${participants.some(p => jid === p.jid) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} *Level ${level}*`).join`\n`}
-  
-  • *Money Leaderboard Top ${len}* •
-  Kamu: *${usersMoney.indexOf(m.name) + 1}* dari *${usersMoney.length}*
-  
-  ${sortedMoney.slice(0, len).map(({ jid, money }, i) => `${i + 1}. ${participants.some(p => jid === p.jid) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} *Money ${money}*`).join`\n`}
-  
-  • *Bank Leaderboard Top ${len}* •
-  Kamu: *${usersBank.indexOf(m.name) + 1}* dari *${usersBank.length}*
-  
-  ${sortedBank.slice(0, len).map(({ jid, bank }, i) => `${i + 1}. ${participants.some(p => jid === p.jid) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} *Bank ${bank}*`).join`\n`}
-  `.trim()
-    conn.reply(m.chat, text, m, {
-      contextInfo: {
-        mentionedJid: [...usersExp.slice(0, len), ...usersLim.slice(0, len), ...usersLevel.slice(0, len), ...usersMoney.slice(0, len), ...usersBank.slice(0, len)].filter(v => !participants.some(p => v === p.jid))
-      }
-    })
+    return `• *${title} Leaderboard Top ${len}* •\nKamu: *${rankOf(sorted, sender)}* dari *${sorted.length}*\n\n${lines.join('\n')}`
   }
-  handler.help = ['leaderboard <jumlah user>']
-  handler.tags = ['info']
-  handler.command = /^(leaderboard|lb)$/i
-  handler.owner = false
-  handler.mods = false
-  handler.premium = false
-  handler.group = true
-  handler.private = false
-  
-  handler.admin = false
-  handler.botAdmin = false
-  handler.rpg = true
-  
-  handler.fail = null
-  handler.exp = 0
-  
-  export default handler
-  
-  function sort(property, ascending = true) {
-    if (property) return (...args) => args[ascending & 1][property] - args[!ascending & 1][property]
-    else return (...args) => args[ascending & 1] - args[!ascending & 1]
+
+  const sections = await Promise.all(boards.map(([title, prop, label, sorted]) => boardText(title, prop, label, sorted)))
+  const text = sections.join('\n\n').trim()
+
+  conn.reply(m.chat, text, m, {
+    contextInfo: {
+      mentionedJid: [...mentionSet],
+    },
+  })
+}
+
+handler.help = ['leaderboard <jumlah user>']
+handler.tags = ['info']
+handler.command = /^(leaderboard|lb)$/i
+handler.owner = false
+handler.mods = false
+handler.premium = false
+handler.group = true
+handler.private = false
+
+handler.admin = false
+handler.botAdmin = false
+handler.rpg = true
+
+handler.fail = null
+handler.exp = 0
+
+export default handler
+
+function sort(property, ascending = true) {
+  if (property) return (...args) => args[ascending & 1][property] - args[!ascending & 1][property]
+  else return (...args) => args[ascending & 1] - args[!ascending & 1]
+}
+
+function toNumber(property, _default = 0) {
+  if (property) return (a, i, b) => {
+    return { ...b[i], [property]: a[property] === undefined ? _default : a[property] }
   }
-  
-  function toNumber(property, _default = 0) {
-    if (property) return (a, i, b) => {
-      return {...b[i], [property]: a[property] === undefined ? _default : a[property]}
-    }
-    else return a => a === undefined ? _default : a
-  }
-  
-  function enumGetKey(a) {
-    return a.jid
-  }
+  else return (a) => (a === undefined ? _default : a)
+}

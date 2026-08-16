@@ -74,10 +74,12 @@ global.APIKeys = {
   "https://api.danafxc.my.id": global.dana, //OPSIONAL
   "https://task.aniqu.biz.id/": global.taskToken, //OPSIONAL
 };
+
 import fs from 'fs';
 import chalk from 'chalk';
 import { pathToFileURL } from 'url';
 let file = import.meta.filename;
+fs.unwatchFile(file);
 fs.watchFile(file, async () => {
   fs.unwatchFile(file);
   console.log(chalk.redBright("Update 'config.js, harap bot di restart!'"));

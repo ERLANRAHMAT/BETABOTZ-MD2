@@ -14,7 +14,7 @@ let handler = async (m, { conn, usedPrefix }) => {
       `Selesaikan Misi ${conn.misi[id][0]} Terlebih Dahulu`,
       m
     );
-    return;
+    throw false;
   }
   if (user.healt < 80) return m.reply(`Anda Harus Memiliki Minimal 80Healt`);
   if (user.stamina < 50)

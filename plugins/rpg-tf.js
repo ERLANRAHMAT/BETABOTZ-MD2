@@ -64,24 +64,6 @@ let handler = async (m, { conn, args, usedPrefix, DevMode }) => {
                     }
                 } else conn.reply(m.chat, `Limit kamu tidak mencukupi untuk mentransfer Uang dari Bank sebesar ${count}`.trim(), m)
                 break
-            case 'limit':
-                if (global.db.data.users[m.sender].limit >= count * 1) {
-                    try {
-                        global.db.data.users[m.sender].limit -= count * 1
-                        global.db.data.users[who].limit += count * 1
-                        conn.reply(m.chat, `Berhasil mentransfer limit sebesar ${count}`.trim(), m)
-                    } catch (e) {
-                        global.db.data.users[m.sender].limit += count * 1
-                        m.reply('Gagal Menstransfer')
-                        console.log(e)
-                        if (DevMode) {
-                            for (let jid of global.owner.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').filter(v => v != conn.user.jid)) {
-                                conn.reply(jid, 'Transfer.js error\nNo: *' + m.sender.split`@`[0] + '*\nCommand: *' + m.text + '*\n\n*' + e + '*', m)
-                            }
-                        }
-                    }
-                } else conn.reply(m.chat, `Limit kamu tidak mencukupi untuk mentransfer Limit sebesar ${count}`.trim(), m)
-                break
             case 'potion':
                 if (global.db.data.users[m.sender].potion >= count * 1) {
                     try {

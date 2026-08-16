@@ -1,5 +1,5 @@
 let handler = async (m, { conn, text, args, groupMetadata }) => {
-    await conn.sendPresenceUpdate('composing', m.chat)
+    //await conn.sendPresenceUpdate('composing', m.chat)
 
     const lama = 86400000 * 7
     const now = new Date().toLocaleString("en-US", { timeZone: "Asia/Jakarta" })
@@ -25,14 +25,14 @@ let handler = async (m, { conn, text, args, groupMetadata }) => {
     }
 
     if (!args[0]) {
-        return conn.reply(m.chat, `ðŸš© Use the command with options:\n1. \`gcsider --list\` to list inactive members\n2. \`gcsider --kick\` to kick inactive members`, m)
+        return conn.reply(m.chat, `🚩 Use the command with options:\n1. \`gcsider list\` to list inactive members\n2. \`gcsider kick\` to kick inactive members`, m)
     }
 
     if (args[0] === 'list') {
-        if (total === 0) return conn.reply(m.chat, `ðŸš© *There are no siders in this group.*`, m)
+        if (total === 0) return conn.reply(m.chat, `🚩 *There are no siders in this group.*`, m)
         
         const groupName = await conn.getName(m.chat)
-        const message = `*${total}/${member.length}* anggota grup *${groupName}* adalah sider:\n${sider.map(v => '  â—‹ @' + v.replace(/@.+/, '')).join('\n')}`
+        const message = `*${total}/${member.length}* anggota grup *${groupName}* adalah sider:\n${sider.map(v => '  ○ @' + v.replace(/@.+/, '')).join('\n')}`
 
         return conn.reply(m.chat, message, m, {
             contextInfo: {
@@ -42,7 +42,7 @@ let handler = async (m, { conn, text, args, groupMetadata }) => {
     }
 
     if (args[0] === 'kick') {
-        if (total === 0) return conn.reply(m.chat, `ðŸš© *There are no siders to kick in this group.*`, m)
+        if (total === 0) return conn.reply(m.chat, `🚩 *There are no siders to kick in this group.*`, m)
 
         for (const user of sider) {
             try {
@@ -52,10 +52,10 @@ let handler = async (m, { conn, text, args, groupMetadata }) => {
             }
         }
 
-        return conn.reply(m.chat, `ðŸš© Successfully removed *${total}* inactive members from the group.`, m)
+        return conn.reply(m.chat, `🚩 Successfully removed *${total}* inactive members from the group.`, m)
     }
 
-    return conn.reply(m.chat, `ðŸš© Invalid option. Use \`--list\` to view inactive members or \`--kick\` to remove them.`, m)
+    return conn.reply(m.chat, `🚩 Invalid option. Use \`--list\` to view inactive members or \`--kick\` to remove them.`, m)
 }
 
 handler.help = ['sider']

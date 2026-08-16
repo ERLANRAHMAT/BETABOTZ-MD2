@@ -1,6 +1,7 @@
 /** !! THIS CODE GENERATE BY RODOTZBOT !! **/
 
-import moment from 'moment-timezone';
+import moment from 'moment-timezone'
+
 let handler = async (m, { conn }) => {
   let user = global.db.data.users[m.sender]
   if (!user) throw 'Anda belum terdaftar di database'

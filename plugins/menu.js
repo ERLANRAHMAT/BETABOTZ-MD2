@@ -1,14 +1,9 @@
-process.env.TZ = 'Asia/Jakarta'
-import fs from 'fs';
-import path from 'path';
-import fetch from 'node-fetch';
-import moment from 'moment-timezone';
-import levelling from '../lib/levelling.js';
-import { fileURLToPath } from 'url'; 
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+const __dirname = import.meta.dirname;
+import fs from 'fs'
+import path from 'path'
+import fetch from 'node-fetch'
+import moment from 'moment-timezone'
+import levelling from '../lib/levelling.js'
 let arrayMenu = [
   'all', 
   'ai', 
@@ -42,6 +37,7 @@ let arrayMenu = [
   'anonymous',
   ''
   ];
+
 
 const allTags = {
     'all': 'SEMUA MENU',
@@ -82,7 +78,7 @@ const defaultMenu = {
 Hi %name
 I am an automated system (WhatsApp Bot) that can help to do something, search and get data / information only through WhatsApp.
 
-◦ *Library:* Baileys
+◦ *Library:* zapo-js
 ◦ *Function:* Assistant
 
 ┌  ◦ Uptime : %uptime
@@ -182,6 +178,7 @@ let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
         let menuCategory = defaultMenu.before + '\n\n'
         
         if (teks === 'all') {
+            // category all
             for (let tag of arrayMenu) {
                 if (tag !== 'all' && allTags[tag]) {
                     menuCategory += defaultMenu.header.replace(/%category/g, allTags[tag]) + '\n'

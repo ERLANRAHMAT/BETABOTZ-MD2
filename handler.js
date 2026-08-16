@@ -1,5 +1,5 @@
 const __filename = import.meta.filename;
-import simple from './lib/simple.js'
+import simple, { isNewsletterJid } from './lib/simple.js'
 import util from 'util'
 import print from './lib/print.js'
 
@@ -8,28 +8,31 @@ const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(resolve, m
 
 export default {
     async handler(chatUpdate) {
-        if (global.db.data == null) await loadDatabase();
-    this.msgqueque = this.msgqueque || [];
-    // console.log(chatUpdate)
-    if (!chatUpdate) return;
-    // if (chatUpdate.messages.length > 2 || !chatUpdate.messages.length) return
-    if (chatUpdate.messages.length > 1) console.log(chatUpdate.messages);
-    let m = chatUpdate.messages[chatUpdate.messages.length - 1];
-    if (!m) return;
-    //console.log(JSON.stringify(m, null, 4))
-    try {
-      m = simple.smsg(this, m) || m;
-      if (!m) return;
-            
-            if (m.mtype === 'protocolMessage') {
-                // console.log("PROTOCOL MESSAGE RECEIVED:", JSON.stringify(m.msg, null, 2))
-                if (m.msg.type === 0 || m.msg.type === 14 || m.msg.type === 'REVOKE') {
-                    let key = m.msg.key
-                    if (key) {
-                        this.onDelete({ remoteJid: key.remoteJid || m.chat, fromMe: key.fromMe, id: key.id, participant: key.participant || m.sender })
-                    }
+        if (global.db.data == null) await loadDatabase()
+        this.msgqueque = this.msgqueque || []
+        // console.log(chatUpdate)
+        if (!chatUpdate) return
+        // if (chatUpdate.messages.length > 2 || !chatUpdate.messages.length) return
+        // if (chatUpdate.messages.length > 1) console.log(chatUpdate.messages)
+        let m = chatUpdate.messages[chatUpdate.messages.length - 1]
+        if (!m) return
+        // Skip messages from channels/newsletters - bot only serves group & private chat
+        if (isNewsletterJid(m.key?.remoteJid)) return
+        //console.log(JSON.stringify(m, null, 4))
+        try {
+            m = simple.smsg(this, m) || m
+            if (!m) return
+            if (isNewsletterJid(m.chat)) return
+            if (m.chat && m.isGroup && !global.db.data.chats[m.chat]) {
+                global.db.data.chats[m.chat] = { detect: true, delete: true };
+            }
+            if (m.isGroup && !global.db.data._migratedDetect) {
+                global.db.data._migratedDetect = true;
+                for (const [jid, chat] of Object.entries(global.db.data.chats)) {
+                    if (jid.endsWith('@g.us') && chat && !chat.detect) chat.detect = true;
                 }
             }
+          
             
             if (m.messageStubType && m.isGroup) {
                 let chat = global.db.data.chats[m.chat]
@@ -38,12 +41,30 @@ export default {
                     if (m.messageStubType === 21) {
                         text = (chat.sSubject || this.sSubject || '```Subject has been changed to```\n@subject').replace('@subject', m.messageStubParameters[0])
                     } else if (m.messageStubType === 22) {
-                        let iconUrl = await this.profilePictureUrl(m.chat, 'image').catch(() => 'Image deleted / Not available')
-                        text = (chat.sIcon || this.sIcon || '```Icon has been changed to```\n@icon').replace('@icon', iconUrl)
+                        // messageStubParameters[0] = action picture: 'set' | 'delete' | 'set_avatar'
+                        let picAction = m.messageStubParameters[0]
+                        if (picAction === 'delete') {
+                            text = (chat.sIconDel || this.sIconDel || '```Icon has been removed```')
+                        } else {
+                            let iconUrl = await this.profilePictureUrl(m.chat, 'image').catch(() => 'Image deleted / Not available')
+                            text = (chat.sIcon || this.sIcon || '```Icon has been changed to```\n@icon').replace('@icon', iconUrl)
+                        }
                     } else if (m.messageStubType === 23) {
-                        text = (chat.sRevoke || this.sRevoke || '```Group link has been changed to```\n@revoke').replace('@revoke', `https://chat.whatsapp.com/${m.messageStubParameters[0]}`)
+                        let code = m.messageStubParameters[0]
+                        if (!code) {
+                            for (let attempt = 0; attempt < 3 && !code; attempt++) {
+                                code = await this.groupInviteCode(m.chat).catch(() => '')
+                                if (!code && attempt < 2) await delay(800)
+                            }
+                        }
+                        text = code
+                            ? (chat.sRevoke || this.sRevoke || '```Group link has been changed to```\n@revoke').replace('@revoke', `https://chat.whatsapp.com/${code}`)
+                            : (chat.sRevoke || this.sRevoke || '```Group link has been revoked```')
                     } else if (m.messageStubType === 24) {
-                        text = (chat.sDesc || this.sDesc || '```Description has been changed to```\n@desc').replace('@desc', m.messageStubParameters[0])
+                        let desc = m.messageStubParameters[0]
+                        text = desc
+                            ? (chat.sDesc || this.sDesc || '```Description has been changed to```\n@desc').replace('@desc', desc)
+                            : (chat.sDesc || this.sDesc || '```Description has been removed```')
                     } else if (m.messageStubType === 25) {
                         text = m.messageStubParameters[0] === 'on' 
                             ? '```Group info has been restricted to admin only```' 
@@ -59,8 +80,9 @@ export default {
                 }
             }
             
-      // console.log(m)
-      m.exp = 0;
+            // console.log(m)
+            m.exp = 0
+            m.limit = false
       m.limit = false;
       try {
         let user = global.db.data.users[m.sender];
@@ -944,6 +966,7 @@ export default {
             antitagsw: false,
             autowm: false,
             antidelete: false,
+            autodl: true,
           };
         let memgc = global.db.data.chats[m.chat]?.memgc?.[m.sender];
         if (typeof memgc !== "object" || memgc === null) {
@@ -982,7 +1005,7 @@ export default {
             if (global.owner && Array.isArray(global.owner)) {
                 isOwnerSelf = global.owner.some(o => {
                     let number = Array.isArray(o) ? o[0] : o;
-                    return typeof number === 'string' && m.sender.startsWith(number);
+                    return typeof number === 'string' && String(m.sender || '').replace(/[^0-9]/g, '').startsWith(number);
                 });
             }
             if (!m.fromMe && !isOwnerSelf && opts['self']) return
@@ -1007,8 +1030,8 @@ export default {
                     console.error(e)
                 }
             }
-        //if (m.id.startsWith('BAE5') && m.id.length === 16 || m.isBaileys && m.fromMe) return
-	        if (m.id.startsWith('3EB0') || (m.id.startsWith('BAE5') && m.id.length === 16 || m.isBaileys && m.fromMe)) return;	
+        //if (m.id.startsWith('BAE5') && m.id.length === 16 || m.isZapo && m.fromMe) return
+	        if (m.id.startsWith('3EB0') || (m.id.startsWith('BAE5') && m.id.length === 16 || m.isZapo && m.fromMe)) return;	
             m.exp += Math.ceil(Math.random() * 10)
 
             let usedPrefix
@@ -1022,16 +1045,12 @@ export default {
                   ? conn.getJid(m.sender)?.replace(/[^0-9]/g, '') + '@s.whatsapp.net' 
                   : m.sender.replace(/[^0-9]/g, '') + '@s.whatsapp.net'
               );**/
-		 let isROwner = [global.conn.user.jid, ...(global.owner || [])]
-    .filter(v => v != null)
-    .map(v => String(v).replace(/[^0-9]/g, '') + '@s.whatsapp.net')
-    .includes(
-        m.sender.endsWith('@lid') 
-            ? (conn.getJid(m.sender) || m.sender).replace(/[^0-9]/g, '') + '@s.whatsapp.net'
-            : m.sender.replace(/[^0-9]/g, '') + '@s.whatsapp.net'
-    );
+		 let isROwner = [global.conn?.user?.jid, ...(global.owner || [])]
+			.filter(v => v != null)
+			.map(v => String(v).replace(/[^0-9]/g, ''))
+			.includes(String((this.getJid ? this.getJid(m.sender) : null) || m.sender).replace(/[^0-9]/g, ''));
             let isOwner = isROwner || m.fromMe
-            let isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+            let isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '')).includes(String(m.sender).replace(/[^0-9]/g, ''))
             let isPrems = isROwner || (db.data.users[m.sender].premiumTime > 0 || db.data.users[m.sender].premium)
            
             // const groupMetadata = (m.isGroup ? (conn.chats[m.chat] || {}).metadata || (await this.groupMetadata(m.chat).catch((_) => null)) : {}) || {};
@@ -1045,8 +1064,12 @@ export default {
             const groupMetadata = (m.isGroup ? (conn.chats[m.chat] || {}).metadata || (await this.groupMetadata(m.chat).catch((_) => null)) : {}) || {};
             const participants = (m.isGroup ? groupMetadata.participants : []) || [];
 
-            const user = participants.find((u) => (u.jid || u.phoneNumber || u.id) === m.sender) || {};
-            const bot  = participants.find((u) => (u.jid || u.phoneNumber || u.id) === this.user.jid) || {};
+            const _digits = (j) => String(j || '').replace(/:\d+@/g, '@').replace(/[^0-9]/g, '');
+            const _senderDigits = _digits(m.sender);
+            const _botDigits = _digits(this.user?.jid);
+            const _match = (u, digits) => !!digits && (_digits(u.phoneNumber) === digits || _digits(u.jid || u.id) === digits);
+            const user = participants.find((u) => _match(u, _senderDigits)) || {};
+            const bot  = participants.find((u) => _match(u, _botDigits)) || {};
 
             const isRAdmin    = user?.admin === 'superadmin' || false;
             const isAdmin     = isRAdmin || user?.admin === 'admin' || false;
@@ -1340,9 +1363,9 @@ export default {
             try {
                  await print(m, this)
              } catch (e) {
-                 console.log(m, m.quoted, e)
+                 // console.log(m, m.quoted, e)
              }
-            if (opts['autoread']) await this.readMessages([m.key])
+            if (opts['autoread'] && m.key?.id) await this.sendReadReceipt(m.chat, m.key.participant || m.sender, [m.key.id])
         }
     },
 	
@@ -1369,6 +1392,15 @@ export default {
                         jid = user.phoneNumber || user.id || user.jid || user
                     }
                     if (!jid || (!jid.includes('@s.whatsapp.net') && !jid.includes('@lid'))) continue
+                    if (String(jid).endsWith('@lid')) {
+                        const _sync = this.getJid(String(jid))
+                        if (_sync && !String(_sync).endsWith('@lid')) jid = _sync
+                        else {
+                            const _async = await this.getJidAsync(String(jid)).catch(() => null)
+                            if (_async && !String(_async).endsWith('@lid')) jid = _async
+                        }
+                        if (String(jid).endsWith('@lid')) continue
+                    }
 
                     const isAdd = ['add', 'invite', 'invite_v4'].includes(action)
 
@@ -1394,6 +1426,15 @@ export default {
             if (typeof jid === 'object') {
                 jid = jid.phoneNumber || jid.id || jid.jid || jid
             }
+            if (String(jid).endsWith('@lid')) {
+                const _sync = this.getJid(String(jid))
+                if (_sync && !String(_sync).endsWith('@lid')) jid = _sync
+                else {
+                    const _async = await this.getJidAsync(String(jid)).catch(() => null)
+                    if (_async && !String(_async).endsWith('@lid')) jid = _async
+                }
+                if (String(jid).endsWith('@lid')) break
+            }
             text = text.replace('@user', '@' + jid.split('@')[0])
             if (chat.detect) await this.sendMessage(id, { text, mentions: [jid] })
             break
@@ -1401,6 +1442,13 @@ export default {
 },
     async delete({ remoteJid, fromMe, id, participant }) {
         if (fromMe) return
+        const _now = Date.now()
+        this._delCache = this._delCache || new Map()
+        if (id && this._delCache.get(id) > _now - 5000) return
+        if (id) this._delCache.set(id, _now)
+        if (this._delCache.size > 200) {
+            for (const [k, v] of this._delCache) if (v <= _now - 5000) this._delCache.delete(k)
+        }
         let chats = Object.entries(this.chats).find(([user, data]) => data.messages && data.messages[id])
         
         // Find chat settings
@@ -1409,19 +1457,32 @@ export default {
         
         let msg = chats ? chats[1].messages[id] : null
         
+        let participantJid = String(participant || '')
+        if (participantJid.endsWith('@lid')) {
+            const _sync = this.getJid(participantJid)
+            if (_sync && !String(_sync).endsWith('@lid')) participantJid = _sync
+            else {
+                const _async = await this.getJidAsync(participantJid).catch(() => null)
+                if (_async && !String(_async).endsWith('@lid')) participantJid = _async
+            }
+        }
+        const mentionSafe = !!participantJid && participantJid.endsWith('@s.whatsapp.net')
+        const label = mentionSafe ? participantJid.split('@')[0] : 'user'
+        const mentionList = mentionSafe ? [participantJid] : []
+
         if (msg) {
             await this.reply(remoteJid, `
-Terdeteksi @${participant.split`@`[0]} telah menghapus pesan
+Terdeteksi @${label} telah menghapus pesan
 Untuk mematikan fitur ini, ketik
 *.disable delete*
 `.trim(), msg, {
-                mentions: [participant]
+                mentions: mentionList
             })
-            this.copyNForward(remoteJid, msg).catch(e => console.log(e, msg))
+            this.copyNForward(remoteJid, msg).catch(e => console.error(e, msg))
         } else {
             await this.sendMessage(remoteJid, {
-                text: `Terdeteksi @${participant.split`@`[0]} telah menghapus pesan\n\nUntuk mematikan fitur ini, ketik\n*.disable delete*`,
-                mentions: [participant]
+                text: `Terdeteksi @${label} telah menghapus pesan\n\nUntuk mematikan fitur ini, ketik\n*.disable delete*`,
+                mentions: mentionList
             })
         }
     }
@@ -1445,12 +1506,13 @@ global.dfail = (type, m, conn) => {
   }[type];
   if (msg) return m.reply(msg);
 };
+
 import fs from 'fs'
 import chalk from 'chalk'
 let file = import.meta.filename
+fs.unwatchFile(file)
 fs.watchFile(file, () => {
-  fs.unwatchFile(file);
-  console.log(chalk.redBright("Update 'handler.js'"));
-//   delete require.cache[file];
-  if (global.reloadHandler) console.log(global.reloadHandler());
-});
+    fs.unwatchFile(file)
+    console.log(chalk.redBright("Update 'handler.js'"))
+    if (global.reloadHandler) global.reloadHandler()
+})

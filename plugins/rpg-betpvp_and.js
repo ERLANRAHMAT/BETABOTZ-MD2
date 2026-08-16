@@ -1,10 +1,11 @@
+const exports = {};
 const delay = (time) => new Promise((res) => setTimeout(res, time));
 
 function random(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
-export async function before(m) {
+exports.before = async function (m) {
     this.judipvp = this.judipvp ? this.judipvp : {};
     let room = Object.values(this.judipvp).find(room => room.id.startsWith('judipvp') && room.status && [room.p, room.p2].includes(m.sender));
     let user = db.data.users;
@@ -70,3 +71,4 @@ ${room.win !== 'draw' ? `Pemenangnya adalah @${room.win.split('@')[0]} Dan menda
     }
     return true;
 };
+export default exports;

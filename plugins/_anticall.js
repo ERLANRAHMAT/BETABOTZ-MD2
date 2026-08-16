@@ -1,11 +1,12 @@
-global.anticall = global.anticall ?? true
+global.anticall = global.anticall ?? false
 let initialized = false
 
 async function init(conn) {
   if (initialized) return
   if (!conn?.ev) return
   conn.ev.on("call", async (call) => {
-    if (!global.anticall) return
+    // Membaca baik dari global.anticall maupun conn.anticall (dari .enable)
+    if (!(global.anticall || conn.anticall)) return
     if (!Array.isArray(call) || !call[0]) return
     if (call[0].status !== "offer") return
     try {
@@ -18,10 +19,9 @@ async function init(conn) {
   initialized = true
 }
 
-async function before(m, { conn }) {
-  if (global.anticall === false) return
+let handler = m => m
+handler.before = async function (m, { conn }) {
   init(conn)
 }
-export default  { before }
 
-//admin mohon maaf atas kesalahan kode sebelum nya
+export default handler

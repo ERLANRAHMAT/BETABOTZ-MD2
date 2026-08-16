@@ -1,8 +1,4 @@
-import * as baileys from "@whiskeysockets/baileys";
-
 let handler = async (m, { isAdmin, isOwner, isBotAdmin, conn, args, usedPrefix, command }) => {
-	try {
-  const { groupsSettingUpdate } = baileys;
 	if (!(isAdmin || isOwner)) {
 		global.dfail('admin', m, conn)
 		return;
@@ -53,12 +49,6 @@ ${usedPrefix + command} buka`
 m.reply(te)
 
 	}
-	} catch (e) {
-      if (e !== false) {
-        console.log(e);
-        throw e;
-      }
-    }
 }
 
 handler.help = ['grup <open/close>']

@@ -1,9 +1,9 @@
-import fs from 'fs';
+import fs from 'fs'
 let handler = m => m
 
 handler.all = async function (m, { isBlocked }) {
     if (isBlocked) return
-    if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('Undangan untuk bergabung') || m.text.startsWith('Invitation to join') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
+    if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('Undangan untuk bergabung') || m.text.startsWith('Invitation to join') || m.text.startsWith('Buka tautan ini')) && !m.isZapo && !m.isGroup) {
     let teks = `Invite Group
 • 30 Day / Rp 10k
 Jika berminat hubungi: @${global.owner[0]} untuk order:)

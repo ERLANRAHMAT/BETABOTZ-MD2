@@ -3,10 +3,15 @@
 let handler = async (m, { conn, args }) => {
   const groupId = m.chat;
   const [subCommand, options] = args;
-  const joinRequestList = await conn.groupRequestParticipantsList(groupId);
-
   const formatDate = (timestamp) => new Intl.DateTimeFormat('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(timestamp * 1000));
   const reply = (text) => conn.reply(m.chat, text, m);
+  let joinRequestList;
+  try {
+    joinRequestList = await conn.groupRequestParticipantsList(groupId);
+  } catch {
+    reply("Gagal mengambil daftar permintaan bergabung. Pastikan mode persetujuan anggota aktif di grup ini.");
+    return;
+  }
 
   switch (subCommand) {
     case "list":

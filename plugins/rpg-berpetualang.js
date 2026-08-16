@@ -86,7 +86,7 @@ async function handler(m, { conn, text }) {
 handler.before = async m => {
     conn.adventure = conn.adventure || {};
     if (!(m.sender in conn.adventure)) return;
-    if (m.isBaileys) return;
+    if (m.isZapo) return;
 
     let { areas, currentArea, hasilPetualangan, lastPetualanganTime, totalReward } = conn.adventure[m.sender];
     const cooldown = 5 * 60 * 1000; // 5 menit cooldown

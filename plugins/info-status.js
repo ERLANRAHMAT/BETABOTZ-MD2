@@ -1,5 +1,5 @@
-import { performance } from 'perf_hooks';
-import osu from 'node-os-utils';
+import { performance } from 'perf_hooks'
+import osu from 'node-os-utils'
 let handler = async(m, { conn, command, usedPrefix, DevMode }) => {
     try {
         let NotDetect = 'Not Detect'
@@ -61,15 +61,7 @@ Ping : *${Math.round(neww - old)} ms*
 Internet IN : *${netsIn}*
 Internet OUT : *${netsOut}*
 `
-    conn.sendMessage(
-      m.chat,
-      {
-        image: { url: "https://telegra.ph/file/ec8cf04e3a2890d3dce9c.jpg" },
-        caption: txt,
-        mentions: [m.sender],
-      },
-      { quoted: m },
-    );
+conn.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/ec8cf04e3a2890d3dce9c.jpg' }, caption: txt, mentions: [m.sender] }, { quoted: m });
         console.log(OS)
     } catch (e) {
         console.log(e)

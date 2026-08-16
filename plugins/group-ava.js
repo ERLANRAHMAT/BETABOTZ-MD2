@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import fetch from 'node-fetch'
 let handler = async(m, { conn, command }) => {
   try {
   let who
@@ -16,4 +16,5 @@ handler.help = ['ava <@tag/reply>']
 handler.tags = ['group']
 handler.command = /^(avatar|ava)$/i
 handler.group = true
+handler.limit = true
 export default handler

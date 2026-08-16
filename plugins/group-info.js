@@ -10,7 +10,8 @@ let handler = async (m, { conn, participants, groupMetadata, text }) => {
 
     let pp = 'https://telegra.ph/file/3c1ea5866a11088685413.jpg'
     try {
-        pp = await conn.getProfilePicture(m.chat)
+        const groupPp = await conn.getProfilePicture(m.chat)
+        if (groupPp) pp = groupPp
     } catch (e) {
     } finally {
         let { isBanned, welcome, detect, sWelcome, sBye, sPromote, sDemote, antiLink, expired, descUpdate, stiker } = global.db.data.chats[m.chat]

@@ -1,52 +1,72 @@
 let handler = async (m, { teks, conn, isOwner, isAdmin, args, command }) => {
-    try {
-    
-    if (m.isBaileys) return;
-    if (!(isAdmin || isOwner)) {
-        global.dfail('admin', m, conn);
-        throw false;
-    }
-  
-    let ownerGroup = m.chat.split`-`[0] + "@s.whatsapp.net";
-  
-    if (m.quoted) {
-        if (m.quoted.sender === ownerGroup || m.quoted.sender === conn.user.jid) return;
-        let usr = m.quoted.sender;
-        let nenen = await conn.groupParticipantsUpdate(m.chat, [usr], "promote"); 
-        if (nenen) m.reply(`Sukses menaikan jabatan @${usr.split('@')[0]}!`, null, { mentions: [usr] });
-        return;
-    }
-  
-    if (!m.mentionedJid[0]) throw `Tag siapa yang ingin dinaikkan jabatannya?`;
-  
-    let users = m.mentionedJid.filter(
-        (u) => !(u == ownerGroup || u.includes(conn.user.jid))
-    );
-  
-    for (let user of users) {
-        if (user.endsWith("@s.whatsapp.net")) {
-            await conn.groupParticipantsUpdate(m.chat, [user], "promote");
-            m.reply(`Sukses ${command} @${user.split('@')[0]}!`, null, { mentions: [user] });
-        }
-    }
-    } catch (e) {
-      if (e !== false) {
-        console.log(e);
-        throw e;
-      }
-    }
-  };
-  
-  handler.help = ['promote @user'];
-  handler.tags = ['group', 'owner'];
-  handler.command = /^(promo?te|admin|\^)$/i;
-  
-  handler.group = true;
-  handler.botAdmin = true;
-  handler.admin = true;
-  handler.fail = null;
-  
-  export default handler;
-  
-  //fix bagian ketika comamnd berjalan mreplay tidak mau terkirim
-  //m.reply('Sukses promote @${usr.split('@')[0]}!', null, {
+       try {
+         if (m.isZapo) return;
+
+         if (!(isAdmin || isOwner)) {
+           global.dfail("admin", m, conn);
+           throw false;
+         }
+
+         let ownerGroup = m.chat.split`-`[0] + "@s.whatsapp.net";
+         let users = [];
+
+         if (m.quoted) {
+           if (
+             m.quoted.sender === ownerGroup ||
+             m.quoted.sender === conn.user.jid
+           )
+             return;
+           users = [m.quoted.sender];
+         } else if (m.mentionedJid && m.mentionedJid.length > 0) {
+           users = m.mentionedJid;
+         } else {
+           throw "Tag siapa yang ingin dinaikkan jabatannya?";
+         }
+
+         users = users.filter(
+           (u) => !(u == ownerGroup || u.includes(conn.user.jid)),
+         );
+
+         if (users.length === 0)
+           return m.reply("Tidak ada user valid yang bisa dipromote!");
+
+         for (let user of users) {
+           if (user.endsWith("@s.whatsapp.net")) {
+             try {
+               await conn.groupParticipantsUpdate(m.chat, [user], "promote");
+               await m.reply(
+                 `Sukses ${command} @${user.split("@")[0]}!`,
+                 m.chat,
+                 {
+                   mentions: [user],
+                 },
+               );
+             } catch (e) {
+               console.error(e);
+               await m.reply(
+                 `Gagal ${command} @${user.split("@")[0]}!`,
+                 m.chat,
+                 {
+                   mentions: [user],
+                 },
+               );
+             }
+           }
+         }
+       } catch (e) {
+         if (e !== false) {
+           console.log(e);
+           throw e;
+         }
+       }
+};
+
+handler.help = ['promote @user'];
+handler.tags = ['group', 'owner'];
+handler.command = /^(promo?te|admin|\^)$/i;
+handler.group = true;
+handler.botAdmin = true;
+handler.admin = true;
+handler.fail = null;
+
+export default handler;

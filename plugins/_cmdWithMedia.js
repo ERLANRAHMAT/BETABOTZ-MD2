@@ -1,10 +1,10 @@
-import * as baileys from '@whiskeysockets/baileys';
-const loadBaileys = async () => baileys;
+import * as zapo from '../lib/simple.js';
+const loadZapo = async () => zapo;
 
 import pkg from 'node-webpmux';
 const { Image } = pkg;
 
-let baileysCache = null;
+let zapoCache = null;
 
 /** Convert comma-separated decimal keys to hex keys (migration from old format).
  *  Runs on every message — cheap after first pass since converted keys won't match. */
@@ -26,11 +26,11 @@ function hashToHex(fileSha256) {
     return Buffer.from(fileSha256).toString('hex');
 }
 
-async function getBaileys() {
-    if (!baileysCache) {
-        baileysCache = await loadBaileys();
+async function getZapo() {
+    if (!zapoCache) {
+        zapoCache = await loadZapo();
     }
-    return baileysCache;
+    return zapoCache;
 }
 
 // ─── EXIF sticker-pack-id helpers ──────────────────────────
@@ -63,7 +63,7 @@ async function downloadSticker(m) {
 
 export default {
     async all(m, chatUpdate) {
-        if (m.isBaileys) return;
+        if (m.isZapo) return;
         if (!m.message) return;
 
         // Run migration — no guard so it also catches keys loaded after init
@@ -123,8 +123,8 @@ export default {
 
 /** Fabricate a messages.upsert to trigger the command handler. */
 async function emitCommand(m, chatUpdate, text, mentionedJid) {
-    const baileys = await getBaileys();
-    const { proto, generateWAMessage } = baileys;
+    const zapo = await getZapo();
+    const { proto, generateWAMessage } = zapo;
 
     try {
         const fakeMsg = await generateWAMessage(m.chat, {

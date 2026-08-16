@@ -1,41 +1,33 @@
-import { readdirSync, statSync, unlinkSync } from 'fs';
+import fs from 'fs';
 import { join } from 'path';
 
-let handler = async (m, { conn, usedPrefix, args }) => {
+let handler = async (m, { conn }) => {
 
-  const sesi = ['./sessions'];
-  const array = [];
-
-  sesi.forEach(dirname => {
-    readdirSync(dirname).forEach(file => {
-      if (file !== 'creds.json') { 
-        array.push(join(dirname, file));
-      }
-    });
-  });
-
+  const dirname = global.opts?._?.[0] || 'sessions';
   const deletedFiles = [];
 
-  array.forEach(file => {
-    const stats = statSync(file);
+  if (!fs.existsSync(dirname)) {
+    return conn.reply(m.chat, 'Folder sesi tidak ditemukan.', m);
+  }
 
-    if (stats.isDirectory()) {
-      console.log(`Skipping directory: ${file}`);
-    } else {
-      unlinkSync(file);
-      deletedFiles.push(file);
-    }
+  // Reset penuh: hapus SEMUA file sesi (state.sqlite, state.sqlite-shm,
+  // state.sqlite-wal, dan sisa file lain). Setelah restart bot akan logout
+  // dan minta pairing/QR baru.
+  fs.readdirSync(dirname).forEach(file => {
+    const full = join(dirname, file);
+    try {
+      if (fs.statSync(full).isFile()) {
+        fs.unlinkSync(full);
+        deletedFiles.push(full);
+      }
+    } catch { /* skip yang gagal dihapus */ }
   });
-
-  conn.reply(m.chat, 'Success!', m);
 
   if (deletedFiles.length > 0) {
     console.log('Deleted files:', deletedFiles);
-    conn.reply(m.chat, `Deleted files:\n${deletedFiles.join('\n')}`, m);
-  }
-
-  if (deletedFiles.length == 0) {
-    conn.reply(m.chat, 'tidak ada file yang tersisa di folder sessions', m);
+    conn.reply(m.chat, `Sesi dihapus (${deletedFiles.length} file):\n${deletedFiles.join('\n')}\n\n⚠️ Bot akan logout & minta pairing/QR baru saat restart.`, m);
+  } else {
+    conn.reply(m.chat, 'tidak ada file yang tersisa di folder sesi', m);
   }
 };
 

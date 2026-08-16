@@ -1,3 +1,5 @@
+//import db from '../lib/database.js'
+
 import { createHash } from 'crypto';
 let handler = async function (m, { conn, args, command, usedPrefix}) {
   if (!args[0]) throw `✳️ *Masukkan nomor seri*\ncontoh! ${usedPrefix + command} nomorseri\n\nNomor seri dapat di lihat di\n\n*${usedPrefix}nomorseri*`
@@ -8,7 +10,7 @@ let handler = async function (m, { conn, args, command, usedPrefix}) {
   m.reply(`✅ Success`)
 }
 handler.help = ['unreg <Nomor Seri>'] 
-handler.tags = ['rg']
+handler.tags = ['xp']
 
 handler.command = ['unreg'] 
 handler.register = true

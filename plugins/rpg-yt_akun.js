@@ -40,6 +40,7 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
 🟧 *Gold PlayButton:* ${goldButton}
 💎 *Diamond PlayButton:* ${diamondButton}`, contextInfo: { mentionedJid: [m.sender] }}, { quoted: m });
         } else if (/^live youtuber/i.test(command)) {
+          // (perintah live youtuber — diproses oleh plugin lain)
         } else {
             return await conn.reply("Perintah tidak dikenali.\n*.akunyt*\n> Untuk mengecek akun YouTube Anda\n*.live youtuber [judul live]*\n> Untuk memulai aktivitas live streaming.");
         }

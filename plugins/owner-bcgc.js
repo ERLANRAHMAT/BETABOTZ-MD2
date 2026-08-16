@@ -8,17 +8,8 @@ let handler = async (m, { conn, isROwner, text }) => {
     m.reply(`Mengirim Broadcast Ke ${anu.length} Chat, Waktu Selesai ${anu.length * 0.5 } detik`)
     for (let i of anu) {
     await delay(500)
-    await conn
-      .sendMessage(
-        i,
-        {
-          image: { url: "https://telegra.ph/file/aa76cce9a61dc6f91f55a.jpg" },
-          caption: pesan,
-          mentions: [m.sender],
-        },
-        { quoted: m },
-      )
-      .catch((_) => _);
+    
+    await conn.sendMessage(i, { image: { url: 'https://telegra.ph/file/aa76cce9a61dc6f91f55a.jpg' }, caption: pesan, mentions: [m.sender] }, { quoted: m }).catch(_ => _)
     }
   m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
 }

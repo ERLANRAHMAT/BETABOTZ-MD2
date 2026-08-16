@@ -1,9 +1,8 @@
-import * as baileys from '@whiskeysockets/baileys';
-
-
+import * as zapo from '../lib/simple.js';
 
 let handler = async (m, { conn, text }) => {
-  const { MessageType } = baileys;
+  const { MessageType } = zapo;
+  
   if (!text) {
     throw 'Masukkan jumlah money yang ingin ditambahkan pada pengguna. Contoh: .addmoney @user 10';
   }

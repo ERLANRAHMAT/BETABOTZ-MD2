@@ -1,8 +1,8 @@
-import * as baileys from '@whiskeysockets/baileys';
-
+import * as zapo from '../lib/simple.js';
 
 let handler = async (m, { conn, text }) => {
-  const { MessageType } = baileys;
+  const { MessageType } = zapo;
+  
   if (!text) {
     throw 'Masukkan jumlah xp yang ingin ditambahkan pada pengguna. Contoh: .addxp @user 10';
   }

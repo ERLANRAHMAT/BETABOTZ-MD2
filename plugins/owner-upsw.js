@@ -1,118 +1,68 @@
-import fetch from 'node-fetch';
-import FormData from 'form-data'; 
-import uploadFile from '../lib/uploadFile.js';
-import uploadImage from '../lib/uploadImage.js';
+const handler = async (m, { conn, command, args, usedPrefix }) => {
+    if (!m.isGroup) return m.reply("❌ Hanya bisa digunakan di grup.");
 
-const commandList = ["upsw"];
+    const teks = args.length >= 1
+        ? args.slice(0).join(" ")
+        : (m.quoted && m.quoted.text ? m.quoted.text : "");
 
-const mimeAudio = "audio/mpeg";
-const mimeVideo = "video/mp4";
-const mimeImage = "image/jpeg";
-
-let handler = async (m, { conn, command, args }) => {
-    let teks;
-    if (args.length >= 1) {
-        teks = args.slice(0).join(" ");
-    } else if (m.quoted && m.quoted.text) {
-        teks = m.quoted.text;
-    }
-
-    if (m.quoted && m.quoted.mtype) {
-        const mtype = m.quoted.mtype;
-        let type;
-
-        if (mtype === "audioMessage") {
-            type = "vn";
-        } else if (mtype === "videoMessage") {
-            type = "vid";
-        } else if (mtype === "imageMessage") {
-            type = "img";
-        } else if (mtype === "extendedTextMessage") {
-            type = "txt";
-        } else {
-            throw "❌ Media type tidak valid!";
-        }
-
-        const doc = {};
-
-        if (type === "vn") {
-            const link = await (type === "img" ? uploadImage : uploadFile)(
-                await m.quoted.download(),
-            );
-            doc.mimetype = mimeAudio;
-            doc.audio = link ? { url: link } : await generateVoice("id-ID", "id-ID-ArdiNeural", teks);
-        } else if (type === "vid") {
-            const link = await (type === "img" ? uploadImage : uploadFile)(
-                await m.quoted.download(),
-            );
-            doc.mimetype = mimeVideo;
-            doc.caption = teks;
-            doc.video = link ? { url: link } : { url: global.giflogo || '' }; 
-        } else if (type === "img") {
-            const link = await (type === "img" ? uploadImage : uploadFile)(
-                await m.quoted.download(),
-            );
-            doc.mimetype = mimeImage;
-            doc.caption = teks;
-            doc.image = link ? { url: link } : { url: global.logo || '' };
-        } else if (type === "txt") {
-            doc.text = teks;
-        }
-
+    try {
         const group = await conn.groupMetadata(m.chat);
-        const pp = [];
-        for (let b of group.participants) {
-            pp.push(b.id);
+        if (!group || !group.participants?.length) {
+            return m.reply("❌ Gagal mengambil anggota grup.");
         }
 
-        await conn
-            .sendMessage("status@broadcast", doc, {
-                backgroundColor: getRandomHexColor(),
-                font: Math.floor(Math.random() * 9),
-                statusJidList: pp
-            })
-            .then((res) => {
-                conn.reply(m.chat, `Sukses upload ${type}`, res);
-            })
-            .catch(() => {
-                conn.reply(m.chat, `Gagal upload ${type}`, m);
-            });
-    } else {
-        throw "❌ Tidak ada media yang diberikan!";
+        const recipients = [...new Set(
+            group.participants
+                .map((p) => {
+                    if (p.phoneNumber) {
+                        const num = String(p.phoneNumber).replace(/[^0-9]/g, "");
+                        return num ? num + "@s.whatsapp.net" : null;
+                    }
+                    if (p.jid && String(p.jid).endsWith("@s.whatsapp.net")) return p.jid;
+                    return null;
+                })
+                .filter(Boolean)
+        )];
+
+        if (!recipients.length) {
+            return m.reply("❌ Tidak ada member dengan nomor valid.");
+        }
+
+        let content;
+        const quoted = m.quoted;
+
+        if (quoted && quoted.mtype) {
+            const buffer = await quoted.download();
+            if (!buffer) return m.reply("❌ Gagal mengunduh media.");
+            const mtype = quoted.mtype;
+            const mimetype = quoted.msg?.mimetype || quoted.mimetype;
+            if (mtype === "imageMessage") {
+                content = { type: "image", media: buffer, mimetype: mimetype || "image/jpeg", caption: teks };
+            } else if (mtype === "videoMessage") {
+                content = { type: "video", media: buffer, mimetype: mimetype || "video/mp4", caption: teks };
+            } else if (mtype === "audioMessage") {
+                content = { type: "audio", media: buffer, mimetype: mimetype || "audio/mpeg", ptt: !!quoted.msg?.ptt };
+            } else if (mtype === "extendedTextMessage" || mtype === "conversation") {
+                content = teks || " ";
+            } else {
+                return m.reply("❌ Media tidak didukung. Gunakan gambar/video/vn/teks.");
+            }
+        } else {
+            if (!teks) return m.reply(`*Cara Pakai:*\n${usedPrefix + command} teks status\natau reply media + ${usedPrefix + command}`);
+            content = teks;
+        }
+
+        await conn._client.status.send({ content, recipients });
+        return m.reply("✅ Status berhasil diupload ke semua member grup.");
+    } catch (err) {
+        console.error("upsw error:", err);
+        throw err
     }
 };
 
-handler.help = commandList;
+handler.help = handler.command = ["upsw"];
 handler.tags = ["owner"];
 handler.rowner = true;
-handler.command = new RegExp(`^(${commandList.join("|")})$`, "i");
+handler.group = true;
 
 export default handler;
-
-async function generateVoice(
-    Locale = "id-ID",
-    Voice = "id-ID-ArdiNeural",
-    Query,
-) {
-    const formData = new FormData();
-    formData.append("locale", Locale);
-    formData.append("content", `<voice name="${Voice}">${Query}</voice>`);
-    formData.append("ip", "46.161.194.33");
-    const response = await fetch("https://app.micmonster.com/restapi/create", {
-        method: "POST",
-        body: formData,
-    });
-    return Buffer.from(
-        ("data:audio/mpeg;base64," + (await response.text())).split(",")[1],
-        "base64",
-    );
-}
-
-function getRandomHexColor() {
-    return (
-        "#" +
-        Math.floor(Math.random() * 16777215)
-            .toString(16)
-            .padStart(6, "0")
-    );
-}

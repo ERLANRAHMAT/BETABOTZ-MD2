@@ -29,7 +29,8 @@ let handler = async (m, { conn, text }) => {
                 (p.id && p.id.includes(userJid.split('@')[0]))
             )
             if (participant) {
-                userJid = participant.id || participant.jid
+                // prefer nomor (PN) — participant.jid dari zapo bisa berupa @lid
+                userJid = participant.phoneNumber || participant.id || participant.jid
             } else {
                 return conn.reply(m.chat, `*❏ DELETE USER*\n\nTidak dapat menemukan mapping nomor dari LID ini`, m)
             }

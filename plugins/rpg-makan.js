@@ -151,7 +151,6 @@ gunakan spasi
                             } else conn.reply(m.chat, ` Sushi kamu kurang` ,m)
         } else conn.reply( m.chat, `Stamina kamu sudah penuh`, m)
         break
-        break
         case 'roti':
         if (user.stamina < 100) {
         	if (user.roti >= count * 1) {

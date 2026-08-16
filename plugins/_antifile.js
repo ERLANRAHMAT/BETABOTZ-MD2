@@ -1,24 +1,19 @@
-async function before(m, { isAdmin, isBotAdmin }) {
-    if (m.isBaileys || !(m.mtype === "documentMessage") || !global.db.data.chats[m.chat]?.antifile) return;
+const exports = {};
+exports.before = async function(m, { isAdmin, isBotAdmin }) {
+  if (m.isZapo && m.fromMe) return;
+  let chat = global.db.data.chats[m.chat];
+  let isDocument = m.mtype;
+  if (chat && chat.antifile && isDocument) {
     if (isAdmin || !isBotAdmin) {
-        // Jika pengirim adalah admin atau bot bukan admin, tidak melakukan apa-apa
-      } else {
-
-    const user = global.db.data.users[m.sender];
-    user.banned = false;
-    const warningMessage = '⚠️ *File Terdeteksi!* ⚠️\nKamu telah mengirim file. Waspada dalam mendownload file, bisa saja mengandung virus atau phising.';
-    await m.reply(warningMessage);
-
-    const deleteMessage = {
-        delete: {
-            remoteJid: m.chat,
-            fromMe: false,
-            id: m.key.id,
-            participant: m.key.participant
-        }
-    };
-    await this.sendMessage(m.chat, deleteMessage);
+      // admin/bot bukan admin → file tidak dihapus
+    } else {
+      if (isDocument === "documentMessage") {
+        await this.sendMessage(m.chat, { delete: m.key });
+        return true;
       }
+    }
+  }
+  return true;
 }
 
-export default { before };
+export default exports;

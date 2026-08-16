@@ -1,4 +1,4 @@
-
+import * as zapo from '../lib/simple.js';
 
 let wm = global.wm;
 let handler = async (m, {
@@ -6,6 +6,8 @@ let handler = async (m, {
 	usedPrefix,
 	owner
 }) => {
+  const { MessageType } = zapo;
+  
 		let lastFishingTime = global.db.data.users[m.sender].lastmancing || 0;
 		let timeDiff = Date.now() - lastFishingTime;
 		let remainingTime = 180000 - timeDiff; 

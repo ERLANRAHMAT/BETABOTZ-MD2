@@ -87,6 +87,9 @@ function start(file) {
 
     if (code === 0) return;
 
+    // unwatch dulu: restart bisa terjadi berkali-kali -> tanpa ini StatWatcher
+    // main.js menumpuk listener (leak -> MaxListenersExceededWarning)
+    fs.unwatchFile(args[0]);
     fs.watchFile(args[0], () => {
       fs.unwatchFile(args[0]);
 	  console.error('\x1b[31m%s\x1b[0m', `File ${args[0]} has been modified. Script will restart...`);
@@ -111,10 +114,10 @@ function start(file) {
     }
     console.log('\x1b[33m%s\x1b[0m', `🟡 Found ${files.length} plugins in folder ${pluginsFolder}`);
     try {
-      require.resolve('@whiskeysockets/baileys');
-      console.log('\x1b[33m%s\x1b[0m', `🟡 Baileys library version ${require('@whiskeysockets/baileys/package.json').version} is installed`);
+      require.resolve('zapo-js');
+      console.log('\x1b[33m%s\x1b[0m', `🟡 zapo-js library version ${require('zapo-js/package.json').version} is installed`);
     } catch (e) {
-      console.error('\x1b[31m%s\x1b[0m', `❌ Baileys library is not installed`);
+      console.error('\x1b[33m%s\x1b[0m', `❌ zapo-js library is not installed`);
     }
   });
 

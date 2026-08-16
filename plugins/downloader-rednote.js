@@ -5,7 +5,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text.match(/xhslink|xiaohongshu/gi)) throw `URL Tidak Valid!`;
     try {
         m.reply(wait);
-        const res = await axios.get(`https://api.betabotz.eu.org/api/download/rednote?url=${text}&apikey=${btc}`);
+        const res = await axios.get(`https://api.betabotz.eu.org/api/download/rednote?url=${text}&apikey=${lann}`);
         const result = res.data?.result;
         if (!result || !result.media) throw `Gagal mengambil data!`;
 

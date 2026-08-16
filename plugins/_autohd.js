@@ -1,29 +1,35 @@
 import fetch from 'node-fetch';
 import uploadImage from '../lib/uploadImage.js';
-export const before = async function(m, { isAdmin, isBotAdmin }) {
-  if (global.db.data.users[m.sender].limit > 0) {
-    if (m.isBaileys && m.fromMe) return;
-    let chat = global.db.data.chats[m.chat]
-    let isFoto = m.mtype
-    if (chat.autohd && isFoto ) {
-      if (!isBotAdmin) {
-      } else {
-        if (global.db.data.users[m.sender].limit > 0) 
-        global.db.data.users[m.sender].limit -= 1
-        const q = m.quoted ? m.quoted : m;
-        const mime = (q.msg || q).mimetype || q.mediaType || '';
-        if (/^image/.test(mime) && !/webp/.test(mime)) {
-          const img = await q.download();
-          const out = await uploadImage(img);
-          const api = await fetch(`https://api.betabotz.eu.org/api/tools/remini?url=${out}&apikey=${lann}`);
-          const image = await api.json();
-          const { url } = image 
-           conn.sendFile(m.chat, url, null, wm, m);
-           
-        }
-      }
-    }
+
+let handler = m => m;
+
+handler.all = async function(m) {
+    let chat = global.db.data.chats[m.chat];
+    let user = global.db.data.users[m.sender];
     
-    return true
-  }
-  }
+    if (chat && chat.autohd && !chat.isBanned && !user.banned && !m.isZapo) {
+        let q = m;
+        let mime = (q.msg || q).mimetype || q.mediaType || '';
+        
+        if (/^image/.test(mime) && !/webp/.test(mime)) {
+            try {
+                let img = await q.download();
+                if (!img) return;              
+                let out = await uploadImage(img);
+                
+                const api = await fetch(`https://api.betabotz.eu.org/api/tools/remini?url=${out}&apikey=${lann}`);
+                const image = await api.json();
+                const url = image.url;
+                
+                if (url) {
+                    await this.sendFile(m.chat, url, 'hd.jpg', '✅ *Auto HD Berhasil*', m);
+                }
+            } catch (e) {
+                console.error('Error auto HD image:', e);
+            }
+        }
+    }
+    return !0;
+}
+
+export default handler;
