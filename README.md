@@ -3,9 +3,12 @@
 
 ### Pembaruan:
 
-* Menggunakan **baileys versi terbaru** (original, bukan mod)
+* Menggunakan **ZAPO versi terbaru** (original, bukan mod)
+* **Server HTTP Native** Menghapus dependensi `express` untuk performa server yang lebih ringan
 * Menggunakan **ESM** (sebelum ny Cjs)
-* Support **pairing code only** sesuai ketentuan
+* ***Sesi lokal SQLite** Kredensial disimpan di `sessions/state.sqlite` (pakai `@zapo-js/store-sqlite` + `better-sqlite3`)
+* ***Database SQLite** Database bot (`users`, `chats`, `stats`, dll) kini tersimpan di `database/database.sqlite` (WAL, atomic) menggantikan `database.json`; auto-migrasi dari JSON lama saat boot pertama
+* **Koneksi Dual Mode** Mendukung Pairing Code secara default, dan QR Code bisa diakses dengan argumen `--qr`
 * Wajib menggunakan **panel dengan Node.js 22+** (sesuai ketentuan baileys terbaru)
 * Dapat menggunakan **Bun 1.3.1**
 * Fitur 90% implementasi dari **website API**
@@ -143,6 +146,7 @@ https://github.com/clhuang/heroku-buildpack-webp-binaries.git
 ### Jalankan (Pairing Code):
 ```bash
 git clone https://github.com/ERLANRAHMAT/BETABOTZ-MD2
+git checkout zapo-esm
 cd BETABOTZ-MD2
 npm install
 npm start
@@ -165,6 +169,33 @@ npm run pairing
 npm run pairingqr
 ```
 - Running khusus langsung pairing dengan Qr
+
+---
+
+## Daftar Argumen
+
+```bash
+node index.js [--options]
+```
+
+| Argumen | Fungsi |
+|---------|--------|
+| `--qr` | Mengaktifkan mode autentikasi QR Code (secara default menggunakan Pairing Code) |
+| `--self` | Hanya Owner & Bot |
+| `--pconly` | Hanya merespon chat pribadi |
+| `--gconly` | Hanya merespon chat grup |
+| `--swonly` | Hanya merespon status |
+| `--restrict` | Aktifkan plugin terbatas (risiko kena banned) |
+| `--img` | Tampilkan gambar di terminal |
+| `--autoread` | Tandai semua pesan masuk sebagai sudah dibaca |
+| `--nyimak` | Mode silent — hanya log, tidak membalas |
+| `--test` | Mode pengembangan |
+| `--prefix <prefix>` | Set prefix (setiap karakter jadi prefix terpisah) |
+| `--db <mongodb url>` | Pakai MongoDB (contoh: `--db mongodb://user:pass@host:27017/bot`) |
+| `--db json` | Pakai database JSON file (`database.json`) — default sebelumnya |
+| `--db sqlite` | Pakai SQLite (`database/database.sqlite`, WAL) — **default** |
+| `--db <https://...>` | Pakai cloud adapter |
+
 ---
 
 ## Website ANIQU-task
