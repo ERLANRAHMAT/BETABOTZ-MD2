@@ -40,15 +40,17 @@ let handler = async (m, { conn, participants, isOwner, isAdmin }) => {
   }
 
   try {
-      for (let user of targets) {
-        if (user.endsWith("@s.whatsapp.net")) {
-          await conn.groupParticipantsUpdate(m.chat, [user], "remove");
-          await delay(500); 
-        }
+    for (let user of targets) {
+      if (user.endsWith("@s.whatsapp.net")) {
+        await conn.groupParticipantsUpdate(m.chat, [user], "remove");
+        await delay(500);
       }
+    }
   } catch (e) {
-      console.error(e);
-      throw 'Terjadi kesalahan saat mencoba mengeluarkan member.';
+    if (e !== false) {
+      console.log(e);
+      throw e;
+    }
   }
 };
 

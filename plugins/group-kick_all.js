@@ -41,7 +41,10 @@ let handler = async (m, { conn, participants, isOwner, isAdmin }) => {
       await conn.groupParticipantsUpdate(m.chat, [targets[i]], "remove");
       suksesKick.push(targets[i]);
     } catch (e) {
-      console.error(`Gagal kick ${targets[i]}:`, e);
+      if (e !== false) {
+        console.log(e);
+        throw e;
+      }
     }
     
     // Delay agar tidak terkena limit / ban dari WhatsApp
