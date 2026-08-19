@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-let handler = async (m, { conn, text, usedPrefix, command }) => {
+let handler = async (m, { conn, text, usedPrefix, command, args }) => {
     if (!text) throw `*🚩 Example:* ${usedPrefix}${command} https://terabox.com/s/1aD9T7_Xe0oroBwlfzyWXUA`
     if (!args[0].match(/https?:\/\/(www\.)?(terabox\.com|teraboxapp\.com|terabox\.link)/gi)) throw "❌ URL Terabox Tidak Ditemukan!";
     await m.reply(wait)

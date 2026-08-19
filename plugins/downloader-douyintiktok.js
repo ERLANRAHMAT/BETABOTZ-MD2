@@ -2,7 +2,7 @@ import axios from 'axios';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) {
-        throw `*❌ Masukkan URL!*\n\n*Contoh:*\n${usedPrefix + command} https://vt.tiktok.com/ZSY8XguF2/`;
+        throw `*❌ Masukkan URL!*\n\n*Contoh:*\n${usedPrefix + command} https://vt.tiktok.com/ZSVh18yL4/`;
     }
 
     try {
