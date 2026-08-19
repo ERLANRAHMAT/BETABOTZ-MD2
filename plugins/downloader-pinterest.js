@@ -22,6 +22,7 @@ async function sendImages(conn, chat, urls, count, quoted, isCancelled) {
 }
 
 let handler = async (m, { conn, usedPrefix, command, args }) => {
+  if (!args[0].match(/https?:\/\/(www\.)?(pinterest\.com|pin\.it)/gi)) throw "❌ URL Pinterest Tidak Ditemukan!";
   try {
       if (!args[0]) throw `*🚩 Example:* ${usedPrefix}${command} minato aqua`;
     await m.reply('Sedang mencari...');

@@ -7,7 +7,7 @@ const handler = async (m, {
     command
 }) => {
     if (!args[0]) throw `Masukkan URL!\n\ncontoh:\n${usedPrefix + command} https://twitter.com/gofoodindonesia/status/1229369819511709697`;
-    if (!args[0].match(/https?:\/\/(www\.)?(twitter\.com|x\.com)/gi)) throw "URL Tidak Ditemukan!";
+    if (!args[0].match(/https?:\/\/(www\.|m\.)?(twitter\.com|x\.com)/gi)) throw "❌ URL X/Twitter Tidak Ditemukan!";
     m.reply(wait);
     try {
         const api = await fetch(`https://api.betabotz.eu.org/api/download/twitter2?url=${args[0]}&apikey=${lann}`);

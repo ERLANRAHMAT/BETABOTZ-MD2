@@ -3,9 +3,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) {
     throw `Masukkan URL!\n\ncontoh:\n${usedPrefix + command} https://www.threads.net/@diiemofc/post/Cujx6ryoYx6?igshid=NTc4MTIwNjQ2YQ%3D%3D`;
   }
-  if (!args[0].match(/threads/gi)) {
-    throw `URL Tidak Ditemukan!`;
-  }
+  if (!args[0].match(/https?:\/\/(www\.)?threads\.net/gi)) throw "❌ URL Threads Tidak Ditemukan!";
   m.reply(wait);
   try {
     const api = await fetch(`https://api.betabotz.eu.org/api/download/threads?url=${args[0]}&apikey=${lann}`).then(results => results.json());
