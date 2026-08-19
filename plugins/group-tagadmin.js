@@ -25,9 +25,6 @@ let handler = async (m, { conn, participants, groupMetadata }) => {
 *Name:* 
 ${groupMetadata.subject}
 
-*Group Owner:* 
-@${ownerGroup.split('@')[0]}
-
 *Group Admins:*
 ${listAdmin}
 `.trim()
