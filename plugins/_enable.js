@@ -7,6 +7,18 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     let isAll = false
     let isUser = false
     switch (type) {
+      case "adminonly":
+        if (!m.isGroup) {
+          if (!isOwner) {
+            global.dfail("group", m, conn);
+            throw false;
+          }
+        } else if (!isAdmin) {
+          global.dfail("admin", m, conn);
+          throw false;
+        }
+        chat.adminonly = isEnable;
+        break;
       case "notifgempa":
         if (m.isGroup) {
           if (!(isAdmin || isOwner)) {
@@ -370,6 +382,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
           return m.reply(
             `
 List option:
+| adminonly
 | autowm
 | anticall
 | antilinkch
@@ -405,6 +418,7 @@ List option:
 | swonly
 | autodatabase
 | nsfw
+
 Contoh:
 ${usedPrefix}enable welcome
 ${usedPrefix}disable welcome
