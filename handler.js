@@ -1143,7 +1143,7 @@ export default {
                         user.commandTotal++
                         user.lastCmd = Date.now()
                     }
-                    if (m.isGroup && chat.adminonly && !isAdmin && !isOwner) {
+                    if (m.isGroup && global.db.data.chats[m.chat]?.adminonly && !isAdmin && !isOwner) {
                         fail('admin', m, this)
                         continue
                     }
