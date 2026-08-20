@@ -1,39 +1,25 @@
 import { format } from 'util';
-import WebP from 'node-webpmux';
-const { Image } = WebP;
+import pkg from 'node-webpmux';
+import { parseExifJSON } from '../lib/exif.js';
+const { Image } = pkg;
 
-let handler = async (m) => {
-    if (!m.quoted) throw 'Tag stikernya!';
-    
-    if (/sticker/.test(m.quoted.mtype)) {
-        try {
-            let gambar = new Image();
-            await gambar.load(await m.quoted.download());
-            
-            if (!gambar.exif) return m.reply('Stiker ini tidak memiliki data EXIF.');
-            let exifString = gambar.exif.toString('utf-8');
-            
-            let start = exifString.indexOf('{');
-            let end = exifString.lastIndexOf('}');
-            
-            if (start !== -1 && end !== -1) {
-                let jsonString = exifString.substring(start, end + 1);
-                let parsedData = JSON.parse(jsonString);
-                
-                m.reply(format(parsedData));
-            } else {
-                m.reply('Data EXIF pada stiker ini tidak memiliki format JSON yang valid.');
-            }
-        } catch (e) {
-            console.error(e);
-            throw e;
-        }
-    } else {
-        throw 'Pesan yang kamu tag bukan stiker!';
-    }
+var handler = async (m) => {
+	if (!m.quoted) return m.reply('Tag stiker nya!')
+	if (/sticker/i.test(m.quoted.mtype)) {
+		if (m.quoted.mtype === 'lottieStickerMessage' || m.quoted.isLottie || /was/i.test(m.quoted.mimetype || '')) {
+			return m.reply('Stiker lottie (bawaan WhatsApp) tidak memiliki EXIF.')
+		}
+		try {
+			var gambar = new Image()
+			await gambar.load(await m.quoted.download())
+			const meta = parseExifJSON(gambar.exif)
+			if (!meta) return m.reply('Stiker ini tidak memiliki EXIF.')
+			m.reply(format(meta))
+		} catch (e) {
+			m.reply('Gagal membaca EXIF stiker: ' + (e.message || e))
+		}
+	}
 };
-
 handler.command = handler.help = ['getexif'];
 handler.tags = ['sticker'];
-
 export default handler;

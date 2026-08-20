@@ -1,55 +1,60 @@
 {
-    "name": "BETABOTZ-MD2",
-    "version": "6.1.x - zapo",
-    "description": "Lightweight WhatsApp Bot",
-    "depecrated": false,
-    "type": "module",
-    "main": "index.js",
-    "directories": {
-        "lib": "lib",
-        "src": "src",
-        "plugins": "plugins"
-    },
-    "scripts": {
-        "preinstall": "node script/node/check-version.js",
-        "start": "node index.js --autocleartmp",
-        "test": "node test.js",
-        "test2": "nodemon index.js --autocleartmp",
-        "pairing": "rm -rf sessions && node index.js --autocleartmp",
-        "pairingqr": "rm -rf sessions && node index.js --autocleartmp --qr"
-    },
-    "keywords": [
-        "whatsapp-bot-md",
-        "whatsapp-bot",
-        "whatsapp",
-        "js-whatsapp",
-        "whatsapp",
-        "Games-wabot",
-        "wabot-aq",
-        "whiskeysockets",
-        "ERLANRAHMAT",
-        "baileys"
-    ],
-    "homepage": "https://bot.danafxc.my.id",
-    "author": {
-        "name": "ERLANRAHMAT"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/BOTCAHX/RTXZY-MD.git"
-    },
-    "bugs": {
-        "url": "https://github.com/BOTCAHX/RTXZY-MD/issues"
-    },
-    "license": "MIT",
-    "engines": {
-        "node": ">=22.0.0"
-    },
+  "name": "BETABOTZ-MD2",
+  "version": "6.2.x - zapo",
+  "description": "Lightweight WhatsApp Bot",
+  "depecrated": false,
+  "type": "module",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "src": "src",
+    "plugins": "plugins"
+  },
+  "scripts": {
+    "preinstall": "node script/node/check-version.js",
+    "start": "node index.js --autocleartmp",
+    "test": "node test.js",
+    "test2": "nodemon index.js --autocleartmp",
+    "mcp": "zapo-mcp-server",
+    "lint": "eslint . --cache",
+    "lint:fix": "eslint . --fix --cache",
+    "lint:debug": "eslint . --debug",
+    "pairing": "rm -rf sessions && node index.js --autocleartmp",
+    "pairingqr": "rm -rf sessions && node index.js --autocleartmp --qr"
+  },
+  "keywords": [
+    "whatsapp-bot-md",
+    "whatsapp-bot",
+    "whatsapp",
+    "js-whatsapp",
+    "whatsapp",
+    "Games-wabot",
+    "wabot-aq",
+    "botcahx",
+    "zapo-js",
+    "zapo",
+    "ERLANRAHMAT"
+  ],
+  "homepage": "https://github.com/BOTCAHX/RTXZY-MD",
+  "author": {
+    "name": "ERLANRAHMAT"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BOTCAHX/RTXZY-MD.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BOTCAHX/RTXZY-MD/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "dependencies": {
     "@vitalets/google-translate-api": "^9.0.0",
-    "@zapo-js/mcp-server": "^1.1.0",
+    "@zapo-js/mcp-server": "^1.2.0",
     "@zapo-js/media-utils": "^1.0.0",
-    "@zapo-js/store-sqlite": "^1.1.0",
+    "@zapo-js/store-sqlite": "^1.2.0",
     "async": "^3.2.4",
     "awesome-phonenumber": "^2.64.0",
     "axios": "^0.27.2",
@@ -99,7 +104,7 @@
     "ws": "^8.17.0",
     "yargs": "^17.5.1",
     "yt-search": "^2.10.3",
-    "zapo-js": "^1.7.0"
+    "zapo-js": "^1.8.0"
   },
   "overrides": {
     "jimp": "0.16.13",
