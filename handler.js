@@ -911,6 +911,7 @@ export default {
           if (!("autowm" in chat)) chat.autowm = false;
           if (!("autoacc" in chat)) chat.autoacc = false;
           if (!("antiLinkCh" in chat)) chat.antiLinkCh = false;
+          if (!("adminonly" in chat)) chat.adminonly = false;
         } else
           global.db.data.chats[m.chat] = {
             antiLinkCh: false,
@@ -967,6 +968,7 @@ export default {
             autowm: false,
             antidelete: false,
             autodl: true,
+            adminonly: false,
           };
         let memgc = global.db.data.chats[m.chat]?.memgc?.[m.sender];
         if (typeof memgc !== "object" || memgc === null) {
@@ -1164,7 +1166,10 @@ export default {
                         user.commandTotal++
                         user.lastCmd = Date.now()
                     }
-                    
+                    if (m.isGroup && global.db.data.chats[m.chat]?.adminonly && !isAdmin && !isOwner) {
+                        fail('admin', m, this)
+                        continue
+                    }
                     if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { // Both Owner
                         fail('owner', m, this)
                         continue
