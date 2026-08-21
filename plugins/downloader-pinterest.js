@@ -1,5 +1,4 @@
 import fetch from 'node-fetch';
-;
 
 const MAX_IMAGE_SEND = 20;
 const STOP_COMMANDS = ['stop', 'berhenti', 'cancel', 'batal'];
@@ -21,23 +20,24 @@ async function sendImages(conn, chat, urls, count, quoted, isCancelled) {
   return sent;
 }
 
-let handler = async (m, { conn, usedPrefix, command, args }) => {
-  if (!args[0].match(/https?:\/\/(www\.)?(pinterest\.com|pin\.it)/gi)) throw "❌ URL Pinterest Tidak Ditemukan!";
-  try {
-      if (!args[0]) throw `*🚩 Example:* ${usedPrefix}${command} minato aqua`;
-    await m.reply('Sedang mencari...');
+let handler = async (m, { conn, usedPrefix, command, text }) => {
+  if (!text) throw `*🚩 Format Salah!*\n\n*Contoh Pencarian:* ${usedPrefix}${command} minato aqua`;
 
-    const q = encodeURIComponent(args.join(' '));
-    let response = await fetch(`https://api.betabotz.eu.org/api/search/pinterest?text1=${q}&apikey=${lann}`);
+  try {
+    await m.reply('⏳ _Sedang mencari gambar, tunggu sebentar..._');
+
+    const q = encodeURIComponent(text);
+    // 2. Menggunakan global.lann agar apikey terbaca
+    let response = await fetch(`https://api.betabotz.eu.org/api/search/pinterest?text1=${q}&apikey=${global.lann}`);
     let data = await response.json();
     let res = Array.isArray(data.result) ? data.result.filter(Boolean) : [];
 
-    if (res.length < 1) return m.reply('Error, Foto Tidak Ditemukan');
+    if (res.length < 1) return m.reply('❌ Maaf, foto tidak ditemukan.');
 
     let user = global.db.data.users[m.sender] || {};
     user.pinterest = {
       step: 'ask',
-      query: args.join(' '),
+      query: text,
       results: res,
       total: res.length,
       chat: m.chat,
@@ -46,13 +46,10 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
     };
     global.db.data.users[m.sender] = user;
 
-    return m.reply(`Total ditemukan ada *${res.length}* gambar.
-Balas dengan angka berapa yang ingin ditampilkan, balas dengan *semua* jika ingin menampilkan semuanya, atau ketik *stop* untuk membatalkan.`);
+    return m.reply(`✅ Total ditemukan ada *${res.length}* gambar.\n\nBalas pesan ini dengan angka (contoh: 5) untuk menampilkannya.\nBalas *semua* untuk melihat semuanya.\nKetik *stop* untuk membatalkan.`);
   } catch (e) {
-    if (e !== false) {
-      console.log(e);
-      throw e;
-    }
+    console.error(e);
+    throw 'Terjadi kesalahan saat mengambil data dari Pinterest.';
   }
 };
 
@@ -67,11 +64,12 @@ handler.all = async function (m) {
     let text = m.text.trim().toLowerCase();
     let total = pending.total;
     let urls = pending.results;
+    
     if (STOP_COMMANDS.includes(text)) {
       pending.cancelled = true;
       delete user.pinterest;
       global.db.data.users[m.sender] = user;
-      return m.reply('Permintaan Pinterest telah dibatalkan.');
+      return m.reply('❌ Permintaan Pinterest telah dibatalkan.');
     }
 
     if (text === 'semua' || text === 'all') {
@@ -80,12 +78,12 @@ handler.all = async function (m) {
       global.db.data.users[m.sender] = user;
 
       if (count > MAX_IMAGE_SEND) {
-        await m.reply(`Total ${count} gambar ditemukan.`);
+        await m.reply(`⚠️ Total ${count} gambar ditemukan. Karena batas aman, bot hanya mengirimkan ${MAX_IMAGE_SEND} gambar pertama.`);
         await sendImages(this, m.chat, urls, MAX_IMAGE_SEND, m, () => pending.cancelled);
         let remaining = urls.slice(MAX_IMAGE_SEND);
         let extra = remaining.map((url, i) => `${MAX_IMAGE_SEND + i + 1}. ${url}`).join('\n');
         if (!pending.cancelled) {
-          await this.sendMessage(m.chat, { text: `Link gambar sisanya:\n${extra}` }, { quoted: m });
+          await this.sendMessage(m.chat, { text: `Link sisa gambar:\n\n${extra}` }, { quoted: m });
         }
         delete user.pinterest;
         global.db.data.users[m.sender] = user;
@@ -101,17 +99,19 @@ handler.all = async function (m) {
     let requested = parseInt(text.replace(/[^0-9]/g, ''), 10);
     if (isNaN(requested)) return;
     if (requested < 1) return m.reply('Masukkan angka minimal 1.');
-    if (requested > total) return m.reply(`Total hanya *${total}*. Silakan reply ulang dengan angka yang benar.`);
+    if (requested > total) return m.reply(`Total gambar hanya ada *${total}*. Silakan balas ulang dengan angka yang benar.`);
 
     let count = requested;
     pending.cancelled = false;
     global.db.data.users[m.sender] = user;
 
     if (count > MAX_IMAGE_SEND) {
-      await m.reply(`Permintaan ${count} gambar. Karena batas aman, saya mengirim ${MAX_IMAGE_SEND} gambar pertama saja.`);
+      await m.reply(`⚠️ Permintaan ${count} gambar. Karena batas aman, bot hanya mengirimkan ${MAX_IMAGE_SEND} gambar pertama.`);
       await sendImages(this, m.chat, urls, MAX_IMAGE_SEND, m, () => pending.cancelled);
       let extra = urls.slice(MAX_IMAGE_SEND, count).map((url, i) => `${MAX_IMAGE_SEND + i + 1}. ${url}`).join('\n');
-      if (!pending.cancelled && extra) await this.sendMessage(m.chat, { text: `Link gambar sisanya:\n${extra}` }, { quoted: m });
+      if (!pending.cancelled && extra) {
+          await this.sendMessage(m.chat, { text: `Link sisa gambar:\n\n${extra}` }, { quoted: m });
+      }
       delete user.pinterest;
       global.db.data.users[m.sender] = user;
       return;
@@ -121,10 +121,7 @@ handler.all = async function (m) {
     delete user.pinterest;
     global.db.data.users[m.sender] = user;
   } catch (e) {
-    if (e !== false) {
-      console.log(e);
-      throw e;
-    }
+    console.error(e);
   }
 };
 
