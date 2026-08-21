@@ -8,6 +8,10 @@ let handler = async (m, {
 }) => {
   if (command == 'tiktokslide' || command == 'ttslide') { // Fixed the condition for 'tiktokslide' and 'ttslide' commands
     if (!text) throw `Masukkan URL!\n\ncontoh: ${usedPrefix + command} https://vt.tiktok.com/ZSY8XX78X/`;
+    let tiktokRegex = /^(?:https?:\/\/)?(?:www\.|vt\.|vm\.|m\.)?tiktok\.com\//i;
+    if (!tiktokRegex.test(text.trim())) {
+      throw `*❌ Link tidak valid!*\nPastikan kamu memasukkan link TikTok yang benar.`;
+    }
     try {
       const api = await fetch(`https://api.betabotz.eu.org/api/download/ttslide?url=${text}&apikey=${lann}`);
       const res = await api.json();

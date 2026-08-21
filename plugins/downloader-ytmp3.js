@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://youtu.be/4rDOsvzTicY?si=3Ps-SJyRGzMa83QT`;    
+let handler = async (m, { conn, text, usedPrefix, command, args }) => {
+    if (!text) throw `Masukan URL!\n\ncontoh:\n${usedPrefix + command} https://youtu.be/4rDOsvzTicY?si=3Ps-SJyRGzMa83QT`;
+    if (!args[0].match(/https?:\/\/(www\.|m\.)?(youtube\.com|youtu\.be)/gi)) throw "❌ URL YouTube Tidak Ditemukan!";        
    try {
         m.reply(wait);      
         const response = await axios.get(`https://api.betabotz.eu.org/api/download/ytmp3?url=${text}&apikey=${lann}`);        
