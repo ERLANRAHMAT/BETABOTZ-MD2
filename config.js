@@ -24,6 +24,10 @@ global.author = "Bot WhatsApp"; // watermark stikcker author
 global.maxwarn = "3"; // Peringatan maksimum Warn
 global.lapor = false  // set true agar bot mengirim return json error ke grub lapor, jika false tidak ada
 global.groupLapor = "120363216901617825@g.us"; // grub dimana bot mengirim laporan error dari user
+global.sewaGroupLink = "https://chat.whatsapp.com/ISI_LINK_GRUP_SEWA"; // link invite group sewabot, muncul pas user akses fitur sewabot di luar group resmi
+global.sewaExpireWarnMinutes = 1; // menit sebelum expired, bot kirim peringatan ke grup (0 = mati)
+global.sewaMaxGroupsPerUser = 20; // maksimal jumlah grup aktif per user (0 = unlimited)
+global.sewaGroupJid = "120363356752280868@g.us"; // grup dimana user bisa mengakses fitur pembelian bot/sewabot, untuk mendapatkanya ketik di group yg diinginkan dan ketik => m.chat
 global.idchannel = ["123123412341234@newsletter"]; // channel untuk pengumuman bot max 3
 global.autobio = false; // Set true/false untuk mengaktifkan atau mematikan autobio (default: false)
 global.antiporn = false; // Set true/false untuk Auto delete pesan porno (bot harus admin) (default: false)
@@ -35,17 +39,20 @@ global.prefix = './#'
 
 
 // APIKEY INI WAJIB DI ISI! //
-global.lann = "YOUR_APIKEY_HERE";
-// global.lann = process.env.API_KEY_BETABOTZ;
+//global.lann = "YOUR_APIKEY_HERE";
+ global.lann = process.env.API_KEY_BETABOTZ;
 // aktifkan akses .env di atas jika kamu ingin menaruh key api di .env
 // Daftar terlebih dahulu https://api.betabotz.eu.org
 
 // AKSESKEY INI DI ISI JIKA DIPERLUKAN (e.g suno ai (ai music ) & fitur prem lainnya//
-global.aksesKey = "YOUR_AKSESKEY_HERE";
-// global.aksesKey = process.env.API_KEY_BETABOTZ_AKSESKEY;
+//global.aksesKey = "YOUR_AKSESKEY_HERE";
+ global.aksesKey = process.env.API_KEY_BETABOTZ_AKSESKEY;
 // aktifkan akses .env di atas jika kamu ingin menaruh key api di .env
 // Daftar terlebih dahulu https://api.betabotz.eu.org
-
+//global.btzPaygateApiKey = "Api Key kamu dari web btzpay"
+// Daftar di web.btzpay.my.id ( fitur ini akan digunakan untuk fitur donasi, sewabot otomatis, dan beli premium otomatis )
+global.btzPaygateApiKey = process.env.API_KEY_BTZPAYGATE;
+global.feeBtzPaygate = 0.7; // persen biaya transaksi btzpay (donasi/sewabot/premium), dihitung otomatis dari nominal. Default: 0.7%
 //INI OPTIONAL BOLEH DI ISI BOLEH JUGA ENGGA//
 global.btc = "YOUR_APIKEY_HERE";
 // global.btc = process.env.API_KEY_BTC;

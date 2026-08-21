@@ -1387,6 +1387,23 @@ export default {
         case 'leave':
         case 'invite':
         case 'invite_v4':
+            if (['add', 'invite', 'invite_v4'].includes(action)) {
+                // Bot join/join ulang tanpa sewa: kalau masih ada expired lama yang sudah lewat
+                // (bekas sewa yang bot-nya nggak sempat keluar), reset ke 0 biar nggak langsung
+                // di-out lagi oleh _expired.js. Sewa baru via .sewabot akan di-set ke masa depan.
+                const _botDigits = String(this.user?.jid || '').replace(/:\d+@/g, '@').replace(/[^0-9]/g, '')
+                const _isBotJoining = !!_botDigits && participants.some(p => {
+                    const j = p && typeof p === 'object' ? (p.phoneNumber || p.id || p.jid || p) : p
+                    return !!j && String(j).replace(/:\d+@/g, '@').replace(/[^0-9]/g, '') === _botDigits
+                })
+                if (_isBotJoining) {
+                    const cd = db.data.chats[id]
+                    if (cd && typeof cd.expired === 'number' && cd.expired > 0 && Date.now() > cd.expired) {
+                        cd.expired = 0
+                        cd.expiredWarned = false
+                    }
+                }
+            }
             if (chat.welcome) {
                 let groupMetadata = await this.groupMetadata(id).catch(() => null)
                 if (!groupMetadata) break

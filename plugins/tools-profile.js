@@ -30,7 +30,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
       age: -1,
       regTime: -1,
       premium: false,
-      premiumDate: 0,
+      premiumTime: 0,
       level: 0,
       money: 0,
       pasangan: "",
@@ -46,7 +46,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     exp,
     money,
     lastclaim,
-    premiumDate,
+    premiumTime,
     premium,
     registered,
     regTime,
@@ -240,7 +240,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
 ┌─⊷ *STATUS*
 ┃📌 • *Registered:* ${registered ? "Yes" : "No"}
 ┃⭐ • *Premium:* ${premium ? "Yes" : "No"}
-┃⏳ • *Premium Expired:* ${premium && premiumDate ? msToDate(premiumDate - Date.now()) : "-"}
+┃⏳ • *Premium Expired:* ${premium && premiumTime && premiumTime > Date.now() ? msToDate(premiumTime - Date.now()) : premium ? "Aktif" : "-"}
 ┃🕐 • *Last Claim:* ${lastclaim > 0 ? new Date(lastclaim).toLocaleString("id-ID") : "-"}
 └──────────────
 `.trim();
