@@ -1,5 +1,5 @@
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) throw `Format:\n${usedPrefix + command} <nomor/tag> | <pesan target> | <pesan balasan>\nContoh:\n${usedPrefix + command} 6281234567 | Kamu telat | Maaf pak\n${usedPrefix + command} @6281234567 | Hey | Sorry I'm late`
+  if (!text) throw `Format:\n${usedPrefix + command} <nomor/tag> | <pesan target> | <pesan balasan>\nContoh:\n${usedPrefix + command} 6281289694906 | Kamu telat | Maaf pak\n${usedPrefix + command} @6281234567 | Hey | Sorry I'm late`
 
   let split = text.split('|').map(v => v.trim())
   let [nomor, quote, ...balasan] = split
