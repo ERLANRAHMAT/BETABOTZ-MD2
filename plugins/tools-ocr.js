@@ -1,9 +1,10 @@
 import uploadImage from '../lib/uploadImage.js';
 import ocrapi from 'ocr-space-api-wrapper';
-import * as baileys from "@whiskeysockets/baileys";
+import * as zapo from '../lib/simple.js';
+
 
 let handler = async (m, { conn, text }) => {
-  const { MessageType } = baileys;
+  const { MessageType } = zapo;
       let q = m.quoted ? m.quoted : m
     let mime = (q.msg || q).mimetype || ''
     if (!mime) throw `balas gambar dengan perintah .ocr`

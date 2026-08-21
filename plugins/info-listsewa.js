@@ -1,5 +1,4 @@
-import * as baileys from "@whiskeysockets/baileys";
-
+import * as zapo from '../lib/simple.js';
 
 function msToDate(ms) {
     let temp = ms;
@@ -14,7 +13,7 @@ function msToDate(ms) {
 }
 
 let handler = async (m, { conn, text, command, usedPrefix }) => {
-  const { proto } = baileys;
+  const { proto } = zapo;
     let who = text;
     switch (command) {
         case 'listsewa':

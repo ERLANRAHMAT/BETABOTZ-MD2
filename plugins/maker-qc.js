@@ -1,10 +1,11 @@
 import { sticker5 } from '../lib/sticker.js';
 import axios from 'axios';
 import FormData from 'form-data';
-import pkg from 'file-type';
-const { fromBuffer } = pkg;
+import * as fileType from "file-type";
 import sharp from 'sharp';
 import fetch from 'node-fetch';
+const fromBuffer = fileType.fromBuffer || fileType.fileTypeFromBuffer;
+
 let handler = async (m, { conn, text, args }) => {
     try {
         let q = m.quoted ? m.quoted : m

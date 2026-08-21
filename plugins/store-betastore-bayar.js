@@ -1,10 +1,10 @@
-import * as baileys from "@whiskeysockets/baileys";
+import * as zapo from '../lib/simple.js';
 
 
 const qrisUrl = global.qris || 'https://cdn.filn.pp.ua/uploads/betabotzapi/41616.jpg'; 
 
 const handler = async (message, { conn }) => {
-  const { generateWAMessageContent, generateWAMessageFromContent, proto } = baileys;
+  const { generateWAMessageContent, generateWAMessageFromContent, proto } = zapo;
     const replyMessage = `Metode Pembayaran:\n\nDana: 081289694906\n\nSilakan lakukan pembayaran dan kirim bukti pembayaran dengan caption ID Transaksi.`;
     await message.reply(replyMessage);
 
