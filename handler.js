@@ -1240,6 +1240,25 @@ export default {
                             ? e
                             : e?.stack || util.format(e);
                         if (
+                          errorString.includes("rate-overlimit") ||
+                          errorString.match(/(429)/)
+                        ) {
+                          await m.reply(
+                            "⚠️ *Sistem Sedang Sibuk!*\n\nBot menerima terlalu banyak permintaan dalam waktu singkat. Tolong beri jeda beberapa saat sebelum mencoba lagi ya! ⏳",
+                          );
+                          return;
+                        }
+
+                        if (
+                          errorString.includes("Connection Closed") ||
+                          errorString.includes("Timeout")
+                        ) {
+                          await m.reply(
+                            "📶 *Koneksi Terputus!*\n\nKoneksi bot ke server WhatsApp sedang tidak stabil. Harap tunggu beberapa saat...",
+                          );
+                          return;
+                        }
+                        if (
                           errorString.includes("<html") ||
                           errorString.includes("Cloudflare") ||
                           errorString.match(
