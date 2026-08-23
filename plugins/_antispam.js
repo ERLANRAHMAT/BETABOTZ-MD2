@@ -5,7 +5,7 @@ export async function before(m, { isAdmin, isOwner }) {
 
     if (!user || !chat) return; 
 
-    if (m.isGroup && chat.antispam === false) return;
+    if (chat.antispam === false) return;
     if (isAdmin || isOwner || !user || !chat) return; 
     if ((m.chat.endsWith('broadcast') || m.fromMe) && !m.message && !chat.isBanned) return;
     
