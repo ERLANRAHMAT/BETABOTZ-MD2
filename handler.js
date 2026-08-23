@@ -996,26 +996,6 @@ export default {
                 this.msgqueque.push(m.id || m.key.id)
                 await delay(this.msgqueque.length * 1000)
             }
-            const prefix = global.prefix;
-
-            for (let name in global.plugins) {
-              let plugin = global.plugins[name];
-
-              if (!plugin) continue;
-              if (plugin.disabled) continue;
-              if (!plugin.all) continue;
-              if (typeof plugin.all !== "function") continue;
-
-              if (typeof prefix === "string" && !m.text.startsWith(prefix))
-                continue;
-
-              try {
-                await plugin.all.call(this, m, chatUpdate);
-              } catch (e) {
-                if (typeof e === "string") continue;
-                console.error(e);
-              }
-            }
             for (let name in global.plugins) {
                 let plugin = global.plugins[name]
                 if (!plugin) continue
