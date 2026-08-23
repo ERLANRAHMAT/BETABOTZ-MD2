@@ -890,6 +890,7 @@ export default {
           if (!("autoacc" in chat)) chat.autoacc = false;
           if (!("antiLinkCh" in chat)) chat.antiLinkCh = false;
           if (!("adminonly" in chat)) chat.adminonly = false;
+          if (!("antispam" in chat)) chat.antispam = false;
         } else
           global.db.data.chats[m.chat] = {
             antiLinkCh: false,
@@ -946,6 +947,7 @@ export default {
             autowm: false,
             antidelete: false,
             adminonly: false,
+            antispam: false,
           };
         let memgc = global.db.data.chats[m.chat]?.memgc?.[m.sender];
         if (typeof memgc !== "object" || memgc === null) {
