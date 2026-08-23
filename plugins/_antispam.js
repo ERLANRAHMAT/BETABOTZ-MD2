@@ -1,113 +1,71 @@
-const exports = {};
-
-const SPAM_THRESHOLD = 5; // Total pesan yang dianggap spam
-const SPAM_WINDOW = 1000; // Jendela waktu (1 detik) - Sekejap mata!
-
-exports.before = async function (m) {
-    if (!this.spam) this.spam = {};
-    if (!this.groupStatus) this.groupStatus = {};
-    
-    let user = global.db.data.users[m.sender] || {};
-    let chat = global.db.data.chats[m.chat] || {};
-    
-    // Aktif di private chat atau jika di grup dan antispam aktif
-    if (m.isGroup && !chat.antispam) return;
+    export async function before(m, { isAdmin, isOwner }) {
+   
+    let user = global.db.data.users[m.sender];
+    let chat = global.db.data.chats[m.chat];
+    if (!user || !chat) return;
+    if (chat.antispam) {
+    if (isAdmin || isOwner || !user || !chat) return; 
     if ((m.chat.endsWith('broadcast') || m.fromMe) && !m.message && !chat.isBanned) return;
     
-    // Hanya tangkap pesan yang berawalan prefix (command)
-    if (
-        !m.text?.startsWith('.') &&
-        !m.text?.startsWith('#') &&
-        !m.text?.startsWith('!') &&
-        !m.text?.startsWith('/') &&
-        !m.text?.startsWith('\\')
-    ) return;
+    if (!m.text) return;
 
-    const now = Date.now();
-   
-    if (user.banned && now >= user.lastBanned) {
+    let isCommand = /^[.#!\\/]/.test(m.text);
+    if (!isCommand) return;
+
+    let now = Date.now();
+    if (user.banned && now >= user.bannedTime) {
         user.banned = false;
-        this.sendMessage(m.chat, {
-            text: `@${m.sender.split('@')[0]} telah di unban dari sistem spam.`,
-            mentions: [m.sender]
-        });
+        user.bannedTime = 0;
     }
     
-    if (user.banned) return true; // Stop pemrosesan jika masih di ban
+    if (user.banned) return;
 
-    // Inisialisasi array history waktu pengiriman pesan user
-    if (!this.spam[m.sender]) this.spam[m.sender] = [];
+    this.spam = this.spam || {};
     
-    // Tambahkan waktu pesan sekarang ke history
-    this.spam[m.sender].push(now);
-    
-    // Bersihkan history dari pesan yang lebih lama dari SPAM_WINDOW (10 detik)
-    this.spam[m.sender] = this.spam[m.sender].filter(time => now - time <= SPAM_WINDOW);
-
-    // Jika dalam jendela 10 detik terdapat SPAM_THRESHOLD (5) pesan, maka BAN
-    if (this.spam[m.sender].length >= SPAM_THRESHOLD) {
-        user.banned = true;
-        const groupId = m.chat;
-        const banDuration = m.isGroup ? 180000 : 30000; // 3 menit untuk grup, 30 detik untuk PC
-        user.lastBanned = now + banDuration;
+    if (m.sender in this.spam) {
+        this.spam[m.sender].count++;
         
-        // Hapus history spam karena sudah ditindak
-        delete this.spam[m.sender];
+       // Menghitung selisih waktu (dalam milidetik) antara waktu saat ini (now)
+        // dengan waktu terakhir kali user tersebut mengirim pesan (lastspam).
+        let timeDiff = now - this.spam[m.sender].lastspam;
         
-        try {
-            if (m.isGroup) {
-                if (!this.groupStatus[groupId]) {
-                    this.groupStatus[groupId] = {
-                        isClosing: false,
-                        originalName: (await this.groupMetadata(groupId)).subject
-                    };
-                }
-
-                if (!this.groupStatus[groupId].isClosing) {
-                    this.groupStatus[groupId].isClosing = true;
-                    await this.groupSettingUpdate(groupId, 'announcement');
-                    await this.groupUpdateSubject(groupId, `${this.groupStatus[groupId].originalName} (SPAM)`);
-                    
-                    await this.sendMessage(groupId, {
-                        text: `🚫 SPAM TERDETEKSI!\n\nPengguna @${m.sender.split('@')[0]} telah mengirim ${SPAM_THRESHOLD} pesan berturut-turut dalam waktu singkat.\nGrup ditutup selama 3 menit.\nPelaku spam dibanned sementara.`,
-                        mentions: [m.sender]
-                    });
-
-                    setTimeout(async () => {
-                        try {
-                            user.banned = false;
-                            await this.groupSettingUpdate(groupId, 'not_announcement');
-                            await this.groupUpdateSubject(groupId, this.groupStatus[groupId].originalName);
-                            await this.sendMessage(groupId, {
-                                text: `✅ Grup telah dibuka kembali.\n@${m.sender.split('@')[0]} telah di unban.`,
-                                mentions: [m.sender]
-                            });
-                            this.groupStatus[groupId].isClosing = false;
-                        } catch {
-                            console.error('Error reopening group');
-                        }
-                    }, banDuration);
-                }
-            } else {
-                await this.sendMessage(m.chat, { 
-                    text: `🚫 SPAM TERDETEKSI!\n\nPengguna @${m.sender.split('@')[0]} telah mengirim ${SPAM_THRESHOLD} pesan berturut-turut dalam waktu singkat.\nPelaku spam dibanned sementara selama 30 detik.`,
-                    mentions: [m.sender]
-                });
-
-                setTimeout(async () => {
-                    user.banned = false;
-                    await this.sendMessage(m.chat, {
-                        text: `✅ @${m.sender.split('@')[0]} telah di unban.`,
-                        mentions: [m.sender]
-                    });
-                }, banDuration);
+        // Mengecek kecepatan mengetik. 
+        // 2500 milidetik = 2,5 detik. 
+        // Jika selisih waktunya di bawah 2,5 detik, berarti user mengetik sangat cepat.
+        if (timeDiff < 2500) { 
+            
+            // Mengecek jumlah pesan.
+            // Jika dalam waktu super cepat itu (di bawah 2,5 detik) dia sudah mmebuat
+            // pesan ke-3 (atau lebih), maka sistem fix menganggapnya sebagai SPAM.
+            // jadi kalau mau ubah berapa ban yak user bisa perintah bot dalam waktu 2.5 detik disini
+            if (this.spam[m.sender].count >= 3) {
+                
+                // user banned 
+                user.banned = true; 
+                
+                // Menentukan durasi hukuman (10.000 milidetik = 10 detik) atur aja kalau mau kurang atau lebih durasi banned nya
+                let penalty = 10000; 
+                
+                // persiapan waktu kapan hukuman ini akan berakhir ke dalam database
+                // Waktu sekarang ditambah 10 detik ke depan.
+                user.bannedTime = now + penalty; 
+                
+                // Memberikan peringatan ke user bahwa mereka terkena mute
+                m.reply('🚫 *SPAM TERDETEKSI!* 🚫\n\nKamu mengetik command terlalu cepat! Tunggu *10 detik* sebelum bisa menggunakan bot kembali. ⏳');
             }
-        } catch (e) {
-            console.error(e);
+        } else {
+            // Jika selisih waktunya lebih dari 2,5 detik (mengetik dengan santai/normal),
+            // maka hitungan pesannya dikembalikan lagi ke angka 1.
+            this.spam[m.sender].count = 1;
         }
         
-        return true; // Stop eksekusi command karena user spam
+        this.spam[m.sender].lastspam = now;
+    } else {
+        this.spam[m.sender] = {
+            jid: m.sender,
+            count: 1,
+            lastspam: now
+        };
     }
-};
-
-export default exports;
+}
+}
