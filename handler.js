@@ -309,7 +309,6 @@ export default {
           if (!isNumber(user.anakcentaur)) user.anakcentaur = 0;
           if (!isNumber(user.makananPet)) user.makananPet = 0;
 
-          if (!isNumber(user.antispam)) user.antispam = 0;
           if (!isNumber(user.antispamlastclaim)) user.antispamlastclaim = 0;
 
           if (!isNumber(user.kayu)) user.kayu = 0;
@@ -691,7 +690,6 @@ export default {
             anakanjing: 0,
             makananpet: 0,
             makananPet: 0,
-            antispam: 0,
             antispamlastclaim: 0,
             kayu: 0,
             batu: 0,
