@@ -59,7 +59,7 @@ function tts(text, lang = 'id') {
         });
       });
     } catch (e) {
-      console.logs(e);
+      console.log(e);
       throw e;
     }
   });
