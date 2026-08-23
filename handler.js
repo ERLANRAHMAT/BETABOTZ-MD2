@@ -1065,8 +1065,8 @@ export default {
         let _prefix = plugin.customPrefix
           ? plugin.customPrefix
           : conn.prefix
-            ? global.prefix
-            : conn.prefix;
+            ? conn.prefix
+            : global.prefix;
         let match = (
           _prefix instanceof RegExp // RegExp Mode?
             ? [[_prefix.exec(m.text), _prefix]]
