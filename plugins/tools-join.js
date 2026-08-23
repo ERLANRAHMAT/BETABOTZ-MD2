@@ -12,7 +12,7 @@ let handler = async (m, { conn, text }) => {
         if (errorText.includes('not-authorized')) {
             return m.reply('Gagal join grup. Link undangan sudah tidak berlaku, grup memerlukan persetujuan admin, atau akun bot tidak diizinkan bergabung.')
         }
-        throw e
+        throw error
     }
 }
 handler.help = ['join <chat.whatsapp.com>']
@@ -21,5 +21,6 @@ handler.tags = ['tools']
 handler.command = /^join$/i
 handler.admin = true;
 handler.owner = true;
+handler.group = true;
 
 export default handler
