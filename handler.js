@@ -1235,6 +1235,10 @@ export default {
                       console.error("Handler Error:", e);
 
                       try {
+                        if (typeof e === "string") {
+                          await m.reply(e);
+                          continue;
+                        }
                         let errorString =
                           typeof e === "string"
                             ? e
