@@ -1,8 +1,8 @@
 export async function before(m, { isAdmin, isOwner }) {
-    if (!chat || !chat.antispam) return;
+   
     let user = global.db.data.users[m.sender];
     let chat = global.db.data.chats[m.chat];
-
+    if (!chat || !chat.antispam) return;
     if (isAdmin || isOwner || !user || !chat) return; 
     if ((m.chat.endsWith('broadcast') || m.fromMe) && !m.message && !chat.isBanned) return;
     
