@@ -7,12 +7,12 @@ let handler = async (m, { conn, text }) => {
         let res = await conn.groupAcceptInvite(code)
         let groupId = typeof res === 'string' ? res : res?.gid
         m.reply(`Berhasil join grup ${groupId}`)
-    } catch (error) {
+    } catch (e) {
         let errorText = `${error?.message || ''} ${error?.data || ''}`.toLowerCase()
         if (errorText.includes('not-authorized')) {
             return m.reply('Gagal join grup. Link undangan sudah tidak berlaku, grup memerlukan persetujuan admin, atau akun bot tidak diizinkan bergabung.')
         }
-        throw error
+        throw e
     }
 }
 handler.help = ['join <chat.whatsapp.com>']
