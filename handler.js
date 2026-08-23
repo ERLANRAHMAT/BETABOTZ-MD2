@@ -1058,21 +1058,25 @@ export default {
                 if (!plugin) continue
                 if (plugin.disabled) continue
                 if (!opts['restrict']) if (plugin.tags && plugin.tags.includes('admin')) {
-                continue
+                    // global.dfail('restrict', m, this)
+                    continue
                 }
         const str2Regex = (str) => str.replace(/[|\\{}()[\]^$+*?.]/g, "\\$&");
-
-        let _prefix = global.prefix;
-
+        let _prefix = plugin.customPrefix
+        ? plugin.customPrefix
+        : global.prefix;
         let match = (
-          _prefix instanceof RegExp
+          _prefix instanceof RegExp // RegExp Mode?
             ? [[_prefix.exec(m.text), _prefix]]
-            : Array.isArray(_prefix)
+            : Array.isArray(_prefix) // Array?
               ? _prefix.map((p) => {
-                  let re = p instanceof RegExp ? p : new RegExp(str2Regex(p));
+                  let re =
+                    p instanceof RegExp // RegExp in Array?
+                      ? p
+                      : new RegExp(str2Regex(p));
                   return [re.exec(m.text), re];
                 })
-              : typeof _prefix === "string"
+              : typeof _prefix === "string" // String?
                 ? [
                     [
                       new RegExp(str2Regex(_prefix)).exec(m.text),
