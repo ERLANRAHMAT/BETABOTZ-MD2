@@ -1126,9 +1126,6 @@ export default {
                                 false
 
                     if (!isAccept) continue
-                    if (!plugin.customPrefix && (!match[0] || !match[0][0])) {
-                        continue;
-                    }
                     m.plugin = name
                     if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
                         let chat = global.db.data.chats[m.chat]
