@@ -3,7 +3,6 @@ export async function before(m, { isAdmin, isOwner }) {
     let user = global.db.data.users[m.sender];
     let chat = global.db.data.chats[m.chat];
     if (!user || !chat) return;
-    if (chat.antispam) {
     if (isAdmin || isOwner || !user || !chat) return; 
     if ((m.chat.endsWith('broadcast') || m.fromMe) && !m.message && !chat.isBanned) return;
     
@@ -67,5 +66,4 @@ export async function before(m, { isAdmin, isOwner }) {
             lastspam: now
         };
     }
-}
 }
