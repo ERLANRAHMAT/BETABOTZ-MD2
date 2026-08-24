@@ -3,20 +3,22 @@ let handler = async (m, { conn, participants, groupMetadata, text }) => {
     const getGroupAdmins = (participants) => {
         let admins = []
         for (let i of participants) {
-            i.isAdmin ? admins.push(i.jid) : ''
+            if (i.admin === 'admin' || i.admin === 'superadmin') {
+                admins.push(i.id)
+            }
         }
         return admins
     }
 
     let pp = 'https://telegra.ph/file/3c1ea5866a11088685413.jpg'
     try {
-        pp = await conn.getProfilePicture(m.chat)
+        pp = await conn.profilePictureUrl(m.chat, 'image')
     } catch (e) {
     } finally {
         let chat = global.db.data.chats[m.chat] || {}
         
         const groupAdmins = getGroupAdmins(participants)
-        let listAdmin = groupAdmins.map((v, i) => `${i + 1}. @${v.split`@`[0]}`).join('\n')
+        let listAdmin = groupAdmins.map((v, i) => `${i + 1}. @${v.split('@')[0]}`).join('\n')
 
         if (text && chat.expired) return m.reply(msToDate(chat.expired - new Date() * 1))
 
@@ -92,7 +94,11 @@ ${groupMetadata.desc || 'Tidak ada deskripsi'}
 
         let mentionedJid = groupAdmins.concat([ownerGroup])
         
-        conn.sendFile(m.key.remoteJid, pp, 'pp.jpg', caption, m, 0, { contextInfo: { mentionedJid } })
+        await conn.sendMessage(m.chat, {
+            image: { url: pp },
+            caption: caption,
+            mentions: mentionedJid
+        }, { quoted: m })
     }
 }
 
