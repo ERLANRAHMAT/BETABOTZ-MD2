@@ -1062,31 +1062,33 @@ export default {
                     continue
                 }
         const str2Regex = (str) => str.replace(/[|\\{}()[\]^$+*?.]/g, "\\$&");
-        let _prefix = plugin.customPrefix
+       let _prefix = plugin.customPrefix
           ? plugin.customPrefix
           : conn.prefix
             ? conn.prefix
             : global.prefix;
+            
         let match = (
-          _prefix instanceof RegExp // RegExp Mode
+          _prefix instanceof RegExp // RegExp Mode?
             ? [[_prefix.exec(m.text), _prefix]]
-            : Array.isArray(_prefix) // Array Mode
+            : Array.isArray(_prefix) // Array?
               ? _prefix.map((p) => {
                   let re =
-                    p instanceof RegExp
+                    p instanceof RegExp // RegExp in Array?
                       ? p
-                      : new RegExp("^[" + str2Regex(p) + "]");
+                      : new RegExp('^[' + str2Regex(p) + ']'); // ⬅️ FIX: Ditambahkan awalan ketat ^[...]
                   return [re.exec(m.text), re];
                 })
-              : typeof _prefix === "string" // String Mode
+              : typeof _prefix === "string" // String?
                 ? [
                     [
-                      new RegExp("^[" + str2Regex(_prefix) + "]").exec(m.text), 
-                      new RegExp("^[" + str2Regex(_prefix) + "]"),
+                      new RegExp('^[' + str2Regex(_prefix) + ']').exec(m.text), // ⬅️ FIX
+                      new RegExp('^[' + str2Regex(_prefix) + ']'), // ⬅️ FIX
                     ],
                   ]
                 : [[[], new RegExp()]]
         ).find((p) => p[1]);
+
         if (typeof plugin.before === "function")
           if (
             await plugin.before.call(this, m, {
@@ -1105,27 +1107,39 @@ export default {
             })
           )
             continue;
-                if (typeof plugin !== 'function') continue
-                if ((usedPrefix = (match[0] || '')[0])) {
-                    let noPrefix = m.text.replace(usedPrefix, '')
-                    let [command, ...args] = noPrefix.trim().split` `.filter(v => v)
-                    args = args || []
-                    let _args = noPrefix.trim().split` `.slice(1)
-                    let text = _args.join` `
-                    command = (command || '').toLowerCase()
-                    let fail = plugin.fail || global.dfail // When failed
-                    let isAccept = plugin.command instanceof RegExp ? // RegExp Mode?
-                        plugin.command.test(command) :
-                        Array.isArray(plugin.command) ? // Array?
-                            plugin.command.some(cmd => cmd instanceof RegExp ? // RegExp in Array?
-                                cmd.test(command) :
-                                cmd === command
-                            ) :
-                            typeof plugin.command === 'string' ? // String?
-                                plugin.command === command :
-                                false
+            
+        if (typeof plugin !== 'function') continue
+        
+        // --- [ LOGIKA PREFIX KETAT (ANTI ISAY/ZMENU) ] ---
+        usedPrefix = match && match[0] ? match[0][0] : '';
+        
+        // Jika bukan customPrefix TAPI user ngetik tanpa prefix (contoh: isay), maka TOLAK mutlak!
+        if (!usedPrefix && plugin.customPrefix === undefined) continue;
 
-                    if (!isAccept) continue
+        // Membuka blok eksekusi yang sama persis seperti kode aslimu
+        if (usedPrefix !== undefined || plugin.customPrefix !== undefined) {
+            
+            // ⬅️ FIX: Menggunakan slice (potong), bukan replace (hapus huruf)
+            let noPrefix = usedPrefix ? m.text.slice(usedPrefix.length) : m.text; 
+            
+            let [command, ...args] = noPrefix.trim().split` `.filter(v => v)
+            args = args || []
+            let _args = noPrefix.trim().split` `.slice(1)
+            let text = _args.join` `
+            command = (command || '').toLowerCase()
+            let fail = plugin.fail || global.dfail // When failed
+            let isAccept = plugin.command instanceof RegExp ? // RegExp Mode?
+                plugin.command.test(command) :
+                Array.isArray(plugin.command) ? // Array?
+                    plugin.command.some(cmd => cmd instanceof RegExp ? // RegExp in Array?
+                        cmd.test(command) :
+                        cmd === command
+                    ) :
+                    typeof plugin.command === 'string' ? // String?
+                        plugin.command === command :
+                        false
+
+            if (!isAccept) continue
                     m.plugin = name
                     if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
                         let chat = global.db.data.chats[m.chat]
