@@ -18,7 +18,19 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
           throw false;
         }
         chat.adminonly = isEnable;
-        break
+        break;
+      case "antispam":
+        if (!m.isGroup) {
+          if (!isOwner) {
+            global.dfail("group", m, conn);
+            throw false;
+          }
+        } else if (!isAdmin) {
+          global.dfail("admin", m, conn);
+          throw false;
+        }
+        chat.antispam = isEnable;
+        break;
       case "notifgempa":
         if (m.isGroup) {
           if (!(isAdmin || isOwner)) {
@@ -382,6 +394,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
           return m.reply(
             `
 List option:
+| antispam
 | adminonly
 | autowm
 | anticall
