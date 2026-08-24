@@ -1068,21 +1068,21 @@ export default {
             ? conn.prefix
             : global.prefix;
         let match = (
-          _prefix instanceof RegExp // RegExp Mode?
+          _prefix instanceof RegExp // RegExp Mode
             ? [[_prefix.exec(m.text), _prefix]]
-            : Array.isArray(_prefix) // Array?
+            : Array.isArray(_prefix) // Array Mode
               ? _prefix.map((p) => {
                   let re =
-                    p instanceof RegExp // RegExp in Array?
+                    p instanceof RegExp
                       ? p
-                      : new RegExp(str2Regex(p));
+                      : new RegExp("^[" + str2Regex(p) + "]");
                   return [re.exec(m.text), re];
                 })
-              : typeof _prefix === "string" // String?
+              : typeof _prefix === "string" // String Mode
                 ? [
                     [
-                      new RegExp(str2Regex(_prefix)).exec(m.text),
-                      new RegExp(str2Regex(_prefix)),
+                      new RegExp("^[" + str2Regex(_prefix) + "]").exec(m.text), 
+                      new RegExp("^[" + str2Regex(_prefix) + "]"),
                     ],
                   ]
                 : [[[], new RegExp()]]
