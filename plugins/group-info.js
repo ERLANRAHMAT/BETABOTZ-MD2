@@ -1,6 +1,5 @@
 let handler = async (m, { conn, participants, groupMetadata, text }) => {
 
-    // [PERBAIKAN] Mengambil admin dengan format modern Zapo/Baileys
     const getGroupAdmins = (participants) => {
         let admins = []
         for (let i of participants) {
@@ -95,11 +94,10 @@ ${groupMetadata.desc || 'Tidak ada deskripsi'}
 
         let mentionedJid = groupAdmins.concat([ownerGroup])
         
-        // [PERBAIKAN] Menggunakan sendMessage untuk Zapo agar gambar & tag berfungsi maksimal
-        await conn.sendMessage(m.chat, { 
-            image: { url: pp }, 
-            caption: caption, 
-            mentions: mentionedJid 
+        await conn.sendMessage(m.chat, {
+            image: { url: pp },
+            caption: caption,
+            mentions: mentionedJid
         }, { quoted: m })
     }
 }
