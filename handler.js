@@ -309,7 +309,6 @@ export default {
           if (!isNumber(user.anakcentaur)) user.anakcentaur = 0;
           if (!isNumber(user.makananPet)) user.makananPet = 0;
 
-          if (!isNumber(user.antispam)) user.antispam = 0;
           if (!isNumber(user.antispamlastclaim)) user.antispamlastclaim = 0;
 
           if (!isNumber(user.kayu)) user.kayu = 0;
@@ -691,7 +690,6 @@ export default {
             anakanjing: 0,
             makananpet: 0,
             makananPet: 0,
-            antispam: 0,
             antispamlastclaim: 0,
             kayu: 0,
             batu: 0,
@@ -890,6 +888,7 @@ export default {
           if (!("autoacc" in chat)) chat.autoacc = false;
           if (!("antiLinkCh" in chat)) chat.antiLinkCh = false;
           if (!("adminonly" in chat)) chat.adminonly = false;
+          if (!("antispam" in chat)) chat.antispam = false;
         } else
           global.db.data.chats[m.chat] = {
             antiLinkCh: false,
@@ -946,6 +945,7 @@ export default {
             autowm: false,
             antidelete: false,
             adminonly: false,
+            antispam: false,
           };
         let memgc = global.db.data.chats[m.chat]?.memgc?.[m.sender];
         if (typeof memgc !== "object" || memgc === null) {
@@ -1235,10 +1235,33 @@ export default {
                       console.error("Handler Error:", e);
 
                       try {
+                        if (typeof e === "string") {
+                          await m.reply(e);
+                          continue;
+                        }
                         let errorString =
                           typeof e === "string"
                             ? e
                             : e?.stack || util.format(e);
+                        if (
+                          errorString.includes("rate-overlimit") ||
+                          errorString.match(/(429)/)
+                        ) {
+                          await m.reply(
+                            "⚠️ *Sistem Sedang Sibuk!*\n\nBot menerima terlalu banyak permintaan dalam waktu singkat. Tolong beri jeda beberapa saat sebelum mencoba lagi ya! ⏳",
+                          );
+                          return;
+                        }
+
+                        if (
+                          errorString.includes("Connection Closed") ||
+                          errorString.includes("Timeout")
+                        ) {
+                          await m.reply(
+                            "📶 *Koneksi Terputus!*\n\nKoneksi bot ke server WhatsApp sedang tidak stabil. Harap tunggu beberapa saat...",
+                          );
+                          return;
+                        }
                         if (
                           errorString.includes("<html") ||
                           errorString.includes("Cloudflare") ||
