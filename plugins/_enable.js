@@ -1,11 +1,14 @@
-let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isROwner }) => {
+let handler = async (
+  m,
+  { conn, usedPrefix, command, args, isOwner, isAdmin, isROwner },
+) => {
   try {
-    let isEnable = /true|enable|(turn)?on|1/i.test(command)
-    let chat = global.db.data.chats[m.chat]
-    let user = global.db.data.users[m.sender]
-    let type = (args[0] || '').toLowerCase()
-    let isAll = false
-    let isUser = false
+    let isEnable = /true|enable|(turn)?on|1/i.test(command);
+    let chat = global.db.data.chats[m.chat];
+    let user = global.db.data.users[m.sender];
+    let type = (args[0] || "").toLowerCase();
+    let isAll = false;
+    let isUser = false;
     switch (type) {
       case "adminonly":
         if (!m.isGroup) {
@@ -439,18 +442,20 @@ ${usedPrefix}disable welcome
           );
         throw "error";
     }
-    m.reply(`
-*${type}* berhasil di *${isEnable ? 'nyala' : 'mati'}kan* ${isAll ? 'untuk bot ini' : isUser ? '' : 'untuk chat ini'}
-`.trim());
+    m.reply(
+      `
+*${type}* berhasil di *${isEnable ? "nyala" : "mati"}kan* ${isAll ? "untuk bot ini" : isUser ? "" : "untuk chat ini"}
+`.trim(),
+    );
   } catch (e) {
     if (e !== false) {
-    console.log(e);
-    throw e;
+      console.log(e);
+      throw e;
     }
   }
-}
-handler.help = ['en', 'dis'].map(v => v + 'able <option>')
-handler.tags = ['group', 'owner']
-handler.command = /^((en|dis)able|(tru|fals)e|(turn)?o(n|ff))$/i
+};
+handler.help = ["en", "dis"].map((v) => v + "able <option>");
+handler.tags = ["group", "owner"];
+handler.command = /^((en|dis)able|(tru|fals)e|(turn)?o(n|ff))$/i;
 
-export default handler
+export default handler;
