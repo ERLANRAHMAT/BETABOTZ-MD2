@@ -64,6 +64,7 @@ export default {
       m.limit = false;
       try {
         let user = global.db.data.users[m.sender];
+        if (user && user.banned) return;
         if (typeof user !== "object") global.db.data.users[m.sender] = {};
         if (user) {
           if (!isNumber(user.saldo)) user.saldo = 0;
