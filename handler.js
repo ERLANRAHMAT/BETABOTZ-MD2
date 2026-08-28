@@ -1134,7 +1134,8 @@ export default {
                         if (name != 'group-modebot.js' && name != 'owner-unbanchat.js' && name != 'owner-mute_group.js' && name != 'owner-exec.js' && name != 'owner-exec2.js' && name != 'tool-delete.js' && (chat?.isBanned || chat?.mute))
                         return                        
                         if (name != 'owner-mute_group.js' && chat && chat.isBanned) return  
-                        if (name != 'unbanuser.js' && user && user.banned) return
+                        if (name != 'owner-banuser.js' && chat && chat.isBanned) return  
+                        if (name != 'owner-unbanchat.js' && user && user.banned) return
                         if (m.isGroup) {
                             chat.memgc[m.sender].command++
                             chat.memgc[m.sender].commandTotal++
