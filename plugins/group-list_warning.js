@@ -8,28 +8,42 @@ let handler = async (m, { conn, usedPrefix, command }) => {
         if (!groupMetadata) return m.reply('❌ Gagal mengambil data grup.');
 
         let participants = groupMetadata.participants || [];
+        let usersWithWarn = [];
 
-        let usersWithWarn = participants.filter(p => {
-            let jid = p.id;
-            let userDb = global.db.data.users && global.db.data.users[jid];
-            return userDb && userDb.warn && userDb.warn > 0;
-        });
+        for (let p of participants) {
+            let jid = p.id || p.jid;
+            if (!jid) continue;
+
+            let cleanNumber = jid.split('@')[0].replace(/[^0-9]/g, '');
+
+            let matchedUserKey = Object.keys(global.db.data.users || {}).find(key => 
+                key.replace(/[^0-9]/g, '') === cleanNumber
+            );
+
+            if (matchedUserKey) {
+                let userDb = global.db.data.users[matchedUserKey];
+                if (userDb && userDb.warn && userDb.warn > 0) {
+                    usersWithWarn.push({
+                        jid: jid, 
+                        warn: userDb.warn
+                    });
+                }
+            }
+        }
 
         if (usersWithWarn.length === 0) {
             return m.reply('✨ Tidak ada anggota di grup ini yang memiliki catatan peringatan (warn).');
         }
 
         let maxWarn = global.maxwarn || 3; 
-        let text = `*DAFTAR PERINGATAN ANGGOTA GRUP*\n\n`;
+        let text = `⚠️ *DAFTAR PERINGATAN ANGGOTA GRUP* ⚠️\n\n`;
         let mentions = [];
 
         for (let i = 0; i < usersWithWarn.length; i++) {
-            let jid = usersWithWarn[i].id;
-            let warnCount = global.db.data.users[jid].warn;
-            
-            text += `*${i + 1}.* @${jid.split('@')[0]}\n`;
-            text += `   ◦  *Peringatan:* ${warnCount}/${maxWarn}\n\n`;
-            mentions.push(jid);
+            let data = usersWithWarn[i];
+            text += `*${i + 1}.* @${data.jid.split('@')[0]}\n`;
+            text += `   ◦  *Peringatan:* ${data.warn}/${maxWarn}\n\n`;
+            mentions.push(data.jid);
         }
 
         text += `> _Gunakan perintah unwar/delwarn jika ingin mengurangi peringatan._`;
@@ -38,7 +52,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 
     } catch (e) {
         console.error(e);
-        m.reply('Terjadi kesalahan saat memuat daftar warn.');
+        throw e;
     }
 }
 
@@ -46,6 +60,6 @@ handler.help = ['listwarn'];
 handler.tags = ['group'];
 handler.command = /^listwarn$/i;
 handler.group = true;
-handler.admin = true; 
+handler.admin = true;
 
 export default handler;
