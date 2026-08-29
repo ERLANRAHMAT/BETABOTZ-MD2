@@ -30,7 +30,7 @@ let handler = async (m, { conn, participants, groupMetadata, text }) => {
 *ID:* ${groupMetadata.id}
 *Nama:* ${groupMetadata.subject}
 *Total Anggota:* ${participants.length} Anggota
-*Pembuat Grup:* @${ownerGroup.split('@')[0]}
+*Pembuat Grup:* @${ownerGroup.split("@")[0]}
 
 *👨‍⚖️ Admin Grup:*
 ${listAdmin}
@@ -47,6 +47,7 @@ ${check(chat.antilinktwit)} Anti Link Twitter
 ${check(chat.antilinktt)} Anti Link TikTok
 ${check(chat.antilinktele)} Anti Link Telegram
 ${check(chat.antilinkwame)} Anti Link Wa.me
+${check(chat.antispam)} Anti Spam bot
 
 *👮 MODERASI GRUP*
 ${check(!chat.delete)} Anti Delete
@@ -80,17 +81,17 @@ ${check(chat.nsfw)} Mode NSFW
 ${check(chat.isBanned)} Bot Banned (Mute)
 
 *💬 PESAN BOT*
-*Welcome:* ${chat.sWelcome || '-'}
-*Bye:* ${chat.sBye || '-'}
-*Promote:* ${chat.sPromote || '-'}
-*Demote:* ${chat.sDemote || '-'}
+*Welcome:* ${chat.sWelcome || "-"}
+*Bye:* ${chat.sBye || "-"}
+*Promote:* ${chat.sPromote || "-"}
+*Demote:* ${chat.sDemote || "-"}
 
 *⏳ SISA WAKTU (EXPIRED)*
-${chat.expired ? msToDate(chat.expired - new Date() * 1) : 'Permanen'}
+${chat.expired ? msToDate(chat.expired - new Date() * 1) : "Permanen"}
 
 *Deskripsi:* 
-${groupMetadata.desc || 'Tidak ada deskripsi'}
-`.trim()
+${groupMetadata.desc || "Tidak ada deskripsi"}
+`.trim();
 
         let mentionedJid = groupAdmins.concat([ownerGroup])
         

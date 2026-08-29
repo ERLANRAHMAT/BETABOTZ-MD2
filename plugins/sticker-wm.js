@@ -5,10 +5,15 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   let q = m.quoted ? m.quoted : m;
   let mime = (q.msg || q).mimetype || '';
   
-  if (!text) throw `Example ${usedPrefix}${command} lann`;
-  if (!mime) throw `Balas gambar/video/stiker dengan perintah ${usedPrefix}${command}`;
+  if (!text) throw `Format salah!\n\nContoh penggunaan:\n*${usedPrefix + command} Packname | Author*\n(Atau balas gambar/video/stiker)`;
+  if (!mime) throw `Balas gambar/video/stiker dengan perintah ${usedPrefix + command}`;
   if (/video/g.test(mime) && (q.msg || q).seconds > 11) return m.reply('Maksimal 10 detik!');
+
+  let parts = text.split(/[|•]/).map(v => v.trim());
+  let packname = parts[0] || text;
+  let author = parts[1] || ''; 
   await m.reply(wait);
+  
   try {
     let img = await q.download?.();
     if (!img) throw `Gagal mengunduh media, pastikan kamu membalas gambar/video/stiker.`;
@@ -17,23 +22,23 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     let isAnimated = (q.msg || q).isAnimated === true;
 
     if (isAnimated || /video/g.test(mime)) {
-      let res = await fetch(`https://api.betabotz.eu.org/api/tools/webp2mp4?url=${media}&apikey=${global.lann}`);
+      let res = await fetch(`https://api.betabotz.eu.org/api/tools/webp2mp4?url=${media}&apikey=${lann}`);
       let json = await res.json();
       if (!json.result) throw "Gagal mengubah stiker animasi ke video.";
 
       await conn.sendVideoAsSticker(m.chat, json.result, m, {
-        packname: text || "",
-        author: "",
+        packname: packname,
+        author: author,
       });
     } else {
       await conn.sendImageAsSticker(m.chat, img, m, {
-        packname: text || "",
-        author: "",
+        packname: packname,
+        author: author,
       });
     }
   } catch (e) {
     console.log(e);
-    if (e !== false) throw e;
+    throw e;
   }
 }
 

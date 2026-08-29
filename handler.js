@@ -86,6 +86,7 @@ export default {
       m.limit = false;
       try {
         let user = global.db.data.users[m.sender];
+        if (user && user.banned) return;
         if (typeof user !== "object") global.db.data.users[m.sender] = {};
         if (user) {
           if (!isNumber(user.saldo)) user.saldo = 0;
@@ -1153,9 +1154,9 @@ export default {
                     if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
                         let chat = global.db.data.chats[m.chat]
                         let user = global.db.data.users[m.sender]
-                        if (name != 'group-modebot.js' && name != 'owner-unbanchat.js' && name != 'owner-exec.js' && name != 'owner-exec2.js' && name != 'tool-delete.js' && (chat?.isBanned || chat?.mute))
-                        return
-                        if (name != 'unbanchat.js' && chat && chat.isBanned) return // Except this
+                         if (name != 'group-modebot.js' && name != 'owner-unbanchat.js' && name != 'owner-mute_group.js' && name != 'owner-exec.js' && name != 'owner-exec2.js' && name != 'tool-delete.js' && (chat?.isBanned || chat?.mute))
+                        return                        
+                        if (name != 'owner-mute_group.js' && chat && chat.isBanned) return  
                         if (name != 'unbanuser.js' && user && user.banned) return
                         if (m.isGroup) {
                             chat.memgc[m.sender].command++
