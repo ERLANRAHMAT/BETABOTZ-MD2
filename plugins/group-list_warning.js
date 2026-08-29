@@ -16,15 +16,15 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 
             let cleanNumber = jid.split('@')[0].replace(/[^0-9]/g, '');
 
-            let matchedUserKey = Object.keys(global.db.data.users || {}).find(key => 
+            let matchedKey = Object.keys(global.db.data.users || {}).find(key => 
                 key.replace(/[^0-9]/g, '') === cleanNumber
             );
 
-            if (matchedUserKey) {
-                let userDb = global.db.data.users[matchedUserKey];
-                if (userDb && userDb.warn && userDb.warn > 0) {
+            if (matchedKey) {
+                let userDb = global.db.data.users[matchedKey];
+                if (userDb && typeof userDb.warn === 'number' && userDb.warn > 0) {
                     usersWithWarn.push({
-                        jid: jid, 
+                        jid: jid,
                         warn: userDb.warn
                     });
                 }
@@ -36,7 +36,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
         }
 
         let maxWarn = global.maxwarn || 3; 
-        let text = `⚠️ *DAFTAR PERINGATAN ANGGOTA GRUP* ⚠️\n\n`;
+        let text = `*DAFTAR PERINGATAN ANGGOTA GRUP*\n\n`;
         let mentions = [];
 
         for (let i = 0; i < usersWithWarn.length; i++) {
@@ -46,13 +46,13 @@ let handler = async (m, { conn, usedPrefix, command }) => {
             mentions.push(data.jid);
         }
 
-        text += `> _Gunakan perintah unwar/delwarn jika ingin mengurangi peringatan._`;
+        text += `> _Gunakan perintah unwar/delwarn untuk mengurangi peringatan._`;
 
         await conn.sendMessage(m.chat, { text: text.trim(), mentions }, { quoted: m });
 
     } catch (e) {
-        console.error(e);
-        throw e;
+        console.error('Error listwarn:', e);
+        m.reply('Terjadi kesalahan saat memuat daftar warn.');
     }
 }
 
