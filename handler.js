@@ -16,17 +16,8 @@ export default {
         // if (chatUpdate.messages.length > 1) console.log(chatUpdate.messages)
         let m = chatUpdate.messages[chatUpdate.messages.length - 1]
         if (!m) return
-        const MESSAGE_MAX_AGE_MS = 5 * 60 * 1000; // Batas 5 menit
-        const msgTimestamp = m.messageTimestamp?.low
-          ? m.messageTimestamp.low * 1000
-          : typeof m.messageTimestamp === "number"
-            ? m.messageTimestamp * 1000
-            : 0;
-
-        if (msgTimestamp && Date.now() - msgTimestamp > MESSAGE_MAX_AGE_MS) {
-          // Pesan sudah terlalu lama (lebih dari 5 menit), abaikan/skip processing
-          return;
-        }
+        // Skip all messages during offline resume (queued messages from WhatsApp)
+        if (this.isOfflineResuming) return
         // Skip messages from channels/newsletters - bot only serves group & private chat
         if (isNewsletterJid(m.key?.remoteJid)) return
         //console.log(JSON.stringify(m, null, 4))
