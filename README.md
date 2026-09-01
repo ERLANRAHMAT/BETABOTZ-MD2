@@ -9,7 +9,7 @@
 * ***Sesi lokal SQLite** Kredensial disimpan di `sessions/state.sqlite` (pakai `@zapo-js/store-sqlite` + `better-sqlite3`)
 * ***Database SQLite** Database bot (`users`, `chats`, `stats`, dll) kini tersimpan di `database/database.sqlite` (WAL, atomic) menggantikan `database.json`; auto-migrasi dari JSON lama saat boot pertama
 * **Koneksi Dual Mode** Mendukung Pairing Code secara default, dan QR Code bisa diakses dengan argumen `--qr`
-* Wajib menggunakan **panel dengan Node.js 22+** (sesuai ketentuan baileys terbaru)
+* Wajib menggunakan **panel dengan Node.js 22+**
 * Dapat menggunakan **Bun 1.3.1**
 * Fitur 90% implementasi dari **website API**
 * Penambahan output URL `express.js` agar bisa dijalankan di Render, dsb.
@@ -80,7 +80,7 @@
 ----  
 - ✅ **Update  Lid resolver**  Penanganan lid jadi terbaru
 - ✅ **Update  ESM**  Menggunakan ESM 
-- ✅ **Menggunakan Baileys Latest**  [Baileys](https://github.com/WhiskeySockets/Baileys)
+- ✅ **Menggunakan Zapo Latest**  
 - ✅ **Wajib Menggunakan Node.js 22+**
 ---
 
