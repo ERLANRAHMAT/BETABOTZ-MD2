@@ -16,7 +16,7 @@ handler.all = async function(m) {
     let user = global.db.data.users[m.sender];
     
     if (!chat || !chat.autowm) return; 
-    if (chat.isBanned || user.banned || m.isBaileys) return;
+    if (chat.isBanned || user.banned || m.isZapo ) return;
 
     let q = m;
     let mime = (q.msg || q).mimetype || '';

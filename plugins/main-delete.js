@@ -1,29 +1,23 @@
 let handler = async (m, { conn, command }) => {
     if (!m.quoted) throw 'Reply pesan yang ingin dihapus';
-    
     try {
-        let key = {
-            remoteJid: m.chat,
-            id: m.quoted.id,
-            participant: m.quoted.sender
-        };
-        if (m.quoted.isBaileys || m.quoted.sender === conn.user.jid) {
-            key.fromMe = true;
+        let res = m.message.extendedTextMessage.contextInfo;
+        let deleteMsg = { delete: { remoteJid: m.chat, fromMe: false } };
+        if (res.participant) {
+            deleteMsg.delete.id = res.stanzaId;
+            deleteMsg.delete.participant = res.participant;
         } else {
-            key.fromMe = false;
+            deleteMsg.delete.id = res.stanzaId;
         }
-        await conn.sendMessage(m.chat, { delete: key });
-        
-    } catch (e) {
-        console.log(e);
-        throw e;
+        return conn.sendMessage(m.chat, deleteMsg);
+    } catch {
+        return conn.sendMessage(m.chat, { delete: m.quoted.vM.key });
     }
 };
-
 handler.help = ['del', 'delete'];
 handler.tags = ['tools'];
 handler.admin = true;
-handler.botAdmin = true; 
+handler.botaadmin = true;
 handler.command = ['del', 'delete', 'unsend'];
 
 export default handler;

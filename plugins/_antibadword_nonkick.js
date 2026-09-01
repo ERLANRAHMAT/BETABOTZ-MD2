@@ -2,7 +2,7 @@ let badwordRegex = /anj|asw|kont|ToIol|gblk|T0lol|Bgsd|ajn|anjingk|bajingan|bang
 let handler = (m) => m;
 
 handler.before = async function (m, { isBotAdmin }) {
-    if (m.isBaileys && m.fromMe) return;
+    if (m.isZapo  && m.fromMe) return;
     let chat = global.db.data.chats[m.chat];
     let user = global.db.data.users[m.sender];
     let isBadword = badwordRegex.exec(m.text);

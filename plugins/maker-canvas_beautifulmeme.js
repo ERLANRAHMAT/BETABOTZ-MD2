@@ -26,7 +26,7 @@ handler.before = async (m, { conn }) => {
     let id = m.chat;
 
     if (!(id in conn.beautifulMeme)) return;
-    if (m.isBaileys) return;
+    if (m.isZapo ) return;
 
     let q = m.quoted ? m.quoted : m;
     let mime = (q.msg || q).mimetype || '';

@@ -1035,8 +1035,8 @@ export default {
                     console.error(e)
                 }
             }
-        //if (m.id.startsWith('BAE5') && m.id.length === 16 || m.isZapo && m.fromMe) return
-	        if (m.id.startsWith('3EB0') || (m.id.startsWith('BAE5') && m.id.length === 16 || m.isZapo && m.fromMe)) return;	
+        //if (m.id.startsWith('BAE5') && m.id.length === 16 || isZapo && m.fromMe) return
+	        if (m.id.startsWith('3EB0') || (m.id.startsWith('BAE5')&& m.id.length === 16 || m.isZapo && m.fromMe)) return;	
             m.exp += Math.ceil(Math.random() * 10)
 
             let usedPrefix
@@ -1448,9 +1448,9 @@ export default {
             }
             break           
         case 'promote':
-            text = (chat.sPromote || this.spromote || conn.spromote || '@user ```is now Admin```')
+            text = (chat.sPromote || this.spromote || conn.spromote )
         case 'demote':
-            if (!text) text = (chat.sDemote || this.sdemote || conn.sdemote || '@user ```is no longer Admin```')
+            if (!text) text = (chat.sDemote || this.sdemote || conn.sdemote )
             let jid = participants[0]
             if (typeof jid === 'object') {
                 jid = jid.phoneNumber || jid.id || jid.jid || jid

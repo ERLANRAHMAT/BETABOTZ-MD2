@@ -9,7 +9,7 @@ handler.before = async (m, { conn }) => {
     try {
         if (!m.isGroup) return;
         conn.selfai = conn.selfai || {};
-        if (m.isBaileys && m.fromMe) return;
+        if (m.isZapo  && m.fromMe) return;
         if (m.mentionedJid && m.mentionedJid.length > 0) {
             const botNumber = conn.user.jid.split('@')[0];
             

@@ -3,7 +3,7 @@ let maxWarnLink = Number(global.maxwarn);
 let handler = m => m
 
 handler.before = async function (m, { isAdmin, isBotAdmin, conn }) {
-  if (m.isBaileys || m.fromMe || !m.isGroup ) return true;
+  if (m.isZapo  || m.fromMe || !m.isGroup ) return true;
   let chat = global.db.data.chats[m.chat]
   let user = global.db.data.users[m.sender]
   const isGroupLink = /(chat.whatsapp.com\/([0-9A-Za-z]{20,24}))/i.test(m.text)
