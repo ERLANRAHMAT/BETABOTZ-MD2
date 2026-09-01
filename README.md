@@ -1,5 +1,5 @@
 
-## Harap Dipahami Sebelum Install - UNTESTED
+## Harap Dipahami Sebelum Install - BETATEST 90%
 
 ### Pembaruan:
 
