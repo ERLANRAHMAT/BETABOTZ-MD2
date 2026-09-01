@@ -35,16 +35,16 @@
     "zapo",
     "ERLANRAHMAT"
   ],
-  "homepage": "https://github.com/BOTCAHX/RTXZY-MD",
+  "homepage": "https://github.com/ERLANRAHMAT/BETABOTZ-MD2",
   "author": {
     "name": "ERLANRAHMAT"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BOTCAHX/RTXZY-MD.git"
+    "url": "git+https://github.com/ERLANRAHMAT/BETABOTZ-MD2.git"
   },
   "bugs": {
-    "url": "https://github.com/BOTCAHX/RTXZY-MD/issues"
+    "url": "https://github.com/ERLANRAHMAT/BETABOTZ-MD2/issues"
   },
   "license": "MIT",
   "engines": {
