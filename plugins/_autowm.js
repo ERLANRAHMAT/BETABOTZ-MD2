@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import fetch from 'node-fetch';
 import uploadImage from '../lib/uploadImage.js'; 
+import { stickerToMp4 } from '../lib/sticker-convert.js?v=6';
 
 const { Image } = WebP;
 const __filename = fileURLToPath(import.meta.url);
@@ -48,13 +49,31 @@ handler.all = async function(m) {
             let isAnimated = q.isAnimated || (q.msg && q.msg.isAnimated) || false;
 
             if (isAnimated) {
-                let mediaUrl = await uploadImage(stickerBuffer, "true");
-                if (!mediaUrl) return;
-                let res = await fetch(`https://api.betabotz.eu.org/api/tools/webp2mp4?url=${mediaUrl}&apikey=${global.lann}`);
-                let json = await res.json();
-                
-                if (json.result) {
-                    await this.sendVideoAsSticker(m.chat, json.result, m, {
+                let videoResult = null;
+
+                try {
+                    let mediaUrl = await uploadImage(stickerBuffer, "true");
+                    if (mediaUrl) {
+                        let res = await fetch(`https://api.betabotz.eu.org/api/tools/webp2mp4?url=${mediaUrl}&apikey=${lann}`);
+                        let json = await res.json();
+                        if (json && json.result) {
+                            videoResult = json.result;
+                        }
+                    }
+                } catch (apiErr) {
+                    console.warn('API Betabotz autowm gagal, beralih ke konversi lokal...', apiErr);
+                }
+
+                if (!videoResult) {
+                    try {
+                        videoResult = await stickerToMp4(stickerBuffer);
+                    } catch (localErr) {
+                        console.error('Konversi lokal autowm gagal:', localErr);
+                    }
+                }
+
+                if (videoResult) {
+                    await this.sendVideoAsSticker(m.chat, videoResult, m, {
                         packname: global.packname,
                         author: global.author
                     });
