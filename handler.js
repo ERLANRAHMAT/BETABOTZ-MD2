@@ -16,6 +16,8 @@ export default {
         // if (chatUpdate.messages.length > 1) console.log(chatUpdate.messages)
         let m = chatUpdate.messages[chatUpdate.messages.length - 1]
         if (!m) return
+        // Skip all messages during offline resume (queued messages from WhatsApp)
+        if (this.isOfflineResuming) return
         // Skip messages from channels/newsletters - bot only serves group & private chat
         if (isNewsletterJid(m.key?.remoteJid)) return
         //console.log(JSON.stringify(m, null, 4))
@@ -24,7 +26,7 @@ export default {
             if (!m) return
             if (isNewsletterJid(m.chat)) return
             if (m.chat && m.isGroup && !global.db.data.chats[m.chat]) {
-                global.db.data.chats[m.chat] = { detect: true, delete: true };
+                global.db.data.chats[m.chat] = { detect: true, delete: false };
             }
             if (m.isGroup && !global.db.data._migratedDetect) {
                 global.db.data._migratedDetect = true;
@@ -868,7 +870,7 @@ export default {
           if (!("sBye" in chat)) chat.sBye = "Al-fatihah untuk @user";
           if (!("sPromote" in chat)) chat.sPromote = "";
           if (!("sDemote" in chat)) chat.sDemote = "";
-          if (!("delete" in chat)) chat.delete = true;
+          if (!("delete" in chat)) chat.delete = false;
           if (!("antiLink" in chat)) chat.antiLink = false;
           if (!("antiLinknokick" in chat)) chat.antiLinknokick = false;
           if (!("antiSticker" in chat)) chat.antiSticker = false;
@@ -1033,8 +1035,8 @@ export default {
                     console.error(e)
                 }
             }
-        //if (m.id.startsWith('BAE5') && m.id.length === 16 || m.isZapo && m.fromMe) return
-	        if (m.id.startsWith('3EB0') || (m.id.startsWith('BAE5') && m.id.length === 16 || m.isZapo && m.fromMe)) return;	
+        //if (m.id.startsWith('BAE5') && m.id.length === 16 || isZapo && m.fromMe) return
+	        if (m.id.startsWith('3EB0') || (m.id.startsWith('BAE5')&& m.id.length === 16 || m.isZapo && m.fromMe)) return;	
             m.exp += Math.ceil(Math.random() * 10)
 
             let usedPrefix
@@ -1446,9 +1448,9 @@ export default {
             }
             break           
         case 'promote':
-            text = (chat.sPromote || this.spromote || conn.spromote || '@user ```is now Admin```')
+            text = (chat.sPromote || this.spromote || conn.spromote )
         case 'demote':
-            if (!text) text = (chat.sDemote || this.sdemote || conn.sdemote || '@user ```is no longer Admin```')
+            if (!text) text = (chat.sDemote || this.sdemote || conn.sdemote )
             let jid = participants[0]
             if (typeof jid === 'object') {
                 jid = jid.phoneNumber || jid.id || jid.jid || jid

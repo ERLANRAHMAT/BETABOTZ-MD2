@@ -192,7 +192,7 @@ const handler = async (m, { conn, text, command }) => {
 };
 
 handler.before = async function (m, { conn, isBotAdmin }) {
-  if (!m.isGroup || m.fromMe || m.isBaileys) return;
+  if (!m.isGroup || m.fromMe || m.isZapo ) return;
 
   let globalBlacklist = global.db.data.globalBlacklist || [];
   if (globalBlacklist.length === 0) return;

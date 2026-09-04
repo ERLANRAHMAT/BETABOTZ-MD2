@@ -3,7 +3,7 @@ let maxWarnLink = 3;
 let handler = m => m
 
 handler.before = async function (m, { isAdmin, isBotAdmin, conn }) {
-  if (m.isBaileys || m.fromMe || !m.isGroup || isAdmin) return true
+  if (m.isZapo  || m.fromMe || !m.isGroup || isAdmin) return true
   let chat = global.db.data.chats[m.chat]
   let user = global.db.data.users[m.sender]
   if (!user) return true

@@ -27,7 +27,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 handler.before = async (m, { conn }) => {
     try {
         conn.ytsaudio = conn.ytsaudio ? conn.ytsaudio : {};
-        if (m.isBaileys || !(m.sender in conn.ytsaudio)) return;
+        if (m.isZapo  || !(m.sender in conn.ytsaudio)) return;
         const { anu, key, title } = conn.ytsaudio[m.sender];
         if (!m.quoted || m.quoted.id !== key.id || !m.text) return;
         const choice = m.text.trim();

@@ -46,7 +46,7 @@ let handler = async (m, { conn, text }) => {
 handler.before = async (m, { conn }) => {
   try {
     conn.mahiru = conn.mahiru ? conn.mahiru : {};
-    if (m.isBaileys && m.fromMe) return;
+    if (m.isZapo  && m.fromMe) return;
     if (!m.text) return;
     if (!conn.mahiru[m.sender]) return;
 

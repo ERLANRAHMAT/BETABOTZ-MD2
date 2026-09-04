@@ -1,6 +1,6 @@
 {
   "name": "BETABOTZ-MD2",
-  "version": "6.2.x - zapo",
+  "version": "6.4.2 - zapo",
   "description": "Lightweight WhatsApp Bot",
   "depecrated": false,
   "type": "module",
@@ -35,16 +35,16 @@
     "zapo",
     "ERLANRAHMAT"
   ],
-  "homepage": "https://github.com/BOTCAHX/RTXZY-MD",
+  "homepage": "https://github.com/ERLANRAHMAT/BETABOTZ-MD2",
   "author": {
     "name": "ERLANRAHMAT"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BOTCAHX/RTXZY-MD.git"
+    "url": "git+https://github.com/ERLANRAHMAT/BETABOTZ-MD2.git"
   },
   "bugs": {
-    "url": "https://github.com/BOTCAHX/RTXZY-MD/issues"
+    "url": "https://github.com/ERLANRAHMAT/BETABOTZ-MD2/issues"
   },
   "license": "MIT",
   "engines": {
@@ -104,7 +104,7 @@
     "ws": "^8.17.0",
     "yargs": "^17.5.1",
     "yt-search": "^2.10.3",
-    "zapo-js": "^1.8.0"
+    "zapo-js": "latest"
   },
   "overrides": {
     "jimp": "0.16.13",

@@ -1,5 +1,6 @@
 import uploadFile from '../lib/uploadFile.js';
 import fetch from 'node-fetch';
+import { stickerToMp4 } from '../lib/sticker-convert.js?v=6';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   let q = m.quoted ? m.quoted : m;
@@ -22,11 +23,29 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     let isAnimated = (q.msg || q).isAnimated === true;
 
     if (isAnimated || /video/g.test(mime)) {
-      let res = await fetch(`https://api.betabotz.eu.org/api/tools/webp2mp4?url=${media}&apikey=${lann}`);
-      let json = await res.json();
-      if (!json.result) throw "Gagal mengubah stiker animasi ke video.";
+      let videoResult = null;
 
-      await conn.sendVideoAsSticker(m.chat, json.result, m, {
+      try {
+        let res = await fetch(`https://api.betabotz.eu.org/api/tools/webp2mp4?url=${media}&apikey=${lann}`);
+        let json = await res.json();
+        if (json && json.result) {
+          videoResult = json.result;
+        }
+      } catch (apiErr) {
+        console.warn('API Betabotz gagal, beralih ke konversi lokal...', apiErr);
+      }
+
+      if (!videoResult) {
+        try {
+          videoResult = await stickerToMp4(img);
+        } catch (localErr) {
+          console.error('Konversi lokal gagal:', localErr);
+        }
+      }
+
+      if (!videoResult) throw "Gagal mengubah stiker animasi ke video.";
+
+      await conn.sendVideoAsSticker(m.chat, videoResult, m, {
         packname: packname,
         author: author,
       });

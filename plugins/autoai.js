@@ -24,7 +24,7 @@ let handler = async (m, { conn, text }) => {
 handler.before = async (m, { conn }) => {
     try {
         conn.egvuaxrl = conn.egvuaxrl ? conn.egvuaxrl : {};
-        if (m.isBaileys && m.fromMe) return;
+        if (m.isZapo  && m.fromMe) return;
         if (!m.text) return;
         if (!conn.egvuaxrl[m.sender]) return;
 
