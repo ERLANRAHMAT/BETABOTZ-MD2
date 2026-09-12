@@ -11,7 +11,10 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     let user = global.db.data.users[who];
     let maxWarn = global.maxwarn || 3; 
 
-    await m.reply(`*CEK WARNING PENGGUNA*\n\n▢ *Pengguna:* @${who.split`@`[0]}\n▢ *Jumlah Warn:* ${user.warn || 0} / ${maxWarn}`, null, { mentions: [who] });
+    let manualWarn = user.warn || 0;
+    let linkWarn = user.warnLink || 0;
+
+    await m.reply(`*CEK WARNING PENGGUNA*\n\n▢ *Pengguna:* @${who.split`@`[0]}\n▢ *Warn Manual:* ${manualWarn} / ${maxWarn}\n▢ *Warn Antilink:* ${linkWarn} / ${maxWarn}`, null, { mentions: [who] });
 }
 
 handler.help = ['cekwarn [@user]'];
