@@ -9,6 +9,7 @@ handler.before = async function (m, { isAdmin, isBotAdmin, conn }) {
   const isGroupLink = /(chat.whatsapp.com\/([0-9A-Za-z]{20,24}))/i.test(m.text)
 
   if (chat.antiLink && isGroupLink) {
+    if (isAdmin) return;  
     if (typeof user.warnLink !== "number") user.warnLink = 0;
     await conn.sendMessage(m.chat, { delete: m.key })
     user.warnLink += 1
