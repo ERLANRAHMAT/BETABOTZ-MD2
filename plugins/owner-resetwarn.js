@@ -3,8 +3,12 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     let count = 0;
 
     for (let jid in users) {
-        if (users[jid].warn && users[jid].warn > 0) {
-            users[jid].warn = 0;
+        let user = users[jid];
+        let hasWarn = (user.warn && user.warn > 0) || (user.warnLink && user.warnLink > 0);
+        
+        if (hasWarn) {
+            user.warn = 0;
+            user.warnLink = 0;
             count++;
         }
     }
