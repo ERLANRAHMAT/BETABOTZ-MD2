@@ -1326,7 +1326,17 @@ export default {
                           console.error(e);
                         }
                       }
-                      if (m.limit) m.reply(+m.limit + " Limit terpakai");
+                      if (global.limitUsed === true) {
+                        if (m.limit && global.db.data.users[m.sender]) {
+                          let user = global.db.data.users[m.sender];
+                          if (user.limit >= m.limit) {
+                            user.limit -= m.limit;
+                            m.reply(`⚠️ -${m.limit} Limit terpakai.`);
+                          }
+                        }
+                      } else {
+                        return;
+                      }
                     }
                     break
                 }
