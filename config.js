@@ -33,6 +33,7 @@ global.autobio = false; // Set true/false untuk mengaktifkan atau mematikan auto
 global.antiporn = false; // Set true/false untuk Auto delete pesan porno (bot harus admin) (default: false)
 global.spam = false; // Set true/false untuk anti spam (default: false)
 global.gcspam = false; // Set true/false untuk menutup grup ketika spam (default: false)
+global.limitUsed = true;
 // APIKEY INI WAJIB UNTUK DI ISI! //
 // Prefix dari bot
 global.prefix = './#'
