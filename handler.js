@@ -1331,7 +1331,7 @@ export default {
                           let user = global.db.data.users[m.sender];
                           if (user.limit >= m.limit) {
                             user.limit -= m.limit;
-                            m.reply(+m.limit + "Limit terpakai");
+                            m.reply(+m.limit + " Limit terpakai");
                           }
                         }
                       } else {
