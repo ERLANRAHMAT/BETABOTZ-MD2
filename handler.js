@@ -890,8 +890,11 @@ export default {
           if (!("antiLinkCh" in chat)) chat.antiLinkCh = false;
           if (!("adminonly" in chat)) chat.adminonly = false;
           if (!("antispam" in chat)) chat.antispam = false;
+          if (!("limitUsed" in chat)) chat.limitUsed = true;
+          
         } else
           global.db.data.chats[m.chat] = {
+            limitUsed: true,
             antiLinkCh: false,
             autoacc: false,
             autotranslate: false,
@@ -1326,7 +1329,18 @@ export default {
                           console.error(e);
                         }
                       }
-                      if (m.limit) m.reply(+m.limit + " Limit terpakai");
+                      if (global.limitUsed === undefined) global.limitUsed = true;
+                      if (global.limitUsed === true) {
+                        if (m.limit && global.db.data.users[m.sender]) {
+                          let user = global.db.data.users[m.sender];
+                          if (user.limit >= m.limit) {
+                            user.limit -= m.limit;
+                            m.reply(+m.limit + " Limit terpakai");
+                          }
+                        }
+                      } else {
+                        return;
+                      }
                     }
                     break
                 }

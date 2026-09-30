@@ -380,6 +380,14 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
         }
         chat.autowm = isEnable;
         break;
+      case "limit":
+        isAll = true;
+        if (!isROwner) {
+          global.dfail("rowner", m, conn);
+          throw false;
+        }
+        global.limitUsed = isEnable;
+        break;
       case "autodl":
         if (m.isGroup) {
           if (!(isAdmin || isOwner)) {
@@ -394,6 +402,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
           return m.reply(
             `
 List option:
+| limit
 | antispam
 | adminonly
 | autowm
