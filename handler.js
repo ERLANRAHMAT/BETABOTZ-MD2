@@ -1331,6 +1331,7 @@ export default {
                           console.error(e);
                         }
                       }
+                     if (global.limitUsed === undefined) global.limitUsed = true;
                      if (global.limitUsed === true) {
                         if (m.limit && global.db.data.users[m.sender]) {
                           let user = global.db.data.users[m.sender];
