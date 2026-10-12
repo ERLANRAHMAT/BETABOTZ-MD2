@@ -1431,7 +1431,7 @@ export default {
                         const now = new Date()
                         const dateStr = `${String(now.getDate()).padStart(2, '0')}-${String(now.getMonth() + 1).padStart(2, '0')}-${now.getFullYear()}`
                         const memberCount = groupMetadata.participants?.length || 0
-                        const userName = "@user";
+                        const userName = ("@user");
                         const gpName = groupMetadata.subject || 'Group'
                         const canvasEndpoint = isAdd ? 'welcome4' : 'goodbye4'
                         
