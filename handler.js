@@ -1431,7 +1431,15 @@ export default {
                         const now = new Date()
                         const dateStr = `${String(now.getDate()).padStart(2, '0')}-${String(now.getMonth() + 1).padStart(2, '0')}-${now.getFullYear()}`
                         const memberCount = groupMetadata.participants?.length || 0
-                        const userName = await this.getName(jid).catch(() => jid.split('@')[0])
+                       let userName = 'Member';
+                        if (global.db?.data?.users?.[jid]?.name) {
+                            userName = global.db.data.users[jid].name;
+                        } else if (this.chats?.[jid]?.name || this.chats?.[jid]?.notify) {
+                            userName = this.chats[jid].name || this.chats[jid].notify;
+                        } else {
+                            let participantObj = groupMetadata.participants?.find(p => (p.id === jid || p.jid === jid || p.phoneNumber === jid));
+                            userName = participantObj?.name || jid.split('@')[0];
+                        }
                         const gpName = groupMetadata.subject || 'Group'
                         const canvasEndpoint = isAdd ? 'welcome4' : 'goodbye4'
                         
