@@ -1403,11 +1403,11 @@ export default {
         case 'leave':
         case 'invite':
         case 'invite_v4':
-            if (chat.welcome) {
+           if (chat.welcome) {
                 let groupMetadata = await this.groupMetadata(id).catch(() => null)
                 if (!groupMetadata) break
 
-                for (let user of participants) {
+                for (let [index, user] of participants.entries()) {
                     let jid = user
                     if (typeof user === 'object') {
                         jid = user.phoneNumber || user.id || user.jid || user
@@ -1416,20 +1416,42 @@ export default {
 
                     const isAdd = ['add', 'invite', 'invite_v4'].includes(action)
 
-                    text = (isAdd
+                    let text = (isAdd
                         ? (chat.sWelcome || this.welcome || 'Selamat datang @user 👋')
                         : (chat.sBye || this.bye || 'Selamat tinggal @user 👋'))
                         .replace('@subject', groupMetadata.subject || 'Group')
                         .replace('@desc', groupMetadata.desc?.toString() || '')
                         .replace('@user', '@' + jid.split('@')[0])
 
-                    await this.sendMessage(id, {
-                        text,
-                        mentions: [jid]
-                    })
+                    if (index > 0) {
+                        await new Promise(resolve => setTimeout(resolve, 3500)); // jeda waktu 3,5 detik sebelum mengirim pesan berikutnya
+                    }
+
+                    try {
+                        const now = new Date()
+                        const dateStr = `${String(now.getDate()).padStart(2, '0')}-${String(now.getMonth() + 1).padStart(2, '0')}-${now.getFullYear()}`
+                        const memberCount = groupMetadata.participants?.length || 0
+                        const userName = await this.getName(jid).catch(() => jid.split('@')[0])
+                        const gpName = groupMetadata.subject || 'Group'
+                        const canvasEndpoint = isAdd ? 'welcome4' : 'goodbye4'
+                        
+                        const canvasUrl = `https://api.betabotz.eu.org/api/maker/${canvasEndpoint}?name=${encodeURIComponent(userName)}&gpname=${encodeURIComponent(gpName)}&date=${encodeURIComponent(dateStr)}&member=${memberCount}&apikey=${lann}`
+                        
+                        await this.sendMessage(id, {
+                            image: { url: canvasUrl },
+                            caption: text,
+                            mentions: [jid]
+                        })
+                    } catch (e) {
+                        console.error('Canvas Welcome Error (Fallback to text):', e?.message || e);
+                        await this.sendMessage(id, {
+                            text,
+                            mentions: [jid]
+                        })
+                    }
                 }
             }
-            break           
+            break        
         case 'promote':
             text = (chat.sPromote || this.spromote || conn.spromote || '@user ```is now Admin```')
         case 'demote':
