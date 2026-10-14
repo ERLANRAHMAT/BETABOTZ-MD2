@@ -8,7 +8,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     try {
         let capt, urlApi;
         if (/^(tiktok|tt|ttdl|ttnowm|tiktokdl|tiktoknowm)$/i.test(command)) {
-            if (!text.match(/https?:\/\/(www\.|vt\.|vm\.|m\.)?tiktok\.com/gi)) throw "❌ URL TikTok Tidak Ditemukan!";
+            if (!text.match(/https?:\/\/(?:(?:www|vt|vm|m)\.)?tiktok\.com\/|https?:\/\/(?:www\.)?tt\.site\//i)) throw "❌ URL TikTok Tidak Ditemukan!";
             capt = `乂 *T I K T O K*`;
             urlApi = `https://api.betabotz.eu.org/api/download/tiktok?url=${encodeURIComponent(text.trim())}&apikey=${lann}`;
         } else if (/^(douyin|douyindl)$/i.test(command)) {
