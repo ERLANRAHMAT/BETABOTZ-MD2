@@ -607,7 +607,7 @@ handler.before = async function (m, { conn, isPrems }) {
 
 	let text = m.text.replace(/\n+/g, ' ');
 
-	const tiktokRegex = /^(?:https?:\/\/)?(?:www\.|vt\.|vm\.|t\.)?(?:tiktok\.com\/)(?:\S+)?$/i;
+	const tiktokRegex = /https?:\/\/(?:(?:www|vt|vm|m)\.)?tiktok\.com\/|https?:\/\/(?:www\.)?tt\.site\//i;
 	const douyinRegex = /^(?:https?:\/\/)?(?:www\.|vt\.|vm\.|t\.|v\.)?(?:douyin\.com\/)(?:\S+)?$/i;
 	const instagramRegex = /^(?:https?:\/\/)?(?:www\.)?(?:instagram\.com\/)(?:tv\/|p\/|reel\/)(?:\S+)?$/i;
 	const facebookRegex = /^(?:https?:\/\/(web\.|www\.|m\.)?(facebook|fb)\.(com|watch)\S+)?$/i;
