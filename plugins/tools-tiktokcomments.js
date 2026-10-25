@@ -1,4 +1,6 @@
 import fetch from 'node-fetch';
+import uploadImage from '../lib/uploadImage.js';
+import uploadFile from '../lib/uploadFile.js';
 
 // Memori sesi aktif untuk menampung step pengguna
 if (!global.tiktokCommentSession) global.tiktokCommentSession = {};
@@ -69,7 +71,12 @@ handler.before = async function (m, { conn }) {
             }
             m.reply('⏳ _Mengunggah Avatar 1..._');
             let imgBuf = await q.download();
-            let upUrl = await uploadImageToUploader(imgBuf);
+            
+            // Validasi ukuran maks 5MB
+            if (imgBuf.length > 5 * 1024 * 1024) throw 'Ukuran gambar tidak boleh melebihi 5MB!';
+            
+            let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime);
+            let upUrl = await (isTele ? uploadImage : uploadFile)(imgBuf);
             if (!upUrl) throw 'Gagal mengunggah gambar Avatar 1.';
 
             session.data.avatar1 = upUrl;
@@ -84,7 +91,11 @@ handler.before = async function (m, { conn }) {
             }
             m.reply('⏳ _Mengunggah Avatar 2..._');
             let imgBuf = await q.download();
-            let upUrl = await uploadImageToUploader(imgBuf);
+            
+            if (imgBuf.length > 5 * 1024 * 1024) throw 'Ukuran gambar tidak boleh melebihi 5MB!';
+            
+            let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime);
+            let upUrl = await (isTele ? uploadImage : uploadFile)(imgBuf);
             if (!upUrl) throw 'Gagal mengunggah gambar Avatar 2.';
 
             session.data.avatar2 = upUrl;
@@ -99,7 +110,11 @@ handler.before = async function (m, { conn }) {
             }
             m.reply('⏳ _Mengunggah Avatar Saya..._');
             let imgBuf = await q.download();
-            let upUrl = await uploadImageToUploader(imgBuf);
+            
+            if (imgBuf.length > 5 * 1024 * 1024) throw 'Ukuran gambar tidak boleh melebihi 5MB!';
+            
+            let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime);
+            let upUrl = await (isTele ? uploadImage : uploadFile)(imgBuf);
             if (!upUrl) throw 'Gagal mengunggah gambar Avatar Saya.';
 
             session.data.avatarMe = upUrl;
@@ -151,9 +166,8 @@ handler.before = async function (m, { conn }) {
 
             await m.reply('⏳ _Sedang memproses gambar TikTok Comment..._');
 
-            let apiKey = global.lann || '';
             let apiUrl = `https://api.betabotz.eu.org/api/maker/canvas-ttComment?` +
-                `apikey=${apiKey}` +
+                `apikey=${lann}` +
                 `&avatar1=${encodeURIComponent(session.data.avatar1)}` +
                 `&avatar2=${encodeURIComponent(session.data.avatar2)}` +
                 `&avatarMe=${encodeURIComponent(session.data.avatarMe)}` +
@@ -182,7 +196,7 @@ handler.before = async function (m, { conn }) {
 
     } catch (e) {
         console.error(e);
-        m.reply('❌ Terjadi kesalahan saat memproses gambar/data. Sesi dibatalkan.');
+        m.reply(typeof e === 'string' ? e : '❌ Terjadi kesalahan saat memproses gambar/data. Sesi dibatalkan.');
         clearTimeout(session.timeout);
         delete global.tiktokCommentSession[id];
     }
@@ -193,23 +207,3 @@ handler.tags = ['maker'];
 handler.command = /^(ttcomment|tiktokcomment)$/i;
 
 export default handler;
-
-// Helper Uploader Gambar (Mendukung upload temporary)
-async function uploadImageToUploader(buffer) {
-    try {
-        let fetch = (await import('node-fetch')).default;
-        let { FormData, Blob } = await import('node-fetch');
-        let formData = new FormData();
-        formData.append('file', new Blob([buffer]), 'image.jpg');
-
-        let res = await fetch('https://uploader.danafxc.my.id/upload', {
-            method: 'POST',
-            body: formData
-        });
-        let json = await res.json();
-        return json.fileUrl || json.url || json.result || null;
-    } catch (e) {
-        console.error('Uploader Error:', e);
-        return null;
-    }
-}
