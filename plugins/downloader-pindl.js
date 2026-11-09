@@ -11,23 +11,24 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   try {
     m.reply('Mohon tunggu, sedang memproses...');
 
-    const api = await fetch(`https://api.betabotz.eu.org/api/download/pinterest?url=${args[0]}&apikey=${lann}`);
+    const api = await fetch(`https://api.betabotz.eu.org/api/download/pinterest?url=${encodeURIComponent(args[0].trim())}&apikey=${lann}`);
     const res = await api.json();
 
-    if (!res.result || !res.result.success) throw `Gagal mengambil data dari API!`;
+    if (!res.success || !res.result?.data) throw `Gagal mengambil data dari API!`;
 
-    let { media_type, image, title, pin_url, video } = res.result.data;
+    let { media_type, image, pin_title, title, pin_url, video } = res.result.data;
+    let displayTitle = pin_title || (title && title !== 'Pinterest Downloader' ? title : 'Pinterest Media');
 
-    if (media_type === 'video/mp4') {
+    if (video || (media_type && media_type.includes('video'))) {
       await conn.sendMessage(m.chat, {
         video: { url: video },
-        caption: `*Title:* ${title || 'Tidak tersedia'}\n*Mediatype:* ${media_type}\n*Source Url:* ${pin_url}`
-      });
+        caption: `*Title:* ${displayTitle}\n*Mediatype:* ${media_type || '-'}\n*Source Url:* ${pin_url}`
+      }, { quoted: m });
     } else {
       await conn.sendMessage(m.chat, {
         image: { url: image },
-        caption: `*Title:* ${title || 'Tidak tersedia'}\n*Mediatype:* ${media_type}\n*Source Url:* ${pin_url}`
-      });
+        caption: `*Title:* ${displayTitle}\n*Mediatype:* ${media_type || '-'}\n*Source Url:* ${pin_url}`
+      }, { quoted: m });
     }
   } catch (e) {
       console.log(e);
