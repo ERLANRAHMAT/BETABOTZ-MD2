@@ -24,9 +24,14 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             timeout: setTimeout(() => {
                 if (global.tiktokCommentSession[id]) {
                     delete global.tiktokCommentSession[id];
-                    conn.sendMessage(m.chat, { text: '⏰ *Waktu habis (1 menit).* Sesi dibatalkan otomatis.' }, { quoted: m });
+                    conn.sendMessage(m.chat, { text: '⏰ *Waktu habis (5 menit).* Sesi dibatalkan otomatis.' }, { quoted: m });
                 }
-            }, 60000)
+            }, 300000) // 5 Menit (300.000 ms)
+/*
+Patokan Waktu Milliseconds (ms):
+5 Menit = 5 * 60 * 1000 = 300000
+10 Menit = 10 * 60 * 1000 = 600000
+*/
         };
 
         return m.reply(
@@ -51,9 +56,14 @@ handler.before = async function (m, { conn }) {
     session.timeout = setTimeout(() => {
         if (global.tiktokCommentSession[id]) {
             delete global.tiktokCommentSession[id];
-            conn.sendMessage(m.chat, { text: '⏰ *Waktu habis (1 menit).* Sesi dibatalkan otomatis.' }, { quoted: m });
+            conn.sendMessage(m.chat, { text: '⏰ *Waktu habis (5 menit).* Sesi dibatalkan otomatis.' }, { quoted: m });
         }
-    }, 60000);
+    }, 300000); // 5 Menit (300.000 ms)
+    /*
+Patokan Waktu Milliseconds (ms):
+5 Menit = 5 * 60 * 1000 = 300000
+10 Menit = 10 * 60 * 1000 = 600000
+*/
 
     let q = m.quoted ? m.quoted : m;
     let mime = (q.msg || q).mimetype || '';
