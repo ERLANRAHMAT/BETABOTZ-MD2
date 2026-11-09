@@ -1328,11 +1328,14 @@ export default {
                           console.error(e);
                         }
                       }
-                      let botNumber = this.user.jid;
-                      let settings = global.db.data.settings[botNumber] || {};
+
+                      let botJid = this.user?.jid || this.user?.id;
+                      let botSettings = global.db.data.settings?.[botJid] || {};
                       
-                      if (settings.limitUsed === undefined) settings.limitUsed = true;
-                      if (settings.limitUsed) {
+                      if (botSettings.limitUsed === undefined) botSettings.limitUsed = true;
+                      global.limitUsed = botSettings.limitUsed;
+
+                      if (global.limitUsed) {
                         if (m.limit && global.db.data.users[m.sender]) {
                           let user = global.db.data.users[m.sender];
                           if (user.limit >= m.limit) {
@@ -1342,7 +1345,7 @@ export default {
                         }
                       }
                     }
-                    break
+                    break;
                 }
             }
         } catch (e) {
