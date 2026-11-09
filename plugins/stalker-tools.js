@@ -36,53 +36,78 @@ let handler = async (m, {
     let [id, server] = text.split('|');
     try {
       let ml = await fetch(
-        `https://api.betabotz.eu.org/api/stalk/ml-v2?id=${id}&server=${server}&apikey=${lann}`,
+        `https://api.betabotz.eu.org/api/stalk/ml-v2?id=${encodeURIComponent(id.trim())}&server=${encodeURIComponent(server.trim())}&apikey=${lann}`,
       ).then((res) => res.json());
-      if (!ml.status) throw "Failed to fetch Mobile Legends data";
-      let result = ml.result.data.stalk_info;
-      let shopData = ml.result.data.categorized_shop;
+
+      if (!ml.status || !ml.result?.success || !ml.result?.data) {
+        throw "Gagal mengambil data Mobile Legends dari API!";
+      }
+
+      let { stalk_info: result, categorized_shop: shopData } = ml.result.data;
+
       let caption = `*M O B I L E  L E G E N D S  (V2)*\n\n`;
-      caption += `*User ID:* ${result.user_id}\n`;
-      caption += `*Server:* ${result.region}\n`;
-      caption += `*Nickname:* ${result.stalk_data.split("\n")[2].split(": ")[1]}\n`;
-      caption += `*Country:* ${result.stalk_data.split("\n")[3].split(": ")[1]}\n\n`;
-      caption += `*Diamond Packs:*\n`;
-      result.shop_data.diamond.goods.forEach((good) => {
-        caption += `- ${good.title}: ${good.limits.reached ? "Reached" : "Available"}, Inventory: ${good.limits.inventory}\n`;
-      });
-      caption += `\n*Event Packs:*\n`;
-      result.shop_data.event.goods.forEach((good) => {
-        caption += `- ${good.title}: ${good.limits.reached ? "Reached" : "Available"}, Inventory: ${good.limits.inventory}\n`;
-      });
-      caption += `\n*Weekly Pass:*\n`;
-      shopData.weeklyPass.items.forEach((item) => {
-        caption += `- ${item.title}: ${item.limits.reached_limit ? "Reached" : "Available"}\n`;
-      });
-      caption += `\n*Diamond Packs (Categorized):*\n`;
-      shopData.diamondPacks.items.forEach((item) => {
-        caption += `- ${item.title}: ${item.limits.reached_limit ? "Reached" : "Available"}\n`;
-      });
-      caption += `\n*First Charge Bonus:*\n`;
-      shopData.firstCharge.items.forEach((item) => {
-        caption += `- ${item.title}: ${item.limits.reached_limit ? "Reached" : "Available"}\n`;
-      });
-      caption += `\n*Special Offers:*\n`;
-      if (shopData.specialOffers.items.length === 0) {
-        caption += `- No special offers available\n`;
-      } else {
+      caption += `*Nickname:* ${result.nickname || '-'}\n`;
+      caption += `*User ID:* ${result.user_id || id}\n`;
+      caption += `*Zone ID:* ${result.zone_id || server}\n`;
+      caption += `*Region:* ${result.region_name || '-'} ${result.region_flag || ''}\n\n`;
+
+      if (result.shop_data?.diamond?.goods?.length) {
+        caption += `*Diamond Packs:*\n`;
+        result.shop_data.diamond.goods.forEach((good) => {
+          caption += `• ${good.title}: ${good.limits?.reached ? "Reached" : "Available"} (Inv: ${good.limits?.inventory ?? '0'})\n`;
+        });
+        caption += `\n`;
+      }
+
+      if (result.shop_data?.event?.goods?.length) {
+        caption += `*Event Packs:*\n`;
+        result.shop_data.event.goods.forEach((good) => {
+          caption += `• ${good.title}: ${good.limits?.reached ? "Reached" : "Available"} (Inv: ${good.limits?.inventory ?? '0'})\n`;
+        });
+        caption += `\n`;
+      }
+
+      if (shopData?.weeklyPass?.items?.length) {
+        caption += `*Weekly Pass:*\n`;
+        shopData.weeklyPass.items.forEach((item) => {
+          caption += `• ${item.title}: ${item.limits?.reached_limit ? "Reached" : "Available"}\n`;
+        });
+        caption += `\n`;
+      }
+
+      if (shopData?.diamondPacks?.items?.length) {
+        caption += `*Diamond Packs (Categorized):*\n`;
+        shopData.diamondPacks.items.forEach((item) => {
+          caption += `• ${item.title}: ${item.limits?.reached_limit ? "Reached" : "Available"}\n`;
+        });
+        caption += `\n`;
+      }
+
+      if (shopData?.firstCharge?.items?.length) {
+        caption += `*First Charge Bonus:*\n`;
+        shopData.firstCharge.items.forEach((item) => {
+          caption += `• ${item.title}: ${item.limits?.reached_limit ? "Reached" : "Available"}\n`;
+        });
+        caption += `\n`;
+      }
+
+      if (shopData?.specialOffers?.items?.length) {
+        caption += `*Special Offers:*\n`;
         shopData.specialOffers.items.forEach((item) => {
-          caption += `- ${item.title}: ${item.limits.reached_limit ? "Reached" : "Available"}\n`;
+          caption += `• ${item.title}: ${item.limits?.reached_limit ? "Reached" : "Available"}\n`;
         });
+        caption += `\n`;
       }
-      caption += `\n*Other Items:*\n`;
-      if (shopData.other.items.length === 0) {
-        caption += `- No other items available\n`;
-      } else {
+
+      if (shopData?.other?.items?.length) {
+        caption += `*Other Items:*\n`;
         shopData.other.items.forEach((item) => {
-          caption += `- ${item.title}: ${item.limits.reached_limit ? "Reached" : "Available"}\n`;
+          caption += `• ${item.title}: ${item.limits?.reached_limit ? "Reached" : "Available"}\n`;
         });
+        caption += `\n`;
       }
-      await conn.reply(m.chat, caption, m);
+
+      await conn.reply(m.chat, caption.trim(), m);
     } catch (e) {
       console.log(e);
       throw e;
