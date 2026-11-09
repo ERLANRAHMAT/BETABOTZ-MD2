@@ -1323,7 +1323,6 @@ export default {
                         console.error(err);
                       }
                     } finally {
-                      // m.reply(util.format(_user))
                       if (typeof plugin.after === "function") {
                         try {
                           await plugin.after.call(this, m, extra);
@@ -1331,20 +1330,24 @@ export default {
                           console.error(e);
                         }
                       }
-                     if (global.limitUsed === undefined) global.limitUsed = true;
-                     if (global.limitUsed === true) {
-                        if (m.limit && global.db.data.users[m.sender]) {
+
+                      let botJid = this.user?.jid || this.user?.id;
+                      let botSettings = global.db.data?.settings?.[botJid] || {};
+                      
+                      if (botSettings.limitUsed === undefined) botSettings.limitUsed = true;
+                      global.limitUsed = botSettings.limitUsed;
+
+                      if (global.limitUsed) {
+                        if (m.limit && global.db.data.users?.[m.sender]) {
                           let user = global.db.data.users[m.sender];
                           if (user.limit >= m.limit) {
                             user.limit -= m.limit;
                             m.reply(+m.limit + " Limit terpakai");
                           }
                         }
-                      } else {
-                        return;
                       }
                     }
-                    break
+                    break;
                 }
             }
         } catch (e) {
