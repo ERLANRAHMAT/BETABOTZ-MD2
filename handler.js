@@ -1321,7 +1321,6 @@ export default {
                         console.error(err);
                       }
                     } finally {
-                      // m.reply(util.format(_user))
                       if (typeof plugin.after === "function") {
                         try {
                           await plugin.after.call(this, m, extra);
@@ -1329,8 +1328,11 @@ export default {
                           console.error(e);
                         }
                       }
-                      if (global.limitUsed === undefined) global.limitUsed = true;
-                      if (global.limitUsed === true) {
+                      let botNumber = this.user.jid;
+                      let settings = global.db.data.settings[botNumber] || {};
+                      
+                      if (settings.limitUsed === undefined) settings.limitUsed = true;
+                      if (settings.limitUsed) {
                         if (m.limit && global.db.data.users[m.sender]) {
                           let user = global.db.data.users[m.sender];
                           if (user.limit >= m.limit) {
@@ -1338,8 +1340,6 @@ export default {
                             m.reply(+m.limit + " Limit terpakai");
                           }
                         }
-                      } else {
-                        return;
                       }
                     }
                     break

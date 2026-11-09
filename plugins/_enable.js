@@ -386,7 +386,10 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
           global.dfail("rowner", m, conn);
           throw false;
         }
-        global.limitUsed = isEnable;
+        let botJid = conn.user?.jid || conn.user?.id;
+        if (!global.db.data.settings[botJid]) global.db.data.settings[botJid] = {};
+        global.db.data.settings[botJid].limitUsed = isEnable;
+        global.limitUsed = isEnable; 
         break;
       case "autodl":
         if (m.isGroup) {
