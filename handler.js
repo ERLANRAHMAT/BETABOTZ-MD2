@@ -1330,13 +1330,13 @@ export default {
                       }
 
                       let botJid = this.user?.jid || this.user?.id;
-                      let botSettings = global.db.data.settings?.[botJid] || {};
+                      let botSettings = global.db.data?.settings?.[botJid] || {};
                       
                       if (botSettings.limitUsed === undefined) botSettings.limitUsed = true;
                       global.limitUsed = botSettings.limitUsed;
 
                       if (global.limitUsed) {
-                        if (m.limit && global.db.data.users[m.sender]) {
+                        if (m.limit && global.db.data.users?.[m.sender]) {
                           let user = global.db.data.users[m.sender];
                           if (user.limit >= m.limit) {
                             user.limit -= m.limit;
