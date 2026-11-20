@@ -22,7 +22,7 @@ let handler = guard(async (m, { conn, text, usedPrefix, command }) => {
   await conn.sendMessage(m.chat, { image: buffer }, { quoted: m });
 });
 
-handler.help = ['igqc <teks|jam>'];
+handler.help = ['igqc2 <teks|jam>'];
 handler.tags = ['maker'];
 handler.command = /^(igqc)$/i;
 handler.limit = true;
