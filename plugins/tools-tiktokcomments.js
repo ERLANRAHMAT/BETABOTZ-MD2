@@ -61,7 +61,7 @@ async function render(conn, m, session, field) {
         avatar1: img1.url,
         avatar2: img2.url,
         avatarMe: img1.url,
-        apikey: btc
+        apikey: lann
     });
 
     const res = await fetch(`https://api.betabotz.eu.org/api/maker/canvas-ttComment?${query}`);
