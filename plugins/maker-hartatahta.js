@@ -1,4 +1,5 @@
-import fs from 'fs';
+const __dirname = import.meta.dirname;
+import fs from 'fs'
 let handler = async (m, { conn, text }) => {
   conn.hartatahta = conn.hartatahta ? conn.hartatahta : {}
   if (m.chat in conn.hartatahta) throw 'Masih ada yang sedang membuat\nTeks Harta Tahta\ndi chat ini... tunggu sampai selesai'
@@ -21,11 +22,8 @@ handler.limit = false
 
 export default handler
 
-import { spawn } from 'child_process';
-import path from 'path';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { spawn } from 'child_process'
+import path from 'path'
 let src = path.join(__dirname, '../src/')
 let tmp = path.join(__dirname, '../tmp/')
 let _font = path.join(src, 'font')

@@ -1,253 +1,161 @@
-import fetch from 'node-fetch';
 import uploadImage from '../lib/uploadImage.js';
-import uploadFile from '../lib/uploadFile.js';
+import { createHash } from 'crypto';
 
-if (!global.tiktokCommentSession) global.tiktokCommentSession = {};
+const IMAGE_TIMEOUT = 90_000;
+const TEXT_TIMEOUT = 180_000;
 
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-    let id = m.sender;
+const GUIDE = (p, c) => `*Cara pakai ${p + c}:*
+1. Ketik *${p + c}* — bot minta 2 gambar
+2. Kirim *2 gambar berbeda* (avatar komentator 1 & 2)
+3. Kirim caption:
+${p + c} user1|komentar1|likes|user2|balasan|likes2
 
-    if (text && text.toLowerCase() === 'batalkan') {
-        if (global.tiktokCommentSession[id]) {
-            clearTimeout(global.tiktokCommentSession[id].timeout);
-            delete global.tiktokCommentSession[id];
-            return m.reply('❌ *Sesi pembuatan TikTok Comment berhasil dibatalkan.*');
-        } else {
-            return m.reply('Anda tidak sedang dalam sesi pembuatan TikTok Comment.');
-        }
+*Contoh:*
+${p + c} BETABOTZ|Mantap kali bos|12500|Supri|Setuju banget|15
+
+• likes boleh kosong (otomatis 0), boleh juga ditulis 12.5K / 1,2rb
+• Semua avatar diambil dari 2 gambar yang kamu kirim`;
+
+const store = conn => (conn.ttc = conn.ttc && typeof conn.ttc === 'object' ? conn.ttc : {});
+
+const cleanup = (conn, id) => {
+    const s = conn.ttc?.[id];
+    if (!s) return;
+    if (s.timeout) clearTimeout(s.timeout);
+    delete conn.ttc[id];
+};
+
+const arm = (conn, id, stage, ms, note) => {
+    const s = conn.ttc[id];
+    clearTimeout(s.timeout);
+    s.stage = stage;
+    s.timeout = setTimeout(() => {
+        if (!conn.ttc?.[id]) return;
+        delete conn.ttc[id];
+        conn.reply(id, note);
+    }, ms);
+};
+
+const digits = v => {
+    let s = String(v ?? '').trim().toLowerCase().replace(/\s/g, '');
+    if (!s) return '0';
+    const suf = s.match(/(juta|ribu|jt|rb|k|m)$/)?.[0];
+    if (suf) s = s.slice(0, -suf.length).replace(',', '.');
+    else s = s.replace(/[.,]/g, '');
+    const n = parseFloat(s);
+    if (!Number.isFinite(n) || n < 0) return '0';
+    const mult = { k: 1e3, rb: 1e3, ribu: 1e3, m: 1e6, jt: 1e6, juta: 1e6 }[suf] || 1;
+    return String(Math.round(n * mult));
+};
+
+async function render(conn, m, session, field) {
+    const [img1, img2] = session.images;
+
+    const query = new URLSearchParams({
+        user1: field.user1,
+        text1: field.text1,
+        likes: digits(field.likes),
+        user2: field.user2,
+        text2: field.text2,
+        likes2: digits(field.likes2),
+        avatar1: img1.url,
+        avatar2: img2.url,
+        avatarMe: img1.url,
+        apikey: lann
+    });
+
+    const res = await fetch(`https://api.betabotz.eu.org/api/maker/canvas-ttComment?${query}`);
+    const type = res.headers.get('content-type') || '';
+    const buf = Buffer.from(await res.arrayBuffer());
+
+    if (!type.startsWith('image/')) {
+        let msg = `❌ Gagal membuat gambar (HTTP ${res.status}).`;
+        try {
+            const json = JSON.parse(buf.toString());
+            if (json?.message) msg = `❌ ${json.message}`;
+        } catch {}
+        throw msg;
     }
 
-    if (!global.tiktokCommentSession[id]) {
-        global.tiktokCommentSession[id] = {
-            step: 1,
-            data: {},
-            timeout: setTimeout(() => {
-                if (global.tiktokCommentSession[id]) {
-                    delete global.tiktokCommentSession[id];
-                    conn.sendMessage(m.chat, { text: '⏰ *Waktu habis (5 menit).* Sesi dibatalkan otomatis.' }, { quoted: m });
-                }
-            }, 300000) // 5 Menit (300.000 ms)
-/*
-Patokan Waktu Milliseconds (ms):
-5 Menit = 5 * 60 * 1000 = 300000
-10 Menit = 10 * 60 * 1000 = 600000
-*/
-        };
+    cleanup(conn, m.chat);
+    await conn.sendMessage(m.chat, {
+        image: buf,
+        caption: `✅ *TikTok Comment*\n\n◦ ${field.user1}: ${field.text1}\n◦ ${field.user2}: ${field.text2}`
+    }, { quoted: m });
+}
 
-        return m.reply(
-            `🎬 *TIKTOK COMMENT MAKER (WIZARD)*\n\n` +
-            `Silakan ikuti instruksi tiap langkah di bawah ini.\n` +
-            `💡 *Catatan:* Kirim kata *batalkan* kapan saja untuk menghentikan proses.\n\n` +
-            `━━━━━━━━━━━━━━━━━━━━━\n` +
-            `👉 *LANGKAH 1 dari 6: BACKGROUND VIDEO*\n` +
-            `Kirimkan atau balaskan (*reply*) **gambar background** video TikTok yang akan dijadikan latar belakang.`
-        );
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+    store(conn);
+    const id = m.chat;
+    const px = usedPrefix + command;
+    const session = conn.ttc[id];
+
+    if (!session) {
+        conn.ttc[id] = { stage: 'images', images: [], prefix: px };
+        arm(conn, id, 'images', IMAGE_TIMEOUT, `⏱️ Sesi *${command}* dibatalkan (tidak ada gambar masuk).`);
+        return m.reply(`🖼️ Kirim *2 gambar berbeda* sekarang (avatar komentator 1 & 2).\n_Waktu ${IMAGE_TIMEOUT / 1000} detik._\n\nSetelah itu kirim caption:\n*${px} user1|komentar1|likes|user2|balasan|likes2*`);
+    }
+
+    if (session.stage === 'images') {
+        return m.reply(`Baru *${session.images.length}/2* gambar diterima. Kirim gambar ke-${session.images.length + 1}.`);
+    }
+
+    const field = String(text ?? '').split('|').map(v => v.trim());
+    const [user1, text1, likes, user2, text2, likes2] = field;
+
+    if (field.length < 6 || !user1 || !text1 || !user2 || !text2) throw GUIDE(usedPrefix, command);
+
+    try {
+        await m.reply('⏳ _Sedang membuat gambar..._');
+        await render(conn, m, session, { user1, text1, likes, user2, text2, likes2 });
+    } catch (e) {
+        cleanup(conn, id);
+        console.log(e);
+        if (typeof e === 'string') return m.reply(e);
+        m.reply('❌ Terjadi kesalahan saat memproses.');
     }
 };
 
-handler.before = async function (m, { conn }) {
-    let id = m.sender;
-    let session = global.tiktokCommentSession[id];
+handler.before = async (m, { conn }) => {
+    const session = conn.ttc?.[m.chat];
+    if (!session || session.stage !== 'images') return;
+    if (m.isZapo) return;
 
-    if (!session) return;
-    if (m.text && m.text.toLowerCase() === 'batalkan') return;
-
-    clearTimeout(session.timeout);
-    session.timeout = setTimeout(() => {
-        if (global.tiktokCommentSession[id]) {
-            delete global.tiktokCommentSession[id];
-            conn.sendMessage(m.chat, { text: '⏰ *Waktu habis (5 menit).* Sesi dibatalkan otomatis.' }, { quoted: m });
-        }
-    }, 300000); // 5 Menit (300.000 ms)
-    /*
-Patokan Waktu Milliseconds (ms):
-5 Menit = 5 * 60 * 1000 = 300000
-10 Menit = 10 * 60 * 1000 = 600000
-*/
-
-    let q = m.quoted ? m.quoted : m;
-    let mime = (q.msg || q).mimetype || '';
+    const q = m.quoted ? m.quoted : m;
+    const mime = (q.msg || q).mimetype || '';
+    if (!/image\/(png|jpe?g)/i.test(mime)) return;
 
     try {
-        // --- STEP 1: Background Image ---
-        if (session.step === 1) {
-            if (!/image\/(png|jpe?g)/.test(mime)) {
-                return m.reply('⚠️ *Gambar tidak ditemukan!* Harap kirim atau reply sebuah gambar untuk dijadikan **Background Video**.');
-            }
-            m.reply('⏳ _Mengunggah gambar Background..._');
-            let imgBuf = await q.download();
-            if (imgBuf.length > 5 * 1024 * 1024) throw 'Ukuran gambar maksimal 5MB!';
-            
-            let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime);
-            let upUrl = await (isTele ? uploadImage : uploadFile)(imgBuf);
-            if (!upUrl) throw 'Gagal mengunggah gambar Background.';
+        const buf = await q.download();
+        if (!buf?.length) return;
 
-            session.data.bg = upUrl;
-            session.step = 2;
-            return m.reply(
-                `✅ *Background Berhasil Upload!*\n\n` +
-                `👉 *LANGKAH 2 dari 6: AVATAR USER 1 (Komentar Utama)*\n` +
-                `Kirimkan atau reply gambar foto profil untuk *User 1* (orang yang berkomentar utama).`
-            );
+        const hash = createHash('sha1').update(buf).digest('hex');
+        if (session.images.some(v => v.hash === hash)) {
+            return void conn.reply(m.chat, '❌ Gambarnya sama dengan yang tadi. Kirim gambar yang *beda*.', m);
         }
 
-        // --- STEP 2: Avatar 1 ---
-        if (session.step === 2) {
-            if (!/image\/(png|jpe?g)/.test(mime)) {
-                return m.reply('⚠️ *Gambar tidak ditemukan!* Harap kirim atau reply sebuah gambar untuk **Avatar User 1**.');
-            }
-            m.reply('⏳ _Mengunggah Avatar User 1..._');
-            let imgBuf = await q.download();
-            if (imgBuf.length > 5 * 1024 * 1024) throw 'Ukuran gambar maksimal 5MB!';
-            
-            let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime);
-            let upUrl = await (isTele ? uploadImage : uploadFile)(imgBuf);
-            if (!upUrl) throw 'Gagal mengunggah Avatar 1.';
+        const url = await uploadImage(buf);
+        if (!url) return void conn.reply(m.chat, '❌ Gagal mengunggah gambar, coba kirim ulang.', m);
 
-            session.data.avatar1 = upUrl;
-            session.step = 3;
-            return m.reply(
-                `✅ *Avatar User 1 Berhasil Upload!*\n\n` +
-                `👉 *LANGKAH 3 dari 6: AVATAR USER 2 (Komentar Balasan)*\n` +
-                `Kirimkan atau reply gambar foto profil untuk *User 2* (orang yang membalas komentar).`
-            );
+        session.images.push({ url, hash });
+
+        if (session.images.length < 2) {
+            arm(conn, m.chat, 'images', IMAGE_TIMEOUT, '⏱️ Sesi dibatalkan (gambar kurang).');
+            return void conn.reply(m.chat, '✅ Gambar 1 diterima. Kirim *gambar 2* (harus beda).', m);
         }
 
-        // --- STEP 3: Avatar 2 ---
-        if (session.step === 3) {
-            if (!/image\/(png|jpe?g)/.test(mime)) {
-                return m.reply('⚠️ *Gambar tidak ditemukan!* Harap kirim atau reply sebuah gambar untuk **Avatar User 2**.');
-            }
-            m.reply('⏳ _Mengunggah Avatar User 2..._');
-            let imgBuf = await q.download();
-            if (imgBuf.length > 5 * 1024 * 1024) throw 'Ukuran gambar maksimal 5MB!';
-            
-            let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime);
-            let upUrl = await (isTele ? uploadImage : uploadFile)(imgBuf);
-            if (!upUrl) throw 'Gagal mengunggah Avatar 2.';
-
-            session.data.avatar2 = upUrl;
-            session.step = 4;
-            return m.reply(
-                `✅ *Avatar User 2 Berhasil Upload!*\n\n` +
-                `👉 *LANGKAH 4 dari 6: AVATAR SAYA (Avatar Me)*\n` +
-                `Kirimkan atau reply gambar foto profil untuk *Profil Kamu* (terletak di kolom input komentar bagian bawah).`
-            );
-        }
-
-        // --- STEP 4: Avatar Me ---
-        if (session.step === 4) {
-            if (!/image\/(png|jpe?g)/.test(mime)) {
-                return m.reply('⚠️ *Gambar tidak ditemukan!* Harap kirim atau reply sebuah gambar untuk **Avatar Saya**.');
-            }
-            m.reply('⏳ _Mengunggah Avatar Saya..._');
-            let imgBuf = await q.download();
-            if (imgBuf.length > 5 * 1024 * 1024) throw 'Ukuran gambar maksimal 5MB!';
-            
-            let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime);
-            let upUrl = await (isTele ? uploadImage : uploadFile)(imgBuf);
-            if (!upUrl) throw 'Gagal mengunggah Avatar Saya.';
-
-            session.data.avatarMe = upUrl;
-            session.step = 5;
-            return m.reply(
-                `✅ *Semua Gambar Berhasil Upload!*\n\n` +
-                `👉 *LANGKAH 5 dari 6: TEKS KOMENTAR UTAMA*\n` +
-                `Kirimkan rincian Komentar Utama menggunakan pemisah garis tegak (\`|\`).\n\n` +
-                `📋 *Format Input:*\n` +
-                `\`Username | Teks Komentar | Waktu | Jumlah Like\`\n\n` +
-                `📌 *Contoh Pengiriman:*\n` +
-                `\`betabotz | Mantap kali bos | 2j | 12500\``
-            );
-        }
-
-        // --- STEP 5: Input Text Komentar 1 ---
-        if (session.step === 5) {
-            if (!m.text) return m.reply('⚠️ Harap masukkan teks rincian Komentar Utama!');
-            let splits = m.text.split('|').map(v => v.trim());
-            if (splits.length < 4) {
-                return m.reply(
-                    `⚠️ *Format Salah!* Pastikan menggunakan 3 garis tegak (\`|\`).\n\n` +
-                    `📌 *Format:* \`Username | Teks Komentar | Waktu | Jumlah Like\`\n` +
-                    `📌 *Contoh:* \`betabotz | Mantap kali bos | 2j | 12500\``
-                );
-            }
-
-            session.data.user1 = splits[0];
-            session.data.text1 = splits[1];
-            session.data.time1 = splits[2];
-            session.data.likes = splits[3];
-            session.step = 6;
-
-            return m.reply(
-                `✅ *Komentar Utama Berhasil Disimpan!*\n\n` +
-                `👉 *LANGKAH 6 dari 6 (Terakhir): TEKS BALASAN KOMENTAR*\n` +
-                `Kirimkan rincian Balasan Komentar menggunakan pemisah garis tegak (\`|\`).\n\n` +
-                `📋 *Format Input:*\n` +
-                `\`Username | Teks Balasan | Waktu | Like Balasan | Balasan Lainnya\`\n\n` +
-                `📌 *Contoh Pengiriman:*\n` +
-                `\`BetaApi | Setuju banget | 1j | 15 | 4\``
-            );
-        }
-
-        // --- STEP 6: Input Text Komentar 2 & Generate Canvas ---
-        if (session.step === 6) {
-            if (!m.text) return m.reply('⚠️ Harap masukkan teks rincian Balasan Komentar!');
-            let splits = m.text.split('|').map(v => v.trim());
-            if (splits.length < 5) {
-                return m.reply(
-                    `⚠️ *Format Salah!* Pastikan menggunakan 4 garis tegak (\`|\`).\n\n` +
-                    `📌 *Format:* \`Username | Teks Balasan | Waktu | Like Balasan | Balasan Lainnya\`\n` +
-                    `📌 *Contoh:* \`BetaApi | Setuju banget | 1j | 15 | 4\``
-                );
-            }
-
-            session.data.user2 = splits[0];
-            session.data.text2 = splits[1];
-            session.data.time2 = splits[2];
-            session.data.likes2 = splits[3];
-            session.data.moreReplies = splits[4];
-
-            await m.reply('⏳ _Sedang me-render gambar TikTok Comment... Mohon tunggu._');
-
-            let apiKey = global.lann || '';
-            let apiUrl = `https://api.betabotz.eu.org/api/maker/canvas-ttComment?` +
-                `apikey=${apiKey}` +
-                `&bg=${encodeURIComponent(session.data.bg)}` +
-                `&avatar1=${encodeURIComponent(session.data.avatar1)}` +
-                `&avatar2=${encodeURIComponent(session.data.avatar2)}` +
-                `&avatarMe=${encodeURIComponent(session.data.avatarMe)}` +
-                `&user1=${encodeURIComponent(session.data.user1)}` +
-                `&text1=${encodeURIComponent(session.data.text1)}` +
-                `&time1=${encodeURIComponent(session.data.time1)}` +
-                `&likes=${encodeURIComponent(session.data.likes)}` +
-                `&user2=${encodeURIComponent(session.data.user2)}` +
-                `&text2=${encodeURIComponent(session.data.text2)}` +
-                `&time2=${encodeURIComponent(session.data.time2)}` +
-                `&likes2=${encodeURIComponent(session.data.likes2)}` +
-                `&moreReplies=${encodeURIComponent(session.data.moreReplies)}` +
-                `&placeholder=${encodeURIComponent('Tambahkan komentar...')}` +
-                `&totalComments=604`;
-
-            await conn.sendMessage(m.chat, {
-                image: { url: apiUrl },
-                caption: '✨ *TikTok Comment Canvas Berhasil Dibuat!*'
-            }, { quoted: m });
-
-            clearTimeout(session.timeout);
-            delete global.tiktokCommentSession[id];
-        }
-
+        arm(conn, m.chat, 'text', TEXT_TIMEOUT, '⏱️ Sesi dibatalkan (caption tidak dikirim).');
+        const px = session.prefix;
+        conn.reply(m.chat, `✅ 2 gambar diterima.\n\nSekarang kirim caption:\n*${px} user1|komentar1|likes|user2|balasan|likes2*\n\n*Contoh:*\n${px} BETABOTZ|Mantap kali bos|12500|Supri|Setuju banget|15`, m);
     } catch (e) {
-        console.error(e);
-        m.reply(typeof e === 'string' ? e : '❌ Terjadi kesalahan saat memproses data. Sesi dibatalkan.');
-        clearTimeout(session.timeout);
-        delete global.tiktokCommentSession[id];
+        console.log(e);
+        m.reply('❌ Gagal memproses gambar, coba kirim ulang.');
     }
 };
 
 handler.help = ['ttcomment'];
 handler.tags = ['maker'];
-handler.command = /^(ttcomment|tiktokcomment)$/i;
+handler.command = /^(ttcomment|ttc)$/i;
+handler.limit = true;
 
 export default handler;
