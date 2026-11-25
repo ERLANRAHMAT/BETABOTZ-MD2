@@ -3,7 +3,7 @@ let handler = async (m, { teks, conn, isOwner, isAdmin, args, command }) => {
     
     if (!(isAdmin || isOwner)) {
         global.dfail('admin', m, conn);
-        throw false;
+        return;
     }
 
     let ownerGroup = m.chat.split`-`[0] + "@s.whatsapp.net";

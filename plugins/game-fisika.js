@@ -3,21 +3,14 @@ let timeout = 100000
 let poin = 10000
 let handler = async (m, { conn, usedPrefix }) => {
     try {
-         conn.fisika = conn.fisika ? conn.fisika : {}
+        conn.fisika = conn.fisika ? conn.fisika : {}
     let id = m.chat
     if (id in conn.fisika) {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.fisika[id][0])
-        throw false
+        return;
     }
-    let json ;
-    try {
-    let src = await (await fetch(`https://api.betabotz.eu.org/api/game/fisika?apikey=${lann}`)).json()
-    json = src;
-        } catch (e) {
-            console.log(e);
-            throw e;
-        }
-    if (!json || !json.jawaban) throw new Error('Format data tebakemoji tidak valid dari API.');
+    let src = await (await fetch(`https://api.danafxc.my.id/api/proxy/games?q=fisika&apikey=${dana}`)).json()
+    let json = src
     let options = json.pilihan.map((opt, i) => `${String.fromCharCode(65 + i)}. ${opt}`).join('\n')
     let caption = `
 ${json.soal}
