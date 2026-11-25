@@ -14,7 +14,7 @@ let handler = async (m, { conn }) => {
                 return conn.reply(m.chat, 'Masih ada kuis yang belum terjawab di chat ini\nTunggu 3 menit untuk mengakhiri', conn.family[id].msg);
             }
             delete conn.family[id];
-            throw false;
+            return;
         }
 
         conn.family[id] = {};

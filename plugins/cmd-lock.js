@@ -1,7 +1,7 @@
 export default Object.assign(async function handler(m, { conn, isOwner, isPremium, command }) {
     if (!(isOwner || isPremium)) {
         global.dfail('premium', m, conn)
-        throw false
+        return;
     }
     if (!m.quoted) throw 'Reply Pesan!'
     if (!m.quoted.fileSha256) throw 'SHA256 Hash Missing'
