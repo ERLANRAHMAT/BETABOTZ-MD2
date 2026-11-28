@@ -6,7 +6,7 @@ import { proto } from '../lib/simple.js'
 import { addExif } from '../lib/sticker.js'
 
 const FFMPEG = process.env.FFMPEG_PATH || 'ffmpeg'
-const SESSION_TIMEOUT = 30_000
+const SESSION_TIMEOUT = 30_000 // 30 detik
 const AUDIO_LIMIT = 10
 const VIDEO_LIMIT = 10
 const WEBP_LIMIT = 1024 * 1024
