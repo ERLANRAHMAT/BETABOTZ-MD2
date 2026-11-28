@@ -9,9 +9,10 @@ let handler = async (m, { conn, command, usedPrefix, text }) => {
     if (!/409|conflict/i.test(msg)) throw e
     await new Promise(r => setTimeout(r, 1500))
     try {
-      await conn.groupUpdateDescription(m.chat, text)
-    } catch (err) {
-      return m.reply(`Gagal mengganti deskripsi: ${err?.message || err}`)
+      await conn.groupUpdateDescription(m.chat, text);
+    } catch (e) {
+      console.log(e);
+      throw e;
     }
   }
   m.reply('Sukses mengganti deskripsi group')

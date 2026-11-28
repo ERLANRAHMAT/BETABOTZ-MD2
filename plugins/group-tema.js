@@ -88,18 +88,18 @@ function colorList() {
 function usage(prefix, command) {
   const cmd = `${prefix}${command}`
   let capt = `乂 *T E M A  G R U P*\n\n`
+  capt += `\n*Contoh*\n`;
+  capt += `◦ ${cmd} pink\n`;
+  capt += `◦ ${cmd} #FF69B4\n`;
+  capt += `◦ ${cmd} bubble royal-blue-tonal\n`;
+  capt += `◦ ${cmd} pink | royal-blue-tonal\n`;
+  capt += `◦ ${cmd} reset\n`;
+  capt += `◦ Reply gambar + ${cmd}\n`;
+  capt += `◦ ${cmd} https://link-gambar.jpg`;
   capt += `*Warna wallpaper*\n`
   capt += colorList()
   capt += `\n*Skema bubble*\n`
   capt += bubbleList()
-  capt += `\n*Contoh*\n`
-  capt += `◦ ${cmd} pink\n`
-  capt += `◦ ${cmd} #FF69B4\n`
-  capt += `◦ ${cmd} bubble royal-blue-tonal\n`
-  capt += `◦ ${cmd} pink | royal-blue-tonal\n`
-  capt += `◦ ${cmd} reset\n`
-  capt += `◦ Reply gambar + ${cmd}\n`
-  capt += `◦ ${cmd} https://link-gambar.jpg`
   return capt
 }
 
@@ -278,9 +278,12 @@ async function sendChatTheme(conn, jid, themeSetting) {
 async function downloadImage(conn, found) {
   if (typeof found.holder?.download === 'function') {
     try {
-      const buffer = await found.holder.download()
-      if (buffer?.length) return Buffer.from(buffer)
-    } catch {}
+      const buffer = await found.holder.download();
+      if (buffer?.length) return Buffer.from(buffer);
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
   }
   const wrapped = { [found.type === 'document' ? 'documentMessage' : 'imageMessage']: found.media }
   const buffer = await conn._client.message.downloadBytes(wrapped)
